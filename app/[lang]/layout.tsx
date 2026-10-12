@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { type Lang } from '@/lib/i18n'
 import CookieBanner from '@/components/CookieBanner'
+import ChatBot from '@/components/ChatBot'
 
 export async function generateStaticParams() {
   return [{ lang: 'th' }, { lang: 'en' }]
@@ -21,6 +22,7 @@ export default function LangLayout({ children, params }: { children: React.React
   return (
     <>
       {children}
+      <ChatBot lang={lang} />
       <CookieBanner lang={lang} />
     </>
   )
