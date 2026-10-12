@@ -5,6 +5,7 @@ import Footer from '@/components/Footer'
 import { t, type Lang } from '@/lib/i18n'
 import { caseStudies, getCaseStudy } from '@/lib/case-studies-data'
 import { alt } from '@/lib/seo'
+import { getCaseStack } from '@/lib/case-stack'
 
 // Keep meta descriptions near 155 characters: fill with whole sentences (EN) or cut at a word boundary (TH).
 function trimMeta(text: string, max = 158): string {
@@ -223,6 +224,42 @@ export default function Page({ params }: { params: { lang: Lang; slug: string } 
             </div>
           </div>
         </section>
+
+        {/* Languages & Technology */}
+        {(() => {
+          const st = getCaseStack(study.slug)
+          if (!st) return null
+          const en = lang === 'en'
+          const groups = [
+            { label: en ? 'Languages' : 'ภาษา', items: st.languages },
+            { label: en ? 'Frameworks & systems' : 'เฟรมเวิร์กและระบบ', items: [...(st.earlier || []), ...st.frameworks] },
+            { label: en ? 'Hosting & delivery' : 'โฮสติ้งและการส่งมอบ', items: st.infra },
+          ].filter((g) => g.items.length)
+          return (
+            <section className="pb-16 lg:pb-24">
+              <div className="max-w-5xl mx-auto px-6 lg:px-10">
+                <h2 className="t-display leading-relaxed text-[clamp(1.6rem,3vw,2.3rem)] mb-3" style={{ color: 'var(--ink)' }}>
+                  {en ? 'Languages & Technology' : 'ภาษาและเทคโนโลยีที่ใช้'}
+                </h2>
+                <p className="mb-8" style={{ color: 'rgb(var(--fg) / 0.6)', fontSize: '0.92rem', lineHeight: 1.6 }}>
+                  {en ? 'What we can share openly. Parts that are confidential to the client are not listed.' : 'เท่าที่เปิดเผยได้ ส่วนที่เป็นความลับของลูกค้าไม่ได้ระบุไว้'}
+                </p>
+                <div className="flex flex-col gap-6">
+                  {groups.map((g) => (
+                    <div key={g.label}>
+                      <p className="mb-3" style={{ color: 'rgb(var(--fg) / 0.9)', fontWeight: 500, fontSize: '1rem' }}>{g.label}</p>
+                      <div className="flex flex-wrap gap-2.5">
+                        {g.items.map((it) => (
+                          <span key={it} className="px-4 py-2 rounded-full text-sm" style={{ background: 'rgb(var(--fg) / 0.05)', border: '1px solid rgb(var(--fg) / 0.12)', color: 'var(--ink)' }}>{it}</span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          )
+        })()}
 
         {/* Key Features */}
         <section className="pb-24 lg:pb-32">
