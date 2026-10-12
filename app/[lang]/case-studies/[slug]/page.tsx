@@ -7,6 +7,7 @@ import { t, type Lang } from '@/lib/i18n'
 import { caseStudies, getCaseStudy } from '@/lib/case-studies-data'
 import { alt } from '@/lib/seo'
 import { getCaseStack } from '@/lib/case-stack'
+import { PhoneScreen, BrowserScreen } from '@/components/CaseMock'
 import TechGlyph from '@/components/TechGlyph'
 
 // Keep meta descriptions near 155 characters: fill with whole sentences (EN) or cut at a word boundary (TH).
@@ -334,7 +335,16 @@ export default function Page({ params }: { params: { lang: Lang; slug: string } 
                           <span aria-hidden="true" className="inline-block w-4 h-4 rounded-full mr-4 align-middle" style={{ background: 'var(--accent)', boxShadow: '0 0 22px 4px rgb(123 110 246 / 0.55)' }} />{en ? 'UI Solution' : 'โซลูชัน UI'} {String(i + 1).padStart(2, '0')}
                         </h2>
                         <p className="mb-5 max-w-xl" style={{ color: 'var(--ink)', fontSize: 'clamp(1.1rem,1.8vw,1.4rem)', lineHeight: 1.6, fontWeight: 400 }}>{en ? u.problem.en : u.problem.th}</p>
-                        <p className="max-w-xl" style={{ color: 'rgb(var(--fg) / 0.62)', fontSize: '1rem', lineHeight: 1.75 }}>{en ? u.solution.en : u.solution.th}</p>
+                        {u.list && (
+                          <ul className="flex flex-col gap-3 max-w-xl">
+                            {(en ? u.list.en : u.list.th).map((b) => (
+                              <li key={b} className="flex items-start gap-3" style={{ color: 'rgb(var(--fg) / 0.72)', fontSize: '1rem', lineHeight: 1.65 }}>
+                                <span aria-hidden="true" className="star-bullet mt-1 shrink-0" style={{ width: 18, height: 18 }} />{b}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                        {(en ? u.solution.en : u.solution.th) && <p className="max-w-xl" style={{ color: 'rgb(var(--fg) / 0.62)', fontSize: '1rem', lineHeight: 1.75 }}>{en ? u.solution.en : u.solution.th}</p>}
                       </div>
                       {(!u.images || !u.images.length) && u.mock && u.mock.length > 0 && (
                         <div className="relative">
@@ -368,6 +378,33 @@ export default function Page({ params }: { params: { lang: Lang; slug: string } 
                         <p className="absolute left-0 bottom-0 text-xs" style={{ color: 'rgb(var(--fg) / 0.45)' }}>{en ? 'Illustration of the idea, not a screenshot' : 'ภาพจำลองเพื่ออธิบายแนวคิด ไม่ใช่หน้าจอจริง'}</p>
                       </div>
                     )}
+                    {(!u.images || !u.images.length) && !u.mock && u.screens && (
+                      <>
+                        <div className="lg:hidden mt-8 flex items-start justify-center gap-3">
+                          {u.screens.device === 'phone'
+                            ? u.screens.kinds.slice(0, 3).map((k, ki) => <div key={k + ki} className="w-full flex justify-center" style={{ marginTop: ki % 2 ? 40 : 0 }}><PhoneScreen kind={k} en={en} /></div>)
+                            : <BrowserScreen kind={u.screens.kinds[0]} en={en} className="w-full" />}
+                        </div>
+                        <p className="lg:hidden text-center mt-5 text-xs" style={{ color: 'rgb(var(--fg) / 0.45)' }}>{en ? 'Illustration of the idea, not a screenshot' : 'ภาพจำลองเพื่ออธิบายแนวคิด ไม่ใช่ภาพหน้าจอจริง'}</p>
+                        <div className="hidden lg:block relative mt-2" style={{ height: u.screens.device === 'phone' ? 660 : 470 }}>
+                          {u.screens.device === 'phone' ? (
+                            <>
+                              <div aria-hidden="true" className="absolute" style={{ left: '44%', top: -150, opacity: 0.35, filter: 'blur(3px)', transform: 'scale(1.35)', transformOrigin: 'top center' }}><PhoneScreen kind={u.screens.kinds[0]} en={en} width={200} /></div>
+                              <div className="absolute" style={{ left: '12%', top: 20 }}><PhoneScreen kind={u.screens.kinds[0]} en={en} width={190} /></div>
+                              <div className="absolute" style={{ left: '40%', top: 120 }}><PhoneScreen kind={u.screens.kinds[1]} en={en} width={190} /></div>
+                              <div className="absolute" style={{ left: '70%', top: -160 }}><PhoneScreen kind={u.screens.kinds[2]} en={en} width={190} /></div>
+                            </>
+                          ) : (
+                            <>
+                              <div className="absolute" style={{ left: '0%', top: 10 }}><BrowserScreen kind={u.screens.kinds[0]} en={en} width={400} /></div>
+                              <div className="absolute" style={{ left: '30%', top: 150 }}><BrowserScreen kind={u.screens.kinds[1]} en={en} width={400} /></div>
+                              <div className="absolute" style={{ left: '62%', top: -30 }}><BrowserScreen kind={u.screens.kinds[2]} en={en} width={400} /></div>
+                            </>
+                          )}
+                          <p className="absolute left-0 bottom-0 text-xs" style={{ color: 'rgb(var(--fg) / 0.45)' }}>{en ? 'Illustration of the idea, not a screenshot' : 'ภาพจำลองเพื่ออธิบายแนวคิด ไม่ใช่ภาพหน้าจอจริง'}</p>
+                        </div>
+                      </>
+                    )}
                   </div>
                 ))}
               </div>
@@ -387,10 +424,10 @@ export default function Page({ params }: { params: { lang: Lang; slug: string } 
               <div className="max-w-5xl mx-auto px-6 lg:px-10">
                 <h2 className="t-display leading-relaxed text-[clamp(1.6rem,3vw,2.3rem)] mb-3" style={{ color: 'var(--ink)' }}>
                   <span aria-hidden="true" className="inline-block w-4 h-4 rounded-full mr-4 align-middle" style={{ background: 'var(--accent)', boxShadow: '0 0 22px 4px rgb(123 110 246 / 0.55)' }} />
-                  {en ? 'User Flow' : 'ผังการใช้งาน (User Flow)'}
+                  {st.flowKind === 'project' ? (en ? 'Project Flow' : 'ผังขั้นตอนโครงการ') : (en ? 'User Flow' : 'ผังการใช้งาน (User Flow)')}
                 </h2>
                 <p className="mb-8" style={{ color: 'rgb(var(--fg) / 0.6)', fontSize: '0.95rem', lineHeight: 1.6 }}>
-                  {en ? 'The main path a person takes through the app.' : 'เส้นทางหลักที่ผู้ใช้เดินในแอป'}
+                  {st.flowKind === 'project' ? (en ? 'How the project moved from first brief to delivery.' : 'เส้นทางของโปรเจกต์ ตั้งแต่โจทย์แรกจนส่งมอบงาน') : (en ? 'The main path a person takes through the app.' : 'เส้นทางหลักที่ผู้ใช้เดินในแอป')}
                 </p>
                 <div className="flex flex-col items-center">
                   {st.flow.map((n, i) => (
@@ -513,7 +550,7 @@ export default function Page({ params }: { params: { lang: Lang; slug: string } 
         </section>
 
         {/* CTA */}
-        <section className="theme-dark relative overflow-hidden" style={{ background: '#050308' }}>
+        <section className="cta-final theme-dark relative overflow-hidden" style={{ background: 'var(--bg)' }}>
           <div
             className="absolute inset-0 pointer-events-none opacity-40"
             style={{ backgroundImage: 'radial-gradient(rgb(var(--fg) / 0.5) 1px, transparent 1px), radial-gradient(rgb(var(--fg) / 0.3) 1px, transparent 1px)', backgroundSize: '180px 180px, 260px 260px', backgroundPosition: '0 0, 90px 130px' }}
@@ -526,7 +563,7 @@ export default function Page({ params }: { params: { lang: Lang; slug: string } 
             <p className="text-sm tracking-widest uppercase mb-6" style={{ color: 'var(--ink)', fontWeight: 500 }}>
               {lang === 'en' ? 'Have a project in mind?' : 'มีโปรเจกต์ในใจไหม?'}
             </p>
-            <h2 className="t-display text-[clamp(1.75rem,4vw,3rem)] mb-6 leading-normal md:whitespace-nowrap" style={{ background: 'linear-gradient(135deg, var(--purple-light) 0%, #53C3D7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+            <h2 className="t-display text-[clamp(1.75rem,4vw,3rem)] mb-6 leading-normal md:whitespace-nowrap" style={{ background: 'linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
               {lang === 'en' ? <>Let's build your next case study</> : <>มาทำโปรเจกต์ถัดไปด้วยกัน</>}
             </h2>
             <Link href={`/${lang}/contact`} className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm transition-opacity hover:opacity-90" style={{ background: 'linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%)', color: '#fff', fontWeight: 500 }}>

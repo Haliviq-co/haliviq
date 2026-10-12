@@ -384,3 +384,10 @@ html[data-theme="light"] .cta-dots { background-image: radial-gradient(circle, #
 /* robot launcher size */
 .chat-robot-svg { width: 96px; height: 106px; display: block; }
 @media (min-width: 768px) { .chat-robot-svg { width: 118px; height: 130px; } }
+
+/* Final "have a project in mind?" bands: unchanged in dark mode; in light mode they become the purple gradient band.
+   The section carries .theme-dark so its text stays white. */
+html[data-theme="light"] .cta-final { background: linear-gradient(135deg, #2D1B69 0%, var(--purple) 40%, var(--purple-light) 100%) !important; }
+html[data-theme="light"] .cta-final h2 { background: none !important; -webkit-text-fill-color: #fff !important; color: #fff !important; }
+html[data-theme="light"] .cta-final a[href$="/contact"] { background: #fff !important; color: var(--purple) !important; box-shadow: none !important; }
+html[data-theme="light"] .cta-final a[href$="/contact"]:hover { background: #EEEDFB !important; }

@@ -6,7 +6,7 @@ export default function CTA({ lang, tr }: Props) {
   const c = (tr as any).ctaSimple
 
   return (
-    <section className="relative overflow-hidden py-28 lg:py-40" style={{ background: 'var(--bg)' }}>
+    <section className="cta-final theme-dark relative overflow-hidden py-28 lg:py-40" style={{ background: 'var(--bg)' }}>
       {/* starfield */}
       <div
         className="absolute inset-0 pointer-events-none"
