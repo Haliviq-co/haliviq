@@ -150,8 +150,8 @@ export default function Page({ params }: { params: { lang: Lang } }) {
           </div>
         </section>
 
-        <section className="theme-dark py-24 relative overflow-hidden" style={{ background:'linear-gradient(135deg,var(--purple) 0%,var(--purple-light) 50%,var(--lime) 100%)' }}>
-          <div className="absolute inset-0 opacity-10" style={{ backgroundImage:'radial-gradient(circle,#fff 1px,transparent 1px)', backgroundSize:'28px 28px' }} />
+        <section className="cta-band theme-dark py-24 relative overflow-hidden">
+          <div className="cta-dots absolute inset-0 pointer-events-none" />
           <div className="relative max-w-3xl mx-auto px-6 lg:px-10 text-center">
             <p className="text-[color:rgb(var(--fg)/0.6)] text-xs tracking-widest uppercase mb-6 font-mono">{isEN ? 'Become a Partner' : 'เป็นพาร์ทเนอร์'}</p>
             <h2 className="t-display text-[color:var(--ink)] text-[clamp(2rem,5vw,4.5rem)] mb-6 leading-tight">
@@ -160,7 +160,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
             <p className="text-[color:rgb(var(--fg)/0.85)] mb-10 max-w-lg mx-auto" style={{ fontWeight:400 }}>
               {isEN ? 'Tell us about your company, what you sell or advise on, and how you would like to work with us. A few lines is enough to start. We will get back to you within 48 hours and suggest a first call.' : 'เล่าให้เราฟังว่าบริษัทของคุณทำอะไร ขายหรือให้คำปรึกษาเรื่องอะไร และอยากร่วมมือกับเราแบบไหน เขียนสั้น ๆ ก็เริ่มคุยได้แล้ว เราจะตอบกลับภายใน 48 ชั่วโมง พร้อมนัดคุยครั้งแรก'}
             </p>
-            <Link href={`/${lang}/contact`} className="inline-flex items-center gap-2 px-10 py-4 bg-white rounded-full text-sm hover:bg-[#EEEDFB] transition-colors" style={{ color:'var(--purple)', fontWeight:400 }}>
+            <Link href={`/${lang}/contact`} className="cta-primary inline-flex items-center gap-2 px-10 py-4 rounded-full text-sm transition-colors" style={{ fontWeight:500 }}>
               {isEN ? 'Apply to Partner' : 'สมัครเป็นพาร์ทเนอร์'} <i className="ti ti-arrow-right" style={{ fontSize:15 }} aria-hidden="true" />
             </Link>
           </div>

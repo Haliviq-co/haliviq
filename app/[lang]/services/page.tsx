@@ -544,8 +544,8 @@ export default function Page({ params }: { params: { lang: Lang } }) {
         </section>
 
         {/* CTA */}
-        <section className="theme-dark py-24 lg:py-32 relative overflow-hidden" style={{ background: 'linear-gradient(135deg,#2D1B69 0%,var(--purple) 40%,var(--purple-light) 100%)' }}>
-          <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle,#fff 1px,transparent 1px)', backgroundSize: '28px 28px' }} />
+        <section className="cta-band theme-dark py-24 lg:py-32 relative overflow-hidden">
+          <div className="cta-dots absolute inset-0 pointer-events-none" />
           <div className="relative max-w-4xl mx-auto px-4 lg:px-10 text-center">
             <p className="mb-6" style={{ color: 'var(--ink)', fontSize: '0.85rem', fontWeight: 400 }}>{isEN ? 'Start Today' : 'เริ่มวันนี้'}</p>
             <h2 className="t-display mb-4 leading-tight" style={{ color: 'var(--ink)', fontSize: 'clamp(2rem,4vw,4rem)', fontWeight: 500 }}>
@@ -555,7 +555,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
               {isEN ? 'Tell us what you are working on and where you are stuck. We will point you to the right service, and tell you honestly if another approach would suit you better.' : 'เล่าให้เราฟังว่าคุณกำลังทำอะไรอยู่และติดตรงไหน เราจะแนะนำบริการที่เหมาะ และบอกตรงๆ ถ้ามีวิธีอื่นที่เหมาะกว่า'}
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Link href={`${prefix}/contact`} className="inline-flex items-center gap-2 px-10 py-4 bg-white rounded-full text-sm font-medium hover:bg-[#EEEDFB] transition-colors" style={{ color: 'var(--purple)', fontWeight: 400 }}>
+              <Link href={`${prefix}/contact`} className="cta-primary inline-flex items-center gap-2 px-10 py-4 rounded-full text-sm transition-colors" style={{ fontWeight: 500 }}>
                 {isEN ? 'Talk to Us' : 'คุยกับเรา'}
                 <i className="ti ti-arrow-right" style={{ fontSize: 15 }} aria-hidden="true" />
               </Link>
