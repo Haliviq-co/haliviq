@@ -65,7 +65,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { icon: 'ti-chart-bar', title: 'Market Analytics Dashboards', desc: 'แดชบอร์ดที่รวมข้อมูลขายและเช่าของคุณเข้ากับราคาตลาด ให้เห็นราคาต่อตารางเมตรแยกตามย่าน ห้องใช้เวลาขายหรือเช่านานแค่ไหน และโครงการหรือแบบห้องไหนขายเร็ว เหมาะกับผู้พัฒนาที่ต้องตั้งราคาเปิดขาย และนักลงทุนที่เทียบผลตอบแทน เราบอกชัดว่าตัวเลขแต่ละตัวมาจากไหน และไม่เอาตัวเลขประมาณการมาแสดงเหมือนข้อเท็จจริง' },
   ]
 
-  const techStack = ['React', 'Next.js', 'Node.js', 'Google Maps API', 'PostgreSQL', 'GraphQL', 'AWS', 'DocuSign API', 'Machine Learning', 'Redis', 'Elasticsearch', 'WebGL', 'Stripe']
+  const techStack = ['React', 'Next.js', 'Node.js', 'Google Maps API', 'PostgreSQL', 'GraphQL', 'AWS', 'DocuSign API', 'Machine Learning', 'Redis', 'Elasticsearch', 'WebGL', 'Stripe', 'Flutter', 'Nuxt']
 
   const useCases = isEN ? [
     { no: '01', title: 'Property Listing Marketplace', desc: 'A listing site where buyers and renters filter by area, station, price, and unit type, view photos and tours, save searches, and message the agent directly or through LINE. Agents get a dashboard for their listings and enquiries, and admins can flag duplicate or outdated posts. Suited to brokerages, developers with several projects, and niche portals, for example serviced apartments or land.' },

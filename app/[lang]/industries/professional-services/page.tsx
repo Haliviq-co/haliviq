@@ -65,7 +65,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { icon: 'ti-robot', title: 'AI-Assisted Research Tools', desc: 'ผู้ช่วยที่สรุปเอกสารยาว ดึงวันที่และข้อสัญญาสำคัญ และช่วยร่างฉบับแรก โดยแสดงข้อความต้นฉบับที่ใช้อ้างอิงเสมอ เพื่อให้ผู้เชี่ยวชาญตรวจสอบได้ ทำงานบนคลังเอกสารของคุณเองพร้อมการควบคุมความลับ ตั้งใจให้ประหยัดเวลาอ่าน ไม่ได้มาแทนวิจารณญาณของผู้เชี่ยวชาญ' },
   ]
 
-  const techStack = ['React', 'Next.js', 'Node.js', 'PostgreSQL', 'DocuSign API', 'AI/ML', 'GraphQL', 'AWS', 'Redis', 'Elasticsearch', 'OAuth 2.0', 'Stripe', 'PDF Processing']
+  const techStack = ['React', 'Next.js', 'Node.js', 'PostgreSQL', 'DocuSign API', 'AI/ML', 'GraphQL', 'AWS', 'Redis', 'Elasticsearch', 'OAuth 2.0', 'Stripe', 'PDF Processing', 'NestJS', 'Vue']
 
   const useCases = isEN ? [
     { no: '01', title: 'Client-Engagement CRM', desc: 'A single place for client contacts, engagements, proposals, documents, and fees. Partners open a client and see what is active, what is overdue, and what was last discussed; managers see the pipeline of proposals and renewals. It can sync with the email and calendar your team already uses, so people do not need to log everything twice.' },

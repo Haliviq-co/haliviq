@@ -65,7 +65,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { icon: 'ti-droplet', title: 'ระบบให้น้ำและบริหารทรัพยากร', desc: 'ระบบควบคุมการให้น้ำอัตโนมัติและวางแผนทรัพยากร ที่รดน้ำตามค่าความชื้นดินและพยากรณ์ฝน แทนการตั้งเวลาตายตัว พร้อมติดตามการใช้น้ำและไฟฟ้าต่อแปลง ให้เห็นว่าประหยัดได้ตรงไหน พนักงานยังสั่งเปลี่ยนตารางจากมือถือได้ตลอด' },
   ]
 
-  const techStack = ['IoT', 'LoRaWAN', 'React', 'React Native', 'Python', 'Machine Learning', 'Satellite Imagery', 'Computer Vision', 'AWS', 'PostgreSQL', 'GraphQL', 'Time Series DBs']
+  const techStack = ['IoT', 'LoRaWAN', 'React', 'React Native', 'Python', 'Machine Learning', 'Satellite Imagery', 'Computer Vision', 'AWS', 'PostgreSQL', 'GraphQL', 'Time Series DBs', 'Flutter', 'Fastify']
 
   const useCases = isEN ? [
     { no: '01', title: 'IoT Crop-Monitoring Platform', desc: 'A field sensor network with a central dashboard showing soil moisture, temperature and humidity for each plot. Rules trigger alerts or irrigation when a reading crosses a threshold, and history charts help agronomists compare plots. Deliverables include sensor and gateway selection, installation guidance, the dashboard and a mobile app for field staff.' },

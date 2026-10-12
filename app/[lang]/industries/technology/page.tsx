@@ -65,7 +65,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { icon: 'ti-adjustments-alt', title: 'DevOps & Scaling Support', desc: 'ระบบ build และ deploy อัตโนมัติด้วย CI/CD โครงสร้างพื้นฐานที่เขียนเป็นโค้ด ระบบติดตาม พื้นฐานการเข้าเวรรับเหตุ และการทดสอบโหลดก่อนเปิดตัวใหญ่ เราตั้งค่าร่วมกับทีมคุณ และเขียนคู่มือสั้น ๆ สำหรับเหตุที่น่าจะเจอบ่อยที่สุด deploy พังตอนสี่ทุ่มจะเป็นงานสิบนาที ไม่ใช่วิกฤต ใช้ได้กับ AWS และ Cloud รายใหญ่อื่น ๆ' },
   ]
 
-  const techStack = ['React', 'Next.js', 'Node.js', 'TypeScript', 'PostgreSQL', 'Kubernetes', 'AWS', 'GraphQL', 'Redis', 'Terraform', 'CI/CD', 'Microservices', 'Docker']
+  const techStack = ['React', 'Next.js', 'Node.js', 'TypeScript', 'PostgreSQL', 'Kubernetes', 'AWS', 'GraphQL', 'Redis', 'Terraform', 'CI/CD', 'Microservices', 'Docker', 'NestJS', 'Fastify', 'Hono']
 
   const useCases = isEN ? [
     { no: '01', title: 'Funded Startup MVP Build', desc: 'A seed-to-Series-A startup needs a production-ready product to show customers and investors. We handle technical architecture, cloud setup, and the build itself, working in short sprints with demos every week or two, and reach a production-ready launch in under 12 weeks. The founders end the project with a codebase, documentation, and a deployment they can hand to their first hires.' },

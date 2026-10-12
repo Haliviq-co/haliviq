@@ -65,7 +65,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { icon: 'ti-building-store', title: 'Multi-Vendor Marketplaces', desc: 'Marketplace ที่มีผู้ขายหลายรายลงสินค้าภายใต้หน้าร้านเดียว ครอบคลุมการสมัครและตรวจสอบผู้ขาย การอนุมัติสินค้า การแยกออเดอร์ ค่าคอมมิชชัน การโอนเงินให้ผู้ขาย และหน้าแอดมินสำหรับจัดการข้อพิพาทและคืนเงิน เหมาะกับผู้ดำเนินการห้างสรรพสินค้า กลุ่มชุมชนที่ขายของร่วมกัน และแบรนด์ที่อยากเปิดแพลตฟอร์มให้พาร์ตเนอร์มาขาย' },
   ]
 
-  const techStack = ['React', 'Next.js', 'Node.js', 'Medusa.js', 'Shopify APIs', 'Stripe', 'Algolia', 'Redis', 'PostgreSQL', 'Machine Learning', 'AWS', 'Elasticsearch', 'GraphQL']
+  const techStack = ['React', 'Next.js', 'Node.js', 'Medusa.js', 'Shopify APIs', 'Stripe', 'Algolia', 'Redis', 'PostgreSQL', 'Machine Learning', 'AWS', 'Elasticsearch', 'GraphQL', 'Flutter', 'Hono']
 
   const useCases = isEN ? [
     { no: '01', title: 'Headless Commerce Platform', desc: 'One commerce backend feeding a Next.js website, a mobile app, and a LINE shopping page. Catalogue, stock, pricing rules, and checkout live in one place, so a price change or a new campaign goes live on every storefront together. Fits brands that have outgrown a templated store and want control over speed and design.' },

@@ -65,7 +65,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { icon: 'ti-layout-dashboard', title: 'Dashboard ติดตามการให้บริการดิจิทัล', desc: 'Dashboard ที่แสดงว่ามีคำขอเข้ามากี่เรื่อง แต่ละขั้นใช้เวลาเท่าไหร่ เรื่องไปติดอยู่ตรงไหน และประชาชนให้คะแนนบริการอย่างไร ผู้อำนวยการและเจ้าของบริการใช้ตัดสินใจว่าควรเพิ่มคนหรือลดขั้นตอนตรงไหน เรากำหนดนิยามตัวเลขร่วมกับทีมของคุณ เพื่อให้ตัวเลขตรงกับที่ทุกคนเข้าใจ' },
   ]
 
-  const techStack = ['React', 'Node.js', 'PostgreSQL', 'AWS GovCloud', 'OAuth 2.0', 'Zero Trust', 'GraphQL', 'Kubernetes', 'Digital ID', 'WCAG', 'Elasticsearch', 'Redis']
+  const techStack = ['React', 'Node.js', 'PostgreSQL', 'AWS GovCloud', 'OAuth 2.0', 'Zero Trust', 'GraphQL', 'Kubernetes', 'Digital ID', 'WCAG', 'Elasticsearch', 'Redis', 'NestJS', 'Angular']
 
   const useCases = isEN ? [
     { no: '01', title: 'Citizen Services Portal', desc: 'A single account where residents request documents, pay fees and track applications handled by different agencies. We deliver the portal, the officer back office and the connections to each agency system. Services are added in waves, starting with the ones that generate the most counter visits.' },

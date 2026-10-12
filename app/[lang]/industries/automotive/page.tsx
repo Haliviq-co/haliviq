@@ -65,7 +65,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { icon: 'ti-chart-dots', title: 'วิเคราะห์เพื่อซ่อมบำรุงรถล่วงหน้า', desc: 'โมเดลที่ศึกษาข้อมูลเซนเซอร์และประวัติการซ่อม เพื่อทำนายว่าชิ้นส่วนไหนมีแนวโน้มเสียและเมื่อไหร่ ศูนย์ซ่อมสั่งอะไหล่และนัดลูกค้าเข้ามาก่อนรถเสียได้ ส่วนผู้จัดการกองรถก็ลดเวลารถหยุดนอกแผน เราตรวจสอบผลทำนายเทียบกับประวัติซ่อมจริงของคุณก่อนใช้งานจริง คุณจึงรู้ว่าควรเชื่อถือมากแค่ไหน' },
   ]
 
-  const techStack = ['React', 'React Native', 'IoT', 'MQTT', 'Kubernetes', 'AWS', 'PostgreSQL', 'GraphQL', 'Machine Learning', 'Edge Computing', 'gRPC', 'Digital Twin', 'TimescaleDB']
+  const techStack = ['React', 'React Native', 'IoT', 'MQTT', 'Kubernetes', 'AWS', 'PostgreSQL', 'GraphQL', 'Machine Learning', 'Edge Computing', 'gRPC', 'Digital Twin', 'TimescaleDB', 'Flutter', 'Fastify']
 
   const useCases = isEN ? [
     { no: '01', title: 'EV Charging Network App', desc: 'A mobile app that lets drivers find, reserve and pay for charging across several networks in one place. It shows live availability and pricing, guides them to the station, and keeps one receipt history. Deliverables cover the mobile apps, operator back office, charger integrations and payment setup.' },

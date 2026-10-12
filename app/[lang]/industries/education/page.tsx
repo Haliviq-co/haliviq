@@ -65,7 +65,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { icon: 'ti-device-mobile', title: 'แอปเรียนบนมือถือ', desc: 'แอป Native หรือ Cross-platform ที่ให้ผู้เรียนเรียนเป็นช่วงสั้นๆ ระหว่างวัน มีดาวน์โหลดไว้เรียนออฟไลน์ แจ้งเตือนผ่านมือถือ และซิงก์ความคืบหน้ากลับเข้า LMS ผู้ปกครองและครูติดตามได้ถ้าโรงเรียนของคุณต้องการ เราสร้างด้วย React Native หรือ Native SDK ตามความเหมาะสมกับงานของคุณ' },
   ]
 
-  const techStack = ['React', 'WebRTC', 'Canvas API', 'WebSocket', 'AI/ML', 'Cloud Platforms', 'Mobile SDKs', 'LTI', 'SCORM', 'xAPI']
+  const techStack = ['React', 'WebRTC', 'Canvas API', 'WebSocket', 'AI/ML', 'Cloud Platforms', 'Mobile SDKs', 'LTI', 'SCORM', 'xAPI', 'Flutter', 'Vue']
 
   const useCases = isEN ? [
     { no: '01', title: 'Adaptive Learning Platform', desc: 'AI adjusts difficulty, pace and content format to each learner\'s progress and preferences. A student who masters a topic moves on, and one who struggles gets extra practice and a different explanation. Teachers keep control and can see why the system made each recommendation.' },

@@ -65,7 +65,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { icon: 'ti-trending-up', title: 'Demand & Capacity Forecasting', desc: 'เครื่องมือพยากรณ์ที่เรียนรู้จากประวัติออเดอร์และการส่งของคุณ โดยนับฤดูกาล แคมเปญ และวันหยุดเข้าไปด้วย เพื่อประเมินปริมาณพัสดุและพื้นที่คลังล่วงหน้าสองสามสัปดาห์ ฝ่ายวางแผนใช้ตั้งกำลังคน จองรถเพิ่ม และตัดสินใจว่าจะเตรียมสต็อกไว้ใกล้ลูกค้าแค่ไหน เราแสดงตัวเลขที่พยากรณ์เทียบกับที่เกิดขึ้นจริงให้ดูควบคู่กัน คุณจะเห็นเองว่าควรเชื่อมันได้แค่ไหน' },
   ]
 
-  const techStack = ['React', 'Node.js', 'GPS/Telematics', 'Google Maps API', 'Kafka', 'PostgreSQL', 'Redis', 'Machine Learning', 'AWS', 'GraphQL', 'IoT', 'Elasticsearch', 'Docker']
+  const techStack = ['React', 'Node.js', 'GPS/Telematics', 'Google Maps API', 'Kafka', 'PostgreSQL', 'Redis', 'Machine Learning', 'AWS', 'GraphQL', 'IoT', 'Elasticsearch', 'Docker', 'Fastify', 'Flutter']
 
   const useCases = isEN ? [
     { no: '01', title: 'Real-Time Shipment Tracking Platform', desc: 'One tracking application for shippers, carriers, and end customers. It ingests GPS, hub scans, and driver app events, shows the ETA at each stage, and sends updates through LINE or SMS. Support agents search by order or phone number and see the full timeline in one place. A good fit for a 3PL or an e-commerce shipper that currently answers where-is-my-parcel questions by phone.' },

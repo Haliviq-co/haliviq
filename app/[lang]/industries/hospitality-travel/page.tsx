@@ -65,7 +65,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { icon: 'ti-plug-connected', title: 'Channel Manager & OTA Integration', desc: 'โรงแรมในไทยหลายแห่งขายห้องผ่านเอเจนต์ออนไลน์เป็นหลัก ซึ่งแต่ละเจ้ามีหน้าแอดมิน แผนราคา และเงื่อนไขยกเลิกไม่เหมือนกัน เราเชื่อม PMS และระบบจองของคุณเข้ากับ Channel Manager ที่ใช้อยู่แล้ว หรือทำตัวเชื่อมให้ถ้ายังไม่มี เพื่อให้ห้องว่างและราคาตรงกันทุกช่องทาง ลดปัญหาห้องซ้อน เลิกนั่งคัดลอกตัวเลขทุกคืน และเห็นชัดว่าช่องทางไหนทำเงินให้จริงหลังหักค่าคอมมิชชัน' },
   ]
 
-  const techStack = ['React', 'React Native', 'Node.js', 'Redis', 'Elasticsearch', 'AWS', 'Stripe', 'Google Maps API', 'IoT', 'Machine Learning']
+  const techStack = ['React', 'React Native', 'Node.js', 'Redis', 'Elasticsearch', 'AWS', 'Stripe', 'Google Maps API', 'IoT', 'Machine Learning', 'Flutter', 'Next.js']
 
   const useCases = isEN ? [
     { no: '01', title: 'Direct Booking Engine', desc: 'A booking site built to turn visitors into reservations. Guests pick dates, see live rates for each room type, add breakfast or airport transfers, apply a promo code, and pay, with every step readable on a small screen. Reservations flow straight into your PMS, and your team gets a report showing how many people dropped off at which step. Best suited to independent hotels and resorts that want to rely less on agent commission.' },

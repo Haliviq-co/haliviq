@@ -65,7 +65,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { icon: 'ti-file-invoice', title: 'ระบบเบิกจ่ายและประกัน', desc: 'เครื่องมือเตรียมเอกสารเคลม ตรวจความคุ้มครอง และติดตามสถานะการจ่ายเงิน ทั้งผู้ป่วยจ่ายเอง ผู้ป่วยประกัน และผู้ป่วยตามสิทธิ์ของรัฐ ทีมการเงินใช้เวลาคีย์ซ้ำและตามเคลมที่ถูกตีกลับน้อยลง เราเอาเหตุผลที่ถูกตีกลับจริงของคุณมาสร้างเป็นกฎ เพื่อให้ระบบจับได้ก่อนส่งเบิก' },
   ]
 
-  const techStack = ['React', 'React Native', 'FHIR', 'HL7', 'AWS HealthLake', 'HIPAA', 'Python', 'TensorFlow', 'IoT', 'WebRTC', 'PostgreSQL', 'Redis']
+  const techStack = ['React', 'React Native', 'FHIR', 'HL7', 'AWS HealthLake', 'HIPAA', 'Python', 'TensorFlow', 'IoT', 'WebRTC', 'PostgreSQL', 'Redis', 'NestJS', 'Flutter']
 
   const useCases = isEN ? [
     { no: '01', title: 'Telemedicine Platform', desc: 'A virtual care service for a clinic or hospital, covering booking, video visits, e-prescriptions, visit notes and payment. We deliver the patient app or web page, a clinician workspace and the connection to your records system. The first release is usually limited to one specialty so staff can adjust before wider rollout.' },

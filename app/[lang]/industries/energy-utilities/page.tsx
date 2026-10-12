@@ -65,7 +65,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { icon: 'ti-arrows-exchange', title: 'Energy Trading & Marketplace Systems', desc: 'แพลตฟอร์มที่บันทึกพลังงานที่แลกเปลี่ยนระหว่างผู้ผลิตกับผู้ซื้อ คำนวณยอดชำระ และแสดงราคาอย่างโปร่งใส เหมาะกับโครงการนำร่องซื้อขายไฟระหว่างอาคารใกล้กัน และการซื้อขายใบรับรองหรือเครดิต กฎว่าใครซื้อขายได้และราคาเท่าไหร่ปรับตั้งค่าได้ เพราะขึ้นกับกรอบกำกับดูแลที่คุณทำงานอยู่' },
   ]
 
-  const techStack = ['IoT', 'MQTT', 'Time Series DBs', 'React', 'Node.js', 'Python', 'Machine Learning', 'AWS IoT Core', 'Kafka', 'PostgreSQL', 'GraphQL', 'Edge Computing', 'Grafana']
+  const techStack = ['IoT', 'MQTT', 'Time Series DBs', 'React', 'Node.js', 'Python', 'Machine Learning', 'AWS IoT Core', 'Kafka', 'PostgreSQL', 'GraphQL', 'Edge Computing', 'Grafana', 'Fastify']
 
   const useCases = isEN ? [
     { no: '01', title: 'Smart Grid Monitoring Dashboard', desc: 'A control-room dashboard that pulls telemetry from substations, feeders and smart meters into one live view with alarms and trend charts. Operators see where load is building and which feeder is misbehaving before customers call. We deliver the data pipeline, screens, alarm rules and training for the shift teams.' },

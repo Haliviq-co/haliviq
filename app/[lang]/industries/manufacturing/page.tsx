@@ -65,7 +65,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { icon: 'ti-clipboard-list', title: 'Shop-Floor Apps & Digital Work Instructions', desc: 'ใบสั่งงาน เช็กลิสต์ และการรายงานผลผลิตบนแท็บเล็ตหรือมือถือที่หน้าไลน์ แทนใบกำกับงานกระดาษและสมุดจดตอนท้ายกะ พนักงานบันทึกยอดผลิต สาเหตุที่เครื่องหยุด และของเสียได้ด้วยการแตะไม่กี่ครั้งเป็นภาษาไทย ส่วนหัวหน้างานเห็นตัวเลขตั้งแต่กะยังไม่จบ เราออกแบบหน้าจอร่วมกับคนที่จะใช้จริง เพราะฟอร์มที่กรอกช้าก็คือฟอร์มที่ไม่มีใครกรอก' },
   ]
 
-  const techStack = ['IoT', 'MQTT', 'AWS IoT Core', 'Time Series DBs', 'Machine Learning', 'Edge Computing', 'Digital Twin', 'React', 'Python', 'Kafka', 'SAP Integration']
+  const techStack = ['IoT', 'MQTT', 'AWS IoT Core', 'Time Series DBs', 'Machine Learning', 'Edge Computing', 'Digital Twin', 'React', 'Python', 'Kafka', 'SAP Integration', 'Fastify', 'Electron']
 
   const useCases = isEN ? [
     { no: '01', title: 'Production Monitoring Dashboard', desc: 'A live board for each line showing output against target, current speed, downtime by reason, and scrap, readable from a screen on the floor and from a phone in the office. Operators tag the reason for a stop in two taps. After a few weeks, the data shows which three causes account for most lost time, which is usually where the first improvement project should go.' },

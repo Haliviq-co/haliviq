@@ -65,7 +65,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { icon: 'ti-trending-up', title: 'Customer Churn Prediction Systems', desc: 'โมเดลที่เรียนรู้จากข้อมูลการใช้งาน บิล และประวัติซัพพอร์ตของคุณเอง ให้คะแนนความเสี่ยงที่ลูกค้าแต่ละรายจะเลิกใช้ พร้อมเหตุผลหลักข้างคะแนน ทีมรักษาลูกค้าได้รายชื่อทุกวัน และส่งข้อเสนอผ่าน SMS LINE หรือข้อความในแอปได้ ข้อมูลลูกค้าจัดการตาม PDPA โดยวางเรื่องความยินยอมและวัตถุประสงค์การใช้ไว้ในวิธีใช้รายชื่อ' },
   ]
 
-  const techStack = ['React', 'React Native', 'Node.js', 'Kafka', 'Kubernetes', 'AWS', 'PostgreSQL', 'GraphQL', 'Machine Learning', '5G', 'IoT', 'Time Series DBs', 'Redis']
+  const techStack = ['React', 'React Native', 'Node.js', 'Kafka', 'Kubernetes', 'AWS', 'PostgreSQL', 'GraphQL', 'Machine Learning', '5G', 'IoT', 'Time Series DBs', 'Redis', 'NestJS', 'Flutter']
 
   const useCases = isEN ? [
     { no: '01', title: 'Self-Service Customer App', desc: 'A mobile self-care app that lets subscribers view usage, manage plans, top up, and get AI-assisted support without a single call centre interaction. We start with the five or six tasks that generate the most calls and build those first, then add more from the support data. Reduces call volume and gives marketing a direct, consented channel to subscribers.' },

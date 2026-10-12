@@ -65,7 +65,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { icon: 'ti-tag', title: 'เครื่องมือจัดโปรโมชันและราคา', desc: 'เครื่องมือวางแผนที่จำลองว่าส่วนลดหรือโปรโมชันกับร้านค้าจะกระทบยอดขายและกำไรอย่างไร ก่อนตัดสินใจจริง ทีมเทียบหลายสถานการณ์ ดูผลหลังจบโปรโมชันเทียบกับแผน และเรียนรู้ว่าข้อเสนอแบบไหนคุ้ม เหมาะกับผู้จัดการหมวดสินค้าและฝ่ายรายได้ที่ตอนนี้ทำเรื่องนี้ในสเปรดชีต' },
   ]
 
-  const techStack = ['React', 'Next.js', 'Node.js', 'Shopify APIs', 'Algolia', 'Machine Learning', 'PostgreSQL', 'Redis', 'AWS', 'GraphQL', 'Stripe', 'Elasticsearch']
+  const techStack = ['React', 'Next.js', 'Node.js', 'Shopify APIs', 'Algolia', 'Machine Learning', 'PostgreSQL', 'Redis', 'AWS', 'GraphQL', 'Stripe', 'Elasticsearch', 'NestJS']
 
   const useCases = isEN ? [
     { no: '01', title: 'DTC Storefront Platform', desc: 'A DTC storefront built to convert, with subscriptions, bundles and loyalty built in. Orders sync to inventory, and customers can check out with PromptPay or a card in a few taps. Deliverables include design, the storefront, payment and shipping integrations, and analytics set up for your marketing team.' },

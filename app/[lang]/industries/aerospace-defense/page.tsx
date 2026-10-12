@@ -65,7 +65,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { icon: 'ti-tool', title: 'ปรับปรุงระบบสำคัญรุ่นเก่า', desc: 'ปรับปรุงซอฟต์แวร์ Avionics และระบบสั่งการรุ่นเก่าทีละขั้น โดยยังรักษาใบรับรองและ Safety Case ที่มีอยู่ไว้ เรามักเริ่มจากสำรวจอินเทอร์เฟซทั้งหมดและทำชั้นเชื่อมต่อบางๆ ก่อน แล้วค่อยเปลี่ยนทีละส่วนพร้อมแผนย้อนกลับของแต่ละส่วน ผลที่ได้คืออินเทอร์เฟซสมัยใหม่และการเชื่อมต่อ Cloud โดยไม่ต้องรื้อเขียนใหม่ทั้งหมดแบบเสี่ยงๆ' },
   ]
 
-  const techStack = ['React', 'Node.js', 'Rust', 'Kubernetes', 'AWS GovCloud', 'PostgreSQL', 'gRPC', 'MQTT', 'Digital Twin', 'Machine Learning', 'Zero Trust', 'FIPS 140-2', 'DO-178C']
+  const techStack = ['React', 'Node.js', 'Rust', 'Kubernetes', 'AWS GovCloud', 'PostgreSQL', 'gRPC', 'MQTT', 'Digital Twin', 'Machine Learning', 'Zero Trust', 'FIPS 140-2', 'DO-178C', 'NestJS', 'Tauri']
 
   const useCases = isEN ? [
     { no: '01', title: 'Secure Communications Platform', desc: 'A messaging and command system for teams that operate across hostile or unreliable networks. Identity is verified for every session, messages are encrypted from sender to recipient, and admins can revoke a lost device immediately. Typical deliverables are web and mobile clients, an admin console, key-management setup and a security test report.' },

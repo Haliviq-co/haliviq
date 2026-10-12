@@ -65,7 +65,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { icon: 'ti-sparkles', title: 'Recommendation Engines', desc: 'โมเดลแนะนำว่าควรดูอะไรต่อ จากประวัติการดู รายการโปรด ช่วงเวลา และความคล้ายของคอนเทนต์ รวมถึงชื่อเรื่องและข้อมูลภาษาไทย ทีมบรรณาธิการปักหมุดหรือยกเว้นบางเรื่องได้ เพื่อให้โปรโมชันและสิทธิ์ถูกต้อง เราวัดผลเทียบกับวิธีพื้นฐานง่าย ๆ คุณจะเห็นเองว่าช่วยให้คนดูนานขึ้นจริงหรือไม่' },
   ]
 
-  const techStack = ['React', 'Next.js', 'Node.js', 'WebRTC', 'HLS/DASH', 'AWS Media Services', 'Redis', 'PostgreSQL', 'Machine Learning', 'GraphQL', 'Stripe', 'CDN', 'Elasticsearch']
+  const techStack = ['React', 'Next.js', 'Node.js', 'WebRTC', 'HLS/DASH', 'AWS Media Services', 'Redis', 'PostgreSQL', 'Machine Learning', 'GraphQL', 'Stripe', 'CDN', 'Elasticsearch', 'Flutter', 'Hono']
 
   const useCases = isEN ? [
     { no: '01', title: 'Streaming/OTT Platform', desc: 'A full streaming service: apps for web, mobile, and TV, a subscription and payment flow, a catalogue with Thai-language search, and the admin tools to run it. Suitable for a broadcaster, publisher, or sports and music brand moving from social-media distribution to its own audience. We usually launch with a focused catalogue and one or two platforms, then add more devices as viewing data shows where your audience is.' },

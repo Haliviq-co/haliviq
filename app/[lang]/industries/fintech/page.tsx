@@ -65,7 +65,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { icon: 'ti-fingerprint', title: 'การเปิดบัญชีออนไลน์และ eKYC', desc: 'ขั้นตอนสมัครที่อ่านบัตรประชาชนไทย เทียบใบหน้า ตรวจว่าเป็นคนจริง และคัดกรองผู้สมัครก่อนเปิดบัญชี ผู้ให้สินเชื่อ บริษัทประกัน และ Wallet ใช้เปลี่ยนการไปสาขาให้เหลือไม่กี่นาทีบนมือถือ เราออกแบบให้คนที่ตรวจไม่ผ่านรู้ว่าต้องลองใหม่อย่างไร หรือติดต่อเจ้าหน้าที่ได้ทางไหน' },
   ]
 
-  const techStack = ['React', 'Node.js', 'Kubernetes', 'PostgreSQL', 'Redis', 'Kafka', 'AWS', 'Blockchain', 'AI/ML', 'GraphQL', 'OAuth 2.0', 'PCI DSS']
+  const techStack = ['React', 'Node.js', 'Kubernetes', 'PostgreSQL', 'Redis', 'Kafka', 'AWS', 'Blockchain', 'AI/ML', 'GraphQL', 'OAuth 2.0', 'PCI DSS', 'NestJS', 'Flutter']
 
   const useCases = isEN ? [
     { no: '01', title: 'Mobile Banking Application', desc: 'A full retail banking app with biometric login, instant transfers, card management and spending insights. A bank or lender gets a design system, the app for iOS and Android, an admin console and integration with its existing core. We usually launch to a small group of staff and customers first, then widen.' },
