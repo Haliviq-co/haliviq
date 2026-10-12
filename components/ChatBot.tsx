@@ -7,7 +7,7 @@ import { t, type Lang } from '@/lib/i18n'
 // Optional dashboard: set NEXT_PUBLIC_CHAT_LOG_URL to a Google Apps Script web-app URL and each question is
 // appended to a Google Sheet (no names, emails or other identifiers are sent).
 type Msg = { from: 'bot' | 'me'; text: string; links?: { label: string; href: string }[]; agent?: boolean }
-type QA = { q: string; a: string }
+type QA = { q: string; a: string; h?: string; k?: string; x?: string; p?: number }
 
 const CHANNELS = [
   { id: 'whatsapp', label: 'WhatsApp', href: 'https://wa.me/message/TM3WC6DUJAFEK1', bg: '#25D366' },
@@ -23,21 +23,37 @@ function ChannelIcon({ id }: { id: string }) {
   return (<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3C6.8 3 3 6.3 3 10.4c0 3.6 3.2 6.6 7.5 7.2.3.1.7.2.8.5l-.1 1.3c0 .4-.3 1.3 1.1.7s7.4-4.400 7.4-8.700C19.700 6.300 17.500 3 12 3z" fill="#fff" /><text x="12" y="12.600" textAnchor="middle" fontSize="5.200" fontWeight="800" fill="#06C755" fontFamily="Arial,sans-serif">LINE</text></svg>)
 }
 
-const grams = (s: string) => {
-  const c = s.toLowerCase().replace(/[^a-z0-9\u0E00-\u0E7F]+/g, ' ').trim()
+const EN_STOP = new Set('a an the and or of to in on for with at by from is are was were be been do does did can could will would should you your we our us i me my it its this that these those what which who how why when where about tell please any there have has had not no yes get got give need want like'.split(' '))
+const TH_STOP = /ไหม|ได้|อะไร|คือ|หรือ|ยังไง|อย่างไร|บ้าง|ของ|ครับ|ค่ะ|คะ|นะ|ที่|มี|เป็น|ให้|และ|กับ|ใน|จะ|แล้ว|ด้วย|ช่วย|ขอ|อยาก|ต้องการ/g
+// English: whole words. Thai (no spaces): character bigrams. Common filler words are dropped so they never decide a match.
+const tokens = (s: string) => {
   const out = new Set<string>()
+  const c = s.toLowerCase().replace(TH_STOP, ' ').replace(/[^a-z0-9฀-๿]+/g, ' ').trim()
   for (const w of c.split(' ')) {
     if (!w) continue
-    if (w.length <= 2) out.add(w)
-    for (let i = 0; i < w.length - 1; i++) out.add(w.slice(i, i + 2))
+    if (/[฀-๿]/.test(w)) {
+      if (w.length === 1) out.add(w)
+      for (let i = 0; i < w.length - 1; i++) out.add(w.slice(i, i + 2))
+    } else if (!EN_STOP.has(w) && w.length > 1) out.add(w.length > 4 ? w.replace(/(ing|es|s)$/, '') : w)
   }
   return out
 }
 
 export default function ChatBot({ lang }: { lang: Lang }) {
   const isEN = lang === 'en'
-  const items = useMemo(() => (((t[lang] as any)?.faq?.items || []) as QA[]), [lang])
-  const index = useMemo(() => items.map((it) => ({ it, g: grams(it.q + ' ' + it.q + ' ' + it.a) })), [items])
+  const faqItems = useMemo(() => (((t[lang] as any)?.faq?.items || []) as QA[]), [lang])
+  // The large knowledge base (public/chat-kb-<lang>.json) is fetched the first time the chat opens, so it never weighs on page load.
+  const [kb, setKb] = useState<QA[]>([])
+  const items = useMemo(() => (kb.length ? kb : faqItems), [kb, faqItems])
+  const index = useMemo(() => items.map((it) => ({ it, g: tokens(it.q + ' ' + (it.x || '')), qg: tokens(it.q), kl: (it.k || '').toLowerCase() })), [items])
+  // Rarer words count for more, so "ERP" matters more than "services".
+  const { idf, maxIdf } = useMemo(() => {
+    const df = new Map<string, number>()
+    index.forEach((e) => e.g.forEach((x) => df.set(x, (df.get(x) || 0) + 1)))
+    const m = new Map<string, number>()
+    df.forEach((n, x) => m.set(x, Math.log(1 + index.length / n)))
+    return { idf: m, maxIdf: Math.log(1 + index.length) }
+  }, [index])
   const [open, setOpen] = useState(false)
   const [text, setText] = useState('')
   const hello = isEN
@@ -47,6 +63,12 @@ export default function ChatBot({ lang }: { lang: Lang }) {
   const end = useRef<HTMLDivElement>(null)
 
   useEffect(() => { end.current?.scrollIntoView({ block: 'end' }) }, [msgs, open])
+  useEffect(() => {
+    if (!open) return
+    let dead = false
+    fetch(`/chat-kb-${lang}.json`).then((r) => (r.ok ? r.json() : [])).then((d: QA[]) => { if (!dead && Array.isArray(d)) setKb(d) }).catch(() => {})
+    return () => { dead = true }
+  }, [open, lang])
   useEffect(() => { setMsgs([{ from: 'bot', text: hello }]) }, [lang]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const log = (question: string, matched: number) => {
@@ -59,16 +81,24 @@ export default function ChatBot({ lang }: { lang: Lang }) {
   }
 
   const answer = (q: string): { text: string; links?: Msg['links']; idx: number } => {
-    const g = grams(q)
+    const g = tokens(q)
+    const ql = q.toLowerCase()
+    let qtotal = 0
+    g.forEach((x) => { qtotal += idf.get(x) || maxIdf })
     let best = -1, bestScore = 0
     index.forEach((e, i) => {
-      let hit = 0
-      g.forEach((x) => { if (e.g.has(x)) hit++ })
-      const score = g.size ? hit / g.size : 0
+      let hit = 0, qhit = 0
+      g.forEach((x) => { const w = idf.get(x) || 0; if (e.g.has(x)) hit += w; if (e.qg.has(x)) qhit += w })
+      if (!hit) return
+      const cov = qtotal ? hit / qtotal : 0
+      const qcov = qtotal ? qhit / qtotal : 0
+      const kw = e.kl.length > 2 && ql.includes(e.kl) ? 0.12 : 0
+      const score = cov * 0.7 + qcov * 0.3 + kw + (e.it.p ? 0.1 : 0)
       if (score > bestScore) { bestScore = score; best = i }
     })
-    if (best >= 0 && bestScore >= 0.28) {
-      return { text: items[best].a, idx: best, links: [{ label: isEN ? 'See our work' : 'ดูผลงานของเรา', href: `/${lang}/work` }] }
+    if (best >= 0 && bestScore >= 0.5) {
+      const h = items[best].h
+      return { text: items[best].a, idx: best, links: h && !h.endsWith('/contact') ? [{ label: isEN ? 'Read more' : 'ดูรายละเอียด', href: h }] : [{ label: isEN ? 'See our work' : 'ดูผลงานของเรา', href: `/${lang}/work` }] }
     }
     return {
       idx: -1,
@@ -82,7 +112,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
   const ask = (q: string) => {
     const clean = q.trim()
     if (!clean) return
-    if (/agent|human|person|staff|support|เจ้าหน้าที่|คนจริง|แอดมิน|ทีมงาน|คุยกับคน/i.test(clean) && clean.length < 60) {
+    if (/(chat|talk|speak|connect)\s+(with|to)\s+(an?\s+|the\s+)?(agent|human|person|staff|someone|team)|real person|live agent|human agent|เจ้าหน้าที่|คนจริง|แอดมิน|คุยกับคน|คุยกับทีม/i.test(clean) && clean.length < 60) {
       setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', agent: true, text: isEN ? 'Happy to connect you with the team. Pick the app you like and we will reply there.' : 'ยินดีต่อสายให้คุยกับทีมงานครับ เลือกแอปที่สะดวก แล้วทีมจะตอบกลับทางนั้น' }])
       setText('')
       log(clean, -1)
@@ -139,7 +169,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
             {msgs.length <= 1 && (
               <div className="flex flex-wrap gap-2 mt-1">
                 <button type="button" onClick={() => ask(isEN ? 'Chat with an agent' : 'คุยกับเจ้าหน้าที่')} className="text-xs px-3 py-2 rounded-full" style={{ background: 'linear-gradient(135deg,#7B6EF6,#53C3D7)', color: '#fff', fontWeight: 600 }}>{isEN ? '💬 Chat with an agent' : '💬 คุยกับเจ้าหน้าที่'}</button>
-                {items.slice(0, 5).map((it) => (
+                {faqItems.slice(0, 5).map((it) => (
                   <button key={it.q} type="button" onClick={() => ask(it.q)} className="text-xs px-3 py-2 rounded-full text-left" style={{ background: 'rgba(123,110,246,0.10)', border: '1px solid rgba(123,110,246,0.35)', color: 'var(--ink)' }}>{it.q}</button>
                 ))}
               </div>
