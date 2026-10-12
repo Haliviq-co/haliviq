@@ -112,6 +112,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
   const end = useRef<HTMLDivElement>(null)
 
   useEffect(() => { end.current?.scrollIntoView({ block: 'end' }) }, [msgs, open])
+  useEffect(() => { setKb([]) }, [lang]) // drop the other language's knowledge base when the page language changes
   useEffect(() => {
     if (!open) return
     let dead = false
