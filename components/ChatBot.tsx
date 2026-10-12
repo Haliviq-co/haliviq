@@ -6,7 +6,7 @@ import { t, type Lang } from '@/lib/i18n'
 // A free, rule-based assistant. It answers from the FAQ already on the site, so it has no API cost.
 // Optional dashboard: set NEXT_PUBLIC_CHAT_LOG_URL to a Google Apps Script web-app URL and each question is
 // appended to a Google Sheet (no names, emails or other identifiers are sent).
-type Msg = { from: 'bot' | 'me'; text: string; links?: { label: string; href: string }[]; agent?: boolean }
+type Msg = { from: 'bot' | 'me'; text: string; links?: { label: string; href: string }[]; agent?: boolean; fresh?: boolean }
 type QA = { q: string; a: string; h?: string; k?: string; x?: string; p?: number }
 
 const CHANNELS = [
@@ -88,6 +88,36 @@ function Mascot() {
   )
 }
 
+// Bot replies "type" themselves in, then the links / buttons fade in underneath.
+function BotBubble({ text, fresh, onTick, children }: { text: string; fresh?: boolean; onTick: () => void; children?: React.ReactNode }) {
+  const chars = useMemo(() => Array.from(text), [text])
+  const [n, setN] = useState(fresh ? 0 : chars.length)
+  useEffect(() => {
+    if (!fresh) { setN(chars.length); return }
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setN(chars.length); return }
+    setN(0)
+    const step = Math.max(1, Math.ceil(chars.length / 110))
+    const id = setInterval(() => {
+      setN((v) => {
+        const next = Math.min(chars.length, v + step)
+        if (next >= chars.length) clearInterval(id)
+        return next
+      })
+      onTick()
+    }, 22)
+    return () => clearInterval(id)
+  }, [chars, fresh]) // eslint-disable-line react-hooks/exhaustive-deps
+  const done = n >= chars.length
+  return (
+    <>
+      <div className="px-3.5 py-2 text-[13px] rounded-2xl" style={{ background: 'rgb(var(--fg) / 0.06)', color: 'var(--ink)', borderTopLeftRadius: 6, lineHeight: 1.6 }}>
+        {chars.slice(0, n).join('')}{!done && <span className="chat-caret" aria-hidden="true" />}
+      </div>
+      {done && <div className="chat-fade" ref={(el) => { if (el) onTick() }}>{children}</div>}
+    </>
+  )
+}
+
 export default function ChatBot({ lang }: { lang: Lang }) {
   const isEN = lang === 'en'
   const faqItems = useMemo(() => (((t[lang] as any)?.faq?.items || []) as QA[]), [lang])
@@ -104,6 +134,13 @@ export default function ChatBot({ lang }: { lang: Lang }) {
     return { idf: m, maxIdf: Math.log(1 + index.length) }
   }, [index])
   const [open, setOpen] = useState(false)
+  // keep the panel mounted for a moment after closing so it can fade out
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => {
+    if (open) { setMounted(true); return }
+    const id = setTimeout(() => setMounted(false), 220)
+    return () => clearTimeout(id)
+  }, [open])
   const [text, setText] = useState('')
   const hello = isEN
     ? 'Hi! I am the Haliviq assistant. Ask me about our services, technology, timelines or how to start a project, or pick a question below.'
@@ -140,6 +177,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
       let hit = 0, qhit = 0
       g.forEach((x) => { const w = idf.get(x) || 0; if (e.g.has(x)) hit += w; if (e.qg.has(x)) qhit += w })
       if (!hit) return
+      if (g.size <= 1 && !e.it.p) return // a single bare word is too vague to match a niche answer
       const cov = qtotal ? hit / qtotal : 0
       const qcov = qtotal ? qhit / qtotal : 0
       const kw = e.kl.length > 2 && ql.includes(e.kl) ? 0.12 : 0
@@ -163,28 +201,28 @@ export default function ChatBot({ lang }: { lang: Lang }) {
     const clean = q.trim()
     if (!clean) return
     if (wantsAgent(clean)) {
-      setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', agent: true, text: isEN ? 'Happy to connect you with the team. Pick the app you like and we will reply there.' : 'ยินดีต่อสายให้คุยกับทีมงานครับ เลือกแอปที่สะดวก แล้วทีมจะตอบกลับทางนั้น' }])
+      setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, agent: true, text: isEN ? 'Happy to connect you with the team. Pick the app you like and we will reply there.' : 'ยินดีต่อสายให้คุยกับทีมงานครับ เลือกแอปที่สะดวก แล้วทีมจะตอบกลับทางนั้น' }])
       setText('')
       log(clean, -1)
       return
     }
     const r = answer(clean)
-    setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', text: r.text, links: r.links }])
+    setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, text: r.text, links: r.links }])
     setText('')
     log(clean, r.idx)
   }
 
   return (
     <div className="fixed right-4 bottom-4 md:right-6 md:bottom-6 z-[90] flex flex-col items-end" style={{ fontFamily: 'inherit' }}>
-      {open && (
+      {mounted && (
         <div
           role="dialog"
           aria-label={isEN ? 'Haliviq assistant' : 'ผู้ช่วย Haliviq'}
-          className="chat-panel mb-3 flex flex-col overflow-hidden rounded-3xl"
-          style={{ width: 'min(380px, calc(100vw - 32px))', height: 'min(560px, calc(100vh - 120px))', border: '1px solid rgb(var(--fg) / 0.12)', boxShadow: '0 30px 70px -20px rgba(60,50,160,0.45)' }}
+          className={`chat-panel ${open ? 'chat-in' : 'chat-out'} mb-3 flex flex-col overflow-hidden rounded-3xl`}
+          style={{ width: 'min(330px, calc(100vw - 32px))', height: 'min(470px, calc(100vh - 120px))', border: '1px solid rgb(var(--fg) / 0.12)', boxShadow: '0 30px 70px -20px rgba(60,50,160,0.45)' }}
         >
-          <div className="flex items-center gap-3 px-5 py-4" style={{ background: 'linear-gradient(135deg, #7B6EF6 0%, #53C3D7 100%)', color: '#fff' }}>
-            <span className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: 'rgba(255,255,255,0.22)' }} aria-hidden="true">✦</span>
+          <div className="flex items-center gap-3 px-4 py-3" style={{ background: 'linear-gradient(135deg, #7B6EF6 0%, #53C3D7 100%)', color: '#fff' }}>
+            <span className="w-8 h-8 rounded-full flex items-center justify-center text-sm" style={{ background: 'rgba(255,255,255,0.22)' }} aria-hidden="true">✦</span>
             <div className="flex-1 leading-tight">
               <p style={{ fontWeight: 600 }}>{isEN ? 'Haliviq Assistant' : 'ผู้ช่วย Haliviq'}</p>
               <p className="text-xs" style={{ opacity: 0.9 }}>{isEN ? 'Answers from our FAQ · replies instantly' : 'ตอบจากคำถามที่พบบ่อย · ตอบทันที'}</p>
@@ -192,16 +230,17 @@ export default function ChatBot({ lang }: { lang: Lang }) {
             <button type="button" onClick={() => setOpen(false)} aria-label={isEN ? 'Close' : 'ปิด'} className="text-xl leading-none px-2" style={{ color: '#fff' }}>×</button>
           </div>
 
-          <div className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-3" style={{ background: 'var(--bg)' }}>
+          <div className="flex-1 overflow-y-auto px-3.5 py-3.5 flex flex-col gap-2.5" style={{ background: 'var(--bg)' }}>
             {msgs.map((m, i) => (
-              <div key={i} className={m.from === 'me' ? 'self-end max-w-[85%]' : 'self-start max-w-[88%]'}>
-                <div className="px-4 py-2.5 text-sm rounded-2xl" style={m.from === 'me'
-                  ? { background: 'linear-gradient(135deg, #7B6EF6, #5A4ED4)', color: '#fff', borderTopRightRadius: 6, lineHeight: 1.65 }
-                  : { background: 'rgb(var(--fg) / 0.06)', color: 'var(--ink)', borderTopLeftRadius: 6, lineHeight: 1.65 }}>{m.text}</div>
+              <div key={i} className={m.from === 'me' ? 'self-end max-w-[85%]' : 'self-start max-w-[90%]'}>
+                {m.from === 'me' ? (
+                  <div className="px-3.5 py-2 text-[13px] rounded-2xl" style={{ background: 'linear-gradient(135deg, #7B6EF6, #5A4ED4)', color: '#fff', borderTopRightRadius: 6, lineHeight: 1.6 }}>{m.text}</div>
+                ) : (
+                  <BotBubble text={m.text} fresh={m.fresh} onTick={() => end.current?.scrollIntoView({ block: 'end' })}>
                 {m.agent && (
                   <div className="flex flex-col gap-2 mt-2">
                     {CHANNELS.map((c) => (
-                      <a key={c.id} href={c.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-4 py-2.5 rounded-2xl text-sm" style={{ background: c.bg, color: '#fff', fontWeight: 600 }}>
+                      <a key={c.id} href={c.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 px-3.5 py-2 rounded-2xl text-[13px]" style={{ background: c.bg, color: '#fff', fontWeight: 600 }}>
                         <ChannelIcon id={c.id} />{isEN ? `Chat on ${c.label}` : `คุยทาง ${c.label}`}
                       </a>
                     ))}
@@ -213,6 +252,8 @@ export default function ChatBot({ lang }: { lang: Lang }) {
                       <Link key={l.href} href={l.href} className="text-xs px-3 py-1.5 rounded-full" style={{ border: '1px solid var(--accent)', color: 'var(--accent)' }}>{l.label} →</Link>
                     ))}
                   </div>
+                )}
+                  </BotBubble>
                 )}
               </div>
             ))}
@@ -229,8 +270,8 @@ export default function ChatBot({ lang }: { lang: Lang }) {
 
           <form onSubmit={(e) => { e.preventDefault(); ask(text) }} className="flex items-center gap-2 px-3 py-3" style={{ background: 'var(--bg)', borderTop: '1px solid rgb(var(--fg) / 0.1)' }}>
             <input value={text} onChange={(e) => setText(e.target.value)} placeholder={isEN ? 'Type your question…' : 'พิมพ์คำถามของคุณ…'} aria-label={isEN ? 'Your question' : 'คำถามของคุณ'}
-              className="flex-1 px-4 py-2.5 rounded-full text-sm outline-none" style={{ background: 'rgb(var(--fg) / 0.06)', color: 'var(--ink)', border: '1px solid rgb(var(--fg) / 0.1)' }} />
-            <button type="submit" aria-label={isEN ? 'Send' : 'ส่ง'} className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #7B6EF6, #53C3D7)', color: '#fff' }}>➤</button>
+              className="flex-1 px-3.5 py-2 rounded-full text-[13px] outline-none" style={{ background: 'rgb(var(--fg) / 0.06)', color: 'var(--ink)', border: '1px solid rgb(var(--fg) / 0.1)' }} />
+            <button type="submit" aria-label={isEN ? 'Send' : 'ส่ง'} className="w-9 h-9 rounded-full flex items-center justify-center text-sm" style={{ background: 'linear-gradient(135deg, #7B6EF6, #53C3D7)', color: '#fff' }}>➤</button>
           </form>
           <p className="text-[10px] px-4 pb-2.5 text-center" style={{ background: 'var(--bg)', color: 'rgb(var(--fg) / 0.5)' }}>
             {isEN ? 'Questions may be saved to improve this site. Do not share personal details here.' : 'คำถามอาจถูกบันทึกเพื่อปรับปรุงเว็บไซต์ โปรดอย่าใส่ข้อมูลส่วนตัวในแชทนี้'}

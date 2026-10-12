@@ -353,3 +353,18 @@ html[data-theme="light"] .chat-panel { background: #FFFFFF; }
 @keyframes hv-phone { 0%,100% { transform: rotate(0) } 50% { transform: rotate(4deg) translateY(-1px) } }
 @keyframes hv-hand { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-2.5px) } }
 @media (prefers-reduced-motion: reduce) { .hv-float, .hv-shadow, .hv-blink, .hv-ant, .hv-ball, .hv-phone, .hv-hand-l, .hv-hand-r { animation: none } }
+
+/* Chat panel fade */
+.chat-panel { transform-origin: bottom right; }
+.chat-in { animation: chat-in .28s cubic-bezier(.2,.8,.2,1) both; }
+.chat-out { animation: chat-out .2s ease-in both; pointer-events: none; }
+@keyframes chat-in { from { opacity: 0; transform: translateY(14px) scale(.96) } to { opacity: 1; transform: none } }
+@keyframes chat-out { from { opacity: 1; transform: none } to { opacity: 0; transform: translateY(10px) scale(.97) } }
+@media (prefers-reduced-motion: reduce) { .chat-in, .chat-out { animation-duration: .01s } }
+
+/* typing caret + fade for replies */
+.chat-caret { display: inline-block; width: 2px; height: 1em; margin-left: 2px; vertical-align: -0.12em; background: currentColor; animation: chat-caret 0.9s steps(1) infinite; }
+.chat-fade { animation: chat-fadein .35s ease both; }
+@keyframes chat-caret { 50% { opacity: 0 } }
+@keyframes chat-fadein { from { opacity: 0; transform: translateY(4px) } to { opacity: 1; transform: none } }
+@media (prefers-reduced-motion: reduce) { .chat-caret, .chat-fade { animation: none } }
