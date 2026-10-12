@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import TechGlyph from '@/components/TechGlyph'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { t, type Lang } from '@/lib/i18n'
@@ -158,7 +159,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
                   <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: 'var(--lime)', animation: 'blinkDot 1.6s ease-in-out infinite' }} />
                   {badge}
                 </div>
-                <h1 className="t-display mb-6 leading-relaxed" style={{ fontSize: 'clamp(2.8rem,6vw,5.5rem)', background: 'linear-gradient(135deg, var(--purple-light) 0%, #53C3D7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                <h1 className="t-display mb-6 leading-relaxed" style={{ fontSize: 'clamp(2.8rem,6vw,5.5rem)', background: 'linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                   {isEN ? 'Professional' : 'บริการ'}<br />{isEN ? 'Services' : 'วิชาชีพ'}
                 </h1>
                 <p className="leading-relaxed mb-10" style={{ fontSize: '1.15rem', color: 'rgb(var(--fg) / 0.85)', fontWeight: 400, maxWidth: 560 }}>
@@ -298,6 +299,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
                   className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-base"
                   style={{ background: 'rgb(var(--fg) / 0.03)', border: '1px solid rgb(var(--fg) / 0.08)', color: 'rgb(var(--fg) / 0.85)', fontWeight: 400 }}
                 >
+                  <TechGlyph name={tag} />
                   {tag}
                 </span>
               ))}
@@ -341,7 +343,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
         </section>
 
         {/* Final CTA */}
-        <section className="theme-dark relative overflow-hidden" style={{ background: '#050308' }}>
+        <section className="relative overflow-hidden" style={{ background: 'var(--bg)' }}>
           <div
             className="absolute inset-0 pointer-events-none opacity-40"
             style={{ backgroundImage: 'radial-gradient(rgb(var(--fg) / 0.5) 1px, transparent 1px), radial-gradient(rgb(var(--fg) / 0.3) 1px, transparent 1px)', backgroundSize: '180px 180px, 260px 260px', backgroundPosition: '0 0, 90px 130px' }}

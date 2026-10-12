@@ -6,13 +6,13 @@ export default function CTA({ lang, tr }: Props) {
   const c = (tr as any).ctaSimple
 
   return (
-    <section className="theme-dark relative overflow-hidden py-28 lg:py-40" style={{ background: 'var(--bg)' }}>
+    <section className="relative overflow-hidden py-28 lg:py-40" style={{ background: 'var(--bg)' }}>
       {/* starfield */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Ccircle cx='14' cy='22' r='1' fill='white' opacity='0.9'/%3E%3Ccircle cx='58' cy='8' r='0.7' fill='white' opacity='0.6'/%3E%3Ccircle cx='97' cy='44' r='1.1' fill='white' opacity='0.8'/%3E%3Ccircle cx='142' cy='16' r='0.6' fill='white' opacity='0.5'/%3E%3Ccircle cx='176' cy='60' r='1' fill='white' opacity='0.7'/%3E%3Ccircle cx='30' cy='90' r='0.8' fill='white' opacity='0.6'/%3E%3Ccircle cx='75' cy='115' r='1.2' fill='white' opacity='0.9'/%3E%3Ccircle cx='120' cy='95' r='0.6' fill='white' opacity='0.4'/%3E%3Ccircle cx='160' cy='130' r='0.9' fill='white' opacity='0.6'/%3E%3Ccircle cx='200' cy='105' r='0.7' fill='white' opacity='0.5'/%3E%3Ccircle cx='10' cy='150' r='0.9' fill='white' opacity='0.7'/%3E%3Ccircle cx='55' cy='175' r='0.6' fill='white' opacity='0.5'/%3E%3Ccircle cx='100' cy='160' r='1' fill='white' opacity='0.8'/%3E%3Ccircle cx='145' cy='190' r='0.7' fill='white' opacity='0.6'/%3E%3Ccircle cx='190' cy='170' r='1.1' fill='white' opacity='0.9'/%3E%3Ccircle cx='210' cy='210' r='0.6' fill='white' opacity='0.4'/%3E%3C/svg%3E\")",
+            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Ccircle cx='14' cy='22' r='1' fill='%237B6EF6' opacity='0.9'/%3E%3Ccircle cx='58' cy='8' r='0.7' fill='%237B6EF6' opacity='0.6'/%3E%3Ccircle cx='97' cy='44' r='1.1' fill='%237B6EF6' opacity='0.8'/%3E%3Ccircle cx='142' cy='16' r='0.6' fill='%237B6EF6' opacity='0.5'/%3E%3Ccircle cx='176' cy='60' r='1' fill='%237B6EF6' opacity='0.7'/%3E%3Ccircle cx='30' cy='90' r='0.8' fill='%237B6EF6' opacity='0.6'/%3E%3Ccircle cx='75' cy='115' r='1.2' fill='%237B6EF6' opacity='0.9'/%3E%3Ccircle cx='120' cy='95' r='0.6' fill='%237B6EF6' opacity='0.4'/%3E%3Ccircle cx='160' cy='130' r='0.9' fill='%237B6EF6' opacity='0.6'/%3E%3Ccircle cx='200' cy='105' r='0.7' fill='%237B6EF6' opacity='0.5'/%3E%3Ccircle cx='10' cy='150' r='0.9' fill='%237B6EF6' opacity='0.7'/%3E%3Ccircle cx='55' cy='175' r='0.6' fill='%237B6EF6' opacity='0.5'/%3E%3Ccircle cx='100' cy='160' r='1' fill='%237B6EF6' opacity='0.8'/%3E%3Ccircle cx='145' cy='190' r='0.7' fill='%237B6EF6' opacity='0.6'/%3E%3Ccircle cx='190' cy='170' r='1.1' fill='%237B6EF6' opacity='0.9'/%3E%3Ccircle cx='210' cy='210' r='0.6' fill='%237B6EF6' opacity='0.4'/%3E%3C/svg%3E\")",
           backgroundRepeat: 'repeat',
         }}
       />

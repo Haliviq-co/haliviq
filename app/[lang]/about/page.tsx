@@ -317,7 +317,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
         </section>
 
         {/* CTA */}
-        <section className="theme-dark relative overflow-hidden" style={{ background: '#050308' }}>
+        <section className="relative overflow-hidden" style={{ background: 'var(--bg)' }}>
           <div
             className="absolute inset-0 pointer-events-none opacity-40"
             style={{ backgroundImage: 'radial-gradient(rgb(var(--fg) / 0.5) 1px, transparent 1px), radial-gradient(rgb(var(--fg) / 0.3) 1px, transparent 1px)', backgroundSize: '180px 180px, 260px 260px', backgroundPosition: '0 0, 90px 130px' }}
@@ -332,7 +332,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
             </p>
             <h2
               className="t-display mb-6 leading-tight"
-              style={{ background: 'linear-gradient(135deg, var(--purple-light) 0%, #53C3D7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontSize: 'clamp(2rem,4vw,4rem)' }}
+              style={{ background: 'linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', fontSize: 'clamp(2rem,4vw,4rem)' }}
             >
               {isEN ? "Let's Build Something Together" : 'มาสร้างสิ่งดี ๆ ด้วยกัน'}
             </h2>

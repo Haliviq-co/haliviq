@@ -96,7 +96,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
           </div>
         </section>
 
-        <section className="theme-dark relative overflow-hidden" style={{ background: '#050308' }}>
+        <section className="relative overflow-hidden" style={{ background: 'var(--bg)' }}>
           <div
             className="absolute inset-0 pointer-events-none opacity-40"
             style={{ backgroundImage: 'radial-gradient(rgb(var(--fg) / 0.5) 1px, transparent 1px), radial-gradient(rgb(var(--fg) / 0.3) 1px, transparent 1px)', backgroundSize: '180px 180px, 260px 260px', backgroundPosition: '0 0, 90px 130px' }}
@@ -107,7 +107,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
           />
           <div className="relative max-w-4xl mx-auto px-6 lg:px-10 py-24 text-center">
             <p className="text-sm tracking-widest uppercase mb-6" style={{ color: 'var(--ink)', fontWeight: 500 }}>{isEN ? 'Have a project in mind?' : 'มีโปรเจกต์ในใจแล้วใช่ไหม?'}</p>
-            <h2 className="t-display text-[clamp(1.75rem,4vw,3rem)] mb-6 leading-normal md:whitespace-nowrap" style={{ background: 'linear-gradient(135deg, var(--purple-light) 0%, #53C3D7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+            <h2 className="t-display text-[clamp(1.75rem,4vw,3rem)] mb-6 leading-normal md:whitespace-nowrap" style={{ background: 'linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
               {isEN ? "We'd love to hear what you're building." : 'เราอยากฟังว่าคุณกำลังสร้างอะไรอยู่'}
             </h2>
             <p className="mb-10 max-w-xl mx-auto" style={{ color: 'rgb(var(--fg) / 0.75)', fontWeight: 400 }}>

@@ -396,7 +396,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       </div>
     </section>
 
-    <section className="theme-dark relative overflow-hidden" style={{ background: '#050308' }}>
+    <section className="relative overflow-hidden" style={{ background: 'var(--bg)' }}>
       <div
         className="absolute inset-0 pointer-events-none opacity-40"
         style={{ backgroundImage: 'radial-gradient(rgb(var(--fg) / 0.5) 1px, transparent 1px), radial-gradient(rgb(var(--fg) / 0.3) 1px, transparent 1px)', backgroundSize: '180px 180px, 260px 260px', backgroundPosition: '0 0, 90px 130px' }}
