@@ -2,11 +2,11 @@
 import { useState } from 'react'
 import { type Lang, type T } from '@/lib/i18n'
 
-type Props = { lang: Lang; tr: T }
+type Props = { lang: Lang; tr?: T; items?: { q: string; a: string }[]; h2?: string; subtitle?: string; gradientHeading?: boolean }
 
-export default function FAQ({ lang, tr }: Props) {
-  const f = (tr as any).faq
-  const items = f.items as { q: string; a: string }[]
+export default function FAQ({ lang, tr, items: itemsProp, h2, subtitle, gradientHeading }: Props) {
+  const f = ((tr as any)?.faq || {}) as { h2?: string; subtitle?: string; items?: { q: string; a: string }[] }
+  const items = (itemsProp || f.items || []) as { q: string; a: string }[]
   const [active, setActive] = useState<number | null>(null)
 
   return (
@@ -28,8 +28,23 @@ export default function FAQ({ lang, tr }: Props) {
       />
 
       <div className="relative max-w-6xl mx-auto px-4 lg:px-10">
-        <h2 className="t-display mb-3" style={{ color: 'var(--ink)', fontSize: 'clamp(2.25rem,4.5vw,3.5rem)' }}>
-          {f.h2}
+        <h2
+          className="t-display mb-3"
+          style={{
+            color: 'var(--ink)',
+            fontSize: 'clamp(2.25rem,4.5vw,3.5rem)',
+            ...(gradientHeading
+              ? {
+                  background: 'linear-gradient(90deg, var(--purple-light) 0%, var(--lime) 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  paddingBottom: '0.15em',
+                }
+              : {}),
+          }}
+        >
+          {h2 ?? f.h2}
         </h2>
         <p
           className="t-display mb-14 lg:mb-16"
@@ -42,7 +57,7 @@ export default function FAQ({ lang, tr }: Props) {
             backgroundClip: 'text',
           }}
         >
-          {f.subtitle}
+          {subtitle ?? f.subtitle}
         </p>
 
         <div style={{ borderTop: '1px solid rgb(var(--fg) / 0.12)' }}>

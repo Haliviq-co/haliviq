@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Navbar from '@/components/Navbar'
 import { t, type Lang } from '@/lib/i18n'
 import Footer from '@/components/Footer'
+import FAQ from '@/components/FAQ'
 import SocialIcons from '@/components/SocialIcons'
 import ContactFields from '@/components/ContactFields'
 import ContactFormShell from '@/components/ContactFormShell'
@@ -209,24 +210,13 @@ export default function Page({ params }: { params: { lang: Lang } }) {
           </div>
         </section>
 
-        <section className="py-24" style={{ background: 'var(--bg-1)' }}>
-          <div className="max-w-4xl mx-auto px-6 lg:px-10">
-            <div className="text-center mb-16">
-              <p className="t-label mb-5">{isEN ? 'FAQ' : 'คำถามที่พบบ่อย'}</p>
-              <h2 className="t-display text-[clamp(2rem,4vw,3.5rem)]" style={{ color: 'var(--ink)' }}>
-                {isEN ? 'Common Questions' : 'คำถามที่พบบ่อย'}
-              </h2>
-            </div>
-            <div className="space-y-4">
-              {faqs.map(faq => (
-                <div key={faq.q} className="theme-dark rounded-2xl p-7" style={{ background: '#141329', border: '1px solid rgb(var(--fg) / 0.08)' }}>
-                  <h3 className="mb-3" style={{ fontWeight: 500, fontSize: '1.3rem', color: 'var(--ink)' }}>{faq.q}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: 'rgb(var(--fg) / 0.75)' }}>{faq.a}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <FAQ
+          lang={lang}
+          items={faqs}
+          gradientHeading
+          h2={isEN ? 'Common Questions' : 'คำถามที่พบบ่อย'}
+          subtitle={isEN ? 'Answers to what people usually ask before we start' : 'คำตอบสำหรับสิ่งที่ลูกค้ามักถามก่อนเริ่มงาน'}
+        />
       </main>
       <Footer lang={lang} tr={tr} />
     </>

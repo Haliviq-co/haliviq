@@ -303,3 +303,19 @@ html[data-theme="light"] .hero-veil { display: block; background: linear-gradien
 html[data-theme="light"] .hero-dark-overlay { display: none; }
 .hero-wordmark { filter: drop-shadow(0 0 24px rgba(165,119,253,0.55)); }
 html[data-theme="light"] .hero-wordmark { filter: none; }
+
+/* Four-point star bullet, light purple to light blue */
+.star-bullet {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  background: linear-gradient(135deg, #B9A8FF 0%, #6FD3F5 100%);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1C12.9 7.3 16.7 11.1 23 12C16.7 12.9 12.9 16.7 12 23C11.1 16.7 7.3 12.9 1 12C7.3 11.1 11.1 7.3 12 1Z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1C12.9 7.3 16.7 11.1 23 12C16.7 12.9 12.9 16.7 12 23C11.1 16.7 7.3 12.9 1 12C7.3 11.1 11.1 7.3 12 1Z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* Footer social icons in the brand purple */
+.social-accent a { background: rgb(123 110 246 / 0.12) !important; border-color: rgb(123 110 246 / 0.35) !important; }
+.social-accent svg:not([fill="none"]), .social-accent svg:not([fill="none"]) * { fill: var(--accent); }
+.social-accent svg[fill="none"], .social-accent svg[fill="none"] * { stroke: var(--accent); }

@@ -20,11 +20,11 @@ export default function Footer({ lang, tr }: Props) {
   }
 
   return (
-    <footer className="theme-dark" style={{ background: 'var(--bg)' }}>
+    <footer style={{ background: 'var(--bg)' }}>
       <div className="max-w-7xl mx-auto px-4 lg:px-10">
         {/* Our Global Offices */}
         <div className="pt-20 lg:pt-24 pb-4 text-center">
-          <h2 className="t-display mb-3" style={{ color: 'var(--ink)', fontSize: 'clamp(1.8rem,3.2vw,2.8rem)' }}>
+          <h2 className="t-display mb-3" style={{ color: 'var(--accent)', fontSize: 'clamp(1.8rem,3.2vw,2.8rem)' }}>
             {lang === 'en' ? 'Our Global Offices' : 'สำนักงานของเรา'}
           </h2>
           <p className="mb-10" style={{ color: 'rgb(var(--fg) / 0.65)', fontSize: '1.05rem', fontWeight: 400 }}>
@@ -54,12 +54,13 @@ export default function Footer({ lang, tr }: Props) {
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-6 py-16 lg:py-20">
           {/* Brand column */}
           <div className="col-span-2">
-            <img src="/haliviq-logo-light.svg" alt="Haliviq" className="h-9 w-auto mb-4" />
+            <img src="/haliviq-logo-light.svg" alt="Haliviq" className="logo-for-dark h-9 w-auto mb-4" />
+            <img src="/haliviq-logo.svg" alt="Haliviq" className="logo-for-light h-9 w-auto mb-4" />
             <p style={{ color: 'rgb(var(--fg) / 0.85)', fontSize: '0.9rem', fontWeight: 400 }}>
               {f.locations}
             </p>
 
-            <SocialIcons className="mt-5 mb-8" />
+            <SocialIcons tone="accent" className="mt-5 mb-8" />
 
             <div className="mt-3" style={{ color: 'rgb(var(--fg) / 0.85)', fontSize: '0.85rem', fontWeight: 400, lineHeight: 1.8 }}>
               <p>{f.phone}</p>
@@ -72,7 +73,7 @@ export default function Footer({ lang, tr }: Props) {
 
           {Object.entries(f.sections).map(([heading, items]) => (
             <div key={heading}>
-              <p className="mb-4" style={{ fontSize: '1rem', fontWeight: 500, color: 'var(--ink)' }}>{heading}</p>
+              <p className="mb-4" style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--accent)' }}>{heading}</p>
               <ul className="space-y-0">
                 {(items as { l: string; h: string }[]).map(i => (
                   <li key={i.h}>
@@ -100,7 +101,7 @@ export default function Footer({ lang, tr }: Props) {
               className="text-xs transition-colors"
               style={{
                 fontWeight: lang === l ? 500 : 300,
-                color: lang === l ? 'var(--ink)' : 'rgb(var(--fg) / 0.45)',
+                color: lang === l ? 'var(--ink)' : 'rgb(var(--fg) / 0.62)',
               }}
             >
               {l === 'th' ? 'ไทย' : 'English'}
