@@ -23,6 +23,12 @@ function ChannelIcon({ id }: { id: string }) {
   return (<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3C6.8 3 3 6.3 3 10.4c0 3.6 3.2 6.6 7.5 7.2.3.1.7.2.8.5l-.1 1.3c0 .4-.3 1.3 1.1.7s7.4-4.400 7.4-8.700C19.700 6.300 17.500 3 12 3z" fill="#fff" /><text x="12" y="12.600" textAnchor="middle" fontSize="5.200" fontWeight="800" fill="#06C755" fontFamily="Arial,sans-serif">LINE</text></svg>)
 }
 
+// Phrases that mean "let me talk to a person". Single words like "agent" or "support" alone are NOT enough,
+// because visitors also ask about "AI agents" or "support after launch".
+const AGENT_STRONG = /เจ้าหน้าที่|แอดมิน|คนจริง|มนุษย์|ลูกค้าสัมพันธ์|พนักงานขาย|ขอคุยกับคน|live\s*(agent|chat)|human\s*(agent|being)?|real\s*(person|human)|customer\s*(service|care)|representative|operator|livechat/i
+const AGENT_SOFT = /(คุย|ติดต่อ|ขอสาย|โอนสาย|ต่อสาย|ขอพูด|พูดคุย|ปรึกษา|สอบถาม|ทัก|แชท|chat|talk|speak|connect|contact|reach|transfer|message)\s*((กับ|ถึง|หา|with|to|a|an|the|your|me|us)\s*)*(ทีมงาน|ทีม|พนักงาน|คน|ฝ่ายขาย|ฝ่ายซัพพอร์ต|ซัพพอร์ต|เซลส์|ผู้เชี่ยวชาญ|admin|sales|team|staff|someone|somebody|person|people|support|agent|human|rep|expert)/i
+const wantsAgent = (q: string) => q.length < 80 && (AGENT_STRONG.test(q) || AGENT_SOFT.test(q))
+
 const EN_STOP = new Set('a an the and or of to in on for with at by from is are was were be been do does did can could will would should you your we our us i me my it its this that these those what which who how why when where about tell please any there have has had not no yes get got give need want like'.split(' '))
 const TH_STOP = /ไหม|ได้|อะไร|คือ|หรือ|ยังไง|อย่างไร|บ้าง|ของ|ครับ|ค่ะ|คะ|นะ|ที่|มี|เป็น|ให้|และ|กับ|ใน|จะ|แล้ว|ด้วย|ช่วย|ขอ|อยาก|ต้องการ/g
 // English: whole words. Thai (no spaces): character bigrams. Common filler words are dropped so they never decide a match.
@@ -112,7 +118,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
   const ask = (q: string) => {
     const clean = q.trim()
     if (!clean) return
-    if (/(chat|talk|speak|connect)\s+(with|to)\s+(an?\s+|the\s+)?(agent|human|person|staff|someone|team)|real person|live agent|human agent|เจ้าหน้าที่|คนจริง|แอดมิน|คุยกับคน|คุยกับทีม/i.test(clean) && clean.length < 60) {
+    if (wantsAgent(clean)) {
       setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', agent: true, text: isEN ? 'Happy to connect you with the team. Pick the app you like and we will reply there.' : 'ยินดีต่อสายให้คุยกับทีมงานครับ เลือกแอปที่สะดวก แล้วทีมจะตอบกลับทางนั้น' }])
       setText('')
       log(clean, -1)
@@ -199,13 +205,6 @@ export default function ChatBot({ lang }: { lang: Lang }) {
         <span aria-hidden="true">{open ? '×' : '✦'}</span>
         <span className="text-sm">{open ? (isEN ? 'Close' : 'ปิด') : (isEN ? 'Ask us' : 'ถามเรา')}</span>
       </button>
-      {CHANNELS.map((c) => (
-        <a key={c.id} href={c.href} target="_blank" rel="noopener noreferrer" aria-label={c.label} title={c.label}
-          className="w-11 h-11 rounded-full flex items-center justify-center transition-transform hover:-translate-y-0.5"
-          style={{ background: c.bg, boxShadow: '0 10px 24px -10px rgba(0,0,0,0.5)' }}>
-          <ChannelIcon id={c.id} />
-        </a>
-      ))}
       </div>
     </div>
   )
