@@ -45,6 +45,49 @@ const tokens = (s: string) => {
   return out
 }
 
+// The robot mascot, in the site colours. Pure SVG + CSS, no image files.
+function Mascot() {
+  return (
+    <span className="chat-mascot" aria-hidden="true">
+      <svg viewBox="0 0 160 176" width="76" height="84">
+        <defs>
+          <linearGradient id="hv-head" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#EEEBFF" />
+            <stop offset="0.55" stopColor="#C9C2FB" />
+            <stop offset="1" stopColor="#A89DF5" />
+          </linearGradient>
+        </defs>
+        <ellipse className="hv-shadow" cx="80" cy="166" rx="34" ry="6" fill="#7B6EF6" fillOpacity="0.28" style={{ transformOrigin: '80px 166px' }} />
+        <g className="hv-float">
+          <g className="hv-ant" style={{ transformOrigin: '80px 44px' }}>
+            <rect x="77" y="20" width="6" height="26" rx="3" fill="#8F86DA" />
+            <circle className="hv-ball" cx="80" cy="17" r="10" fill="#7B6EF6" />
+          </g>
+          <path d="M40 66Q80 28 120 66Z" fill="#8F86DA" />
+          <circle cx="80" cy="92" r="47" fill="url(#hv-head)" />
+          <rect x="37" y="66" width="86" height="46" rx="23" fill="#141329" stroke="#8F86DA" strokeWidth="5" />
+          <g className="hv-blink" style={{ transformOrigin: '80px 88px' }}>
+            <path d="M52 90a10 10 0 0 1 20 0" fill="none" stroke="#53C3D7" strokeWidth="5.5" strokeLinecap="round" />
+            <path d="M88 90a10 10 0 0 1 20 0" fill="none" stroke="#53C3D7" strokeWidth="5.5" strokeLinecap="round" />
+          </g>
+          <g className="hv-phone" style={{ transformOrigin: '76px 112px' }}>
+            <rect x="62" y="94" width="28" height="42" rx="7" fill="#231F52" transform="rotate(-3 76 115)" />
+            <circle cx="82" cy="102" r="3.2" fill="#53C3D7" />
+          </g>
+          <g className="hv-hand-l">
+            <circle cx="57" cy="119" r="11" fill="#9187E0" transform="translate(3 4)" />
+            <circle cx="57" cy="119" r="11" fill="#DCD7FD" />
+          </g>
+          <g className="hv-hand-r">
+            <circle cx="98" cy="130" r="11" fill="#9187E0" transform="translate(3 4)" />
+            <circle cx="98" cy="130" r="11" fill="#DCD7FD" />
+          </g>
+        </g>
+      </svg>
+    </span>
+  )
+}
+
 export default function ChatBot({ lang }: { lang: Lang }) {
   const isEN = lang === 'en'
   const faqItems = useMemo(() => (((t[lang] as any)?.faq?.items || []) as QA[]), [lang])
@@ -194,17 +237,20 @@ export default function ChatBot({ lang }: { lang: Lang }) {
         </div>
       )}
       <div className="flex items-center gap-2.5">
-      <button
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        aria-label={isEN ? 'Chat with us' : 'แชทกับเรา'}
-        aria-expanded={open}
-        className="flex items-center gap-2 rounded-full px-5 py-3.5 transition-transform hover:-translate-y-0.5"
-        style={{ background: 'linear-gradient(135deg, #7B6EF6 0%, #53C3D7 100%)', color: '#fff', fontWeight: 600, boxShadow: '0 14px 34px -10px rgba(90,78,212,0.7)' }}
-      >
-        <span aria-hidden="true">{open ? '×' : '✦'}</span>
-        <span className="text-sm">{open ? (isEN ? 'Close' : 'ปิด') : (isEN ? 'Ask us' : 'ถามเรา')}</span>
-      </button>
+        <button
+          type="button"
+          onClick={() => setOpen((o) => !o)}
+          aria-label={open ? (isEN ? 'Close chat' : 'ปิดแชท') : (isEN ? 'Ask us' : 'ถามเรา')}
+          aria-expanded={open}
+          title={isEN ? 'Ask us' : 'ถามเรา'}
+          className="chat-mascot-btn"
+        >
+          {open ? (
+            <span className="flex items-center justify-center w-14 h-14 rounded-full text-2xl" style={{ background: 'linear-gradient(135deg, #7B6EF6 0%, #53C3D7 100%)', color: '#fff', boxShadow: '0 14px 34px -10px rgba(90,78,212,0.7)' }} aria-hidden="true">×</span>
+          ) : (
+            <Mascot />
+          )}
+        </button>
       </div>
     </div>
   )

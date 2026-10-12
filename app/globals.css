@@ -328,3 +328,28 @@ html[data-theme="light"] .contact-card, html[data-theme="light"] .adaptive-panel
 .glass-hover { background: rgb(var(--fg) / 0.03); transition: background .35s ease, border-color .35s ease, transform .35s ease, box-shadow .35s ease; }
 .glass-hover:hover, .glass-hover:focus-visible { background: linear-gradient(135deg, rgba(123,110,246,0.30) 0%, rgba(123,110,246,0.08) 55%, rgba(255,255,255,0.35) 100%); border-color: rgba(123,110,246,0.45) !important; transform: translateY(-3px); box-shadow: 0 16px 40px rgba(123,110,246,0.18); }
 html:not([data-theme="light"]) .glass-hover:hover, html:not([data-theme="light"]) .glass-hover:focus-visible { background: linear-gradient(135deg, rgba(123,110,246,0.28) 0%, rgba(83,195,215,0.08) 100%); }
+
+/* Chat assistant panel */
+.chat-panel { background: #141329; }
+html[data-theme="light"] .chat-panel { background: #FFFFFF; }
+
+/* Chat mascot launcher */
+.chat-mascot-btn { background: none; border: 0; padding: 0; cursor: pointer; line-height: 0; }
+.chat-mascot { display: inline-block; filter: drop-shadow(0 10px 14px rgba(90,78,212,0.35)); transition: transform .25s ease; }
+.chat-mascot-btn:hover .chat-mascot { transform: scale(1.08) rotate(-3deg); }
+.hv-float { animation: hv-float 3s ease-in-out infinite; }
+.hv-shadow { animation: hv-shadow 3s ease-in-out infinite; }
+.hv-blink { animation: hv-blink 4.4s infinite; }
+.hv-ant { animation: hv-ant 3s ease-in-out infinite; }
+.hv-ball { animation: hv-ball 1.8s ease-in-out infinite; }
+.hv-phone { animation: hv-phone 2.2s ease-in-out infinite; }
+.hv-hand-l { animation: hv-hand 2.2s ease-in-out infinite; }
+.hv-hand-r { animation: hv-hand 2.2s ease-in-out .35s infinite; }
+@keyframes hv-float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-7px) } }
+@keyframes hv-shadow { 0%,100% { transform: scaleX(1); opacity: 1 } 50% { transform: scaleX(.78); opacity: .6 } }
+@keyframes hv-blink { 0%,92%,100% { transform: scaleY(1) } 95% { transform: scaleY(.12) } }
+@keyframes hv-ant { 0%,100% { transform: rotate(-5deg) } 50% { transform: rotate(5deg) } }
+@keyframes hv-ball { 0%,100% { fill: #7B6EF6 } 50% { fill: #53C3D7 } }
+@keyframes hv-phone { 0%,100% { transform: rotate(0) } 50% { transform: rotate(4deg) translateY(-1px) } }
+@keyframes hv-hand { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-2.5px) } }
+@media (prefers-reduced-motion: reduce) { .hv-float, .hv-shadow, .hv-blink, .hv-ant, .hv-ball, .hv-phone, .hv-hand-l, .hv-hand-r { animation: none } }
