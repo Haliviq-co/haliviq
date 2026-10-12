@@ -47,7 +47,7 @@ export default function CookieBanner({ lang }: { lang: Lang }) {
     <div
       role="dialog"
       aria-label={isEN ? 'Cookie consent' : 'ความยินยอมใช้คุกกี้'}
-      className="theme-dark fixed left-4 right-4 bottom-4 md:left-auto md:right-6 md:bottom-6 md:max-w-md z-[100] rounded-2xl p-5"
+      className="theme-dark fixed left-4 right-4 bottom-4 md:left-6 md:right-auto md:bottom-6 md:max-w-md z-[100] rounded-2xl p-5"
       style={{ background: '#141329', border: '1px solid rgb(var(--fg) / 0.12)', boxShadow: '0 20px 50px -10px rgba(0,0,0,0.6)' }}
     >
       <p className="mb-1" style={{ color: 'var(--ink)', fontWeight: 500, fontSize: '1rem' }}>
