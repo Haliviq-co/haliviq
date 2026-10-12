@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import FAQ from '@/components/FAQ'
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
@@ -258,17 +259,7 @@ export default function Page({ params }: { params: { lang: Lang; slug: string } 
         {/* FAQ */}
         <section className="pb-24 lg:pb-32">
           <div className="max-w-5xl mx-auto px-6 lg:px-10">
-            <h2 className="t-display leading-relaxed text-[clamp(1.5rem,2.8vw,2.1rem)] mb-10" style={{ color: 'var(--ink)' }}>
-              {c.faqHeading}
-            </h2>
-            <div className="flex flex-col gap-5">
-              {c.faq.map((f) => (
-                <div key={f.question} className="rounded-2xl p-7" style={{ background: 'rgb(var(--fg) / 0.03)', border: '1px solid rgb(var(--fg) / 0.08)' }}>
-                  <h3 className="mb-2.5" style={{ color: 'var(--ink)', fontWeight: 500, fontSize: '1.05rem' }}>{f.question}</h3>
-                  <p style={{ color: 'rgb(var(--fg) / 0.68)', fontWeight: 400, fontSize: '0.95rem', lineHeight: 1.7 }}>{f.answer}</p>
-                </div>
-              ))}
-            </div>
+            <FAQ embedded lang={lang} h2={c.faqHeading} subtitle={lang === 'en' ? 'Short answers about this project.' : 'คำตอบสั้น ๆ เกี่ยวกับโปรเจกต์นี้'} items={c.faq.map((f) => ({ q: f.question, a: f.answer }))} />
 
             <div className="mt-14 text-center">
               <Link

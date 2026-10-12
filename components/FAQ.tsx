@@ -2,9 +2,9 @@
 import { useState } from 'react'
 import { type Lang, type T } from '@/lib/i18n'
 
-type Props = { lang: Lang; tr?: T; items?: { q: string; a: string }[]; h2?: string; subtitle?: string; gradientHeading?: boolean }
+type Props = { lang: Lang; tr?: T; items?: { q: string; a: string }[]; h2?: string; subtitle?: string; gradientHeading?: boolean; embedded?: boolean }
 
-export default function FAQ({ lang, tr, items: itemsProp, h2, subtitle, gradientHeading }: Props) {
+export default function FAQ({ lang, tr, items: itemsProp, h2, subtitle, gradientHeading, embedded }: Props) {
   const f = ((tr as any)?.faq || {}) as { h2?: string; subtitle?: string; items?: { q: string; a: string }[] }
   const items = (itemsProp || f.items || []) as { q: string; a: string }[]
   const [open, setOpen] = useState<number | null>(null)
@@ -14,7 +14,8 @@ export default function FAQ({ lang, tr, items: itemsProp, h2, subtitle, gradient
   const toggleItem = (i: number) => setOpen((p) => (p === i ? null : i))
 
   return (
-    <section className="relative overflow-hidden py-24 lg:py-32" style={{ background: 'var(--bg-1)' }}>
+    <section className={embedded ? 'relative' : 'relative overflow-hidden py-24 lg:py-32'} style={embedded ? undefined : { background: 'var(--bg-1)' }}>
+      {!embedded && (<>
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.05]"
         style={{
@@ -30,8 +31,9 @@ export default function FAQ({ lang, tr, items: itemsProp, h2, subtitle, gradient
           filter: 'blur(40px)',
         }}
       />
+      </>)}
 
-      <div className="relative max-w-6xl mx-auto px-4 lg:px-10">
+      <div className={embedded ? 'relative' : 'relative max-w-6xl mx-auto px-4 lg:px-10'}>
         <h2
           className="t-display mb-3"
           style={{
@@ -50,6 +52,7 @@ export default function FAQ({ lang, tr, items: itemsProp, h2, subtitle, gradient
         >
           {h2 ?? f.h2}
         </h2>
+        {(subtitle ?? f.subtitle) ? (
         <p
           className="t-display mb-14 lg:mb-16"
           style={{
@@ -63,6 +66,7 @@ export default function FAQ({ lang, tr, items: itemsProp, h2, subtitle, gradient
         >
           {subtitle ?? f.subtitle}
         </p>
+        ) : <div className="mb-10" />}
 
         <div style={{ borderTop: '1px solid rgb(var(--fg) / 0.12)' }} >
           {items.map((item, i) => {

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import FAQ from '@/components/FAQ'
 import ServiceLayout from '@/components/service/ServiceLayout'
 import { type Lang } from '@/lib/i18n'
 
@@ -370,26 +371,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
         </div>
 
         <div className="mt-16 lg:mt-24">
-          <h2 className="t-display mb-4" style={{ color: 'var(--ink)', fontSize: 'clamp(2.25rem,4.5vw,3.5rem)' }}>
-            {isEN ? 'FAQ' : 'คำถามที่พบบ่อย'}
-          </h2>
-          <p className="mb-4" style={{ color: 'var(--accent-2)', fontSize: '1.2rem', fontWeight: 600 }}>
-            {isEN ? 'Straight answers about how we handle security.' : 'คำตอบตรงไปตรงมาเกี่ยวกับวิธีที่เราดูแลความปลอดภัย'}
-          </p>
-
-          <div style={{ borderTop: '1px solid rgb(var(--fg) / 0.1)' }}>
-            {darkFaqs.map((f, i) => (
-              <details key={f.q} className="group marker:hidden [&::-webkit-details-marker]:hidden" style={{ borderBottom: '1px solid rgb(var(--fg) / 0.1)' }} open={i === 0}>
-                <summary className="flex items-center justify-between gap-6 cursor-pointer list-none py-6">
-                  <span style={{ color: 'var(--ink)', fontSize: 'clamp(1.15rem,1.8vw,1.4rem)', fontWeight: 500 }}>{f.q}</span>
-                  <i className="ti ti-chevron-down shrink-0 transition-transform duration-300 group-open:rotate-180" style={{ fontSize: 20, color: 'rgb(var(--fg) / 0.85)' }} aria-hidden="true" />
-                </summary>
-                <p className="pb-6 leading-relaxed" style={{ color: 'rgb(var(--fg) / 0.85)', fontSize: '1.15rem', fontWeight: 400, maxWidth: 900 }}>
-                  {f.a}
-                </p>
-              </details>
-            ))}
-          </div>
+          <FAQ embedded lang={params.lang} h2={isEN ? 'FAQ' : 'คำถามที่พบบ่อย'} subtitle={isEN ? 'Straight answers about how we handle security.' : 'คำตอบตรงไปตรงมาเกี่ยวกับวิธีที่เราดูแลความปลอดภัย'} items={darkFaqs.map((f) => ({ q: f.q, a: f.a }))} />
         </div>
       </div>
     </section>

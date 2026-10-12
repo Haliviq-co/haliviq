@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import FAQ from '@/components/FAQ'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Navbar from '@/components/Navbar'
@@ -191,15 +192,7 @@ export default function Page({ params }: { params: { lang: Lang; slug: string } 
 
           {l.faq && l.faq.length > 0 && (
             <div className="mt-14">
-              <h2 className="t-display text-[color:var(--ink)]" style={{ ...h2, marginTop: 0 }}>{isEN ? 'FAQ' : 'คำถามที่พบบ่อย'}</h2>
-              <div className="space-y-4">
-                {l.faq.map((f) => (
-                  <div key={f.q} className="p-6 rounded-2xl border border-[color:var(--line)]">
-                    <h3 className="text-[color:var(--ink)] mb-2" style={{ fontWeight: 600, lineHeight: 1.6 }}>{f.q}</h3>
-                    <p className="text-sm text-[color:var(--text-2)]" style={{ lineHeight: 1.85 }}>{f.a}</p>
-                  </div>
-                ))}
-              </div>
+              <FAQ embedded lang={lang} h2={isEN ? 'FAQ' : 'คำถามที่พบบ่อย'} items={l.faq.map((f) => ({ q: f.q, a: f.a }))} />
             </div>
           )}
 
