@@ -399,7 +399,7 @@ html[data-theme="light"] .cta-final a[href$="/contact"]:hover { background: #EEE
 .chat-mascot-btn:hover .chat-pill { transform: translateY(-2px); box-shadow: 0 18px 34px -12px rgba(60,50,160,0.85); }
 .chat-pill-dot { width: 9px; height: 9px; border-radius: 50%; background: #53C3D7; box-shadow: 0 0 0 0 rgba(83,195,215,0.7); animation: chat-pill-pulse 2s ease-out infinite; }
 @keyframes chat-pill-pulse { 0% { box-shadow: 0 0 0 0 rgba(83,195,215,0.65) } 80%,100% { box-shadow: 0 0 0 9px rgba(83,195,215,0) } }
-@media (max-width: 767px) { .chat-pill { font-size: 14px; padding: 10px 16px 10px 22px; margin-left: -16px; } }
+@media (max-width: 767px) { .chat-pill { display: none; } } /* phones: just Havy and his name tag */
 @media (prefers-reduced-motion: reduce) { .chat-pill-dot { animation: none } }
 
 /* name tag under Havy */
