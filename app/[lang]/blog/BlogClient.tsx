@@ -14,12 +14,24 @@ const catLabel: Record<BlogCat, { en: string; th: string }> = {
   'Case Study': { en: 'Case Studies', th: 'กรณีศึกษา' },
 }
 
+type Group = 'news' | 'general' | 'business'
+const groups: { id: Group; icon: string; en: string; th: string; descEn: string; descTh: string; cats: BlogCat[] }[] = [
+  { id: 'news', icon: 'ti-speakerphone', en: 'News & Events', th: 'ข่าวกิจกรรม', descEn: 'Studio news, talks and events', descTh: 'ข่าวสาร กิจกรรม และงานที่เราไปร่วม', cats: [] },
+  { id: 'general', icon: 'ti-bulb', en: 'General Knowledge', th: 'ความรู้ทั่วไป', descEn: 'Technology, AI and design explained', descTh: 'เทคโนโลยี AI และดีไซน์ ที่อ่านแล้วเข้าใจง่าย', cats: ['Technology', 'AI', 'Design'] },
+  { id: 'business', icon: 'ti-briefcase', en: 'Our Business Knowledge', th: 'ความรู้ด้านธุรกิจของเรา', descEn: 'How we work, business and real case studies', descTh: 'วิธีทำงาน มุมธุรกิจ และกรณีศึกษาจริงของเรา', cats: ['Business', 'Case Study'] },
+]
+
 export default function BlogClient({ lang, newsletter }: { lang: Lang; newsletter: React.ReactNode }) {
   const isEN = lang === 'en'
   const tr = t[lang] as any
   const [active, setActive] = useState<BlogCat | 'all'>('all')
+  const [group, setGroup] = useState<Group | 'all'>('all')
   const featured = articles[0]
-  const list = articles.filter((a) => a.slug !== featured.slug && (active === 'all' || a.cat === active))
+  const grp = groups.find((g) => g.id === group)
+  const inGroup = (a: { cat: BlogCat }) => group === 'all' || !!grp?.cats.includes(a.cat)
+  const countOf = (g: (typeof groups)[number]) => articles.filter((a) => g.cats.includes(a.cat)).length
+  const topicPills = group === 'all' ? blogCategories : blogCategories.filter((c) => grp?.cats.includes(c))
+  const list = articles.filter((a) => a.slug !== featured.slug && inGroup(a) && (active === 'all' || a.cat === active))
   const f = featured[lang]
   const objPos = (a: { cat: BlogCat }) => (a.cat === 'Case Study' ? 'center top' : 'center')
 
@@ -51,7 +63,7 @@ export default function BlogClient({ lang, newsletter }: { lang: Lang; newslette
                 <div className="relative min-h-[260px] lg:min-h-[380px] overflow-hidden">
                   <img src={coverOf(featured)} alt={f.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" style={{ objectPosition: objPos(featured) }} />
                 </div>
-                <div className="theme-dark p-8 lg:p-12 flex flex-col justify-center" style={{ background: '#141329' }}>
+                <div className="adaptive-panel p-8 lg:p-12 flex flex-col justify-center">
                   <div className="flex items-center gap-3 mb-5">
                     <span className="px-3 py-1 rounded-full text-xs" style={{ background: 'rgba(123,110,246,0.15)', color: 'var(--accent)' }}>{catLabel[featured.cat][lang]}</span>
                     <span className="text-sm" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{formatDate(featured.date, lang)} · {featured.readMin} {isEN ? 'min read' : 'นาที'}</span>
@@ -69,11 +81,31 @@ export default function BlogClient({ lang, newsletter }: { lang: Lang; newslette
 
         <section className="py-16 lg:py-24" style={{ background: 'var(--bg)' }}>
           <div className="max-w-7xl mx-auto px-6 lg:px-10">
-            <div className="flex flex-wrap gap-2 mb-10" role="tablist" aria-label={isEN ? 'Filter by topic' : 'กรองตามหัวข้อ'}>
-              {(['all', ...blogCategories] as const).map((c) => {
+            <div className="grid sm:grid-cols-3 gap-4 mb-8" role="tablist" aria-label={isEN ? 'Blog categories' : 'หมวดหมู่บทความ'}>
+              {groups.map((g) => {
+                const on = group === g.id
+                return (
+                  <button key={g.id} role="tab" aria-selected={on} onClick={() => { setGroup(on ? 'all' : g.id); setActive('all') }}
+                    className="text-left rounded-2xl p-5 transition-all duration-300 hover:-translate-y-0.5"
+                    style={{ background: on ? 'rgba(123,110,246,0.12)' : 'rgb(var(--fg) / 0.035)', border: `1px solid ${on ? 'var(--accent)' : 'rgb(var(--fg) / 0.1)'}` }}>
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'rgba(123,110,246,0.14)', color: 'var(--accent)' }}>
+                        <i className={`ti ${g.icon}`} style={{ fontSize: 20 }} aria-hidden="true" />
+                      </span>
+                      <span style={{ color: 'var(--ink)', fontWeight: 600, fontSize: '1.05rem' }}>{isEN ? g.en : g.th}</span>
+                      <span className="ml-auto text-xs px-2 py-0.5 rounded-full" style={{ background: 'rgb(var(--fg) / 0.07)', color: 'rgb(var(--fg) / 0.7)' }}>{countOf(g)}</span>
+                    </div>
+                    <p className="text-sm" style={{ color: 'rgb(var(--fg) / 0.65)', lineHeight: 1.6 }}>{isEN ? g.descEn : g.descTh}</p>
+                  </button>
+                )
+              })}
+            </div>
+
+            <div className="flex flex-wrap gap-2 mb-10" aria-label={isEN ? 'Filter by topic' : 'กรองตามหัวข้อ'}>
+              {(['all', ...topicPills] as const).map((c) => {
                 const on = active === c
                 return (
-                  <button key={c} role="tab" aria-selected={on} onClick={() => setActive(c)}
+                  <button key={c} aria-pressed={on} onClick={() => setActive(c)}
                     className="px-4 py-2 rounded-full text-sm transition-colors"
                     style={{ background: on ? 'var(--purple)' : 'rgb(var(--fg) / 0.05)', color: on ? '#fff' : 'rgb(var(--fg) / 0.75)', border: `1px solid ${on ? 'var(--purple)' : 'rgb(var(--fg) / 0.12)'}` }}>
                     {c === 'all' ? (isEN ? 'All' : 'ทั้งหมด') : catLabel[c][lang]}
@@ -82,6 +114,13 @@ export default function BlogClient({ lang, newsletter }: { lang: Lang; newslette
               })}
             </div>
 
+            {list.length === 0 && (
+              <div className="rounded-3xl p-10 text-center" style={{ background: 'rgb(var(--fg) / 0.035)', border: '1px dashed rgb(var(--fg) / 0.2)' }}>
+                <i className="ti ti-speakerphone" style={{ fontSize: 28, color: 'var(--accent)' }} aria-hidden="true" />
+                <p className="mt-3" style={{ color: 'var(--ink)', fontWeight: 600 }}>{isEN ? 'Coming soon' : 'เร็ว ๆ นี้'}</p>
+                <p className="text-sm mt-1" style={{ color: 'rgb(var(--fg) / 0.65)' }}>{isEN ? 'We will post studio news and events here.' : 'ข่าวและกิจกรรมของเราจะมาลงที่นี่'}</p>
+              </div>
+            )}
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {list.map((a) => {
                 const l = a[lang]

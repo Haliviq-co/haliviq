@@ -319,3 +319,7 @@ html[data-theme="light"] .hero-wordmark { filter: none; }
 .social-accent a { background: rgb(123 110 246 / 0.12) !important; border-color: rgb(123 110 246 / 0.35) !important; }
 .social-accent svg:not([fill="none"]), .social-accent svg:not([fill="none"]) * { fill: var(--accent); }
 .social-accent svg[fill="none"], .social-accent svg[fill="none"] * { stroke: var(--accent); }
+
+/* Contact form card: dark panel in dark mode, white card in light mode */
+.contact-card, .adaptive-panel { background: #141329; }
+html[data-theme="light"] .contact-card, html[data-theme="light"] .adaptive-panel { background: #FFFFFF; box-shadow: 0 18px 50px rgba(90, 78, 212, 0.10); }
