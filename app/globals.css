@@ -380,3 +380,7 @@ html[data-theme="light"] .cta-band::before, html[data-theme="light"] .cta-band::
 html[data-theme="light"] .cta-dots { background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 28px 28px; opacity: .1; }
 .cta-primary { background: #fff; color: var(--purple); }
 .cta-primary:hover { background: #EEEDFB; }
+
+/* robot launcher size */
+.chat-robot-svg { width: 96px; height: 106px; display: block; }
+@media (min-width: 768px) { .chat-robot-svg { width: 118px; height: 130px; } }

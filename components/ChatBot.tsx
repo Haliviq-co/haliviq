@@ -49,7 +49,7 @@ const tokens = (s: string) => {
 function Mascot() {
   return (
     <span className="chat-mascot" aria-hidden="true">
-      <svg viewBox="0 0 160 176" width="76" height="84">
+      <svg viewBox="0 0 160 176" className="chat-robot-svg">
         <defs>
           <linearGradient id="hv-head" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stopColor="#EEEBFF" />
@@ -167,7 +167,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
     } catch {}
   }
 
-  const answer = (q: string): { text: string; links?: Msg['links']; idx: number } => {
+  const answer = (q: string): { text: string; links?: Msg['links']; idx: number; agent?: boolean } => {
     const g = tokens(q)
     const ql = q.toLowerCase()
     let qtotal = 0
@@ -186,6 +186,10 @@ export default function ChatBot({ lang }: { lang: Lang }) {
     })
     if (best >= 0 && bestScore >= 0.5) {
       const h = items[best].h
+      // Contact-type answers (how to reach us, office, NDA, how to start...) also offer the three chat buttons.
+      if (h && h.endsWith('/contact') && items[best].k !== 'faq') {
+        return { text: items[best].a, idx: best, agent: true, links: [{ label: isEN ? 'Contact page' : 'ไปหน้าติดต่อเรา', href: h }] }
+      }
       return { text: items[best].a, idx: best, links: h && !h.endsWith('/contact') ? [{ label: isEN ? 'Read more' : 'ดูรายละเอียด', href: h }] : [{ label: isEN ? 'See our work' : 'ดูผลงานของเรา', href: `/${lang}/work` }] }
     }
     return {
@@ -207,7 +211,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
       return
     }
     const r = answer(clean)
-    setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, text: r.text, links: r.links }])
+    setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, text: r.text, links: r.links, agent: r.agent }])
     setText('')
     log(clean, r.idx)
   }
