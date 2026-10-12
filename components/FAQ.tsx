@@ -7,7 +7,11 @@ type Props = { lang: Lang; tr?: T; items?: { q: string; a: string }[]; h2?: stri
 export default function FAQ({ lang, tr, items: itemsProp, h2, subtitle, gradientHeading }: Props) {
   const f = ((tr as any)?.faq || {}) as { h2?: string; subtitle?: string; items?: { q: string; a: string }[] }
   const items = (itemsProp || f.items || []) as { q: string; a: string }[]
-  const [active, setActive] = useState<number | null>(null)
+  const [open, setOpen] = useState<Set<number>>(new Set())
+  // Desktop: open on hover. Touch devices keep tap to toggle.
+  const canHover = () => typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches
+  const openItem = (i: number) => setOpen((p) => (p.has(i) ? p : new Set(p).add(i)))
+  const toggleItem = (i: number) => setOpen((p) => { const n = new Set(p); n.has(i) ? n.delete(i) : n.add(i); return n })
 
   return (
     <section className="relative overflow-hidden py-24 lg:py-32" style={{ background: 'var(--bg-1)' }}>
@@ -33,9 +37,9 @@ export default function FAQ({ lang, tr, items: itemsProp, h2, subtitle, gradient
           style={{
             color: 'var(--ink)',
             fontSize: 'clamp(2.25rem,4.5vw,3.5rem)',
-            ...(gradientHeading
+            ...(true
               ? {
-                  background: 'linear-gradient(90deg, var(--purple-light) 0%, var(--lime) 100%)',
+                  background: 'linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -51,7 +55,7 @@ export default function FAQ({ lang, tr, items: itemsProp, h2, subtitle, gradient
           style={{
             fontSize: '1.15rem',
             fontWeight: 500,
-            background: 'linear-gradient(90deg, var(--purple-light) 0%, var(--lime) 100%)',
+            background: 'linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
@@ -60,14 +64,15 @@ export default function FAQ({ lang, tr, items: itemsProp, h2, subtitle, gradient
           {subtitle ?? f.subtitle}
         </p>
 
-        <div style={{ borderTop: '1px solid rgb(var(--fg) / 0.12)' }}>
+        <div style={{ borderTop: '1px solid rgb(var(--fg) / 0.12)' }} onMouseLeave={() => { if (canHover()) setOpen(new Set()) }}>
           {items.map((item, i) => {
-            const isOpen = active === i
+            const isOpen = open.has(i)
             return (
-              <div key={item.q} style={{ borderBottom: '1px solid rgb(var(--fg) / 0.12)' }}>
+              <div key={item.q} style={{ borderBottom: '1px solid rgb(var(--fg) / 0.12)' }} onMouseEnter={() => { if (canHover()) openItem(i) }}>
                 <button
                   type="button"
-                  onClick={() => setActive(isOpen ? null : i)}
+                  onClick={() => { if (!canHover()) toggleItem(i) }}
+                  onFocus={() => { if (canHover()) openItem(i) }}
                   aria-expanded={isOpen}
                   className="w-full flex items-center justify-between gap-6 py-6 lg:py-7 text-left"
                 >
@@ -78,7 +83,7 @@ export default function FAQ({ lang, tr, items: itemsProp, h2, subtitle, gradient
                       color: isOpen ? undefined : 'rgb(var(--fg) / 0.9)',
                       ...(isOpen
                         ? {
-                            background: 'linear-gradient(90deg, var(--purple-light) 0%, var(--lime) 100%)',
+                            background: 'linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%)',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
                             backgroundClip: 'text',
