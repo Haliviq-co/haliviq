@@ -25,8 +25,10 @@ function ChannelIcon({ id }: { id: string }) {
 
 // Phrases that mean "let me talk to a person". Single words like "agent" or "support" alone are NOT enough,
 // because visitors also ask about "AI agents" or "support after launch".
-const AGENT_STRONG = /เจ้าหน้าที่|แอดมิน|คนจริง|มนุษย์|ลูกค้าสัมพันธ์|พนักงานขาย|ขอคุยกับคน|live\s*(agent|chat)|human\s*(agent|being)?|real\s*(person|human)|customer\s*(service|care)|representative|operator|livechat/i
+const AGENT_STRONG = /เจ้าหน้าที่|แอดมิน|คนจริง|มนุษย์|ลูกค้าสัมพันธ์|พนักงานขาย|ขอคุยกับคน|live\s*(agent|chat)|human\s+(agent|being|support)|real\s*(person|human)|customer\s*(service|care)|representative|operator|livechat/i
 const AGENT_SOFT = /(คุย|ติดต่อ|ขอสาย|โอนสาย|ต่อสาย|ขอพูด|พูดคุย|ปรึกษา|สอบถาม|ทัก|แชท|chat|talk|speak|connect|contact|reach|transfer|message)\s*((กับ|ถึง|หา|with|to|a|an|the|your|me|us)\s*)*(ทีมงาน|ทีม|พนักงาน|คน|ฝ่ายขาย|ฝ่ายซัพพอร์ต|ซัพพอร์ต|เซลส์|ผู้เชี่ยวชาญ|admin|sales|team|staff|someone|somebody|person|people|support|agent|human|rep|expert)/i
+// Questions about the bot itself ("who are you", "are you a robot", "ชื่ออะไร", "น้องฮาวี่"...)
+const ASKS_IDENTITY = /who\s+are\s+you|what(?:'s|\s+is)?\s+your\s+name|your\s+name|are\s+you\s+(?:a\s+|an\s+)?(?:bot|robot|ai|human|real|person|machine)|\bhavy\b|คุณคือใคร|เธอคือใคร|เป็นใคร|ชื่ออะไร|ชื่อว่าอะไร|น้องฮาวี่|ฮาวี่|เป็นคนหรือ|เป็นบอท|เป็นหุ่นยนต์|คนจริงหรือเปล่า|คนจริงไหม/i
 const wantsAgent = (q: string) => q.length < 80 && (AGENT_STRONG.test(q) || AGENT_SOFT.test(q))
 
 const EN_STOP = new Set('a an the and or of to in on for with at by from is are was were be been do does did can could will would should you your we our us i me my it its this that these those what which who how why when where about tell please any there have has had not no yes get got give need want like'.split(' '))
@@ -49,7 +51,7 @@ const tokens = (s: string) => {
 function Mascot() {
   return (
     <span className="chat-mascot" aria-hidden="true">
-      <svg viewBox="0 0 160 176" width="76" height="84">
+      <svg viewBox="0 0 160 176" className="chat-robot-svg">
         <defs>
           <linearGradient id="hv-head" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stopColor="#EEEBFF" />
@@ -143,8 +145,8 @@ export default function ChatBot({ lang }: { lang: Lang }) {
   }, [open])
   const [text, setText] = useState('')
   const hello = isEN
-    ? 'Hi! I am the Haliviq assistant. Ask me about our services, technology, timelines or how to start a project, or pick a question below.'
-    : 'สวัสดีครับ ผมคือผู้ช่วยของ Haliviq ถามเรื่องบริการ เทคโนโลยี ระยะเวลา หรือวิธีเริ่มโปรเจกต์ได้เลย หรือเลือกคำถามด้านล่าง'
+    ? 'Hi! I am Havy, the Haliviq assistant. Ask me about our services, technology, timelines or how to start a project, or pick a question below.'
+    : 'สวัสดีครับ ผมน้องฮาวี่ ผู้ช่วยของ Haliviq ถามเรื่องบริการ เทคโนโลยี ระยะเวลา หรือวิธีเริ่มโปรเจกต์ได้เลย หรือเลือกคำถามด้านล่าง'
   const [msgs, setMsgs] = useState<Msg[]>([{ from: 'bot', text: hello }])
   const end = useRef<HTMLDivElement>(null)
 
@@ -167,7 +169,15 @@ export default function ChatBot({ lang }: { lang: Lang }) {
     } catch {}
   }
 
-  const answer = (q: string): { text: string; links?: Msg['links']; idx: number } => {
+  const answer = (q: string): { text: string; links?: Msg['links']; idx: number; agent?: boolean } => {
+    if (q.length < 60 && ASKS_IDENTITY.test(q)) {
+      return {
+        idx: -1,
+        text: isEN
+          ? 'I am Havy, the assistant robot of Haliviq. I am an automated bot, not a person. I answer from the information on this website, and if you would like a real person, just say "chat with an agent" and I will connect you with the team.'
+          : 'ผมน้องฮาวี่ (Havy) หุ่นยนต์ผู้ช่วยของ Haliviq ครับ ผมเป็นบอทอัตโนมัติ ไม่ใช่คนจริง ผมตอบจากข้อมูลในเว็บไซต์นี้ ถ้าอยากคุยกับคน พิมพ์ว่า "คุยกับเจ้าหน้าที่" แล้วผมจะต่อให้ทีมงานครับ',
+      }
+    }
     const g = tokens(q)
     const ql = q.toLowerCase()
     let qtotal = 0
@@ -186,6 +196,10 @@ export default function ChatBot({ lang }: { lang: Lang }) {
     })
     if (best >= 0 && bestScore >= 0.5) {
       const h = items[best].h
+      // Contact-type answers (how to reach us, office, NDA, how to start...) also offer the three chat buttons.
+      if (h && h.endsWith('/contact') && items[best].k !== 'faq') {
+        return { text: items[best].a, idx: best, agent: true, links: [{ label: isEN ? 'Contact page' : 'ไปหน้าติดต่อเรา', href: h }] }
+      }
       return { text: items[best].a, idx: best, links: h && !h.endsWith('/contact') ? [{ label: isEN ? 'Read more' : 'ดูรายละเอียด', href: h }] : [{ label: isEN ? 'See our work' : 'ดูผลงานของเรา', href: `/${lang}/work` }] }
     }
     return {
@@ -200,14 +214,14 @@ export default function ChatBot({ lang }: { lang: Lang }) {
   const ask = (q: string) => {
     const clean = q.trim()
     if (!clean) return
-    if (wantsAgent(clean)) {
+    if (wantsAgent(clean) && !(clean.length < 60 && ASKS_IDENTITY.test(clean))) {
       setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, agent: true, text: isEN ? 'Happy to connect you with the team. Pick the app you like and we will reply there.' : 'ยินดีต่อสายให้คุยกับทีมงานครับ เลือกแอปที่สะดวก แล้วทีมจะตอบกลับทางนั้น' }])
       setText('')
       log(clean, -1)
       return
     }
     const r = answer(clean)
-    setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, text: r.text, links: r.links }])
+    setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, text: r.text, links: r.links, agent: r.agent }])
     setText('')
     log(clean, r.idx)
   }
@@ -217,15 +231,22 @@ export default function ChatBot({ lang }: { lang: Lang }) {
       {mounted && (
         <div
           role="dialog"
-          aria-label={isEN ? 'Haliviq assistant' : 'ผู้ช่วย Haliviq'}
+          aria-label={isEN ? 'Havy, Haliviq assistant' : 'น้องฮาวี่ ผู้ช่วย Haliviq'}
           className={`chat-panel ${open ? 'chat-in' : 'chat-out'} mb-3 flex flex-col overflow-hidden rounded-3xl`}
           style={{ width: 'min(330px, calc(100vw - 32px))', height: 'min(470px, calc(100vh - 120px))', border: '1px solid rgb(var(--fg) / 0.12)', boxShadow: '0 30px 70px -20px rgba(60,50,160,0.45)' }}
         >
           <div className="flex items-center gap-3 px-4 py-3" style={{ background: 'linear-gradient(135deg, #7B6EF6 0%, #53C3D7 100%)', color: '#fff' }}>
-            <span className="w-8 h-8 rounded-full flex items-center justify-center text-sm" style={{ background: 'rgba(255,255,255,0.22)' }} aria-hidden="true">✦</span>
+            <span className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden" style={{ background: 'rgba(255,255,255,0.22)' }} aria-hidden="true">
+              <svg viewBox="30 48 100 100" width="34" height="34">
+                <circle cx="80" cy="96" r="47" fill="#EEEBFF" />
+                <rect x="37" y="70" width="86" height="46" rx="23" fill="#141329" stroke="#8F86DA" strokeWidth="5" />
+                <path d="M52 94a10 10 0 0 1 20 0" fill="none" stroke="#53C3D7" strokeWidth="6" strokeLinecap="round" />
+                <path d="M88 94a10 10 0 0 1 20 0" fill="none" stroke="#53C3D7" strokeWidth="6" strokeLinecap="round" />
+              </svg>
+            </span>
             <div className="flex-1 leading-tight">
-              <p style={{ fontWeight: 600 }}>{isEN ? 'Haliviq Assistant' : 'ผู้ช่วย Haliviq'}</p>
-              <p className="text-xs" style={{ opacity: 0.9 }}>{isEN ? 'Answers from our FAQ · replies instantly' : 'ตอบจากคำถามที่พบบ่อย · ตอบทันที'}</p>
+              <p style={{ fontWeight: 600 }}>{isEN ? 'Havy' : 'น้องฮาวี่'}</p>
+              <p className="text-xs" style={{ opacity: 0.9 }}>{isEN ? 'Haliviq Assistant · replies instantly' : 'ผู้ช่วย Haliviq · ตอบทันที'}</p>
             </div>
             <button type="button" onClick={() => setOpen(false)} aria-label={isEN ? 'Close' : 'ปิด'} className="text-xl leading-none px-2" style={{ color: '#fff' }}>×</button>
           </div>
@@ -282,15 +303,24 @@ export default function ChatBot({ lang }: { lang: Lang }) {
         <button
           type="button"
           onClick={() => setOpen((o) => !o)}
-          aria-label={open ? (isEN ? 'Close chat' : 'ปิดแชท') : (isEN ? 'Ask us' : 'ถามเรา')}
+          aria-label={open ? (isEN ? 'Close chat' : 'ปิดแชท') : (isEN ? 'Ask Havy about our services' : 'ให้น้องฮาวี่ช่วยสอบถามบริการ')}
           aria-expanded={open}
-          title={isEN ? 'Ask us' : 'ถามเรา'}
+          title={isEN ? 'Ask Havy about our services' : 'ให้น้องฮาวี่ช่วยสอบถามบริการ'}
           className="chat-mascot-btn"
         >
           {open ? (
             <span className="flex items-center justify-center w-14 h-14 rounded-full text-2xl" style={{ background: 'linear-gradient(135deg, #7B6EF6 0%, #53C3D7 100%)', color: '#fff', boxShadow: '0 14px 34px -10px rgba(90,78,212,0.7)' }} aria-hidden="true">×</span>
           ) : (
-            <Mascot />
+            <span className="flex items-center">
+              <span className="flex flex-col items-center">
+                <Mascot />
+                <span className="chat-name">{isEN ? 'Havy' : 'น้องฮาวี่'}</span>
+              </span>
+              <span className="chat-pill">
+                <span>{isEN ? 'Ask about our services' : 'สอบถามบริการ'}</span>
+                <span className="chat-pill-dot" aria-hidden="true" />
+              </span>
+            </span>
           )}
         </button>
       </div>
