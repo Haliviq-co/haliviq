@@ -411,7 +411,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
 
         <div className="mt-16 lg:mt-24">
           <h2 className="t-display mb-4" style={{ color: 'var(--ink)', fontSize: 'clamp(2.25rem,4.5vw,3.5rem)' }}>
-            {isEN ? 'Frequently Asked Questions' : 'คำถามที่พบบ่อย'}
+            {isEN ? 'FAQ' : 'คำถามที่พบบ่อย'}
           </h2>
           <p className="mb-4" style={{ color: 'var(--accent-2)', fontSize: '1.2rem', fontWeight: 600 }}>
             {isEN ? 'Straight answers about how forward-deployed engagements work.' : 'คำตอบตรงๆ เรื่องวิธีที่เราทำงานแบบ Forward-Deployed'}

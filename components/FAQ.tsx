@@ -7,11 +7,11 @@ type Props = { lang: Lang; tr?: T; items?: { q: string; a: string }[]; h2?: stri
 export default function FAQ({ lang, tr, items: itemsProp, h2, subtitle, gradientHeading }: Props) {
   const f = ((tr as any)?.faq || {}) as { h2?: string; subtitle?: string; items?: { q: string; a: string }[] }
   const items = (itemsProp || f.items || []) as { q: string; a: string }[]
-  const [open, setOpen] = useState<Set<number>>(new Set())
+  const [open, setOpen] = useState<number | null>(null)
   // Desktop: open on hover. Touch devices keep tap to toggle.
   const canHover = () => typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches
-  const openItem = (i: number) => setOpen((p) => (p.has(i) ? p : new Set(p).add(i)))
-  const toggleItem = (i: number) => setOpen((p) => { const n = new Set(p); n.has(i) ? n.delete(i) : n.add(i); return n })
+  const openItem = (i: number) => setOpen(i)
+  const toggleItem = (i: number) => setOpen((p) => (p === i ? null : i))
 
   return (
     <section className="relative overflow-hidden py-24 lg:py-32" style={{ background: 'var(--bg-1)' }}>
@@ -64,15 +64,16 @@ export default function FAQ({ lang, tr, items: itemsProp, h2, subtitle, gradient
           {subtitle ?? f.subtitle}
         </p>
 
-        <div style={{ borderTop: '1px solid rgb(var(--fg) / 0.12)' }} onMouseLeave={() => { if (canHover()) setOpen(new Set()) }}>
+        <div style={{ borderTop: '1px solid rgb(var(--fg) / 0.12)' }} >
           {items.map((item, i) => {
-            const isOpen = open.has(i)
+            const isOpen = open === i
             return (
-              <div key={item.q} style={{ borderBottom: '1px solid rgb(var(--fg) / 0.12)' }} onMouseEnter={() => { if (canHover()) openItem(i) }}>
+              <div key={item.q} style={{ borderBottom: '1px solid rgb(var(--fg) / 0.12)' }} onMouseEnter={() => { if (canHover()) openItem(i) }} onMouseLeave={() => { if (canHover()) setOpen((p) => (p === i ? null : p)) }}>
                 <button
                   type="button"
                   onClick={() => { if (!canHover()) toggleItem(i) }}
                   onFocus={() => { if (canHover()) openItem(i) }}
+                  onBlur={() => { if (canHover()) setOpen((p) => (p === i ? null : p)) }}
                   aria-expanded={isOpen}
                   className="w-full flex items-center justify-between gap-6 py-6 lg:py-7 text-left"
                 >

@@ -506,7 +506,7 @@ export const t = {
     },
     // ── FAQ ──
     faq: {
-      h2: 'Frequently Asked Questions',
+      h2: 'FAQ',
       subtitle: 'The short answers, before you even ask.',
       items: [
         {

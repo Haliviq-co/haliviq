@@ -191,7 +191,7 @@ export default function Page({ params }: { params: { lang: Lang; slug: string } 
 
           {l.faq && l.faq.length > 0 && (
             <div className="mt-14">
-              <h2 className="t-display text-[color:var(--ink)]" style={{ ...h2, marginTop: 0 }}>{isEN ? 'Frequently asked questions' : 'คำถามที่พบบ่อย'}</h2>
+              <h2 className="t-display text-[color:var(--ink)]" style={{ ...h2, marginTop: 0 }}>{isEN ? 'FAQ' : 'คำถามที่พบบ่อย'}</h2>
               <div className="space-y-4">
                 {l.faq.map((f) => (
                   <div key={f.q} className="p-6 rounded-2xl border border-[color:var(--line)]">

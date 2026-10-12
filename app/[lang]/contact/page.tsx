@@ -214,7 +214,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
           lang={lang}
           items={faqs}
           gradientHeading
-          h2={isEN ? 'Common Questions' : 'คำถามที่พบบ่อย'}
+          h2={isEN ? 'FAQ' : 'คำถามที่พบบ่อย'}
           subtitle={isEN ? 'Answers to what people usually ask before we start' : 'คำตอบสำหรับสิ่งที่ลูกค้ามักถามก่อนเริ่มงาน'}
         />
       </main>

@@ -263,7 +263,7 @@ export const workProjects: WorkProject[] = [
         "Thai and English visitors get the same quality of menu and wine information, laid out for easy reading.",
         "The technical and on-page SEO groundwork is in place, ready to build on over time in fine-dining search terms."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "How long did the Savelberg Restaurant project take?",
@@ -502,7 +502,7 @@ export const workProjects: WorkProject[] = [
         "The team updates products and prices on its own, keeping the menu accurate.",
         "A technical SEO foundation is in place for long-term organic growth."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "How long did this project take?",
@@ -741,7 +741,7 @@ export const workProjects: WorkProject[] = [
         "The studio keeps the schedule current without developer help.",
         "Clear page structure gives classes and trainers a foundation for search visibility."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "How long did this project take?",
@@ -980,7 +980,7 @@ export const workProjects: WorkProject[] = [
         "The design suits hospital and clinic buying committees.",
         "The team can add or update products without waiting for a developer."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "How long did this project take?",
@@ -1219,7 +1219,7 @@ export const workProjects: WorkProject[] = [
         "Each capability and process has its own page, which gives search engines clear material to index.",
         "A technical SEO foundation is in place for the specific terms industrial buyers search."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "How long did this project take?",
@@ -1458,7 +1458,7 @@ export const workProjects: WorkProject[] = [
         "The product presentation is premium, matched to the brand's real price point.",
         "The team sees and manages orders in its own system instead of a marketplace dashboard."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "How long did this project take?",
@@ -1697,7 +1697,7 @@ export const workProjects: WorkProject[] = [
         "The web presence is modern and suited to the credibility a public institution needs.",
         "Downloadable resources sit in a consistent structure that is simple to maintain."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "How long did this project take?",
@@ -1936,7 +1936,7 @@ export const workProjects: WorkProject[] = [
         "The marketing team runs a content pipeline without needing engineering involvement.",
         "Offers can reach members through push notifications."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "How long did this project take?",
@@ -2175,7 +2175,7 @@ export const workProjects: WorkProject[] = [
         "The platform is structured so the agency can add new capability over time.",
         "The agency maintains content internally."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "How long did this project take?",
@@ -2414,7 +2414,7 @@ export const workProjects: WorkProject[] = [
         "The restaurant can keep seasonal content current without ongoing developer involvement.",
         "A technical and on-page SEO foundation is in place for fine-dining search terms."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "How long did the Sra Bua by Kiin Kiin project take?",
@@ -2653,7 +2653,7 @@ export const workProjects: WorkProject[] = [
         "Brand, website and CRM work as one connected system instead of three separate tools.",
         "The team keeps packages and seasonal offers current on its own."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "How long did this project take?",
@@ -2892,7 +2892,7 @@ export const workProjects: WorkProject[] = [
         "Enquiries from the website reach the CRM directly with no manual re-entry.",
         "The system is built to extend as new units or projects launch."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "How long did this project take?",
@@ -3131,7 +3131,7 @@ export const workProjects: WorkProject[] = [
         "Brand CI, website and CRM share one visual and data logic.",
         "The system can be extended as new units or phases launch."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "How long did this project take?",
@@ -3370,7 +3370,7 @@ export const workProjects: WorkProject[] = [
         "The presentation is credible for infrastructure and smart-city procurement.",
         "Enquiries from the site flow into one pipeline the whole sales team shares."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "How long did this project take?",
@@ -3609,7 +3609,7 @@ export const workProjects: WorkProject[] = [
         "The platform is structured so the department can add capability over time.",
         "The department updates content on its own."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "How long did this project take?",
@@ -3848,7 +3848,7 @@ export const workProjects: WorkProject[] = [
         "An assessment and review system gives applicants and reviewers a defined route.",
         "A modern web presence suits the credibility a public institution needs."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "How long did this project take?",
@@ -4087,7 +4087,7 @@ export const workProjects: WorkProject[] = [
         "Legacy systems are extended in place, not replaced.",
         "The module can be retrained or expanded by the department over time."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "How long did this project take?",
@@ -4326,7 +4326,7 @@ export const workProjects: WorkProject[] = [
         "Verification lives inside the officers' own app rather than a separate tool.",
         "The module can be retrained or expanded by the bureau over time."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "How long did this project take?",
@@ -4565,7 +4565,7 @@ export const workProjects: WorkProject[] = [
         "The interface is designed for a broad, non-technical public user base.",
         "The Ministry can extend the platform and maintain content on its own."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "How long did this project take?",
@@ -4804,7 +4804,7 @@ export const workProjects: WorkProject[] = [
         "The SEO structure targets long-tail 'best X in Bangkok' searches.",
         "Categories, neighborhoods and cuisines keep a growing catalog easy to navigate."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "How long did this project take?",
@@ -5047,7 +5047,7 @@ export const workProjects: WorkProject[] = [
         "AI modules help reduce repetitive work for the team.",
         "The in-house team can run and extend the system using the handover material."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "How is a CRM for real estate developers different from a generic CRM?",
@@ -5282,7 +5282,7 @@ export const workProjects: WorkProject[] = [
         "The structure is ready to take new products and collections.",
         "Page speed and image handling were considered from the start of the build."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "Why design UX/UI before building on Shopify?",
@@ -5517,7 +5517,7 @@ export const workProjects: WorkProject[] = [
         "New reservations reach the team by email notification.",
         "The structure is ready for Bangkok hotel search queries."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "How does the booking system on the website work?",
@@ -5758,7 +5758,7 @@ export const workProjects: WorkProject[] = [
         "The structure is ready for more shops and products.",
         "The team manages products and content without developer help."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "What does the AI in this system help with?",
@@ -5991,7 +5991,7 @@ export const workProjects: WorkProject[] = [
         "The team can keep content up to date independently.",
         "Company and service information is structured for customers, partners and investors."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "Can the website support a listed company's needs?",
@@ -6224,7 +6224,7 @@ export const workProjects: WorkProject[] = [
         "The team can keep menus and content up to date independently.",
         "The site is structured for local restaurant searches."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "Can the menu be updated easily?",
@@ -6477,7 +6477,7 @@ export const workProjects: WorkProject[] = [
         "The team can keep content up to date independently.",
         "Enquiries now flow into a CRM that helps staff follow up consistently."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "What does the AI in the CRM do?",
@@ -6720,7 +6720,7 @@ export const workProjects: WorkProject[] = [
         "The team can add and update designs and projects independently.",
         "Enquiries are kept in one CRM with reminders for follow-up."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "How does the AI-assisted CRM help a home builder?",
@@ -6973,7 +6973,7 @@ export const workProjects: WorkProject[] = [
         "The team can keep content up to date independently.",
         "Brand guidelines and templates let the team produce on-brand materials itself."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "Can you handle both brand and website?",
@@ -7188,7 +7188,7 @@ export const workProjects: WorkProject[] = [
         "Customers have clear ways to get in touch.",
         "The team can keep content up to date independently."
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "Who is the DEDE app for?",
@@ -7371,7 +7371,7 @@ export const workProjects: WorkProject[] = [
         "A launch page that shows the address, contact and Instagram",
         "A site structure ready to take a menu and bookings"
       ],
-      "faqHeading": "Frequently Asked Questions",
+      "faqHeading": "FAQ",
       "faq": [
         {
           "question": "What is SUDA?",
