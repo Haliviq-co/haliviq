@@ -35,16 +35,16 @@ export default function Footer({ lang, tr }: Props) {
               { label: f.thailandLabel, lines: f.addressLines as string[], phone: f.phone, tel: 'tel:+66909189009', icon: 'ti-phone' },
               { label: f.usaLabel, lines: f.usaAddressLines as string[], phone: f.whatsapp, tel: 'https://wa.me/message/TM3WC6DUJAFEK1', icon: 'ti-brand-whatsapp' },
             ].map(o => (
-              <div key={o.label} className="rounded-xl p-8" style={{ background: 'rgb(var(--fg) / 0.03)', border: '1px solid rgb(var(--fg) / 0.1)' }}>
+              <a key={o.label} href={o.tel} {...(o.tel.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="glass-hover block rounded-xl p-8" style={{ border: '1px solid rgb(var(--fg) / 0.1)' }}>
                 <p className="mb-4 uppercase" style={{ color: 'var(--ink)', fontWeight: 600, fontSize: '1.15rem', letterSpacing: '0.04em' }}>{o.label}</p>
                 <div className="mb-5" style={{ color: 'rgb(var(--fg) / 0.7)', fontSize: '0.95rem', fontWeight: 400, lineHeight: 1.8 }}>
                   {o.lines.map((line: string) => <p key={line}>{line}</p>)}
                 </div>
-                <a href={o.tel} {...(o.tel.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="inline-flex items-center gap-2" style={{ color: 'var(--accent-2)', fontWeight: 500, fontSize: '0.95rem' }}>
+                <span className="inline-flex items-center gap-2" style={{ color: 'var(--accent-2)', fontWeight: 500, fontSize: '0.95rem' }}>
                   <i className={`ti ${o.icon}`} style={{ fontSize: 16 }} aria-hidden="true" />
                   {o.phone}
-                </a>
-              </div>
+                </span>
+              </a>
             ))}
           </div>
           <p className="mt-6 text-xs" style={{ color: 'rgb(var(--fg) / 0.45)', fontWeight: 400 }}>{f.legalName}</p>

@@ -323,3 +323,8 @@ html[data-theme="light"] .hero-wordmark { filter: none; }
 /* Contact form card: dark panel in dark mode, white card in light mode */
 .contact-card, .adaptive-panel { background: #141329; }
 html[data-theme="light"] .contact-card, html[data-theme="light"] .adaptive-panel { background: #FFFFFF; box-shadow: 0 18px 50px rgba(90, 78, 212, 0.10); }
+
+/* Clickable card: soft purple-to-white wash on hover */
+.glass-hover { background: rgb(var(--fg) / 0.03); transition: background .35s ease, border-color .35s ease, transform .35s ease, box-shadow .35s ease; }
+.glass-hover:hover, .glass-hover:focus-visible { background: linear-gradient(135deg, rgba(123,110,246,0.30) 0%, rgba(123,110,246,0.08) 55%, rgba(255,255,255,0.35) 100%); border-color: rgba(123,110,246,0.45) !important; transform: translateY(-3px); box-shadow: 0 16px 40px rgba(123,110,246,0.18); }
+html:not([data-theme="light"]) .glass-hover:hover, html:not([data-theme="light"]) .glass-hover:focus-visible { background: linear-gradient(135deg, rgba(123,110,246,0.28) 0%, rgba(83,195,215,0.08) 100%); }
