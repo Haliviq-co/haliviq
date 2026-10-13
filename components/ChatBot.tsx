@@ -34,6 +34,98 @@ const wantsAgent = (q: string) => q.length < 80 && (AGENT_STRONG.test(q) || AGEN
 const EN_STOP = new Set('a an the and or of to in on for with at by from is are was were be been do does did can could will would should you your we our us i me my it its this that these those what which who how why when where about tell please any there have has had not no yes get got give need want like'.split(' '))
 const TH_STOP = /ไหม|ได้|อะไร|คือ|หรือ|ยังไง|อย่างไร|บ้าง|ของ|ครับ|ค่ะ|คะ|นะ|ที่|มี|เป็น|ให้|และ|กับ|ใน|จะ|แล้ว|ด้วย|ช่วย|ขอ|อยาก|ต้องการ/g
 // English: whole words. Thai (no spaces): character bigrams. Common filler words are dropped so they never decide a match.
+// Pages the bot can point to. A question that mentions one of these topics gets a link to the page,
+// even when no written answer matches well (a typo in Thai still finds the page through a bigram check).
+type Route = { p: string; th: string; en: string; k: string }
+const ROUTES: Route[] = [
+  { p: 'industries', th: 'อุตสาหกรรมที่เราทำงานด้วย', en: 'Industries we serve', k: 'อุตสาหกรรม industry industries ภาคธุรกิจ' },
+  { p: 'industries/fintech', th: 'ฟินเทค การเงิน', en: 'Fintech', k: 'ฟินเทค การเงิน ธนาคาร ประกัน fintech banking insurance payment' },
+  { p: 'industries/healthcare', th: 'สุขภาพ การแพทย์', en: 'Healthcare', k: 'สุขภาพ โรงพยาบาล การแพทย์ คลินิก healthcare hospital medical clinic' },
+  { p: 'industries/retail', th: 'ค้าปลีก', en: 'Retail', k: 'ค้าปลีก ร้านค้า retail shop store' },
+  { p: 'industries/manufacturing', th: 'การผลิต โรงงาน', en: 'Manufacturing', k: 'โรงงาน การผลิต manufacturing factory' },
+  { p: 'industries/logistics', th: 'โลจิสติกส์', en: 'Logistics', k: 'โลจิสติกส์ ขนส่ง คลังสินค้า logistics shipping warehouse' },
+  { p: 'industries/education', th: 'การศึกษา', en: 'Education', k: 'การศึกษา โรงเรียน มหาวิทยาลัย education school university' },
+  { p: 'industries/government', th: 'ภาครัฐ', en: 'Government', k: 'ภาครัฐ หน่วยงานรัฐ ราชการ government public sector' },
+  { p: 'industries/real-estate', th: 'อสังหาริมทรัพย์', en: 'Real estate', k: 'อสังหาริมทรัพย์ อสังหา คอนโด real estate property' },
+  { p: 'industries/automotive', th: 'ยานยนต์', en: 'Automotive', k: 'ยานยนต์ รถยนต์ automotive car vehicle' },
+  { p: 'industries/energy-utilities', th: 'พลังงาน สาธารณูปโภค', en: 'Energy & utilities', k: 'พลังงาน สาธารณูปโภค energy utilities' },
+  { p: 'industries/telecommunications', th: 'โทรคมนาคม', en: 'Telecommunications', k: 'โทรคมนาคม telecom telecommunications' },
+  { p: 'industries/hospitality-travel', th: 'ท่องเที่ยว โรงแรม', en: 'Hospitality & travel', k: 'ท่องเที่ยว โรงแรม ที่พัก hospitality travel hotel tourism' },
+  { p: 'industries/media-entertainment', th: 'สื่อและบันเทิง', en: 'Media & entertainment', k: 'สื่อ บันเทิง media entertainment' },
+  { p: 'industries/agriculture', th: 'เกษตร', en: 'Agriculture', k: 'เกษตร ฟาร์ม agriculture farm' },
+  { p: 'industries/consumer-goods', th: 'สินค้าอุปโภคบริโภค', en: 'Consumer goods', k: 'สินค้าอุปโภค บริโภค consumer goods fmcg' },
+  { p: 'industries/professional-services', th: 'บริการวิชาชีพ', en: 'Professional services', k: 'บริการวิชาชีพ ที่ปรึกษา สำนักงานกฎหมาย professional services consulting law firm' },
+  { p: 'industries/technology', th: 'เทคโนโลยี ซอฟต์แวร์', en: 'Technology', k: 'สตาร์ทอัป startup saas technology company' },
+  { p: 'industries/aerospace-defense', th: 'การบินและกลาโหม', en: 'Aerospace & defense', k: 'การบิน กลาโหม aerospace defense' },
+  { p: 'services', th: 'บริการทั้งหมด', en: 'All services', k: 'บริการ services' },
+  { p: 'services/web-mobile', th: 'เว็บและแอปมือถือ', en: 'Web & mobile apps', k: 'ทำเว็บ เว็บไซต์ แอปมือถือ แอปพลิเคชัน website mobile app ios android' },
+  { p: 'services/web-development', th: 'พัฒนาเว็บ', en: 'Web development', k: 'พัฒนาเว็บ เว็บแอป web development web app' },
+  { p: 'services/ecommerce', th: 'อีคอมเมิร์ซ', en: 'E-commerce', k: 'อีคอมเมิร์ซ ร้านออนไลน์ ขายของออนไลน์ ecommerce e-commerce online store' },
+  { p: 'services/ux-ui-design', th: 'ออกแบบ UX/UI', en: 'UX/UI design', k: 'ออกแบบ ux ui ดีไซน์ design' },
+  { p: 'services/user-research', th: 'วิจัยผู้ใช้', en: 'User research', k: 'วิจัยผู้ใช้ user research สัมภาษณ์ผู้ใช้' },
+  { p: 'services/design-systems', th: 'Design System', en: 'Design systems', k: 'design system ดีไซน์ซิสเต็ม component' },
+  { p: 'services/brand-experience', th: 'แบรนด์', en: 'Brand experience', k: 'แบรนด์ โลโก้ branding brand logo' },
+  { p: 'services/product-discovery', th: 'Product Discovery', en: 'Product discovery', k: 'product discovery ค้นหาโจทย์ ไอเดียผลิตภัณฑ์' },
+  { p: 'services/rapid-prototyping', th: 'ต้นแบบ Prototype', en: 'Rapid prototyping', k: 'ต้นแบบ prototype prototyping mvp' },
+  { p: 'services/ai', th: 'AI ปัญญาประดิษฐ์', en: 'AI', k: 'ปัญญาประดิษฐ์ เอไอ ai chatbot แชตบอท llm machine learning' },
+  { p: 'services/ai-voice-agents', th: 'AI Voice Agent', en: 'AI voice agents', k: 'voice agent เสียง โทรอัตโนมัติ ตอบโทรศัพท์ voice ai call center' },
+  { p: 'services/automation', th: 'ระบบอัตโนมัติ', en: 'Automation', k: 'อัตโนมัติ ออโตเมชัน automation workflow rpa' },
+  { p: 'services/data-analytics', th: 'ข้อมูลและ Analytics', en: 'Data & analytics', k: 'ข้อมูล วิเคราะห์ dashboard แดชบอร์ด data analytics bi' },
+  { p: 'services/cloud-devops', th: 'Cloud และ DevOps', en: 'Cloud & DevOps', k: 'คลาวด์ cloud devops aws azure gcp' },
+  { p: 'services/cloud-services-migration', th: 'ย้ายขึ้นคลาวด์', en: 'Cloud migration', k: 'ย้ายขึ้นคลาวด์ cloud migration migrate' },
+  { p: 'services/cybersecurity', th: 'ความปลอดภัยไซเบอร์', en: 'Cybersecurity', k: 'ความปลอดภัย ไซเบอร์ แฮก cybersecurity security pentest' },
+  { p: 'services/pdpa-compliance', th: 'PDPA', en: 'PDPA compliance', k: 'pdpa ข้อมูลส่วนบุคคล compliance privacy' },
+  { p: 'services/erp-crm', th: 'ERP / CRM', en: 'ERP / CRM', k: 'erp crm ระบบบริหาร odoo sap' },
+  { p: 'services/enterprise-solutions', th: 'ระบบองค์กร', en: 'Enterprise solutions', k: 'ระบบองค์กร enterprise solutions' },
+  { p: 'services/backend-api', th: 'Backend และ API', en: 'Backend & API', k: 'backend api เชื่อมระบบ integration หลังบ้าน' },
+  { p: 'services/application-modernization', th: 'ปรับปรุงระบบเก่า', en: 'Application modernization', k: 'ระบบเก่า legacy modernization ปรับปรุงระบบ' },
+  { p: 'services/digital-transformation', th: 'Digital Transformation', en: 'Digital transformation', k: 'ดิจิทัลทรานส์ฟอร์เมชัน digital transformation ปรับองค์กร' },
+  { p: 'services/line-mini-apps', th: 'LINE Mini App', en: 'LINE Mini Apps', k: 'line mini app ไลน์ มินิแอป line oa' },
+  { p: 'services/qa-testing', th: 'ทดสอบซอฟต์แวร์', en: 'QA & testing', k: 'ทดสอบ เทสต์ qa testing quality' },
+  { p: 'services/support-maintenance', th: 'ดูแลระบบหลังส่งมอบ', en: 'Support & maintenance', k: 'ดูแลระบบ ซัพพอร์ต บำรุงรักษา support maintenance' },
+  { p: 'services/growth-strategy', th: 'กลยุทธ์การเติบโต', en: 'Growth strategy', k: 'กลยุทธ์ การตลาด เติบโต growth strategy marketing seo' },
+  { p: 'services/forward-deployed-engineering', th: 'วิศวกรประจำทีมลูกค้า', en: 'Forward-deployed engineering', k: 'วิศวกรประจำ forward deployed engineering embedded' },
+  { p: 'services/finish-your-vibe-coded-app', th: 'ต่อยอดแอปที่ใช้ AI เขียน', en: 'Finish your vibe-coded app', k: 'vibe coding vibe-coded cursor lovable bolt แอปที่ใช้ ai เขียน' },
+  { p: 'case-studies', th: 'ผลงานและเคสลูกค้า', en: 'Case studies', k: 'ผลงาน เคส ตัวอย่างงาน portfolio case study case studies' },
+  { p: 'blog', th: 'บทความ', en: 'Blog', k: 'บทความ บล็อก blog article' },
+  { p: 'careers', th: 'ร่วมงานกับเรา', en: 'Careers', k: 'สมัครงาน ร่วมงาน ตำแหน่งงาน รับสมัคร career careers job hiring' },
+  { p: 'about', th: 'เกี่ยวกับเรา', en: 'About us', k: 'เกี่ยวกับ ทีมงาน ประวัติบริษัท founder who-are-you' },
+  { p: 'partners', th: 'พาร์ทเนอร์', en: 'Partners', k: 'พาร์ทเนอร์ พันธมิตร partner partners' },
+  { p: 'contact', th: 'ติดต่อเรา', en: 'Contact', k: 'ติดต่อ ขอใบเสนอราคา ราคา quote contact pricing' },
+  { p: 'privacy', th: 'นโยบายความเป็นส่วนตัว', en: 'Privacy policy', k: 'นโยบายความเป็นส่วนตัว privacy policy' },
+]
+const SHORT_OK = new Set(['ai','ux','ui','erp','crm','api','qa','seo','mvp','rpa','aws','gcp','bi','pdpa'])
+const bigrams = (s: string) => { const o = new Set<string>(); const c = Array.from(s.replace(/\s+/g, '')); for (let i = 0; i < c.length - 1; i++) o.add(c[i] + c[i + 1]); return o }
+const routeLinks = (q: string, lang: string, skip: string[] = [], max = 3): { label: string; href: string }[] => {
+  const ql = q.toLowerCase()
+  const qb = bigrams(ql)
+  const scored: { r: Route; s: number }[] = []
+  ROUTES.forEach((r) => {
+    let best = 0
+    r.k.split(' ').forEach((w) => {
+      if (!w) return
+      const thai = /[฀-๿]/.test(w)
+      if (!thai && w.length < 4 && !SHORT_OK.has(w)) return // tiny English words like "do" or "you" must not match anything
+      if (!thai && w.length <= 3 ? new RegExp('(^|[^a-z])' + w.replace(/[^a-z0-9]/g, '') + '([^a-z]|$)').test(ql) : ql.includes(w)) { best = Math.max(best, 1 + w.length / 100); return }
+      if (thai && w.length >= 5) { // tolerate a typo: most of the word's letter pairs appear in the question
+        const wb = bigrams(w); let hit = 0; wb.forEach((b) => { if (qb.has(b)) hit++ })
+        const cov = hit / wb.size
+        if (cov >= 0.5 && hit >= 4) best = Math.max(best, cov * 0.9)
+      }
+    })
+    if (best > 0) scored.push({ r, s: best })
+  })
+  scored.sort((a, b) => b.s - a.s)
+  const out: { label: string; href: string }[] = []
+  for (const { r } of scored) {
+    const href = `/${lang}/${r.p}`
+    if (skip.includes(href) || out.some((o) => o.href === href)) continue
+    out.push({ label: lang === 'en' ? r.en : r.th, href })
+    if (out.length >= max) break
+  }
+  return out
+}
+
 const tokens = (s: string) => {
   const out = new Set<string>()
   const c = s.toLowerCase().replace(TH_STOP, ' ').replace(/[^a-z0-9฀-๿]+/g, ' ').trim()
@@ -200,14 +292,18 @@ export default function ChatBot({ lang }: { lang: Lang }) {
       if (h && h.endsWith('/contact') && items[best].k !== 'faq') {
         return { text: items[best].a, idx: best, agent: true, links: [{ label: isEN ? 'Contact page' : 'ไปหน้าติดต่อเรา', href: h }] }
       }
-      return { text: items[best].a, idx: best, links: h && !h.endsWith('/contact') ? [{ label: isEN ? 'Read more' : 'ดูรายละเอียด', href: h }] : [{ label: isEN ? 'See our work' : 'ดูผลงานของเรา', href: `/${lang}/work` }] }
+      const main = h && !h.endsWith('/contact') ? [{ label: isEN ? 'Read more' : 'ดูรายละเอียด', href: h }] : [{ label: isEN ? 'See our work' : 'ดูผลงานของเรา', href: `/${lang}/work` }]
+      return { text: items[best].a, idx: best, links: [...main, ...routeLinks(q, lang, [main[0].href, `/${lang}/contact`], 2)].slice(0, 3) }
     }
+    const rl = routeLinks(q, lang, [`/${lang}/contact`], 2)
     return {
       idx: -1,
-      text: isEN
+      text: rl.length
+        ? (isEN ? 'I do not have a written answer for that, but these pages cover it. For anything specific the team replies within 24 hours.' : 'เรื่องนี้ผมยังไม่มีคำตอบเป็นข้อความ แต่หน้าเหล่านี้น่าจะตอบได้ครับ ถ้าอยากคุยเรื่องเฉพาะ ทีมงานตอบกลับภายใน 24 ชั่วโมง')
+        : isEN
         ? 'I am not sure I have a good answer for that one. The team can reply within 24 hours, so please tell us about your project.'
         : 'เรื่องนี้ผมยังตอบได้ไม่ชัดเจน ทีมงานตอบกลับภายใน 24 ชั่วโมง เล่าเรื่องโปรเจกต์ของคุณให้ทีมฟังได้เลยครับ',
-      links: [{ label: isEN ? 'Contact the team' : 'ติดต่อทีมงาน', href: `/${lang}/contact` }],
+      links: [...rl, { label: isEN ? 'Contact the team' : 'ติดต่อทีมงาน', href: `/${lang}/contact` }],
     }
   }
 
