@@ -20,7 +20,7 @@ export default function CoreSkills({ lang, tr }: Props) {
       <div className="max-w-7xl mx-auto px-4 lg:px-10 mb-20 fade-up">
         <h2 className="t-display text-[clamp(2.25rem,4.5vw,3.5rem)] mb-3" style={{ color: 'var(--ink)' }}>{cs.h2}</h2>
         <p className="mb-6" style={{ fontFamily: 'var(--font-main)', fontWeight: 500, fontSize: '1.15rem', color: 'var(--accent-2)' }}>{cs.subtitle}</p>
-        <p className="max-w-2xl" style={{ fontWeight: 400, fontSize: '1.05rem', lineHeight: 1.75, color: 'rgb(var(--fg) / 0.75)' }}>{cs.desc}</p>
+        <p className="max-w-2xl" style={{ fontWeight: 400, fontSize: '1.05rem', lineHeight: 1.75, color: 'rgb(var(--fg) / 0.75)' }}>{lang === 'th' ? String(cs.desc).split(' ').map((w: string, i: number, a: string[]) => (<span key={i}><span className="inline-block">{w}</span>{i < a.length - 1 ? ' ' : ''}</span>)) : cs.desc}</p>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 lg:px-10 flex flex-col gap-20 lg:gap-24">
