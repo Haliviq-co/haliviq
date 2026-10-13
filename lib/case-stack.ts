@@ -2,13 +2,16 @@
 // lists in lib/work-data.ts. Only what can be stated openly; client-confidential parts are left out.
 // To mention older front-end frameworks on a project (for example AngularJS on work done before React
 // was adopted), add them to that slug's `earlier` list.
+import type { ScreenKind } from '@/components/CaseMock'
+import { caseStudies } from '@/lib/case-studies-data'
+
 export type FlowStep = { kind: 'start' | 'step' | 'decision' | 'end'; th: string; en: string; yes?: { th: string; en: string }; no?: { th: string; en: string } }
 export type Bi = { th: string; en: string }
 // One UI solution block: the problem, what we did, and (optionally) app screens saved under
 // public/images/case-studies/<slug>/ and listed here, for example ['/images/case-studies/<slug>/ui-01-a.png'].
 export type MockKind = 'scan' | 'result' | 'evidence'
-export type UiSolution = { problem: Bi; solution: Bi; images?: string[]; mock?: MockKind[] }
-export type CaseStack = { languages: string[]; frameworks: string[]; infra: string[]; earlier?: string[]; built?: { th: string[]; en: string[] }; flow?: FlowStep[]; solutions?: UiSolution[] }
+export type UiSolution = { problem: Bi; solution: Bi; images?: string[]; mock?: MockKind[]; list?: { th: string[]; en: string[] }; screens?: { device: 'phone' | 'browser'; kinds: ScreenKind[] } }
+export type CaseStack = { languages: string[]; frameworks: string[]; infra: string[]; earlier?: string[]; built?: { th: string[]; en: string[] }; flow?: FlowStep[]; flowKind?: 'user' | 'project'; solutions?: UiSolution[] }
 
 export const caseStacks: Record<string, CaseStack> = {
   "savelberg": {
@@ -537,6 +540,54 @@ caseStacks['excise-department'].solutions = [
   },
 ]
 
+// For every case study except the hand-written Excise one, "What we developed", the project flow and the UI
+// solutions are built from what is already written on that case study (services provided, approach steps and
+// key features). Nothing new is claimed about the client; the device mockups are generic illustrations.
+const APP_SLUGS = new Set(['mbk', 'ditp', 'department-of-water-resources', 'immigration-bureau', 'ministry-of-culture'])
+const rules: [RegExp, ScreenKind][] = [
+  [/chat|assistant|concierge|\bai\b|bot/, 'chat'],
+  [/book|reserv|appointment|schedule|class|room/, 'booking'],
+  [/search|find|discover|directory|filter|locat|map/, 'search'],
+  [/shop|cart|checkout|order|commerce|product|catalog|menu|store|promotion|collection/, 'shop'],
+  [/dashboard|crm|report|analytic|data|monitor|member|reward|assess|review|lead/, 'dash'],
+  [/form|inquiry|contact|apply|register|quote/, 'form'],
+  [/gallery|photo|portfolio|image|visual|design|showcase/, 'gallery'],
+  [/content|story|article|news|blog|culture|history|about/, 'article'],
+]
+const pool: ScreenKind[] = ['hero', 'gallery', 'dash', 'search', 'shop', 'article']
+function kindFor(text: string): ScreenKind {
+  const t = text.toLowerCase()
+  for (const [re, k] of rules) if (re.test(t)) return k
+  return 'hero'
+}
+
+const cache: Record<string, CaseStack> = {}
 export function getCaseStack(slug: string): CaseStack | undefined {
-  return caseStacks[slug]
+  const base = caseStacks[slug]
+  if (!base) return undefined
+  if (slug === 'excise-department') return base
+  if (cache[slug]) return cache[slug]
+  const cs = caseStudies.find((c) => c.slug === slug)
+  if (!cs) return base
+  const device = APP_SLUGS.has(slug) ? 'phone' : 'browser'
+  const built = base.built || { th: cs.th.servicesProvided, en: cs.en.servicesProvided }
+  const ap = cs.en.approach
+  const flow: FlowStep[] | undefined = base.flow || (ap.length >= 2
+    ? ap.map((a, i) => ({ kind: i === 0 ? 'start' : i === ap.length - 1 ? 'end' : 'step', th: cs.th.approach[i]?.title || a.title, en: a.title }) as FlowStep)
+    : undefined)
+  const solutions: UiSolution[] | undefined = base.solutions || cs.en.keyFeatures.slice(0, 3).map((g, i) => {
+    const k = kindFor(`${g.title} ${g.bullets.join(' ')}`)
+    const others = pool.filter((p) => p !== k)
+    const kinds: ScreenKind[] = [k, others[i % others.length], others[(i + 2) % others.length]]
+    const th = cs.th.keyFeatures[i]
+    return {
+      problem: { th: th?.title || g.title, en: g.title },
+      solution: { th: '', en: '' },
+      list: { th: th?.bullets || g.bullets, en: g.bullets },
+      screens: { device, kinds },
+    }
+  })
+  const out: CaseStack = { ...base, built, flow, flowKind: base.flowKind || (base.flow ? 'user' : 'project'), solutions }
+  cache[slug] = out
+  return out
 }

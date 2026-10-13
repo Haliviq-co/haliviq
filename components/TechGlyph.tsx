@@ -16,6 +16,9 @@ function Badge({ bg, fg = '#fff', text, r = 4, size = 9 }: { bg: string; fg?: st
 
 
 const BRANDS: Record<string, [string, string, string?]> = {
+  'hono': ['#E36002', 'Hn'], 'adonisjs': ['#5A45FF', 'Ad'], 'adonis': ['#5A45FF', 'Ad'], 'express': ['#1F2937', 'Ex'], 'express.js': ['#1F2937', 'Ex'],
+  'hapi': ['#F26D21', 'hapi'], 'koa': ['#33333D', 'Koa'], 'angular': ['#DD0031', 'A'], 'sveltekit': ['#FF3E00', 'SK'], '.net maui': ['#512BD4', '.NET'],
+  'maui': ['#512BD4', 'MAUI'], 'dart': ['#0175C2', 'Dt'], 'c#': ['#68217A', 'C#'], 'flutter / dart': ['#02569B', 'Fl'], 'compose multiplatform': ['#4285F4', 'CM'],
   'aws': ['#232F3E', 'aws', '#FF9900'], 'azure': ['#0078D4', 'Az'], 'google cloud': ['#4285F4', 'GC'], 'docker': ['#2496ED', 'Dk'],
   'kubernetes': ['#326CE5', 'K8'], 'helm': ['#0F1689', 'He'], 'terraform': ['#7B42BC', 'Tf'], 'pulumi': ['#8A3391', 'Pu'],
   'redis': ['#DC382D', 'Rd'], 'graphql': ['#E10098', 'GQ'], 'figma': ['#1E1E1E', 'Fg', '#F24E1E'], 'figjam': ['#1E1E1E', 'FJ', '#A259FF'],
