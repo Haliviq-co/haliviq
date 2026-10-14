@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import TechGlyph from '@/components/TechGlyph'
+import IndustryHero from '@/components/industry/IndustryHero'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { t, type Lang } from '@/lib/i18n'
@@ -77,59 +78,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { no: '03', title: 'แดชบอร์ดวิเคราะห์ผู้เรียน', desc: 'ตัวชี้วัดการมีส่วนร่วม ผลการเรียน และผู้เรียนที่เสี่ยง แบบเรียลไทม์ ช่วยให้ครูเข้าไปช่วยได้ทันเวลา ครูเปิดหน้าเดียวก็เห็นว่าสัปดาห์นี้ใครยังไม่ล็อกอิน ใครติดหัวข้อเดิม และส่งข้อความถึงคนนั้นได้ทันที ฝ่ายบริหารดูแนวโน้มแบบไม่ระบุตัวตนเพื่อพัฒนาหลักสูตร' },
   ]
 
-  const heroVisual = (
-    <div className="relative pb-10 pr-6">
-      <div className="theme-dark rounded-2xl overflow-hidden" style={{ background: '#141329', border: '1px solid rgba(123,110,246,0.35)' }}>
-        <div className="flex items-center gap-2 px-5 py-3.5" style={{ borderBottom: '1px solid rgb(var(--fg) / 0.08)' }}>
-          <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#F87171' }} />
-          <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#FBBF24' }} />
-          <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#34D399' }} />
-          <span className="ml-3 text-xs" style={{ color: 'rgb(var(--fg) / 0.85)', fontFamily: 'monospace' }}>classroom.live</span>
-        </div>
-        <div className="px-6 py-7">
-          <div className="flex items-center justify-between mb-5">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full" style={{ background: 'var(--lime)', animation: 'blinkDot 1.6s ease-in-out infinite' }} />
-              <span className="text-xs tracking-widest uppercase" style={{ color: 'var(--accent-2)', fontWeight: 600 }}>{isEN ? 'Live Class' : 'สอนสด'}</span>
-            </div>
-            <span className="text-xs" style={{ color: 'rgb(var(--fg) / 0.5)', fontFamily: 'monospace' }}>24:18</span>
-          </div>
-          <div className="grid grid-cols-3 gap-3 mb-5">
-            {[0, 1, 2].map((i) => (
-              <div key={i} className="aspect-video rounded-lg flex items-center justify-center" style={{ background: 'rgba(123,110,246,0.12)', border: '1px solid rgb(var(--fg) / 0.08)' }}>
-                <i className="ti ti-user" style={{ fontSize: 18, color: 'var(--accent)', animation: `iconFloat ${2.4 + i * 0.3}s ease-in-out infinite` }} aria-hidden="true" />
-              </div>
-            ))}
-          </div>
-          <div className="space-y-2.5">
-            {[92, 76, 58].map((w, i) => (
-              <div key={i} className="flex items-center gap-3">
-                <span className="text-[10px] w-16 shrink-0" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? `Module ${i + 1}` : `บทที่ ${i + 1}`}</span>
-                <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: 'rgb(var(--fg) / 0.08)' }}>
-                  <div className="h-full rounded-full" style={{ width: `${w}%`, background: 'linear-gradient(90deg, var(--purple), var(--lime))' }} />
-                </div>
-                <span className="text-[10px] w-8 text-right" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{w}%</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div
-        className="theme-dark absolute -bottom-2 -right-2 w-[210px] rounded-2xl p-4"
-        style={{ background: '#1B1A33', border: '1px solid rgb(var(--fg) / 0.1)', boxShadow: '0 20px 50px -10px rgba(0,0,0,0.6)', animation: 'badgeFloat 3.4s ease-in-out infinite' }}
-      >
-        <div className="flex items-center justify-between mb-2.5">
-          <span className="text-[10px] tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)' }}>{isEN ? 'Assignment 03' : 'งานที่ 03'}</span>
-          <i className="ti ti-clipboard-check" style={{ fontSize: 14, color: 'var(--accent-2)' }} aria-hidden="true" />
-        </div>
-        <div className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--accent-2)' }}>
-          <i className="ti ti-circle-check" style={{ fontSize: 13 }} aria-hidden="true" />
-          {isEN ? '28 / 32 submitted' : 'ส่งแล้ว 28 / 32'}
-        </div>
-      </div>
-    </div>
-  )
+  const heroVisual = <IndustryHero kind="education" isEN={isEN} />
 
   return (
     <>

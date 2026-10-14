@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import TechGlyph from '@/components/TechGlyph'
+import IndustryHero from '@/components/industry/IndustryHero'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { t, type Lang } from '@/lib/i18n'
@@ -77,54 +78,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { no: '03', title: 'เครื่องมือวิเคราะห์คาดการณ์ผลผลิต', desc: 'เครื่องมือวิเคราะห์ที่รวมภาพถ่ายดาวเทียม ข้อมูลอากาศ และบันทึกการเก็บเกี่ยวย้อนหลัง เพื่อคาดการณ์ผลผลิตรายแปลง ฝ่ายวางแผนเทียบตัวเลขที่คาดกับผลจริงทุกฤดู แล้วใช้วางแผนแรงงาน การขนส่ง และการขาย เราเริ่มจากทดลองกับพืชหนึ่งชนิดก่อน เพื่อให้คุณประเมินความคุ้มค่าได้ก่อนขยาย' },
   ]
 
-  const heroVisual = (
-    <div className="relative pb-10 pr-6">
-      <div className="theme-dark rounded-2xl overflow-hidden" style={{ background: '#141329', border: '1px solid rgba(123,110,246,0.35)' }}>
-        <div className="flex items-center justify-between px-5 py-3.5" style={{ borderBottom: '1px solid rgb(var(--fg) / 0.08)' }}>
-          <span className="text-xs tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)', fontFamily: 'monospace' }}>{isEN ? 'Field / Sensor-01' : 'Field / Sensor-01'}</span>
-          <div className="flex gap-1">
-            <span className="w-3 h-[2px] rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-            <span className="w-3 h-[2px] rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-          </div>
-        </div>
-        <div className="p-5">
-          <div className="aspect-[16/9] rounded-xl mb-4 flex items-center justify-center relative overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(123,110,246,0.18), rgba(83,195,215,0.1))' }}>
-            <svg width="130" height="70" viewBox="0 0 130 70" fill="none" style={{ animation: 'iconFloat 3s ease-in-out infinite' }}>
-              <path d="M8 50 L28 30 L48 44 L70 18 L92 34 L122 12" stroke="var(--lime)" strokeWidth="2" strokeLinecap="round" fill="none" />
-              <circle cx="28" cy="30" r="3" fill="var(--purple-light)" />
-              <circle cx="70" cy="18" r="3" fill="var(--purple-light)" />
-              <circle cx="122" cy="12" r="3" fill="var(--lime)" />
-            </svg>
-          </div>
-          <p className="mb-1" style={{ color: 'var(--ink)', fontWeight: 500, fontSize: '1.05rem' }}>{isEN ? 'Soil Moisture' : 'ความชื้นในดิน'}</p>
-          <p className="text-xs mb-3" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? '38% · Optimal range' : '38% · อยู่ในเกณฑ์เหมาะสม'}</p>
-          <div className="w-full h-1.5 rounded-full overflow-hidden" style={{ background: 'rgb(var(--fg) / 0.1)' }}>
-            <div className="h-full rounded-full" style={{ width: '62%', background: 'linear-gradient(90deg, var(--purple-light), var(--lime))', animation: 'barGrow 1.6s ease-out' }} />
-          </div>
-        </div>
-      </div>
-
-      <div
-        className="theme-dark absolute -bottom-2 -right-2 w-[180px] rounded-2xl p-4"
-        style={{ background: '#1B1A33', border: '1px solid rgb(var(--fg) / 0.1)', boxShadow: '0 20px 50px -10px rgba(0,0,0,0.6)', animation: 'badgeFloat 3.4s ease-in-out infinite' }}
-      >
-        <div className="flex items-center justify-between mb-2.5">
-          <span className="text-[10px] tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)' }}>{isEN ? 'Crop Health' : 'สุขภาพพืช'}</span>
-          <i className="ti ti-circle-check" style={{ fontSize: 14, color: 'var(--accent-2)' }} aria-hidden="true" />
-        </div>
-        <div className="w-9 h-9 rounded-lg flex items-center justify-center mb-2" style={{ background: 'rgba(123,110,246,0.15)' }}>
-          <i className="ti ti-leaf" style={{ fontSize: 16, color: 'var(--accent)' }} aria-hidden="true" />
-        </div>
-        <p className="text-xs mb-3" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? 'Field 12 · 4.2 ha' : 'แปลง 12 · 4.2 ไร่'}</p>
-        <div
-          className="rounded-lg text-center py-1.5 text-xs"
-          style={{ background: 'linear-gradient(90deg, var(--purple), var(--purple-light))', color: '#fff' }}
-        >
-          {isEN ? 'View Report →' : 'ดูรายงาน →'}
-        </div>
-      </div>
-    </div>
-  )
+  const heroVisual = <IndustryHero kind="agriculture" isEN={isEN} />
 
   return (
     <>

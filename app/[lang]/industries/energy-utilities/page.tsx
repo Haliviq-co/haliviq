@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import TechGlyph from '@/components/TechGlyph'
+import IndustryHero from '@/components/industry/IndustryHero'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { t, type Lang } from '@/lib/i18n'
@@ -77,63 +78,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { no: '03', title: 'ระบบรับมือไฟดับ', desc: 'แพลตฟอร์มไฟดับที่จัดกลุ่มสัญญาณจากมิเตอร์และลูกค้า แสดงพื้นที่ที่ได้รับผลกระทบ ส่งทีมช่างที่ใกล้ที่สุด และแจ้งความคืบหน้าให้ลูกค้า เจ้าหน้าที่ห้องควบคุมเห็นงานที่ค้างอยู่ชัดเจน ส่วนลูกค้าได้เวลาประมาณที่ตรงไปตรงมา รายงานหลังเหตุการณ์แสดงว่าแต่ละขั้นใช้เวลาเท่าไหร่ เพื่อนำไปปรับปรุงครั้งต่อไป' },
   ]
 
-  const heroVisual = (
-    <div className="relative pb-10 pr-6">
-      <div className="theme-dark rounded-2xl overflow-hidden" style={{ background: '#141329', border: '1px solid rgba(123,110,246,0.35)' }}>
-        <div className="flex items-center justify-between px-5 py-3.5" style={{ borderBottom: '1px solid rgb(var(--fg) / 0.08)' }}>
-          <span className="text-xs tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)', fontFamily: 'monospace' }}>{isEN ? 'Grid / Load Monitor' : 'Grid / Load Monitor'}</span>
-          <div className="flex gap-1">
-            <span className="w-3 h-[2px] rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-            <span className="w-3 h-[2px] rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-          </div>
-        </div>
-        <div className="p-5">
-          <div className="aspect-[16/9] rounded-xl mb-4 flex items-center justify-center relative overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(123,110,246,0.18), rgba(83,195,215,0.1))' }}>
-            <svg width="140" height="70" viewBox="0 0 140 70" fill="none" style={{ animation: 'iconFloat 3s ease-in-out infinite' }}>
-              <polyline points="4,50 22,50 32,20 46,58 58,34 70,44 82,26 96,44 110,38 124,50 136,50" stroke="var(--lime)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" style={{ animation: 'dashFlow 2.4s linear infinite', strokeDasharray: '6 4' }} />
-              <path d="M62 8 L48 32 L60 32 L52 58 L78 26 L64 26 Z" stroke="var(--purple-light)" strokeWidth="1.5" fill="rgba(123,110,246,0.18)" strokeLinejoin="round" />
-            </svg>
-          </div>
-          <div className="flex items-end gap-1.5 mb-4" style={{ height: 34 }}>
-            {[0.5, 0.8, 0.4, 0.95, 0.65, 0.75, 0.55].map((h, i) => (
-              <span
-                key={i}
-                className="flex-1 rounded-sm"
-                style={{ height: `${h * 34}px`, background: i % 2 === 0 ? 'var(--purple-light)' : 'var(--lime)', transformOrigin: 'bottom', animation: `barGrow ${2 + i * 0.2}s ease-in-out infinite` }}
-              />
-            ))}
-          </div>
-          <p className="mb-1" style={{ color: 'var(--ink)', fontWeight: 500, fontSize: '1.05rem' }}>{isEN ? 'Feeder Load: 82%' : 'Feeder Load: 82%'}</p>
-          <p className="text-xs mb-3" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? 'Stable · No anomalies detected' : 'ปกติ · ไม่พบความผิดปกติ'}</p>
-          <div className="flex gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--lime)' }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--purple-light)' }} />
-          </div>
-        </div>
-      </div>
-
-      <div
-        className="theme-dark absolute -bottom-2 -right-2 w-[180px] rounded-2xl p-4"
-        style={{ background: '#1B1A33', border: '1px solid rgb(var(--fg) / 0.1)', boxShadow: '0 20px 50px -10px rgba(0,0,0,0.6)', animation: 'badgeFloat 3.4s ease-in-out infinite' }}
-      >
-        <div className="flex items-center justify-between mb-2.5">
-          <span className="text-[10px] tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)' }}>{isEN ? 'Solar Output' : 'พลังงานโซลาร์'}</span>
-          <i className="ti ti-circle-check" style={{ fontSize: 14, color: 'var(--accent-2)' }} aria-hidden="true" />
-        </div>
-        <div className="w-9 h-9 rounded-lg flex items-center justify-center mb-2" style={{ background: 'rgba(123,110,246,0.15)' }}>
-          <i className="ti ti-solar-panel" style={{ fontSize: 16, color: 'var(--accent)' }} aria-hidden="true" />
-        </div>
-        <p className="text-xs mb-3" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? '4.2 MWh today' : '4.2 MWh วันนี้'}</p>
-        <div
-          className="rounded-lg text-center py-1.5 text-xs"
-          style={{ background: 'linear-gradient(90deg, var(--purple), var(--purple-light))', color: '#fff' }}
-        >
-          {isEN ? 'View Grid →' : 'ดู Grid →'}
-        </div>
-      </div>
-    </div>
-  )
+  const heroVisual = <IndustryHero kind="energy-utilities" isEN={isEN} />
 
   return (
     <>

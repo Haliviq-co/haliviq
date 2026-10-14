@@ -79,30 +79,97 @@ export default function Page({ params }: { params: { lang: Lang } }) {
 
   const heroVisual = (
     <div className="relative pb-10 pr-6">
-      <div className="theme-dark rounded-2xl overflow-hidden" style={{ background: '#141329', border: '1px solid rgba(123,110,246,0.35)' }}>
+      <div className="theme-dark rounded-2xl overflow-hidden" style={{ background: '#141329', border: '1px solid rgba(123,110,246,0.35)', boxShadow: '0 30px 70px -20px rgba(90,78,212,0.45)' }}>
         <div className="flex items-center justify-between px-5 py-3.5" style={{ borderBottom: '1px solid rgb(var(--fg) / 0.08)' }}>
-          <span className="text-xs tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)', fontFamily: 'monospace' }}>{isEN ? 'Studio / Listing' : 'Studio / Listing'}</span>
-          <div className="flex gap-1">
-            <span className="w-3 h-[2px] rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-            <span className="w-3 h-[2px] rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
+          <span className="text-xs tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)', fontFamily: 'monospace' }}>Studio / Listing</span>
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: 'rgba(83,195,215,0.14)', color: '#53C3D7' }}>{isEN ? 'For sale' : 'ขาย'}</span>
           </div>
         </div>
-        <div className="p-5">
-          <div className="aspect-[16/9] rounded-xl mb-4 flex items-center justify-center relative overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(123,110,246,0.18), rgba(83,195,215,0.1))' }}>
-            <svg width="130" height="70" viewBox="0 0 130 70" fill="none" style={{ animation: 'iconFloat 3s ease-in-out infinite' }}>
-              <path d="M20 60 L20 32 L65 12 L110 32 L110 60 Z" stroke="var(--purple-light)" strokeWidth="2" fill="rgba(123,110,246,0.12)" />
-              <path d="M45 60 L45 42 L85 42 L85 60" stroke="var(--lime)" strokeWidth="2" strokeLinecap="round" fill="none" />
+        <div className="p-4">
+          {/* illustrated skyline photo */}
+          <div className="relative rounded-xl overflow-hidden mb-4" style={{ aspectRatio: '16 / 10' }}>
+            <svg viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" className="absolute inset-0 w-full h-full">
+              <defs>
+                <linearGradient id="re-sky" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#2A2160" />
+                  <stop offset="55%" stopColor="#6B4FD0" />
+                  <stop offset="100%" stopColor="#F2A6C7" />
+                </linearGradient>
+                <linearGradient id="re-river" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#3B2E8F" />
+                  <stop offset="100%" stopColor="#1A1440" />
+                </linearGradient>
+                <linearGradient id="re-tower" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#4A3BAA" />
+                  <stop offset="100%" stopColor="#241B5E" />
+                </linearGradient>
+              </defs>
+              <rect width="320" height="200" fill="url(#re-sky)" />
+              <circle cx="250" cy="62" r="24" fill="#FFE9B8" opacity="0.9" />
+              <circle cx="250" cy="62" r="40" fill="#FFE9B8" opacity="0.12" />
+              <g fill="#2B2170" opacity="0.7">
+                <rect x="10" y="100" width="30" height="70" /><rect x="44" y="84" width="24" height="86" /><rect x="236" y="96" width="28" height="74" /><rect x="268" y="110" width="40" height="60" />
+              </g>
+              <g>
+                <rect x="84" y="46" width="52" height="124" rx="3" fill="url(#re-tower)" />
+                <rect x="140" y="70" width="44" height="100" rx="3" fill="url(#re-tower)" />
+                <rect x="188" y="30" width="40" height="140" rx="3" fill="url(#re-tower)" />
+                <rect x="204" y="22" width="8" height="10" fill="#B8A9FA" />
+              </g>
+              <g fill="#FFE9B8">
+                {[0,1,2,3,4,5,6,7,8,9,10,11].map((r) => [0,1,2].map((c) => (
+                  <rect key={'a'+r+c} x={91 + c * 14} y={54 + r * 9.5} width="7" height="5" rx="1" opacity={(r * 3 + c * 5) % 4 === 0 ? 0.95 : (r + c) % 3 === 0 ? 0.55 : 0.12}>
+                    {(r + c * 2) % 5 === 0 && <animate attributeName="opacity" values="0.15;0.95;0.15" dur={`${3 + ((r + c) % 3)}s`} repeatCount="indefinite" />}
+                  </rect>
+                )))}
+                {[0,1,2,3,4,5,6,7].map((r) => [0,1,2].map((c) => (
+                  <rect key={'b'+r+c} x={146 + c * 12} y={78 + r * 11} width="6" height="5" rx="1" opacity={(r * 2 + c) % 4 === 1 ? 0.9 : (r + c) % 3 === 0 ? 0.5 : 0.12} />
+                )))}
+                {[0,1,2,3,4,5,6,7,8,9,10,11,12].map((r) => [0,1,2].map((c) => (
+                  <rect key={'c'+r+c} x={195 + c * 11} y={38 + r * 9.8} width="6" height="5" rx="1" opacity={(r + c * 3) % 4 === 2 ? 0.95 : (r * c) % 3 === 1 ? 0.5 : 0.12} />
+                )))}
+              </g>
+              <rect y="168" width="320" height="32" fill="url(#re-river)" />
+              <g stroke="#B8A9FA" strokeWidth="1" opacity="0.35" strokeLinecap="round">
+                <path d="M20 178h40M90 184h60M170 176h50M240 183h50" />
+              </g>
+              <g opacity="0.25" fill="#FFE9B8"><rect x="95" y="170" width="30" height="2" /><rect x="198" y="170" width="18" height="2" /></g>
             </svg>
+            {/* location pin */}
+            <div className="absolute" style={{ left: '34%', top: '16%', animation: 'iconFloat 3s ease-in-out infinite' }}>
+              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px]" style={{ background: 'rgba(20,19,41,0.85)', color: '#fff', border: '1px solid rgba(255,255,255,0.18)', backdropFilter: 'blur(6px)' }}>
+                <i className="ti ti-map-pin" style={{ fontSize: 12, color: '#53C3D7' }} aria-hidden="true" />
+                {isEN ? 'Near the BTS' : 'ใกล้รถไฟฟ้า'}
+              </div>
+            </div>
+            <div className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center" style={{ background: 'rgba(20,19,41,0.6)', border: '1px solid rgba(255,255,255,0.2)' }}>
+              <i className="ti ti-heart" style={{ fontSize: 15, color: '#F2A6C7' }} aria-hidden="true" />
+            </div>
+            <div className="absolute bottom-3 right-3 px-3 py-1 rounded-full" style={{ background: 'rgba(20,19,41,0.82)', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', fontWeight: 700, fontSize: '0.95rem', backdropFilter: 'blur(6px)' }}>฿6.9M</div>
+            <div className="absolute bottom-3 left-3 flex gap-1.5">
+              <span className="w-5 h-1.5 rounded-full" style={{ background: '#fff' }} />
+              <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'rgba(255,255,255,0.5)' }} />
+              <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'rgba(255,255,255,0.5)' }} />
+            </div>
           </div>
-          <p className="mb-1" style={{ color: 'var(--ink)', fontWeight: 500, fontSize: '1.05rem' }}>{isEN ? 'Riverside Loft 12B' : 'Riverside Loft 12B'}</p>
-          <div className="flex items-center justify-between mb-3">
-            <p className="text-xs" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? '2 bed · 2 bath · 88 sqm' : '2 ห้องนอน · 2 ห้องน้ำ · 88 ตร.ม.'}</p>
-            <p className="text-xs" style={{ color: 'var(--accent-2)', fontWeight: 600 }}>฿6.9M</p>
+          <div className="flex items-start justify-between gap-3 mb-3">
+            <div>
+              <p style={{ color: 'var(--ink)', fontWeight: 600, fontSize: '1.1rem', lineHeight: 1.2 }}>Riverside Loft 12B</p>
+              <p className="text-xs mt-1" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? 'Condo · Riverside' : 'คอนโด · ริมแม่น้ำ'}</p>
+            </div>
           </div>
-          <div className="flex gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--lime)' }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--purple-light)' }} />
+          <div className="flex items-center gap-4 pt-3" style={{ borderTop: '1px solid rgb(var(--fg) / 0.08)' }}>
+            {[
+              { i: 'ti-bed', t: isEN ? '2 bed' : '2 ห้องนอน' },
+              { i: 'ti-bath', t: isEN ? '2 bath' : '2 ห้องน้ำ' },
+              { i: 'ti-ruler-2', t: isEN ? '88 sqm' : '88 ตร.ม.' },
+            ].map((x) => (
+              <span key={x.i} className="flex items-center gap-1.5 text-xs" style={{ color: 'rgb(var(--fg) / 0.7)' }}>
+                <i className={`ti ${x.i}`} style={{ fontSize: 15, color: 'var(--purple-light)' }} aria-hidden="true" />
+                {x.t}
+              </span>
+            ))}
           </div>
         </div>
       </div>

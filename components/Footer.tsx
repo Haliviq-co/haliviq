@@ -60,7 +60,7 @@ export default function Footer({ lang, tr }: Props) {
               {f.locations}
             </p>
 
-            <SocialIcons tone="accent" className="mt-5 mb-8" />
+            <SocialIcons tone="accent" lang={lang} className="mt-5 mb-8" />
 
             <div className="mt-3" style={{ color: 'rgb(var(--fg) / 0.85)', fontSize: '0.85rem', fontWeight: 400, lineHeight: 1.8 }}>
               <p>{f.phone}</p>

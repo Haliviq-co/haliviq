@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import TechGlyph from '@/components/TechGlyph'
+import IndustryHero from '@/components/industry/IndustryHero'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { t, type Lang } from '@/lib/i18n'
@@ -77,74 +78,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { no: '03', title: 'Technical Due-Diligence Engagement', desc: 'การตรวจ Codebase ความปลอดภัย และสถาปัตยกรรมโดยผู้ตรวจอิสระ ก่อนระดมทุนรอบ Series B เราสัมภาษณ์วิศวกร อ่านโค้ด และตรวจว่าระบบโฮสต์และสำรองข้อมูลยังไง แล้วส่งแผนแก้ไขที่ตรงกับข้อกำหนดของนักลงทุน ผู้ก่อตั้งเดินเข้าห้องคุยเทคนิคกับนักลงทุนโดยรู้คำตอบอยู่แล้ว' },
   ]
 
-  const heroVisual = (
-    <div className="relative pb-10 pr-6">
-      <div className="theme-dark rounded-2xl overflow-hidden" style={{ background: '#141329', border: '1px solid rgba(123,110,246,0.35)' }}>
-        <div className="flex items-center justify-between px-5 py-3.5" style={{ borderBottom: '1px solid rgb(var(--fg) / 0.08)' }}>
-          <span className="text-xs tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)', fontFamily: 'monospace' }}>{isEN ? 'Deploy / Pipeline' : 'Deploy / Pipeline'}</span>
-          <div className="flex gap-1">
-            <span className="w-3 h-[2px] rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-            <span className="w-3 h-[2px] rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-          </div>
-        </div>
-        <div className="p-5">
-          <div className="rounded-xl mb-4 p-4" style={{ background: 'linear-gradient(135deg, rgba(123,110,246,0.18), rgba(83,195,215,0.1))' }}>
-            <div className="flex items-center gap-2 mb-3">
-              <i className="ti ti-terminal-2" style={{ fontSize: 18, color: 'var(--accent-2)', animation: 'iconFloat 3s ease-in-out infinite' }} aria-hidden="true" />
-              <span className="text-xs" style={{ color: 'rgb(var(--fg) / 0.75)', fontFamily: 'monospace' }}>{isEN ? 'build → test → deploy' : 'build → test → deploy'}</span>
-            </div>
-            <div className="space-y-2">
-              {[
-                { label: isEN ? 'Build' : 'Build', w: '100%' },
-                { label: isEN ? 'Test Suite' : 'Test Suite', w: '92%' },
-                { label: isEN ? 'Deploy' : 'Deploy', w: '78%' },
-              ].map((row, i) => (
-                <div key={row.label}>
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-[11px]" style={{ color: 'rgb(var(--fg) / 0.6)', fontFamily: 'monospace' }}>{row.label}</span>
-                    <i className="ti ti-circle-check" style={{ fontSize: 12, color: 'var(--accent-2)' }} aria-hidden="true" />
-                  </div>
-                  <div className="w-full h-[4px] rounded-full overflow-hidden" style={{ background: 'rgb(var(--fg) / 0.08)' }}>
-                    <div
-                      className="h-full rounded-full"
-                      style={{ width: row.w, background: 'linear-gradient(90deg, var(--purple-light), var(--lime))', animation: `barGrow 1.6s ease-out ${i * 0.15}s both` }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <p className="mb-1" style={{ color: 'var(--ink)', fontWeight: 500, fontSize: '1.05rem' }}>{isEN ? 'API Gateway' : 'API Gateway'}</p>
-          <p className="text-xs mb-3" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? 'Shipped to production.' : 'Shipped to production.'}</p>
-          <div className="flex gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--lime)' }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--purple-light)' }} />
-          </div>
-        </div>
-      </div>
-
-      <div
-        className="theme-dark absolute -bottom-2 -right-2 w-[180px] rounded-2xl p-4"
-        style={{ background: '#1B1A33', border: '1px solid rgb(var(--fg) / 0.1)', boxShadow: '0 20px 50px -10px rgba(0,0,0,0.6)', animation: 'badgeFloat 3.4s ease-in-out infinite' }}
-      >
-        <div className="flex items-center justify-between mb-2.5">
-          <span className="text-[10px] tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)' }}>{isEN ? 'Uptime' : 'Uptime'}</span>
-          <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: 'var(--lime)', animation: 'blinkDot 1.6s ease-in-out infinite' }} />
-        </div>
-        <div className="w-9 h-9 rounded-lg flex items-center justify-center mb-2" style={{ background: 'rgba(123,110,246,0.15)' }}>
-          <i className="ti ti-cpu" style={{ fontSize: 16, color: 'var(--accent)' }} aria-hidden="true" />
-        </div>
-        <p className="text-xs mb-3" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? '99.98% · 30d avg' : '99.98% · เฉลี่ย 30 วัน'}</p>
-        <div
-          className="rounded-lg text-center py-1.5 text-xs"
-          style={{ background: 'linear-gradient(90deg, var(--purple), var(--purple-light))', color: '#fff' }}
-        >
-          {isEN ? 'View Logs →' : 'ดู Logs →'}
-        </div>
-      </div>
-    </div>
-  )
+  const heroVisual = <IndustryHero kind="technology" isEN={isEN} />
 
   return (
     <>

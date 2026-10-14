@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import TechGlyph from '@/components/TechGlyph'
+import IndustryHero from '@/components/industry/IndustryHero'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { t, type Lang } from '@/lib/i18n'
@@ -77,34 +78,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { no: '03', title: 'Revenue Management System', desc: 'ผู้ช่วยตั้งราคาสำหรับคนที่ดูแลเรื่องราคาห้องของคุณ รวมประวัติการจอง จังหวะการจองตอนนี้ อีเวนต์ในพื้นที่ และราคาคู่แข่งมาไว้ในหน้าจอรายวัน พร้อมราคาที่แนะนำ และเก็บบันทึกว่าเปลี่ยนอะไรเพราะอะไร ระบบนี้ช่วยฝ่ายรายได้ ไม่ได้มาแทนเขา และเริ่มจากของเล็ก ๆ อย่างแดชบอร์ดราคาก่อน แล้วค่อยขยับไปส่งราคาอัตโนมัติทีหลังก็ได้' },
   ]
 
-  const heroVisual = (
-    <div className="relative pb-10 pr-6">
-      <div className="theme-dark rounded-2xl overflow-hidden" style={{ background: '#141329', border: '1px solid rgba(123,110,246,0.35)' }}>
-        <div className="flex items-center gap-2 px-5 py-3.5" style={{ borderBottom: '1px solid rgb(var(--fg) / 0.08)' }}>
-          <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#F87171' }} />
-          <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#FBBF24' }} />
-          <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#34D399' }} />
-          <span className="ml-3 text-xs" style={{ color: 'rgb(var(--fg) / 0.85)', fontFamily: 'monospace' }}>guest.key</span>
-        </div>
-        <div className="px-6 py-10 flex items-center justify-center gap-6">
-          <div className="w-[150px] rounded-2xl p-5" style={{ background: 'rgba(123,110,246,0.12)', border: '1px solid rgb(var(--fg) / 0.08)' }}>
-            <div className="w-8 h-[2px] rounded-full mb-4" style={{ background: 'var(--lime)' }} />
-            <p className="text-xs mb-1" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? 'Welcome back' : 'ยินดีต้อนรับ'}</p>
-            <p className="mb-5" style={{ color: 'var(--ink)', fontWeight: 500, fontSize: '1.1rem' }}>{isEN ? 'Room 208' : 'ห้อง 208'}</p>
-            <div className="w-10 h-10 rounded-full flex items-center justify-center mb-5" style={{ background: 'rgba(123,110,246,0.25)' }}>
-              <i className="ti ti-key" style={{ fontSize: 18, color: 'var(--accent)' }} aria-hidden="true" />
-            </div>
-            <p className="text-[10px] tracking-wide" style={{ color: 'rgb(var(--fg) / 0.4)' }}>{isEN ? 'Tap to unlock' : 'แตะเพื่อปลดล็อก'}</p>
-          </div>
-          <div className="relative w-[110px] h-[180px] rounded-lg" style={{ border: '2px solid var(--lime)', background: 'rgba(83,195,215,0.05)' }}>
-            <span className="absolute top-3 left-0 right-0 text-center" style={{ color: 'var(--ink)', fontSize: '1.5rem', fontWeight: 600 }}>208</span>
-            <i className="ti ti-wifi" style={{ position: 'absolute', left: 8, top: 60, fontSize: 22, color: 'var(--accent-2)', animation: 'iconFloat 2.2s ease-in-out infinite' }} aria-hidden="true" />
-            <i className="ti ti-lock-open" style={{ position: 'absolute', right: 14, bottom: 20, fontSize: 22, color: 'var(--accent-2)' }} aria-hidden="true" />
-          </div>
-        </div>
-      </div>
-    </div>
-  )
+  const heroVisual = <IndustryHero kind="hospitality-travel" isEN={isEN} />
 
   return (
     <>

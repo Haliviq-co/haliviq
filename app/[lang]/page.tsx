@@ -52,7 +52,7 @@ export default function HomePage({ params }: { params: { lang: string } }) {
         },
         areaServed: ['TH', 'SG', 'MY', 'ID', 'VN', 'PH'],
         knowsAbout: ['UX/UI design', 'Artificial intelligence', 'Web development', 'Mobile app development', 'PDPA compliance'],
-        sameAs: ['https://www.facebook.com/haliviq', 'https://www.instagram.com/haliviq', 'https://lin.ee/zyTrkx4'],
+        sameAs: [lang === 'en' ? 'https://www.facebook.com/haliviqco' : 'https://www.facebook.com/haliviq', 'https://www.instagram.com/haliviq', 'https://lin.ee/zyTrkx4'],
       },
       {
         '@type': 'WebSite',

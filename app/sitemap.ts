@@ -54,6 +54,7 @@ const staticRoutes = [
   'services/mobile-apps',
   'services/pdpa-compliance',
   'services/product-discovery',
+  'services/seo-aeo-geo',
   'services/qa-testing',
   'services/quality-assurance-testing',
   'services/rapid-prototyping',

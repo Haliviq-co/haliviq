@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import TechGlyph from '@/components/TechGlyph'
+import IndustryHero from '@/components/industry/IndustryHero'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { t, type Lang } from '@/lib/i18n'
@@ -77,54 +78,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { no: '03', title: 'Warehouse Management Platform', desc: 'WMS สำหรับหลายคลัง ดูแลรับของเข้า จัดเก็บ หยิบ บรรจุ และจ่ายออกด้วยการสแกนบาร์โค้ด พร้อมรายงานความแม่นยำของสต็อกและผลิตภาพแรงงานแบบสด หัวหน้าเห็นว่าออเดอร์ไหนล่าช้าและโซนไหนแออัด เริ่มจากคลังเดียวเป็นโครงการนำร่อง แล้วขยายไปคลังอื่นเมื่อขั้นตอนนิ่งแล้วก็ได้' },
   ]
 
-  const heroVisual = (
-    <div className="relative pb-10 pr-6">
-      <div className="theme-dark rounded-2xl overflow-hidden" style={{ background: '#141329', border: '1px solid rgba(123,110,246,0.35)' }}>
-        <div className="flex items-center justify-between px-5 py-3.5" style={{ borderBottom: '1px solid rgb(var(--fg) / 0.08)' }}>
-          <span className="text-xs tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)', fontFamily: 'monospace' }}>{isEN ? 'Fleet / Tracking' : 'Fleet / Tracking'}</span>
-          <div className="flex gap-1">
-            <span className="w-3 h-[2px] rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-            <span className="w-3 h-[2px] rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-          </div>
-        </div>
-        <div className="p-5">
-          <div className="aspect-[16/9] rounded-xl mb-4 flex items-center justify-center relative overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(123,110,246,0.18), rgba(83,195,215,0.1))' }}>
-            <svg width="140" height="70" viewBox="0 0 140 70" fill="none">
-              <path d="M6 50 Q30 50 34 34 Q40 14 58 14 Q76 14 82 34 Q88 50 112 50 Q126 50 134 40" stroke="var(--purple-light)" strokeWidth="2" strokeDasharray="6 5" fill="none" style={{ animation: 'dashFlow 2.4s linear infinite' }} />
-              <circle cx="6" cy="50" r="4" fill="var(--lime)" />
-              <circle cx="134" cy="40" r="4" fill="var(--purple-light)" style={{ animation: 'ringPulse 2s ease-in-out infinite' }} />
-              <circle cx="82" cy="34" r="3.5" fill="#fff" style={{ animation: 'iconFloat 3s ease-in-out infinite' }} />
-            </svg>
-          </div>
-          <p className="mb-1" style={{ color: 'var(--ink)', fontWeight: 500, fontSize: '1.05rem' }}>{isEN ? 'Shipment #HLQ-2291' : 'Shipment #HLQ-2291'}</p>
-          <p className="text-xs mb-3" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? 'ETA 14:20 · On schedule' : 'ETA 14:20 · ตรงตามกำหนด'}</p>
-          <div className="w-full h-1.5 rounded-full overflow-hidden" style={{ background: 'rgb(var(--fg) / 0.1)' }}>
-            <div className="h-full rounded-full" style={{ background: 'linear-gradient(90deg, var(--purple-light), var(--lime))', width: '68%', animation: 'barGrow 1.4s ease-out' }} />
-          </div>
-        </div>
-      </div>
-
-      <div
-        className="theme-dark absolute -bottom-2 -right-2 w-[180px] rounded-2xl p-4"
-        style={{ background: '#1B1A33', border: '1px solid rgb(var(--fg) / 0.1)', boxShadow: '0 20px 50px -10px rgba(0,0,0,0.6)', animation: 'badgeFloat 3.4s ease-in-out infinite' }}
-      >
-        <div className="flex items-center justify-between mb-2.5">
-          <span className="text-[10px] tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)' }}>{isEN ? 'Fleet Status' : 'สถานะยานพาหนะ'}</span>
-          <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: 'var(--lime)', animation: 'blinkDot 1.6s ease-in-out infinite' }} />
-        </div>
-        <div className="w-9 h-9 rounded-lg flex items-center justify-center mb-2" style={{ background: 'rgba(123,110,246,0.15)' }}>
-          <i className="ti ti-truck-delivery" style={{ fontSize: 16, color: 'var(--accent)' }} aria-hidden="true" />
-        </div>
-        <p className="text-xs mb-3" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? '128 vehicles active' : 'รถ 128 คันกำลังวิ่งงาน'}</p>
-        <div
-          className="rounded-lg text-center py-1.5 text-xs"
-          style={{ background: 'linear-gradient(90deg, var(--purple), var(--purple-light))', color: '#fff' }}
-        >
-          {isEN ? 'View Map →' : 'ดูแผนที่ →'}
-        </div>
-      </div>
-    </div>
-  )
+  const heroVisual = <IndustryHero kind="logistics" isEN={isEN} />
 
   return (
     <>

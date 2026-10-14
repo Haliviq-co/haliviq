@@ -113,7 +113,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
                     </a>
                   ))}
                 </div>
-                <SocialIcons className="mb-8" />
+                <SocialIcons lang={lang} className="mb-8" />
                 <div className="flex items-center gap-3 flex-wrap">
                   {(isEN ? ['Free first consultation', 'NDA on request', 'Response within 24 hours'] : ['ปรึกษาครั้งแรกฟรี', 'มี NDA พร้อมให้ลงนาม', 'ตอบกลับภายใน 24 ชั่วโมง']).map(txt => (
                     <div key={txt} className="flex items-center gap-1.5">
