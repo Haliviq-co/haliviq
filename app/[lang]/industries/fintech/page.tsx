@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "Banking apps, PromptPay and payment flows, eKYC onboarding and fraud monitoring for Thai banks, lenders, insurers and fintechs, designed around Bank of…"
     : "แอปธนาคาร ระบบชำระเงินและ PromptPay การเปิดบัญชีด้วย eKYC และระบบเฝ้าระวังการทุจริต สำหรับธนาคาร ผู้ให้สินเชื่อ บริษัทประกัน และ Fintech ในไทย…"
-  const url = `https://haliviq.com/${params.lang}/industries/fintech`
+  const url = `https://www.haliviq.com/${params.lang}/industries/fintech`
   return { title, description, alternates: alt(url), openGraph: { title, description, url }, twitter: { card: 'summary_large_image', title, description } }
 }
 

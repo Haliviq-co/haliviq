@@ -8,7 +8,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? 'Practical articles from our Bangkok team on product discovery, UX/UI design, Next.js engineering, AI in production and digital strategy, plus project case studies.'
     : 'บทความจากทีมในกรุงเทพฯ เรื่อง Product Discovery, UX/UI, การพัฒนาด้วย Next.js, AI บนระบบจริง และกลยุทธ์ดิจิทัล พร้อมกรณีศึกษาจากโปรเจกต์'
-  const url = `https://haliviq.com/${params.lang}/blog`
+  const url = `https://www.haliviq.com/${params.lang}/blog`
   return {
     title,
     description,

@@ -17,11 +17,11 @@ export function generateMetadata({ params }: { params: { lang: string; slug: str
   const lang = params.lang === 'en' ? 'en' : 'th'
   const l = n[lang]
   const title = `${l.title} | Today I Learned | Haliviq`
-  const url = `https://haliviq.com/${lang}/today-i-learned/${n.slug}`
+  const url = `https://www.haliviq.com/${lang}/today-i-learned/${n.slug}`
   return {
     title,
     description: l.excerpt,
-    alternates: { canonical: url, languages: { en: `https://haliviq.com/en/today-i-learned/${n.slug}`, th: `https://haliviq.com/th/today-i-learned/${n.slug}` } },
+    alternates: { canonical: url, languages: { en: `https://www.haliviq.com/en/today-i-learned/${n.slug}`, th: `https://www.haliviq.com/th/today-i-learned/${n.slug}` } },
     openGraph: { title, description: l.excerpt, url, type: 'article', publishedTime: n.date },
     twitter: { card: 'summary', title, description: l.excerpt },
   }
@@ -41,8 +41,8 @@ export default function Page({ params }: { params: { lang: Lang; slug: string } 
   const more = tilNotes.filter((x) => x.topic === n.topic && x.slug !== n.slug).concat(tilNotes.filter((x) => x.topic !== n.topic && x.slug !== n.slug)).slice(0, 3)
   const jsonLd = {
     '@context': 'https://schema.org', '@type': 'TechArticle', headline: l.title, description: l.excerpt, datePublished: n.date, inLanguage: lang,
-    author: { '@type': 'Organization', name: 'Haliviq' }, publisher: { '@type': 'Organization', name: 'Haliviq', url: 'https://haliviq.com' },
-    mainEntityOfPage: `https://haliviq.com/${lang}/today-i-learned/${n.slug}`,
+    author: { '@type': 'Organization', name: 'Haliviq' }, publisher: { '@type': 'Organization', name: 'Haliviq', url: 'https://www.haliviq.com' },
+    mainEntityOfPage: `https://www.haliviq.com/${lang}/today-i-learned/${n.slug}`,
   }
   const blocks: [string, string[]][] = [
     [isEN ? 'What happened' : 'เกิดอะไรขึ้น', l.problem],

@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "Haliviq runs user research in Bangkok and across Thailand: interviews, usability tests and surveys in Thai or English, with findings your team can act on."
     : "Haliviq รับทำ User Research ทั้งสัมภาษณ์ผู้ใช้ ทดสอบการใช้งาน และแบบสอบถาม เป็นภาษาไทยหรืออังกฤษ สรุปผลให้ทีมของคุณเอาไปตัดสินใจต่อได้ทันที"
-  const url = `https://haliviq.com/${params.lang}/services/user-research`
+  const url = `https://www.haliviq.com/${params.lang}/services/user-research`
   return {
     title,
     description,

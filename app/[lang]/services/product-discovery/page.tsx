@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "Haliviq runs product discovery in Bangkok: problem framing, user interviews, concept tests, MVP scope and a business case, so you decide before you build."
     : "Haliviq ช่วยทำ Product Discovery ที่กรุงเทพฯ ตั้งแต่กำหนดโจทย์ สัมภาษณ์ผู้ใช้ ทดสอบแนวคิด ไปจนถึงขอบเขต MVP และแผนธุรกิจ ให้คุณตัดสินใจก่อนลงทุนสร้าง"
-  const url = `https://haliviq.com/${params.lang}/services/product-discovery`
+  const url = `https://www.haliviq.com/${params.lang}/services/product-discovery`
   return {
     title,
     description,

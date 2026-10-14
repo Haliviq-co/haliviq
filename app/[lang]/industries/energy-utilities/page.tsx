@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "Smart-meter dashboards, grid and solar monitoring, outage response and billing systems for power, water and renewable-energy operators, built for…"
     : "แดชบอร์ด Smart Meter ระบบติดตามโครงข่ายและโซลาร์ ระบบรับมือไฟดับและคิดบิล สำหรับผู้ให้บริการไฟฟ้า น้ำประปา และพลังงานหมุนเวียน…"
-  const url = `https://haliviq.com/${params.lang}/industries/energy-utilities`
+  const url = `https://www.haliviq.com/${params.lang}/industries/energy-utilities`
   return { title, description, alternates: alt(url), openGraph: { title, description, url }, twitter: { card: 'summary_large_image', title, description } }
 }
 

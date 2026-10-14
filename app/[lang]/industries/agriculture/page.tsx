@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "Farm technology built for real fields: soil and crop monitoring, farm management apps, produce traceability and yield forecasting that work in Thai, on a…"
     : "เทคโนโลยีเพื่อการเกษตรที่ใช้งานได้จริงในแปลง ตั้งแต่ระบบวัดความชื้นดินและติดตามพืช แอปจัดการฟาร์ม ระบบตามรอยสินค้าเกษตร ไปจนถึงการคาดการณ์ผลผลิต…"
-  const url = `https://haliviq.com/${params.lang}/industries/agriculture`
+  const url = `https://www.haliviq.com/${params.lang}/industries/agriculture`
   return { title, description, alternates: alt(url), openGraph: { title, description, url }, twitter: { card: 'summary_large_image', title, description } }
 }
 

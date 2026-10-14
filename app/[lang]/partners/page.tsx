@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? 'Partner with Haliviq, a Bangkok digital product studio. Cloud, platform, consulting and data/AI companies get a delivery team in Thailand and Southeast Asia.'
     : 'ร่วมเป็นพาร์ทเนอร์กับ Haliviq สตูดิโอผลิตภัณฑ์ดิจิทัลในกรุงเทพฯ สำหรับบริษัท Cloud, Platform, ที่ปรึกษา และ Data/AI ที่ต้องการทีมส่งมอบงานในไทยและอาเซียน'
-  const url = `https://haliviq.com/${params.lang}/partners`
+  const url = `https://www.haliviq.com/${params.lang}/partners`
   return {
     title,
     description,

@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "Haliviq builds clickable Figma prototypes and runs design sprints in Bangkok, so you can test an idea with real users in one to four weeks, before any code."
     : "Haliviq ทำต้นแบบที่กดใช้ได้ใน Figma และจัด Design Sprint ที่กรุงเทพฯ ให้คุณทดสอบไอเดียกับผู้ใช้จริงได้ภายใน 1-4 สัปดาห์ ก่อนเริ่มเขียนโค้ด"
-  const url = `https://haliviq.com/${params.lang}/services/rapid-prototyping`
+  const url = `https://www.haliviq.com/${params.lang}/services/rapid-prototyping`
   return {
     title,
     description,

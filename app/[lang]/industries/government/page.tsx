@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "Citizen-facing online services, licence and case workflows and secure data exchange for Thai ministries, local administrations and public agencies, built to…"
     : "บริการออนไลน์สำหรับประชาชน ระบบขอใบอนุญาตและติดตามเรื่อง และการแลกเปลี่ยนข้อมูลอย่างปลอดภัย สำหรับกระทรวง องค์กรปกครองส่วนท้องถิ่น…"
-  const url = `https://haliviq.com/${params.lang}/industries/government`
+  const url = `https://www.haliviq.com/${params.lang}/industries/government`
   return { title, description, alternates: alt(url), openGraph: { title, description, url }, twitter: { card: 'summary_large_image', title, description } }
 }
 

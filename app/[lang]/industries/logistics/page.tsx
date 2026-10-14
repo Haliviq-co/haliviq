@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "Tracking, routing, and warehouse software for carriers, 3PLs, and shippers who are tired of chasing shipment status by phone and spreadsheet."
     : "ซอฟต์แวร์ติดตามพัสดุ วางเส้นทาง และจัดการคลังสินค้า สำหรับบริษัทขนส่ง 3PL และผู้ส่งสินค้าที่เบื่อการนั่งตามสถานะของด้วยโทรศัพท์และสเปรดชีต"
-  const url = `https://haliviq.com/${params.lang}/industries/logistics`
+  const url = `https://www.haliviq.com/${params.lang}/industries/logistics`
   return { title, description, alternates: alt(url), openGraph: { title, description, url }, twitter: { card: 'summary_large_image', title, description } }
 }
 

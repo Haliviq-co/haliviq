@@ -109,7 +109,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang; slug:
   const c = study[lang]
   const title = `${c.title} | Haliviq`
   const metaDesc = trimMeta(c.desc)
-  const siteUrl = `https://haliviq.com/${lang}/case-studies/${study.slug}`
+  const siteUrl = `https://www.haliviq.com/${lang}/case-studies/${study.slug}`
   return {
     title,
     description: metaDesc,
@@ -148,19 +148,19 @@ export default function Page({ params }: { params: { lang: Lang; slug: string } 
   }
 
   const c = study[lang]
-  const siteUrl = `https://haliviq.com/${lang}/case-studies/${study.slug}`
+  const siteUrl = `https://www.haliviq.com/${lang}/case-studies/${study.slug}`
   const creativeWorkSchema = {
     '@context': 'https://schema.org',
     '@type': 'CreativeWork',
     name: c.title,
     description: c.desc,
-    image: `https://haliviq.com${c.heroImage}`,
+    image: `https://www.haliviq.com${c.heroImage}`,
     datePublished: study.year,
     url: siteUrl,
     provider: {
       '@type': 'Organization',
       name: 'Haliviq',
-      url: 'https://haliviq.com',
+      url: 'https://www.haliviq.com',
     },
   }
 

@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? 'Haliviq implements and customizes ERP, CRM and POS systems in Thailand, connects them to your store, warehouse and finance, and trains your team to use them.'
     : 'Haliviq รับติดตั้งและปรับแต่ง ERP, CRM และ POS ให้เข้ากับวิธีทำงานจริง เชื่อมกับร้านออนไลน์ คลังสินค้า และระบบบัญชี พร้อมอบรมทีมให้ใช้งานได้คล่อง'
-  const url = `https://haliviq.com/${params.lang}/services/enterprise-solutions`
+  const url = `https://www.haliviq.com/${params.lang}/services/enterprise-solutions`
   return {
     title,
     description,

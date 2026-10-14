@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang; slug:
   if (!project) return {}
   const c = project[lang]
   const title = `${c.h1} | Haliviq`
-  const siteUrl = `https://haliviq.com/${lang}/work/${project.slug}`
+  const siteUrl = `https://www.haliviq.com/${lang}/work/${project.slug}`
   return {
     title,
     description: c.metaDescription,
@@ -57,19 +57,19 @@ export default function Page({ params }: { params: { lang: Lang; slug: string } 
   }
 
   const c = project[lang]
-  const siteUrl = `https://haliviq.com/${lang}/work/${project.slug}`
+  const siteUrl = `https://www.haliviq.com/${lang}/work/${project.slug}`
 
   const creativeWorkSchema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: c.h1,
     description: c.metaDescription,
-    image: `https://haliviq.com${c.ogImage}`,
+    image: `https://www.haliviq.com${c.ogImage}`,
     url: siteUrl,
     provider: {
       '@type': 'Organization',
       name: 'Haliviq',
-      url: 'https://haliviq.com',
+      url: 'https://www.haliviq.com',
     },
   }
 

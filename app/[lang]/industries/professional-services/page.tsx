@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "Client, document, and time-billing software for consultancies, law firms, accountants, and other firms that sell expertise by the hour or by the project."
     : "ซอฟต์แวร์ดูแลลูกค้า จัดการเอกสาร และบันทึกเวลาออกบิล สำหรับบริษัทที่ปรึกษา สำนักงานกฎหมาย สำนักงานบัญชี…"
-  const url = `https://haliviq.com/${params.lang}/industries/professional-services`
+  const url = `https://www.haliviq.com/${params.lang}/industries/professional-services`
   return { title, description, alternates: alt(url), openGraph: { title, description, url }, twitter: { card: 'summary_large_image', title, description } }
 }
 

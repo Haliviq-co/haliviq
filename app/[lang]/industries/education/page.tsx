@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "Learning technology for schools, universities, training providers and EdTech startups: LMS, virtual classrooms, adaptive learning, assessment and analytics…"
     : "เทคโนโลยีการเรียนรู้สำหรับโรงเรียน มหาวิทยาลัย ศูนย์ฝึกอบรม และสตาร์ทอัพ EdTech ตั้งแต่ LMS ห้องเรียนออนไลน์ ระบบเรียนรู้ที่ปรับตามผู้เรียน…"
-  const url = `https://haliviq.com/${params.lang}/industries/education`
+  const url = `https://www.haliviq.com/${params.lang}/industries/education`
   return { title, description, alternates: alt(url), openGraph: { title, description, url }, twitter: { card: 'summary_large_image', title, description } }
 }
 

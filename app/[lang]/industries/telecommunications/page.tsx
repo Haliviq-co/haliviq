@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "Self-service apps, network dashboards, billing integration, and support automation for mobile, broadband, and IoT connectivity providers."
     : "แอปให้ลูกค้าดูแลบริการเอง แดชบอร์ดเครือข่าย การเชื่อมระบบบิล และระบบซัพพอร์ตอัตโนมัติ สำหรับผู้ให้บริการมือถือ บรอดแบนด์ และการเชื่อมต่อ IoT"
-  const url = `https://haliviq.com/${params.lang}/industries/telecommunications`
+  const url = `https://www.haliviq.com/${params.lang}/industries/telecommunications`
   return { title, description, alternates: alt(url), openGraph: { title, description, url }, twitter: { card: 'summary_large_image', title, description } }
 }
 

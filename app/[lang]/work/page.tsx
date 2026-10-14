@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? 'Portfolio of a Bangkok digital product studio: restaurant websites, government apps, real-estate CRM and e-commerce stores, grouped by industry with scope for each.'
     : 'ผลงานของ Haliviq สตูดิโอดิจิทัลในกรุงเทพฯ ทั้งเว็บไซต์ร้านอาหาร แอปหน่วยงานรัฐ CRM อสังหาฯ และร้านอีคอมเมิร์ซ แยกตามประเภทธุรกิจ พร้อมขอบเขตงาน'
-  const siteUrl = `https://haliviq.com/${params.lang}/work`
+  const siteUrl = `https://www.haliviq.com/${params.lang}/work`
   return {
     title,
     description,

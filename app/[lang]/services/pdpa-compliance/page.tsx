@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "Haliviq, a founding partner of PDPA.org, handles PDPA audits, consent and cookie flows, DSAR workflows and data security for Thai companies in Bangkok."
     : "Haliviq ผู้ก่อตั้งร่วมของ PDPA.org ช่วยตรวจ PDPA ทำระบบ Consent และ Cookie ระบบรับคำขอ DSAR และวางความปลอดภัยของข้อมูล ให้บริษัทในไทยที่กรุงเทพฯ"
-  const url = `https://haliviq.com/${params.lang}/services/pdpa-compliance`
+  const url = `https://www.haliviq.com/${params.lang}/services/pdpa-compliance`
   return {
     title,
     description,

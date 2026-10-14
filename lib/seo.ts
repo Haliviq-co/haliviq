@@ -1,6 +1,6 @@
-const BASE = 'https://haliviq.com'
+const BASE = 'https://www.haliviq.com'
 
-/** Canonical + hreflang alternates for a URL like https://haliviq.com/th/some/page */
+/** Canonical + hreflang alternates for a URL like https://www.haliviq.com/th/some/page */
 export function alt(url: string) {
   const path = url.replace(/^https?:\/\/[^/]+\/(th|en)(?=\/|$)/, '')
   return {

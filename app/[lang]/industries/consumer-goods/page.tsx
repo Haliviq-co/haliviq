@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "Software for consumer product brands: direct-to-consumer stores, loyalty apps, sell-in and sell-out dashboards, demand forecasting and product data…"
     : "ซอฟต์แวร์สำหรับแบรนด์สินค้าอุปโภคบริโภค ตั้งแต่ร้านค้าออนไลน์ของแบรนด์เอง แอปสะสมแต้ม แดชบอร์ดยอดขาย การพยากรณ์ความต้องการซื้อ…"
-  const url = `https://haliviq.com/${params.lang}/industries/consumer-goods`
+  const url = `https://www.haliviq.com/${params.lang}/industries/consumer-goods`
   return { title, description, alternates: alt(url), openGraph: { title, description, url }, twitter: { card: 'summary_large_image', title, description } }
 }
 

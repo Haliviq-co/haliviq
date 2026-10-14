@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "Haliviq is a UX/UI design agency in Bangkok. We research users, design flows and screens in Figma, test with real people and hand over files developers can use."
     : "Haliviq รับออกแบบ UX/UI เว็บและแอปที่กรุงเทพฯ วิจัยผู้ใช้ ออกแบบเส้นทางและหน้าจอใน Figma ทดสอบกับคนจริง แล้วส่งไฟล์ที่ทีมพัฒนาใช้ต่อได้ทันที"
-  const url = `https://haliviq.com/${params.lang}/services/ux-ui-design`
+  const url = `https://www.haliviq.com/${params.lang}/services/ux-ui-design`
   return {
     title,
     description,

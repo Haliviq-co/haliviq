@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? 'Digital transformation for Thai businesses: maturity assessment, 1-3 year roadmap, process redesign, and change management delivered by one team that also builds.'
     : 'Haliviq ช่วยองค์กรไทยทำ Digital Transformation ตั้งแต่ประเมินความพร้อม วางแผนระยะ 1-3 ปี ปรับขั้นตอนทำงาน ไปจนถึงลงมือสร้างระบบและบริหารการเปลี่ยนแปลงในทีมเดียว'
-  const url = `https://haliviq.com/${params.lang}/services/digital-transformation`
+  const url = `https://www.haliviq.com/${params.lang}/services/digital-transformation`
   return {
     title,
     description,

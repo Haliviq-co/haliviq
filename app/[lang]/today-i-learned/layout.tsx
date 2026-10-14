@@ -8,7 +8,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? 'Short, practical notes from a Bangkok product studio on React, Next.js, TypeScript, PostgreSQL, Docker, Figma and security, with the reason behind each fix.'
     : 'บันทึกสั้น ๆ ที่ใช้ได้จริงจากสตูดิโอในกรุงเทพฯ เรื่อง React, Next.js, TypeScript, PostgreSQL, Docker, Figma และ security พร้อมเหตุผลของแต่ละวิธีแก้'
-  const url = `https://haliviq.com/${params.lang}/today-i-learned`
+  const url = `https://www.haliviq.com/${params.lang}/today-i-learned`
   return {
     title,
     description,

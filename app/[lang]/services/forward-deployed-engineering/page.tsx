@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? 'Embed senior engineers in your team to ship AI to production, connect legacy systems, and work inside your security perimeter. Weekly releases, full handover.'
     : 'Haliviq ส่งวิศวกรอาวุโสเข้าไปทำงานในองค์กรคุณ ใช้เครื่องมือและ Repo ของคุณ พาระบบ AI ขึ้นระบบจริง เชื่อมระบบเก่า ปล่อยงานทุกสัปดาห์ พร้อมเอกสารส่งมอบ'
-  const url = `https://haliviq.com/${params.lang}/services/forward-deployed-engineering`
+  const url = `https://www.haliviq.com/${params.lang}/services/forward-deployed-engineering`
   return {
     title,
     description,

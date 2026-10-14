@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? 'Join Haliviq in Bangkok and help build the intelligent future. Open roles in AI, design, engineering, product and project management, with hybrid work and a clear hiring process.'
     : 'ร่วมสร้างอนาคตที่ฉลาดขึ้นกับ Haliviq ที่กรุงเทพฯ ดูตำแหน่งงานสาย AI, Design, Engineering, Product และ Project Management พร้อมสวัสดิการ ทำงานแบบไฮบริด และขั้นตอนสมัครงานที่ชัดเจน'
-  const url = `https://haliviq.com/${params.lang}/careers`
+  const url = `https://www.haliviq.com/${params.lang}/careers`
   return {
     title,
     description,

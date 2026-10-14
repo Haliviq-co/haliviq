@@ -20,7 +20,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
   const lang = params.lang === 'en' ? 'en' : 'th'
-  return { alternates: alt(`https://haliviq.com/${lang}`) }
+  return { alternates: alt(`https://www.haliviq.com/${lang}`) }
 }
 
 export default function HomePage({ params }: { params: { lang: string } }) {
@@ -32,11 +32,11 @@ export default function HomePage({ params }: { params: { lang: string } }) {
     '@graph': [
       {
         '@type': 'ProfessionalService',
-        '@id': 'https://haliviq.com/#organization',
+        '@id': 'https://www.haliviq.com/#organization',
         name: 'Haliviq',
-        url: 'https://haliviq.com',
-        logo: 'https://haliviq.com/favicon.png',
-        image: 'https://haliviq.com/og/haliviq-og.png',
+        url: 'https://www.haliviq.com',
+        logo: 'https://www.haliviq.com/favicon.png',
+        image: 'https://www.haliviq.com/og/haliviq-og.png',
         slogan: 'Human Ideas. Intelligent Future.',
         description: lang === 'en'
           ? 'A design and AI studio in Bangkok building UX/UI, websites, mobile apps, LINE mini apps and AI tools.'
@@ -56,11 +56,11 @@ export default function HomePage({ params }: { params: { lang: string } }) {
       },
       {
         '@type': 'WebSite',
-        '@id': 'https://haliviq.com/#website',
-        url: 'https://haliviq.com',
+        '@id': 'https://www.haliviq.com/#website',
+        url: 'https://www.haliviq.com',
         name: 'Haliviq',
         inLanguage: ['th', 'en'],
-        publisher: { '@id': 'https://haliviq.com/#organization' },
+        publisher: { '@id': 'https://www.haliviq.com/#organization' },
       },
     ],
   }

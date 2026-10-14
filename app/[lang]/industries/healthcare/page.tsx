@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "Telemedicine, patient apps, hospital and clinic back-office systems and clinical data tools for Thai healthcare providers, built to handle health records…"
     : "Telemedicine แอปสำหรับผู้ป่วย ระบบหลังบ้านของโรงพยาบาลและคลินิก และเครื่องมือจัดการข้อมูลทางคลินิก สำหรับผู้ให้บริการสุขภาพในไทย…"
-  const url = `https://haliviq.com/${params.lang}/industries/healthcare`
+  const url = `https://www.haliviq.com/${params.lang}/industries/healthcare`
   return { title, description, alternates: alt(url), openGraph: { title, description, url }, twitter: { card: 'summary_large_image', title, description } }
 }
 

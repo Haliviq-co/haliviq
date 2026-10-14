@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? 'Built an app with Cursor, Lovable, Bolt or Replit? Haliviq in Bangkok audits the code, fixes security gaps, sets up real hosting and finishes the last 10%.'
     : 'สร้างแอปด้วย Cursor, Lovable, Bolt หรือ Replit แล้วติดที่ 10% สุดท้าย Haliviq ตรวจโค้ด แก้ช่องโหว่ ขึ้น Hosting จริง และช่วยจบจนพร้อมเปิดตัว ไม่ต้องเขียนใหม่'
-  const url = `https://haliviq.com/${params.lang}/services/finish-your-vibe-coded-app`
+  const url = `https://www.haliviq.com/${params.lang}/services/finish-your-vibe-coded-app`
   return {
     title,
     description,

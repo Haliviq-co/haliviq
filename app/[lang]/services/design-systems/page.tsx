@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? 'Haliviq builds design systems in Bangkok: design tokens, Figma and React component libraries, docs, and accessibility, so every screen looks and works the same.'
     : 'Haliviq รับทำ Design System ในกรุงเทพฯ ตั้งแต่ Design Token และ Component Library ใน Figma กับโค้ด ไปจนถึงเอกสารและ Accessibility ให้ทุกหน้าจอใช้งานเหมือนกัน'
-  const url = `https://haliviq.com/${params.lang}/services/design-systems`
+  const url = `https://www.haliviq.com/${params.lang}/services/design-systems`
   return {
     title,
     description,

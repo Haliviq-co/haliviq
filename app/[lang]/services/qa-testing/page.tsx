@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "Haliviq tests websites and apps in Bangkok: manual and automated testing, load and security checks on real devices, with clear bug reports before you launch."
     : "Haliviq รับทดสอบเว็บและแอปที่กรุงเทพฯ ทั้งทดสอบด้วยมือและอัตโนมัติ ทดสอบโหลดและความปลอดภัยบนอุปกรณ์จริง พร้อมรายงานบั๊กที่อ่านง่ายก่อนเปิดตัว"
-  const url = `https://haliviq.com/${params.lang}/services/qa-testing`
+  const url = `https://www.haliviq.com/${params.lang}/services/qa-testing`
   return {
     title,
     description,

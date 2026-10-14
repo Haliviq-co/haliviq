@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "How Haliviq collects, uses, shares, and protects your personal data, in line with Thailand's PDPA and applicable data protection laws."
     : 'นโยบายความเป็นส่วนตัวของ Haliviq เรื่องการเก็บ ใช้ เปิดเผย และปกป้องข้อมูลส่วนบุคคล ตาม พ.ร.บ. คุ้มครองข้อมูลส่วนบุคคล (PDPA)'
-  const siteUrl = `https://haliviq.com/${params.lang}/privacy`
+  const siteUrl = `https://www.haliviq.com/${params.lang}/privacy`
   return { title, description, alternates: alt(siteUrl), openGraph: { title, description, url: siteUrl } }
 }
 

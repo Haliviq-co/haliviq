@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? 'How Haliviq uses cookies and similar technologies, and how you can manage your preferences.'
     : 'Haliviq ใช้คุกกี้และเทคโนโลยีที่คล้ายกันอย่างไร และท่านตั้งค่าได้อย่างไร'
-  const siteUrl = `https://haliviq.com/${params.lang}/cookies`
+  const siteUrl = `https://www.haliviq.com/${params.lang}/cookies`
   return { title, description, alternates: alt(siteUrl), openGraph: { title, description, url: siteUrl } }
 }
 

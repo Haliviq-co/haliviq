@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? 'ERP and CRM implementation in Thailand: platform selection, Odoo, SAP, Salesforce or HubSpot setup, data migration, workflow automation, and staff training.'
     : 'Haliviq รับติดตั้งและปรับแต่ง ERP กับ CRM ในไทย ช่วยเลือกแพลตฟอร์ม ตั้งค่า Odoo SAP Salesforce HubSpot ย้ายข้อมูลเก่า ทำ Workflow อนุมัติ และอบรมทีม'
-  const url = `https://haliviq.com/${params.lang}/services/erp-crm`
+  const url = `https://www.haliviq.com/${params.lang}/services/erp-crm`
   return {
     title,
     description,

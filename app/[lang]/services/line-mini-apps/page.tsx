@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? 'LINE Mini App and chat commerce development in Thailand: LIFF apps, Flex Message ordering, LINE Pay checkout and backend links to your POS and order system.'
     : 'Haliviq รับทำ LINE Mini App ด้วย LIFF ระบบสั่งซื้อผ่านแชท Flex Message และ LINE Pay เชื่อมกับ POS ระบบออเดอร์ และ CRM ให้ลูกค้าไทยซื้อได้โดยไม่ออกจาก LINE'
-  const url = `https://haliviq.com/${params.lang}/services/line-mini-apps`
+  const url = `https://www.haliviq.com/${params.lang}/services/line-mini-apps`
   return {
     title,
     description,

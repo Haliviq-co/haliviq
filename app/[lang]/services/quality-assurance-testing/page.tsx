@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "QA engineers who work inside your sprints in Bangkok: CI-integrated test automation, release gates and performance checks that keep weekly releases stable."
     : "Haliviq ส่ง QA Engineer เข้าไปทำงานในสปรินต์ของทีมคุณ วางระบบ Test Automation ที่เชื่อมกับ CI ด่านตรวจก่อนปล่อย และเช็กประสิทธิภาพ ให้ปล่อยเวอร์ชันได้ถี่แต่นิ่ง"
-  const url = `https://haliviq.com/${params.lang}/services/quality-assurance-testing`
+  const url = `https://www.haliviq.com/${params.lang}/services/quality-assurance-testing`
   return {
     title,
     description,

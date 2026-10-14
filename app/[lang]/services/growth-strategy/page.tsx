@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? 'Growth strategy for SaaS, e-commerce and mobile apps in Thailand: funnel and cohort analysis, A/B testing, retention and channel strategy led by real data.'
     : 'Haliviq ช่วยวางกลยุทธ์การเติบโตให้ SaaS อีคอมเมิร์ซ และโมบายแอปในไทย ตั้งแต่ Funnel และ Cohort Analysis A/B Test ไปจนถึงรักษาลูกค้าและวางช่องทางด้วยข้อมูลจริง'
-  const url = `https://haliviq.com/${params.lang}/services/growth-strategy`
+  const url = `https://www.haliviq.com/${params.lang}/services/growth-strategy`
   return {
     title,
     description,

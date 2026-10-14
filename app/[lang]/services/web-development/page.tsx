@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "Haliviq is a web development company in Bangkok. We build fast Next.js websites, e-commerce and web apps with SEO, CMS and local hosting, then support them."
     : "Haliviq รับทำเว็บไซต์ เว็บ E-Commerce และเว็บแอปที่กรุงเทพฯ ด้วย Next.js โหลดเร็ว ทำ SEO เชื่อม CMS พร้อมดูแลต่อหลังเปิดตัว"
-  const url = `https://haliviq.com/${params.lang}/services/web-development`
+  const url = `https://www.haliviq.com/${params.lang}/services/web-development`
   return {
     title,
     description,

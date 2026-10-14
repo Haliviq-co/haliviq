@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "The terms and conditions that govern your use of Haliviq's website and services."
     : 'ข้อกำหนดและเงื่อนไขการใช้งานเว็บไซต์และบริการของ Haliviq'
-  const siteUrl = `https://haliviq.com/${params.lang}/terms`
+  const siteUrl = `https://www.haliviq.com/${params.lang}/terms`
   return { title, description, alternates: alt(siteUrl), openGraph: { title, description, url: siteUrl } }
 }
 

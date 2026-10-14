@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? 'Talk to Haliviq about a website, app, LINE mini app or AI project. Free first consultation, NDA on request, and a reply within 24 hours from our Bangkok team.'
     : 'คุยกับ Haliviq เรื่อง website แอป LINE mini app หรือระบบ AI ปรึกษาครั้งแรกฟรี มี NDA ให้เมื่อต้องการ และทีมในกรุงเทพฯ ตอบกลับภายใน 24 ชั่วโมง'
-  const url = `https://haliviq.com/${params.lang}/contact`
+  const url = `https://www.haliviq.com/${params.lang}/contact`
   return {
     title,
     description,

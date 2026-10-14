@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? 'Be found in Google and quoted by AI assistants. Haliviq builds SEO, AEO and GEO into your website: technical fixes, structured content, schema and measurement, by the team that builds the site.'
     : 'ทำให้เว็บถูกพบใน Google และถูกอ้างถึงโดยผู้ช่วย AI Haliviq วางงาน SEO, AEO และ GEO ลงในตัวเว็บ ทั้งแก้เทคนิค จัดโครงสร้างเนื้อหา Schema และวัดผล โดยทีมที่สร้างเว็บเอง'
-  const url = `https://haliviq.com/${params.lang}/services/seo-aeo-geo`
+  const url = `https://www.haliviq.com/${params.lang}/services/seo-aeo-geo`
   return {
     title,
     description,

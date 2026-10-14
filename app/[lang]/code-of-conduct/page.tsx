@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const isEN = params.lang === 'en'
   const title = isEN ? 'Code of Conduct | Haliviq' : 'จรรยาบรรณธุรกิจ | Haliviq'
   const description = isEN ? 'The standards of conduct Haliviq expects from our team, partners, and suppliers.' : 'มาตรฐานความประพฤติที่ Haliviq คาดหวังจากทีมงาน พาร์ทเนอร์ และซัพพลายเออร์'
-  const url = `https://haliviq.com/${params.lang}/code-of-conduct`
+  const url = `https://www.haliviq.com/${params.lang}/code-of-conduct`
   return { title, description, alternates: alt(url), openGraph: { title, description, url } }
 }
 

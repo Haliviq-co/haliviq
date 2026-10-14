@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? 'Haliviq builds websites and mobile apps in Bangkok with one team, 8+ years of experience and 120+ projects delivered, from first prototype to launch and support.'
     : 'Haliviq รับทำเว็บไซต์และแอปมือถือที่กรุงเทพฯ ด้วยทีมเดียว ประสบการณ์กว่า 8 ปี ทำมาแล้วกว่า 120 โปรเจกต์ ตั้งแต่ต้นแบบแรกจนถึงเปิดตัวและดูแลต่อ'
-  const url = `https://haliviq.com/${params.lang}/services/web-mobile`
+  const url = `https://www.haliviq.com/${params.lang}/services/web-mobile`
   return {
     title,
     description,

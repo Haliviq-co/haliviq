@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "Connected-vehicle and mobility software for car makers, dealers and fleet operators: EV charging apps, telematics dashboards, service booking and predictive…"
     : "ซอฟต์แวร์รถยนต์เชื่อมต่ออินเทอร์เน็ตและบริการ Mobility สำหรับผู้ผลิตรถ ดีลเลอร์ และผู้ดูแลกองยานพาหนะ ตั้งแต่แอปชาร์จ EV แดชบอร์ด Telematics…"
-  const url = `https://haliviq.com/${params.lang}/industries/automotive`
+  const url = `https://www.haliviq.com/${params.lang}/industries/automotive`
   return { title, description, alternates: alt(url), openGraph: { title, description, url }, twitter: { card: 'summary_large_image', title, description } }
 }
 

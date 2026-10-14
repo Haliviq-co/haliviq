@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? 'Meet the Bangkok team behind Haliviq. Human Ideas. Intelligent Future. We combine UX/UI design and AI to build products for Thai and Southeast Asian businesses.'
     : 'รู้จักทีม Haliviq ความคิดของคน สู่อนาคตที่ฉลาดขึ้น เรารวมงานออกแบบ UX/UI กับ AI เพื่อสร้างผลิตภัณฑ์ให้ธุรกิจในไทยและเอเชียตะวันออกเฉียงใต้'
-  const siteUrl = `https://haliviq.com/${params.lang}/about`
+  const siteUrl = `https://www.haliviq.com/${params.lang}/about`
   return {
     title,
     description,
@@ -62,11 +62,11 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
     name: isEN ? 'About Haliviq' : 'เกี่ยวกับ Haliviq',
-    url: `https://haliviq.com/${lang}/about`,
+    url: `https://www.haliviq.com/${lang}/about`,
     mainEntity: {
       '@type': 'Organization',
       name: 'Haliviq',
-      url: 'https://haliviq.com',
+      url: 'https://www.haliviq.com',
       employee: team.map((m) => ({
         '@type': 'Person',
         name: m.name,

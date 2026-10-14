@@ -64,13 +64,13 @@ export function generateMetadata({ params }: { params: { lang: string; slug: str
   if (!a) return {}
   const lang = params.lang === 'en' ? 'en' : 'th'
   const l = a[lang]
-  const url = `https://haliviq.com/${lang}/blog/${a.slug}`
-  const img = `https://haliviq.com${coverOf(a)}`
+  const url = `https://www.haliviq.com/${lang}/blog/${a.slug}`
+  const img = `https://www.haliviq.com${coverOf(a)}`
   return {
     title: l.metaTitle,
     description: l.metaDescription,
     keywords: a.tags,
-    alternates: { canonical: url, languages: { en: `https://haliviq.com/en/blog/${a.slug}`, th: `https://haliviq.com/th/blog/${a.slug}` } },
+    alternates: { canonical: url, languages: { en: `https://www.haliviq.com/en/blog/${a.slug}`, th: `https://www.haliviq.com/th/blog/${a.slug}` } },
     openGraph: { title: l.metaTitle, description: l.metaDescription, url, type: 'article', publishedTime: a.date, images: [{ url: img, width: 1600, height: 900 }] },
     twitter: { card: 'summary_large_image', title: l.metaTitle, description: l.metaDescription, images: [img] },
   }
@@ -93,13 +93,13 @@ export default function Page({ params }: { params: { lang: Lang; slug: string } 
     '@type': 'Article',
     headline: l.title,
     description: l.metaDescription,
-    image: `https://haliviq.com${coverOf(a)}`,
+    image: `https://www.haliviq.com${coverOf(a)}`,
     datePublished: a.date,
     dateModified: a.date,
     inLanguage: lang,
     author: { '@type': 'Organization', name: 'Haliviq' },
-    publisher: { '@type': 'Organization', name: 'Haliviq', url: 'https://haliviq.com' },
-    mainEntityOfPage: `https://haliviq.com/${lang}/blog/${a.slug}`,
+    publisher: { '@type': 'Organization', name: 'Haliviq', url: 'https://www.haliviq.com' },
+    mainEntityOfPage: `https://www.haliviq.com/${lang}/blog/${a.slug}`,
   }
   const faqLd = l.faq?.length ? {
     '@context': 'https://schema.org',

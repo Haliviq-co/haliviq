@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "Engineering help for startups and tech companies: MVPs, SaaS platforms, APIs, cloud setup, and code reviews that get you ready for investors."
     : "งานวิศวกรรมสำหรับสตาร์ทอัพและบริษัทเทคโนโลยี ตั้งแต่ MVP แพลตฟอร์ม SaaS API การตั้งค่า Cloud ไปจนถึงตรวจโค้ดให้พร้อมรับนักลงทุน"
-  const url = `https://haliviq.com/${params.lang}/industries/technology`
+  const url = `https://www.haliviq.com/${params.lang}/industries/technology`
   return { title, description, alternates: alt(url), openGraph: { title, description, url }, twitter: { card: 'summary_large_image', title, description } }
 }
 

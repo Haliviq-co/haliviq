@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "Listing sites, virtual tours, rental management, and digital deal paperwork for developers, brokerages, and landlords who want fewer spreadsheets and faster…"
     : "เว็บประกาศขายและเช่า ทัวร์เสมือนจริง ระบบดูแลห้องเช่า และเอกสารดีลแบบดิจิทัล สำหรับผู้พัฒนาโครงการ นายหน้า และเจ้าของที่ปล่อยเช่า…"
-  const url = `https://haliviq.com/${params.lang}/industries/real-estate`
+  const url = `https://www.haliviq.com/${params.lang}/industries/real-estate`
   return { title, description, alternates: alt(url), openGraph: { title, description, url }, twitter: { card: 'summary_large_image', title, description } }
 }
 

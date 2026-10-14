@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "Streaming, content, and audience software for publishers, studios, and creators who want viewers to keep coming back and be willing to pay."
     : "ซอฟต์แวร์สตรีมมิง จัดการคอนเทนต์ และวิเคราะห์ผู้ชม สำหรับสำนักข่าว สตูดิโอ และครีเอเตอร์ที่อยากให้คนดูกลับมาซ้ำและยอมจ่าย"
-  const url = `https://haliviq.com/${params.lang}/industries/media-entertainment`
+  const url = `https://www.haliviq.com/${params.lang}/industries/media-entertainment`
   return { title, description, alternates: alt(url), openGraph: { title, description, url }, twitter: { card: 'summary_large_image', title, description } }
 }
 

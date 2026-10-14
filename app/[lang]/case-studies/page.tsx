@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? 'Case studies from Haliviq, a Bangkok digital studio: websites, mobile apps and CRM systems built for restaurants, government bodies, developers and retailers.'
     : 'รวม Case Study ของ Haliviq สตูดิโอดิจิทัลในกรุงเทพฯ ทั้งเว็บไซต์ แอปมือถือ และระบบ CRM ที่ทำให้ร้านอาหาร หน่วยงานรัฐ ผู้พัฒนาอสังหาฯ และธุรกิจค้าปลีก'
-  const siteUrl = `https://haliviq.com/${params.lang}/case-studies`
+  const siteUrl = `https://www.haliviq.com/${params.lang}/case-studies`
   return {
     title,
     description,

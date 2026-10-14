@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "Haliviq gives your website or app a named support team in Bangkok: agreed response times, routine updates and fixes, for systems we built or another team built."
     : "Haliviq มีทีมวิศวกรดูแลเว็บไซต์และแอปให้คุณที่กรุงเทพฯ ตกลงเวลาตอบรับชัดเจน อัปเดตและแก้ปัญหาประจำ ทั้งระบบที่เราสร้างและที่ทีมอื่นสร้าง"
-  const url = `https://haliviq.com/${params.lang}/services/support`
+  const url = `https://www.haliviq.com/${params.lang}/services/support`
   return {
     title,
     description,

@@ -3,7 +3,7 @@ import { caseStudies } from '@/lib/case-studies-data'
 import { articles } from '@/lib/blog-data'
 import { tilNotes } from '@/lib/til-data'
 
-const BASE_URL = 'https://haliviq.com'
+const BASE_URL = 'https://www.haliviq.com'
 
 const staticRoutes = [
   '',

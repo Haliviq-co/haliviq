@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? 'Mobile app development in Thailand: native iOS and Android, React Native and Flutter. MVP in 6-10 weeks, store launch, offline support and PDPA-aware data.'
     : 'Haliviq รับพัฒนาแอปมือถือ iOS และ Android ทั้ง Native, React Native และ Flutter ตั้งแต่ MVP ใน 6-10 สัปดาห์ จนถึงส่งขึ้น Store รองรับออฟไลน์และ PDPA'
-  const url = `https://haliviq.com/${params.lang}/services/mobile-apps`
+  const url = `https://www.haliviq.com/${params.lang}/services/mobile-apps`
   return {
     title,
     description,

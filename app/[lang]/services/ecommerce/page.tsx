@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? 'Custom e-commerce development in Thailand on Medusa.js: a storefront built for your brand, PromptPay and Stripe checkout, shipping and ERP integrations.'
     : 'Haliviq รับสร้างร้านออนไลน์บน Medusa.js หน้าร้านออกแบบเฉพาะแบรนด์ รองรับ PromptPay และ Stripe เชื่อมระบบขนส่งและ ERP โค้ดเป็นของคุณ ไม่มีค่าธรรมเนียมต่อธุรกรรม'
-  const url = `https://haliviq.com/${params.lang}/services/ecommerce`
+  const url = `https://www.haliviq.com/${params.lang}/services/ecommerce`
   return {
     title,
     description,

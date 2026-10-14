@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const description = isEN
     ? "Booking, front-desk, and guest-service software for hotels, resorts, and travel brands that want more direct bookings and fewer manual steps."
     : "ซอฟต์แวร์จอง งานหน้าเคาน์เตอร์ และบริการผู้เข้าพัก สำหรับโรงแรม รีสอร์ต และแบรนด์ท่องเที่ยวที่อยากได้ยอดจองตรงมากขึ้น และมีงานพิมพ์มือน้อยลง"
-  const url = `https://haliviq.com/${params.lang}/industries/hospitality-travel`
+  const url = `https://www.haliviq.com/${params.lang}/industries/hospitality-travel`
   return { title, description, alternates: alt(url), openGraph: { title, description, url }, twitter: { card: 'summary_large_image', title, description } }
 }
 

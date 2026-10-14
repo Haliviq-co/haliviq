@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
   const isEN = params.lang === 'en'
   const title = isEN ? 'Anti-Bribery & Anti-Corruption (ABAC) Policy | Haliviq' : 'นโยบายต่อต้านการให้สินบนและการทุจริต (ABAC) | Haliviq'
   const description = isEN ? 'Haliviq has zero tolerance for bribery and corruption in any form.' : 'Haliviq ไม่ยอมรับการให้สินบนและการทุจริตในทุกรูปแบบ'
-  const url = `https://haliviq.com/${params.lang}/anti-corruption`
+  const url = `https://www.haliviq.com/${params.lang}/anti-corruption`
   return { title, description, alternates: alt(url), openGraph: { title, description, url } }
 }
 
