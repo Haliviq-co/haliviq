@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import TechGlyph from '@/components/TechGlyph'
+import IndustryHero from '@/components/industry/IndustryHero'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { t, type Lang } from '@/lib/i18n'
@@ -77,65 +78,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { no: '03', title: 'Time-Tracking & Billing System', desc: 'ระบบบันทึกเวลาและออกบิล มีช่องบันทึกเร็ว เรตค่าบริการ งบ การอนุมัติ และร่างใบแจ้งหนี้ พร้อมรายงานอัตราการใช้เวลาและงานที่ยังไม่ได้เรียกเก็บ ฝ่ายการเงินได้ข้อมูลที่สะอาดสำหรับใบกำกับภาษีและหนังสือรับรองการหักภาษี ณ ที่จ่าย หลายบริษัทเจอชั่วโมงที่ลืมเรียกเก็บตั้งแต่เดือนแรก เพียงเพราะการบันทึกง่ายขึ้น' },
   ]
 
-  const heroVisual = (
-    <div className="relative pb-10 pr-6">
-      <div className="theme-dark rounded-2xl overflow-hidden" style={{ background: '#141329', border: '1px solid rgba(123,110,246,0.35)' }}>
-        <div className="flex items-center justify-between px-5 py-3.5" style={{ borderBottom: '1px solid rgb(var(--fg) / 0.08)' }}>
-          <span className="text-xs tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)', fontFamily: 'monospace' }}>{isEN ? 'Studio / Matters' : 'Studio / Matters'}</span>
-          <div className="flex gap-1">
-            <span className="w-3 h-[2px] rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-            <span className="w-3 h-[2px] rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-          </div>
-        </div>
-        <div className="p-5">
-          <div className="rounded-xl mb-4 p-4" style={{ background: 'linear-gradient(135deg, rgba(123,110,246,0.18), rgba(83,195,215,0.1))' }}>
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-xs" style={{ color: 'rgb(var(--fg) / 0.7)' }}>{isEN ? 'Engagement Progress' : 'ความคืบหน้าโปรเจกต์'}</span>
-              <span className="text-xs" style={{ color: 'var(--accent-2)', fontWeight: 600 }}>82%</span>
-            </div>
-            <div className="w-full h-2 rounded-full mb-4 overflow-hidden" style={{ background: 'rgb(var(--fg) / 0.1)' }}>
-              <div className="h-full rounded-full" style={{ width: '82%', background: 'linear-gradient(90deg, var(--purple-light), var(--lime))', animation: 'barGrow 1.6s ease-out' }} />
-            </div>
-            <div className="flex items-center gap-2 mb-2">
-              <i className="ti ti-file-check" style={{ fontSize: 15, color: 'var(--accent-2)' }} aria-hidden="true" />
-              <span className="text-xs" style={{ color: 'rgb(var(--fg) / 0.7)' }}>{isEN ? 'Contract signed' : 'เซ็นสัญญาแล้ว'}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <i className="ti ti-checklist" style={{ fontSize: 15, color: 'var(--accent)' }} aria-hidden="true" />
-              <span className="text-xs" style={{ color: 'rgb(var(--fg) / 0.7)' }}>{isEN ? '3 deliverables pending review' : 'มี Deliverable รออนุมัติ 3 รายการ'}</span>
-            </div>
-          </div>
-          <p className="mb-1" style={{ color: 'var(--ink)', fontWeight: 500, fontSize: '1.05rem' }}>{isEN ? 'Acme Advisory Retainer' : 'Acme Advisory Retainer'}</p>
-          <p className="text-xs mb-3" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? 'Due in 6 days' : 'ครบกำหนดใน 6 วัน'}</p>
-          <div className="flex gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--lime)' }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--purple-light)' }} />
-          </div>
-        </div>
-      </div>
-
-      <div
-        className="theme-dark absolute -bottom-2 -right-2 w-[180px] rounded-2xl p-4"
-        style={{ background: '#1B1A33', border: '1px solid rgb(var(--fg) / 0.1)', boxShadow: '0 20px 50px -10px rgba(0,0,0,0.6)', animation: 'badgeFloat 3.4s ease-in-out infinite' }}
-      >
-        <div className="flex items-center justify-between mb-2.5">
-          <span className="text-[10px] tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)' }}>{isEN ? 'Billing' : 'การเรียกเก็บเงิน'}</span>
-          <i className="ti ti-circle-check" style={{ fontSize: 14, color: 'var(--accent-2)' }} aria-hidden="true" />
-        </div>
-        <div className="w-9 h-9 rounded-lg flex items-center justify-center mb-2" style={{ background: 'rgba(123,110,246,0.15)' }}>
-          <i className="ti ti-clock-dollar" style={{ fontSize: 16, color: 'var(--accent)' }} aria-hidden="true" />
-        </div>
-        <p className="text-xs mb-3" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? '38.5 hrs logged this week' : 'บันทึกแล้ว 38.5 ชม. สัปดาห์นี้'}</p>
-        <div
-          className="rounded-lg text-center py-1.5 text-xs"
-          style={{ background: 'linear-gradient(90deg, var(--purple), var(--purple-light))', color: '#fff' }}
-        >
-          {isEN ? 'Send Invoice →' : 'ส่งใบแจ้งหนี้ →'}
-        </div>
-      </div>
-    </div>
-  )
+  const heroVisual = <IndustryHero kind="professional-services" isEN={isEN} />
 
   return (
     <>

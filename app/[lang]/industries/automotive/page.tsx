@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import TechGlyph from '@/components/TechGlyph'
+import IndustryHero from '@/components/industry/IndustryHero'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { t, type Lang } from '@/lib/i18n'
@@ -77,57 +78,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { no: '03', title: 'แพลตฟอร์มซ่อมบำรุงล่วงหน้า', desc: 'แพลตฟอร์มที่ใช้ข้อมูลเซนเซอร์เตือนชิ้นส่วนเสี่ยงก่อนเสียจริง และเสนอช่วงเวลาเข้าซ่อม ทีมกองรถเห็นรายการรถที่ควรตรวจเรียงตามความเสี่ยง และศูนย์ซ่อมรู้ล่วงหน้าว่าต้องใช้อะไหล่อะไร เราเริ่มจากชิ้นส่วนประเภทเดียว เช่น แบตเตอรี่หรือเบรก แล้วขยายขอบเขตเมื่อผลทำนายพิสูจน์แล้วว่ามีประโยชน์' },
   ]
 
-  const heroVisual = (
-    <div className="relative pb-10 pr-6">
-      <div className="theme-dark rounded-2xl overflow-hidden" style={{ background: '#141329', border: '1px solid rgba(123,110,246,0.35)' }}>
-        <div className="flex items-center justify-between px-5 py-3.5" style={{ borderBottom: '1px solid rgb(var(--fg) / 0.08)' }}>
-          <span className="text-xs tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)', fontFamily: 'monospace' }}>{isEN ? 'Studio / Drive' : 'Studio / Drive'}</span>
-          <div className="flex gap-1">
-            <span className="w-3 h-[2px] rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-            <span className="w-3 h-[2px] rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-          </div>
-        </div>
-        <div className="p-5">
-          <div className="aspect-[16/9] rounded-xl mb-4 flex items-center justify-center relative overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(123,110,246,0.18), rgba(83,195,215,0.1))' }}>
-            <svg width="130" height="70" viewBox="0 0 130 70" fill="none" style={{ animation: 'iconFloat 3s ease-in-out infinite' }}>
-              <path d="M15 45 L20 30 Q24 24 32 24 L92 24 Q100 24 104 30 L109 45" stroke="var(--purple-light)" strokeWidth="2" fill="none" strokeLinecap="round" />
-              <rect x="10" y="45" width="104" height="14" rx="6" stroke="var(--purple-light)" strokeWidth="2" fill="rgba(123,110,246,0.12)" />
-              <circle cx="32" cy="59" r="7" stroke="var(--lime)" strokeWidth="2" fill="#141329" />
-              <circle cx="92" cy="59" r="7" stroke="var(--lime)" strokeWidth="2" fill="#141329" />
-              <path d="M60 30 L54 40 L62 40 L56 50" stroke="var(--lime)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-            </svg>
-          </div>
-          <p className="mb-1" style={{ color: 'var(--ink)', fontWeight: 500, fontSize: '1.05rem' }}>{isEN ? 'Vehicle Status' : 'สถานะยานพาหนะ'}</p>
-          <p className="text-xs mb-3" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? 'Charging · 78% · 22 min left' : 'กำลังชาร์จ · 78% · เหลือ 22 นาที'}</p>
-          <div className="flex gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--lime)' }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--purple-light)' }} />
-          </div>
-        </div>
-      </div>
-
-      <div
-        className="theme-dark absolute -bottom-2 -right-2 w-[180px] rounded-2xl p-4"
-        style={{ background: '#1B1A33', border: '1px solid rgb(var(--fg) / 0.1)', boxShadow: '0 20px 50px -10px rgba(0,0,0,0.6)', animation: 'badgeFloat 3.4s ease-in-out infinite' }}
-      >
-        <div className="flex items-center justify-between mb-2.5">
-          <span className="text-[10px] tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)' }}>{isEN ? 'Charging Session' : 'เซสชันชาร์จ'}</span>
-          <i className="ti ti-circle-check" style={{ fontSize: 14, color: 'var(--accent-2)' }} aria-hidden="true" />
-        </div>
-        <div className="w-9 h-9 rounded-lg flex items-center justify-center mb-2" style={{ background: 'rgba(123,110,246,0.15)' }}>
-          <i className="ti ti-plug" style={{ fontSize: 16, color: 'var(--accent)' }} aria-hidden="true" />
-        </div>
-        <p className="text-xs mb-3" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? 'Station B4 · 150 kW' : 'สถานี B4 · 150 กิโลวัตต์'}</p>
-        <div
-          className="rounded-lg text-center py-1.5 text-xs"
-          style={{ background: 'linear-gradient(90deg, var(--purple), var(--purple-light))', color: '#fff' }}
-        >
-          {isEN ? 'View Details →' : 'ดูรายละเอียด →'}
-        </div>
-      </div>
-    </div>
-  )
+  const heroVisual = <IndustryHero kind="automotive" isEN={isEN} />
 
   return (
     <>

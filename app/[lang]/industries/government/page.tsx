@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import TechGlyph from '@/components/TechGlyph'
+import IndustryHero from '@/components/industry/IndustryHero'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { t, type Lang } from '@/lib/i18n'
@@ -77,58 +78,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { no: '03', title: 'แพลตฟอร์มข้อมูลข้ามหน่วยงาน', desc: 'ชั้นแลกเปลี่ยนข้อมูลที่ปลอดภัย ให้หน่วยงานหนึ่งขอข้อมูลที่ยืนยันแล้วจากอีกหน่วยงานได้เมื่อประชาชนยินยอม ทุกคำขอมี Log ตรวจย้อนหลังได้ ช่วยตัดการเก็บเอกสารซ้ำ โดยที่แต่ละหน่วยงานยังควบคุมข้อมูลของตัวเองได้' },
   ]
 
-  const heroVisual = (
-    <div className="relative pb-10 pr-6">
-      <div className="theme-dark rounded-2xl overflow-hidden" style={{ background: '#141329', border: '1px solid rgba(123,110,246,0.35)' }}>
-        <div className="flex items-center justify-between px-5 py-3.5" style={{ borderBottom: '1px solid rgb(var(--fg) / 0.08)' }}>
-          <span className="text-xs tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)', fontFamily: 'monospace' }}>{isEN ? 'Portal / Gov' : 'Portal / Gov'}</span>
-          <div className="flex gap-1">
-            <span className="w-3 h-[2px] rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-            <span className="w-3 h-[2px] rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-          </div>
-        </div>
-        <div className="p-5">
-          <div className="aspect-[16/9] rounded-xl mb-4 flex items-center justify-center relative overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(123,110,246,0.18), rgba(83,195,215,0.1))' }}>
-            <svg width="130" height="70" viewBox="0 0 130 70" fill="none" style={{ animation: 'iconFloat 3s ease-in-out infinite' }}>
-              <rect x="18" y="14" width="94" height="42" rx="6" stroke="var(--purple-light)" strokeWidth="2" fill="rgba(123,110,246,0.12)" />
-              <circle cx="38" cy="35" r="10" stroke="var(--lime)" strokeWidth="2" fill="none" />
-              <path d="M33 35 L37 39 L44 30" stroke="var(--lime)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-              <line x1="60" y1="27" x2="102" y2="27" stroke="rgb(var(--fg) / 0.4)" strokeWidth="2" strokeLinecap="round" />
-              <line x1="60" y1="35" x2="94" y2="35" stroke="rgb(var(--fg) / 0.25)" strokeWidth="2" strokeLinecap="round" />
-              <line x1="60" y1="43" x2="88" y2="43" stroke="rgb(var(--fg) / 0.25)" strokeWidth="2" strokeLinecap="round" />
-            </svg>
-          </div>
-          <p className="mb-1" style={{ color: 'var(--ink)', fontWeight: 500, fontSize: '1.05rem' }}>{isEN ? 'Digital ID Verified' : 'ยืนยันตัวตนดิจิทัลแล้ว'}</p>
-          <p className="text-xs mb-3" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? 'Permit application in progress.' : 'คำขอใบอนุญาตกำลังดำเนินการ'}</p>
-          <div className="flex gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--lime)' }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--purple-light)' }} />
-          </div>
-        </div>
-      </div>
-
-      <div
-        className="theme-dark absolute -bottom-2 -right-2 w-[180px] rounded-2xl p-4"
-        style={{ background: '#1B1A33', border: '1px solid rgb(var(--fg) / 0.1)', boxShadow: '0 20px 50px -10px rgba(0,0,0,0.6)', animation: 'badgeFloat 3.4s ease-in-out infinite' }}
-      >
-        <div className="flex items-center justify-between mb-2.5">
-          <span className="text-[10px] tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)' }}>{isEN ? 'Application' : 'คำขอ'}</span>
-          <i className="ti ti-circle-check" style={{ fontSize: 14, color: 'var(--accent-2)' }} aria-hidden="true" />
-        </div>
-        <div className="w-9 h-9 rounded-lg flex items-center justify-center mb-2" style={{ background: 'rgba(123,110,246,0.15)' }}>
-          <i className="ti ti-id-badge-2" style={{ fontSize: 16, color: 'var(--accent)' }} aria-hidden="true" />
-        </div>
-        <p className="text-xs mb-3" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? 'Permit #GV-2451' : 'ใบอนุญาต #GV-2451'}</p>
-        <div
-          className="rounded-lg text-center py-1.5 text-xs"
-          style={{ background: 'linear-gradient(90deg, var(--purple), var(--purple-light))', color: '#fff' }}
-        >
-          {isEN ? 'Approved →' : 'อนุมัติแล้ว →'}
-        </div>
-      </div>
-    </div>
-  )
+  const heroVisual = <IndustryHero kind="government" isEN={isEN} />
 
   return (
     <>

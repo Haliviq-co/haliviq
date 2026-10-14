@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import TechGlyph from '@/components/TechGlyph'
+import IndustryHero from '@/components/industry/IndustryHero'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { t, type Lang } from '@/lib/i18n'
@@ -77,61 +78,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { no: '03', title: 'Churn Prediction System', desc: 'แพลตฟอร์ม Machine Learning ที่คำนวณความเสี่ยงที่ลูกค้าจะเลิกใช้ทุกวัน และส่งข้อเสนอรักษาลูกค้าให้บัญชีกลุ่มเสี่ยงโดยอัตโนมัติ ทีมรักษาลูกค้าเห็นว่าแต่ละบัญชีถูกติดธงเพราะอะไร ทดสอบว่าข้อเสนอไหนได้ผล และติดตามว่าลูกค้าที่รั้งไว้ได้ยังอยู่ต่อไหม เราเริ่มทดลองกับกลุ่มเดียวก่อน เช่น ลูกค้าเติมเงิน แล้วค่อยขยาย' },
   ]
 
-  const heroVisual = (
-    <div className="relative pb-10 pr-6">
-      <div className="theme-dark rounded-2xl overflow-hidden" style={{ background: '#141329', border: '1px solid rgba(123,110,246,0.35)' }}>
-        <div className="flex items-center justify-between px-5 py-3.5" style={{ borderBottom: '1px solid rgb(var(--fg) / 0.08)' }}>
-          <span className="text-xs tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)', fontFamily: 'monospace' }}>{isEN ? 'Network / Status' : 'Network / Status'}</span>
-          <div className="flex gap-1">
-            <span className="w-3 h-[2px] rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-            <span className="w-3 h-[2px] rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-          </div>
-        </div>
-        <div className="p-5">
-          <div className="aspect-[16/9] rounded-xl mb-4 flex items-center justify-center relative overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(123,110,246,0.18), rgba(83,195,215,0.1))' }}>
-            <svg width="130" height="70" viewBox="0 0 130 70" fill="none" style={{ animation: 'iconFloat 3s ease-in-out infinite' }}>
-              <path d="M65 8 L65 62" stroke="var(--purple-light)" strokeWidth="2" />
-              <path d="M65 8 L46 22" stroke="var(--purple-light)" strokeWidth="2" strokeLinecap="round" />
-              <path d="M65 8 L84 22" stroke="var(--purple-light)" strokeWidth="2" strokeLinecap="round" />
-              <circle cx="65" cy="8" r="4" fill="var(--lime)" />
-              <rect x="30" y="46" width="8" height="16" rx="1" fill="rgb(var(--fg) / 0.25)" />
-              <rect x="44" y="38" width="8" height="24" rx="1" fill="rgb(var(--fg) / 0.35)" />
-              <rect x="58" y="30" width="8" height="32" rx="1" fill="var(--lime)" />
-              <rect x="72" y="38" width="8" height="24" rx="1" fill="rgb(var(--fg) / 0.35)" />
-              <rect x="86" y="46" width="8" height="16" rx="1" fill="rgb(var(--fg) / 0.25)" />
-            </svg>
-          </div>
-          <p className="mb-1" style={{ color: 'var(--ink)', fontWeight: 500, fontSize: '1.05rem' }}>{isEN ? 'National Network' : 'เครือข่ายทั่วประเทศ'}</p>
-          <p className="text-xs mb-3" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? '5G core · 12,480 sites online' : '5G Core · เสาสัญญาณ 12,480 แห่ง'}</p>
-          <div className="flex gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--lime)' }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--purple-light)' }} />
-          </div>
-        </div>
-      </div>
-
-      <div
-        className="theme-dark absolute -bottom-2 -right-2 w-[180px] rounded-2xl p-4"
-        style={{ background: '#1B1A33', border: '1px solid rgb(var(--fg) / 0.1)', boxShadow: '0 20px 50px -10px rgba(0,0,0,0.6)', animation: 'badgeFloat 3.4s ease-in-out infinite' }}
-      >
-        <div className="flex items-center justify-between mb-2.5">
-          <span className="text-[10px] tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)' }}>{isEN ? 'Uptime' : 'Uptime'}</span>
-          <i className="ti ti-circle-check" style={{ fontSize: 14, color: 'var(--accent-2)' }} aria-hidden="true" />
-        </div>
-        <div className="w-9 h-9 rounded-lg flex items-center justify-center mb-2" style={{ background: 'rgba(123,110,246,0.15)' }}>
-          <i className="ti ti-antenna" style={{ fontSize: 16, color: 'var(--accent)' }} aria-hidden="true" />
-        </div>
-        <p className="text-xs mb-3" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? '99.98% this month' : '99.98% เดือนนี้'}</p>
-        <div
-          className="rounded-lg text-center py-1.5 text-xs"
-          style={{ background: 'linear-gradient(90deg, var(--purple), var(--purple-light))', color: '#fff' }}
-        >
-          {isEN ? 'View Details →' : 'ดูรายละเอียด →'}
-        </div>
-      </div>
-    </div>
-  )
+  const heroVisual = <IndustryHero kind="telecommunications" isEN={isEN} />
 
   return (
     <>

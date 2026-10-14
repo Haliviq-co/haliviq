@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import TechGlyph from '@/components/TechGlyph'
+import IndustryHero from '@/components/industry/IndustryHero'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { t, type Lang } from '@/lib/i18n'
@@ -77,57 +78,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { no: '03', title: 'Supply Chain Control Tower', desc: 'แดชบอร์ดเดียวสำหรับฝ่ายจัดซื้อและฝ่ายวางแผน แสดงใบสั่งซื้อที่ค้างอยู่ ผลงานของซัพพลายเออร์ สต็อกที่ใช้ได้กี่วัน และของที่กำลังขนส่ง จุดเสี่ยงจะถูกไฮไลต์ เช่น ซัพพลายเออร์ที่ส่งช้าสามครั้งติด หรือชิ้นส่วนที่เหลือสต็อกแค่สัปดาห์เดียว สร้างบนข้อมูล ERP ของคุณ จึงไม่ต้องเปลี่ยนวิธีทำงานของฝ่ายจัดซื้อ' },
   ]
 
-  const heroVisual = (
-    <div className="relative pb-10 pr-6">
-      <div className="theme-dark rounded-2xl overflow-hidden" style={{ background: '#141329', border: '1px solid rgba(123,110,246,0.35)' }}>
-        <div className="flex items-center gap-2 px-5 py-3.5" style={{ borderBottom: '1px solid rgb(var(--fg) / 0.08)' }}>
-          <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#F87171' }} />
-          <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#FBBF24' }} />
-          <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#34D399' }} />
-          <span className="ml-3 text-xs" style={{ color: 'rgb(var(--fg) / 0.85)', fontFamily: 'monospace' }}>line-04.oee</span>
-        </div>
-        <div className="px-6 py-8 relative">
-          <div className="flex items-center justify-between mb-8">
-            <span className="text-xs tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? 'Assembly Line' : 'สายการผลิต'}</span>
-            <span
-              className="px-3 py-1.5 rounded-lg text-xs"
-              style={{ background: 'rgba(123,110,246,0.15)', color: 'var(--accent)', border: '1px solid rgb(var(--fg) / 0.08)' }}
-            >
-              {isEN ? 'Line 04' : 'สาย 04'}
-            </span>
-          </div>
-          <div className="flex items-end gap-5 mb-6" style={{ height: 70 }}>
-            {[0.5, 0.75, 0.95, 0.6, 0.85, 0.4].map((h, i) => (
-              <div key={i} className="flex-1 rounded-t-md" style={{ height: `${h * 100}%`, background: 'linear-gradient(180deg, var(--lime), var(--purple-light))', animation: `barGrow ${1.6 + i * 0.15}s ease-in-out infinite` }} />
-            ))}
-          </div>
-          <div className="flex items-center gap-2">
-            <i className="ti ti-robot" style={{ fontSize: 20, color: 'var(--accent-2)', animation: 'iconFloat 2.4s ease-in-out infinite' }} aria-hidden="true" />
-            {[0, 1, 2, 3].map((i) => (
-              <div key={i} className="w-9 h-9 rounded-md flex items-center justify-center" style={{ background: 'rgba(83,195,215,0.1)', border: '1px solid rgba(83,195,215,0.3)' }}>
-                <i className="ti ti-cube" style={{ fontSize: 15, color: 'var(--accent-2)' }} aria-hidden="true" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div
-        className="theme-dark absolute -bottom-2 -right-2 w-[190px] rounded-2xl p-4"
-        style={{ background: '#1B1A33', border: '1px solid rgb(var(--fg) / 0.1)', boxShadow: '0 20px 50px -10px rgba(0,0,0,0.6)', animation: 'badgeFloat 3.4s ease-in-out infinite' }}
-      >
-        <div className="flex items-center justify-between mb-2.5">
-          <span className="text-[10px] tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)' }}>OEE</span>
-          <i className="ti ti-trending-up" style={{ fontSize: 14, color: 'var(--accent-2)' }} aria-hidden="true" />
-        </div>
-        <div className="leading-none mb-1" style={{ color: 'var(--ink)', fontSize: '1.6rem', fontWeight: 500 }}>87.4%</div>
-        <div className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--accent-2)' }}>
-          <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: 'var(--lime)', animation: 'blinkDot 1.6s ease-in-out infinite' }} />
-          {isEN ? 'Running' : 'กำลังทำงาน'}
-        </div>
-      </div>
-    </div>
-  )
+  const heroVisual = <IndustryHero kind="manufacturing" isEN={isEN} />
 
   return (
     <>

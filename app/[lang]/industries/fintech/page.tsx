@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import TechGlyph from '@/components/TechGlyph'
+import IndustryHero from '@/components/industry/IndustryHero'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { t, type Lang } from '@/lib/i18n'
@@ -77,59 +78,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { no: '03', title: 'การเชื่อมต่อ Open Banking', desc: 'API Gateway และพอร์ทัลนักพัฒนาที่ให้พาร์ทเนอร์ดูข้อมูลบัญชีเมื่อลูกค้ายินยอม และสั่งชำระเงินได้ พาร์ทเนอร์สมัคร ทดสอบใน Sandbox แล้วขึ้นใช้งานจริงภายใต้กฎของคุณ ส่วนคุณคุมสิทธิ์ วงเงิน และการเฝ้าดูได้ที่เดียว' },
   ]
 
-  const heroVisual = (
-    <div className="relative pb-10 pr-6">
-      <div className="theme-dark rounded-2xl overflow-hidden" style={{ background: '#141329', border: '1px solid rgba(123,110,246,0.35)' }}>
-        <div className="flex items-center gap-2 px-5 py-3.5" style={{ borderBottom: '1px solid rgb(var(--fg) / 0.08)' }}>
-          <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#F87171' }} />
-          <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#FBBF24' }} />
-          <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#34D399' }} />
-          <span className="ml-3 text-xs" style={{ color: 'rgb(var(--fg) / 0.85)', fontFamily: 'monospace' }}>wallet.app</span>
-        </div>
-        <div className="px-6 py-7">
-          <div className="flex items-center justify-between mb-6">
-            <span className="text-xs tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? 'Account Balance' : 'ยอดคงเหลือ'}</span>
-            <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full" style={{ background: 'var(--lime)', animation: 'blinkDot 1.6s ease-in-out infinite' }} />
-              <span className="text-xs" style={{ color: 'var(--accent-2)' }}>{isEN ? 'Secured' : 'ปลอดภัย'}</span>
-            </div>
-          </div>
-          <div className="mb-7 leading-none" style={{ color: 'var(--ink)', fontSize: '2.1rem', fontWeight: 500, fontFamily: 'monospace' }}>
-            ฿1,284,500.00
-          </div>
-          <div className="space-y-3">
-            {[
-              { icon: 'ti-arrow-up-right', label: isEN ? 'Transfer to Somchai' : 'โอนให้สมชาย', amount: '-฿2,400' },
-              { icon: 'ti-qrcode', label: isEN ? 'QR Payment · Cafe' : 'QR Payment · คาเฟ่', amount: '-฿120' },
-              { icon: 'ti-arrow-down-left', label: isEN ? 'Salary Deposit' : 'เงินเดือนเข้า', amount: '+฿48,000' },
-            ].map((row) => (
-              <div key={row.label} className="flex items-center gap-3 p-3 rounded-xl" style={{ background: 'rgb(var(--fg) / 0.04)' }}>
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style={{ background: 'rgba(123,110,246,0.15)' }}>
-                  <i className={`ti ${row.icon}`} style={{ fontSize: 15, color: 'var(--accent)' }} aria-hidden="true" />
-                </div>
-                <span className="flex-1 text-xs" style={{ color: 'rgb(var(--fg) / 0.85)' }}>{row.label}</span>
-                <span className="text-xs" style={{ color: row.amount.startsWith('+') ? 'var(--lime)' : 'rgb(var(--fg) / 0.85)', fontFamily: 'monospace' }}>{row.amount}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div
-        className="theme-dark absolute -bottom-2 -right-2 w-[210px] rounded-2xl p-4"
-        style={{ background: '#1B1A33', border: '1px solid rgb(var(--fg) / 0.1)', boxShadow: '0 20px 50px -10px rgba(0,0,0,0.6)', animation: 'badgeFloat 3.4s ease-in-out infinite' }}
-      >
-        <div className="flex items-center justify-between mb-2.5">
-          <span className="text-[10px] tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)' }}>{isEN ? 'Fraud Check' : 'ตรวจสอบ Fraud'}</span>
-          <i className="ti ti-shield-check" style={{ fontSize: 14, color: 'var(--accent-2)' }} aria-hidden="true" />
-        </div>
-        <div className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--accent-2)' }}>
-          <i className="ti ti-circle-check" style={{ fontSize: 13 }} aria-hidden="true" />
-          {isEN ? '0 anomalies today' : 'วันนี้ไม่พบความผิดปกติ'}
-        </div>
-      </div>
-    </div>
-  )
+  const heroVisual = <IndustryHero kind="fintech" isEN={isEN} />
 
   return (
     <>

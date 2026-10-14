@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import TechGlyph from '@/components/TechGlyph'
+import IndustryHero from '@/components/industry/IndustryHero'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { t, type Lang } from '@/lib/i18n'
@@ -77,60 +78,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { no: '03', title: 'แพลตฟอร์มจำลองภารกิจและ Digital Twin', desc: 'สภาพแวดล้อม Digital Twin สำหรับซ้อมภารกิจ คาดการณ์การซ่อมบำรุง และฝึกผู้ปฏิบัติงาน วิศวกรป้อนข้อมูล Telemetry และค่าคอนฟิก แล้วลองสถานการณ์ เช่น เซนเซอร์เสียหรือวงโคจรเปลี่ยน จากนั้นเทียบผลกับที่ระบบจริงทำ ทีมฝึกอบรมใช้โมเดลเดียวกัน ผู้ปฏิบัติงานจึงได้ฝึกกับของที่ใกล้เคียงของจริง' },
   ]
 
-  const heroVisual = (
-    <div className="relative pb-10 pr-6">
-      <div className="theme-dark rounded-2xl overflow-hidden" style={{ background: '#141329', border: '1px solid rgba(123,110,246,0.35)' }}>
-        <div className="flex items-center justify-between px-5 py-3.5" style={{ borderBottom: '1px solid rgb(var(--fg) / 0.08)' }}>
-          <span className="text-xs tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)', fontFamily: 'monospace' }}>{isEN ? 'Ground Station / Telemetry' : 'Ground Station / Telemetry'}</span>
-          <div className="flex gap-1">
-            <span className="w-3 h-[2px] rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-            <span className="w-3 h-[2px] rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-          </div>
-        </div>
-        <div className="p-5">
-          <div className="aspect-[16/9] rounded-xl mb-4 flex items-center justify-center relative overflow-hidden" style={{ background: 'linear-gradient(135deg, rgba(123,110,246,0.18), rgba(83,195,215,0.1))' }}>
-            <svg width="130" height="70" viewBox="0 0 130 70" fill="none" style={{ animation: 'iconFloat 3s ease-in-out infinite' }}>
-              <circle cx="65" cy="35" r="26" stroke="var(--purple-light)" strokeWidth="1.5" fill="none" opacity="0.5" />
-              <circle cx="65" cy="35" r="16" stroke="var(--purple-light)" strokeWidth="1.5" fill="none" opacity="0.7" />
-              <circle cx="65" cy="35" r="3" fill="var(--lime)" />
-              <path d="M65 9 L65 2 M65 68 L65 61 M39 35 L32 35 M98 35 L91 35" stroke="rgb(var(--fg) / 0.4)" strokeWidth="1.5" strokeLinecap="round" />
-              <path d="M18 55 L28 40 L45 46 L58 30" stroke="var(--lime)" strokeWidth="2" strokeLinecap="round" fill="none" />
-            </svg>
-          </div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: 'var(--lime)', animation: 'blinkDot 1.6s ease-in-out infinite' }} />
-            <p style={{ color: 'var(--ink)', fontWeight: 500, fontSize: '1.05rem' }}>{isEN ? 'SAT-07 · Nominal' : 'SAT-07 · ปกติ'}</p>
-          </div>
-          <p className="text-xs mb-3" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? 'Signal lock acquired.' : 'ล็อกสัญญาณสำเร็จ'}</p>
-          <div className="flex gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--lime)' }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'rgb(var(--fg) / 0.3)' }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'var(--purple-light)' }} />
-          </div>
-        </div>
-      </div>
-
-      <div
-        className="theme-dark absolute -bottom-2 -right-2 w-[180px] rounded-2xl p-4"
-        style={{ background: '#1B1A33', border: '1px solid rgb(var(--fg) / 0.1)', boxShadow: '0 20px 50px -10px rgba(0,0,0,0.6)', animation: 'badgeFloat 3.4s ease-in-out infinite' }}
-      >
-        <div className="flex items-center justify-between mb-2.5">
-          <span className="text-[10px] tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)' }}>{isEN ? 'Mission Status' : 'สถานะภารกิจ'}</span>
-          <i className="ti ti-shield-check" style={{ fontSize: 14, color: 'var(--accent-2)' }} aria-hidden="true" />
-        </div>
-        <div className="w-9 h-9 rounded-lg flex items-center justify-center mb-2" style={{ background: 'rgba(123,110,246,0.15)' }}>
-          <i className="ti ti-satellite" style={{ fontSize: 16, color: 'var(--accent)' }} aria-hidden="true" />
-        </div>
-        <p className="text-xs mb-3" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? 'Clearance verified' : 'ยืนยันสิทธิ์แล้ว'}</p>
-        <div
-          className="rounded-lg text-center py-1.5 text-xs"
-          style={{ background: 'linear-gradient(90deg, var(--purple), var(--purple-light))', color: '#fff' }}
-        >
-          {isEN ? 'Track Telemetry →' : 'ติดตาม Telemetry →'}
-        </div>
-      </div>
-    </div>
-  )
+  const heroVisual = <IndustryHero kind="aerospace-defense" isEN={isEN} />
 
   return (
     <>

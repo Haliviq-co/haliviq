@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import TechGlyph from '@/components/TechGlyph'
+import IndustryHero from '@/components/industry/IndustryHero'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { t, type Lang } from '@/lib/i18n'
@@ -77,63 +78,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { no: '03', title: 'ติดตามผู้ป่วยทางไกล', desc: 'โครงการติดตามผู้ป่วยโรคเรื้อรังด้วยอุปกรณ์ที่บ้านและแอปสำหรับคนไข้ พยาบาลจะได้รายชื่อที่จัดลำดับว่าวันนี้ใครต้องดูเป็นพิเศษ ส่วนคนไข้ได้รับการเตือนง่ายๆ เป็นภาษาไทย เราเริ่มจากโรคเดียวก่อน เช่น ความดันโลหิตสูง แล้วค่อยเพิ่มโรคอื่น' },
   ]
 
-  const heroVisual = (
-    <div className="relative pb-10 pr-6">
-      <div className="theme-dark rounded-2xl overflow-hidden" style={{ background: '#141329', border: '1px solid rgba(123,110,246,0.35)' }}>
-        <div className="flex items-center gap-2 px-5 py-3.5" style={{ borderBottom: '1px solid rgb(var(--fg) / 0.08)' }}>
-          <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#F87171' }} />
-          <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#FBBF24' }} />
-          <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#34D399' }} />
-          <span className="ml-3 text-xs" style={{ color: 'rgb(var(--fg) / 0.85)', fontFamily: 'monospace' }}>vitals.monitor</span>
-        </div>
-        <div className="px-6 py-7">
-          <div className="flex items-center justify-between mb-6">
-            <span className="text-xs tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.5)' }}>{isEN ? 'Connected Care' : 'การดูแลแบบเชื่อมต่อ'}</span>
-            <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full" style={{ background: 'var(--lime)', animation: 'blinkDot 1.6s ease-in-out infinite' }} />
-              <span className="text-xs" style={{ color: 'var(--accent-2)' }}>{isEN ? 'Live' : 'สด'}</span>
-            </div>
-          </div>
-          <svg width="100%" height="70" viewBox="0 0 300 70" fill="none" className="mb-5">
-            <path
-              d="M0 35 L45 35 L58 12 L72 58 L86 20 L100 35 L145 35 L158 12 L172 58 L186 20 L200 35 L300 35"
-              stroke="var(--lime)" strokeWidth="2" fill="none"
-              strokeDasharray="6 6"
-              style={{ animation: 'dashFlow 1.2s linear infinite' }}
-            />
-          </svg>
-          <div className="flex items-center gap-8">
-            <div>
-              <div className="leading-none mb-1" style={{ color: 'var(--ink)', fontSize: '1.8rem', fontWeight: 500, fontFamily: 'monospace' }}>72</div>
-              <span className="text-xs" style={{ color: 'rgb(var(--fg) / 0.5)' }}>bpm</span>
-            </div>
-            <div>
-              <div className="leading-none mb-1" style={{ color: 'var(--ink)', fontSize: '1.8rem', fontWeight: 500, fontFamily: 'monospace' }}>98%</div>
-              <span className="text-xs" style={{ color: 'rgb(var(--fg) / 0.5)' }}>SpO₂</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div
-        className="theme-dark absolute -bottom-2 -right-2 w-[200px] rounded-2xl p-4"
-        style={{ background: '#1B1A33', border: '1px solid rgb(var(--fg) / 0.1)', boxShadow: '0 20px 50px -10px rgba(0,0,0,0.6)', animation: 'badgeFloat 3.4s ease-in-out infinite' }}
-      >
-        <div className="flex items-center justify-between mb-2.5">
-          <span className="text-[10px] tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)' }}>{isEN ? 'Care Plan' : 'แผนการรักษา'}</span>
-          <i className="ti ti-circle-check" style={{ fontSize: 14, color: 'var(--accent-2)' }} aria-hidden="true" />
-        </div>
-        <div className="flex items-center gap-2 mb-2">
-          <i className="ti ti-capsule" style={{ fontSize: 18, color: 'var(--accent)', animation: 'iconFloat 2.6s ease-in-out infinite' }} aria-hidden="true" />
-          <i className="ti ti-capsule" style={{ fontSize: 18, color: 'var(--accent)', animation: 'iconFloat 2.9s ease-in-out infinite' }} aria-hidden="true" />
-        </div>
-        <div className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--accent-2)' }}>
-          <i className="ti ti-check" style={{ fontSize: 12 }} aria-hidden="true" />
-          {isEN ? 'Prescription synced' : 'ยาซิงก์แล้ว'}
-        </div>
-      </div>
-    </div>
-  )
+  const heroVisual = <IndustryHero kind="healthcare" isEN={isEN} />
 
   return (
     <>
