@@ -285,24 +285,6 @@ export default function Navbar({ lang, tr, transparent = false }: Props) {
                     ))}
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3 mb-3">
-                    {segments.map((seg) => (
-                      <Link
-                        key={seg.title}
-                        href={`${prefix}/contact`}
-                        onClick={() => setServicesOpen(false)}
-                        className="rounded-xl p-4 hover:bg-[rgb(var(--fg)/0.06)] transition-colors"
-                        style={{ background: 'rgb(var(--fg) / 0.04)', border: '1px solid rgb(var(--fg) / 0.08)' }}
-                      >
-                        <div className="w-9 h-9 rounded-lg flex items-center justify-center mb-3" style={{ background: 'rgb(var(--fg) / 0.06)' }}>
-                          <i className={`ti ${seg.icon}`} style={{ fontSize: 16, color: 'var(--accent-2)' }} aria-hidden="true" />
-                        </div>
-                        <p className="mb-1" style={{ color: 'var(--ink)', fontWeight: 500, fontSize: '0.85rem' }}>{seg.title}</p>
-                        <p style={{ color: 'rgb(var(--fg) / 0.85)', fontWeight: 400, fontSize: '0.75rem', lineHeight: 1.5 }}>{seg.desc}</p>
-                      </Link>
-                    ))}
-                  </div>
-
                   <Link
                     href={`${prefix}/services`}
                     onClick={() => setServicesOpen(false)}
