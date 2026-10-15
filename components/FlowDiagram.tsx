@@ -1,4 +1,5 @@
 import type { Lang } from '@/lib/i18n'
+import type { ReactNode } from 'react'
 
 // An animated "idea -> what Haliviq does -> outcomes" diagram. Pure SVG + CSS, no client JS.
 const COPY = {
@@ -19,12 +20,35 @@ const COPY = {
     sub: 'เล่าให้เราฟังว่าอยากสร้างหรืออยากแก้อะไร ที่เหลือเราดูแลให้ ตั้งแต่ออกแบบ เปิดใช้งาน ไปจนถึงดูแลต่อเนื่อง',
     from: 'ไอเดียของคุณ', fromSub: 'หรือปัญหาที่อยากแก้',
     mid: 'Haliviq',
-    services: ['เว็บและแอปมือถือ', 'AI และระบบอัตโนมัติ', 'ออกแบบ UX / UI', 'ERP / CRM', 'คลาวด์และความปลอดภัย', 'SEO / AEO / GEO'],
+    services: ['เว็บและแอปมือถือ', 'AI และระบบอัตโนมัติ', 'ออกแบบ UX / UI', 'ERP / CRM', 'Cloud และความปลอดภัย', 'SEO / AEO / GEO'],
     out: 'สิ่งที่คุณจะได้',
     outcomes: ['ใช้งานได้จริง', 'ลูกค้าพึงพอใจ', 'ลดต้นทุน', 'ปลอดภัย', 'พร้อมขยาย', 'ดูแลต่อเนื่อง'],
     pill: 'เทคโนโลยีที่ช่วยให้ธุรกิจของคุณไปต่อได้จริง',
   },
 } as const
+
+
+// Simple line icons (24x24 grid), one per service / outcome
+const ICON_SVC = [
+  <><rect x="7" y="2" width="10" height="20" rx="2" /><path d="M12 18h.01" /></>,
+  <><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z" /><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z" /></>,
+  <><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18M9 21V9" /></>,
+  <><ellipse cx="12" cy="5" rx="9" ry="3" /><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5M3 12c0 1.7 4 3 9 3s9-1.3 9-3" /></>,
+  <><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="M9 12l2 2 4-4" /></>,
+  <><circle cx="11" cy="11" r="8" /><path d="M21 21l-4.3-4.3" /></>,
+]
+const ICON_OUT = [
+  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />,
+  <><circle cx="12" cy="12" r="10" /><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01" /></>,
+  <><path d="M22 17l-8.5-8.5-5 5L2 7" /><path d="M16 17h6v-6" /></>,
+  <><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></>,
+  <><path d="M22 7l-8.5 8.5-5-5L2 17" /><path d="M16 7h6v6" /></>,
+  <><path d="M3 18v-6a9 9 0 0 1 18 0v6" /><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" /></>,
+]
+const stroke = { fill: 'none', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' } as const
+function MiniIcon({ children, color, size = 20 }: { children: ReactNode; color: string; size?: number }) {
+  return <svg width={size} height={size} viewBox="0 0 24 24" stroke={color} {...stroke} aria-hidden="true" style={{ flex: 'none' }}>{children}</svg>
+}
 
 const CSS = `
 .fd-dot { fill: #53C3D7; }
@@ -95,12 +119,13 @@ export default function FlowDiagram({ lang }: { lang: Lang }) {
             <text x="550" y="128" textAnchor="middle" fontSize="16" fontWeight="600" fill={soft}>{c.mid}</text>
             {c.services.map((s, i) => {
               const col = i % 2, row = Math.floor(i / 2)
-              const x = 366 + col * 190, y = 150 + row * 66
+              const x = 358 + col * 196, y = 150 + row * 66
               return (
                 <g key={s} className="fd-chip" style={{ animationDelay: `${i * 0.5}s` }}>
-                  <rect x={x} y={y} width="178" height="48" rx="24" fill="rgb(var(--fg) / 0.07)" stroke="rgb(var(--fg) / 0.14)" />
-                  <circle cx={x + 24} cy={y + 24} r="6" fill={i % 2 ? '#53C3D7' : '#7B6EF6'} />
-                  <text x={x + 34} y={y + 29} fontSize="12.5" fontWeight="500" fill={ink}>{s}</text>
+                  <rect x={x} y={y} width="188" height="48" rx="24" fill="rgb(var(--fg) / 0.07)" stroke="rgb(var(--fg) / 0.14)" />
+                  <circle cx={x + 26} cy={y + 24} r="15" fill={i % 2 ? 'rgba(83,195,215,0.18)' : 'rgba(123,110,246,0.22)'} />
+                  <g transform={`translate(${x + 15} ${y + 13}) scale(0.9167)`} stroke={i % 2 ? '#53C3D7' : '#9A90FF'} {...stroke}>{ICON_SVC[i]}</g>
+                  <text x={x + 49} y={y + 29} fontSize="12.5" fontWeight="500" fill={ink}>{s}</text>
                 </g>
               )
             })}
@@ -110,9 +135,8 @@ export default function FlowDiagram({ lang }: { lang: Lang }) {
             <text x="960" y="145" textAnchor="middle" fontSize="15" fontWeight="600" fill={soft}>{c.out}</text>
             {c.outcomes.map((o, i) => (
               <g key={o} className="fd-chip" style={{ animationDelay: `${i * 0.4}s` }}>
-                <circle cx="888" cy={175 + i * 24} r="7" fill="rgba(83,195,215,0.2)" />
-                <path d={`M884.500 ${175 + i * 24} l2.800 2.800 l5 -5.600`} fill="none" stroke="#53C3D7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                <text x="905" y={180 + i * 24} fontSize="14" fill={ink}>{o}</text>
+                <g transform={`translate(879 ${166 + i * 24}) scale(0.75)`} stroke="#53C3D7" {...stroke}>{ICON_OUT[i]}</g>
+                <text x="903" y={180 + i * 24} fontSize="14" fill={ink}>{o}</text>
               </g>
             ))}
 
@@ -132,8 +156,8 @@ export default function FlowDiagram({ lang }: { lang: Lang }) {
           <div className="rounded-3xl p-5" style={{ background: 'rgb(var(--fg) / 0.05)', border: '1px dashed rgb(var(--fg) / 0.2)' }}>
             <p className="mb-3 text-center" style={{ color: 'rgb(var(--fg) / 0.7)', fontWeight: 600 }}>{c.mid}</p>
             <div className="flex flex-wrap gap-2 justify-center">
-              {c.services.map((s) => (
-                <span key={s} className="px-3.5 py-2 rounded-full text-sm" style={{ background: 'rgb(var(--fg) / 0.07)', border: '1px solid rgb(var(--fg) / 0.14)', color: 'var(--ink)' }}>{s}</span>
+              {c.services.map((s, i) => (
+                <span key={s} className="px-3.5 py-2 rounded-full text-sm inline-flex items-center gap-2" style={{ background: 'rgb(var(--fg) / 0.07)', border: '1px solid rgb(var(--fg) / 0.14)', color: 'var(--ink)' }}><MiniIcon color={i % 2 ? '#53C3D7' : '#9A90FF'} size={18}>{ICON_SVC[i]}</MiniIcon>{s}</span>
               ))}
             </div>
           </div>
@@ -141,7 +165,7 @@ export default function FlowDiagram({ lang }: { lang: Lang }) {
           <div className="rounded-3xl p-5" style={{ background: 'rgb(var(--fg) / 0.05)', border: '1px solid rgb(var(--fg) / 0.14)' }}>
             <p className="mb-3 text-center" style={{ color: 'rgb(var(--fg) / 0.7)', fontWeight: 600 }}>{c.out}</p>
             <ul className="grid grid-cols-2 gap-x-3 gap-y-2 text-sm" style={{ color: 'var(--ink)' }}>
-              {c.outcomes.map((o) => (<li key={o} className="flex items-center gap-2"><span style={{ color: '#53C3D7' }}>✓</span>{o}</li>))}
+              {c.outcomes.map((o, i) => (<li key={o} className="flex items-center gap-2"><MiniIcon color="#53C3D7" size={20}>{ICON_OUT[i]}</MiniIcon>{o}</li>))}
             </ul>
           </div>
           <p className="mt-6 rounded-full px-5 py-4 text-center text-sm" style={{ background: 'rgb(var(--fg) / 0.08)', border: '1px solid rgb(var(--fg) / 0.16)', color: 'var(--ink)', fontWeight: 600 }}>{c.pill}</p>
