@@ -286,7 +286,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { q: 'What kind of security issues do you typically find in AI-generated code?', a: 'Exposed API keys and secrets committed to the repository, missing authentication checks on API endpoints, unvalidated user input, and database access rules that let far too many people read or change data are the most common findings.' },
     { q: 'Can you also add new features, not just fix issues?', a: 'Yes. Once the foundation is solid and secure, we can continue building new features as an ongoing engagement, working within the existing codebase and its conventions.' },
     { q: 'How long does it take to go from prototype to production-ready?', a: 'A focused app with a moderate feature set typically takes 2-3 weeks from audit to production-ready launch. Larger or more complex codebases, or ones with significant security gaps, can take 4-6 weeks.' },
-    { q: 'How much does this kind of engagement cost?', a: 'Pricing depends on codebase size and the number of issues found during the audit. We always start with a fixed-price audit, so you know the scope and cost of remediation before committing to the full engagement.' },
+    { q: 'How much does this kind of engagement cost?', a: 'Prices start at $500 (quick security check) and $1,500 (full audit with report); fixing the issues starts at $3,500 and a full cleanup from $5,000, depending on codebase size and what the audit finds. We always start with a fixed-price audit, so you know the scope and cost of remediation before committing to the full engagement.' },
     { q: 'Will I understand the codebase once you’re done, or will it still be a black box?', a: 'You will understand it. We document the architecture, tidy the structure as we go, and walk your team through the code, so you are never dependent on us to make future changes.' },
     { q: 'What if the app has already launched and we’re seeing issues in production?', a: 'We handle that too. The audit is the same, but we triage live issues first and stop the active problems before moving on to the broader hardening and completion work.' },
     { q: 'What do you need from us to start the audit?', a: 'Read access to the repository, a list of the services the app relies on (database, payments, email, hosting), and a short note on how you expect people to use it. We do not need production passwords to audit the code.' },
@@ -297,12 +297,24 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { q: 'ปัญหาด้านความปลอดภัยที่มักพบในโค้ดจาก AI คืออะไรบ้าง?', a: 'API Key และ Secret ที่ถูก Commit เข้า Repository, Endpoint ที่ไม่เช็กการยืนยันตัวตน, ข้อมูลจากผู้ใช้ที่ไม่ได้ตรวจ และกฎการเข้าถึงฐานข้อมูลที่ให้คนอ่านหรือแก้ข้อมูลได้กว้างเกินไป เป็นสิ่งที่เจอบ่อยที่สุด' },
     { q: 'เพิ่มฟีเจอร์ใหม่ได้ด้วยไหม ไม่ใช่แค่แก้ปัญหา?', a: 'ได้ เมื่อพื้นฐานมั่นคงและปลอดภัยแล้ว เราทำฟีเจอร์ใหม่ต่อเนื่องได้ ในรูปแบบงานต่อเนื่อง โดยทำภายใน Codebase และแบบแผนที่มีอยู่' },
     { q: 'ใช้เวลานานแค่ไหนกว่าจะจาก Prototype ไปพร้อมใช้งานจริง?', a: 'แอปที่ขอบเขตชัดเจนและมีฟีเจอร์ระดับปานกลาง มักใช้ 2-3 สัปดาห์ตั้งแต่ตรวจจนพร้อมเปิดตัว ส่วน Codebase ที่ใหญ่หรือซับซ้อนกว่า หรือมีช่องโหว่ด้านความปลอดภัยมาก อาจใช้ 4-6 สัปดาห์' },
-    { q: 'งานลักษณะนี้มีค่าใช้จ่ายเท่าไหร่?', a: 'ราคาขึ้นอยู่กับขนาด Codebase และจำนวนปัญหาที่พบระหว่างตรวจ เราเริ่มด้วยการตรวจแบบราคาคงที่เสมอ คุณจะรู้ขอบเขตและค่าใช้จ่ายในการแก้ไขก่อนตัดสินใจทำงานเต็มรูปแบบ' },
+    { q: 'งานลักษณะนี้มีค่าใช้จ่ายเท่าไหร่?', a: 'การตรวจเริ่มที่ ฿5,900 (ตรวจความปลอดภัยด่วน) และ ฿15,900 (ตรวจเต็มพร้อมรายงาน) ส่วนการแก้ไขเริ่มที่ ฿39,000 และแพ็กเกจจัดระเบียบเต็มรูปแบบเริ่มที่ ฿59,000 ขึ้นอยู่กับขนาด Codebase และปัญหาที่พบ เราเริ่มด้วยการตรวจแบบราคาคงที่เสมอ คุณจะรู้ขอบเขตและค่าใช้จ่ายในการแก้ไขก่อนตัดสินใจทำงานเต็มรูปแบบ' },
     { q: 'หลังจบงานแล้ว เราจะเข้าใจ Codebase หรือยังเป็นกล่องดำอยู่?', a: 'คุณจะเข้าใจเต็มที่ เราทำเอกสารสถาปัตยกรรม จัดโครงสร้างไปพร้อมกัน และพาทีมคุณเดินดูโค้ด คุณจะได้ไม่ต้องพึ่งเราเมื่อต้องแก้ไขในอนาคต' },
     { q: 'ถ้าแอปเปิดตัวไปแล้วและกำลังเจอปัญหาตอนใช้งานจริงล่ะ?', a: 'เราดูแลกรณีนี้ด้วย วิธีตรวจเหมือนกัน แต่เราจะคัดปัญหาที่เกิดอยู่จริงมาแก้ก่อน เพื่อหยุดความเสียหายที่ยังเกิดต่อ แล้วค่อยไปต่อที่งานเสริมความปลอดภัยและทำส่วนที่ขาดให้จบ' },
     { q: 'ต้องเตรียมอะไรให้เราก่อนเริ่มตรวจ?', a: 'สิทธิ์อ่าน Repository รายการบริการที่แอปใช้ (ฐานข้อมูล ชำระเงิน อีเมล Hosting) และโน้ตสั้นๆ ว่าคาดว่าผู้ใช้จะใช้แอปยังไง เราไม่ต้องการรหัสผ่านของระบบจริงเพื่อตรวจโค้ด' },
     { q: 'แอปจะอยู่บน Hosting ที่ไหน และใครเป็นเจ้าของบัญชี?', a: 'คุณเป็นเจ้าของทุกบัญชี ทั้ง Hosting โดเมน ฐานข้อมูล และ Repository ของโค้ด เราตั้งค่าในบัญชีของคุณ หรือส่งมอบให้เรียบร้อย และใช้ผู้ให้บริการในไทยหรือในภูมิภาคได้ถ้าที่ตั้งของข้อมูลสำคัญกับคุณ' },
   ]
+
+  const pricingTiers = isEN ? [
+      { name: 'Quick Security Check', price: 'from $500', time: '1–3 days', desc: 'Fast scan for exposed keys, open database rules and auth holes, plus a short written summary.' },
+      { name: 'Full Audit + Report', price: 'from $1,500', time: '5–7 business days', desc: 'Security, architecture, performance and deploy review with a prioritized fix plan and fixed quote for the work.' },
+      { name: 'Audit + Fix: Launch-Ready', price: 'from $3,500', time: '2–3 weeks', desc: 'We fix the critical issues, add tests, set up CI and deploy to production you own.' },
+      { name: 'Full Cleanup Package', price: 'from $5,000', time: '3–6 weeks', desc: 'Restructure, security hardening, missing features, documentation and a walkthrough for your team.' }
+    ] : [
+      { name: 'ตรวจความปลอดภัยด่วน', price: 'เริ่ม ฿5,900', time: '1–3 วัน', desc: 'สแกนหา Key ที่หลุด กฎฐานข้อมูลที่เปิดโล่ง และช่องโหว่ระบบล็อกอิน พร้อมสรุปสั้นๆ เป็นลายลักษณ์อักษร' },
+      { name: 'ตรวจเต็ม + รายงาน', price: 'เริ่ม ฿15,900', time: '5–7 วันทำการ', desc: 'ตรวจความปลอดภัย โครงสร้าง ประสิทธิภาพ และการ Deploy พร้อมแผนแก้ตามลำดับความสำคัญและใบเสนอราคาคงที่' },
+      { name: 'ตรวจ + แก้ให้พร้อมเปิดตัว', price: 'เริ่ม ฿39,000', time: '2–3 สัปดาห์', desc: 'แก้ปัญหาร้ายแรง เพิ่มเทสต์ ตั้ง CI และ Deploy ขึ้น Production บนบัญชีของคุณเอง' },
+      { name: 'แพ็กเกจจัดระเบียบเต็มรูปแบบ', price: 'เริ่ม ฿59,000', time: '3–6 สัปดาห์', desc: 'จัดโครงสร้างใหม่ เสริมความปลอดภัย ทำฟีเจอร์ที่ขาด เอกสาร และพาทีมเดินดูโค้ด' }
+    ]
 
   const postHeroSlot = (
     <>
@@ -415,6 +427,44 @@ export default function Page({ params }: { params: { lang: Lang } }) {
 
         <div className="mt-16 lg:mt-24">
           <FAQ embedded lang={params.lang} h2={isEN ? 'FAQ' : 'คำถามที่พบบ่อย'} subtitle={isEN ? 'Straight answers about finishing what you’ve built.' : 'คำตอบตรงๆ เรื่องการจบสิ่งที่คุณสร้างมาแล้ว'} items={darkFaqs.map((f) => ({ q: f.q, a: f.a }))} />
+        </div>
+      </div>
+    </section>
+
+
+    <section className="theme-dark relative overflow-hidden" style={{ background: 'var(--bg)' }}>
+      <div className="relative max-w-7xl mx-auto px-4 lg:px-10 py-20 lg:py-28">
+        <p className="mb-5 text-xs tracking-widest uppercase" style={{ color: 'var(--accent-2)', fontWeight: 600 }}>
+          {isEN ? 'Pricing' : 'ราคา'}
+        </p>
+        <h2 className="t-display mb-4" style={{ color: 'var(--ink)', fontSize: 'clamp(2.25rem,4.5vw,3.5rem)' }}>
+          {isEN ? 'Fixed prices. Clear timelines.' : 'ราคาคงที่ ระยะเวลาชัดเจน'}
+        </h2>
+        <p className="mb-12" style={{ color: 'rgb(var(--fg) / 0.85)', fontSize: '1.2rem', fontWeight: 400 }}>
+          {isEN ? 'Start small with an audit. Prices are starting prices in USD, confirmed as a fixed quote once we have seen your repository.' : 'เริ่มจากการตรวจเล็กๆ ราคาทั้งหมดเป็นราคาเริ่มต้น (บาท) และจะยืนยันเป็นใบเสนอราคาคงที่หลังเราได้ดู Repository ของคุณ'}
+        </p>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {pricingTiers.map((t) => (
+            <div key={t.name} className="p-8 rounded-2xl flex flex-col" style={{ background: 'rgb(var(--fg) / 0.03)', border: '1px solid rgb(var(--fg) / 0.07)' }}>
+              <h3 className="mb-3" style={{ color: 'var(--ink)', fontWeight: 600, fontSize: '1.15rem' }}>{t.name}</h3>
+              <p className="t-display mb-1" style={{ color: 'var(--ink)', fontSize: '2rem' }}>{t.price}</p>
+              <p className="mb-4 text-sm" style={{ color: 'var(--accent-2)', fontWeight: 600 }}>{t.time}</p>
+              <p className="leading-relaxed" style={{ color: 'rgb(var(--fg) / 0.85)', fontSize: '1rem', fontWeight: 400 }}>{t.desc}</p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-6 text-sm" style={{ color: 'rgb(var(--fg) / 0.7)' }}>
+          {isEN ? 'Ongoing maintenance and monitoring is available from $500/month.' : 'บริการดูแลและเฝ้าระวังต่อเนื่องเริ่มที่ ฿5,900/เดือน'}
+        </p>
+        <div className="mt-10">
+          <Link
+            href={`${prefix}/contact`}
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-medium transition-opacity hover:opacity-90"
+            style={{ background: 'linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%)', color: '#fff', fontWeight: 500 }}
+          >
+            {isEN ? 'Book an audit' : 'จองการตรวจ'}
+            <i className="ti ti-arrow-right" style={{ fontSize: 17 }} aria-hidden="true" />
+          </Link>
         </div>
       </div>
     </section>
