@@ -305,6 +305,7 @@ export const t = {
       sections: {
         'บริการ': [
           {l:'กลยุทธ์และที่ปรึกษา',h:'/services/digital-transformation'},
+          {l:'สร้างแบรนด์ Branding',h:'/services/branding'},
           {l:'ออกแบบ UX / UI',h:'/services/ux-ui-design'},
           {l:'พัฒนาเว็บไซต์',h:'/services/web-development'},
           {l:'แอปมือถือ',h:'/services/mobile-apps'},
@@ -636,6 +637,7 @@ export const t = {
       sections: {
         'Services': [
           {l:'Strategy & Consulting',h:'/services/digital-transformation'},
+          {l:'Branding',h:'/services/branding'},
           {l:'UX / UI Design',h:'/services/ux-ui-design'},
           {l:'Web Development',h:'/services/web-development'},
           {l:'Mobile Apps',h:'/services/mobile-apps'},

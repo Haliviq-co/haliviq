@@ -85,6 +85,7 @@ export default function FAQ({ lang, tr, items: itemsProp, h2, subtitle, gradient
                     className="t-display leading-snug transition-colors duration-300"
                     style={{
                       fontSize: 'clamp(1.05rem,2vw,1.4rem)',
+                      lineHeight: 1.45,
                       color: isOpen ? undefined : 'rgb(var(--fg) / 0.9)',
                       ...(isOpen
                         ? {
