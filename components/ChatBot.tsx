@@ -61,6 +61,7 @@ const PRODUCTS: Prod[] = [
     capTh: 'ได้ครับ ทำเว็บไซต์ได้ทุกแบบ ตั้งแต่เว็บบริษัท ไปจนถึงร้านค้าออนไลน์และระบบสมาชิก', capEn: 'Yes. We build all kinds of websites, from company sites to online shops and membership systems.' },
 ]
 const prodOf = (q: string) => PRODUCTS.find((x) => x.re.test(q))
+const EXPENSIVE_W = /แพง|ราคาสูง|ถูกไหม|ถูกมั้ย|expensive|pricey|too much|affordable|cheap/i
 const PRICE_W = /ราคา|เท่าไหร่|เท่าไร|กี่บาท|ค่าใช้จ่าย|ค่าบริการ|ค่าทำ|ค่าจ้าง|งบ|price|pricing|cost|how much|fee/i
 // "ใช้เวลาประมาณเท่าไหร่" contains "เท่าไหร่" but is a question about time, not price.
 const PRICE_EXPLICIT = /ราคา|ค่าใช้จ่าย|ค่าบริการ|ค่าทำ|ค่าจ้าง|งบ|price|pricing|cost|fee/i
@@ -449,6 +450,22 @@ export default function ChatBot({ lang }: { lang: Lang }) {
           { key: 'q:' + (isEN ? 'What services do you offer' : 'ให้บริการอะไรบ้าง'), label: isEN ? 'Our services' : 'บริการของเรา' },
           { key: 'q:' + (isEN ? 'How much does it cost' : 'ราคาเท่าไหร่'), label: isEN ? 'Pricing' : 'ราคา' },
           { key: 'q:' + (isEN ? 'How long does it take' : 'ใช้เวลาเท่าไหร่'), label: isEN ? 'How long it takes' : 'ระยะเวลาทำงาน' },
+          { key: 'agent', label: isEN ? '💬 Talk to the team' : '💬 คุยกับแอดมิน' },
+        ],
+      }
+    }
+    if (q.length < 80 && EXPENSIVE_W.test(q) && !DISCOUNT_W.test(q) && !PRICE_SKIP.test(q)) {
+      const pe = prodOf(q)
+      const web = !pe || pe.k === 'web'
+      return {
+        idx: -1,
+        text: isEN
+          ? 'It depends on the level of work. A simple company site is very different from an online shop with payments. What are you looking to build? Tap one below and I will help you work out what you would need. 😊'
+          : web
+            ? 'มีหลายระดับเลยครับ ขึ้นอยู่กับว่าอยากทำเว็บแบบไหน ถ้าเป็นเว็บแนะนำบริษัททั่วไปก็จะต่างจากเว็บขายของที่มีระบบชำระเงินครับ คุณอยากทำเว็บประมาณไหน เดี๋ยวผมช่วยแนะนำว่าต้องเตรียมอะไรบ้างครับ 😊'
+            : `มีหลายระดับเลยครับ ราคา${pe!.th}ขึ้นอยู่กับขนาดและความต้องการของงาน งานเล็กกับระบบใหญ่ต่างกันมาก คุณอยากได้ประมาณไหน เดี๋ยวผมช่วยแนะนำว่าต้องเตรียมอะไรบ้างครับ 😊`,
+        choices: [
+          ...PRODUCTS.map((x) => ({ key: 'svc:' + x.k, label: isEN ? x.chipEn : x.chip })),
           { key: 'agent', label: isEN ? '💬 Talk to the team' : '💬 คุยกับแอดมิน' },
         ],
       }
