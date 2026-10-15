@@ -6,7 +6,7 @@ import { t, type Lang } from '@/lib/i18n'
 // A free, rule-based assistant. It answers from the FAQ already on the site, so it has no API cost.
 // Optional dashboard: set NEXT_PUBLIC_CHAT_LOG_URL to a Google Apps Script web-app URL and each question is
 // appended to a Google Sheet (no names, emails or other identifiers are sent).
-type Msg = { from: 'bot' | 'me'; text: string; links?: { label: string; href: string }[]; agent?: boolean; meet?: boolean; pending?: boolean; choices?: { key: string; label: string }[]; fresh?: boolean }
+type Msg = { from: 'bot' | 'me'; text: string; links?: { label: string; href: string }[]; agent?: boolean; meet?: boolean; pending?: boolean; choices?: { key: string; label: string }[]; fresh?: boolean; topic?: string; noChips?: boolean }
 type QA = { q: string; a: string; h?: string; k?: string; x?: string; p?: number }
 
 const CHANNELS = [
@@ -394,7 +394,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
   }
 
   const fbCount = useRef(0)
-  const answer = (q: string): { text: string; links?: Msg['links']; idx: number; agent?: boolean; meet?: boolean; fallback?: boolean; choices?: { key: string; label: string }[] } => {
+  const answer = (q: string): { text: string; links?: Msg['links']; idx: number; agent?: boolean; meet?: boolean; fallback?: boolean; noChips?: boolean; choices?: { key: string; label: string }[] } => {
     if (q.length < 60 && ASKS_IDENTITY.test(q)) {
       return {
         idx: -1,
@@ -412,10 +412,10 @@ export default function ChatBot({ lang }: { lang: Lang }) {
       }
     }
     if (q.length < 40 && THANKS.test(q)) {
-      return { idx: -1, text: isEN ? 'You are welcome! Anything else I can help with?' : 'ยินดีครับ มีอะไรให้ช่วยอีกไหมครับ' }
+      return { idx: -1, noChips: true, text: isEN ? 'You are welcome! Anything else I can help with?' : 'ยินดีครับ มีอะไรให้ช่วยอีกไหมครับ' }
     }
     if (q.length < 40 && BYE.test(q)) {
-      return { idx: -1, text: isEN ? 'Goodbye! Come back any time, or reach the team on the contact page.' : 'แล้วพบกันครับ ถ้ามีคำถามเพิ่มเติม กลับมาถามได้ตลอด หรือติดต่อทีมงานผ่านหน้าติดต่อเราได้ครับ' }
+      return { idx: -1, noChips: true, text: isEN ? 'Goodbye! Come back any time, or reach the team on the contact page.' : 'แล้วพบกันครับ ถ้ามีคำถามเพิ่มเติม กลับมาถามได้ตลอด หรือติดต่อทีมงานผ่านหน้าติดต่อเราได้ครับ' }
     }
     if (q.length < 120 && PACKAGE_Q.test(q) && !/vibe|lovable|bolt|cursor/i.test(q)) {
       return {
@@ -436,6 +436,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
           ? 'I am sorry. This may be beyond what Havy can handle, so with your permission I will pass this on to the team. You can reach them directly below.'
           : 'ขออภัยครับ อาจเกินข้อจำกัดของน้องฮาวี่ ขออนุญาตส่งข้อมูลต่อให้เจ้าหน้าที่นะครับ ติดต่อทีมงานโดยตรงได้ที่ช่องทางด้านล่างเลยครับ',
         agent: true,
+        noChips: true,
       }
     }
     if (q.length < 30 && CONFUSED.test(q)) {
@@ -659,23 +660,48 @@ export default function ChatBot({ lang }: { lang: Lang }) {
         .filter((x) => x.text)
         .slice(-7)
         .map((x) => ({ role: x.from === 'me' ? 'user' : 'assistant', content: x.text }))
-      const showFallback = () => setMsgs((m) => [...m.filter((x) => !x.pending), { from: 'bot', fresh: true, text: r.text, links: r.links, agent: r.agent, meet: r.meet }])
+      const showFallback = () => setMsgs((m) => [...m.filter((x) => !x.pending), { from: 'bot', fresh: true, text: r.text, links: r.links, agent: r.agent, meet: r.meet, topic: prodOf(clean)?.k }])
       setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', text: '…', pending: true }])
       setText('')
       log(clean, -1)
       fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: history, lang }) })
         .then((res) => (res.ok ? res.json() : null))
         .then((d) => {
-          if (d && d.ok && d.reply) setMsgs((m) => [...m.filter((x) => !x.pending), { from: 'bot', fresh: true, text: d.reply, agent: !!d.handoff }])
+          if (d && d.ok && d.reply) setMsgs((m) => [...m.filter((x) => !x.pending), { from: 'bot', fresh: true, text: d.reply, agent: !!d.handoff, topic: prodOf(clean)?.k }])
           else showFallback()
         })
         .catch(showFallback)
       return
     }
-    setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, text: r.text, links: r.links, agent: r.agent, meet: r.meet, choices: r.choices }])
+    setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, text: r.text, links: r.links, agent: r.agent, meet: r.meet, choices: r.choices, noChips: r.noChips, topic: prodOf(clean)?.k }])
     setText('')
     log(clean, r.idx)
   }
+
+  // Quick-reply chips under the latest bot message, so the visitor always has an easy next tap.
+  const followUps = (topic?: string): { key: string; label: string }[] => {
+    const pd = PRODUCTS.find((x) => x.k === topic)
+    const list = pd
+      ? [
+          { key: 'q:' + (isEN ? `price of ${pd.chipEn}` : `ราคา${pd.chip}`), label: isEN ? 'Pricing' : 'ราคา' },
+          { key: 'q:' + (isEN ? `how long does ${pd.chipEn} take` : `ใช้เวลาทำ${pd.chip}กี่วัน`), label: isEN ? 'How long it takes' : 'ระยะเวลาทำงาน' },
+        ]
+      : [
+          { key: 'q:' + (isEN ? 'What services do you offer' : 'ให้บริการอะไรบ้าง'), label: isEN ? 'Our services' : 'บริการของเรา' },
+          { key: 'q:' + (isEN ? 'How much does it cost' : 'ราคาเท่าไหร่'), label: isEN ? 'Pricing' : 'ราคา' },
+          { key: 'q:' + (isEN ? 'How long does it take' : 'ใช้เวลาเท่าไหร่'), label: isEN ? 'How long it takes' : 'ระยะเวลาทำงาน' },
+        ]
+    return [
+      ...list,
+      { key: 'q:' + (isEN ? 'Where can I see your work' : 'ดูผลงานได้ที่ไหน'), label: isEN ? 'See our work' : 'ดูผลงาน' },
+      { key: 'agent', label: isEN ? '💬 Talk to the team' : '💬 คุยกับแอดมิน' },
+    ]
+  }
+  const lastIdx = msgs.length - 1
+  const lastMsg = lastIdx >= 0 ? msgs[lastIdx] : undefined
+  const lastChips = lastMsg && lastMsg.from === 'bot' && !lastMsg.pending
+    ? (lastMsg.choices || (lastMsg.noChips || lastIdx === 0 ? null : followUps(lastMsg.topic)))
+    : null
 
   return (
     <div className="fixed right-4 bottom-4 md:right-6 md:bottom-6 z-[90] flex flex-col items-end" style={{ fontFamily: 'inherit' }}>
@@ -721,9 +747,9 @@ export default function ChatBot({ lang }: { lang: Lang }) {
                     </a>
                   </div>
                 )}
-                {m.choices && (
+                {i === lastIdx && lastChips && (
                   <div className="flex flex-wrap gap-2 mt-2">
-                    {m.choices.map((c) => (
+                    {lastChips.map((c) => (
                       <button key={c.key} type="button" onClick={() => pick(c.key, c.label)} className="text-xs px-3 py-1.5 rounded-full text-left" style={{ border: '1px solid var(--accent)', color: 'var(--accent)', background: 'transparent' }}>{c.label}</button>
                     ))}
                   </div>
