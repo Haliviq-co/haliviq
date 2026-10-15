@@ -356,11 +356,14 @@ html[data-theme="light"] .chat-panel { background: #FFFFFF; }
 
 /* Chat panel fade */
 .chat-panel { transform-origin: bottom right; }
+/* 16px keeps iOS Safari from zooming the page when the input is focused */
+.chat-panel .chat-input { font-size: 16px; }
 .chat-panel { width: min(330px, calc(100vw - 32px)); height: min(470px, calc(100vh - 120px)); }
 @media (min-width: 1024px) {
   .chat-panel { width: min(400px, calc(100vw - 48px)); height: min(590px, calc(100vh - 130px)); }
   .chat-panel [class*="text-[13px]"] { font-size: 14px; }
   .chat-panel [class*="text-xs"] { font-size: 12.5px; }
+  .chat-panel .chat-input { font-size: 14px; }
 }
 .chat-in { animation: chat-in .28s cubic-bezier(.2,.8,.2,1) both; }
 .chat-out { animation: chat-out .2s ease-in both; pointer-events: none; }
