@@ -434,3 +434,9 @@ html[data-theme="light"] .cta-final a[href$="/contact"]:hover { background: #EEE
   .chat-mascot-btn { transform: scale(0.68); transform-origin: bottom right; }
   .chat-mascot-btn .chat-name { margin-top: -12px; }
 }
+
+/* phones: Havy fades out while the page scrolls, returns when it stops */
+.chat-mascot-btn { transition: opacity .25s ease, transform .25s ease; }
+@media (max-width: 767px) {
+  .chat-mascot-btn.is-scrolling { opacity: 0; pointer-events: none; }
+}

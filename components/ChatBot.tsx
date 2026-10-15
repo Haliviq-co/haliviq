@@ -748,6 +748,17 @@ export default function ChatBot({ lang }: { lang: Lang }) {
       { key: 'agent', label: isEN ? '💬 Talk to the team' : '💬 คุยกับแอดมิน' },
     ]
   }
+  const [scrolling, setScrolling] = useState(false)
+  useEffect(() => {
+    let t: ReturnType<typeof setTimeout> | undefined
+    const onScroll = () => {
+      setScrolling(true)
+      if (t) clearTimeout(t)
+      t = setTimeout(() => setScrolling(false), 900)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => { window.removeEventListener('scroll', onScroll); if (t) clearTimeout(t) }
+  }, [])
   const lastIdx = msgs.length - 1
   const lastMsg = lastIdx >= 0 ? msgs[lastIdx] : undefined
   const lastChips = lastMsg && lastMsg.from === 'bot' && !lastMsg.pending
@@ -856,7 +867,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
           aria-label={open ? (isEN ? 'Close chat' : 'ปิดแชท') : (isEN ? 'Ask Havy about our services' : 'ให้น้องฮาวี่ช่วยสอบถามบริการ')}
           aria-expanded={open}
           title={isEN ? 'Ask Havy about our services' : 'ให้น้องฮาวี่ช่วยสอบถามบริการ'}
-          className="chat-mascot-btn"
+          className={`chat-mascot-btn${scrolling && !open ? ' is-scrolling' : ''}`}
         >
           {open ? (
             <span className="flex items-center justify-center w-14 h-14 rounded-full text-2xl" style={{ background: 'linear-gradient(135deg, #7B6EF6 0%, #53C3D7 100%)', color: '#fff', boxShadow: '0 14px 34px -10px rgba(90,78,212,0.7)' }} aria-hidden="true">×</span>
