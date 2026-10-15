@@ -62,6 +62,8 @@ const PRODUCTS: Prod[] = [
 ]
 const prodOf = (q: string) => PRODUCTS.find((x) => x.re.test(q))
 const PRICE_W = /ราคา|เท่าไหร่|เท่าไร|กี่บาท|ค่าใช้จ่าย|ค่าบริการ|ค่าทำ|ค่าจ้าง|งบ|price|pricing|cost|how much|fee/i
+// "ใช้เวลาประมาณเท่าไหร่" contains "เท่าไหร่" but is a question about time, not price.
+const PRICE_EXPLICIT = /ราคา|ค่าใช้จ่าย|ค่าบริการ|ค่าทำ|ค่าจ้าง|งบ|price|pricing|cost|fee/i
 const PRICE_SKIP = /forward|fde|retainer|vibe|lovable|bolt|cursor|audit|แพ็?[คก]เ?[กค]จ|package/i
 const TIME_W = /ใช้เวลา|กี่วัน|กี่เดือน|กี่สัปดาห์|นานไหม|นานแค่ไหน|เสร็จเมื่อไหร่|how long|timeline|turnaround/i
 const QUOTE_W = /ใบเสนอราคา|ขอราคา|ประเมินราคา|quotation|\bquote\b/i
@@ -442,7 +444,29 @@ export default function ChatBot({ lang }: { lang: Lang }) {
         agent: true,
       }
     }
-    if (q.length < 120 && PRICE_W.test(q) && !PRICE_SKIP.test(q)) {
+    if (q.length < 100 && TIME_W.test(q) && !PRICE_EXPLICIT.test(q)) {
+      const pr = prodOf(q)
+      if (pr) {
+        return {
+          idx: -1,
+          text: isEN
+            ? `How long ${pr.en} takes depends on the size of the work. A small one and a large system are very different. Once we know what you want, the team gives a clear timeline together with the quote. ${pr.qEn}`
+            : `ระยะเวลาทำ${pr.th}ขึ้นอยู่กับขนาดงานครับ งานเล็กกับระบบใหญ่ใช้เวลาต่างกันมาก พอรู้ว่าอยากได้อะไร ทีมจะบอกระยะเวลาที่ชัดเจนพร้อมใบเสนอราคาครับ ${pr.qTh}`,
+          agent: true,
+        }
+      }
+      return {
+        idx: -1,
+        text: isEN
+          ? 'It depends on the size of the work, since a small site and a full system are very different. What are you planning to build? Tap one below and I will tell you more, or ask the team.'
+          : 'ขึ้นอยู่กับขนาดงานครับ งานเล็กใช้เวลาไม่นาน ระบบใหญ่ใช้เวลามากขึ้น สนใจทำอะไรอยู่ครับ กดเลือกด้านล่าง เดี๋ยวผมบอกเพิ่มให้ หรือสอบถามแอดมินได้เลยครับ',
+        choices: [
+          ...PRODUCTS.map((x) => ({ key: 'svt:' + x.k, label: isEN ? x.chipEn : x.chip })),
+          { key: 'agent', label: isEN ? '💬 Talk to the team' : '💬 คุยกับแอดมิน' },
+        ],
+      }
+    }
+    if (q.length < 120 && PRICE_W.test(q) && !PRICE_SKIP.test(q) && !(TIME_W.test(q) && !PRICE_EXPLICIT.test(q))) {
       const pr = prodOf(q)
       if (pr) {
         return {
@@ -462,18 +486,6 @@ export default function ChatBot({ lang }: { lang: Lang }) {
           ...PRODUCTS.map((x) => ({ key: 'svc:' + x.k, label: isEN ? x.chipEn : x.chip })),
           { key: 'agent', label: isEN ? '💬 Talk to the team' : '💬 คุยกับแอดมิน' },
         ],
-      }
-    }
-    if (q.length < 100 && TIME_W.test(q)) {
-      const pr = prodOf(q)
-      if (pr) {
-        return {
-          idx: -1,
-          text: isEN
-            ? `How long ${pr.en} takes depends on the size of the work. A small one and a large system are very different. Once we know what you want, the team gives a clear timeline together with the quote. ${pr.qEn}`
-            : `ระยะเวลาทำ${pr.th}ขึ้นอยู่กับขนาดงานครับ งานเล็กกับระบบใหญ่ใช้เวลาต่างกันมาก พอรู้ว่าอยากได้อะไร ทีมจะบอกระยะเวลาที่ชัดเจนพร้อมใบเสนอราคาครับ ${pr.qTh}`,
-          agent: true,
-        }
       }
     }
     if (q.length < 100 && CAN_W.test(q) && !FIX_W.test(q) && !TECH_W.test(q)) {
@@ -546,7 +558,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
       if (!hit) return
       // A timing or price answer is only right when the visitor actually asked about time or price.
       if (/ใช้เวลา|นานแค่ไหน|how long|take long/i.test(e.it.q) && !TIME_W.test(q)) return
-      if (/ราคา|เท่าไหร่|คิดราคา|\bcost|price|pricing|how much/i.test(e.it.q) && !PRICE_W.test(q)) return
+      if (/ราคา|เท่าไหร่|คิดราคา|\bcost|price|pricing|how much/i.test(e.it.q) && (!PRICE_W.test(q) || (TIME_W.test(q) && !PRICE_EXPLICIT.test(q)))) return
       if ((g.size <= 1 || q.length < 12) && !e.it.p) return // a single bare word is too vague to match a niche answer
       const cov = qtotal ? hit / qtotal : 0
       const qcov = qtotal ? qhit / qtotal : 0
@@ -586,6 +598,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
 
   const pick = (key: string, label: string) => {
     if (key === 'agent') { ask(isEN ? 'Chat with an agent' : 'คุยกับเจ้าหน้าที่'); return }
+    if (key.startsWith('svt:')) { const pd = PRODUCTS.find((x) => x.k === key.slice(4)); if (pd) ask(isEN ? `how long does ${pd.chipEn} take` : `ใช้เวลาทำ${pd.chip}กี่วัน`); return }
     if (key.startsWith('svc:')) { const pd = PRODUCTS.find((x) => x.k === key.slice(4)); if (pd) ask(isEN ? `price of ${pd.chipEn}` : `ราคา${pd.chip}`); return }
     const b = BUSINESS.find((x) => x.key === key)
     if (!b) return
