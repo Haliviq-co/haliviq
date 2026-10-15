@@ -535,38 +535,13 @@ html[data-theme="light"] .cta-final a[href$="/contact"]:hover { background: #EEE
 @keyframes hsChip{0%,16%,100%{background:transparent;color:rgb(255 255 255 / .85)}6%,12%{background:rgba(123,110,246,.55);color:#fff}}
 @media (prefers-reduced-motion:reduce){.hs-draw{animation:none;stroke-dashoffset:0}.hs-fillin,.hs-letter{animation:none;opacity:1}.hs-swatch,.hs-line,.hs-chip{animation:none}}
 
-/* ── Yellow accent, rising charts, running code ── */
 .svc-thumb{--lime:#EED67E}
-.svc-thumb>:last-child{padding-bottom:18px}
-.svc-thumb .items-end>*{animation:svcBarRise 4.4s ease-in-out infinite!important}
-.svc-thumb .items-end>:nth-child(1){animation-delay:0s!important}
-.svc-thumb .items-end>:nth-child(2){animation-delay:.18s!important}
-.svc-thumb .items-end>:nth-child(3){animation-delay:.36s!important}
-.svc-thumb .items-end>:nth-child(4){animation-delay:.54s!important}
-.svc-thumb .items-end>:nth-child(5){animation-delay:.72s!important}
-.svc-thumb .items-end>:nth-child(n+6){animation-delay:.9s!important}
-@keyframes svcBarRise{0%{transform:scaleY(.06)}45%,85%{transform:scaleY(1)}100%{transform:scaleY(.06)}}
-.svc-code{position:absolute;left:16px;right:16px;bottom:10px;z-index:2;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:rgb(255 255 255 / .8)}
-.svc-code span{display:inline-block;overflow:hidden;white-space:pre;vertical-align:bottom;width:0;border-right:2px solid var(--lime);animation:svcType 7s steps(var(--n)) infinite}
-@keyframes svcType{0%{width:0}45%,85%{width:calc(var(--n)*1ch)}100%{width:0}}
-.svc-thumb.svc-hero-vis{--zm:1.2}
-.svc-thumb.svc-hero-vis .svc-code{font-size:13px;left:24px;bottom:18px}
-@media (min-width:640px){.svc-thumb.svc-hero-vis{--zm:1.8}}
-@media (min-width:1024px){.svc-thumb.svc-hero-vis{--zm:1.6}}
-@media (min-width:1280px){.svc-thumb.svc-hero-vis{--zm:1.9}}
-@media (prefers-reduced-motion:reduce){.svc-thumb .items-end>*,.svc-code span{animation:none!important;width:auto}}
-
-/* design-style motion inside panels (no typed text) */
-.svc-thumb .svc-code{display:none}
-.svc-thumb .rounded-lg,.svc-thumb .rounded-md{animation:svcPanelIn 5.5s cubic-bezier(.2,.8,.2,1) infinite both}
-.svc-thumb>*>*:nth-child(2) .rounded-lg,.svc-thumb>*>*:nth-child(2).rounded-lg{animation-delay:.25s}
-.svc-thumb>*>*:nth-child(3) .rounded-lg,.svc-thumb>*>*:nth-child(3).rounded-lg{animation-delay:.5s}
-.svc-thumb>*>*:nth-child(4) .rounded-lg,.svc-thumb>*>*:nth-child(4).rounded-lg{animation-delay:.75s}
-@keyframes svcPanelIn{0%{opacity:0;transform:translateY(14px) scale(.96)}14%,86%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-6px) scale(.98)}}
-.svc-thumb .ti-check{display:inline-block;animation:svcCheckPop 5.5s ease-out infinite both}
-@keyframes svcCheckPop{0%,10%{transform:scale(0);opacity:0}20%{transform:scale(1.5);opacity:1}28%,100%{transform:scale(1);opacity:1}}
-.svc-thumb .rounded-full:not(.h-1\.5){animation:svcDotPulse 2.2s ease-in-out infinite}
-@keyframes svcDotPulse{0%,100%{box-shadow:0 0 0 0 rgb(238 214 126 / .0)}50%{box-shadow:0 0 0 6px rgb(238 214 126 / .22)}}
-.svc-thumb .h-1\.5{transform-origin:left center;animation:svcBarGrow 4.2s ease-in-out infinite both}
-@keyframes svcBarGrow{0%{transform:scaleX(.08)}40%,90%{transform:scaleX(1)}100%{transform:scaleX(.08)}}
-@media (prefers-reduced-motion:reduce){.svc-thumb .rounded-lg,.svc-thumb .rounded-md,.svc-thumb .ti-check,.svc-thumb .rounded-full,.svc-thumb .h-1\.5{animation:none!important}}
+/* code window hero */
+.hcw-line{display:inline-block;white-space:nowrap;clip-path:inset(0 100% 0 0);animation:hcwType 12s steps(30) infinite;animation-delay:calc(var(--i)*.9s)}
+@keyframes hcwType{0%{clip-path:inset(0 100% 0 0)}8%,70%{clip-path:inset(0 0 0 0)}78%,100%{clip-path:inset(0 100% 0 0)}}
+.hcw-card{animation:hcwCard 12s ease-out infinite}
+@keyframes hcwCard{0%,50%{opacity:0;transform:translateY(16px) scale(.95)}58%,72%{opacity:1;transform:none}80%,100%{opacity:0;transform:translateY(8px)}}
+.hcw-bar{transform-origin:left;animation:hcwBar 12s ease-out infinite}
+@keyframes hcwBar{0%,56%{transform:scaleX(.05)}68%,100%{transform:scaleX(1)}}
+.hcw-dot{animation:svcPing 2s ease-out infinite}
+@media (prefers-reduced-motion:reduce){.hcw-line,.hcw-card,.hcw-bar{animation:none!important;clip-path:none;opacity:1;transform:none}}

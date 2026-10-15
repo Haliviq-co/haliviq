@@ -4,7 +4,7 @@ import Footer from '@/components/Footer'
 import Link from 'next/link'
 import { t, type Lang } from '@/lib/i18n'
 import { alt } from '@/lib/seo'
-import { ServiceVisual, CodeStrip } from '@/components/service/ServiceVisual'
+import { ServiceVisual } from '@/components/service/ServiceVisual'
 
 export async function generateStaticParams() {
   return [{ lang: 'th' }, { lang: 'en' }]
