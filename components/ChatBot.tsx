@@ -6,7 +6,7 @@ import { t, type Lang } from '@/lib/i18n'
 // A free, rule-based assistant. It answers from the FAQ already on the site, so it has no API cost.
 // Optional dashboard: set NEXT_PUBLIC_CHAT_LOG_URL to a Google Apps Script web-app URL and each question is
 // appended to a Google Sheet (no names, emails or other identifiers are sent).
-type Msg = { from: 'bot' | 'me'; text: string; links?: { label: string; href: string }[]; agent?: boolean; meet?: boolean; fresh?: boolean }
+type Msg = { from: 'bot' | 'me'; text: string; links?: { label: string; href: string }[]; agent?: boolean; meet?: boolean; pending?: boolean; fresh?: boolean }
 type QA = { q: string; a: string; h?: string; k?: string; x?: string; p?: number }
 
 const CHANNELS = [
@@ -308,7 +308,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
     } catch {}
   }
 
-  const answer = (q: string): { text: string; links?: Msg['links']; idx: number; agent?: boolean; meet?: boolean } => {
+  const answer = (q: string): { text: string; links?: Msg['links']; idx: number; agent?: boolean; meet?: boolean; fallback?: boolean } => {
     if (q.length < 60 && ASKS_IDENTITY.test(q)) {
       return {
         idx: -1,
@@ -395,6 +395,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
         : 'คำถามดีครับ แต่เรื่องนี้ผมไม่อยากเดาให้ผิด ให้ทีมงานตอบจะตรงกับงานของคุณที่สุดครับ ทักทีมทางแอปที่สะดวกได้เลย หรือนัดคุยออนไลน์ฟรี 30 นาทีก็ได้ครับ',
       links: rl.length ? rl : undefined,
       agent: true,
+      fallback: true,
     }
   }
 
@@ -414,6 +415,25 @@ export default function ChatBot({ lang }: { lang: Lang }) {
       return
     }
     const r = answer(clean)
+    if (r.fallback) {
+      // The FAQ has no good match, so ask the smart endpoint. If it is unavailable, show the normal fallback.
+      const history = [...msgs, { from: 'me' as const, text: clean }]
+        .filter((x) => x.text)
+        .slice(-7)
+        .map((x) => ({ role: x.from === 'me' ? 'user' : 'assistant', content: x.text }))
+      const showFallback = () => setMsgs((m) => [...m.filter((x) => !x.pending), { from: 'bot', fresh: true, text: r.text, links: r.links, agent: r.agent, meet: r.meet }])
+      setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', text: '…', pending: true }])
+      setText('')
+      log(clean, -1)
+      fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: history, lang }) })
+        .then((res) => (res.ok ? res.json() : null))
+        .then((d) => {
+          if (d && d.ok && d.reply) setMsgs((m) => [...m.filter((x) => !x.pending), { from: 'bot', fresh: true, text: d.reply, agent: !!d.handoff }])
+          else showFallback()
+        })
+        .catch(showFallback)
+      return
+    }
     setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, text: r.text, links: r.links, agent: r.agent, meet: r.meet }])
     setText('')
     log(clean, r.idx)
