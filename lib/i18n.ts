@@ -36,6 +36,11 @@ export const t = {
           tags: ['กลยุทธ์ดิจิทัล', 'กลยุทธ์การเติบโต', 'วิจัยผู้ใช้งาน', 'ข้อมูลและการวิเคราะห์'],
         },
         {
+          heading: 'สร้างแบรนด์',
+          desc: 'งานสร้างแบรนด์ของเราเริ่มจากกำหนดจุดยืนว่าธุรกิจของคุณเป็นใคร และแตกต่างจากคู่แข่งอย่างไร แล้วจึงออกแบบโลโก้ สี ตัวอักษร และน้ำเสียงให้เป็นระบบเดียวกัน ส่งมอบพร้อมคู่มือการใช้งาน เพื่อให้ทุกสื่อ ตั้งแต่เว็บไซต์ไปจนถึงเอกสารนำเสนอขาย สื่อสารออกมาเป็นแบรนด์เดียวกัน',
+          tags: ['กลยุทธ์แบรนด์', 'ออกแบบโลโก้', 'อัตลักษณ์ภาพ', 'น้ำเสียงและข้อความ', 'คู่มือแบรนด์'],
+        },
+        {
           heading: 'ดีไซน์',
           desc: 'งานดีไซน์ของเราเริ่มจากทำความเข้าใจปัญหาก่อนจะเปิด Figma เราทำทั้งการวิจัยผู้ใช้งาน การออกแบบประสบการณ์ใช้งาน (UX) และหน้าจอ (UI) เพื่อให้ผลิตภัณฑ์ใช้งานง่ายตั้งแต่วันแรก ทุกไอเดียเราเอาไปลองกับผู้ใช้จริงก่อนเขียนโค้ดบรรทัดแรก คุณเลยเห็นหน้าตาและวิธีใช้งานชัดๆ ก่อนจะลงทุนพัฒนา และที่ออกแบบไว้ยังต่อยอดเป็น Design System ให้ทีมใช้ซ้ำได้',
           tags: ['ออกแบบประสบการณ์ (UX)', 'ออกแบบหน้าจอ (UI)', 'วิจัยผู้ใช้งาน', 'ทำ Prototype', 'ระบบดีไซน์', 'ตรวจคุณภาพงานดีไซน์'],
@@ -366,6 +371,11 @@ export const t = {
           heading: 'Strategy',
           desc: 'Strategy at Haliviq starts with understanding how your business earns money and who your users are, before we recommend anything. We combine interviews, market and competitor research, analytics and growth planning into a product direction and roadmap your team can act on. You get a prioritised plan backed by evidence, not a list of guesses.',
           tags: ['Digital Strategy', 'Growth Strategy', 'User Research', 'Data & Analytics'],
+        },
+        {
+          heading: 'Branding',
+          desc: 'Our branding work starts by defining who your business is and how it differs from competitors, then turns that into one system: logo, colour, typography and tone of voice. It is delivered with usage guidelines so every channel, from the website to the sales deck, speaks as the same brand.',
+          tags: ['Brand Strategy', 'Logo Design', 'Visual Identity', 'Tone of Voice', 'Brand Guidelines'],
         },
         {
           heading: 'Design',

@@ -28,13 +28,60 @@ export default function CoreSkills({ lang, tr }: Props) {
         {categories.map((g: any, i: number) => {
           const accent = accents[i % accents.length]
           const reverse = i % 2 === 1
+          const isBrand = i === 1
+          const vis = isBrand ? 4 : i > 1 ? i - 1 : 0
           const tags = g.tags as string[]
 
           return (
             <div key={g.heading} className={`flex flex-col lg:flex-row items-start gap-10 lg:gap-12 fade-up ${reverse ? 'lg:flex-row-reverse' : ''}`}>
               {/* Illustration panel */}
               <div className="w-full lg:w-[400px] lg:shrink-0 pb-7">
-                {i === 0 ? (
+                {vis === 4 ? (
+                  /* ── Branding: logo mark + palette + type specimen ── */
+                  <div
+                    className="theme-dark relative rounded-2xl p-5"
+                    style={{
+                      background: CANVAS_BG,
+                      border: '1px solid rgb(var(--fg) / 0.08)',
+                      backgroundImage: 'radial-gradient(rgb(var(--fg) / 0.07) 1px, transparent 1px)',
+                      backgroundSize: '16px 16px',
+                      animation: 'floatY 5s ease-in-out infinite',
+                    }}
+                  >
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-[11px]" style={{ letterSpacing: '0.2em', color: 'rgb(var(--fg) / 0.6)' }}>{lang === 'en' ? 'BRAND IDENTITY' : 'อัตลักษณ์แบรนด์'}</span>
+                      <span className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: 'rgba(245,215,110,0.14)', color: '#F5D76E' }}>{lang === 'en' ? 'Guidelines v1.0' : 'คู่มือแบรนด์ v1.0'}</span>
+                    </div>
+                    <div className="grid grid-cols-5 gap-3">
+                      <div className="col-span-3 rounded-xl flex items-center justify-center" style={{ background: CARD_BG, border: '1px solid rgb(var(--fg) / 0.08)', height: 150 }}>
+                        <svg width="84" height="84" viewBox="0 0 84 84" fill="none">
+                          <defs><linearGradient id="brand-mark" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#7B6EF6" /><stop offset="100%" stopColor="#53C3D7" /></linearGradient></defs>
+                          <rect x="8" y="8" width="68" height="68" rx="20" fill="url(#brand-mark)" />
+                          <path d="M28 58V26h8v12h12V26h8v32h-8V45H36v13z" fill="#15112A" />
+                        </svg>
+                      </div>
+                      <div className="col-span-2 flex flex-col gap-3">
+                        <div className="rounded-xl flex-1 flex items-center justify-center" style={{ background: CARD_BG, border: '1px solid rgb(var(--fg) / 0.08)' }}>
+                          <span style={{ fontSize: 34, fontWeight: 700, color: 'var(--ink)', lineHeight: 1 }}>Aa</span>
+                        </div>
+                        <div className="rounded-xl flex-1 flex flex-col justify-center gap-1.5 px-3" style={{ background: CARD_BG, border: '1px solid rgb(var(--fg) / 0.08)' }}>
+                          <div className="h-1.5 rounded-full" style={{ width: '90%', background: 'rgb(var(--fg) / 0.25)' }} />
+                          <div className="h-1.5 rounded-full" style={{ width: '65%', background: 'rgb(var(--fg) / 0.15)' }} />
+                          <div className="h-1.5 rounded-full" style={{ width: '78%', background: 'rgb(var(--fg) / 0.15)' }} />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mt-3 flex gap-2">
+                      {['#7B6EF6', '#B8A9FA', '#53C3D7', '#F5D76E', '#F7F4EF'].map((c) => (
+                        <span key={c} className="flex-1 rounded-lg" style={{ background: c, height: 34 }} />
+                      ))}
+                    </div>
+                    <div className="mt-3 flex items-center gap-2 rounded-xl px-3 py-2.5" style={{ background: CARD_BG, border: '1px solid rgb(var(--fg) / 0.08)' }}>
+                      <span className="w-6 h-6 rounded-md" style={{ background: 'linear-gradient(135deg,#7B6EF6,#53C3D7)' }} />
+                      <span className="text-[11px]" style={{ color: 'rgb(var(--fg) / 0.7)' }}>{lang === 'en' ? 'Website · Deck · Social · Print' : 'เว็บไซต์ · เอกสารนำเสนอ · โซเชียล · สื่อพิมพ์'}</span>
+                    </div>
+                  </div>
+                ) : vis === 0 ? (
                   /* ── Strategy: roadmap lanes + north-star trend ── */
                   <div
                     className="theme-dark relative rounded-2xl p-5"
@@ -94,7 +141,7 @@ export default function CoreSkills({ lang, tr }: Props) {
                       </svg>
                     </div>
                   </div>
-                ) : i === 1 ? (
+                ) : vis === 1 ? (
                   /* ── Design: UX flow (wireframes) on top, polished UI below ── */
                   <div
                     className="theme-dark relative rounded-2xl p-5"
@@ -157,7 +204,7 @@ export default function CoreSkills({ lang, tr }: Props) {
                       <div className="flex flex-col gap-1"><div className="h-1 w-8 rounded-full" style={{ background: 'rgb(var(--fg) / 0.22)' }} /><div className="h-1 w-5 rounded-full" style={{ background: 'rgb(var(--fg) / 0.14)' }} /></div>
                     </div>
                   </div>
-                ) : i === 2 ? (
+                ) : vis === 2 ? (
                   /* ── Engineering: code editor + CI/CD pipeline + platforms ── */
                   <div
                     className="theme-dark relative rounded-2xl p-5"
@@ -206,7 +253,7 @@ export default function CoreSkills({ lang, tr }: Props) {
                       ))}
                     </div>
                   </div>
-                ) : i === 3 ? (
+                ) : vis === 3 ? (
                   /* ── AI & Innovation: neural network + copilot chat mockup ── */
                   <div
                     className="relative rounded-2xl p-5"
@@ -411,7 +458,7 @@ export default function CoreSkills({ lang, tr }: Props) {
                   ))}
                 </div>
                 <Link
-                  href={`${prefix}/services`}
+                  href={isBrand ? `${prefix}/services/branding` : `${prefix}/services`}
                   className="inline-flex items-center gap-1.5 transition-colors"
                   style={{ color: 'rgb(var(--fg) / 0.65)', fontWeight: 400, fontSize: '0.9rem' }}
                 >
