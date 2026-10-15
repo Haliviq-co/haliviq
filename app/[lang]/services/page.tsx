@@ -580,11 +580,11 @@ export default function Page({ params }: { params: { lang: Lang } }) {
   ]
 
   const segments = isEN ? [
-    { icon: 'ti-building-skyscraper', title: 'Enterprise', desc: 'Full delivery teams for complex platforms, working to the security, compliance and approval processes that large organisations require, with the documentation to match.' },
-    { icon: 'ti-rocket', title: 'Small Business & Startups', desc: 'Lean, focused builds that get the essentials right. We help you cut scope, not quality, so a modest budget still ships a solid first version that you can grow.' },
+    { href: '/services/enterprise-solutions', icon: 'ti-building-skyscraper', title: 'Enterprise', desc: 'Full delivery teams for complex platforms, working to the security, compliance and approval processes that large organisations require, with the documentation to match.' },
+    { href: '/contact', icon: 'ti-rocket', title: 'Small Business & Startups', desc: 'Lean, focused builds that get the essentials right. We help you cut scope, not quality, so a modest budget still ships a solid first version that you can grow.' },
   ] : [
-    { icon: 'ti-building-skyscraper', title: 'Enterprise', desc: 'ทีมครบทุกสายงานสำหรับแพลตฟอร์มซับซ้อน ทำงานตามมาตรฐานความปลอดภัย การทำตามข้อกำหนด และขั้นตอนอนุมัติที่องค์กรใหญ่ต้องการ พร้อมเอกสารที่ครบ' },
-    { icon: 'ti-rocket', title: 'ธุรกิจขนาดเล็กและ Startup', desc: 'งานกระชับตรงจุด เราช่วยตัดขอบเขตที่ไม่จำเป็นออก ไม่ใช่ตัดคุณภาพ งบไม่มากก็ได้เวอร์ชันแรกที่แข็งแรงและโตต่อได้' },
+    { href: '/services/enterprise-solutions', icon: 'ti-building-skyscraper', title: 'Enterprise', desc: 'ทีมครบทุกสายงานสำหรับแพลตฟอร์มซับซ้อน ทำงานตามมาตรฐานความปลอดภัย การทำตามข้อกำหนด และขั้นตอนอนุมัติที่องค์กรใหญ่ต้องการ พร้อมเอกสารที่ครบ' },
+    { href: '/contact', icon: 'ti-rocket', title: 'ธุรกิจขนาดเล็กและ Startup', desc: 'งานกระชับตรงจุด เราช่วยตัดขอบเขตที่ไม่จำเป็นออก ไม่ใช่ตัดคุณภาพ งบไม่มากก็ได้เวอร์ชันแรกที่แข็งแรงและโตต่อได้' },
   ]
 
   return (
@@ -686,13 +686,17 @@ export default function Page({ params }: { params: { lang: Lang } }) {
             </div>
             <div className="grid sm:grid-cols-2 gap-6">
               {segments.map((seg) => (
-                <div key={seg.title} className="bg-[var(--bg)] border border-[color:var(--line)] rounded-2xl p-8">
+                <Link key={seg.title} href={`${prefix}${seg.href}`} className="group bg-[var(--bg)] border border-[color:var(--line)] rounded-2xl p-8 block transition-colors hover:border-[var(--purple-light)]/50">
                   <div className="w-12 h-12 rounded-xl bg-[var(--purple-bg)] flex items-center justify-center mb-6">
                     <i className={`ti ${seg.icon}`} style={{ fontSize: 22, color: 'var(--purple)' }} aria-hidden="true" />
                   </div>
                   <h3 className="text-[color:var(--ink)] mb-3" style={{ fontWeight: 500, fontSize: '1.3rem' }}>{seg.title}</h3>
-                  <p className="t-body text-sm leading-relaxed">{seg.desc}</p>
-                </div>
+                  <p className="t-body text-sm leading-relaxed mb-5">{seg.desc}</p>
+                  <span className="inline-flex items-center gap-1.5 text-sm" style={{ color: 'var(--accent-2)', fontWeight: 500 }}>
+                    {seg.href === '/contact' ? (isEN ? 'Talk to us' : 'คุยกับเรา') : (isEN ? 'Learn more' : 'ดูเพิ่มเติม')}
+                    <i className="ti ti-arrow-right text-sm group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                  </span>
+                </Link>
               ))}
             </div>
           </div>
