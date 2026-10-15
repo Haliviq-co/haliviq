@@ -51,7 +51,11 @@ export async function POST(req: Request) {
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
       body: JSON.stringify({ to, messages: [{ type: 'text', text: text.slice(0, 4900) }] }),
     })
-    if (!r.ok) return NextResponse.json({ ok: false, error: 'line' }, { status: 502 })
+    if (!r.ok) {
+      const body = await r.text().catch(() => '')
+      console.error('LINE push failed', r.status, body.slice(0, 300))
+      return NextResponse.json({ ok: false, error: 'line', status: r.status, detail: body.slice(0, 200) }, { status: 502 })
+    }
     return NextResponse.json({ ok: true })
   } catch {
     return NextResponse.json({ ok: false, error: 'net' }, { status: 502 })
