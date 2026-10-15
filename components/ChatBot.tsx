@@ -91,7 +91,7 @@ const PACKAGE_Q = /แพ็?[คก]เ?[กค]จ|แพ็คเกจ|แ�
 // A bare "I'm interested" / "tell me more" is a buying signal, so ask what they need instead of matching some random FAQ.
 // Confusion, complaints and test messages ("ตอบมั่ว", "งง", "ไม่เข้าใจ") should get an apology and a way forward, never a random FAQ.
 // Insults and swearing: stay calm, apologise, and pass the conversation to a person instead of arguing or guessing.
-const ABUSE = /ควาย|เหี้ย|สัส|ชิบหาย|ฉิบหาย|ตอแหล|เชี่ย(?!ว)|แม่ง(?!าน)|ส้นตีน|ระยำ|ไอ้?โง่|โง่|ปัญญาอ่อน|ห่วยแตก|(^|\s)(กู|มึง)(\s|$)|fuck|\bshit|stupid|idiot|\bdumb|bitch|asshole|bastard|moron|useless bot|piece of/i
+const ABUSE = /ควาย|เหี้ย|สัส|ชิบหาย|ฉิบหาย|ตอแหล|เชี่ย(?!ว)|แม่ง(?!าน)|ส้นตีน|ระยำ|ไอ้?โง่|โง่|ปัญญาอ่อน|ห่วยแตก|มึง|(^|\s)กู(\s|$)|fuck|\bshit|stupid|idiot|\bdumb|bitch|asshole|bastard|moron|useless bot|piece of/i
 const CONFUSED = /^\s*(ตอบ(มั่ว|มั่วๆ|ไม่ตรง|ผิด|แปลก|ไม่รู้เรื่อง)|มั่ว|มั่วๆ|ไม่เข้าใจ|ไม่รู้เรื่อง|งง.{0,12}|ไม่ตรง|ผิดแล้ว|ผิด|ห๊ะ|หา+|อะไรวะ|อะไรเนี่ย|ทดสอบ|เทส|test|testing|wrong( answer)?|huh|what\??|nonsense|you are wrong|not what i asked)[\sa-z\u0e00-\u0e7f!?.]{0,6}$/i
 const INTEREST = /^\s*(สนใจ|สนใจจ้า|สนใจนะ|อยากทราบ|อยากรู้|อยากรู้เพิ่ม|ขอรายละเอียด|ขอข้อมูล|ขอข้อมูลเพิ่ม|ได้|ได้เลย|โอเค|ok|okay|yes|ใช่|interested|i'?m interested|tell me more|sounds good)[\sa-z\u0e00-\u0e7f!.]{0,8}$/i
 const BUSINESS: { key: string; th: string; en: string; tha: string; ena: string }[] = [
