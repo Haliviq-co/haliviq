@@ -624,19 +624,22 @@ export default function ChatBot({ lang }: { lang: Lang }) {
     const FB_TH = [
       'อันนี้ผมอยากให้ทีมงานช่วยตอบให้ตรงกับงานของคุณครับ เล่าเพิ่มอีกนิดได้ไหมครับว่าอยากได้อะไร เดี๋ยวผมช่วยดูให้ หรือทักทีมงานได้เลย',
       'ขอโทษครับ ผมยังไม่แน่ใจว่าเข้าใจตรงไหมครับ ลองพิมพ์ใหม่อีกแบบได้ไหมครับ เช่น บอกประเภทธุรกิจหรืองานที่อยากทำ หรือจะคุยกับแอดมินเลยก็ได้ครับ',
-      'เรื่องนี้ให้แอดมินดูแลจะดีที่สุดครับ เลือกแอปที่สะดวกด้านล่างได้เลย หรือนัดคุยออนไลน์ฟรี 30 นาทีก็ได้ครับ',
+      'เรื่องนี้ให้แอดมินดูแลจะดีที่สุดครับ กดเลือกหัวข้อด้านล่างให้ผมช่วยก่อน หรือกดคุยกับแอดมินได้เลยครับ',
     ]
     const FB_EN = [
       'I would like the team to answer this one properly for your situation. Could you tell me a little more about what you need? I can take another look, or you can message the team.',
       'Sorry, I am not sure I understood. Could you try saying it another way, for example the type of business or what you want to build? Or talk to the team directly.',
-      'This one is best handled by the team. Pick the app you like below, or book a free 30-minute online call.',
+      'This one is best handled by the team. Tap a topic below and I will help first, or talk to the team directly.',
     ]
     const fbN = fbCount.current++ % 3
     return {
       idx: -1,
       text: isEN ? FB_EN[fbN] : FB_TH[fbN],
       links: rl.length ? rl : undefined,
-      agent: true,
+      choices: [
+        ...PRODUCTS.map((x) => ({ key: 'svc:' + x.k, label: isEN ? x.chipEn : x.chip })),
+        { key: 'agent', label: isEN ? '💬 Talk to the team' : '💬 คุยกับแอดมิน' },
+      ],
       fallback: true,
     }
   }
@@ -665,7 +668,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
       return
     }
     if (wantsAgent(clean) && !(clean.length < 60 && ASKS_IDENTITY.test(clean))) {
-      setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, agent: true, text: isEN ? 'Happy to connect you with the team. Pick the app you like and we will reply there, or book an online meeting.' : 'ยินดีต่อสายให้คุยกับทีมงานครับ เลือกแอปที่สะดวก หรือนัดประชุมออนไลน์ แล้วทีมจะตอบกลับทางนั้นครับ' }])
+      setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, agent: true, text: isEN ? 'Happy to. There is nothing to decide right now. Just tell the team briefly what you need. Pick the channel you like below and they will reply there, so you do not have to repeat yourself.' : 'ได้เลยครับ ไม่ต้องตัดสินใจทำอะไรตอนนี้ เล่าเรื่องที่อยากได้ให้ทีมฟังคร่าว ๆ ก็พอ เลือกช่องทางที่สะดวกด้านล่าง ทีมจะติดต่อกลับทางนั้น โดยไม่ต้องเล่าซ้ำจากต้นครับ' }])
       setText('')
       log(clean, -1)
       return
@@ -677,7 +680,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
         .filter((x) => x.text)
         .slice(-7)
         .map((x) => ({ role: x.from === 'me' ? 'user' : 'assistant', content: x.text }))
-      const showFallback = () => setMsgs((m) => [...m.filter((x) => !x.pending), { from: 'bot', fresh: true, text: r.text, links: r.links, agent: r.agent, meet: r.meet, topic: prodOf(clean)?.k }])
+      const showFallback = () => setMsgs((m) => [...m.filter((x) => !x.pending), { from: 'bot', fresh: true, text: r.text, links: r.links, agent: r.agent, meet: r.meet, choices: r.choices, topic: prodOf(clean)?.k }])
       setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', text: '…', pending: true }])
       setText('')
       log(clean, -1)
