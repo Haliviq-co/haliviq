@@ -610,7 +610,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
         idx: -1,
         text: isEN
           ? 'We build software for businesses, from websites and mobile apps to AI assistants, ERP/CRM systems and LINE Mini Apps. We also do design, SEO and security, and we fix apps made with Lovable, Bolt or Cursor. Tell me what you are trying to do and I will point you to the right service.'
-          : 'เราทำซอฟต์แวร์ให้ธุรกิจครับ ตั้งแต่เว็บไซต์ แอปมือถือ ระบบ AI ผู้ช่วยตอบลูกค้า ไปจนถึงระบบ ERP/CRM และ LINE Mini App นอกจากนี้ยังออกแบบ ทำ SEO ดูแลความปลอดภัย และรับแก้แอปที่ทำด้วย Lovable, Bolt, Cursor ครับ ลองบอกผมว่าอยากทำอะไร เดี๋ยวผมแนะนำบริการที่ตรงให้ครับ',
+          : 'เราทำซอฟต์แวร์ให้ธุรกิจครับ ตั้งแต่เว็บไซต์ แอปมือถือ ระบบ AI ผู้ช่วยตอบลูกค้า ไปจนถึงระบบ ERP/CRM และ LINE Mini App นอกจากนี้ยังออกแบบ ทำ SEO ดูแลความปลอดภัย และรับแก้แอปที่ทำด้วย Lovable, Bolt, Cursor ครับ ลองบอกผมว่าอยากทำอะไร เดี๋ยวผมแนะนำบริการที่ตรงกับความต้องการของคุณครับ',
         links: [
           { label: isEN ? 'All services' : 'ดูบริการทั้งหมด', href: `/${lang}/services` },
           { label: isEN ? 'See our work' : 'ดูผลงานของเรา', href: `/${lang}/work` },
