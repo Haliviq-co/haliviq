@@ -31,6 +31,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { title: '3. Personal Data We Collect', body: 'We collect only what we need, grouped as follows:', items: [
       'Identity & contact data: name, email address, phone number, company name, job title.',
       'Enquiry & project data: the content of your messages, project descriptions, budget range, and how you heard about us, when you use our contact form or reach out by email, LINE, or WhatsApp.',
+      'Chat assistant data: the questions you type to our website assistant (Havy) are logged without your name. If you choose "Ask the team to contact me", we also receive the contact detail you enter and a short summary of what you asked, only after you tick the consent box. We use it solely to get back to you, and it is sent to our team through LINE.',
       'Subscription data: your email address and preferences if you subscribe to our newsletter.',
       'Technical & usage data: IP address, browser and device type, pages viewed, referring page, and approximate location, collected through cookies and similar technologies (see our Cookie Policy).',
       'Recruitment data: CV, portfolio, work history, and contact details, if you apply for a role with us.',
@@ -88,6 +89,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { title: '3. ข้อมูลส่วนบุคคลที่เราเก็บรวบรวม', body: 'เราเก็บเท่าที่จำเป็น แบ่งเป็นประเภทดังนี้', items: [
       'ข้อมูลระบุตัวตนและติดต่อ: ชื่อ อีเมล เบอร์โทรศัพท์ ชื่อบริษัท ตำแหน่งงาน',
       'ข้อมูลการสอบถามและโปรเจกต์: ข้อความ รายละเอียดโปรเจกต์ ช่วงงบประมาณ และช่องทางที่รู้จักเรา เมื่อท่านกรอกแบบฟอร์มติดต่อ หรือติดต่อทางอีเมล LINE หรือ WhatsApp',
+      'ข้อมูลจากผู้ช่วยแชท: คำถามที่ท่านพิมพ์ถึงน้องฮาวี่บนเว็บไซต์จะถูกบันทึกโดยไม่ระบุชื่อ หากท่านเลือก "ให้ทีมติดต่อกลับ" เราจะได้รับข้อมูลติดต่อที่ท่านกรอกและสรุปสั้น ๆ ของสิ่งที่ท่านสอบถาม หลังจากท่านติ๊กยินยอมแล้วเท่านั้น เราใช้เพื่อติดต่อกลับท่านเท่านั้น และส่งถึงทีมงานผ่าน LINE',
       'ข้อมูลการสมัครรับข่าวสาร: อีเมลและความสนใจของท่าน หากสมัครรับจดหมายข่าว',
       'ข้อมูลทางเทคนิคและการใช้งาน: IP Address ประเภทเบราว์เซอร์และอุปกรณ์ หน้าที่เข้าชม เว็บที่พามาหาเรา และตำแหน่งโดยประมาณ ซึ่งเก็บผ่านคุกกี้และเทคโนโลยีที่คล้ายกัน (ดูนโยบายคุกกี้)',
       'ข้อมูลการสมัครงาน: ประวัติย่อ ผลงาน ประวัติการทำงาน และข้อมูลติดต่อ หากท่านสมัครงานกับเรา',
