@@ -97,6 +97,48 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       {icon: 'ti-device-desktop', title: 'นำแบรนด์ไปใช้บนดิจิทัล (Digital Rollout)', desc: 'นำแบรนด์ไปใช้บนเว็บไซต์ แอปมือถือ LINE และโซเชียล พร้อมจัดทำเทมเพลต เพื่อให้หน้าใหม่ที่เพิ่มภายหลังยังคงเป็นแบรนด์เดียวกัน'},
       {icon: 'ti-users', title: 'เวิร์กชอปและอบรมทีมงาน (Team Training)', desc: 'ประชุมเชิงปฏิบัติการที่อธิบายแบรนด์ให้ผู้บริหารและพนักงานเข้าใจ และสอนวิธีใช้คู่มือแบรนด์ด้วยตนเอง โดยไม่ต้องถามทีมของเราทุกครั้ง'},
     ]
+  const whenEn = [['You are not sure what customers really want', 'Your market or competitors are shifting', 'You need facts before a launch or a rebrand'], ['The brand has no clear stance yet', 'Customers cannot see how you differ', 'You are building a new brand or unsure where a rebrand should start'], ['You need a name for a new business or product', 'The current name is hard to say, spell or protect', 'You are entering a market where the name may mean something else'], ['The look does not match what the business is today', 'Each channel looks like a different brand', 'You need a new logo, colours or key visuals'], ['Different people use the logo in different ways', 'Agencies and printers keep asking for files and rules', 'New staff need a single reference'], ['You are not sure how the brand should sound', 'Messages differ between the website, LINE and email', 'You need sample wording for everyday situations'], ['The website, app or LINE do not look like the brand', 'You are about to build a website and want it right once', 'New pages keep drifting from the brand'], ['Executives and staff understand the brand differently', 'You have just rebranded and want people to follow it', 'You want the team to apply the guideline without us']]
+  const whenTh = [['ยังไม่แน่ใจว่าลูกค้าต้องการอะไรจริง ๆ', 'ตลาดหรือคู่แข่งกำลังเปลี่ยน', 'ต้องการข้อเท็จจริงก่อนเปิดตัวหรือปรับแบรนด์'], ['แบรนด์ยังไม่มีจุดยืนที่ชัดเจน', 'ลูกค้ามองไม่เห็นว่าคุณต่างจากคู่แข่งอย่างไร', 'กำลังสร้างแบรนด์ใหม่ หรือยังไม่แน่ใจว่าจะปรับแบรนด์จากตรงไหน'], ['ต้องการชื่อสำหรับธุรกิจหรือสินค้าใหม่', 'ชื่อเดิมอ่านยาก สะกดยาก หรือจดทะเบียนคุ้มครองไม่ได้', 'กำลังเข้าตลาดที่ชื่อนี้อาจมีความหมายอื่น'], ['ภาพลักษณ์ไม่ตรงกับธุรกิจในปัจจุบัน', 'แต่ละช่องทางดูเหมือนเป็นคนละแบรนด์', 'ต้องการโลโก้ สี หรือภาพหลักชุดใหม่'], ['แต่ละคนใช้โลโก้ไม่เหมือนกัน', 'เอเจนซีและโรงพิมพ์ขอไฟล์และกฎซ้ำ ๆ', 'พนักงานใหม่ต้องการเอกสารอ้างอิงเดียว'], ['ยังไม่แน่ใจว่าแบรนด์ควรพูดด้วยน้ำเสียงแบบใด', 'ข้อความบนเว็บไซต์ LINE และอีเมลไม่ตรงกัน', 'ต้องการตัวอย่างประโยคสำหรับสถานการณ์ประจำวัน'], ['เว็บไซต์ แอป หรือ LINE ไม่ดูเหมือนแบรนด์', 'กำลังจะสร้างเว็บไซต์และต้องการให้ถูกต้องตั้งแต่ครั้งแรก', 'หน้าใหม่ที่เพิ่มภายหลังเริ่มหลุดจากแบรนด์'], ['ผู้บริหารและพนักงานเข้าใจแบรนด์ไม่ตรงกัน', 'เพิ่งปรับแบรนด์และต้องการให้คนในองค์กรทำตาม', 'ต้องการให้ทีมใช้คู่มือแบรนด์ได้เองโดยไม่ต้องถามเรา']]
+  const when = isEN ? whenEn : whenTh
+  const whenLabel = isEN ? 'Right when' : 'เหมาะเมื่อ'
+
+  const servicesSection = (
+    <section style={{ background: 'var(--bg)', padding: '80px 0 24px' }}>
+      <div className="max-w-7xl mx-auto px-4 lg:px-10">
+        <div className="mb-10 max-w-2xl">
+          <h2 className="t-display mb-4" style={{ color: 'var(--ink)', fontSize: 'clamp(1.8rem,3.4vw,2.6rem)', lineHeight: 1.25 }}>
+            {isEN ? 'Eight services, used on their own or together' : 'บริการเดี่ยว 8 อย่าง ใช้แยกหรือรวมกันก็ได้'}
+          </h2>
+          <p style={{ color: 'rgb(var(--fg) / 0.85)', lineHeight: 1.8 }}>
+            {isEN ? 'Choose the service that fits where your business is today.' : 'เลือกบริการที่เหมาะกับสถานการณ์ของธุรกิจคุณในวันนี้'}
+          </p>
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {features.map((f, k) => (
+            <article key={f.title} className="rounded-2xl p-6 flex flex-col gap-4" style={{ border: '1px solid rgb(var(--fg) / 0.14)', background: 'rgb(var(--fg) / 0.03)' }}>
+              <div className="flex items-start justify-between">
+                <span className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: 'var(--purple-bg)', color: 'var(--accent)' }}>
+                  <i className={`ti ${f.icon}`} style={{ fontSize: 24 }} aria-hidden="true" />
+                </span>
+                <span aria-hidden="true" style={{ color: 'var(--accent)', fontWeight: 600 }}>{String(k + 1).padStart(2, '0')}</span>
+              </div>
+              <h3 style={{ color: 'var(--ink)', fontSize: '1.1rem', fontWeight: 600, lineHeight: 1.4 }}>{f.title}</h3>
+              <p className="text-sm" style={{ color: 'rgb(var(--fg) / 0.85)', lineHeight: 1.75 }}>{f.desc}</p>
+              <div className="mt-auto pt-4" style={{ borderTop: '1px solid rgb(var(--fg) / 0.12)' }}>
+                <p className="text-xs mb-2" style={{ color: 'var(--accent)', letterSpacing: '0.04em' }}>{whenLabel}</p>
+                <ul className="grid gap-1.5 text-sm" style={{ color: 'rgb(var(--fg) / 0.85)', lineHeight: 1.6 }}>
+                  {when[k].map((w) => (
+                    <li key={w} className="flex gap-2"><span aria-hidden="true" style={{ color: 'var(--accent)' }}>•</span><span>{w}</span></li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+
   const steps = isEN ? [
       {no: '01', title: 'Discovery Conversation', desc: 'A free first conversation about your business, your customers and what you want the brand to do. We then recommend services or a package.'},
       {no: '02', title: 'Research & Strategy', desc: 'We gather evidence, agree the positioning with your team and write it down so every later design decision can refer to it.'},
@@ -152,14 +194,18 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     ]
 
   const programs = (
+    <>
+    {servicesSection}
     <BrandingPackages
       pkgs={packages}
       heading={isEN ? 'Which stage is your business in?' : 'ธุรกิจของคุณอยู่ในช่วงไหน?'}
-      intro={isEN ? 'Each stage needs a different answer about the brand. Pick yours and see the package we would combine for it. We adjust every package to your case.' : 'แต่ละช่วงของธุรกิจต้องการคำตอบเรื่องแบรนด์ไม่เหมือนกัน เลือกช่วงของคุณเพื่อดูแพ็กเกจที่เรารวมไว้ให้ และเราปรับเนื้อหาให้ตรงกับกรณีของคุณ'}
+      intro={isEN ? 'Each stage needs a different answer about the brand. Tap yours to jump to the package we would combine for it. We adjust every package to your case.' : 'แต่ละช่วงของธุรกิจต้องการคำตอบเรื่องแบรนด์ไม่เหมือนกัน กดเลือกช่วงของคุณเพื่อไปที่แพ็กเกจที่เรารวมไว้ให้ และเราปรับเนื้อหาให้ตรงกับกรณีของคุณ'}
       forLabel={isEN ? 'For:' : 'เหมาะกับ:'}
       partsLabel={isEN ? 'WHAT IS INCLUDED' : 'สิ่งที่รวมอยู่'}
       situationLabel={isEN ? 'YOUR SITUATION' : 'สถานการณ์ของคุณ'}
+      pkgLabel={isEN ? 'PACKAGE' : 'แพ็กเกจ'}
     />
+    </>
   )
 
   return (
@@ -169,7 +215,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       heroDesc={heroDesc} heroBullets={heroBullets}
       whyTitle={whyTitle} whyDesc={whyDesc} whyPoints={whyPoints}
       outcomes={outcomes} ctaTitle={ctaTitle} ctaDesc={ctaDesc}
-      features={features} steps={steps}
+      steps={steps}
       faqs={faqs} related={related}
       postHeroSlot={programs}
       color="var(--accent)" bg="var(--purple-bg)"
