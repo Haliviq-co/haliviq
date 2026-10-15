@@ -545,3 +545,22 @@ html[data-theme="light"] .cta-final a[href$="/contact"]:hover { background: #EEE
 @keyframes hcwBar{0%,56%{transform:scaleX(.05)}68%,100%{transform:scaleX(1)}}
 .hcw-dot{animation:svcPing 2s ease-out infinite}
 @media (prefers-reduced-motion:reduce){.hcw-line,.hcw-card,.hcw-bar{animation:none!important;clip-path:none;opacity:1;transform:none}}
+
+/* design-style motion for service visuals (no text typing) */
+.svc-thumb .items-end>*{transform-origin:bottom;animation:svcBarRise 4.4s ease-in-out infinite!important}
+.svc-thumb .items-end>:nth-child(2){animation-delay:.18s!important}
+.svc-thumb .items-end>:nth-child(3){animation-delay:.36s!important}
+.svc-thumb .items-end>:nth-child(4){animation-delay:.54s!important}
+.svc-thumb .items-end>:nth-child(n+5){animation-delay:.72s!important}
+@keyframes svcBarRise{0%{transform:scaleY(.08)}45%,85%{transform:scaleY(1)}100%{transform:scaleY(.08)}}
+.svc-thumb .rounded-lg{animation:svcPanelIn 5.5s cubic-bezier(.2,.8,.2,1) infinite both}
+@keyframes svcPanelIn{0%{opacity:0;transform:translateY(14px) scale(.96)}14%,86%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-6px)}}
+.svc-thumb .ti-check{display:inline-block;animation:svcCheckPop 5.5s ease-out infinite both}
+@keyframes svcCheckPop{0%,10%{transform:scale(0)}20%{transform:scale(1.5)}28%,100%{transform:scale(1)}}
+.svc-thumb .h-1\.5{transform-origin:left center;animation:svcBarGrow 4.2s ease-in-out infinite both}
+@keyframes svcBarGrow{0%{transform:scaleX(.08)}40%,90%{transform:scaleX(1)}100%{transform:scaleX(.08)}}
+.svc-thumb.svc-hero-vis{--zm:1.2}
+@media (min-width:640px){.svc-thumb.svc-hero-vis{--zm:1.8}}
+@media (min-width:1024px){.svc-thumb.svc-hero-vis{--zm:1.6}}
+@media (min-width:1280px){.svc-thumb.svc-hero-vis{--zm:1.9}}
+@media (prefers-reduced-motion:reduce){.svc-thumb .items-end>*,.svc-thumb .rounded-lg,.svc-thumb .ti-check,.svc-thumb .h-1\.5{animation:none!important}}
