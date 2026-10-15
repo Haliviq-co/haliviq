@@ -114,9 +114,7 @@ export default function FlowDiagram({ lang }: { lang: Lang }) {
 
             {/* middle card */}
             <rect x="340" y="70" width="420" height="300" rx="28" {...card} strokeDasharray="5 6" />
-            <circle cx="550" cy="70" r="30" fill="url(#fd-g)" className="fd-pulse" />
-            <text x="550" y="80" textAnchor="middle" fontSize="28" fontWeight="700" fill="#fff">H</text>
-            <text x="550" y="128" textAnchor="middle" fontSize="16" fontWeight="600" fill={soft}>{c.mid}</text>
+            <image href="/haliviq-logo-light.svg" x="440" y="84" width="220" height="45" className="fd-pulse" />
             {c.services.map((s, i) => {
               const col = i % 2, row = Math.floor(i / 2)
               const x = 358 + col * 196, y = 150 + row * 66
@@ -154,7 +152,7 @@ export default function FlowDiagram({ lang }: { lang: Lang }) {
           </div>
           <div className="fd-mline" aria-hidden="true" />
           <div className="rounded-3xl p-5" style={{ background: 'rgb(var(--fg) / 0.05)', border: '1px dashed rgb(var(--fg) / 0.2)' }}>
-            <p className="mb-3 text-center" style={{ color: 'rgb(var(--fg) / 0.7)', fontWeight: 600 }}>{c.mid}</p>
+            <img src="/haliviq-logo-light.svg" alt="Haliviq" className="mx-auto mb-4 h-8 w-auto" />
             <div className="flex flex-wrap gap-2 justify-center">
               {c.services.map((s, i) => (
                 <span key={s} className="px-3.5 py-2 rounded-full text-sm inline-flex items-center gap-2" style={{ background: 'rgb(var(--fg) / 0.07)', border: '1px solid rgb(var(--fg) / 0.14)', color: 'var(--ink)' }}><MiniIcon color={i % 2 ? '#53C3D7' : '#9A90FF'} size={18}>{ICON_SVC[i]}</MiniIcon>{s}</span>
