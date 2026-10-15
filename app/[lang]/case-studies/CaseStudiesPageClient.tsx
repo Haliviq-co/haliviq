@@ -237,9 +237,9 @@ export default function CaseStudiesPageClient({ params }: { params: { lang: Lang
 
             {/* Featured case study — cover art + 2 rows of feature cards */}
             <div className="rounded-[32px] overflow-hidden" style={{ border: '1px solid rgb(var(--fg) / 0.1)' }}>
-              <div className="theme-dark relative py-16 px-6 lg:px-16" style={{ background: 'linear-gradient(160deg, #171232 0%, #1B1A33 100%)' }}>
+              <div className="theme-dark relative py-10 lg:py-16 px-6 lg:px-16" style={{ background: 'linear-gradient(160deg, #171232 0%, #1B1A33 100%)' }}>
                 <div className="grid lg:grid-cols-[1fr_auto_1fr] gap-8 items-center">
-                  <div className="grid grid-rows-2 gap-5 order-2 lg:order-1">
+                  <div className="hidden lg:grid grid-rows-3 gap-5 order-1">
                     {left.map((c) => (
                       <div key={c.title} className="rounded-2xl p-5" style={{ background: 'rgb(var(--fg) / 0.05)', border: '1px solid rgb(var(--fg) / 0.08)' }}>
                         <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-3" style={{ background: 'rgba(123,110,246,0.18)' }}>
@@ -251,16 +251,28 @@ export default function CaseStudiesPageClient({ params }: { params: { lang: Lang
                     ))}
                   </div>
 
-                  <div className="flex items-end justify-center gap-4 order-1 lg:order-2">
+                  <div className="flex items-end justify-center gap-4 order-1 lg:order-2 scale-[.8] sm:scale-100 origin-bottom -my-4 sm:my-0">
                     <div className="-rotate-6 -mr-6 mb-4"><PhoneMock variant="home" /></div>
                     <div className="rotate-3"><PhoneMock variant="doctor" /></div>
                   </div>
 
-                  <div className="grid grid-rows-2 gap-5 order-3">
+                  <div className="hidden lg:grid grid-rows-3 gap-5 order-3">
                     {right.map((c) => (
                       <div key={c.title} className="rounded-2xl p-5" style={{ background: 'rgb(var(--fg) / 0.05)', border: '1px solid rgb(var(--fg) / 0.08)' }}>
                         <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-3" style={{ background: 'rgba(196,232,106,0.18)' }}>
                           <i className={`ti ${c.icon}`} style={{ fontSize: 18, color: 'var(--accent-2)' }} aria-hidden="true" />
+                        </div>
+                        <p className="mb-1" style={{ color: 'var(--ink)', fontWeight: 500, fontSize: '0.95rem' }}>{c.title}</p>
+                        <p style={{ color: 'rgb(var(--fg) / 0.6)', fontWeight: 400, fontSize: '0.8rem', lineHeight: 1.5 }}>{c.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="lg:hidden order-2 -mx-6 px-6 flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3" style={{ scrollbarWidth: 'none' }}>
+                    {featureCards.map((c, i) => (
+                      <div key={c.title} className="snap-center shrink-0 w-[80%] sm:w-[46%] rounded-2xl p-5" style={{ background: 'rgb(var(--fg) / 0.05)', border: '1px solid rgb(var(--fg) / 0.08)' }}>
+                        <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-3" style={{ background: i < 3 ? 'rgba(123,110,246,0.18)' : 'rgba(196,232,106,0.18)' }}>
+                          <i className={`ti ${c.icon}`} style={{ fontSize: 18, color: i < 3 ? 'var(--accent)' : 'var(--accent-2)' }} aria-hidden="true" />
                         </div>
                         <p className="mb-1" style={{ color: 'var(--ink)', fontWeight: 500, fontSize: '0.95rem' }}>{c.title}</p>
                         <p style={{ color: 'rgb(var(--fg) / 0.6)', fontWeight: 400, fontSize: '0.8rem', lineHeight: 1.5 }}>{c.desc}</p>
