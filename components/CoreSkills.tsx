@@ -227,16 +227,36 @@ export default function CoreSkills({ lang, tr }: Props) {
                         <svg viewBox="0 0 140 130" className="w-full mt-2" style={{ height: 150 }}>
                           {[0, 1, 2].map((li) =>
                             [0, 1, 2, 3].map((ni) =>
-                              [0, 1, 2, 3].map((nj) => (
+                              (li === 2 ? [0, 1] : [0, 1, 2, 3]).map((nj) => (
                                 <line
                                   key={`${li}-${ni}-${nj}`}
                                   x1={20 + li * 40} y1={12 + ni * 33}
-                                  x2={20 + (li + 1) * 40} y2={12 + nj * 33}
-                                  stroke="rgba(165,119,253,0.18)" strokeWidth="0.6"
+                                  x2={li === 2 ? 130 : 20 + (li + 1) * 40} y2={li === 2 ? 30 + nj * 50 : 12 + nj * 33}
+                                  stroke="rgba(165,119,253,0.22)" strokeWidth="0.6"
                                 />
                               ))
                             )
                           )}
+                          {/* signals travelling through the network, forward and back */}
+                          {[
+                            { p: [0, 2, 1, 0], c: '#53C3D7', d: 0 },
+                            { p: [3, 1, 3, 1], c: '#B8A9FA', d: 0.7 },
+                            { p: [1, 0, 2, 1], c: '#53C3D7', d: 1.4 },
+                            { p: [2, 3, 0, 0], c: '#F5D76E', d: 2.1 },
+                            { p: [0, 1, 3, 1], c: '#B8A9FA', d: 2.8 },
+                          ].map((sg, k) => {
+                            const y = [12 + sg.p[0] * 33, 12 + sg.p[1] * 33, 12 + sg.p[2] * 33, 30 + sg.p[3] * 50]
+                            return (
+                              <circle key={`sig-${k}`} r="2.6" fill={sg.c} opacity="0">
+                                <animateMotion
+                                  dur="4.2s" begin={`${sg.d}s`} repeatCount="indefinite" calcMode="linear"
+                                  keyPoints="0;1;0" keyTimes="0;0.5;1"
+                                  path={`M20 ${y[0]} L60 ${y[1]} L100 ${y[2]} L130 ${y[3]}`}
+                                />
+                                <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.08;0.92;1" dur="4.2s" begin={`${sg.d}s`} repeatCount="indefinite" />
+                              </circle>
+                            )
+                          })}
                           {[0, 1, 2, 3].map((ni) => (
                             <circle key={`n0-${ni}`} cx={20} cy={12 + ni * 33} r={4} fill="var(--purple-light)" opacity={0.9}>
                               <animate attributeName="opacity" values="0.4;1;0.4" dur="2.4s" begin={`${ni * 0.3}s`} repeatCount="indefinite" />
@@ -249,7 +269,9 @@ export default function CoreSkills({ lang, tr }: Props) {
                             <circle key={`n2-${ni}`} cx={100} cy={12 + ni * 33} r={3.5} fill="#B8A9FA" opacity={0.75} />
                           ))}
                           {[1, 2].map((ni) => (
-                            <circle key={`n3-${ni}`} cx={130} cy={30 + (ni - 1) * 50} r={3.5} fill="var(--lime)" opacity={0.85} />
+                            <circle key={`n3-${ni}`} cx={130} cy={30 + (ni - 1) * 50} r={3.5} fill="var(--lime)" opacity={0.85}>
+                              <animate attributeName="r" values="3.5;5;3.5" dur="2.1s" begin={`${ni * 0.5}s`} repeatCount="indefinite" />
+                            </circle>
                           ))}
                         </svg>
                       </div>
