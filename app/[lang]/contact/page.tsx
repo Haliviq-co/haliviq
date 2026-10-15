@@ -98,6 +98,16 @@ export default function Page({ params }: { params: { lang: Lang } }) {
                 <p className="leading-relaxed mb-12" style={{ fontSize: '1.15rem', color: 'rgb(var(--fg) / 0.85)', fontWeight: 400, maxWidth: 520 }}>
                   {isEN ? 'Tell us about your project, even if it is still a rough idea. We will get back to you within 24 hours with our first thoughts and a suggested next step. If you would rather talk, call us or message us on LINE, and we can set up a first consultation at no cost.' : 'เล่าเรื่องโปรเจกต์ของคุณให้เราฟังได้เลย แม้จะเป็นแค่ไอเดียคร่าว ๆ เราจะตอบกลับภายใน 24 ชั่วโมง พร้อมความเห็นเบื้องต้นและขั้นตอนถัดไปที่เราแนะนำ ถ้าอยากคุยเลย โทรหาเราหรือทักทาง LINE ได้ แล้วเรานัดปรึกษาครั้งแรกให้ฟรี'}
                 </p>
+                <a
+                  href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0je6QG4mvfhRlih-PGXzRyFuCp-M3VyWFMwv8cbGiikwZ9Lo_17rWIR7q_ssEg92l9juim9xXE"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 mb-8 px-8 py-4 rounded-xl text-base transition-opacity hover:opacity-90"
+                  style={{ background: 'linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%)', color: '#fff', fontWeight: 500 }}
+                >
+                  <i className="ti ti-video" style={{ fontSize: 18 }} aria-hidden="true" />
+                  {isEN ? 'Book a free call on Google Meet' : 'จองคุยฟรีผ่าน Google Meet'}
+                </a>
                 <div className="space-y-4 mb-12">
                   {channels.map(c => (
                     <a key={c.title} href={c.href}
