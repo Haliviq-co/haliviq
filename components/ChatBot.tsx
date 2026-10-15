@@ -15,6 +15,12 @@ const CHANNELS = [
   { id: 'line', label: 'LINE', href: 'https://lin.ee/zyTrkx4', bg: '#06C755' },
 ] as const
 
+// "What services do you offer?" Asked in many ways, so it gets a hand-written overview instead of a loose FAQ match.
+const SERVICES_Q = /(ให้บริการ|รับทำ|รับงาน|บริการ(อะไร|ด้านไหน|อะไรบ้าง|ของ)|ทำอะไร(ได้)?บ้าง|ช่วย.{0,12}(ธุรกิจ|องค์กร|บริษัท).{0,8}(อะไร|ยังไง|อย่างไร)|what (services|do you (do|offer))|what does (haliviq|your company) do|services (do you|you) (offer|provide)|what are your services|tell me about (your )?(services|company))/i
+
+// "I want my own website / app, where do I start?" is a buying question, so it gets a real answer, not a dead end.
+const START_Q = /(อยากมี|ต้องการมี|อยากทำ|ต้องการทำ|อยากสร้าง|ต้องการสร้าง|รับทำ|จะทำ|จะสร้าง|จะมี).{0,20}(เว็บ|เว็บไซต์|website|แอป|แอพ|app|ระบบ|ร้านค้าออนไลน์|แพลตฟอร์ม)|(เริ่ม(ต้น)?|เริ่มยังไง|เริ่มจาก).{0,20}(เว็บ|เว็บไซต์|แอป|แอพ|โปรเจกต์|โปรเจค|ระบบ)|(เว็บ|เว็บไซต์|แอป|แอพ|ระบบ).{0,25}(เริ่ม(ต้น)?(ยังไง|อย่างไร|ที่)|ต้องเตรียมอะไร|ต้องทำอะไร)|(how (do|can|should) i|where (do|should) i) (start|begin|get started)|(i )?(want|need) (to (build|make|create|get)|a|my own).{0,25}(website|web site|app|platform|system)|build (a|my) (website|app)/i
+
 const MEET_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0je6QG4mvfhRlih-PGXzRyFuCp-M3VyWFMwv8cbGiikwZ9Lo_17rWIR7q_ssEg92l9juim9xXE'
 const MEET_WANT = /(นัด|จอง)\s*(ประชุม|คุย|โทร|ปรึกษา|ออนไลน์|วิดีโอ|วีดีโอ)|ประชุมออนไลน์|วิดีโอคอล|วีดีโอคอล|google\s*meet|gmeet|video\s*(call|meeting)|(book|schedule|set up|arrange)\s*(a|an|the)?\s*(call|meeting|appointment|consultation|demo)|online\s*meeting/i
 
@@ -279,13 +285,16 @@ export default function ChatBot({ lang }: { lang: Lang }) {
     : 'สวัสดีครับ ผมชื่อน้องฮาวี่ เป็นผู้ช่วยของบริษัท Haliviq ครับ ช่วยตอบเรื่องบริการ เทคโนโลยี ระยะเวลา ราคา หรือวิธีเริ่มโปรเจกต์ได้เลย พิมพ์ถามได้เลย หรือเลือกคำถามด้านล่างครับ'
   const [msgs, setMsgs] = useState<Msg[]>([{ from: 'bot', text: hello }])
   const end = useRef<HTMLDivElement>(null)
+  const box = useRef<HTMLDivElement>(null)
+  const toEnd = () => { const el = box.current; if (el) el.scrollTop = el.scrollHeight }
 
-  useEffect(() => { end.current?.scrollIntoView({ block: 'end' }) }, [msgs, open])
+  useEffect(() => { toEnd() }, [msgs, open]) // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => { setKb([]) }, [lang]) // drop the other language's knowledge base when the page language changes
   useEffect(() => {
     if (!open) return
     let dead = false
-    fetch(`/chat-kb-${lang}.json`).then((r) => (r.ok ? r.json() : [])).then((d: QA[]) => { if (!dead && Array.isArray(d)) setKb(d) }).catch(() => {})
+    const get = (u: string) => fetch(u).then((r) => (r.ok ? r.json() : [])).catch(() => [])
+    Promise.all([get(`/chat-kb-extra-${lang}.json`), get(`/chat-kb-${lang}.json`)]).then(([x, d]: QA[][]) => { if (!dead && Array.isArray(d)) setKb([...(Array.isArray(x) ? x : []), ...d]) })
     return () => { dead = true }
   }, [open, lang])
   useEffect(() => { setMsgs([{ from: 'bot', text: hello }]) }, [lang]) // eslint-disable-line react-hooks/exhaustive-deps
@@ -299,7 +308,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
     } catch {}
   }
 
-  const answer = (q: string): { text: string; links?: Msg['links']; idx: number; agent?: boolean } => {
+  const answer = (q: string): { text: string; links?: Msg['links']; idx: number; agent?: boolean; meet?: boolean } => {
     if (q.length < 60 && ASKS_IDENTITY.test(q)) {
       return {
         idx: -1,
@@ -321,6 +330,32 @@ export default function ChatBot({ lang }: { lang: Lang }) {
     }
     if (q.length < 40 && BYE.test(q)) {
       return { idx: -1, text: isEN ? 'Goodbye! Come back any time, or reach the team on the contact page.' : 'แล้วพบกันครับ ถ้ามีคำถามเพิ่มเติม กลับมาถามได้ตลอด หรือติดต่อทีมงานผ่านหน้าติดต่อเราได้ครับ' }
+    }
+    if (q.length < 140 && START_Q.test(q)) {
+      return {
+        idx: -1,
+        text: isEN
+          ? 'Easy to start, and you do not need any tech knowledge. Just tell us what the website is for and who will use it. We reply with what we would build, how long it takes and a clear price. The simplest way is a free 30-minute call, so we can hear your idea first.'
+          : 'เริ่มง่ายมากครับ ไม่ต้องมีความรู้เรื่องเทคนิคเลย แค่เล่าให้เราฟังว่าอยากได้เว็บไว้ทำอะไร ใครจะเป็นคนใช้ แล้วทีมจะกลับมาบอกว่าเราจะทำอะไรให้ ใช้เวลาเท่าไหร่ และราคาเท่าไหร่ แบบชัด ๆ ครับ ถ้าอยากเริ่มเลย นัดคุยฟรี 30 นาทีได้เลยครับ จะได้เล่าไอเดียให้ทีมฟังก่อน',
+        links: [
+          { label: isEN ? 'Web development' : 'บริการพัฒนาเว็บไซต์', href: `/${lang}/services/web-development` },
+          { label: isEN ? 'Contact the team' : 'ติดต่อทีมงาน', href: `/${lang}/contact` },
+        ],
+        meet: true,
+      }
+    }
+    if (q.length < 70 && SERVICES_Q.test(q) && !/ราคา|เท่าไหร่|price|cost|how much/i.test(q)) {
+      return {
+        idx: -1,
+        text: isEN
+          ? 'We build software for businesses, from websites and mobile apps to AI assistants, ERP/CRM systems and LINE Mini Apps. We also do design, SEO and security, and we fix apps made with Lovable, Bolt or Cursor. Tell me what you are trying to do and I will point you to the right service.'
+          : 'เราทำซอฟต์แวร์ให้ธุรกิจครับ ตั้งแต่เว็บไซต์ แอปมือถือ ระบบ AI ผู้ช่วยตอบลูกค้า ไปจนถึงระบบ ERP/CRM และ LINE Mini App นอกจากนี้ยังออกแบบ ทำ SEO ดูแลความปลอดภัย และรับแก้แอปที่ทำด้วย Lovable, Bolt, Cursor ครับ ลองบอกผมว่าอยากทำอะไร เดี๋ยวผมแนะนำบริการที่ตรงให้ครับ',
+        links: [
+          { label: isEN ? 'All services' : 'ดูบริการทั้งหมด', href: `/${lang}/services` },
+          { label: isEN ? 'See our work' : 'ดูผลงานของเรา', href: `/${lang}/work` },
+          { label: isEN ? 'Contact the team' : 'ติดต่อทีมงาน', href: `/${lang}/contact` },
+        ],
+      }
     }
     if (q.length < 50) {
       const st = SMALLTALK.find((x) => x.re.test(q))
@@ -355,12 +390,11 @@ export default function ChatBot({ lang }: { lang: Lang }) {
     const rl = routeLinks(q, lang, [`/${lang}/contact`], 2)
     return {
       idx: -1,
-      text: rl.length
-        ? (isEN ? 'I do not have a written answer for that, but these pages cover it. For anything specific the team replies within 24 hours.' : 'เรื่องนี้ผมยังไม่มีคำตอบเป็นข้อความ แต่หน้าเหล่านี้น่าจะตอบได้ครับ ถ้าอยากคุยเรื่องเฉพาะ ทีมงานตอบกลับภายใน 24 ชั่วโมง')
-        : isEN
-        ? 'I am not sure I have a good answer for that one. The team can reply within 24 hours, so please tell us about your project.'
-        : 'เรื่องนี้ผมยังตอบได้ไม่ชัดเจน ทีมงานตอบกลับภายใน 24 ชั่วโมง เล่าเรื่องโปรเจกต์ของคุณให้ทีมฟังได้เลยครับ',
-      links: [...rl, { label: isEN ? 'Contact the team' : 'ติดต่อทีมงาน', href: `/${lang}/contact` }],
+      text: isEN
+        ? 'Good question. I would rather not guess on this one, since our team can answer it properly for your situation. Message us on the app you like, or book a free 30-minute call.'
+        : 'คำถามดีครับ แต่เรื่องนี้ผมไม่อยากเดาให้ผิด ให้ทีมงานตอบจะตรงกับงานของคุณที่สุดครับ ทักทีมทางแอปที่สะดวกได้เลย หรือนัดคุยออนไลน์ฟรี 30 นาทีก็ได้ครับ',
+      links: rl.length ? rl : undefined,
+      agent: true,
     }
   }
 
@@ -368,7 +402,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
     const clean = q.trim()
     if (!clean) return
     if (clean.length < 80 && MEET_WANT.test(clean)) {
-      setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, meet: true, text: isEN ? 'Happy to set up a free online meeting. Pick a time that suits you and a Google Meet link is sent to you by email.' : 'ยินดีนัดประชุมออนไลน์ให้ฟรีครับ เลือกเวลาที่สะดวกได้เลย แล้วระบบจะส่งลิงก์ Google Meet ให้ทางอีเมล' }])
+      setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, meet: true, text: isEN ? 'Sure, a free online call works. Pick a time that suits you and the Google Meet link will come to your email.' : 'ได้เลยครับ นัดคุยออนไลน์ฟรี เลือกวันเวลาที่สะดวกได้เลย เดี๋ยวลิงก์ Google Meet จะส่งไปทางอีเมลครับ' }])
       setText('')
       log(clean, -1)
       return
@@ -380,7 +414,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
       return
     }
     const r = answer(clean)
-    setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, text: r.text, links: r.links, agent: r.agent }])
+    setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, text: r.text, links: r.links, agent: r.agent, meet: r.meet }])
     setText('')
     log(clean, r.idx)
   }
@@ -410,13 +444,13 @@ export default function ChatBot({ lang }: { lang: Lang }) {
             <button type="button" onClick={() => setOpen(false)} aria-label={isEN ? 'Close' : 'ปิด'} className="text-xl leading-none px-2" style={{ color: '#fff' }}>×</button>
           </div>
 
-          <div className="flex-1 overflow-y-auto px-3.5 py-3.5 flex flex-col gap-2.5" style={{ background: 'var(--bg)' }}>
+          <div ref={box} className="flex-1 overflow-y-auto px-3.5 py-3.5 flex flex-col gap-2.5" style={{ background: 'var(--bg)', overscrollBehavior: 'contain' }}>
             {msgs.map((m, i) => (
               <div key={i} className={m.from === 'me' ? 'self-end max-w-[85%]' : 'self-start max-w-[90%]'}>
                 {m.from === 'me' ? (
                   <div className="px-3.5 py-2 text-[13px] rounded-2xl" style={{ background: 'linear-gradient(135deg, #7B6EF6, #5A4ED4)', color: '#fff', borderTopRightRadius: 6, lineHeight: 1.6 }}>{m.text}</div>
                 ) : (
-                  <BotBubble text={m.text} fresh={m.fresh} onTick={() => end.current?.scrollIntoView({ block: 'end' })}>
+                  <BotBubble text={m.text} fresh={m.fresh} onTick={toEnd}>
                 {(m.agent || m.meet) && (
                   <div className="flex flex-col gap-2 mt-2">
                     {m.agent && CHANNELS.map((c) => (

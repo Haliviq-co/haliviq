@@ -1,0 +1,163 @@
+[
+ {
+  "q": "I want my own website, where do I start",
+  "a": "Easy to start, and you do not need any tech knowledge. Just tell us what the website is for and who will use it. We reply with what we would build, how long it takes and a clear price. The simplest way is a free 30-minute call.",
+  "h": "/en/services/web-development",
+  "x": "I want my own website, where do I start want website build website start get started my own site business site need website make a website",
+  "p": 1
+ },
+ {
+  "q": "How much does a website cost",
+  "a": "It depends on what you need, like how many pages and whether you need payments or logins. I would rather not guess a number. Tell the team a bit about it and we will give you a clear quote for free.",
+  "h": "/en/contact",
+  "x": "How much does a website cost price cost how much quote budget expensive pricing rates website cost",
+  "p": 1
+ },
+ {
+  "q": "How long does it take to build a website",
+  "a": "It depends on the size of the project. Once we know what you need, the team gives you a clear timeline together with the quote.",
+  "h": "/en/contact",
+  "x": "How long does it take to build a website how long timeline duration weeks months deadline when done time frame",
+  "p": 1
+ },
+ {
+  "q": "How can I contact the team",
+  "a": "A few ways: call +66 90 918 9009, LINE @haliviq, WhatsApp +1 (206) 849 6901, or email wu@haliviq.com. The team replies within 24 hours, or you can book a free online call.",
+  "h": "/en/contact",
+  "x": "How can I contact the team contact phone line email whatsapp reach talk call get in touch",
+  "p": 1
+ },
+ {
+  "q": "Where is your office",
+  "a": "We have two: Thailand at 111 Sukhumvit Rd, Bang Chak, Phra Khanong, Bangkok 10260, and the US at 2025 Olympic Hwy N Ste 105, Shelton, WA.",
+  "h": "/en/contact",
+  "x": "Where is your office address office location where map based visit",
+  "p": 1
+ },
+ {
+  "q": "Can I get a free consultation",
+  "a": "Yes, the first consultation is free with no strings attached. Pick a time for a 30-minute Google Meet call.",
+  "h": "/en/contact",
+  "x": "Can I get a free consultation free consultation free call advice talk first meeting no cost",
+  "p": 1
+ },
+ {
+  "q": "Do I need technical knowledge",
+  "a": "Not at all. Just tell us your business goal and we handle the technical side, explained in plain language.",
+  "h": "/en/contact",
+  "x": "Do I need technical knowledge technical knowledge non technical beginner no coding experience",
+  "p": 1
+ },
+ {
+  "q": "Can you sign an NDA",
+  "a": "Yes. If you want an NDA before sharing your idea, just tell the team and we are happy to do it.",
+  "h": "/en/contact",
+  "x": "Can you sign an NDA nda confidentiality confidential secret idea protect",
+  "p": 1
+ },
+ {
+  "q": "Where can I see your work",
+  "a": "You can see our work and case studies on the work page.",
+  "h": "/en/work",
+  "x": "Where can I see your work portfolio work examples case studies clients previous projects",
+  "p": 1
+ },
+ {
+  "q": "Do you build mobile apps",
+  "a": "Yes, for iOS and Android, from design through to the app stores. Tell the team your idea.",
+  "h": "/en/services/mobile-apps",
+  "x": "Do you build mobile apps mobile app ios android build an app app development",
+  "p": 1
+ },
+ {
+  "q": "Can you build an AI chatbot for my business",
+  "a": "Yes, for example an assistant that answers customers, searches your company knowledge, or an AI that answers calls. Tell us what you want AI to help with and we will suggest what fits.",
+  "h": "/en/services/ai",
+  "x": "Can you build an AI chatbot for my business chatbot ai assistant automation gpt customer support bot",
+  "p": 1
+ },
+ {
+  "q": "I already have a website or app, can you fix or improve it",
+  "a": "Yes, from bug fixes and speed to redesigns, new features and updating old systems. Send us a link or describe the problem.",
+  "h": "/en/contact",
+  "x": "I already have a website or app, can you fix or improve it fix website improve existing slow broken bug redesign upgrade legacy already have",
+  "p": 1
+ },
+ {
+  "q": "Can you fix an app built with Lovable Bolt or Cursor, and what does it cost",
+  "a": "Yes. We make AI-built apps secure and ready for real users. It starts with an audit from $500, and fixes start from $1,500. Details are on the service page.",
+  "h": "/en/services/finish-your-vibe-coded-app",
+  "x": "Can you fix an app built with Lovable Bolt or Cursor, and what does it cost lovable bolt cursor v0 replit vibe coded ai generated app fix audit price",
+  "p": 1
+ },
+ {
+  "q": "Do you offer support after launch",
+  "a": "Yes. We offer ongoing monitoring and support, fix issues, ship updates and add features as you grow. We do not disappear after launch.",
+  "h": "/en/services/support-maintenance",
+  "x": "Do you offer support after launch support maintenance after launch ongoing monitoring updates warranty",
+  "p": 1
+ },
+ {
+  "q": "Will I own the website and code",
+  "a": "Yes, the code, domain and hosting accounts are yours. We do not lock you in.",
+  "h": "/en/contact",
+  "x": "Will I own the website and code own ownership code source domain hosting rights lock in",
+  "p": 1
+ },
+ {
+  "q": "How do I pay and can I pay in installments",
+  "a": "Payment terms and milestones are agreed when we send the quote, since every project is different. Talk to the team about what works best for you.",
+  "h": "/en/contact",
+  "x": "How do I pay and can I pay in installments payment pay installments deposit invoice milestones terms",
+  "p": 1
+ },
+ {
+  "q": "Do you do SEO",
+  "a": "Yes, both classic SEO and the newer kind that gets your site recommended in AI tools like ChatGPT and Google AI. See the service page for details.",
+  "h": "/en/services/seo-aeo-geo",
+  "x": "Do you do SEO seo ranking google search aeo geo chatgpt visibility",
+  "p": 1
+ },
+ {
+  "q": "Do you build LINE Mini Apps",
+  "a": "Yes, from booking and loyalty points to ordering inside LINE. Customers do not need to install another app.",
+  "h": "/en/services/line-mini-apps",
+  "x": "Do you build LINE Mini Apps line oa mini app line chatbot thailand",
+  "p": 1
+ },
+ {
+  "q": "Can you build an ERP or CRM system",
+  "a": "Yes, for customers, sales, stock, accounting or internal work, designed around how you work rather than forcing a ready-made tool on you.",
+  "h": "/en/services/erp-crm",
+  "x": "Can you build an ERP or CRM system erp crm system inventory stock back office pos accounting",
+  "p": 1
+ },
+ {
+  "q": "Do you work with clients outside Thailand",
+  "a": "Yes. We have teams in both Thailand and the US, and we work in English and Thai.",
+  "h": "/en/contact",
+  "x": "Do you work with clients outside Thailand international overseas foreign usa us english clients abroad",
+  "p": 1
+ },
+ {
+  "q": "Can I apply for a job at Haliviq",
+  "a": "Yes, see open roles and how to apply on the careers page.",
+  "h": "/en/careers",
+  "x": "Can I apply for a job at Haliviq job careers hiring apply work with us internship",
+  "p": 1
+ },
+ {
+  "q": "Do you do logo and brand design",
+  "a": "Yes, from brand design and user experience to the look of your website and app, so everything feels professional and consistent.",
+  "h": "/en/services/brand-experience",
+  "x": "Do you do logo and brand design logo brand design identity visual branding",
+  "p": 1
+ },
+ {
+  "q": "What kind of company is Haliviq",
+  "a": "Haliviq is a software and AI company. We help businesses build websites, apps and digital systems that actually work, with offices in Thailand and the US.",
+  "h": "/en/about",
+  "x": "What kind of company is Haliviq who are you what is haliviq about company introduction",
+  "p": 1
+ }
+]
