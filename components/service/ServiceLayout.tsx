@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import { ServiceVisual } from '@/components/service/ServiceVisual'
+import HeroScene from '@/components/service/HeroScene'
 import { t, type Lang } from '@/lib/i18n'
 
 type Feature  = { icon: string; title: string; desc: string; detail?: string }
@@ -120,12 +120,7 @@ export default function ServiceLayout({
                   </div>
                 </div>
                 <div className={`relative${heroMotion ? ' svc-hero-slot' : ''}`}>
-                  {heroVisual ? <div className="svc-thumb svc-hero-vis theme-dark relative w-full rounded-3xl overflow-hidden" style={{ minHeight: 440, background: 'linear-gradient(160deg,#161230 0%,#0E0B1F 100%)', border: '1px solid rgba(123,110,246,0.28)', boxShadow: '0 30px 70px -20px rgba(0,0,0,0.6)' }}>
-                    <div className="absolute inset-0 opacity-[0.1] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle,#fff 1px,transparent 1px)', backgroundSize: '18px 18px' }} />
-                    <div className="svc-orb svc-orb-a" aria-hidden="true" style={{ width: 300, height: 300, left: '-12%', top: '-18%', opacity: 0.35 }} />
-                    <div className="svc-orb svc-orb-c" aria-hidden="true" style={{ width: 280, height: 280, right: '-10%', bottom: '-18%', opacity: 0.3 }} />
-                    <ServiceVisual slug={heroVisual} />
-                  </div> : heroSlot}
+                  {heroVisual ? <HeroScene slug={heroVisual} lang={lang as any} /> : heroSlot}
                 </div>
               </div>
             </div>
@@ -167,12 +162,7 @@ export default function ServiceLayout({
                   </div>
                 </div>
                 {(heroVisual || heroImg)
-                  ? <div className="svc-thumb svc-hero-vis theme-dark relative w-full rounded-3xl overflow-hidden" style={{ minHeight: 440, background: 'linear-gradient(160deg,#161230 0%,#0E0B1F 100%)', border: '1px solid rgba(123,110,246,0.28)', boxShadow: '0 30px 70px -20px rgba(0,0,0,0.6)' }}>
-                    <div className="absolute inset-0 opacity-[0.1] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle,#fff 1px,transparent 1px)', backgroundSize: '18px 18px' }} />
-                    <div className="svc-orb svc-orb-a" aria-hidden="true" style={{ width: 300, height: 300, left: '-12%', top: '-18%', opacity: 0.35 }} />
-                    <div className="svc-orb svc-orb-c" aria-hidden="true" style={{ width: 280, height: 280, right: '-10%', bottom: '-18%', opacity: 0.3 }} />
-                    <ServiceVisual slug={(heroVisual ?? (heroImg ?? '').split('/')[3] ?? '')} />
-                  </div>
+                  ? <HeroScene slug={(heroVisual ?? (heroImg ?? '').split('/')[3] ?? '')} lang={lang as any} />
                   : <IP label="Hero Image / Screenshot" height={440} color={color} bg={bg} />
                 }
               </div>
