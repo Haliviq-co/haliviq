@@ -440,3 +440,23 @@ html[data-theme="light"] .cta-final a[href$="/contact"]:hover { background: #EEE
 @media (max-width: 767px) {
   .chat-mascot-btn.is-scrolling { opacity: 0; pointer-events: none; }
 }
+
+/* ── Services hero banner ── */
+.svc-orb{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;opacity:.55}
+.svc-orb-a{width:520px;height:520px;left:-8%;top:-12%;background:radial-gradient(circle,#7B6EF6 0%,transparent 70%);animation:svcDriftA 16s ease-in-out infinite alternate}
+.svc-orb-b{width:460px;height:460px;right:-6%;top:6%;background:radial-gradient(circle,#53C3D7 0%,transparent 70%);opacity:.38;animation:svcDriftB 19s ease-in-out infinite alternate}
+.svc-orb-c{width:380px;height:380px;left:38%;bottom:-18%;background:radial-gradient(circle,#F5D76E 0%,transparent 70%);opacity:.18;animation:svcDriftA 22s ease-in-out infinite alternate-reverse}
+@keyframes svcDriftA{from{transform:translate(0,0) scale(1)}to{transform:translate(90px,50px) scale(1.15)}}
+@keyframes svcDriftB{from{transform:translate(0,0) scale(1.1)}to{transform:translate(-80px,70px) scale(.92)}}
+.svc-sweep{position:absolute;left:0;right:0;top:80px;height:2px;pointer-events:none;background:linear-gradient(90deg,transparent,#B8A9FA,transparent);opacity:.7;animation:svcSweep 7s ease-in-out infinite}
+@keyframes svcSweep{0%{transform:translateY(0);opacity:0}15%{opacity:.7}85%{opacity:.5}100%{transform:translateY(520px);opacity:0}}
+.svc-grad-text{background:linear-gradient(100deg,#7B6EF6,#B8A9FA,#53C3D7,#F5D76E,#7B6EF6);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:svcShift 8s linear infinite}
+@keyframes svcShift{to{background-position:250% 0}}
+.svc-rise{opacity:0;animation:svcRise .8s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes svcRise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.svc-track-wrap{overflow:hidden;margin-top:12px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.svc-track{display:flex;gap:12px;width:max-content;animation:svcMarquee 55s linear infinite}
+.svc-track-rev{animation-direction:reverse;animation-duration:65s}
+@keyframes svcMarquee{to{transform:translateX(-50%)}}
+.svc-chip{white-space:nowrap;padding:8px 18px;border-radius:999px;font-size:.85rem;color:rgb(255 255 255 / .85);background:rgb(255 255 255 / .06);border:1px solid rgb(255 255 255 / .14)}
+@media (prefers-reduced-motion:reduce){.svc-orb,.svc-sweep,.svc-grad-text,.svc-track{animation:none}.svc-rise{animation:none;opacity:1}.svc-sweep{display:none}}

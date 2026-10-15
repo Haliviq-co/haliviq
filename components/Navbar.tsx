@@ -17,10 +17,10 @@ const servicesMenuTh = {
     {label:'วิจัยผู้ใช้งาน',href:'/services/user-research'},
   ],
   'ดีไซน์': [
+    {label:'สร้างแบรนด์',href:'/services/branding'},
     {label:'ออกแบบ UX / UI',href:'/services/ux-ui-design'},
     {label:'ระบบดีไซน์',href:'/services/design-systems'},
     {label:'ทำ Prototype',href:'/services/rapid-prototyping'},
-    {label:'สร้างแบรนด์',href:'/services/branding'},
     {label:'ประสบการณ์แบรนด์',href:'/services/brand-experience'},
   ],
   'พัฒนาซอฟต์แวร์': [
@@ -57,10 +57,10 @@ const servicesMenuEn = {
     {label:'User Research',href:'/services/user-research'},
   ],
   'Design': [
+    {label:'Brand Strategy & Identity',href:'/services/branding'},
     {label:'UX / UI Design',href:'/services/ux-ui-design'},
     {label:'Design Systems',href:'/services/design-systems'},
     {label:'Rapid Prototyping',href:'/services/rapid-prototyping'},
-    {label:'Brand Strategy & Identity',href:'/services/branding'},
     {label:'Brand Experience',href:'/services/brand-experience'},
   ],
   'Engineering': [

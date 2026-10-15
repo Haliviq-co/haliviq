@@ -76,6 +76,26 @@ function ServiceVisual({ slug }: { slug: string }) {
           </Panel>
         </div>
       )
+    case 'branding':
+      return (
+        <div className="absolute inset-0 flex items-center justify-center gap-3 px-5">
+          <div className="rounded-2xl flex items-center justify-center" style={{ width: 84, height: 84, background: 'linear-gradient(135deg,#7B6EF6,#53C3D7)', animation: 'floatY 5s ease-in-out infinite' }}>
+            <span style={{ fontSize: 40, fontWeight: 700, color: '#15112A', lineHeight: 1 }}>H</span>
+          </div>
+          <div className="flex flex-col gap-2">
+            <Panel style={{ width: 96 }}>
+              <div style={{ fontSize: 9, color: dim, marginBottom: 5 }}>PALETTE</div>
+              <div className="flex gap-1">
+                {['#7B6EF6', '#B8A9FA', '#53C3D7', '#F5D76E'].map((c) => (<span key={c} className="flex-1 h-4 rounded" style={{ background: c }} />))}
+              </div>
+            </Panel>
+            <Panel style={{ width: 96 }}>
+              <span style={{ fontSize: 20, fontWeight: 700, color: 'var(--ink)', lineHeight: 1 }}>Aa</span>
+              <div className="mt-1.5"><Bar w={70} color="rgb(var(--fg) / 0.2)" /></div>
+            </Panel>
+          </div>
+        </div>
+      )
     case 'ux-ui-design':
       return (
         <div className="absolute inset-0 flex items-center justify-center">
@@ -394,6 +414,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       key: 'strategy-design',
       label: isEN ? 'Strategy & Design' : 'กลยุทธ์และดีไซน์',
       items: [
+        { icon: 'ti-palette', title: isEN ? 'Brand Strategy & Identity' : 'สร้างแบรนด์ กลยุทธ์และอัตลักษณ์', href: '/services/branding', desc: isEN ? 'Positioning, naming, logo, visual identity and brand guidelines, so your business looks and sounds like one brand before the website is built.' : 'วางจุดยืน ตั้งชื่อ ออกแบบโลโก้ อัตลักษณ์ภาพ และคู่มือแบรนด์ เพื่อให้ธุรกิจของคุณเป็นแบรนด์เดียวกันทุกสื่อ ก่อนเริ่มสร้างเว็บไซต์' },
         { icon: 'ti-map', title: isEN ? 'Digital Transformation' : 'ปรับองค์กรสู่ดิจิทัล', href: '/services/digital-transformation', desc: isEN ? 'We look at how your teams really work, find the processes and systems holding you back, and modernise them in stages. A good fit if you still run on spreadsheets, paper approvals or tools that do not talk to each other.' : 'เราดูว่าทีมของคุณทำงานกันจริงๆ อย่างไร หาขั้นตอนและระบบที่ถ่วงอยู่ แล้วปรับให้ทันสมัยทีละช่วง เหมาะกับบริษัทที่ยังใช้สเปรดชีต เอกสารอนุมัติแบบกระดาษ หรือเครื่องมือที่ไม่เชื่อมกัน' },
         { icon: 'ti-user-search', title: isEN ? 'UI/UX & Product Design' : 'ออกแบบ UI/UX และผลิตภัณฑ์', href: '/services/ux-ui-design', desc: isEN ? 'User research, flows and interface design in Figma, tested with real people before developers start. It suits products that feel complicated to use today.' : 'วิจัยผู้ใช้ ออกแบบลำดับการใช้งานและหน้าจอใน Figma แล้วทดสอบกับคนจริงก่อนทีมพัฒนาเริ่มงาน เหมาะกับผลิตภัณฑ์ที่ตอนนี้ใช้ยากหรือซับซ้อนเกินไป' },
         { icon: 'ti-bulb', title: isEN ? 'Product Discovery' : 'Product Discovery', href: '/services/product-discovery', desc: isEN ? 'Two to six weeks of problem framing, user interviews and concept testing that ends in a clear decision: build it, change direction, or stop.' : 'ช่วง 2-6 สัปดาห์สำหรับกำหนดโจทย์ สัมภาษณ์ผู้ใช้ และทดสอบแนวคิด จบด้วยการตัดสินใจที่ชัดว่าจะสร้างต่อ เปลี่ยนทิศทาง หรือหยุด' },
@@ -466,23 +487,52 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       <Navbar lang={lang} tr={tr} />
       <main>
         {/* Hero */}
-        <section className="pt-[80px] bg-[var(--bg)]">
-          <div className="h-1 w-full" style={{ background: 'linear-gradient(90deg,var(--purple),var(--purple-light),var(--lime))' }} />
-          <div className="max-w-5xl mx-auto px-6 lg:px-10 pt-20 lg:pt-28 pb-16 text-center">
-            <p className="t-label mb-5">{isEN ? 'Services' : 'บริการ'}</p>
-            <h1 className="t-display text-[clamp(2.6rem,5.5vw,4.8rem)] text-[color:var(--ink)] leading-relaxed mb-6">
+        <section className="theme-dark svc-hero relative overflow-hidden pt-[80px]" style={{ background: '#0B0813' }}>
+          <div className="svc-orb svc-orb-a" aria-hidden="true" />
+          <div className="svc-orb svc-orb-b" aria-hidden="true" />
+          <div className="svc-orb svc-orb-c" aria-hidden="true" />
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true" style={{ backgroundImage: 'radial-gradient(rgb(255 255 255 / 0.09) 1px, transparent 1px)', backgroundSize: '22px 22px', maskImage: 'radial-gradient(ellipse at 50% 40%, #000 30%, transparent 75%)', WebkitMaskImage: 'radial-gradient(ellipse at 50% 40%, #000 30%, transparent 75%)' }} />
+          <div className="svc-sweep" aria-hidden="true" />
+          <div className="relative max-w-5xl mx-auto px-6 lg:px-10 pt-20 lg:pt-28 pb-14 text-center">
+            <p className="t-label mb-5 svc-rise" style={{ animationDelay: '0s' }}>{isEN ? 'Services' : 'บริการ'}</p>
+            <h1 className="t-display text-[clamp(2.6rem,5.5vw,4.8rem)] leading-relaxed mb-6 svc-rise" style={{ color: '#fff', animationDelay: '.1s' }}>
               {isEN ? (
-                <>Everything You Need,<br /><span style={{ background: 'linear-gradient(135deg,var(--purple) 0%,var(--purple-light) 50%,var(--lime) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>In One Studio</span></>
+                <>Everything You Need,<br /><span className="svc-grad-text">In One Studio</span></>
               ) : (
-                <>ทุกความสามารถที่คุณต้องการ<br /><span style={{ background: 'linear-gradient(135deg,var(--purple) 0%,var(--purple-light) 50%,var(--lime) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>ในสตูดิโอเดียว</span></>
+                <>ทุกความสามารถที่คุณต้องการ<br /><span className="svc-grad-text">ในสตูดิโอเดียว</span></>
               )}
             </h1>
-            <p className="t-body text-lg leading-relaxed max-w-2xl mx-auto">
+            <p className="t-body text-lg leading-relaxed max-w-2xl mx-auto svc-rise" style={{ color: 'rgb(255 255 255 / 0.8)', animationDelay: '.2s' }}>
               {isEN
-                ? 'Haliviq is a digital product studio in Bangkok. From product strategy and UX/UI design to web and mobile development, AI, data, security and PDPA compliance, one team looks after the whole product, so you do not have to coordinate a different agency for each step.'
-                : 'Haliviq คือสตูดิโอผลิตภัณฑ์ดิจิทัลที่กรุงเทพฯ ตั้งแต่กลยุทธ์ผลิตภัณฑ์ ออกแบบ UX/UI พัฒนาเว็บและแอป ไปจนถึง AI ข้อมูล ความปลอดภัย และ PDPA ทีมเดียวดูแลผลิตภัณฑ์ได้ตลอดทาง คุณไม่ต้องคอยประสานเอเจนซี่คนละเจ้าในแต่ละขั้น'}
+                ? 'Brand strategy, product design, web and mobile development, AI, data and security. One team looks after the whole product, so you do not have to coordinate a different vendor for each part.'
+                : 'ตั้งแต่สร้างแบรนด์ ออกแบบผลิตภัณฑ์ พัฒนาเว็บและแอปมือถือ ไปจนถึง AI ข้อมูล และความปลอดภัย ทีมเดียวดูแลทั้งผลิตภัณฑ์ คุณจึงไม่ต้องประสานงานกับผู้ให้บริการหลายราย'}
             </p>
+            <div className="flex flex-wrap justify-center gap-3 mt-9 svc-rise" style={{ animationDelay: '.3s' }}>
+              <Link href={`${prefix}/services/branding`} className="px-6 py-3 rounded-full text-sm" style={{ background: 'linear-gradient(135deg,#7B6EF6,#5A4ED4)', color: '#fff', fontWeight: 600 }}>
+                {isEN ? 'Start with your brand' : 'เริ่มจากสร้างแบรนด์'}
+              </Link>
+              <Link href={`${prefix}/contact`} className="px-6 py-3 rounded-full text-sm" style={{ border: '1px solid rgb(255 255 255 / 0.3)', color: '#fff', fontWeight: 500 }}>
+                {isEN ? 'Talk to us' : 'ปรึกษาโครงการ'}
+              </Link>
+            </div>
           </div>
+          <div className="relative pb-12 svc-marquees" aria-hidden="true">
+            {[0, 1].map((row) => {
+              const all = categories.flatMap((c) => c.items.map((i) => i.title))
+              const list = all.filter((_, n) => n % 2 === row)
+              const loop = [...list, ...list]
+              return (
+                <div key={row} className="svc-track-wrap">
+                  <div className={`svc-track ${row ? 'svc-track-rev' : ''}`}>
+                    {loop.map((t, n) => (
+                      <span key={n} className="svc-chip">{t}</span>
+                    ))}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+          <div className="h-px w-full" style={{ background: 'linear-gradient(90deg,transparent,#7B6EF6,#53C3D7,transparent)' }} />
         </section>
 
         {/* Category sections */}
