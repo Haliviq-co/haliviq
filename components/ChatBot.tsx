@@ -213,6 +213,36 @@ function BotBubble({ text, fresh, onTick, children }: { text: string; fresh?: bo
   )
 }
 
+// Plain greetings / thanks / goodbyes. These have no topic words, so they used to fall through to "I am not sure".
+const GREETING = /^\s*(hi+|hello+|hey+|yo|good\s*(morning|afternoon|evening)|greetings|สวัสดี[\u0e00-\u0e7f]*|หวัดดี[\u0e00-\u0e7f]*|ดีครับ|ดีค่ะ|ดีจ้า|ดี|เฮ้|ฮัลโหล|hola)[\s!.,?ฯ~]*$/i
+const THANKS = /^\s*(thanks?|thank you|thx|ty|ขอบคุณ[\u0e00-\u0e7f]*|ขอบใจ|แต๊งค์|ขอบพระคุณ)[\s!.,?ฯ~]*$/i
+const BYE = /^\s*(bye+|goodbye|see you|ลาก่อน|บาย|แล้วเจอกัน)[\s!.,?ฯ~]*$/i
+
+// Light small talk, so the bot feels conversational before the question gets to business.
+const SMALLTALK: { re: RegExp; en: string; th: string }[] = [
+  { re: /^\s*(แนะนำ(หน่อย|ที|หน่อยได้ไหม|ได้ไหม)?|ช่วยแนะนำ(หน่อย)?|recommend( something)?|any (recommendations|suggestions)|suggest( something)?|what do you recommend)[\s!.,?ฯ~]*$/i,
+    en: 'Sure! What would you like a recommendation for? For example a service for your business, the right package for your budget, or where to start with an app built with AI.',
+    th: 'ได้เลยครับ อยากให้แนะนำเรื่องอะไรดีครับ เช่น บริการที่เหมาะกับธุรกิจ แพ็กเกจตามงบประมาณ หรือเริ่มต้นแก้แอปที่ทำด้วย AI ยังไงดี บอกได้เลยครับ' },
+  { re: /(how are you|how'?s it going|what'?s up|sup\b|สบายดี(ไหม|มั้ย|หรือเปล่า)?|เป็นไงบ้าง|เป็นยังไงบ้าง|ทำอะไรอยู่)/i,
+    en: 'I am doing great, thanks for asking! What would you like to know about Haliviq?',
+    th: 'สบายดีครับ ขอบคุณที่ถามนะครับ แล้วคุณล่ะครับ วันนี้อยากรู้เรื่องอะไรของ Haliviq ไหมครับ' },
+  { re: /(what can you do|how can you help|can you help|help me|ทำอะไรได้บ้าง|ช่วยอะไรได้บ้าง|ช่วยอะไรได้|ช่วยหน่อย|ช่วยได้ไหม)/i,
+    en: 'I can tell you about our services, pricing, timelines and technology, point you to the right page, or connect you with the team. Try something like "how much does it cost" or "can you fix my Lovable app".',
+    th: 'ผมช่วยตอบเรื่องบริการ ราคา ระยะเวลา เทคโนโลยี พาไปหน้าที่เกี่ยวข้อง หรือต่อสายให้ทีมงานได้ครับ ลองถามว่า "ราคาเท่าไหร่" หรือ "รับแก้แอปที่ทำด้วย AI ไหม" ก็ได้ครับ' },
+  { re: /(nice to meet|pleased to meet|ยินดีที่ได้รู้จัก|ยินดีที่รู้จัก)/i,
+    en: 'Nice to meet you too! I am Havy. What brings you to Haliviq today?',
+    th: 'ยินดีที่ได้รู้จักเช่นกันครับ ผมน้องฮาวี่ วันนี้สนใจบริการด้านไหนของ Haliviq ครับ' },
+  { re: /(who (made|built|created) you|ใครสร้าง|ใครทำคุณ|ใครเป็นคนทำ)/i,
+    en: 'The Haliviq team built me to answer questions about the company. For anything beyond that, a real person on the team will reply within 24 hours.',
+    th: 'ทีมงาน Haliviq สร้างผมขึ้นมาเพื่อตอบคำถามเกี่ยวกับบริษัทครับ ถ้าเรื่องไหนเกินกว่านั้น ทีมงานตัวจริงตอบกลับภายใน 24 ชั่วโมงครับ' },
+  { re: /(are you (a )?(real|human|bot|robot|ai)|คุณ(เป็น)?คนจริง|เป็นคนหรือบอท|เป็นบอทหรือ)/i,
+    en: 'I am Havy, an automated assistant, not a person. If you would like a real person, just say "chat with an agent".',
+    th: 'ผมน้องฮาวี่ เป็นผู้ช่วยอัตโนมัติ ไม่ใช่คนจริงครับ ถ้าอยากคุยกับคน พิมพ์ว่า "คุยกับเจ้าหน้าที่" ได้เลยครับ' },
+  { re: /(i am|i'?m|my name is|ผมชื่อ|ฉันชื่อ|หนูชื่อ|เราชื่อ)\s*\S{1,20}\s*$/i,
+    en: 'Nice to meet you! What can I help you with today?',
+    th: 'ยินดีที่ได้รู้จักครับ วันนี้ให้ผมช่วยอะไรดีครับ' },
+]
+
 export default function ChatBot({ lang }: { lang: Lang }) {
   const isEN = lang === 'en'
   const faqItems = useMemo(() => (((t[lang] as any)?.faq?.items || []) as QA[]), [lang])
@@ -238,8 +268,8 @@ export default function ChatBot({ lang }: { lang: Lang }) {
   }, [open])
   const [text, setText] = useState('')
   const hello = isEN
-    ? 'Hi! I am Havy, the Haliviq assistant. Ask me about our services, technology, timelines or how to start a project, or pick a question below.'
-    : 'สวัสดีครับ ผมน้องฮาวี่ ผู้ช่วยของ Haliviq ถามเรื่องบริการ เทคโนโลยี ระยะเวลา หรือวิธีเริ่มโปรเจกต์ได้เลย หรือเลือกคำถามด้านล่าง'
+    ? 'Hello! I am Havy, the assistant of Haliviq. I can help with our services, technology, timelines, pricing or how to start a project. Ask me anything, or pick a question below.'
+    : 'สวัสดีครับ ผมชื่อน้องฮาวี่ เป็นผู้ช่วยของบริษัท Haliviq ครับ ช่วยตอบเรื่องบริการ เทคโนโลยี ระยะเวลา ราคา หรือวิธีเริ่มโปรเจกต์ได้เลย พิมพ์ถามได้เลย หรือเลือกคำถามด้านล่างครับ'
   const [msgs, setMsgs] = useState<Msg[]>([{ from: 'bot', text: hello }])
   const end = useRef<HTMLDivElement>(null)
 
@@ -270,6 +300,25 @@ export default function ChatBot({ lang }: { lang: Lang }) {
           ? 'I am Havy, the assistant robot of Haliviq. I am an automated bot, not a person. I answer from the information on this website, and if you would like a real person, just say "chat with an agent" and I will connect you with the team.'
           : 'ผมน้องฮาวี่ (Havy) หุ่นยนต์ผู้ช่วยของ Haliviq ครับ ผมเป็นบอทอัตโนมัติ ไม่ใช่คนจริง ผมตอบจากข้อมูลในเว็บไซต์นี้ ถ้าอยากคุยกับคน พิมพ์ว่า "คุยกับเจ้าหน้าที่" แล้วผมจะต่อให้ทีมงานครับ',
       }
+    }
+    if (q.length < 40 && GREETING.test(q)) {
+      return {
+        idx: -1,
+        text: isEN
+          ? 'Hello! I am Havy, the assistant of Haliviq. How can I help? You can ask about our services, pricing, timelines or how to start a project.'
+          : 'สวัสดีครับ ผมชื่อน้องฮาวี่ เป็นผู้ช่วยของบริษัท Haliviq ครับ มีอะไรให้ช่วยไหมครับ ถามเรื่องบริการ ราคา ระยะเวลา หรือวิธีเริ่มโปรเจกต์ได้เลยครับ',
+      }
+    }
+    if (q.length < 40 && THANKS.test(q)) {
+      return { idx: -1, text: isEN ? 'You are welcome! Anything else I can help with?' : 'ยินดีครับ มีอะไรให้ช่วยอีกไหมครับ' }
+    }
+    if (q.length < 40 && BYE.test(q)) {
+      return { idx: -1, text: isEN ? 'Goodbye! Come back any time, or reach the team on the contact page.' : 'แล้วพบกันครับ ถ้ามีคำถามเพิ่มเติม กลับมาถามได้ตลอด หรือติดต่อทีมงานผ่านหน้าติดต่อเราได้ครับ' }
+    }
+    if (q.length < 50) {
+      const st = SMALLTALK.find((x) => x.re.test(q))
+      // "I am ..." must not swallow real questions like "I am looking for an ERP", so the name pattern only fires on very short text
+      if (st && !(st === SMALLTALK[6] && q.length > 30)) return { idx: -1, text: isEN ? st.en : st.th }
     }
     const g = tokens(q)
     const ql = q.toLowerCase()
