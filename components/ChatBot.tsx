@@ -349,8 +349,8 @@ export default function ChatBot({ lang }: { lang: Lang }) {
       return {
         idx: -1,
         text: isEN
-          ? 'Every business needs something a little different, so we shape the package around your size and budget. What kind of business do you run? Tap one and I will tell you what usually fits, or talk to the team directly.'
-          : 'แต่ละธุรกิจต้องการไม่เหมือนกัน เราเลยจัดแพ็กเกจให้พอดีกับขนาดและงบของคุณครับ ธุรกิจของคุณเป็นแบบไหนครับ กดเลือกได้เลย เดี๋ยวผมบอกว่าปกติเหมาะกับอะไร หรือจะคุยกับแอดมินเลยก็ได้ครับ',
+          ? 'What kind of business are you in? Tap the one that fits and I will tell you what usually works, or ask the team for more details.'
+          : 'ทำธุรกิจด้านใดนะครับ สามารถคลิกเลือกธุรกิจที่ต้องการ และสอบถามเพิ่มเติมกับแอดมินได้เลยครับ'
         choices: [
           ...BUSINESS.map((b) => ({ key: b.key, label: isEN ? b.en : b.th })),
           { key: 'agent', label: isEN ? '💬 Talk to the team' : '💬 คุยกับแอดมิน' },
