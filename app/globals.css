@@ -502,3 +502,13 @@ html[data-theme="light"] .cta-final a[href$="/contact"]:hover { background: #EEE
 
 .svc-hero-slot{animation:svcFloat 7s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){.svc-hero-slot{animation:none}}
+
+/* ── Service page hero visuals (LINE / E-commerce) ── */
+.hs-msg{opacity:0;animation:hsMsg 11s ease-in-out infinite}
+@keyframes hsMsg{0%{opacity:0;transform:translateY(10px)}6%,86%{opacity:1;transform:none}95%,100%{opacity:0;transform:none}}
+.hs-card{animation:hsCard 4s ease-in-out infinite}
+@keyframes hsCard{0%,100%{transform:translateY(0);border-color:rgba(255,255,255,.08)}50%{transform:translateY(-4px);border-color:rgba(123,110,246,.6)}}
+.hs-bump{animation:hsBump 3.6s ease-in-out infinite}
+@keyframes hsBump{0%,70%,100%{transform:scale(1)}80%{transform:scale(1.5)}}
+.hs-bar{transform-origin:bottom;animation:svcGrow 3.2s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.hs-msg{animation:none;opacity:1}.hs-card,.hs-bump,.hs-bar{animation:none}}

@@ -184,44 +184,42 @@ export default function Page({ params }: { params: { lang: Lang } }) {
 
   const heroSlot = (
     <div className="relative pb-10 pr-6">
-      <div className="theme-dark rounded-2xl overflow-hidden" style={{ background: '#141329', border: '1px solid rgba(123,110,246,0.35)' }}>
-        <div className="flex items-center gap-2 px-5 py-3.5" style={{ borderBottom: '1px solid rgb(var(--fg) / 0.08)' }}>
+      <div className="theme-dark rounded-2xl overflow-hidden" style={{ background: '#141329', border: '1px solid rgba(123,110,246,0.35)', boxShadow: '0 30px 60px -20px rgba(0,0,0,0.6)' }}>
+        <div className="flex items-center gap-2 px-4 py-3" style={{ borderBottom: '1px solid rgb(var(--fg) / 0.08)' }}>
           <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#F87171' }} />
           <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#FBBF24' }} />
           <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#34D399' }} />
-          <span className="ml-3 text-xs" style={{ color: 'rgb(var(--fg) / 0.85)', fontFamily: 'monospace' }}>storefront.log</span>
+          <span className="ml-3 flex-1 rounded-md px-3 py-1 text-[11px]" style={{ background: 'rgb(var(--fg) / 0.06)', color: 'rgb(var(--fg) / 0.7)' }}>yourstore.co.th</span>
+          <span className="relative">
+            <i className="ti ti-shopping-cart" style={{ color: 'rgb(var(--fg) / 0.85)', fontSize: 18 }} aria-hidden="true" />
+            <span className="hs-bump absolute -top-2 -right-2 rounded-full flex items-center justify-center" style={{ width: 14, height: 14, background: 'var(--lime)', color: '#15112A', fontSize: 9, fontWeight: 700 }}>3</span>
+          </span>
         </div>
-        <div className="px-6 py-6" style={{ fontFamily: 'monospace', fontSize: '0.9rem', lineHeight: 1.9, color: 'rgb(var(--fg) / 0.85)' }}>
-          {commerceLines.map((l) => (
-            <div key={l.n} className="flex gap-4">
-              <span style={{ color: 'rgb(var(--fg) / 0.25)', width: 16, textAlign: 'right' }}>{l.n}</span>
-              <span>{l.jsx}</span>
+        <div className="grid grid-cols-3 gap-3 p-4">
+          {[['#7B6EF6', '#B8A9FA'], ['#53C3D7', '#7B6EF6'], ['#F5D76E', '#F2A6C7']].map(([a, b], i) => (
+            <div key={i} className="rounded-xl p-2 hs-card" style={{ background: '#1B1A33', border: '1px solid rgb(var(--fg) / 0.08)', animationDelay: `${i * 1.2}s` }}>
+              <div className="rounded-lg mb-2" style={{ height: 74, background: `linear-gradient(135deg,${a},${b})`, opacity: 0.85 }} />
+              <div className="h-1.5 rounded-full mb-1.5" style={{ width: '80%', background: 'rgb(var(--fg) / 0.22)' }} />
+              <div className="h-1.5 rounded-full mb-2.5" style={{ width: '45%', background: 'rgb(var(--fg) / 0.14)' }} />
+              <div className="rounded-full text-center py-1" style={{ fontSize: 10, background: i === 1 ? 'linear-gradient(135deg,var(--purple),var(--purple-dark))' : 'rgb(var(--fg) / 0.08)', color: '#fff' }}>{isEN ? 'Add' : 'หยิบใส่ตะกร้า'}</div>
             </div>
           ))}
         </div>
+        <div className="mx-4 mb-4 rounded-xl px-3.5 py-3" style={{ background: '#1B1A33', border: '1px solid rgb(var(--fg) / 0.08)' }}>
+          <div className="flex items-center justify-between mb-2">
+            <span className="flex items-center gap-1.5" style={{ fontSize: 11, color: 'rgb(var(--fg) / 0.85)' }}><i className="ti ti-qrcode" style={{ fontSize: 14, color: 'var(--accent-2)' }} aria-hidden="true" />PromptPay</span>
+            <span style={{ fontSize: 10, color: 'var(--lime)' }}>{isEN ? 'Checkout' : 'ชำระเงิน'}</span>
+          </div>
+          <div className="h-1.5 rounded-full overflow-hidden" style={{ background: 'rgb(var(--fg) / 0.1)' }}><div className="h-full svc-fill" style={{ width: '100%', transformOrigin: 'left', background: 'linear-gradient(90deg,var(--purple),var(--lime))' }} /></div>
+        </div>
       </div>
-
-      <div
-        className="theme-dark absolute -bottom-2 -right-2 w-[220px] rounded-2xl p-4"
-        style={{ background: '#1B1A33', border: '1px solid rgb(var(--fg) / 0.1)', boxShadow: '0 20px 50px -10px rgba(0,0,0,0.6)' }}
-      >
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-[10px] tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)' }}>{isEN ? 'Store Performance' : 'Store Performance'}</span>
-          <span className="w-2 h-2 rounded-full" style={{ background: 'var(--lime)' }} />
+      <div className="theme-dark absolute -bottom-2 -right-2 w-[190px] rounded-2xl p-4" style={{ background: '#1B1A33', border: '1px solid rgb(var(--fg) / 0.1)', boxShadow: '0 20px 50px -10px rgba(0,0,0,0.6)', animation: 'svcFloat 6s ease-in-out infinite' }}>
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-[10px] tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)' }}>{isEN ? 'Orders' : 'ออเดอร์'}</span>
+          <span className="w-2 h-2 rounded-full svc-ping" style={{ background: 'var(--lime)' }} />
         </div>
-        <div className="flex items-center gap-3 mb-3">
-          <div className="w-12 h-12 rounded-lg flex items-center justify-center shrink-0" style={{ background: 'linear-gradient(135deg,var(--purple),var(--purple-light))' }}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16l-1.5 9h-13Z" stroke="#fff" strokeWidth="1.6" strokeLinejoin="round" /><circle cx="9" cy="19" r="1.4" fill="#fff" /><circle cx="17" cy="19" r="1.4" fill="#fff" /></svg>
-          </div>
-          <div className="flex-1 space-y-1.5">
-            <div className="h-1.5 rounded-full" style={{ background: 'rgb(var(--fg) / 0.15)', width: '90%' }} />
-            <div className="h-1.5 rounded-full" style={{ background: 'rgb(var(--fg) / 0.15)', width: '65%' }} />
-            <div className="h-3.5 rounded-full" style={{ background: 'linear-gradient(90deg,var(--purple),var(--lime))', width: '95%' }} />
-          </div>
-        </div>
-        <div className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--accent-2)' }}>
-          <i className="ti ti-circle-check" style={{ fontSize: 13 }} aria-hidden="true" />
-          {isEN ? '3x faster page loads' : 'โหลดหน้าเว็บเร็วขึ้น 3 เท่า'}
+        <div className="flex items-end gap-1.5" style={{ height: 44 }}>
+          {[35, 55, 45, 70, 60, 90].map((h, i) => (<span key={i} className="flex-1 rounded-sm hs-bar" style={{ height: `${h}%`, background: 'linear-gradient(180deg,var(--lime),var(--purple))', animationDelay: `${i * 0.25}s` }} />))}
         </div>
       </div>
     </div>

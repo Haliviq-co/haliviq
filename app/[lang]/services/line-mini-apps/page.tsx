@@ -179,46 +179,43 @@ export default function Page({ params }: { params: { lang: Lang } }) {
   ]
 
   const heroSlot = (
-    <div className="relative pb-10 pr-6">
-      <div className="theme-dark rounded-2xl overflow-hidden" style={{ background: '#141329', border: '1px solid rgba(123,110,246,0.35)' }}>
-        <div className="flex items-center gap-2 px-5 py-3.5" style={{ borderBottom: '1px solid rgb(var(--fg) / 0.08)' }}>
-          <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#F87171' }} />
-          <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#FBBF24' }} />
-          <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#34D399' }} />
-          <span className="ml-3 text-xs" style={{ color: 'rgb(var(--fg) / 0.85)', fontFamily: 'monospace' }}>liff-session.log</span>
+    <div className="relative flex justify-center pb-8 pr-4">
+      <div className="theme-dark rounded-[2rem] overflow-hidden" style={{ width: 300, background: '#0F1424', border: '1px solid rgba(6,199,85,0.4)', boxShadow: '0 30px 60px -20px rgba(0,0,0,0.65)' }}>
+        <div className="flex items-center gap-2.5 px-4 py-3" style={{ background: '#06C755' }}>
+          <span className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: 'rgba(255,255,255,0.9)' }}>
+            <span style={{ fontSize: 14, fontWeight: 700, color: '#06C755' }}>H</span>
+          </span>
+          <div className="flex-1 min-w-0">
+            <div style={{ fontSize: 13, fontWeight: 600, color: '#fff', lineHeight: 1.2 }}>{isEN ? 'Your Shop' : 'ร้านของคุณ'}</div>
+            <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.85)' }}>LINE Official Account</div>
+          </div>
+          <i className="ti ti-circle-check" style={{ color: '#fff', fontSize: 16 }} aria-hidden="true" />
         </div>
-        <div className="px-6 py-6" style={{ fontFamily: 'monospace', fontSize: '0.9rem', lineHeight: 1.9, color: 'rgb(var(--fg) / 0.85)' }}>
-          {lineLines.map((l) => (
-            <div key={l.n} className="flex gap-4">
-              <span style={{ color: 'rgb(var(--fg) / 0.25)', width: 16, textAlign: 'right' }}>{l.n}</span>
-              <span>{l.jsx}</span>
+        <div className="flex flex-col gap-2.5 px-3.5 py-4" style={{ minHeight: 300 }}>
+          <div className="hs-msg self-end rounded-2xl rounded-tr-sm px-3 py-2" style={{ background: '#06C755', color: '#fff', fontSize: 12, animationDelay: '0s' }}>{isEN ? 'Is this set still in stock?' : 'ชุดนี้ยังมีของไหมคะ'}</div>
+          <div className="hs-msg self-start rounded-2xl rounded-tl-sm p-2.5" style={{ background: '#1D2338', width: 190, animationDelay: '1.3s' }}>
+            <div className="rounded-lg mb-2" style={{ height: 64, background: 'linear-gradient(135deg,#7B6EF6,#53C3D7)' }} />
+            <div style={{ fontSize: 12, color: '#fff', fontWeight: 600 }}>{isEN ? 'Sample product set' : 'ชุดสินค้าตัวอย่าง'}</div>
+            <div className="flex items-center justify-between mt-1.5">
+              <span style={{ fontSize: 11, color: 'var(--lime)' }}>{isEN ? 'In stock' : 'มีของพร้อมส่ง'}</span>
+              <span className="rounded-full px-2.5 py-0.5" style={{ background: '#06C755', color: '#fff', fontSize: 10 }}>{isEN ? 'Buy' : 'สั่งซื้อ'}</span>
             </div>
+          </div>
+          <div className="hs-msg self-end rounded-2xl rounded-tr-sm px-3 py-2" style={{ background: '#06C755', color: '#fff', fontSize: 12, animationDelay: '2.8s' }}>{isEN ? 'Order it' : 'สั่งเลยค่ะ'}</div>
+          <div className="hs-msg self-start flex items-center gap-1.5 rounded-2xl rounded-tl-sm px-3 py-2" style={{ background: '#1D2338', color: '#fff', fontSize: 12, animationDelay: '4.2s' }}>
+            <i className="ti ti-circle-check svc-ping" style={{ color: '#06C755', fontSize: 15 }} aria-hidden="true" />
+            {isEN ? 'Paid. Shipping tomorrow' : 'ชำระเงินแล้ว จัดส่งพรุ่งนี้'}
+          </div>
+        </div>
+        <div className="grid grid-cols-3 gap-px" style={{ background: 'rgba(255,255,255,0.08)' }}>
+          {(isEN ? ['Menu', 'Orders', 'Contact'] : ['เมนู', 'ออเดอร์', 'ติดต่อ']).map((m) => (
+            <div key={m} className="py-2.5 text-center" style={{ background: '#151B2E', fontSize: 11, color: 'rgba(255,255,255,0.8)' }}>{m}</div>
           ))}
         </div>
       </div>
-
-      <div
-        className="theme-dark absolute -bottom-2 -right-2 w-[220px] rounded-2xl p-4"
-        style={{ background: '#1B1A33', border: '1px solid rgb(var(--fg) / 0.1)', boxShadow: '0 20px 50px -10px rgba(0,0,0,0.6)' }}
-      >
-        <div className="flex items-center justify-between mb-3">
-          <span className="text-[10px] tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)' }}>{isEN ? 'Mini App Reach' : 'Mini App Reach'}</span>
-          <span className="w-2 h-2 rounded-full" style={{ background: 'var(--lime)' }} />
-        </div>
-        <div className="flex items-center gap-3 mb-3">
-          <div className="w-12 h-12 rounded-lg flex items-center justify-center shrink-0" style={{ background: 'linear-gradient(135deg,var(--purple),var(--purple-light))' }}>
-            <i className="ti ti-brand-line" style={{ fontSize: 22, color: 'var(--ink)' }} aria-hidden="true" />
-          </div>
-          <div className="flex-1 space-y-1.5">
-            <div className="h-1.5 rounded-full" style={{ background: 'rgb(var(--fg) / 0.15)', width: '90%' }} />
-            <div className="h-1.5 rounded-full" style={{ background: 'rgb(var(--fg) / 0.15)', width: '65%' }} />
-            <div className="h-3.5 rounded-full" style={{ background: 'linear-gradient(90deg,var(--purple),var(--lime))', width: '85%' }} />
-          </div>
-        </div>
-        <div className="flex items-center gap-1.5 text-xs" style={{ color: 'var(--accent-2)' }}>
-          <i className="ti ti-circle-check" style={{ fontSize: 13 }} aria-hidden="true" />
-          {isEN ? '40% of mobile sales via LINE' : '40% ของยอดขายบนมือถือมาจาก LINE'}
-        </div>
+      <div className="theme-dark absolute bottom-2 right-0 flex items-center gap-2 rounded-xl px-3 py-2" style={{ background: '#1B1A33', border: '1px solid rgb(var(--fg) / 0.12)', boxShadow: '0 16px 40px -10px rgba(0,0,0,0.6)', animation: 'svcFloat 6s ease-in-out infinite' }}>
+        <span className="w-7 h-7 rounded-full flex items-center justify-center svc-ping-ring" style={{ background: 'rgba(6,199,85,0.2)' }}><i className="ti ti-brand-line" style={{ color: '#06C755', fontSize: 15 }} aria-hidden="true" /></span>
+        <span style={{ fontSize: 11, color: 'rgb(var(--fg) / 0.9)' }}>{isEN ? 'Inside LINE, no app to install' : 'ใช้ใน LINE ไม่ต้องติดตั้งแอป'}</span>
       </div>
     </div>
   )
