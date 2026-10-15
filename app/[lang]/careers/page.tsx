@@ -90,12 +90,12 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     : [{ n:'40+',l:'คนในทีม',d:'และกำลังเติบโต' },{ n:'8 ปี',l:'อายุบริษัท',d:'ก่อตั้งปี 2017' },{ n:'120+',l:'โปรเจกต์',d:'ส่งมอบแล้ว' },{ n:'4.9★',l:'คะแนน Glassdoor',d:'จากพนักงานจริง' }]
 
   const steps = isEN ? [
-    { no:'01', icon:'ti-mail', title:'Apply', desc:'Send your CV and portfolio to careers@haliviq.co, or fill in the form below. A short note about what you want to work on helps us read your CV in context. We reply within 3 business days.', time:'~1 day' },
+    { no:'01', icon:'ti-mail', title:'Apply', desc:'Send your CV and portfolio to info@haliviq.com, or fill in the form below. A short note about what you want to work on helps us read your CV in context. We reply within 3 business days.', time:'~1 day' },
     { no:'02', icon:'ti-video', title:'Intro Call', desc:'A 30-minute chat with HR so we can get to know each other. We talk about the role, what you are looking for, and what we expect, and you can ask anything about how we work.', time:'~30 min' },
     { no:'03', icon:'ti-code', title:'Technical Round', desc:'A technical interview or a take-home assignment, depending on the role. It is built to show how you really work on a problem, not to catch you out with trick questions.', time:'~1-2 hrs' },
     { no:'04', icon:'ti-users', title:'Team Meet', desc:'You meet the people you would work with every day and can ask them anything. The conversation goes both ways, because you are evaluating us as much as we are evaluating you.', time:'~1 hr' },
   ] : [
-    { no:'01', icon:'ti-mail', title:'สมัครงาน', desc:'ส่ง CV และผลงานมาที่ careers@haliviq.co หรือกรอกแบบฟอร์มด้านล่าง ถ้าเขียนสั้น ๆ มาด้วยว่าอยากทำงานแบบไหน เราจะอ่าน CV ได้เข้าใจบริบทมากขึ้น เราจะตอบกลับภายใน 3 วันทำการ', time:'~1 วัน' },
+    { no:'01', icon:'ti-mail', title:'สมัครงาน', desc:'ส่ง CV และผลงานมาที่ info@haliviq.com หรือกรอกแบบฟอร์มด้านล่าง ถ้าเขียนสั้น ๆ มาด้วยว่าอยากทำงานแบบไหน เราจะอ่าน CV ได้เข้าใจบริบทมากขึ้น เราจะตอบกลับภายใน 3 วันทำการ', time:'~1 วัน' },
     { no:'02', icon:'ti-video', title:'คุยเบื้องต้น', desc:'คุยกับฝ่ายบุคคลประมาณ 30 นาที เพื่อทำความรู้จักกัน เราจะคุยเรื่องตำแหน่ง สิ่งที่คุณมองหา และสิ่งที่เราคาดหวัง และคุณถามเรื่องวิธีทำงานของเราได้เต็มที่', time:'~30 นาที' },
     { no:'03', icon:'ti-code', title:'สัมภาษณ์เชิงเทคนิค', desc:'เป็นการสัมภาษณ์ หรือโจทย์ให้ทำที่บ้าน แล้วแต่ตำแหน่ง ออกแบบมาเพื่อดูว่าคุณคิดและแก้ปัญหาจริง ๆ อย่างไร ไม่ใช่ข้อสอบหลอกให้พลาด', time:'1–2 ชั่วโมง' },
     { no:'04', icon:'ti-users', title:'พบทีม', desc:'ได้พบคนที่จะทำงานด้วยกันทุกวัน ถามได้ทุกเรื่อง คุยกันสองทาง เพราะคุณก็ประเมินเราเหมือนกับที่เราประเมินคุณ', time:'~1 ชั่วโมง' },
@@ -139,7 +139,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
                     {isEN ? 'View Open Roles' : 'ดูตำแหน่งงาน'}
                     <i className="ti ti-arrow-down" style={{ fontSize: 15 }} aria-hidden="true" />
                   </a>
-                  <a href="mailto:careers@haliviq.co" className="inline-flex items-center gap-2 rounded-full transition-colors hover:bg-[rgb(var(--fg)/0.1)]" style={{ fontSize: '1rem', padding: '13px 32px', border: '1.5px solid rgb(var(--fg) / 0.25)', color: 'var(--ink)', fontWeight: 400 }}>
+                  <a href="mailto:info@haliviq.com" className="inline-flex items-center gap-2 rounded-full transition-colors hover:bg-[rgb(var(--fg)/0.1)]" style={{ fontSize: '1rem', padding: '13px 32px', border: '1.5px solid rgb(var(--fg) / 0.25)', color: 'var(--ink)', fontWeight: 400 }}>
                     {isEN ? 'Send Your CV' : 'ส่ง CV มาก่อน'}
                   </a>
                 </div>
@@ -251,7 +251,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
                 </h2>
               </div>
               <p className="text-sm max-w-xs" style={muted}>
-                {isEN ? <>No role that fits? Send your CV to <a href="mailto:careers@haliviq.co" className="hover:underline" style={{ color: 'var(--accent)' }}>careers@haliviq.co</a></> : <>ไม่พบตำแหน่งที่ตรงกับคุณ? ส่ง CV มาได้ที่ <a href="mailto:careers@haliviq.co" className="hover:underline" style={{ color: 'var(--accent)' }}>careers@haliviq.co</a></>}
+                {isEN ? <>No role that fits? Send your CV to <a href="mailto:info@haliviq.com" className="hover:underline" style={{ color: 'var(--accent)' }}>info@haliviq.com</a></> : <>ไม่พบตำแหน่งที่ตรงกับคุณ? ส่ง CV มาได้ที่ <a href="mailto:info@haliviq.com" className="hover:underline" style={{ color: 'var(--accent)' }}>info@haliviq.com</a></>}
               </p>
             </div>
             <div className="space-y-8">
@@ -263,7 +263,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
                   </div>
                   <div className="grid sm:grid-cols-2 gap-4">
                     {dept.jobs.map(job => (
-                      <a key={job.title} href={`mailto:careers@haliviq.co?subject=${encodeURIComponent(job.title)}`} className="group block rounded-2xl p-7 hover:-translate-y-0.5 hover:border-[rgba(123,110,246,0.5)] transition-all duration-300" style={card}>
+                      <a key={job.title} href={`mailto:info@haliviq.com?subject=${encodeURIComponent(job.title)}`} className="group block rounded-2xl p-7 hover:-translate-y-0.5 hover:border-[rgba(123,110,246,0.5)] transition-all duration-300" style={card}>
                         <div className="flex items-start justify-between mb-4">
                           <div>
                             <h3 className="mb-2 group-hover:text-[color:var(--accent)] transition-colors" style={{ color: 'var(--ink)', fontWeight: 500, fontSize: '1.3rem' }}>{job.title}</h3>
@@ -338,9 +338,9 @@ export default function Page({ params }: { params: { lang: Lang } }) {
               ))}
             </div>
             <div className="flex flex-wrap gap-4 justify-center">
-              <a href="mailto:careers@haliviq.co" className="btn-primary" style={{ fontSize: '1rem', padding: '14px 36px' }}>
+              <a href="mailto:info@haliviq.com" className="btn-primary" style={{ fontSize: '1rem', padding: '14px 36px' }}>
                 <i className="ti ti-mail" style={{ fontSize: 15 }} aria-hidden="true" />
-                careers@haliviq.co
+                info@haliviq.com
               </a>
               <a href="#openings" className="inline-flex items-center gap-2 rounded-full transition-colors hover:bg-[rgb(var(--fg)/0.1)]" style={{ fontSize: '1rem', padding: '13px 36px', border: '1.5px solid rgb(var(--fg) / 0.25)', color: 'var(--ink)', fontWeight: 400 }}>
                 {isEN ? 'View Open Roles' : 'ดูตำแหน่งงาน'}

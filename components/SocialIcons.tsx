@@ -23,7 +23,7 @@ export default function SocialIcons({ className = '', tone, lang }: { className?
       })}
       {[
         { name: 'Phone', url: 'tel:+66909189009', icon: 'ti-phone' },
-        { name: 'Email', url: 'mailto:wu@haliviq.com', icon: 'ti-mail' },
+        { name: 'Email', url: 'mailto:info@haliviq.com', icon: 'ti-mail' },
       ].map(({ name, url, icon }) => (
         <a key={name} href={url} aria-label={name}
           className="w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-110"

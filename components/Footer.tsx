@@ -66,7 +66,7 @@ export default function Footer({ lang, tr }: Props) {
               <p>{f.phone}</p>
               <p>WhatsApp: <a href="https://wa.me/message/TM3WC6DUJAFEK1" target="_blank" rel="noopener noreferrer" className="hover:text-[color:var(--ink)] transition-colors">{f.whatsapp}</a></p>
               <p>LINE: {f.line}</p>
-              <p>{f.salesLabel}: wu@haliviq.com</p>
+              <p>{f.salesLabel}: info@haliviq.com</p>
               <p>{f.supportLabel}: info@haliviq.com</p>
             </div>
             <a

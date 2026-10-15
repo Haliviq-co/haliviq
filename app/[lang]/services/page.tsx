@@ -238,8 +238,8 @@ export default function Page({ params }: { params: { lang: Lang } }) {
                 {isEN ? 'Talk to Us' : 'คุยกับเรา'}
                 <i className="ti ti-arrow-right" style={{ fontSize: 15 }} aria-hidden="true" />
               </Link>
-              <Link href="mailto:wu@haliviq.com" className="inline-flex items-center gap-2 px-10 py-4 border border-[color:rgb(var(--fg)/0.3)] text-[color:var(--ink)] rounded-full text-sm hover:border-[color:rgb(var(--fg)/0.6)] transition-colors" style={{ fontWeight: 400 }}>
-                wu@haliviq.com
+              <Link href="mailto:info@haliviq.com" className="inline-flex items-center gap-2 px-10 py-4 border border-[color:rgb(var(--fg)/0.3)] text-[color:var(--ink)] rounded-full text-sm hover:border-[color:rgb(var(--fg)/0.6)] transition-colors" style={{ fontWeight: 400 }}>
+                info@haliviq.com
               </Link>
             </div>
           </div>

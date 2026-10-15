@@ -58,7 +58,7 @@ export async function POST(req: Request) {
 
   try {
     const key = process.env.RESEND_API_KEY
-    const to = process.env.CONTACT_TO_EMAIL || 'info@haliviq.com'
+    const to = 'info@haliviq.com'
     const hook = process.env.CONTACT_WEBHOOK_URL
     if (key && to) {
       const html = `<h2>New website enquiry</h2>${lines.map(([k, v]) => `<p><b>${k}:</b> ${esc(v as string)}</p>`).join('')}<p><b>Message:</b></p><p>${esc(data.message).replace(/\n/g, '<br>')}</p>`

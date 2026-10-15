@@ -65,7 +65,7 @@ export default function ContactFormShell({ lang, children }: { lang: 'en' | 'th'
       {state === 'sending' && <p role="status" className="text-center text-sm" style={{ color: 'rgb(var(--fg) / 0.7)' }}>{isEN ? 'Sending...' : 'กำลังส่ง...'}</p>}
       {state === 'error' && (
         <p role="alert" className="text-center text-sm" style={{ color: '#F87171' }}>
-          {isEN ? 'Sorry, that did not go through. Please try again or email wu@haliviq.com.' : 'ขออภัย ส่งไม่สำเร็จ ลองใหม่อีกครั้ง หรืออีเมลมาที่ wu@haliviq.com'}
+          {isEN ? 'Sorry, that did not go through. Please try again or email info@haliviq.com.' : 'ขออภัย ส่งไม่สำเร็จ ลองใหม่อีกครั้ง หรืออีเมลมาที่ info@haliviq.com'}
         </p>
       )}
     </form>

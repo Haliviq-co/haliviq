@@ -118,7 +118,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
                 {isEN ? 'Start a Conversation' : 'เริ่มคุยกับเรา'}
                 <i className="ti ti-arrow-right" style={{ fontSize: 14 }} aria-hidden="true" />
               </Link>
-              <a href="mailto:wu@haliviq.com" className="text-sm transition-colors" style={{ color: 'var(--ink)', fontWeight: 400 }}>wu@haliviq.com</a>
+              <a href="mailto:info@haliviq.com" className="text-sm transition-colors" style={{ color: 'var(--ink)', fontWeight: 400 }}>info@haliviq.com</a>
             </div>
           </div>
         </section>

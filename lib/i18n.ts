@@ -289,7 +289,7 @@ export const t = {
     cta: {
       label: 'เริ่มวันนี้', h2: 'มาเปลี่ยนไอเดียของคุณ\nให้เป็นผลิตภัณฑ์จริง',
       sub: 'ไม่ว่าคุณจะเป็น Startup ที่มีไอเดียใหม่ หรือองค์กรที่อยากปรับสู่ดิจิทัล เล่าให้เราฟังได้เลยว่าอยากแก้ปัญหาอะไร เราจะช่วยดูว่าควรเริ่มจากตรงไหน',
-      btn1: 'เริ่มโปรเจกต์', btn2: 'wu@haliviq.com',
+      btn1: 'เริ่มโปรเจกต์', btn2: 'info@haliviq.com',
       trust: ['ปรึกษาครั้งแรกฟรี', 'ตอบกลับภายใน 24 ชั่วโมง', 'มี NDA ให้ลงนามได้'],
     },
     // ── CTA (simple / starry) ──
@@ -297,7 +297,7 @@ export const t = {
       h2: 'มีโปรเจกต์ในใจไหม?',
       sub: 'เล่าให้เราฟังหน่อยว่าคุณกำลังสร้างอะไรอยู่ จะเป็นแค่ไอเดียคร่าวๆ หรือมีรายละเอียดครบแล้วก็ได้',
       btn: 'เริ่มคุยกัน',
-      email: 'wu@haliviq.com',
+      email: 'info@haliviq.com',
     },
     // ── FOOTER ──
     footer: {
@@ -622,7 +622,7 @@ export const t = {
     cta: {
       label: 'Start Today', h2: 'Let\'s turn your idea\ninto a real product.',
       sub: 'Whether you are a startup with a new idea or an established organization going digital, tell us what problem you want to solve. We will help work out where to begin.',
-      btn1: 'Start a Project', btn2: 'wu@haliviq.com',
+      btn1: 'Start a Project', btn2: 'info@haliviq.com',
       trust: ['Free first consultation', 'Response within 24 hours', 'NDA available on request'],
     },
     // ── CTA (simple / starry) ──
@@ -630,7 +630,7 @@ export const t = {
       h2: 'Have a project in mind?',
       sub: 'Tell us what you are building. A rough idea is fine, and so is a full brief.',
       btn: 'Start a Conversation',
-      email: 'wu@haliviq.com',
+      email: 'info@haliviq.com',
     },
     footer: {
       desc: 'A digital product studio in Bangkok. We design and build software, from websites and apps to AI systems, that helps your business compete.',

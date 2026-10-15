@@ -43,7 +43,7 @@ export default function HomePage({ params }: { params: { lang: string } }) {
           ? 'A design and AI studio in Bangkok building UX/UI, websites, mobile apps, LINE mini apps and AI tools.'
           : 'สตูดิโอดีไซน์และ AI ในกรุงเทพฯ ออกแบบและพัฒนา UX/UI, website, แอปมือถือ, LINE mini app และระบบ AI',
         telephone: '+66909189009',
-        email: 'wu@haliviq.com',
+        email: 'info@haliviq.com',
         address: {
           '@type': 'PostalAddress',
           streetAddress: '111 Sukhumvit Road, Bang Chak, Phra Khanong',
