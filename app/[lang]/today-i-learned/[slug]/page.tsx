@@ -47,7 +47,7 @@ export default function Page({ params }: { params: { lang: Lang; slug: string } 
   const blocks: [string, string[]][] = [
     [isEN ? 'What happened' : 'เกิดอะไรขึ้น', l.problem],
     [isEN ? 'Why it happens' : 'ทำไมถึงเป็นแบบนั้น', l.why],
-    [isEN ? 'What we do now' : 'ตอนนี้เราทำยังไง', l.fix],
+    [isEN ? 'What we do now' : 'ตอนนี้เราทำอย่างไร', l.fix],
   ]
   return (
     <>

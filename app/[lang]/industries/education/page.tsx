@@ -150,12 +150,12 @@ export default function Page({ params }: { params: { lang: Lang } }) {
               {isEN ? 'Key Challenges' : 'ความท้าทายหลัก'}
             </p>
             <h2 className="t-display mb-4" style={{ color: 'var(--ink)', fontSize: 'clamp(2.25rem,4.5vw,3.5rem)' }}>
-              {isEN ? 'What Education Providers Are Up Against' : 'สิ่งที่สถาบันการศึกษาต้องเจอ'}
+              {isEN ? 'What Education Providers Are Up Against' : 'สิ่งที่สถาบันการศึกษาต้องพบ'}
             </h2>
             <p className="mb-14" style={{ color: 'rgb(var(--fg) / 0.85)', fontSize: '1.2rem', fontWeight: 400, maxWidth: 640 }}>
               {isEN
                 ? 'Building for education means solving problems no generic software vendor has to think about.'
-                : 'การทำซอฟต์แวร์เพื่อการศึกษาต้องแก้ปัญหาที่ผู้ขายซอฟต์แวร์ทั่วไปไม่ต้องเจอ'}
+                : 'การทำซอฟต์แวร์เพื่อการศึกษาต้องแก้ปัญหาที่ผู้ขายซอฟต์แวร์ทั่วไปไม่ต้องพบ'}
             </p>
             <div className="grid sm:grid-cols-2 gap-5">
               {challenges.map((c) => (

@@ -14,7 +14,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
   const whyTitle = isEN ? 'Why brand is a strategic business asset'    : 'ทำไมแบรนด์ถึงเป็นสินทรัพย์สำคัญของธุรกิจ'
   const whyDesc  = isEN ? 'When competitors sell similar products at similar prices, the brand is often the only thing that is hard to copy. Customers pick, trust and return to brands rather than to specifications. A brand that people recognise and believe lets you hold your price when others discount, and it shortens the sales conversation because trust has already been built.'  : 'เมื่อคู่แข่งขายของคล้ายกันในราคาใกล้กัน แบรนด์มักเป็นสิ่งเดียวที่ลอกกันยาก ลูกค้าเลือก เชื่อ และกลับมาซื้อเพราะแบรนด์ ไม่ใช่เพราะสเปก แบรนด์ที่คนจำได้และเชื่อถือ ช่วยให้คุณคงราคาไว้ได้ตอนคนอื่นลดราคา และทำให้คุยขายสั้นลง เพราะความเชื่อใจเกิดขึ้นก่อนแล้ว'
   const ctaTitle = isEN ? 'Ready to build a brand that lasts?'    : 'พร้อมสร้างแบรนด์ที่อยู่ได้นานหรือยัง?'
-  const ctaDesc  = isEN ? 'Start with a free Brand Audit. We look at how your brand appears today across your website, social channels and materials, and tell you what is working, what is inconsistent and where the opportunities are.'   : 'เริ่มจากให้เราตรวจแบรนด์ให้ฟรี เราจะดูว่าแบรนด์ของคุณปรากฏยังไงบนเว็บไซต์ โซเชียล และสื่อต่างๆ ตอนนี้ แล้วบอกว่าอะไรได้ผล อะไรยังไม่สม่ำเสมอ และมีโอกาสตรงไหนบ้าง'
+  const ctaDesc  = isEN ? 'Start with a free Brand Audit. We look at how your brand appears today across your website, social channels and materials, and tell you what is working, what is inconsistent and where the opportunities are.'   : 'เริ่มจากให้เราตรวจแบรนด์ให้ฟรี เราจะดูว่าแบรนด์ของคุณปรากฏอย่างไรบนเว็บไซต์ โซเชียล และสื่อต่างๆ ตอนนี้ แล้วบอกว่าอะไรได้ผล อะไรยังไม่สม่ำเสมอ และมีโอกาสตรงไหนบ้าง'
   const heroBullets = isEN ? [
       'Brand strategy, market positioning and a messaging framework',
       'Visual identity: logo, colour, typography and illustration style',
@@ -60,11 +60,11 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       {icon: 'ti-writing', title: 'Brand Voice & Messaging', desc: 'Tone of voice, key messages and the brand story, with sample lines for common situations such as a product page, an apology email or a LINE greeting, in both Thai and English where needed.'},
       {icon: 'ti-certificate', title: 'Brand Asset Library', desc: 'One organised brand hub that holds the logos, templates, fonts, icons and photos, so the team always downloads the current version rather than an old file from someone\'s inbox.'}
     ] : [
-      {icon: 'ti-target', title: 'Brand Strategy & Positioning', desc: 'เราช่วยจับให้ชัดว่าบริษัทมีอยู่เพื่ออะไร ทำเพื่อใคร เสนออะไร และมีบุคลิกยังไง แล้วหาจุดยืนที่คู่แข่งยังไม่ได้ยึด ผลที่ได้คือประโยคตำแหน่งแบรนด์สั้นๆ และข้อความหลักสำหรับลูกค้าแต่ละกลุ่ม'},
+      {icon: 'ti-target', title: 'Brand Strategy & Positioning', desc: 'เราช่วยจับให้ชัดว่าบริษัทมีอยู่เพื่ออะไร ทำเพื่อใคร เสนออะไร และมีบุคลิกอย่างไร แล้วหาจุดยืนที่คู่แข่งยังไม่ได้ยึด ผลที่ได้คือประโยคตำแหน่งแบรนด์สั้นๆ และข้อความหลักสำหรับลูกค้าแต่ละกลุ่ม'},
       {icon: 'ti-palette', title: 'Visual Identity Design', desc: 'ออกแบบโลโก้ ชุดสี ตัวอักษร สไตล์ภาพประกอบ และแนวทางภาพถ่ายไปพร้อมกัน ให้ดูเป็นครอบครัวเดียวกัน ทดสอบคอนทราสต์ของสีบนหน้าจอ และเลือกตัวอักษรที่ใช้ได้ทั้งภาษาไทยและละติน'},
       {icon: 'ti-book-2', title: 'Brand Guidelines', desc: 'คู่มือที่ใช้งานได้จริง ครอบคลุมระยะรอบโลโก้ ค่าสี ขนาดตัวอักษร และตัวอย่างการใช้ที่ถูกและผิด เขียนให้เอเจนซี่ โรงพิมพ์ หรือพนักงานใหม่ทำตามได้เลยโดยไม่ต้องถาม'},
       {icon: 'ti-device-desktop', title: 'Digital Brand Experience', desc: 'เรานำตัวตนแบรนด์ไปใช้ในจุดที่ลูกค้าพบคุณออนไลน์ ทั้งเว็บไซต์ แอป เทมเพลตอีเมล และโพสต์โซเชียล เลย์เอาต์ การเคลื่อนไหว และข้อความสั้นๆ ในหน้าจอเป็นไปตามแบรนด์ ไม่ใช่เทมเพลตสำเร็จรูป'},
-      {icon: 'ti-writing', title: 'Brand Voice & Messaging', desc: 'กำหนดน้ำเสียง ข้อความหลัก และเรื่องราวของแบรนด์ พร้อมตัวอย่างประโยคสำหรับสถานการณ์ที่เจอบ่อย เช่น หน้าสินค้า อีเมลขอโทษลูกค้า หรือข้อความทักทายใน LINE ทั้งภาษาไทยและอังกฤษเมื่อจำเป็น'},
+      {icon: 'ti-writing', title: 'Brand Voice & Messaging', desc: 'กำหนดน้ำเสียง ข้อความหลัก และเรื่องราวของแบรนด์ พร้อมตัวอย่างประโยคสำหรับสถานการณ์ที่พบบ่อย เช่น หน้าสินค้า อีเมลขอโทษลูกค้า หรือข้อความทักทายใน LINE ทั้งภาษาไทยและอังกฤษเมื่อจำเป็น'},
       {icon: 'ti-certificate', title: 'Brand Asset Library', desc: 'รวมโลโก้ เทมเพลต ฟอนต์ ไอคอน และรูปภาพไว้ใน Brand Hub ที่จัดไว้เป็นระเบียบ ทีมจะได้โหลดเวอร์ชันล่าสุดเสมอ ไม่ต้องใช้ไฟล์เก่าที่ค้างอยู่ในอีเมลของใครสักคน'}
     ]
   const steps       = isEN ? [
@@ -85,7 +85,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       {tag: 'SaaS · Bangkok', title: 'Brand That Attracts Series A Funding', desc: 'We built a credible, premium-looking brand and pitch language that helped investors see the company vision more clearly.', result: 'Series A successfully closed'},
       {tag: 'Healthcare · Bangkok', title: 'Brand Unification Across 5 Hospitals', desc: 'We created a master brand with a sub-brand structure, so each hospital keeps its own character while the network reads as one.', result: 'Brand recognition up 60%'}
     ] : [
-      {tag: 'F&B · กรุงเทพฯ', title: 'Rebrand ร้านอาหาร รายได้เพิ่ม 35%', desc: 'เราวางตำแหน่งร้านใหม่ ออกแบบตัวตนด้านภาพ แล้วนำไปใช้บนเมนู ป้ายร้าน บรรจุภัณฑ์ และโซเชียล ลูกค้าจึงเจอบุคลิกเดียวกันทุกขั้นตอน', result: 'รายได้เพิ่ม 35% ใน 6 เดือน'},
+      {tag: 'F&B · กรุงเทพฯ', title: 'Rebrand ร้านอาหาร รายได้เพิ่ม 35%', desc: 'เราวางตำแหน่งร้านใหม่ ออกแบบตัวตนด้านภาพ แล้วนำไปใช้บนเมนู ป้ายร้าน บรรจุภัณฑ์ และโซเชียล ลูกค้าจึงพบบุคลิกเดียวกันทุกขั้นตอน', result: 'รายได้เพิ่ม 35% ใน 6 เดือน'},
       {tag: 'SaaS · กรุงเทพฯ', title: 'แบรนด์ที่ดึงดูดเงินทุน Series A', desc: 'เราสร้างแบรนด์ที่น่าเชื่อถือและดูพรีเมียม พร้อมภาษาที่ใช้ในการนำเสนอ ช่วยให้นักลงทุนเห็นวิสัยทัศน์ของบริษัทชัดขึ้น', result: 'ระดมทุน Series A สำเร็จ'},
       {tag: 'Healthcare · กรุงเทพฯ', title: 'รวมแบรนด์ 5 โรงพยาบาลให้เป็นหนึ่งเดียว', desc: 'เราสร้างแบรนด์หลักพร้อมโครงสร้างแบรนด์ย่อย แต่ละโรงพยาบาลยังมีเอกลักษณ์ของตัวเอง ขณะที่ทั้งเครือข่ายดูเป็นหนึ่งเดียว', result: 'คนจำแบรนด์ได้เพิ่ม 60%'}
     ]
@@ -98,7 +98,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       {q: 'Can you help roll the brand out on our website and app?', a: 'Yes. Our design and development teams apply the identity to the website and app, and set up a design system so new pages and features stay on brand without redesigning each time.'},
       {q: 'Who owns the final files and the identity?', a: 'Ownership is written into the contract, and the intent is that the identity is yours. At handover you receive the editable source files, final exports and guidelines. Fonts keep their own licences, and we tell you exactly which ones need to be purchased or are free to use.'}
     ] : [
-      {q: 'Rebrand กับ Refresh ต่างกันยังไง?', a: 'Rebrand คือการเปลี่ยนตัวตนตั้งแต่ระดับกลยุทธ์ ตำแหน่งแบรนด์ ชื่อ หรือข้อความอาจเปลี่ยนไปพร้อมกับภาพ ส่วน Refresh คือเก็บกลยุทธ์และการรับรู้เดิมไว้ แล้วปรับโลโก้ สี หรือตัวอักษรให้ทันสมัย เราจะประเมินว่าแบบไหนเหมาะก่อนเสนอราคา'},
+      {q: 'Rebrand กับ Refresh ต่างกันอย่างไร?', a: 'Rebrand คือการเปลี่ยนตัวตนตั้งแต่ระดับกลยุทธ์ ตำแหน่งแบรนด์ ชื่อ หรือข้อความอาจเปลี่ยนไปพร้อมกับภาพ ส่วน Refresh คือเก็บกลยุทธ์และการรับรู้เดิมไว้ แล้วปรับโลโก้ สี หรือตัวอักษรให้ทันสมัย เราจะประเมินว่าแบบไหนเหมาะก่อนเสนอราคา'},
       {q: 'ใช้เวลานานแค่ไหน?', a: 'ตัวตนแบรนด์พื้นฐานใช้ 8-12 สัปดาห์ ระบบแบรนด์เต็มรูปแบบรวมคู่มือและงานดิจิทัลใช้ 16-20 สัปดาห์ ระยะเวลาขึ้นอยู่กับว่าฝั่งคุณส่งฟีดแบ็กและอนุมัติงานได้เร็วแค่ไหนเป็นหลัก'},
       {q: 'ต้องทำรีเสิร์ชก่อนไหม?', a: 'แนะนำอย่างยิ่ง การสำรวจแบรนด์ที่ดีมีการสัมภาษณ์ลูกค้า ดูคู่แข่ง และเวิร์กช็อปภายในองค์กร กลยุทธ์จะได้ตั้งอยู่บนสิ่งที่คนคิดจริงๆ ไม่ใช่สิ่งที่ผู้บริหารคิดเอาเอง'},
       {q: 'ส่งมอบอะไรบ้าง?', a: 'ไฟล์โลโก้ทุกรูปแบบที่ต้องใช้ คู่มือแบรนด์แบบ PDF คลังไฟล์ที่จัดเป็นระเบียบ สิทธิ์ใช้ฟอนต์ และเทมเพลตสำหรับโพสต์โซเชียล งานนำเสนอ และเอกสาร'},

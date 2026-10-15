@@ -73,7 +73,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { no: '02', title: 'Network Monitoring Dashboard', desc: 'A unified observability platform that pulls signal, latency, and outage data from thousands of cell sites into a single real-time operations view. Alarms are grouped by cause, shown on a map with affected customers, and sent to the right field team. Replaces the tangle of separate vendor screens that operators switch between during an incident.' },
     { no: '03', title: 'Churn Prediction System', desc: 'A machine learning platform that scores subscriber churn risk daily and automatically triggers targeted retention offers for at-risk accounts. The retention team sees why each account is flagged, tests which offers work, and tracks whether saved customers stay. We begin with a pilot on one segment, such as prepaid users, before widening it.' },
   ] : [
-    { no: '01', title: 'Self-Service Customer App', desc: 'แอปให้ลูกค้าดูแลบริการเองบนมือถือ ดูการใช้งาน จัดการแพ็กเกจ เติมเงิน และรับความช่วยเหลือจากระบบ AI ได้โดยไม่ต้องคุยกับคอลเซ็นเตอร์เลยสักครั้ง เราเริ่มจากห้าหกเรื่องที่ทำให้คนโทรเข้ามาเยอะที่สุดและทำสิ่งนั้นก่อน แล้วค่อยเพิ่มจากข้อมูลซัพพอร์ต ช่วยลดสายเข้า และให้ฝ่ายการตลาดมีช่องทางตรงถึงลูกค้าที่ยินยอมแล้ว' },
+    { no: '01', title: 'Self-Service Customer App', desc: 'แอปให้ลูกค้าดูแลบริการเองบนมือถือ ดูการใช้งาน จัดการแพ็กเกจ เติมเงิน และรับความช่วยเหลือจากระบบ AI ได้โดยไม่ต้องคุยกับคอลเซ็นเตอร์เลยสักครั้ง เราเริ่มจากห้าหกเรื่องที่ทำให้คนโทรเข้ามามากที่สุดและทำสิ่งนั้นก่อน แล้วค่อยเพิ่มจากข้อมูลซัพพอร์ต ช่วยลดสายเข้า และให้ฝ่ายการตลาดมีช่องทางตรงถึงลูกค้าที่ยินยอมแล้ว' },
     { no: '02', title: 'Network Monitoring Dashboard', desc: 'แพลตฟอร์มติดตามระบบกลางที่ดึงข้อมูลสัญญาณ Latency และเหตุขัดข้องจากเสาสัญญาณนับพันมารวมในหน้าจอเรียลไทม์เดียว สัญญาณเตือนถูกจัดกลุ่มตามสาเหตุ แสดงบนแผนที่พร้อมจำนวนลูกค้าที่ได้รับผลกระทบ และส่งถึงทีมภาคสนามที่ถูกต้อง แทนที่จอของผู้ผลิตอุปกรณ์หลายเจ้าที่เจ้าหน้าที่ต้องสลับดูเวลามีเหตุ' },
     { no: '03', title: 'Churn Prediction System', desc: 'แพลตฟอร์ม Machine Learning ที่คำนวณความเสี่ยงที่ลูกค้าจะเลิกใช้ทุกวัน และส่งข้อเสนอรักษาลูกค้าให้บัญชีกลุ่มเสี่ยงโดยอัตโนมัติ ทีมรักษาลูกค้าเห็นว่าแต่ละบัญชีถูกติดธงเพราะอะไร ทดสอบว่าข้อเสนอไหนได้ผล และติดตามว่าลูกค้าที่รั้งไว้ได้ยังอยู่ต่อไหม เราเริ่มทดลองกับกลุ่มเดียวก่อน เช่น ลูกค้าเติมเงิน แล้วค่อยขยาย' },
   ]
@@ -205,7 +205,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
               {isEN ? 'Our Capabilities' : 'ความสามารถของเรา'}
             </h2>
             <p className="mb-14" style={{ color: 'rgb(var(--fg) / 0.85)', fontSize: '1.2rem', fontWeight: 400, maxWidth: 640 }}>
-              {isEN ? 'The systems we build for carriers and connectivity providers, and what each changes for operators and subscribers.' : 'ระบบที่เราสร้างให้ค่ายโทรคมนาคมและผู้ให้บริการการเชื่อมต่อ พร้อมบอกว่าแต่ละตัวเปลี่ยนงานของทีมปฏิบัติการและประสบการณ์ลูกค้ายังไง'}
+              {isEN ? 'The systems we build for carriers and connectivity providers, and what each changes for operators and subscribers.' : 'ระบบที่เราสร้างให้ค่ายโทรคมนาคมและผู้ให้บริการการเชื่อมต่อ พร้อมบอกว่าแต่ละตัวเปลี่ยนงานของทีมปฏิบัติการและประสบการณ์ลูกค้าอย่างไร'}
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {capabilities.map((c) => (
@@ -260,7 +260,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
               {isEN ? 'Use Cases' : 'ตัวอย่างการใช้งาน'}
             </h2>
             <p className="mb-14" style={{ color: 'rgb(var(--fg) / 0.85)', fontSize: '1.2rem', fontWeight: 400, maxWidth: 640 }}>
-              {isEN ? 'Three typical projects, described by what gets built, who uses it, and how work changes afterwards.' : 'ตัวอย่างโปรเจกต์ทั่วไปสามแบบ เล่าให้ฟังว่าสร้างอะไร ใครเป็นคนใช้ และงานเปลี่ยนไปยังไงหลังจากนั้น'}
+              {isEN ? 'Three typical projects, described by what gets built, who uses it, and how work changes afterwards.' : 'ตัวอย่างโปรเจกต์ทั่วไปสามแบบ เล่าให้ฟังว่าสร้างอะไร ใครเป็นคนใช้ และงานเปลี่ยนไปอย่างไรหลังจากนั้น'}
             </p>
             <div className="grid lg:grid-cols-3 gap-6">
               {useCases.map((u) => (

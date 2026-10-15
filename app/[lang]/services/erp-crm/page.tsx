@@ -35,7 +35,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
   const whyTitle = isEN ? 'Why disconnected systems limit your potential'    : 'ทำไมระบบที่ไม่เชื่อมกันถึงดึงธุรกิจให้ช้าลง'
   const whyDesc  = isEN ? 'Finance, sales, operations, and HR each tend to grow their own tools and spreadsheets. The result is the same customer typed in three places, month-end figures that take days to reconcile, and managers deciding on reports that were already out of date when they opened them. None of it looks urgent on any single day, but it adds up to hours of lost time per person every week.'  : 'ฝ่ายการเงิน ฝ่ายขาย ฝ่ายปฏิบัติการ และ HR มักค่อยๆ มีเครื่องมือกับ Spreadsheet ของตัวเองขึ้นมา ผลที่ตามมาคือลูกค้าคนเดียวถูกพิมพ์ลงสามที่ ตัวเลขปิดงวดต้องใช้หลายวันกว่าจะกระทบยอดตรงกัน และผู้บริหารต้องตัดสินใจจากรายงานที่ล้าหลังตั้งแต่ตอนเปิดดู ไม่มีวันไหนที่ดูเป็นเรื่องด่วน แต่รวมกันแล้วทำให้แต่ละคนเสียเวลาไปหลายชั่วโมงทุกสัปดาห์'
   const ctaTitle = isEN ? 'Ready to unify your business systems?'    : 'พร้อมรวมระบบธุรกิจให้อยู่ที่เดียวหรือยัง?'
-  const ctaDesc  = isEN ? 'Start with a free Systems Audit. We list the tools and spreadsheets you use today, trace how data moves between them, and sketch the integration that makes sense.'   : 'เริ่มจากตรวจระบบ (Systems Audit) ฟรี เราจะไล่ดูว่าตอนนี้ใช้เครื่องมือและ Spreadsheet อะไรบ้าง ข้อมูลไหลจากที่ไหนไปที่ไหน แล้วร่างให้ดูว่าควรเชื่อมระบบกันยังไง'
+  const ctaDesc  = isEN ? 'Start with a free Systems Audit. We list the tools and spreadsheets you use today, trace how data moves between them, and sketch the integration that makes sense.'   : 'เริ่มจากตรวจระบบ (Systems Audit) ฟรี เราจะไล่ดูว่าตอนนี้ใช้เครื่องมือและ Spreadsheet อะไรบ้าง ข้อมูลไหลจากที่ไหนไปที่ไหน แล้วร่างให้ดูว่าควรเชื่อมระบบกันอย่างไร'
 
   const heroBullets = isEN ? [
       'ERP and CRM needs assessment, plus a straight comparison of the platforms that could fit',
@@ -99,9 +99,9 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       {no: '05', title: 'Go-live & Support', desc: 'We launch in phases, by department or module, watch closely in the first weeks, and answer questions fast. We stay until the team is confident, then agree on an ongoing support arrangement if you want one.'}
     ] : [
       {no: '01', title: 'Current State Assessment', desc: 'เรานั่งคุยกับแต่ละแผนก ตามออเดอร์หรือใบแจ้งหนี้จริงใบหนึ่งตั้งแต่ต้นจนจบ แล้วจดว่าตรงไหนที่คนต้องคีย์ซ้ำ รออนุมัติ หรือแอบเก็บ Spreadsheet ไว้เอง ได้รายการปัญหาที่ระบบต้องแก้จริงๆ ก่อนจะเลือกแพลตฟอร์มใด'},
-      {no: '02', title: 'Solution Design', desc: 'เราเทียบแพลตฟอร์มที่เป็นไปได้ แล้วออกแบบโครงสร้างระบบ ว่าต้องใช้ Module ไหน ข้อมูลไหลระหว่างกันยังไง และขั้นตอนไหนต้องปรับแต่ง คุณจะได้เอกสารแบบแปลนที่ระบุขอบเขต สมมติฐาน และสิ่งที่มีผลต่อค่าใช้จ่าย'},
-      {no: '03', title: 'Configuration & Development', desc: 'เราตั้งค่าระบบ พัฒนา Module เฉพาะและการเชื่อมต่อ และเอาของที่ใช้ได้จริงมาให้ผู้ใช้หลักลองทุกสองสามสัปดาห์ เรื่องไม่คาดคิดจะเจอเร็วและแก้ได้ถูก'},
-      {no: '04', title: 'Data Migration & Testing', desc: 'เราย้ายข้อมูลเข้าชุดทดสอบ ไล่ทดสอบทุกสถานการณ์ในรายการ และทำ UAT กับคนที่จะใช้ระบบทุกวัน ปัญหาที่เจอตรงนี้จะถูกแก้ก่อนที่ใครจะต้องพึ่งพาระบบจริง'},
+      {no: '02', title: 'Solution Design', desc: 'เราเทียบแพลตฟอร์มที่เป็นไปได้ แล้วออกแบบโครงสร้างระบบ ว่าต้องใช้ Module ไหน ข้อมูลไหลระหว่างกันอย่างไร และขั้นตอนไหนต้องปรับแต่ง คุณจะได้เอกสารแบบแปลนที่ระบุขอบเขต สมมติฐาน และสิ่งที่มีผลต่อค่าใช้จ่าย'},
+      {no: '03', title: 'Configuration & Development', desc: 'เราตั้งค่าระบบ พัฒนา Module เฉพาะและการเชื่อมต่อ และเอาของที่ใช้ได้จริงมาให้ผู้ใช้หลักลองทุกสองสามสัปดาห์ เรื่องไม่คาดคิดจะพบเร็วและแก้ได้ถูก'},
+      {no: '04', title: 'Data Migration & Testing', desc: 'เราย้ายข้อมูลเข้าชุดทดสอบ ไล่ทดสอบทุกสถานการณ์ในรายการ และทำ UAT กับคนที่จะใช้ระบบทุกวัน ปัญหาที่พบตรงนี้จะถูกแก้ก่อนที่ใครจะต้องพึ่งพาระบบจริง'},
       {no: '05', title: 'Go-live & Support', desc: 'เราเปิดใช้ทีละระยะ ตามแผนกหรือตาม Module ดูแลใกล้ชิดในช่วงสัปดาห์แรกๆ และตอบคำถามให้เร็ว เราอยู่จนทีมมั่นใจ แล้วค่อยตกลงการดูแลต่อเนื่องถ้าคุณต้องการ'}
     ]
   const caseStudies = isEN ? [

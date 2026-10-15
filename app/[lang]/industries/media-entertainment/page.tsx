@@ -39,7 +39,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { icon: 'ti-coin', title: 'Monetization Beyond Subscriptions', desc: 'Monthly fees alone rarely carry a media business. Revenue also comes from ads, one-off ticket and pay-per-view sales, memberships, merchandise, tips to creators, and sponsorships. Each of these needs its own flow, payment method, and reporting. We build these as parts of one platform, so a fan who buys a concert ticket can be offered a membership next, and you can see what each audience is worth.' },
   ] : [
     { icon: 'ti-server-2', title: 'ระบบ Streaming และต้นทุนเมื่อผู้ชมเพิ่ม', desc: 'การส่งวิดีโอมีต้นทุนสูง ทั้งแบนด์วิดท์ การเข้ารหัสวิดีโอ และพื้นที่เก็บ ที่เพิ่มตามจำนวนผู้ชมทุกคน และไลฟ์สดครั้งเดียวทำให้ทราฟฟิกพุ่งหลายเท่าได้ในไม่กี่นาที คนดูไทยหลายคนดูผ่านเน็ตมือถือ คุณภาพจึงต้องปรับตามสัญญาณ ไม่งั้นภาพจะค้างแล้วเขาก็เลิกดู เราออกแบบระบบสตรีมที่ปรับคุณภาพได้เอง การแคช และรายงานต้นทุน คุณจะรู้ว่าการดูหนึ่งชั่วโมงมีต้นทุนเท่าไร และเตรียมรับช่วงพีกอย่างนัดชิง คอนเสิร์ต หรือรอบฉายแรกได้' },
-    { icon: 'ti-users', title: 'แรงกดดันในการรักษาผู้ชม', desc: 'ผู้ชมยกเลิกสมาชิกได้ในไม่กี่แตะ และมีรายการอื่นให้ดูอีกแค่ปัดนิ้วเดียว สาเหตุที่คนเลิกมักหาเจอในข้อมูล เช่น คนที่ใช้งานครั้งแรกแล้วไม่ทำต่อ ดูครั้งเดียวแล้วหายไป หรือเลิกหลังปรับราคา เราสร้างระบบติดตามและแดชบอร์ดที่ชี้ว่าคนดูหลุดไปตรงไหน พร้อมข้อความเตือน ระบบแนะนำ และข้อเสนอดึงกลับมาให้ลองใช้' },
+    { icon: 'ti-users', title: 'แรงกดดันในการรักษาผู้ชม', desc: 'ผู้ชมยกเลิกสมาชิกได้ในไม่กี่แตะ และมีรายการอื่นให้ดูอีกแค่ปัดนิ้วเดียว สาเหตุที่คนเลิกมักหาพบในข้อมูล เช่น คนที่ใช้งานครั้งแรกแล้วไม่ทำต่อ ดูครั้งเดียวแล้วหายไป หรือเลิกหลังปรับราคา เราสร้างระบบติดตามและแดชบอร์ดที่ชี้ว่าคนดูหลุดไปตรงไหน พร้อมข้อความเตือน ระบบแนะนำ และข้อเสนอดึงกลับมาให้ลองใช้' },
     { icon: 'ti-shield-lock', title: 'ความซับซ้อนของลิขสิทธิ์คอนเทนต์และ DRM', desc: 'คอนเทนต์มีเงื่อนไขเรื่องพื้นที่เผยแพร่ ช่วงเวลาของลิขสิทธิ์ เวอร์ชันภาษา และหน้าที่ต้องถอดเมื่อถูกร้องเรียน ถ้าจดไว้ในสเปรดชีต มักพลาดแล้วเสียหายหนัก เช่น ยังฉายต่อหลังลิขสิทธิ์หมดอายุ เราทำเครื่องมือจัดการสิทธิ์และเมตะดาต้าที่บันทึกว่าแต่ละเรื่องฉายได้ที่ไหนและเมื่อไร ใช้กฎให้อัตโนมัติ และป้องกันสตรีมด้วย DRM เมื่อเจ้าของลิขสิทธิ์กำหนด' },
     { icon: 'ti-coin', title: 'หารายได้นอกเหนือจากค่าสมาชิก', desc: 'ค่าสมาชิกรายเดือนอย่างเดียวมักไม่พอเลี้ยงธุรกิจสื่อ รายได้ยังมาจากโฆษณา การขายบัตรและ Pay-per-view สมาชิกแบบต่าง ๆ สินค้า ทิปให้ครีเอเตอร์ และสปอนเซอร์ แต่ละช่องทางต้องมีขั้นตอน วิธีจ่ายเงิน และรายงานของตัวเอง เราสร้างทั้งหมดเป็นส่วนหนึ่งของแพลตฟอร์มเดียว แฟนที่ซื้อบัตรคอนเสิร์ตจะได้รับข้อเสนอสมัครสมาชิกต่อ และคุณเห็นว่าผู้ชมแต่ละกลุ่มมีมูลค่าเท่าไร' },
   ]
@@ -137,7 +137,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
               <p className="leading-relaxed" style={{ color: 'rgb(var(--fg) / 0.85)', fontSize: 'clamp(1.05rem,1.6vw,1.35rem)', fontWeight: 400, maxWidth: 900 }}>
                 {isEN
                   ? 'We build the platforms that publish and monetise content: streaming and OTT apps, content management systems, audience analytics, ticketing, and tools for creators. A project starts with a plain question: what does a viewer do between discovering your content and paying for it, and where do they leave? From there we design the player, catalogue, sign-up, and payment flow, and the back-office tools your editors and rights team use every day. We build for Thai viewing habits, with mobile-first screens, Thai-language search and subtitles, payment by card, PromptPay, or e-wallet, and capacity planned for the spikes that come with a live event or a viral clip.'
-                  : 'เราสร้างแพลตฟอร์มสำหรับเผยแพร่และหารายได้จากคอนเทนต์ ทั้งแอป Streaming และ OTT ระบบจัดการคอนเทนต์ การวิเคราะห์ผู้ชม ระบบจำหน่ายบัตร และเครื่องมือสำหรับครีเอเตอร์ โปรเจกต์เริ่มจากคำถามตรง ๆ ว่าคนดูทำอะไรบ้างตั้งแต่เจอคอนเทนต์ของคุณจนถึงตอนจ่ายเงิน และเขาเลิกไปตรงไหน จากนั้นเราออกแบบทั้งตัวเล่นวิดีโอ หน้าคลังคอนเทนต์ การสมัคร และการจ่ายเงิน รวมถึงเครื่องมือหลังบ้านที่ทีมบรรณาธิการและฝ่ายลิขสิทธิ์ใช้ทุกวัน เราออกแบบให้ตรงกับพฤติกรรมการดูของคนไทย คือเน้นมือถือ ค้นหาและมีซับไตเติลเป็นภาษาไทย จ่ายผ่านบัตร PromptPay หรืออี-วอลเล็ตได้ และเผื่อกำลังรับสำหรับช่วงที่มีไลฟ์สดหรือคลิปที่กลายเป็นไวรัล'}
+                  : 'เราสร้างแพลตฟอร์มสำหรับเผยแพร่และหารายได้จากคอนเทนต์ ทั้งแอป Streaming และ OTT ระบบจัดการคอนเทนต์ การวิเคราะห์ผู้ชม ระบบจำหน่ายบัตร และเครื่องมือสำหรับครีเอเตอร์ โปรเจกต์เริ่มจากคำถามตรง ๆ ว่าคนดูทำอะไรบ้างตั้งแต่พบคอนเทนต์ของคุณจนถึงตอนจ่ายเงิน และเขาเลิกไปตรงไหน จากนั้นเราออกแบบทั้งตัวเล่นวิดีโอ หน้าคลังคอนเทนต์ การสมัคร และการจ่ายเงิน รวมถึงเครื่องมือหลังบ้านที่ทีมบรรณาธิการและฝ่ายลิขสิทธิ์ใช้ทุกวัน เราออกแบบให้ตรงกับพฤติกรรมการดูของคนไทย คือเน้นมือถือ ค้นหาและมีซับไตเติลเป็นภาษาไทย จ่ายผ่านบัตร PromptPay หรืออี-วอลเล็ตได้ และเผื่อกำลังรับสำหรับช่วงที่มีไลฟ์สดหรือคลิปที่กลายเป็นไวรัล'}
               </p>
             </div>
           </div>
@@ -155,7 +155,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
             <p className="mb-14" style={{ color: 'rgb(var(--fg) / 0.85)', fontSize: '1.2rem', fontWeight: 400, maxWidth: 640 }}>
               {isEN
                 ? 'Four things that decide whether a media product makes money: delivery cost at scale, viewer loyalty, rights management, and income beyond the subscription.'
-                : 'สี่เรื่องที่ตัดสินว่าผลิตภัณฑ์สื่อจะทำเงินได้ไหม คือต้นทุนส่งวิดีโอเมื่อคนดูเยอะ ความภักดีของผู้ชม การจัดการลิขสิทธิ์ และรายได้นอกเหนือจากค่าสมาชิก'}
+                : 'สี่เรื่องที่ตัดสินว่าผลิตภัณฑ์สื่อจะทำเงินได้ไหม คือต้นทุนส่งวิดีโอเมื่อคนดูมาก ความภักดีของผู้ชม การจัดการลิขสิทธิ์ และรายได้นอกเหนือจากค่าสมาชิก'}
             </p>
             <div className="grid sm:grid-cols-2 gap-5">
               {challenges.map((c) => (
@@ -260,7 +260,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
               {isEN ? 'Use Cases' : 'ตัวอย่างการใช้งาน'}
             </h2>
             <p className="mb-14" style={{ color: 'rgb(var(--fg) / 0.85)', fontSize: '1.2rem', fontWeight: 400, maxWidth: 640 }}>
-              {isEN ? 'Three typical projects, covering what is built, who uses it, and how it earns or saves money.' : 'ตัวอย่างโปรเจกต์ทั่วไปสามแบบ ว่าสร้างอะไร ใครใช้ และช่วยหาเงินหรือประหยัดเงินได้ยังไง'}
+              {isEN ? 'Three typical projects, covering what is built, who uses it, and how it earns or saves money.' : 'ตัวอย่างโปรเจกต์ทั่วไปสามแบบ ว่าสร้างอะไร ใครใช้ และช่วยหาเงินหรือประหยัดเงินได้อย่างไร'}
             </p>
             <div className="grid lg:grid-cols-3 gap-6">
               {useCases.map((u) => (

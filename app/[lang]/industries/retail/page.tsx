@@ -74,7 +74,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { no: '03', title: 'Inventory Optimization System', desc: 'A forecasting and allocation tool that looks at sales by branch, season, and campaign, then suggests how much to order and where to send it. It highlights slow stock to mark down, and fast stock to protect. Starting with a clear dashboard and a weekly suggestion list works better than a black box, so buyers can check the reasoning before acting.' },
   ] : [
     { no: '01', title: 'Headless Commerce Platform', desc: 'ระบบหลังบ้านเดียวที่ป้อนข้อมูลให้เว็บไซต์ Next.js แอปมือถือ และหน้าช้อปบน LINE แคตตาล็อก สต็อก กฎราคา และขั้นตอนชำระเงินอยู่ที่เดียว เปลี่ยนราคาหรือเปิดแคมเปญใหม่แล้วขึ้นพร้อมกันทุกหน้าร้าน เหมาะกับแบรนด์ที่โตเกินเทมเพลตสำเร็จรูปและอยากคุมทั้งความเร็วและดีไซน์เอง' },
-    { no: '02', title: 'Personalized Shopping Experience', desc: 'หน้าร้านที่สลับลำดับสินค้า ผลการค้นหา และแบนเนอร์ตามสิ่งที่ผู้เข้าชมแต่ละคนเคยดูและเคยซื้อ ลูกค้าเก่ากลับมาก็เห็นแถว "ซื้อซ้ำ" ตั้งแต่หน้าแรก เราทดสอบทุกการเปลี่ยนแปลงเทียบกับแบบปกติ คุณจะเห็นว่าออเดอร์เพิ่มขึ้นจริงหรือแค่ดูเก๋ เหมาะกับร้านที่มีสินค้าหลากหลายและมีลูกค้าซื้อซ้ำเยอะ เช่น ความงาม ของใช้ในครัวเรือน และแฟชั่น' },
+    { no: '02', title: 'Personalized Shopping Experience', desc: 'หน้าร้านที่สลับลำดับสินค้า ผลการค้นหา และแบนเนอร์ตามสิ่งที่ผู้เข้าชมแต่ละคนเคยดูและเคยซื้อ ลูกค้าเก่ากลับมาก็เห็นแถว "ซื้อซ้ำ" ตั้งแต่หน้าแรก เราทดสอบทุกการเปลี่ยนแปลงเทียบกับแบบปกติ คุณจะเห็นว่าออเดอร์เพิ่มขึ้นจริงหรือแค่ดูเก๋ เหมาะกับร้านที่มีสินค้าหลากหลายและมีลูกค้าซื้อซ้ำมาก เช่น ความงาม ของใช้ในครัวเรือน และแฟชั่น' },
     { no: '03', title: 'Inventory Optimization System', desc: 'เครื่องมือพยากรณ์และจัดสรรสต็อกที่ดูยอดขายแยกสาขา ฤดูกาล และแคมเปญ แล้วแนะนำว่าควรสั่งเท่าไหร่และส่งไปไหน ชี้ของที่ขายช้าให้ลดราคา และของที่ขายเร็วให้เก็บไว้ให้พอ เราเริ่มจากแดชบอร์ดที่อ่านง่ายกับรายการแนะนำรายสัปดาห์ ซึ่งดีกว่ากล่องดำ เพราะฝ่ายจัดซื้อตรวจเหตุผลได้ก่อนตัดสินใจ' },
   ]
 
@@ -205,7 +205,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
               {isEN ? 'Our Capabilities' : 'ความสามารถของเรา'}
             </h2>
             <p className="mb-14" style={{ color: 'rgb(var(--fg) / 0.85)', fontSize: '1.2rem', fontWeight: 400, maxWidth: 640 }}>
-              {isEN ? 'The systems we build for shops and brands, and what each one changes for your team and your shoppers.' : 'ระบบที่เราสร้างให้ร้านค้าและแบรนด์ พร้อมอธิบายว่าแต่ละตัวช่วยเปลี่ยนงานของทีมและประสบการณ์ของลูกค้ายังไง'}
+              {isEN ? 'The systems we build for shops and brands, and what each one changes for your team and your shoppers.' : 'ระบบที่เราสร้างให้ร้านค้าและแบรนด์ พร้อมอธิบายว่าแต่ละตัวช่วยเปลี่ยนงานของทีมและประสบการณ์ของลูกค้าอย่างไร'}
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {capabilities.map((c) => (
@@ -233,7 +233,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
             <p className="mb-12" style={{ color: 'rgb(var(--fg) / 0.85)', fontSize: '1.2rem', fontWeight: 400, maxWidth: 640 }}>
               {isEN
                 ? 'Tools we pick for storefronts, search, payments, and data because they are well supported and easy to hand over to your own developers.'
-                : 'เครื่องมือที่เราเลือกใช้กับหน้าร้าน การค้นหา การชำระเงิน และข้อมูล เพราะมีคนใช้เยอะ หาความช่วยเหลือง่าย และส่งต่อให้ทีมพัฒนาของคุณดูแลต่อได้สะดวก'}
+                : 'เครื่องมือที่เราเลือกใช้กับหน้าร้าน การค้นหา การชำระเงิน และข้อมูล เพราะมีคนใช้มาก หาความช่วยเหลือง่าย และส่งต่อให้ทีมพัฒนาของคุณดูแลต่อได้สะดวก'}
             </p>
             <div className="flex flex-wrap gap-3">
               {techStack.map((tag) => (
@@ -260,7 +260,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
               {isEN ? 'Use Cases' : 'ตัวอย่างการใช้งาน'}
             </h2>
             <p className="mb-14" style={{ color: 'rgb(var(--fg) / 0.85)', fontSize: '1.2rem', fontWeight: 400, maxWidth: 640 }}>
-              {isEN ? 'Three typical projects, described by what gets built, who uses it, and what changes on the shop floor and in the warehouse.' : 'ตัวอย่างโปรเจกต์ทั่วไปสามแบบ เล่าให้ฟังว่าสร้างอะไร ใครเป็นคนใช้ และงานหน้าร้านกับหลังร้านเปลี่ยนไปยังไง'}
+              {isEN ? 'Three typical projects, described by what gets built, who uses it, and what changes on the shop floor and in the warehouse.' : 'ตัวอย่างโปรเจกต์ทั่วไปสามแบบ เล่าให้ฟังว่าสร้างอะไร ใครเป็นคนใช้ และงานหน้าร้านกับหลังร้านเปลี่ยนไปอย่างไร'}
             </p>
             <div className="grid lg:grid-cols-3 gap-6">
               {useCases.map((u) => (

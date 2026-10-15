@@ -49,7 +49,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
   const prefix = `/${params.lang}`
 
   const badge    = isEN ? 'Commerce / LINE Mini Apps'  : 'Commerce / LINE Mini Apps'
-  const title    = isEN ? 'Meet Customers'  : 'เจอลูกค้าตรงที่'
+  const title    = isEN ? 'Meet Customers'  : 'พบลูกค้าตรงที่'
   const subtitle = isEN ? 'Where They Already Are: LINE'    : 'พวกเขาอยู่แล้ว: LINE'
   const heroDesc = isEN ? 'We build LINE Mini Apps, chat-based ordering, and Official Account setups so Thai customers can browse, ask a question, and pay without leaving the app that is already open on their phone. Behind the chat window we connect your catalog, stock, and order system, so what customers see matches what you can really deliver. It suits retailers, restaurants, clinics, and service brands whose customers already talk to them on LINE.'  : 'เราสร้าง LINE Mini App ระบบสั่งซื้อผ่านแชท และตั้งค่า Official Account ให้ลูกค้าคนไทยเลือกดูสินค้า ถามข้อมูล และจ่ายเงินได้โดยไม่ต้องออกจากแอปที่เปิดอยู่บนมือถืออยู่แล้ว หลังหน้าต่างแชท เราเชื่อมแคตตาล็อก สต็อก และระบบออเดอร์ของคุณ สิ่งที่ลูกค้าเห็นจึงตรงกับที่คุณส่งมอบได้จริง เหมาะกับร้านค้า ร้านอาหาร คลินิก และแบรนด์บริการที่ลูกค้าคุยกับเราทาง LINE อยู่แล้ว'
   const whyTitle = isEN ? 'Why LINE is the platform, not just a channel'    : 'ทำไม LINE ถึงเป็นแพลตฟอร์ม ไม่ใช่แค่ช่องทาง'
@@ -122,7 +122,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       {no: '05', title: 'Review & Launch', desc: 'We prepare the submission for the LINE platform review, fix anything it flags, and take the Mini App live. We also help you announce it to existing followers.'},
       {no: '06', title: 'Growth', desc: 'After launch we run segmented broadcasts, watch where customers drop out, and make steady improvements to conversion and repeat purchases.'}
     ] : [
-      {no: '01', title: 'Discovery', desc: 'เราดูว่าตอนนี้ลูกค้าคุยกับคุณทาง LINE ยังไง คำถามไหนซ้ำๆ ออเดอร์หลุดตรงไหน และ Official Account ทำอะไรอยู่ ได้เป็นรายการสั้นๆ ของเส้นทางที่ควรย้ายเข้า LINE ก่อน'},
+      {no: '01', title: 'Discovery', desc: 'เราดูว่าตอนนี้ลูกค้าคุยกับคุณทาง LINE อย่างไร คำถามไหนซ้ำๆ ออเดอร์หลุดตรงไหน และ Official Account ทำอะไรอยู่ ได้เป็นรายการสั้นๆ ของเส้นทางที่ควรย้ายเข้า LINE ก่อน'},
       {no: '02', title: 'Design', desc: 'เราร่างขั้นตอนในแชท หน้าจอ Mini App และ Rich Menu และเขียนข้อความเป็นภาษาไทยที่อ่านเป็นธรรมชาติ คุณจะได้ลองแบบจำลองที่กดได้บนมือถือตัวเองก่อนเริ่มเขียนโค้ด'},
       {no: '03', title: 'Development', desc: 'เราสร้าง Mini App ด้วย LIFF และขั้นตอนขายผ่านแชท พร้อม LINE Login ให้จำลูกค้าได้ ทุกสปรินต์คุณลองใช้เวอร์ชันที่ทำงานได้จริงใน LINE ได้เลย'},
       {no: '04', title: 'Integration', desc: 'เราเชื่อม LINE Pay แคตตาล็อก สต็อก และระบบออเดอร์ แล้วทดสอบกรณียุ่งๆ เช่น สินค้าหมด จ่ายเงินค้าง และลูกค้าที่เปลี่ยนเครื่องกลางทาง'},
@@ -151,7 +151,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       {q: 'เชื่อมกับ E-Commerce หรือ POS ที่มีอยู่ได้ไหม?', a: 'ได้ เราสร้างการเชื่อมต่อ Backend ให้ Mini App แสดงสต็อก ราคา และสถานะออเดอร์จริงจากระบบที่คุณใช้อยู่'},
       {q: 'รองรับ LINE Pay ไหม?', a: 'รองรับ ชำระเงินด้วย LINE Pay ได้ในแชทหรือ Mini App โดยไม่ต้องเด้งไปหน้าชำระเงินอื่น'},
       {q: 'ต้องมี Official Account อยู่แล้วไหม?', a: 'ไม่จำเป็น เราตั้ง Official Account ใหม่ให้เป็นส่วนหนึ่งของโปรเจกต์ หรือต่อยอดจากที่คุณมีก็ได้ รวมถึงเก็บ Rich Menu และข้อความตอบอัตโนมัติเดิมไว้'},
-      {q: 'Mini App ต่างจากแชทบอท LINE ทั่วไปยังไง?', a: 'แชทบอทตอบเป็นข้อความและการ์ด ส่วน Mini App เป็นหน้าจอเต็มที่มีแคตตาล็อก ตะกร้า และหน้าบัญชี โปรเจกต์ที่ดีส่วนใหญ่ใช้ทั้งสองอย่าง แชทเริ่มบทสนทนา ส่วน Mini App รับช่วงเลือกดูและชำระเงิน'},
+      {q: 'Mini App ต่างจากแชทบอท LINE ทั่วไปอย่างไร?', a: 'แชทบอทตอบเป็นข้อความและการ์ด ส่วน Mini App เป็นหน้าจอเต็มที่มีแคตตาล็อก ตะกร้า และหน้าบัญชี โปรเจกต์ที่ดีส่วนใหญ่ใช้ทั้งสองอย่าง แชทเริ่มบทสนทนา ส่วน Mini App รับช่วงเลือกดูและชำระเงิน'},
       {q: 'ข้อมูลลูกค้าจาก LINE จัดการตาม PDPA ไหม?', a: 'เราออกแบบการไหลของข้อมูลโดยคำนึงถึง PDPA ขอเท่าที่จำเป็น บอกชัดว่าขอไปทำไม และเก็บในระบบของคุณเอง ถ้าต้องการตรวจลึกกว่านี้ บริการ PDPA Compliance ของเราช่วยได้'},
       {q: 'ทีมเราอัปเดตสินค้าและโปรโมชันเองได้ไหม?', a: 'ได้ สินค้าและราคามาจากแคตตาล็อกหรือระบบออเดอร์ของคุณ และเราทำเครื่องมือหลังบ้านง่ายๆ สำหรับแบนเนอร์และแคมเปญ ทีมคุณเปลี่ยนเองได้โดยไม่ต้องมีนักพัฒนา'}
     ]
@@ -261,7 +261,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { no: '05', title: 'Review & Launch', desc: 'LINE platform review, go-live, and an announcement to followers' },
     { no: '06', title: 'Growth', desc: 'Segmented broadcasts and steady conversion improvements' },
   ] : [
-    { no: '01', title: 'Discovery', desc: 'ตอนนี้ลูกค้าคุยกับคุณทาง LINE ยังไง และควรย้ายเส้นทางไหนก่อน' },
+    { no: '01', title: 'Discovery', desc: 'ตอนนี้ลูกค้าคุยกับคุณทาง LINE อย่างไร และควรย้ายเส้นทางไหนก่อน' },
     { no: '02', title: 'Design', desc: 'ขั้นตอนในแชท หน้าจอ Rich Menu และข้อความภาษาไทย บนแบบจำลองที่กดได้' },
     { no: '03', title: 'Development', desc: 'Mini App ด้วย LIFF และขั้นตอนในแชท ลองใช้ใน LINE ได้ทุกสปรินต์' },
     { no: '04', title: 'Integration', desc: 'LINE Pay แคตตาล็อก สต็อก และออเดอร์ ทดสอบกรณียุ่งๆ' },
@@ -281,7 +281,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { q: 'How is a Mini App different from a LINE chatbot?', a: 'A chatbot replies with text and cards. A Mini App is a full-screen app with a catalog, cart, and account pages. The best setups use both: the chat starts the conversation and the Mini App takes over for browsing and checkout.' },
     { q: 'How do you handle customer data and PDPA?', a: 'We design the data flow with PDPA in mind. We ask only for what is needed, explain why in clear Thai, and store data in systems you control. If you want a formal review, our PDPA compliance service can cover the rest.' },
   ] : [
-    { q: 'LINE Mini App คืออะไร ต่างจากแอปทั่วไปยังไง?', a: 'LINE Mini App คือเว็บแอปที่สร้างด้วย LIFF เปิดใช้ได้ทันทีใน LINE ไม่ต้องดาวน์โหลด ไม่ต้องรอขึ้นสโตร์ ลูกค้าใช้เลือกดู สั่งซื้อ และชำระเงินในหน้าต่างแชทที่เปิดอยู่แล้ว และเข้าได้จากข้อความ Rich Menu หรือ QR Code' },
+    { q: 'LINE Mini App คืออะไร ต่างจากแอปทั่วไปอย่างไร?', a: 'LINE Mini App คือเว็บแอปที่สร้างด้วย LIFF เปิดใช้ได้ทันทีใน LINE ไม่ต้องดาวน์โหลด ไม่ต้องรอขึ้นสโตร์ ลูกค้าใช้เลือกดู สั่งซื้อ และชำระเงินในหน้าต่างแชทที่เปิดอยู่แล้ว และเข้าได้จากข้อความ Rich Menu หรือ QR Code' },
     { q: 'เชื่อมกับ E-Commerce หรือ POS ที่มีอยู่ได้ไหม?', a: 'ได้ เราสร้างการเชื่อมต่อ Backend ให้ Mini App แสดงสต็อก ราคา และสถานะออเดอร์จริงจากระบบที่มีอยู่ ไม่ต้องดูแลแคตตาล็อกสินค้าแยกอีกชุดที่ต้องมีคนมาอัปเดตด้วยมือ' },
     { q: 'รองรับ LINE Pay สำหรับชำระเงินไหม?', a: 'รองรับ ชำระเงินด้วย LINE Pay ได้ในแชทหรือ Mini App ให้การซื้อทั้งหมดจบในขั้นตอนเดียว ไม่ต้องส่งลูกค้าไปหน้าชำระเงินภายนอก และเราจัดการข้อความยืนยัน กรณีจ่ายไม่ผ่าน และการคืนเงินให้ด้วย' },
     { q: 'ต้องมี Official Account อยู่แล้วก่อนเริ่มไหม?', a: 'ไม่จำเป็น เราตั้ง Official Account ใหม่ให้เป็นส่วนหนึ่งของโปรเจกต์ หรือต่อยอดจาก OA ที่คุณมีอยู่ รวมถึงย้าย Rich Menu และระบบอัตโนมัติเดิมมาด้วย' },
@@ -289,8 +289,8 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { q: 'โปรเจกต์ LINE Mini App มีค่าใช้จ่ายเท่าไหร่?', a: 'ราคาขึ้นกับความซับซ้อนของแคตตาล็อกและความลึกของการเชื่อม Backend Mini App แบบเจาะจงมักเริ่มที่หลักหมื่นปลายๆ (บาท) ส่วนระบบขายผ่านแชทที่กว้างขึ้นและเชื่อม CRM จะเสนอราคาหลังคุยสำรวจความต้องการ' },
     { q: 'เราเป็นเจ้าของโค้ดของ Mini App หลังเปิดตัวไหม?', a: 'ใช่ คุณเป็นเจ้าของโค้ด LIFF Application การเชื่อมต่อ Backend และการตั้งค่า Official Account จะต่อยอดหรือดูแลเองก็ได้ หรือใช้บริการดูแลต่อเนื่องจากเรา' },
     { q: 'ช่วยเข้าถึงลูกค้าที่ยังไม่ได้เพิ่มเพื่อน Official Account ของเราได้ไหม?', a: 'ได้บางส่วน Mini App เปิดจากจุดสัมผัสต่างๆ ใน LINE จึงทำงานได้ดีที่สุดเมื่อโต OA ไปพร้อมกัน เช่น วาง Rich Menu, QR Code ที่หน้าร้านและบนบรรจุภัณฑ์ และทำโฆษณา เราช่วยวางแผนการเข้าถึงลูกค้าควบคู่ไปกับการสร้าง' },
-    { q: 'Mini App ต่างจากแชทบอท LINE ยังไง?', a: 'แชทบอทตอบเป็นข้อความและการ์ด ส่วน Mini App เป็นแอปเต็มจอที่มีแคตตาล็อก ตะกร้า และหน้าบัญชี ระบบที่ดีที่สุดใช้ทั้งสองอย่าง แชทเริ่มบทสนทนา แล้ว Mini App รับช่วงตอนเลือกดูและชำระเงิน' },
-    { q: 'จัดการข้อมูลลูกค้าและ PDPA ยังไง?', a: 'เราออกแบบการไหลของข้อมูลโดยคำนึงถึง PDPA ขอเท่าที่จำเป็น อธิบายเหตุผลเป็นภาษาไทยที่เข้าใจง่าย และเก็บข้อมูลในระบบที่คุณควบคุมได้ ถ้าต้องการตรวจอย่างเป็นทางการ บริการ PDPA Compliance ของเราดูแลส่วนที่เหลือได้' },
+    { q: 'Mini App ต่างจากแชทบอท LINE อย่างไร?', a: 'แชทบอทตอบเป็นข้อความและการ์ด ส่วน Mini App เป็นแอปเต็มจอที่มีแคตตาล็อก ตะกร้า และหน้าบัญชี ระบบที่ดีที่สุดใช้ทั้งสองอย่าง แชทเริ่มบทสนทนา แล้ว Mini App รับช่วงตอนเลือกดูและชำระเงิน' },
+    { q: 'จัดการข้อมูลลูกค้าและ PDPA อย่างไร?', a: 'เราออกแบบการไหลของข้อมูลโดยคำนึงถึง PDPA ขอเท่าที่จำเป็น อธิบายเหตุผลเป็นภาษาไทยที่เข้าใจง่าย และเก็บข้อมูลในระบบที่คุณควบคุมได้ ถ้าต้องการตรวจอย่างเป็นทางการ บริการ PDPA Compliance ของเราดูแลส่วนที่เหลือได้' },
   ]
 
   const postHeroSlot = (

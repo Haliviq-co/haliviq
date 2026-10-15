@@ -271,7 +271,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
             <p className="mb-14" style={{ color: 'rgb(var(--fg) / 0.85)', fontSize: '1.2rem', fontWeight: 400, maxWidth: 640 }}>
               {isEN
                 ? 'Four problems we see again and again with developers, brokers, and landlords in Thailand, and why they are harder than they look.'
-                : 'สี่ปัญหาที่เจอบ่อยกับผู้พัฒนาโครงการ นายหน้า และเจ้าของห้องเช่าในไทย และเหตุผลที่มันแก้ยากกว่าที่คิด'}
+                : 'สี่ปัญหาที่พบบ่อยกับผู้พัฒนาโครงการ นายหน้า และเจ้าของห้องเช่าในไทย และเหตุผลที่มันแก้ยากกว่าที่คิด'}
             </p>
             <div className="grid sm:grid-cols-2 gap-5">
               {challenges.map((c) => (
@@ -321,7 +321,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
               {isEN ? 'Our Capabilities' : 'ความสามารถของเรา'}
             </h2>
             <p className="mb-14" style={{ color: 'rgb(var(--fg) / 0.85)', fontSize: '1.2rem', fontWeight: 400, maxWidth: 640 }}>
-              {isEN ? 'The systems we build for property teams, and what each one changes in your daily work.' : 'ระบบที่เราสร้างให้ทีมอสังหาฯ พร้อมอธิบายว่าแต่ละตัวช่วยเปลี่ยนงานประจำวันของคุณยังไง'}
+              {isEN ? 'The systems we build for property teams, and what each one changes in your daily work.' : 'ระบบที่เราสร้างให้ทีมอสังหาฯ พร้อมอธิบายว่าแต่ละตัวช่วยเปลี่ยนงานประจำวันของคุณอย่างไร'}
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {capabilities.map((c) => (
@@ -376,7 +376,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
               {isEN ? 'Use Cases' : 'ตัวอย่างการใช้งาน'}
             </h2>
             <p className="mb-14" style={{ color: 'rgb(var(--fg) / 0.85)', fontSize: '1.2rem', fontWeight: 400, maxWidth: 640 }}>
-              {isEN ? 'Three typical projects, described by what gets built, who uses it, and what changes day to day.' : 'ตัวอย่างโปรเจกต์ทั่วไปสามแบบ เล่าให้ฟังว่าสร้างอะไร ใครเป็นคนใช้ และงานประจำวันเปลี่ยนไปยังไง'}
+              {isEN ? 'Three typical projects, described by what gets built, who uses it, and what changes day to day.' : 'ตัวอย่างโปรเจกต์ทั่วไปสามแบบ เล่าให้ฟังว่าสร้างอะไร ใครเป็นคนใช้ และงานประจำวันเปลี่ยนไปอย่างไร'}
             </p>
             <div className="grid lg:grid-cols-3 gap-6">
               {useCases.map((u) => (

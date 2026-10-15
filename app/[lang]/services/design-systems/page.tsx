@@ -58,7 +58,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       'A living documentation site keeps designers, developers, QA, and new hires working from the same current standard',
     ] : [
       'ทีมที่มี Design System ออกฟีเจอร์ใหม่ได้เร็วกว่า 34% เพราะไม่มีใครต้องวาด Dropdown ใหม่เป็นรอบที่สิบ',
-      'Component ที่ใช้ร่วมกันช่วยตัดข้อถกเถียงที่เจอบ่อยที่สุดตอนส่งงานระหว่างดีไซเนอร์กับนักพัฒนา เช่น ระยะห่าง State และสิ่งที่ต้องเกิดตอน Hover หรือเกิด Error',
+      'Component ที่ใช้ร่วมกันช่วยตัดข้อถกเถียงที่พบบ่อยที่สุดตอนส่งงานระหว่างดีไซเนอร์กับนักพัฒนา เช่น ระยะห่าง State และสิ่งที่ต้องเกิดตอน Hover หรือเกิด Error',
       'Accessibility ที่ฝังอยู่ใน Component ทำให้ไม่ต้องไล่ตรวจทุกฟีเจอร์ใหม่ตั้งแต่ต้น',
       'Design System ที่ใช้ Token ช่วยให้เปลี่ยนแบรนด์หรือทำ White-label ได้ในไม่กี่วัน เพราะแก้ค่าที่จุดเดียว',
       'เว็บเอกสารที่อัปเดตอยู่เสมอ ทำให้ดีไซเนอร์ นักพัฒนา QA และคนที่เพิ่งเข้าทีม ใช้มาตรฐานล่าสุดตัวเดียวกัน',
@@ -87,7 +87,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       {icon: 'ti-brand-react', title: 'Component Library (Code)', desc: 'Component ชุดเดียวกันที่เขียนด้วย React, Vue หรือ Angular ตรงกับ Figma และมี Test ครอบ นักพัฒนาติดตั้งเป็น Package แทนการก๊อปโค้ดข้าม Repo และเมื่อแก้บั๊ก ทุกผลิตภัณฑ์ก็ได้รับในรอบปล่อยถัดไป'},
       {icon: 'ti-book', title: 'Documentation Site', desc: 'เว็บเอกสารที่ทำด้วย Storybook หรือเว็บที่เราทำเอง แต่ละ Component มีตัวอย่างที่ลองใช้ได้จริง Props แนวทางว่าอะไรควรทำและไม่ควรทำ รวมถึงบันทึกเรื่อง Accessibility เป็นที่แรกที่ดีไซเนอร์ นักพัฒนา และ QA ที่เข้าทีมใหม่จะเปิดดู'},
       {icon: 'ti-accessible', title: 'Accessibility', desc: 'ทุก Component ทำตามมาตรฐาน WCAG AA ทั้งคอนทราสต์ที่พอ ARIA Label การใช้คีย์บอร์ด Focus ที่มองเห็นชัด และรองรับ Screen Reader เมื่อฝังไว้ใน Component หน้าจอใหม่ทุกหน้าก็ได้ส่วนนี้ไปเลย ไม่ต้องมาแก้ด้วยมือทีหลัง'},
-      {icon: 'ti-git-merge', title: 'Governance & Process', desc: 'ขั้นตอนมีส่วนร่วม การรีวิว และการจัดการเวอร์ชัน ที่กำหนดว่าจะเสนอ อนุมัติ และปล่อย Component ใหม่ยังไง เราเขียนไว้เป็นลายลักษณ์อักษรและอบรมทีมคุณ ระบบจะได้ยังมีชีวิตอยู่หลังเราถอยออกมา'}
+      {icon: 'ti-git-merge', title: 'Governance & Process', desc: 'ขั้นตอนมีส่วนร่วม การรีวิว และการจัดการเวอร์ชัน ที่กำหนดว่าจะเสนอ อนุมัติ และปล่อย Component ใหม่อย่างไร เราเขียนไว้เป็นลายลักษณ์อักษรและอบรมทีมคุณ ระบบจะได้ยังมีชีวิตอยู่หลังเราถอยออกมา'}
     ]
   const steps       = isEN ? [
       {no: '01', title: 'Audit & Inventory', desc: 'We screenshot and catalogue what is live: every button style, form field, colour, and font size actually in use. The output is a plain list of duplicates and inconsistencies, ranked by how often users meet them, which tells us where the system should start.'},
@@ -96,10 +96,10 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       {no: '04', title: 'Documentation', desc: 'We write the guidelines, usage examples, and content rules, then publish the documentation site. Each page answers the question people actually ask: which component do I use here, and how?'},
       {no: '05', title: 'Adoption & Training', desc: 'We run sessions for designers and developers, help move one or two live screens onto the system as a pattern for the rest, and set up the contribution process so your team can extend it without us.'}
     ] : [
-      {no: '01', title: 'Audit & Inventory', desc: 'เราจับภาพหน้าจอและจดรายการทุกอย่างที่ใช้งานจริง ทั้งสไตล์ปุ่ม ช่องฟอร์ม สี และขนาดตัวอักษร ผลที่ได้คือรายการตัวซ้ำและจุดที่ไม่สม่ำเสมอ เรียงตามความถี่ที่ผู้ใช้เจอ ซึ่งบอกเราว่าควรเริ่มระบบจากตรงไหน'},
+      {no: '01', title: 'Audit & Inventory', desc: 'เราจับภาพหน้าจอและจดรายการทุกอย่างที่ใช้งานจริง ทั้งสไตล์ปุ่ม ช่องฟอร์ม สี และขนาดตัวอักษร ผลที่ได้คือรายการตัวซ้ำและจุดที่ไม่สม่ำเสมอ เรียงตามความถี่ที่ผู้ใช้พบ ซึ่งบอกเราว่าควรเริ่มระบบจากตรงไหน'},
       {no: '02', title: 'Token & Foundation Design', desc: 'เราวางรากฐานก่อน ทั้งชุดสีที่จับคู่แล้วอ่านง่าย สเกลตัวอักษร สเกลระยะห่าง Grid เงา และ Animation แล้วแปลงเป็น Token ใน Figma และโค้ด ก่อนสร้าง Component เราจะคุยทบทวนกับทีมแบรนด์และทีมผลิตภัณฑ์ของคุณก่อน'},
       {no: '03', title: 'Component Build', desc: 'เราสร้าง Component ตามลำดับความสำคัญ ทั้งใน Figma และโค้ดไปพร้อมกัน แต่ละตัวมี State กรณีขอบ และ Test ครบ คุณจะได้ของที่ใช้ได้จริงทุกสองสามสัปดาห์ และเริ่มเอา Component รุ่นแรกๆ ไปใช้ในโปรเจกต์จริงได้เลย'},
-      {no: '04', title: 'Documentation', desc: 'เราเขียนแนวปฏิบัติ ตัวอย่างการใช้ และกติกาเรื่องเนื้อหา แล้วเปิดเว็บเอกสาร แต่ละหน้าตอบคำถามที่คนถามกันจริงๆ ว่าตรงนี้ต้องใช้ Component ไหน และใช้ยังไง'},
+      {no: '04', title: 'Documentation', desc: 'เราเขียนแนวปฏิบัติ ตัวอย่างการใช้ และกติกาเรื่องเนื้อหา แล้วเปิดเว็บเอกสาร แต่ละหน้าตอบคำถามที่คนถามกันจริงๆ ว่าตรงนี้ต้องใช้ Component ไหน และใช้อย่างไร'},
       {no: '05', title: 'Adoption & Training', desc: 'เราจัดอบรมให้ดีไซเนอร์และนักพัฒนา ช่วยย้ายหน้าจอจริงหนึ่งสองหน้าขึ้นมาอยู่บนระบบเป็นตัวอย่างให้หน้าอื่นทำตาม และวางขั้นตอนการมีส่วนร่วม เพื่อให้ทีมของคุณต่อยอดได้เองโดยไม่ต้องรอเรา'}
     ]
   const caseStudies = isEN ? [
@@ -120,11 +120,11 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       {q: 'Which frameworks and tools do you support?', a: 'Figma for design, and React, Vue, or Angular for code, with Storybook or a custom documentation site. If your front end mixes frameworks, we can ship the tokens as shared variables and build components per framework where needed.'},
       {q: 'Can the system handle both Thai and English interfaces?', a: 'Yes. We test type scales with real Thai and English text, set line heights that keep Thai tone marks from being clipped, choose fallback fonts for both scripts, and check that buttons and tables still fit when a label gets longer in translation.'}
     ] : [
-      {q: 'Design System ต่างจาก UI Kit ยังไง?', a: 'UI Kit คือไฟล์ Figma ที่มี Component วาดไว้ให้ ส่วน Design System คือชุดนั้นบวกเวอร์ชันที่เป็นโค้ด Token ที่ควบคุมหน้าตา แนวปฏิบัติที่เขียนไว้ และขั้นตอนการแก้ไขระบบ UI Kit ช่วยให้ดีไซเนอร์คนเดียวทำงานเร็วขึ้น แต่ Design System ช่วยให้ดีไซเนอร์ นักพัฒนา และหลายผลิตภัณฑ์ทำงานตรงกันในระยะยาว'},
+      {q: 'Design System ต่างจาก UI Kit อย่างไร?', a: 'UI Kit คือไฟล์ Figma ที่มี Component วาดไว้ให้ ส่วน Design System คือชุดนั้นบวกเวอร์ชันที่เป็นโค้ด Token ที่ควบคุมหน้าตา แนวปฏิบัติที่เขียนไว้ และขั้นตอนการแก้ไขระบบ UI Kit ช่วยให้ดีไซเนอร์คนเดียวทำงานเร็วขึ้น แต่ Design System ช่วยให้ดีไซเนอร์ นักพัฒนา และหลายผลิตภัณฑ์ทำงานตรงกันในระยะยาว'},
       {q: 'ใช้เวลาสร้างนานแค่ไหน?', a: 'เวอร์ชันแรกที่ใช้งานได้ ครอบคลุมรากฐานและ Component ที่ใช้บ่อยที่สุด ปกติใช้ 6-10 สัปดาห์ ส่วนระบบเต็มรูปแบบที่ครอบคลุมทุก Pattern มีเอกสารและรองรับหลาย Framework อาจใช้ 3-6 เดือน เราปล่อยเป็นช่วงๆ ทีมจึงเริ่มใช้ส่วนแรกๆ ได้ระหว่างที่เราสร้างส่วนที่เหลือ'},
       {q: 'ทีมเล็กต้องมี Design System ไหม?', a: 'ทีมทุกขนาดได้ประโยชน์ แค่ได้คนละแบบ ทีมเล็กได้ความเร็ว เพราะไม่ต้องวาดชิ้นเดิมซ้ำ ทีมใหญ่ได้ความสม่ำเสมอข้ามผลิตภัณฑ์ ยิ่งเริ่มเร็ว งานที่ไม่สม่ำเสมอให้ตามเก็บทีหลังก็ยิ่งน้อย ทีมเล็กเริ่มจาก Token กับ Component หลักสิบกว่าตัวก่อนได้ ไม่ต้องทำ Library เต็มรูปแบบ'},
-      {q: 'ดูแล Design System ต่อหลังส่งมอบยังไง?', a: 'เราวางระบบดูแลก่อนส่งมอบ ว่าใครเสนอ Component ใหม่ได้ รีวิวยังไง ตั้งเลขเวอร์ชันแบบไหน และประกาศการเปลี่ยนแปลงที่กระทบของเดิมพร้อมบันทึกวิธีย้ายอย่างไร ทีมคุณเดินต่อเองได้ และถ้าอยากได้คนช่วยเพิ่ม เรามีบริการดูแลต่อให้'},
-      {q: 'ต่อยอดจากดีไซน์ที่มีอยู่ได้ไหม?', a: 'ได้ และเป็นจุดเริ่มที่เจอบ่อยที่สุด เราตรวจผลิตภัณฑ์ที่ใช้งานอยู่ เก็บการตัดสินใจเรื่องแบรนด์ที่ใช้ได้ไว้ และจัดการจุดที่ขัดกัน คุณไม่ต้องรีดีไซน์ทั้งหมด แต่ถ้าอยากปรับโฉมด้วย เราทำควบคู่ไปกับระบบได้'},
+      {q: 'ดูแล Design System ต่อหลังส่งมอบอย่างไร?', a: 'เราวางระบบดูแลก่อนส่งมอบ ว่าใครเสนอ Component ใหม่ได้ รีวิวอย่างไร ตั้งเลขเวอร์ชันแบบไหน และประกาศการเปลี่ยนแปลงที่กระทบของเดิมพร้อมบันทึกวิธีย้ายอย่างไร ทีมคุณเดินต่อเองได้ และถ้าอยากได้คนช่วยเพิ่ม เรามีบริการดูแลต่อให้'},
+      {q: 'ต่อยอดจากดีไซน์ที่มีอยู่ได้ไหม?', a: 'ได้ และเป็นจุดเริ่มที่พบบ่อยที่สุด เราตรวจผลิตภัณฑ์ที่ใช้งานอยู่ เก็บการตัดสินใจเรื่องแบรนด์ที่ใช้ได้ไว้ และจัดการจุดที่ขัดกัน คุณไม่ต้องรีดีไซน์ทั้งหมด แต่ถ้าอยากปรับโฉมด้วย เราทำควบคู่ไปกับระบบได้'},
       {q: 'รองรับ Framework และเครื่องมืออะไรบ้าง?', a: 'ใช้ Figma สำหรับดีไซน์ และ React, Vue หรือ Angular สำหรับโค้ด พร้อม Storybook หรือเว็บเอกสารที่ทำเอง ถ้าหน้าบ้านของคุณใช้หลาย Framework ปนกัน เราส่ง Token เป็นตัวแปรกลางที่ใช้ร่วมกัน แล้วสร้าง Component แยกตาม Framework เท่าที่จำเป็น'},
       {q: 'ระบบรองรับทั้งหน้าจอภาษาไทยและอังกฤษไหม?', a: 'ได้ เราทดสอบสเกลตัวอักษรกับข้อความไทยและอังกฤษจริง ตั้งความสูงบรรทัดไม่ให้วรรณยุกต์ไทยโดนตัด เลือก Font สำรองให้ทั้งสองภาษา และเช็กว่าปุ่มกับตารางยังพอดีเมื่อข้อความยาวขึ้นหลังแปล'}
     ]

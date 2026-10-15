@@ -46,7 +46,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
               {isEN ? 'Today I Learned' : 'Today I Learned'}
             </h1>
             <p className="max-w-2xl mb-10" style={{ color: 'rgb(var(--fg) / 0.6)', fontWeight: 400, fontSize: '1rem', lineHeight: 1.6 }}>
-              {isEN ? 'Short, practical notes from the Haliviq team: quick lessons from daily engineering and design work. Each one is something we ran into while building, with the reason it happens and what we do about it now. Filter by topic to find notes on React, Next.js, PostgreSQL, Docker, Figma, security and more.' : 'บันทึกสั้น ๆ ที่ใช้ได้จริงจากทีม Haliviq เป็นบทเรียนเล็ก ๆ จากงานวิศวกรรมและดีไซน์ในแต่ละวัน แต่ละเรื่องคือสิ่งที่เราเจอระหว่างลงมือทำ พร้อมอธิบายว่าทำไมถึงเกิดขึ้น และตอนนี้เราแก้อย่างไร เลือกกรองตามหัวข้อได้ ทั้ง React, Next.js, PostgreSQL, Docker, Figma, security และอื่น ๆ'}
+              {isEN ? 'Short, practical notes from the Haliviq team: quick lessons from daily engineering and design work. Each one is something we ran into while building, with the reason it happens and what we do about it now. Filter by topic to find notes on React, Next.js, PostgreSQL, Docker, Figma, security and more.' : 'บันทึกสั้น ๆ ที่ใช้ได้จริงจากทีม Haliviq เป็นบทเรียนเล็ก ๆ จากงานวิศวกรรมและดีไซน์ในแต่ละวัน แต่ละเรื่องคือสิ่งที่เราพบระหว่างลงมือทำ พร้อมอธิบายว่าทำไมถึงเกิดขึ้น และตอนนี้เราแก้อย่างไร เลือกกรองตามหัวข้อได้ ทั้ง React, Next.js, PostgreSQL, Docker, Figma, security และอื่น ๆ'}
             </p>
 
             {/* Topic filter pills — horizontal slider instead of wrapping into many rows */}

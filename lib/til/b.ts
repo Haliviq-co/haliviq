@@ -135,9 +135,9 @@ COPY --from=build /app/node_modules ./node_modules
     },
     th: {
       title: '.dockerignore ไม่มีผลกับ COPY --from จาก stage อื่น',
-      excerpt: 'เราเจอไฟล์ .env หลุดเข้า image สุดท้ายซ้ำ ๆ เพราะ .dockerignore กรองแค่ build context ที่ส่งให้ Docker ไม่ได้กรองไฟล์ที่ copy ข้าม stage ให้ระบุชัดว่าจะ copy อะไรใน stage หลัง ๆ อย่า copy ทั้งโฟลเดอร์ และเปิดดู image สุดท้ายเพื่อเช็กว่าไม่มี secret ติดอยู่',
+      excerpt: 'เราพบไฟล์ .env หลุดเข้า image สุดท้ายซ้ำ ๆ เพราะ .dockerignore กรองแค่ build context ที่ส่งให้ Docker ไม่ได้กรองไฟล์ที่ copy ข้าม stage ให้ระบุชัดว่าจะ copy อะไรใน stage หลัง ๆ อย่า copy ทั้งโฟลเดอร์ และเปิดดู image สุดท้ายเพื่อเช็กว่าไม่มี secret ติดอยู่',
       problem: [
-        'เราเจอไฟล์ .env อยู่ใน image สุดท้ายซ้ำ ๆ ทั้งที่เชื่อว่า .dockerignore กันไว้แล้ว น่ากังวลมาก เพราะ image นั้นกำลังจะถูก push ขึ้น registry',
+        'เราพบไฟล์ .env อยู่ใน image สุดท้ายซ้ำ ๆ ทั้งที่เชื่อว่า .dockerignore กันไว้แล้ว น่ากังวลมาก เพราะ image นั้นกำลังจะถูก push ขึ้น registry',
         'ไฟล์นี้หลุดมาจาก stage หลังที่ copy ทั้งโฟลเดอร์ออกมาจาก stage ก่อนหน้า กฎ ignore ของเราเลยไม่เคยถูกใช้ตรงจุดนั้น',
       ],
       why: [

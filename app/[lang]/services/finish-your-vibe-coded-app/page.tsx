@@ -61,7 +61,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
   const subtitle = isEN ? 'We Handle the Last 10%'    : 'เราช่วยจบอีก 10% ที่เหลือ'
   const heroDesc = isEN ? 'You used an AI tool to get an app running, and now it has to survive real users, real payments, and real attackers. We read through the code your tool produced, fix what is unsafe, put the app on proper hosting with backups and monitoring, and finish the unglamorous details that block a launch. You keep what you built; we do not start over. It is made for founders, small teams, and in-house staff who are close to launch but not sure it is ready.'  : 'คุณใช้เครื่องมือ AI สร้างแอปจนรันได้แล้ว ตอนนี้แอปต้องรอดจากผู้ใช้จริง เงินจริง และคนที่คิดร้ายจริงๆ เราอ่านโค้ดที่เครื่องมือของคุณสร้างไว้ แก้จุดที่ไม่ปลอดภัย ย้ายแอปขึ้น Hosting ที่ดูแลได้ พร้อม Backup และ Monitoring แล้วทำรายละเอียดจุกจิกที่ขวางการเปิดตัวให้เสร็จ สิ่งที่คุณสร้างไว้ยังเป็นของคุณ เราไม่เริ่มใหม่ เหมาะกับผู้ก่อตั้ง ทีมเล็ก และทีมในองค์กรที่ใกล้เปิดตัวแล้วแต่ยังไม่มั่นใจว่าพร้อม'
   const whyTitle = isEN ? 'Why AI-generated apps stall before launch'    : 'ทำไมแอปที่สร้างด้วย AI ถึงติดขัดก่อนเปิดตัว'
-  const whyDesc  = isEN ? 'Cursor, Lovable, Bolt, and similar tools are very good at producing something that works on your laptop. They are not asked to think about who can read another user’s data, what happens when a payment webhook arrives twice, or how to restore the database after a mistake. Those gaps stay invisible while three people are testing. They show up the week real customers arrive, which is the worst possible time to find them.'  : 'Cursor, Lovable, Bolt และเครื่องมือแนวเดียวกัน เก่งมากเรื่องสร้างของที่รันได้บนเครื่องคุณ แต่ไม่มีใครบอกให้มันคิดเรื่องว่าใครอ่านข้อมูลของผู้ใช้คนอื่นได้ จะเกิดอะไรขึ้นถ้า Webhook ชำระเงินเข้ามาสองรอบ หรือจะกู้ฐานข้อมูลกลับมายังไงถ้าพลาด ช่องว่างเหล่านี้มองไม่เห็นตอนที่มีคนทดสอบแค่สามคน แต่จะโผล่ในสัปดาห์ที่ลูกค้าจริงเข้ามา ซึ่งเป็นเวลาที่แย่ที่สุดที่จะมาเจอ'
+  const whyDesc  = isEN ? 'Cursor, Lovable, Bolt, and similar tools are very good at producing something that works on your laptop. They are not asked to think about who can read another user’s data, what happens when a payment webhook arrives twice, or how to restore the database after a mistake. Those gaps stay invisible while three people are testing. They show up the week real customers arrive, which is the worst possible time to find them.'  : 'Cursor, Lovable, Bolt และเครื่องมือแนวเดียวกัน เก่งมากเรื่องสร้างของที่รันได้บนเครื่องคุณ แต่ไม่มีใครบอกให้มันคิดเรื่องว่าใครอ่านข้อมูลของผู้ใช้คนอื่นได้ จะเกิดอะไรขึ้นถ้า Webhook ชำระเงินเข้ามาสองรอบ หรือจะกู้ฐานข้อมูลกลับมาอย่างไรถ้าพลาด ช่องว่างเหล่านี้มองไม่เห็นตอนที่มีคนทดสอบแค่สามคน แต่จะโผล่ในสัปดาห์ที่ลูกค้าจริงเข้ามา ซึ่งเป็นเวลาที่แย่ที่สุดที่จะมาพบ'
   const ctaTitle = isEN ? 'Ready to ship what you’ve built?'    : 'พร้อมปล่อยสิ่งที่คุณสร้างมาแล้วหรือยัง?'
   const ctaDesc  = isEN ? 'Start with a fixed-price codebase audit. Send us the repository and we will tell you plainly what stands between your prototype and production, in what order to fix it, and roughly what it will take.'   : 'เริ่มจากการตรวจ Codebase แบบราคาคงที่ ส่ง Repository มาให้เรา แล้วเราจะบอกตรงๆ ว่าอะไรยังขวางระหว่าง Prototype กับการใช้งานจริง ควรแก้ตามลำดับไหน และต้องใช้แรงประมาณเท่าไหร่'
   const overviewText = isEN
@@ -115,8 +115,8 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       {icon: 'ti-git-branch', title: 'Codebase Cleanup', desc: 'We remove dead code and duplicated logic, bring the folder structure into line, and add the tests that protect the important flows. The goal is a project a new developer can open on Monday and understand by Wednesday.'},
       {icon: 'ti-headset', title: 'Post-Launch Support', desc: 'After go-live we watch the logs, fix what real users trip over, and help with the first features. Support is optional, billed monthly, and you can end it whenever your team feels ready to carry on alone.'}
     ] : [
-      {icon: 'ti-search-code', title: 'Codebase & Architecture Audit', desc: 'เราอ่านทั้ง Repository แล้ววาดว่าระบบประกอบกันยังไง ทั้ง Data Model ขั้นตอนล็อกอิน บริการภายนอกที่ใช้ และการตั้งค่า Environment คุณจะได้รายการปัญหาเรียงลำดับพร้อมคำอธิบายที่อ่านรู้เรื่อง และใบเสนอราคาแบบคงที่สำหรับการแก้'},
-      {icon: 'ti-shield-lock', title: 'Security Hardening', desc: 'เราปิดช่องโหว่ที่เจอซ้ำแล้วซ้ำอีกในแอปที่ AI เขียน เช่น Key ที่หลุดเข้า Repo Endpoint ที่ไม่เช็กสิทธิ์ กฎฐานข้อมูลที่ให้ผู้ใช้คนไหนก็อ่านข้อมูลแถวไหนก็ได้ และข้อมูลจากฟอร์มที่ไม่ได้ตรวจ การแก้ทุกจุดมีการทดสอบ ไม่ใช่แค่ปะๆ ไป'},
+      {icon: 'ti-search-code', title: 'Codebase & Architecture Audit', desc: 'เราอ่านทั้ง Repository แล้ววาดว่าระบบประกอบกันอย่างไร ทั้ง Data Model ขั้นตอนล็อกอิน บริการภายนอกที่ใช้ และการตั้งค่า Environment คุณจะได้รายการปัญหาเรียงลำดับพร้อมคำอธิบายที่อ่านรู้เรื่อง และใบเสนอราคาแบบคงที่สำหรับการแก้'},
+      {icon: 'ti-shield-lock', title: 'Security Hardening', desc: 'เราปิดช่องโหว่ที่พบซ้ำแล้วซ้ำอีกในแอปที่ AI เขียน เช่น Key ที่หลุดเข้า Repo Endpoint ที่ไม่เช็กสิทธิ์ กฎฐานข้อมูลที่ให้ผู้ใช้คนไหนก็อ่านข้อมูลแถวไหนก็ได้ และข้อมูลจากฟอร์มที่ไม่ได้ตรวจ การแก้ทุกจุดมีการทดสอบ ไม่ใช่แค่ปะๆ ไป'},
       {icon: 'ti-server', title: 'Production Infrastructure', desc: 'เราย้ายแอปจากลิงก์ทดลองไปอยู่บน Hosting ที่พึ่งพาได้ แยก Staging กับ Production มี Backup อัตโนมัติ แจ้งเตือนเมื่อเกิด Error มี Pipeline สำหรับ Deploy และโดเมนที่ใช้ HTTPS ถ้าที่ตั้งของข้อมูลสำคัญกับคุณ เราใช้ผู้ให้บริการในไทยหรือในภูมิภาคได้'},
       {icon: 'ti-list-check', title: 'The Last 10%', desc: 'งานที่ขวางการเปิดตัว เช่น ระบบรีเซ็ตรหัสผ่านที่ใช้ได้จริง การชำระเงินที่รับมือกับการลองใหม่และการล้มเหลว หน้าว่างและหน้า Error ที่สมเหตุสมผล อีเมลที่ไปถึงกล่องจดหมาย และขั้นตอนที่เครื่องมือเริ่มไว้แต่ไม่เคยทำเสร็จ'},
       {icon: 'ti-git-branch', title: 'Codebase Cleanup', desc: 'เราลบโค้ดที่ไม่ใช้และตรรกะซ้ำซ้อน จัดโครงสร้างโฟลเดอร์ให้เป็นระเบียบ และเพิ่ม Test ครอบขั้นตอนสำคัญ เป้าหมายคือโปรเจกต์ที่นักพัฒนาใหม่เปิดวันจันทร์แล้วเข้าใจได้ภายในวันพุธ'},
@@ -130,12 +130,12 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       {no: '05', title: 'Launch', desc: 'We move the app to production hosting with backups, monitoring, and a repeatable deploy, and rehearse the release so launch day is uneventful.'},
       {no: '06', title: 'Support', desc: 'We watch the first weeks closely, fix issues real users find, and hand over notes that explain how the app is built. Ongoing support stays optional.'}
     ] : [
-      {no: '01', title: 'Audit', desc: 'คุณให้สิทธิ์อ่าน Repository และบริการที่ใช้อยู่ เราไล่ดูโค้ด สถาปัตยกรรม Secret และ Hosting แล้วรายงานสิ่งที่เจอด้วยภาษาอ่านง่าย พร้อมราคาคงที่สำหรับงานตรวจเอง'},
-      {no: '02', title: 'Triage', desc: 'เราจัดกลุ่มสิ่งที่เจอตามความเสี่ยงและว่าขวางการเปิดตัวหรือเปล่า คุณจะเห็นว่าอะไรต้องแก้เดี๋ยวนี้ อะไรรอได้อีกสองสามสัปดาห์ และอะไรแค่มีก็ดี'},
+      {no: '01', title: 'Audit', desc: 'คุณให้สิทธิ์อ่าน Repository และบริการที่ใช้อยู่ เราไล่ดูโค้ด สถาปัตยกรรม Secret และ Hosting แล้วรายงานสิ่งที่พบด้วยภาษาอ่านง่าย พร้อมราคาคงที่สำหรับงานตรวจเอง'},
+      {no: '02', title: 'Triage', desc: 'เราจัดกลุ่มสิ่งที่พบตามความเสี่ยงและว่าขวางการเปิดตัวหรือเปล่า คุณจะเห็นว่าอะไรต้องแก้เดี๋ยวนี้ อะไรรอได้อีกสองสามสัปดาห์ และอะไรแค่มีก็ดี'},
       {no: '03', title: 'Harden', desc: 'เราแก้ปัญหาความปลอดภัยก่อนและทำพื้นฐานให้นิ่ง เปลี่ยน Secret ใหม่ เข้มสิทธิ์ ตรวจข้อมูลขาเข้า และอัปเดต Dependency ทุกจุดที่แก้ทดสอบก่อนไปต่อ'},
       {no: '04', title: 'Complete', desc: 'เราทำขั้นตอนที่ AI ทำค้างไว้ให้เสร็จ และจัดการกรณีพิเศษ ตั้งแต่จ่ายเงินไม่ผ่านไปจนถึง Session หมดอายุ แล้วลองใช้แอปแบบที่ผู้ใช้ใหม่จะใช้'},
       {no: '05', title: 'Launch', desc: 'เราย้ายแอปขึ้น Hosting สำหรับ Production พร้อม Backup, Monitoring และขั้นตอน Deploy ที่ทำซ้ำได้ และซ้อมปล่อยก่อน วันเปิดตัวจะได้เรียบๆ ไม่มีเรื่องวุ่น'},
-      {no: '06', title: 'Support', desc: 'เราดูใกล้ชิดในสัปดาห์แรกๆ แก้ปัญหาที่ผู้ใช้จริงเจอ และส่งมอบโน้ตอธิบายว่าแอปสร้างยังไง ส่วนการดูแลต่อเนื่องเป็นทางเลือก'}
+      {no: '06', title: 'Support', desc: 'เราดูใกล้ชิดในสัปดาห์แรกๆ แก้ปัญหาที่ผู้ใช้จริงพบ และส่งมอบโน้ตอธิบายว่าแอปสร้างอย่างไร ส่วนการดูแลต่อเนื่องเป็นทางเลือก'}
     ]
   const caseStudies = isEN ? [
       {tag: 'SaaS Startup · Bangkok', title: 'Lovable Prototype Hardened & Launched', desc: 'A founder-built Lovable prototype got a security audit, a rebuilt login system, and production hosting, all in 3 weeks.', result: '0 critical vulnerabilities at launch'},
@@ -157,7 +157,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     ] : [
       {q: 'รองรับเครื่องมือแบบไหนบ้างในการช่วยจบแอป?', a: 'Cursor, Claude Code, Lovable, Bolt, v0, Replit และเครื่องมือ AI ที่คล้ายกัน เราทำงานกับโค้ดที่มีอยู่ ไม่ว่าจะสร้างมาด้วยวิธีไหน'},
       {q: 'ต้องเขียนใหม่ทั้งหมดไหม?', a: 'ส่วนใหญ่ไม่ต้อง เราต่อยอดจาก Codebase ที่มีและแก้ปัญหาโครงสร้างกับความปลอดภัยในที่เดิม แทบไม่จำเป็นต้องเขียนใหม่ และถ้าจำเป็นจริง เราจะบอกตรงๆ'},
-      {q: 'ปัญหาด้านความปลอดภัยที่มักพบคืออะไรบ้าง?', a: 'API Key ที่หลุด Endpoint ที่ไม่เช็กการยืนยันตัวตน ข้อมูลจากผู้ใช้ที่ไม่ได้ตรวจ และกฎฐานข้อมูลที่เปิดสิทธิ์กว้างเกินไป เป็นปัญหาที่เจอบ่อยที่สุด'},
+      {q: 'ปัญหาด้านความปลอดภัยที่มักพบคืออะไรบ้าง?', a: 'API Key ที่หลุด Endpoint ที่ไม่เช็กการยืนยันตัวตน ข้อมูลจากผู้ใช้ที่ไม่ได้ตรวจ และกฎฐานข้อมูลที่เปิดสิทธิ์กว้างเกินไป เป็นปัญหาที่พบบ่อยที่สุด'},
       {q: 'เพิ่มฟีเจอร์ใหม่ได้ด้วยไหม ไม่ใช่แค่แก้ปัญหา?', a: 'ได้ เมื่อพื้นฐานมั่นคงแล้ว เราทำฟีเจอร์ใหม่ต่อให้ได้เรื่อยๆ ในรูปแบบงานต่อเนื่อง'},
       {q: 'ใช้เวลานานแค่ไหนจาก Prototype ถึงเปิดตัว?', a: 'แอปที่ขอบเขตชัดเจนมักใช้ 2-3 สัปดาห์ตั้งแต่ตรวจจนเปิดตัว ส่วน Codebase ที่ใหญ่ หรือมีช่องโหว่ร้ายแรง อาจใช้ 4-6 สัปดาห์'},
       {q: 'ต้องเตรียมอะไรให้เราก่อนเริ่มตรวจ?', a: 'สิทธิ์อ่าน Repository รายการบริการที่แอปใช้ (ฐานข้อมูล ชำระเงิน อีเมล Hosting) และโน้ตสั้นๆ ว่าคาดว่าผู้ใช้จะทำอะไรในแอป เราไม่ต้องการรหัสผ่านของระบบจริง'},
@@ -273,7 +273,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { no: '06', title: 'Support', desc: 'Close watch early on, plus handover notes' },
   ] : [
     { no: '01', title: 'Audit', desc: 'โค้ด สถาปัตยกรรม Secret Hosting และรายงานราคาคงที่' },
-    { no: '02', title: 'Triage', desc: 'จัดกลุ่มสิ่งที่เจอตามความเสี่ยงและผลต่อการเปิดตัว' },
+    { no: '02', title: 'Triage', desc: 'จัดกลุ่มสิ่งที่พบตามความเสี่ยงและผลต่อการเปิดตัว' },
     { no: '03', title: 'Harden', desc: 'แก้ความปลอดภัยก่อน ทุกจุดมีการทดสอบ' },
     { no: '04', title: 'Complete', desc: 'ขั้นตอนที่ค้างและกรณีพิเศษ' },
     { no: '05', title: 'Launch', desc: 'Hosting สำหรับ Production, Backup และซ้อมปล่อย' },
@@ -294,13 +294,13 @@ export default function Page({ params }: { params: { lang: Lang } }) {
   ] : [
     { q: 'รองรับเครื่องมือ AI Coding แบบไหนบ้างในการช่วยจบแอป?', a: 'Cursor, Claude Code, Lovable, Bolt, v0, Replit และเครื่องมือ AI ที่คล้ายกัน เราทำงานกับโค้ดที่มีอยู่ใน Repository ของคุณ ไม่ว่าจะสร้างมาด้วยวิธีไหนแต่แรก รวมถึงโปรเจกต์ที่มีทั้งโค้ดที่ AI เขียนและที่คนเขียนปนกัน' },
     { q: 'ต้องเขียนใหม่ทั้งหมดไหม?', a: 'ส่วนใหญ่ไม่ต้อง เราต่อยอดจาก Codebase ที่มีอยู่ และแก้ปัญหาโครงสร้างกับความปลอดภัยในที่เดิม การเขียนใหม่ทั้งหมดมักไม่จำเป็นและไม่คุ้ม ถ้าเราเห็นว่าเขียนใหม่เป็นทางที่ถูกจริงๆ เราจะอธิบายเหตุผลให้ก่อนที่คุณจะจ่ายอะไร' },
-    { q: 'ปัญหาด้านความปลอดภัยที่มักพบในโค้ดจาก AI คืออะไรบ้าง?', a: 'API Key และ Secret ที่ถูก Commit เข้า Repository, Endpoint ที่ไม่เช็กการยืนยันตัวตน, ข้อมูลจากผู้ใช้ที่ไม่ได้ตรวจ และกฎการเข้าถึงฐานข้อมูลที่ให้คนอ่านหรือแก้ข้อมูลได้กว้างเกินไป เป็นสิ่งที่เจอบ่อยที่สุด' },
+    { q: 'ปัญหาด้านความปลอดภัยที่มักพบในโค้ดจาก AI คืออะไรบ้าง?', a: 'API Key และ Secret ที่ถูก Commit เข้า Repository, Endpoint ที่ไม่เช็กการยืนยันตัวตน, ข้อมูลจากผู้ใช้ที่ไม่ได้ตรวจ และกฎการเข้าถึงฐานข้อมูลที่ให้คนอ่านหรือแก้ข้อมูลได้กว้างเกินไป เป็นสิ่งที่พบบ่อยที่สุด' },
     { q: 'เพิ่มฟีเจอร์ใหม่ได้ด้วยไหม ไม่ใช่แค่แก้ปัญหา?', a: 'ได้ เมื่อพื้นฐานมั่นคงและปลอดภัยแล้ว เราทำฟีเจอร์ใหม่ต่อเนื่องได้ ในรูปแบบงานต่อเนื่อง โดยทำภายใน Codebase และแบบแผนที่มีอยู่' },
     { q: 'ใช้เวลานานแค่ไหนกว่าจะจาก Prototype ไปพร้อมใช้งานจริง?', a: 'แอปที่ขอบเขตชัดเจนและมีฟีเจอร์ระดับปานกลาง มักใช้ 2-3 สัปดาห์ตั้งแต่ตรวจจนพร้อมเปิดตัว ส่วน Codebase ที่ใหญ่หรือซับซ้อนกว่า หรือมีช่องโหว่ด้านความปลอดภัยมาก อาจใช้ 4-6 สัปดาห์' },
     { q: 'งานลักษณะนี้มีค่าใช้จ่ายเท่าไหร่?', a: 'การตรวจเริ่มที่ ฿5,900 (ตรวจความปลอดภัยด่วน) และ ฿15,900 (ตรวจเต็มพร้อมรายงาน) ส่วนการแก้ไขเริ่มที่ ฿39,000 และแพ็กเกจจัดระเบียบเต็มรูปแบบเริ่มที่ ฿59,000 ขึ้นอยู่กับขนาด Codebase และปัญหาที่พบ เราเริ่มด้วยการตรวจแบบราคาคงที่เสมอ คุณจะรู้ขอบเขตและค่าใช้จ่ายในการแก้ไขก่อนตัดสินใจทำงานเต็มรูปแบบ' },
     { q: 'หลังจบงานแล้ว เราจะเข้าใจ Codebase หรือยังเป็นกล่องดำอยู่?', a: 'คุณจะเข้าใจเต็มที่ เราทำเอกสารสถาปัตยกรรม จัดโครงสร้างไปพร้อมกัน และพาทีมคุณเดินดูโค้ด คุณจะได้ไม่ต้องพึ่งเราเมื่อต้องแก้ไขในอนาคต' },
-    { q: 'ถ้าแอปเปิดตัวไปแล้วและกำลังเจอปัญหาตอนใช้งานจริงล่ะ?', a: 'เราดูแลกรณีนี้ด้วย วิธีตรวจเหมือนกัน แต่เราจะคัดปัญหาที่เกิดอยู่จริงมาแก้ก่อน เพื่อหยุดความเสียหายที่ยังเกิดต่อ แล้วค่อยไปต่อที่งานเสริมความปลอดภัยและทำส่วนที่ขาดให้จบ' },
-    { q: 'ต้องเตรียมอะไรให้เราก่อนเริ่มตรวจ?', a: 'สิทธิ์อ่าน Repository รายการบริการที่แอปใช้ (ฐานข้อมูล ชำระเงิน อีเมล Hosting) และโน้ตสั้นๆ ว่าคาดว่าผู้ใช้จะใช้แอปยังไง เราไม่ต้องการรหัสผ่านของระบบจริงเพื่อตรวจโค้ด' },
+    { q: 'ถ้าแอปเปิดตัวไปแล้วและกำลังพบปัญหาตอนใช้งานจริงล่ะ?', a: 'เราดูแลกรณีนี้ด้วย วิธีตรวจเหมือนกัน แต่เราจะคัดปัญหาที่เกิดอยู่จริงมาแก้ก่อน เพื่อหยุดความเสียหายที่ยังเกิดต่อ แล้วค่อยไปต่อที่งานเสริมความปลอดภัยและทำส่วนที่ขาดให้จบ' },
+    { q: 'ต้องเตรียมอะไรให้เราก่อนเริ่มตรวจ?', a: 'สิทธิ์อ่าน Repository รายการบริการที่แอปใช้ (ฐานข้อมูล ชำระเงิน อีเมล Hosting) และโน้ตสั้นๆ ว่าคาดว่าผู้ใช้จะใช้แอปอย่างไร เราไม่ต้องการรหัสผ่านของระบบจริงเพื่อตรวจโค้ด' },
     { q: 'แอปจะอยู่บน Hosting ที่ไหน และใครเป็นเจ้าของบัญชี?', a: 'คุณเป็นเจ้าของทุกบัญชี ทั้ง Hosting โดเมน ฐานข้อมูล และ Repository ของโค้ด เราตั้งค่าในบัญชีของคุณ หรือส่งมอบให้เรียบร้อย และใช้ผู้ให้บริการในไทยหรือในภูมิภาคได้ถ้าที่ตั้งของข้อมูลสำคัญกับคุณ' },
   ]
 

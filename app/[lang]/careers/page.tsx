@@ -98,7 +98,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { no:'01', icon:'ti-mail', title:'สมัครงาน', desc:'ส่ง CV และผลงานมาที่ careers@haliviq.co หรือกรอกแบบฟอร์มด้านล่าง ถ้าเขียนสั้น ๆ มาด้วยว่าอยากทำงานแบบไหน เราจะอ่าน CV ได้เข้าใจบริบทมากขึ้น เราจะตอบกลับภายใน 3 วันทำการ', time:'~1 วัน' },
     { no:'02', icon:'ti-video', title:'คุยเบื้องต้น', desc:'คุยกับฝ่ายบุคคลประมาณ 30 นาที เพื่อทำความรู้จักกัน เราจะคุยเรื่องตำแหน่ง สิ่งที่คุณมองหา และสิ่งที่เราคาดหวัง และคุณถามเรื่องวิธีทำงานของเราได้เต็มที่', time:'~30 นาที' },
     { no:'03', icon:'ti-code', title:'สัมภาษณ์เชิงเทคนิค', desc:'เป็นการสัมภาษณ์ หรือโจทย์ให้ทำที่บ้าน แล้วแต่ตำแหน่ง ออกแบบมาเพื่อดูว่าคุณคิดและแก้ปัญหาจริง ๆ อย่างไร ไม่ใช่ข้อสอบหลอกให้พลาด', time:'1–2 ชั่วโมง' },
-    { no:'04', icon:'ti-users', title:'พบทีม', desc:'ได้เจอคนที่จะทำงานด้วยกันทุกวัน ถามได้ทุกเรื่อง คุยกันสองทาง เพราะคุณก็ประเมินเราเหมือนกับที่เราประเมินคุณ', time:'~1 ชั่วโมง' },
+    { no:'04', icon:'ti-users', title:'พบทีม', desc:'ได้พบคนที่จะทำงานด้วยกันทุกวัน ถามได้ทุกเรื่อง คุยกันสองทาง เพราะคุณก็ประเมินเราเหมือนกับที่เราประเมินคุณ', time:'~1 ชั่วโมง' },
   ]
 
   const ctaTrust = isEN
@@ -251,7 +251,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
                 </h2>
               </div>
               <p className="text-sm max-w-xs" style={muted}>
-                {isEN ? <>No role that fits? Send your CV to <a href="mailto:careers@haliviq.co" className="hover:underline" style={{ color: 'var(--accent)' }}>careers@haliviq.co</a></> : <>ไม่เจอตำแหน่งที่ตรงกับคุณ? ส่ง CV มาได้ที่ <a href="mailto:careers@haliviq.co" className="hover:underline" style={{ color: 'var(--accent)' }}>careers@haliviq.co</a></>}
+                {isEN ? <>No role that fits? Send your CV to <a href="mailto:careers@haliviq.co" className="hover:underline" style={{ color: 'var(--accent)' }}>careers@haliviq.co</a></> : <>ไม่พบตำแหน่งที่ตรงกับคุณ? ส่ง CV มาได้ที่ <a href="mailto:careers@haliviq.co" className="hover:underline" style={{ color: 'var(--accent)' }}>careers@haliviq.co</a></>}
               </p>
             </div>
             <div className="space-y-8">
@@ -322,7 +322,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
           <div className="absolute inset-0 opacity-[0.3]" style={dots} />
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[760px] h-[760px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(123,110,246,0.28) 0%, transparent 65%)' }} />
           <div className="relative max-w-4xl mx-auto px-6 lg:px-10 text-center">
-            <p className="text-xs tracking-widest uppercase mb-6 font-mono" style={{ color: 'rgb(var(--fg) / 0.55)' }}>{isEN ? 'No role that fits?' : 'ยังไม่เจอตำแหน่งที่ใช่?'}</p>
+            <p className="text-xs tracking-widest uppercase mb-6 font-mono" style={{ color: 'rgb(var(--fg) / 0.55)' }}>{isEN ? 'No role that fits?' : 'ยังไม่พบตำแหน่งที่ใช่?'}</p>
             <h2 className="t-display text-[clamp(2.2rem,5vw,4.6rem)] mb-8 leading-tight" style={{ color: 'var(--ink)' }}>
               {isEN ? <>Send your CV first.<br /><span style={G}>We will find a place for you.</span></> : <>ส่ง CV มาก่อน<br /><span style={G}>แล้วเราจะหาที่ให้</span></>}
             </h2>

@@ -44,7 +44,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { icon:'ti-chart-bar', title:'Deal Registration', desc:'Register the deals you bring us so they are protected. You can see the status of each one, from first conversation to signed contract, and how revenue sharing works.' },
     { icon:'ti-headset', title:'Dedicated Support', desc:'A Partner Success Manager is your single contact for technical questions, escalations and account management, so you never have to work out who to ask.' },
   ] : [
-    { icon:'ti-users', title:'Co-selling', desc:'เราพาผลิตภัณฑ์ของคุณไปเสนอลูกค้าร่วมกับทีม Haliviq ถ้าลูกค้าของเรามีความต้องการที่เทคโนโลยีของคุณตอบได้ เราจะแนะนำให้รู้จักกัน และถ้าคุณเจอลูกค้าที่ต้องการงานออกแบบและพัฒนา ก็ชวนเราเข้าไปคุยได้เหมือนกัน' },
+    { icon:'ti-users', title:'Co-selling', desc:'เราพาผลิตภัณฑ์ของคุณไปเสนอลูกค้าร่วมกับทีม Haliviq ถ้าลูกค้าของเรามีความต้องการที่เทคโนโลยีของคุณตอบได้ เราจะแนะนำให้รู้จักกัน และถ้าคุณพบลูกค้าที่ต้องการงานออกแบบและพัฒนา ก็ชวนเราเข้าไปคุยได้เหมือนกัน' },
     { icon:'ti-certificate', title:'Co-branding', desc:'ทำกรณีศึกษาและบทความร่วมกัน และไปออกงานอีเวนต์ด้วยกัน เราเล่างานที่ทำร่วมกันจริง ทำให้ผู้ซื้อในไทยและเอเชียตะวันออกเฉียงใต้เห็นแบรนด์ของคุณในบริบทของโปรเจกต์จริง' },
     { icon:'ti-discount', title:'Partner Pricing', desc:'ราคาพิเศษสำหรับบริการของ Haliviq ที่ใช้กับลูกค้าที่คุณแนะนำหรือทำงานด้วยกัน ทำให้ข้อเสนอรวมอนุมัติง่ายขึ้น เงื่อนไขตกลงกันเป็นรายพาร์ทเนอร์' },
     { icon:'ti-school', title:'Training & Enablement', desc:'ทีมของคุณมาอบรมทีมเราเรื่องผลิตภัณฑ์ ว่าทำงานอย่างไร เหมาะกับใคร และไม่เหมาะกับงานแบบไหน เราจะได้นำเสนอและติดตั้งเทคโนโลยีของคุณให้ลูกค้าได้ถูกต้อง ไม่ต้องเดา' },
