@@ -116,7 +116,7 @@ export default function ServiceLayout({
                     {title}<br />
                     <span style={{ background: `linear-gradient(135deg,${color},var(--purple-light))`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{subtitle}</span>
                   </h1>
-                  <p className="t-body leading-relaxed mb-8" style={{ fontSize: "1.2rem", color: "#0A0A0F" }}>{heroDesc}</p>
+                  <p className="t-body leading-relaxed mb-8" style={{ fontSize: "1.2rem", color: "rgb(var(--fg) / 0.88)" }}>{heroDesc}</p>
                   {heroBullets && (
                     <ul className="space-y-3 mb-10">
                       {(heroBullets ?? []).map((b, i) => (
@@ -124,7 +124,7 @@ export default function ServiceLayout({
                           <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ background: bg }}>
                             <i className="ti ti-check" style={{ fontSize: 12, color }} aria-hidden="true" />
                           </div>
-                          <span className="leading-relaxed" style={{ fontWeight: 400, fontSize: "1.1rem", color: "#0A0A0F" }}>{b}</span>
+                          <span className="leading-relaxed" style={{ fontWeight: 400, fontSize: "1.1rem", color: "rgb(var(--fg) / 0.88)" }}>{b}</span>
                         </li>
                       ))}
                     </ul>

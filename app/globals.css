@@ -428,3 +428,9 @@ html[data-theme="light"] .cta-final a[href$="/contact"]:hover { background: #EEE
   .strat-bar, .strat-area, .strat-dot { animation: none; }
   .strat-line { animation: none; stroke-dashoffset: 0; }
 }
+
+/* phones: smaller Havy launcher so it covers less content */
+@media (max-width: 767px) {
+  .chat-mascot-btn { transform: scale(0.68); transform-origin: bottom right; }
+  .chat-mascot-btn .chat-name { margin-top: -12px; }
+}
