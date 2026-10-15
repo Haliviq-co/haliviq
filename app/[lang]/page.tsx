@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import CoreSkills from '@/components/CoreSkills'
 import WhatWeDo from '@/components/WhatWeDo'
+import FlowDiagram from '@/components/FlowDiagram'
 import Clients from '@/components/Clients'
 import Work from '@/components/Work'
 import FeaturedWork from '@/components/FeaturedWork'
@@ -72,6 +73,7 @@ export default function HomePage({ params }: { params: { lang: string } }) {
       <Hero lang={lang} tr={tr} />
       <CoreSkills lang={lang} tr={tr} />
       <WhatWeDo lang={lang} tr={tr} />
+      <FlowDiagram lang={lang} />
       <Clients lang={lang} tr={tr} />
       {/* Services and Work sections removed */}
       <FeaturedWork lang={lang} tr={tr} />
