@@ -69,6 +69,16 @@ export default function Footer({ lang, tr }: Props) {
               <p>{f.salesLabel}: wu@haliviq.com</p>
               <p>{f.supportLabel}: info@haliviq.com</p>
             </div>
+            <a
+              href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0je6QG4mvfhRlih-PGXzRyFuCp-M3VyWFMwv8cbGiikwZ9Lo_17rWIR7q_ssEg92l9juim9xXE"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-5 px-5 py-3 rounded-xl text-sm transition-opacity hover:opacity-90"
+              style={{ background: 'linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%)', color: '#fff', fontWeight: 500 }}
+            >
+              <i className="ti ti-video" style={{ fontSize: 17 }} aria-hidden="true" />
+              {lang === 'en' ? 'Book a free call on Google Meet' : 'จองคุยฟรีผ่าน Google Meet'}
+            </a>
           </div>
 
           {Object.entries(f.sections).map(([heading, items]) => (
