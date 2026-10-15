@@ -512,3 +512,11 @@ html[data-theme="light"] .cta-final a[href$="/contact"]:hover { background: #EEE
 @keyframes hsBump{0%,70%,100%{transform:scale(1)}80%{transform:scale(1.5)}}
 .hs-bar{transform-origin:bottom;animation:svcGrow 3.2s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){.hs-msg{animation:none;opacity:1}.hs-card,.hs-bump,.hs-bar{animation:none}}
+
+/* ── Services list: enlarge the illustration inside each thumbnail ── */
+.svc-thumb{--zm:1}
+.svc-thumb>:last-child{zoom:var(--zm)}
+@media (min-width:400px){.svc-thumb{--zm:1.1}}
+@media (min-width:768px){.svc-thumb{--zm:1.25}}
+@media (min-width:1024px){.svc-thumb{--zm:1.06}}
+@media (min-width:1280px){.svc-thumb{--zm:1.3}}
