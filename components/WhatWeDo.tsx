@@ -129,7 +129,7 @@ export default function WhatWeDo({ lang, tr }: Props) {
                         color: 'rgb(var(--fg) / 0.85)',
                         fontSize: '1rem',
                         lineHeight: 1.7,
-                        maxWidth: 640,
+                        maxWidth: 760,
                         paddingBottom: 26,
                         paddingTop: 2,
                       }}

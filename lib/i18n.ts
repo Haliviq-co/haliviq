@@ -58,27 +58,27 @@ export const t = {
       items: [
         {
           heading: 'วิศวกรรมเว็บและมือถือ',
-          desc: 'เว็บและแอปมือถือด้วย React, Next.js, React Native และ Flutter ที่เปิดใช้งานจริงได้ และรองรับผู้ใช้ที่เพิ่มขึ้น เราช่วยตั้งแต่เลือกเทคโนโลยี เขียนโค้ด ทดสอบ ไปจนถึงขึ้นระบบ',
+          desc: 'เว็บและแอปมือถือด้วย React, Next.js, React Native และ Flutter ที่เปิดใช้งานจริงได้ และรองรับผู้ใช้ที่เพิ่มขึ้น เราช่วยตั้งแต่เลือกเทคโนโลยี เขียนโค้ด ทดสอบ ไปจนถึงขึ้นระบบ ทีมเดียวดูแลทั้งฝั่งหน้าบ้านและหลังบ้าน ทั้ง API การเชื่อมต่อกับระบบที่คุณใช้อยู่ การชำระเงิน และการแจ้งเตือน เราเขียนโค้ดให้อ่านง่ายและมีการทดสอบ เพื่อให้คนอื่นรับช่วงต่อได้ง่าย และหลังเปิดใช้งานเรายังดูแลแก้ไขและเพิ่มฟีเจอร์ต่อให้ได้',
         },
         {
           heading: 'AI Agents และ Generative AI',
-          desc: 'Agent ที่ทำงานหลายขั้นตอน RAG pipeline ที่ตอบจากเอกสารของคุณเอง และการเอา LLM ไปใช้กับงานจริงของธุรกิจ เราเริ่มจากหางานที่คุ้มจะทำก่อน แล้วค่อยลงมือสร้าง',
+          desc: 'Agent ที่ทำงานหลายขั้นตอน RAG pipeline ที่ตอบจากเอกสารของคุณเอง และการเอา LLM ไปใช้กับงานจริงของธุรกิจ เราเริ่มจากหางานที่คุ้มจะทำก่อน แล้วค่อยลงมือสร้าง ตัวอย่างงานที่ทำ เช่น แชทบอทตอบลูกค้าจากคู่มือและเอกสารของบริษัท ผู้ช่วยค้นข้อมูลภายในองค์กร ระบบสรุปเอกสารและอีเมล และ Agent ที่เชื่อมกับเครื่องมือที่ทีมใช้อยู่ เรากำหนดวิธีวัดผลก่อนเริ่ม ทดสอบกับข้อมูลจริง และมีคนตรวจในจุดที่ผิดพลาดไม่ได้',
         },
         {
           heading: 'Data Engineering และ Analytics',
-          desc: 'รวบรวมข้อมูลที่กระจายอยู่หลายที่มาไว้ใน Data Warehouse เดียว ทำ Pipeline ให้ข้อมูลอัปเดตเอง แล้วสร้าง Dashboard ที่ทีมเปิดดูแล้วตัดสินใจต่อได้เลย',
+          desc: 'รวบรวมข้อมูลที่กระจายอยู่หลายที่มาไว้ใน Data Warehouse เดียว ทำ Pipeline ให้ข้อมูลอัปเดตเอง แล้วสร้าง Dashboard ที่ทีมเปิดดูแล้วตัดสินใจต่อได้เลย เราช่วยตั้งแต่ออกแบบโครงสร้างข้อมูล เชื่อมต่อแหล่งข้อมูลอย่างระบบขาย บัญชี เว็บไซต์ และโฆษณา ไปจนถึงตรวจคุณภาพข้อมูลให้ตัวเลขตรงกันทุกที่ เพื่อให้ผู้บริหารและทีมดูตัวเลขชุดเดียวกัน แทนการรวมไฟล์เองทุกสัปดาห์',
         },
         {
           heading: 'Product Design',
-          desc: 'เราคุยกับผู้ใช้จริง ออกแบบหน้าจอ แล้วจัดระเบียบเป็น Design System เพื่อให้ผลิตภัณฑ์ใช้งานง่ายตั้งแต่วันแรก และทีมของคุณต่อยอดหน้าใหม่ได้โดยหน้าตาไม่เพี้ยน',
+          desc: 'เราคุยกับผู้ใช้จริง ออกแบบหน้าจอ แล้วจัดระเบียบเป็น Design System เพื่อให้ผลิตภัณฑ์ใช้งานง่ายตั้งแต่วันแรก และทีมของคุณต่อยอดหน้าใหม่ได้โดยหน้าตาไม่เพี้ยน ขั้นตอนเริ่มจากสัมภาษณ์ผู้ใช้และดูวิธีใช้งานจริง ทำ Wireframe และ Prototype ให้ทดลองคลิกก่อนเขียนโค้ด แล้วส่งมอบไฟล์ออกแบบที่นักพัฒนาใช้ต่อได้ทันที รวมถึงดูเรื่องการเข้าถึงสำหรับผู้ใช้ทุกกลุ่ม และการแสดงผลบนมือถือและจอใหญ่',
         },
         {
           heading: 'Cloud และ Infrastructure',
-          desc: 'วางและดูแลระบบบน AWS, GCP และ Azure ให้เสถียร ปลอดภัย และขยายได้เมื่อผู้ใช้เพิ่ม รวมถึงตั้ง CI/CD และระบบแจ้งเตือน เพื่อให้ทีมรู้ปัญหาก่อนที่ลูกค้าจะรู้',
+          desc: 'วางและดูแลระบบบน AWS, GCP และ Azure ให้เสถียร ปลอดภัย และขยายได้เมื่อผู้ใช้เพิ่ม รวมถึงตั้ง CI/CD และระบบแจ้งเตือน เพื่อให้ทีมรู้ปัญหาก่อนที่ลูกค้าจะรู้ เราดูเรื่องสำรองข้อมูล การกำหนดสิทธิ์ การควบคุมค่าใช้จ่ายคลาวด์ และแผนรับมือเมื่อระบบมีปัญหา สามารถย้ายระบบจากเซิร์ฟเวอร์เดิมขึ้นคลาวด์ หรือปรับระบบที่มีอยู่ให้เสถียรและประหยัดขึ้นโดยไม่ต้องสร้างใหม่ทั้งหมด',
         },
         {
           heading: 'Digital Transformation',
-          desc: 'เอาระบบเก่า ไฟล์ Excel และขั้นตอนที่ยังทำด้วยมือ มาเชื่อมเป็นแพลตฟอร์มเดียวที่ขยายต่อได้ เราช่วยดูว่าควรเริ่มปรับตรงไหนก่อน และค่อยๆ เปลี่ยนโดยไม่ให้งานประจำวันสะดุด',
+          desc: 'เอาระบบเก่า ไฟล์ Excel และขั้นตอนที่ยังทำด้วยมือ มาเชื่อมเป็นแพลตฟอร์มเดียวที่ขยายต่อได้ เราช่วยดูว่าควรเริ่มปรับตรงไหนก่อน และค่อยๆ เปลี่ยนโดยไม่ให้งานประจำวันสะดุด เริ่มจากคุยกับคนที่ใช้งานจริงเพื่อดูว่าเวลาหายไปตรงไหน แล้วจัดลำดับว่างานไหนคุ้มที่จะทำก่อน อาจเป็นระบบจัดการลูกค้า ระบบอนุมัติเอกสาร หรือแดชบอร์ดกลาง ทำเป็นขั้นๆ ให้เห็นผลเร็ว และฝึกทีมให้ใช้งานคล่องก่อนเปลี่ยนทั้งหมด',
         },
       ],
     },
@@ -390,27 +390,27 @@ export const t = {
       items: [
         {
           heading: 'Web & Mobile Engineering',
-          desc: 'Websites and mobile apps built with React, Next.js, React Native and Flutter, ready for real traffic and able to grow with your user base. We help from choosing the stack through coding and testing to going live.',
+          desc: 'Websites and mobile apps built with React, Next.js, React Native and Flutter, ready for real traffic and able to grow with your user base. We help from choosing the stack through coding and testing to going live. One team covers both front end and back end, including APIs, integrations with the tools you already use, payments and notifications. We write readable, tested code so others can take it over, and after launch we stay on to fix, improve and add features.',
         },
         {
           heading: 'AI Agents & Generative AI',
-          desc: 'Multi-step agents, RAG pipelines that answer from your own documents, and LLM features that fit actual business tasks. We start by finding the jobs worth automating, then build and measure.',
+          desc: 'Multi-step agents, RAG pipelines that answer from your own documents, and LLM features that fit actual business tasks. We start by finding the jobs worth automating, then build and measure. Typical work includes chatbots that answer from your manuals and policies, internal knowledge search, document and email summarising, and agents wired into the tools your team already uses. We agree how success is measured before we start, test on your real data, and keep a person in the loop where mistakes are costly.',
         },
         {
           heading: 'Data Engineering & Analytics',
-          desc: 'We pull data scattered across tools into one warehouse, keep it fresh with automated pipelines, and build dashboards your team can open and act on the same day.',
+          desc: 'We pull data scattered across tools into one warehouse, keep it fresh with automated pipelines, and build dashboards your team can open and act on the same day. We help with data modelling, connecting sources such as sales, accounting, your website and ads, and checking quality so the numbers match everywhere. Leadership and teams look at one version of the truth instead of stitching spreadsheets together every week.',
         },
         {
           heading: 'Product Design',
-          desc: 'We talk to real users, design the screens, then organise everything into a design system. Products feel clear from day one, and your team can add new pages without the look drifting.',
+          desc: 'We talk to real users, design the screens, then organise everything into a design system. Products feel clear from day one, and your team can add new pages without the look drifting. We start with user interviews and watching real usage, build wireframes and clickable prototypes before any code, and hand developers files they can use straight away. We also cover accessibility and how everything looks on phones and large screens.',
         },
         {
           heading: 'Cloud & Infrastructure',
-          desc: 'Architecture and day-to-day care for systems on AWS, GCP and Azure, built for uptime, security and growth. That includes CI/CD and alerting so your team hears about a problem before customers do.',
+          desc: 'Architecture and day-to-day care for systems on AWS, GCP and Azure, built for uptime, security and growth. That includes CI/CD and alerting so your team hears about a problem before customers do. We handle backups, access control, cloud cost control and an incident plan. We can move you from an old server to the cloud, or make an existing system steadier and cheaper to run without rebuilding it from scratch.',
         },
         {
           heading: 'Digital Transformation',
-          desc: 'We take aging systems, Excel files and manual steps and connect them into one platform you can keep extending. We help decide what to change first, and move over gradually so daily operations keep running.',
+          desc: 'We take aging systems, Excel files and manual steps and connect them into one platform you can keep extending. We help decide what to change first, and move over gradually so daily operations keep running. We begin by talking to the people who use the systems to see where time is lost, then rank what is worth fixing first. That might be a customer system, a document approval flow or a single dashboard. We deliver in steps so results show early, and train your team before anything is switched over.',
         },
       ],
     },
