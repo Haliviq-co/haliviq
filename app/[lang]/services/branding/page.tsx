@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import ServiceLayout from '@/components/service/ServiceLayout'
+import BrandingServices from '@/components/service/BrandingServices'
 import BrandingPackages from '@/components/service/BrandingPackages'
 import { type Lang } from '@/lib/i18n'
 import { alt } from '@/lib/seo'
@@ -103,40 +104,12 @@ export default function Page({ params }: { params: { lang: Lang } }) {
   const whenLabel = isEN ? 'Right when' : 'เหมาะเมื่อ'
 
   const servicesSection = (
-    <section style={{ background: 'var(--bg)', padding: '88px 0 24px' }}>
-      <div className="max-w-7xl mx-auto px-4 lg:px-10">
-        <div className="grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-6 lg:gap-16 mb-10">
-          <h2 className="t-display" style={{ color: 'var(--ink)', fontSize: 'clamp(1.8rem,3.4vw,2.6rem)', lineHeight: 1.25 }}>
-            {isEN ? 'Eight services, used on their own or together' : 'บริการเดี่ยว 8 อย่าง ใช้แยกหรือรวมกันก็ได้'}
-          </h2>
-          <p style={{ color: 'rgb(var(--fg) / 0.85)', lineHeight: 1.85, alignSelf: 'end' }}>
-            {isEN ? 'Choose the service that fits where your business is today.' : 'เลือกบริการที่เหมาะกับสถานการณ์ของธุรกิจคุณในวันนี้'}
-          </p>
-        </div>
-        <div style={{ borderTop: '1px solid rgb(var(--fg) / 0.16)' }}>
-          {features.map((f, k) => (
-            <article key={f.title} className="grid lg:grid-cols-[110px_minmax(0,5fr)_minmax(0,6fr)] gap-x-12 gap-y-4 py-9" style={{ borderBottom: '1px solid rgb(var(--fg) / 0.16)' }}>
-              <span aria-hidden="true" style={{ color: 'var(--accent)', fontWeight: 600, fontSize: '1.1rem' }}>{String(k + 1).padStart(2, '0')}</span>
-              <div className="flex flex-col gap-3">
-                <h3 className="flex items-center gap-3" style={{ color: 'var(--ink)', fontSize: '1.2rem', fontWeight: 600, lineHeight: 1.4 }}>
-                  <i className={`ti ${f.icon}`} style={{ fontSize: 22, color: 'var(--accent)' }} aria-hidden="true" />
-                  <span>{f.title}</span>
-                </h3>
-                <p style={{ color: 'rgb(var(--fg) / 0.85)', lineHeight: 1.8 }}>{f.desc}</p>
-              </div>
-              <div>
-                <p className="text-xs mb-2" style={{ color: 'var(--accent)', letterSpacing: '0.06em' }}>{whenLabel}</p>
-                <ul className="grid gap-1.5" style={{ color: 'rgb(var(--fg) / 0.85)', lineHeight: 1.7 }}>
-                  {when[k].map((w) => (
-                    <li key={w} className="flex gap-2"><span aria-hidden="true" style={{ color: 'var(--accent)' }}>–</span><span>{w}</span></li>
-                  ))}
-                </ul>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
+    <BrandingServices
+      items={features.map((f, k) => ({ title: f.title, desc: f.desc, icon: f.icon, when: when[k] }))}
+      heading={isEN ? 'Eight services, used on their own or together' : 'บริการเดี่ยว 8 อย่าง ใช้แยกหรือรวมกันก็ได้'}
+      intro={isEN ? 'Choose the service that fits where your business is today.' : 'เลือกบริการที่เหมาะกับสถานการณ์ของธุรกิจคุณในวันนี้'}
+      whenLabel={whenLabel}
+    />
   )
 
   const steps = isEN ? [
