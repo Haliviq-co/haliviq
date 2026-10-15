@@ -6,7 +6,7 @@ import { t, type Lang } from '@/lib/i18n'
 // A free, rule-based assistant. It answers from the FAQ already on the site, so it has no API cost.
 // Optional dashboard: set NEXT_PUBLIC_CHAT_LOG_URL to a Google Apps Script web-app URL and each question is
 // appended to a Google Sheet (no names, emails or other identifiers are sent).
-type Msg = { from: 'bot' | 'me'; text: string; links?: { label: string; href: string }[]; agent?: boolean; meet?: boolean; pending?: boolean; choices?: { key: string; label: string }[]; fresh?: boolean; topic?: string; noChips?: boolean }
+type Msg = { from: 'bot' | 'me'; text: string; links?: { label: string; href: string }[]; agent?: boolean; meet?: boolean; pending?: boolean; choices?: { key: string; label: string }[]; fresh?: boolean; lead?: boolean; topic?: string; noChips?: boolean }
 type QA = { q: string; a: string; h?: string; k?: string; x?: string; p?: number }
 
 const CHANNELS = [
@@ -366,6 +366,11 @@ export default function ChatBot({ lang }: { lang: Lang }) {
     return () => clearTimeout(id)
   }, [open])
   const [text, setText] = useState('')
+  const [leadContact, setLeadContact] = useState('')
+  const [leadOk, setLeadOk] = useState(false)
+  const [leadBusy, setLeadBusy] = useState(false)
+  const [leadErr, setLeadErr] = useState('')
+  const [leadDone, setLeadDone] = useState(false)
   const hello = isEN
     ? 'Hello! I am Havy, the assistant of Haliviq. I can help with our services, technology, timelines, pricing or how to start a project. Ask me anything, or pick a question below.'
     : 'สวัสดีครับ ผมชื่อน้องฮาวี่ เป็นผู้ช่วยของบริษัท Haliviq ครับ ช่วยตอบเรื่องบริการ เทคโนโลยี ระยะเวลา ราคา หรือวิธีเริ่มโปรเจกต์ได้เลย พิมพ์ถามได้เลย หรือเลือกคำถามด้านล่างครับ'
@@ -395,6 +400,32 @@ export default function ChatBot({ lang }: { lang: Lang }) {
   }
 
   const fbCount = useRef(0)
+
+  const submitLead = async () => {
+    const contact = leadContact.trim()
+    if (contact.length < 5) { setLeadErr(isEN ? 'Please add a phone, LINE ID or email.' : 'กรุณาใส่เบอร์โทร LINE ID หรืออีเมลครับ'); return }
+    if (!leadOk) { setLeadErr(isEN ? 'Please tick the consent box first.' : 'กรุณาติ๊กยินยอมก่อนนะครับ'); return }
+    setLeadErr(''); setLeadBusy(true)
+    const mine = msgs.filter((x) => x.from === 'me').map((x) => x.text)
+    const topics = Array.from(new Set(mine.map((t) => prodOf(t)).filter(Boolean).map((x) => (isEN ? x!.chipEn : x!.chip))))
+    try {
+      const r = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ contact, consent: true, topics, lines: mine.slice(-4), lang, page: typeof window !== 'undefined' ? window.location.pathname : '' }),
+      })
+      const d = await r.json().catch(() => ({}))
+      if (r.ok && d.ok) {
+        setLeadDone(true)
+        setMsgs((m) => [...m, { from: 'bot', fresh: true, noChips: true, text: isEN ? 'Thank you. I have passed your details and what we talked about to the team, so you will not need to repeat yourself. They will contact you soon. You can keep asking me anything in the meantime.' : 'ขอบคุณครับ ผมส่งข้อมูลและเรื่องที่คุยกันให้ทีมงานแล้ว คุณไม่ต้องเล่าซ้ำ ทีมจะติดต่อกลับเร็ว ๆ นี้ครับ ระหว่างนี้ถามผมต่อได้เลย' }])
+      } else {
+        setLeadErr(isEN ? 'Sorry, I could not send it just now. Please use one of the channels above.' : 'ขออภัยครับ ส่งไม่สำเร็จในตอนนี้ ลองใช้ช่องทางด้านบนได้เลยครับ')
+      }
+    } catch {
+      setLeadErr(isEN ? 'Sorry, I could not send it just now. Please use one of the channels above.' : 'ขออภัยครับ ส่งไม่สำเร็จในตอนนี้ ลองใช้ช่องทางด้านบนได้เลยครับ')
+    }
+    setLeadBusy(false)
+  }
   const answer = (q: string): { text: string; links?: Msg['links']; idx: number; agent?: boolean; meet?: boolean; fallback?: boolean; noChips?: boolean; choices?: { key: string; label: string }[] } => {
     if (q.length < 60 && ASKS_IDENTITY.test(q)) {
       return {
@@ -668,7 +699,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
       return
     }
     if (wantsAgent(clean) && !(clean.length < 60 && ASKS_IDENTITY.test(clean))) {
-      setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, agent: true, text: isEN ? 'Happy to. There is nothing to decide right now. Just tell the team briefly what you need. Pick the channel you like below and they will reply there, so you do not have to repeat yourself.' : 'ได้เลยครับ ไม่ต้องตัดสินใจทำอะไรตอนนี้ เล่าเรื่องที่อยากได้ให้ทีมฟังคร่าว ๆ ก็พอ เลือกช่องทางที่สะดวกด้านล่าง ทีมจะติดต่อกลับทางนั้น โดยไม่ต้องเล่าซ้ำจากต้นครับ' }])
+      setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, agent: true, lead: true, text: isEN ? 'Happy to. There is nothing to decide right now. Just tell the team briefly what you need. Pick the channel you like below and they will reply there, so you do not have to repeat yourself.' : 'ได้เลยครับ ไม่ต้องตัดสินใจทำอะไรตอนนี้ เล่าเรื่องที่อยากได้ให้ทีมฟังคร่าว ๆ ก็พอ เลือกช่องทางที่สะดวกด้านล่าง ทีมจะติดต่อกลับทางนั้น โดยไม่ต้องเล่าซ้ำจากต้นครับ' }])
       setText('')
       log(clean, -1)
       return
@@ -765,6 +796,18 @@ export default function ChatBot({ lang }: { lang: Lang }) {
                     <a href={MEET_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 px-3.5 py-2 rounded-2xl text-[13px]" style={{ background: '#fff', color: '#1B1A2E', fontWeight: 600 }}>
                       <MeetIcon />{isEN ? 'Book a Google Meet call' : 'นัดประชุมออนไลน์ Google Meet'}
                     </a>
+                  </div>
+                )}
+                {m.lead && !leadDone && (
+                  <div className="mt-2 rounded-2xl p-3 flex flex-col gap-2" style={{ background: 'rgba(123,110,246,0.08)', border: '1px solid rgba(123,110,246,0.25)' }}>
+                    <div className="text-[12px]" style={{ lineHeight: 1.5 }}>{isEN ? 'Or let the team contact you. Leave a phone, LINE ID or email:' : 'หรือให้ทีมติดต่อกลับ ฝากเบอร์โทร LINE ID หรืออีเมลไว้ได้ครับ'}</div>
+                    <input value={leadContact} onChange={(e) => setLeadContact(e.target.value)} maxLength={120} aria-label={isEN ? 'Phone, LINE ID or email' : 'เบอร์โทร LINE ID หรืออีเมล'} placeholder={isEN ? 'Phone / LINE ID / email' : 'เบอร์โทร / LINE ID / อีเมล'} className="text-[13px] px-3 py-2 rounded-xl outline-none" style={{ border: '1px solid rgb(var(--fg) / 0.2)', background: 'var(--bg)', color: 'inherit' }} />
+                    <label className="flex items-start gap-2 text-[11.5px]" style={{ lineHeight: 1.5 }}>
+                      <input type="checkbox" checked={leadOk} onChange={(e) => setLeadOk(e.target.checked)} className="mt-0.5" />
+                      <span>{isEN ? 'I agree to share this chat summary and my contact with the Haliviq team so they can get back to me.' : 'ยินยอมให้ส่งสรุปบทสนทนาและข้อมูลติดต่อนี้ให้ทีม Haliviq เพื่อติดต่อกลับ'}</span>
+                    </label>
+                    {leadErr && <div className="text-[11.5px]" style={{ color: '#D14343' }}>{leadErr}</div>}
+                    <button type="button" disabled={leadBusy} onClick={submitLead} className="text-[13px] px-3 py-2 rounded-xl" style={{ background: 'linear-gradient(135deg,#7B6EF6,#53C3D7)', color: '#fff', fontWeight: 600, opacity: leadBusy ? 0.6 : 1 }}>{leadBusy ? (isEN ? 'Sending…' : 'กำลังส่ง…') : (isEN ? 'Ask the team to contact me' : 'ให้ทีมติดต่อกลับ')}</button>
                   </div>
                 )}
                 {i === lastIdx && lastChips && (
