@@ -499,3 +499,6 @@ html[data-theme="light"] .cta-final a[href$="/contact"]:hover { background: #EEE
 @keyframes svcCheck{0%,60%,100%{transform:scale(1);opacity:1}30%{transform:scale(1.3);opacity:.7}}
 @keyframes svcGrow{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.62)}}
 @media (prefers-reduced-motion:reduce){.svc-thumb [style*="repeating-linear-gradient"],.svc-thumb i.ti,.svc-thumb .ti-check,.svc-thumb .items-end>*,.svc-thumb span.rounded-full,.svc-thumb .rounded-full.shrink-0,.svc-thumb .w-9.h-9.rounded-full,.svc-thumb .w-12.h-12.rounded-xl{animation:none}}
+
+.svc-hero-slot{animation:svcFloat 7s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.svc-hero-slot{animation:none}}

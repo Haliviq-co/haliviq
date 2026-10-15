@@ -17,6 +17,7 @@ type Props = {
   heroImg?: string; whyImg?: string; whyImg2?: string; featureImg?: string; processImg?: string
   heroSlot?: React.ReactNode
   heroDark?: boolean
+  heroMotion?: boolean
   heroCtaLabel?: string
   heroShowSecondaryCta?: boolean
   postHeroSlot?: React.ReactNode
@@ -42,7 +43,7 @@ export default function ServiceLayout({
   badge, title, subtitle, heroDesc, heroBullets,
   color='var(--purple)', bg='var(--purple-bg)',
   heroImg, whyImg, whyImg2, featureImg, processImg,
-  heroSlot, heroDark=false, heroCtaLabel, heroShowSecondaryCta=true, postHeroSlot,
+  heroSlot, heroDark=false, heroMotion=false, heroCtaLabel, heroShowSecondaryCta=true, postHeroSlot,
   whyTitle, whyDesc, whyPoints,
   features, steps, outcomes, caseStudies, faqs, related,
   ctaTitle='อยากเริ่มโปรเจกต์กับเราไหม?',
@@ -64,6 +65,12 @@ export default function ServiceLayout({
               className="absolute inset-0 pointer-events-none opacity-[0.35]"
               style={{ backgroundImage: 'radial-gradient(rgb(var(--fg) / 0.14) 1px, transparent 1px)', backgroundSize: '22px 22px' }}
             />
+            {heroMotion && (<>
+              <div className="svc-orb svc-orb-a" aria-hidden="true" />
+              <div className="svc-orb svc-orb-b" aria-hidden="true" />
+              <div className="svc-orb svc-orb-c" aria-hidden="true" />
+              <div className="svc-sweep" aria-hidden="true" />
+            </>)}
             <div
               className="absolute -top-40 -left-32 w-[560px] h-[560px] rounded-full pointer-events-none"
               style={{ background: 'radial-gradient(circle, rgba(123,110,246,0.28) 0%, transparent 70%)', filter: 'blur(20px)' }}
@@ -71,16 +78,16 @@ export default function ServiceLayout({
             <div className="relative max-w-7xl mx-auto px-4 lg:px-10 py-24 lg:py-32">
               <div className="grid lg:grid-cols-2 gap-16 items-center">
                 <div>
-                  <h1 className="t-display mb-6 leading-relaxed" style={{ color: 'var(--ink)', fontSize: 'clamp(2.8rem,6vw,5.5rem)' }}>
+                  <h1 className={`t-display mb-6 leading-relaxed${heroMotion ? ' svc-rise' : ''}`} style={{ color: 'var(--ink)', fontSize: 'clamp(2.8rem,6vw,5.5rem)' }}>
                     {title}
                     {subtitle && (
                       <>
                         <br />
-                        <span style={{ background: `linear-gradient(135deg,${color},var(--lime))`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{subtitle}</span>
+                        <span className={heroMotion ? 'svc-grad-text' : undefined} style={heroMotion ? undefined : { background: `linear-gradient(135deg,${color},var(--lime))`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{subtitle}</span>
                       </>
                     )}
                   </h1>
-                  <p className="leading-relaxed mb-10" style={{ fontSize: '1.15rem', color: 'rgb(var(--fg) / 0.85)', fontWeight: 400, maxWidth: 560 }}>{heroDesc}</p>
+                  <p className={`leading-relaxed mb-10${heroMotion ? ' svc-rise' : ''}`} style={{ fontSize: '1.15rem', color: 'rgb(var(--fg) / 0.85)', fontWeight: 400, maxWidth: 560, animationDelay: '.15s' }}>{heroDesc}</p>
                   <div className="flex flex-wrap gap-4">
                     <Link
                       href={`${prefix}/contact`}
@@ -97,7 +104,7 @@ export default function ServiceLayout({
                     )}
                   </div>
                 </div>
-                <div className="relative">
+                <div className={`relative${heroMotion ? ' svc-hero-slot' : ''}`}>
                   {heroSlot}
                 </div>
               </div>
