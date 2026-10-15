@@ -6,7 +6,7 @@ import { t, type Lang } from '@/lib/i18n'
 // A free, rule-based assistant. It answers from the FAQ already on the site, so it has no API cost.
 // Optional dashboard: set NEXT_PUBLIC_CHAT_LOG_URL to a Google Apps Script web-app URL and each question is
 // appended to a Google Sheet (no names, emails or other identifiers are sent).
-type Msg = { from: 'bot' | 'me'; text: string; links?: { label: string; href: string }[]; agent?: boolean; fresh?: boolean }
+type Msg = { from: 'bot' | 'me'; text: string; links?: { label: string; href: string }[]; agent?: boolean; meet?: boolean; fresh?: boolean }
 type QA = { q: string; a: string; h?: string; k?: string; x?: string; p?: number }
 
 const CHANNELS = [
@@ -14,6 +14,13 @@ const CHANNELS = [
   { id: 'messenger', label: 'Messenger', href: 'https://m.me/haliviq', bg: 'linear-gradient(135deg,#00B2FF,#7A5CFF 60%,#FF5CA8)' },
   { id: 'line', label: 'LINE', href: 'https://lin.ee/zyTrkx4', bg: '#06C755' },
 ] as const
+
+const MEET_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0je6QG4mvfhRlih-PGXzRyFuCp-M3VyWFMwv8cbGiikwZ9Lo_17rWIR7q_ssEg92l9juim9xXE'
+const MEET_WANT = /(นัด|จอง)\s*(ประชุม|คุย|โทร|ปรึกษา|ออนไลน์|วิดีโอ|วีดีโอ)|ประชุมออนไลน์|วิดีโอคอล|วีดีโอคอล|google\s*meet|gmeet|video\s*(call|meeting)|(book|schedule|set up|arrange)\s*(a|an|the)?\s*(call|meeting|appointment|consultation|demo)|online\s*meeting/i
+
+function MeetIcon() {
+  return (<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="13" height="14" rx="3.5" fill="#FFD414" /><path d="M16 10.2l5.2-3.6c.5-.3 1.1 0 1.1.6v9.6c0 .6-.6.9-1.1.6L16 13.800z" fill="#F9AB00" /><circle cx="5.600" cy="16" r="1.500" fill="#fff" /></svg>)
+}
 
 function ChannelIcon({ id }: { id: string }) {
   if (id === 'whatsapp')
@@ -360,8 +367,14 @@ export default function ChatBot({ lang }: { lang: Lang }) {
   const ask = (q: string) => {
     const clean = q.trim()
     if (!clean) return
+    if (clean.length < 80 && MEET_WANT.test(clean)) {
+      setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, meet: true, text: isEN ? 'Happy to set up a free online meeting. Pick a time that suits you and a Google Meet link is sent to you by email.' : 'ยินดีนัดประชุมออนไลน์ให้ฟรีครับ เลือกเวลาที่สะดวกได้เลย แล้วระบบจะส่งลิงก์ Google Meet ให้ทางอีเมล' }])
+      setText('')
+      log(clean, -1)
+      return
+    }
     if (wantsAgent(clean) && !(clean.length < 60 && ASKS_IDENTITY.test(clean))) {
-      setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, agent: true, text: isEN ? 'Happy to connect you with the team. Pick the app you like and we will reply there.' : 'ยินดีต่อสายให้คุยกับทีมงานครับ เลือกแอปที่สะดวก แล้วทีมจะตอบกลับทางนั้น' }])
+      setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, agent: true, text: isEN ? 'Happy to connect you with the team. Pick the app you like and we will reply there, or book an online meeting.' : 'ยินดีต่อสายให้คุยกับทีมงานครับ เลือกแอปที่สะดวก หรือนัดประชุมออนไลน์ แล้วทีมจะตอบกลับทางนั้นครับ' }])
       setText('')
       log(clean, -1)
       return
@@ -404,13 +417,16 @@ export default function ChatBot({ lang }: { lang: Lang }) {
                   <div className="px-3.5 py-2 text-[13px] rounded-2xl" style={{ background: 'linear-gradient(135deg, #7B6EF6, #5A4ED4)', color: '#fff', borderTopRightRadius: 6, lineHeight: 1.6 }}>{m.text}</div>
                 ) : (
                   <BotBubble text={m.text} fresh={m.fresh} onTick={() => end.current?.scrollIntoView({ block: 'end' })}>
-                {m.agent && (
+                {(m.agent || m.meet) && (
                   <div className="flex flex-col gap-2 mt-2">
-                    {CHANNELS.map((c) => (
+                    {m.agent && CHANNELS.map((c) => (
                       <a key={c.id} href={c.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 px-3.5 py-2 rounded-2xl text-[13px]" style={{ background: c.bg, color: '#fff', fontWeight: 600 }}>
                         <ChannelIcon id={c.id} />{isEN ? `Chat on ${c.label}` : `คุยทาง ${c.label}`}
                       </a>
                     ))}
+                    <a href={MEET_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 px-3.5 py-2 rounded-2xl text-[13px]" style={{ background: '#fff', color: '#1B1A2E', fontWeight: 600 }}>
+                      <MeetIcon />{isEN ? 'Book a Google Meet call' : 'นัดประชุมออนไลน์ Google Meet'}
+                    </a>
                   </div>
                 )}
                 {m.links && (
