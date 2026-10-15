@@ -60,11 +60,11 @@ export default function CoreSkills({ lang, tr }: Props) {
                         { l: lang === 'en' ? 'MVP' : 'ต้นแบบ', from: 0.8, to: 2.4, c: '#B8A9FA' },
                         { l: lang === 'en' ? 'Launch' : 'เปิดตัว', from: 2, to: 3.2, c: '#53C3D7' },
                         { l: lang === 'en' ? 'Scale' : 'ขยาย', from: 2.8, to: 4, c: '#F5D76E' },
-                      ].map((r) => (
+                      ].map((r, ri) => (
                         <div key={r.l} className="relative h-6 mb-1.5 rounded-md" style={{ background: 'rgb(var(--fg) / 0.04)' }}>
                           <div
-                            className="absolute top-0 bottom-0 rounded-md flex items-center px-2"
-                            style={{ left: `${(r.from / 4) * 100}%`, width: `${((r.to - r.from) / 4) * 100}%`, background: r.c, opacity: 0.9 }}
+                            className="absolute top-0 bottom-0 rounded-md flex items-center px-2 strat-bar"
+                            style={{ left: `${(r.from / 4) * 100}%`, width: `${((r.to - r.from) / 4) * 100}%`, background: r.c, opacity: 0.9, animationDelay: `${ri * 0.35}s` }}
                           >
                             <span className="text-[10px] whitespace-nowrap" style={{ color: '#15112A', fontWeight: 600 }}>{r.l}</span>
                           </div>
@@ -83,10 +83,12 @@ export default function CoreSkills({ lang, tr }: Props) {
                             <stop offset="100%" stopColor="#7B6EF6" stopOpacity="0" />
                           </linearGradient>
                         </defs>
-                        <path d="M0 46 L28 40 L56 42 L84 30 L112 32 L140 18 L168 14 L200 6 L200 54 L0 54 Z" fill="url(#strat-fill)" />
-                        <path d="M0 46 L28 40 L56 42 L84 30 L112 32 L140 18 L168 14 L200 6" fill="none" stroke="#B8A9FA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        <circle cx="200" cy="6" r="3.5" fill="#53C3D7">
-                          <animate attributeName="r" values="3;5;3" dur="2.4s" repeatCount="indefinite" />
+                        <path className="strat-area" d="M0 46 L28 40 L56 42 L84 30 L112 32 L140 18 L168 14 L200 6 L200 54 L0 54 Z" fill="url(#strat-fill)" />
+                        <path id="strat-line" className="strat-line" pathLength={1} d="M0 46 L28 40 L56 42 L84 30 L112 32 L140 18 L168 14 L200 6" fill="none" stroke="#B8A9FA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        <circle className="strat-dot" r="3.5" fill="#53C3D7">
+                          <animateMotion dur="6s" repeatCount="indefinite" calcMode="linear" keyPoints="0;1;1" keyTimes="0;0.55;1">
+                            <mpath href="#strat-line" />
+                          </animateMotion>
                         </circle>
                       </svg>
                     </div>
