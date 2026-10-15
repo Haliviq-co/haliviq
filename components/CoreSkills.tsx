@@ -1,5 +1,6 @@
 'use client'
 import Link from 'next/link'
+import TypedCode from './TypedCode'
 import { type Lang, type T } from '@/lib/i18n'
 
 type Props = { lang: Lang; tr: T }
@@ -175,11 +176,7 @@ export default function CoreSkills({ lang, tr }: Props) {
                         <span className="ml-2 text-[10px]" style={{ letterSpacing: '0.1em', color: 'rgb(var(--fg) / 0.5)', fontFamily: 'monospace' }}>api/orders.ts</span>
                       </div>
                       <div className="px-3.5 py-3 text-[11px] leading-[1.7]" style={{ fontFamily: 'monospace', color: 'rgb(var(--fg) / 0.8)' }}>
-                        <div><span style={{ color: '#B8A9FA' }}>export async function</span> <span style={{ color: '#53C3D7' }}>createOrder</span>(req) {'{'}</div>
-                        <div className="pl-4"><span style={{ color: '#B8A9FA' }}>const</span> user = <span style={{ color: '#B8A9FA' }}>await</span> <span style={{ color: '#53C3D7' }}>auth</span>(req)</div>
-                        <div className="pl-4"><span style={{ color: '#B8A9FA' }}>const</span> order = <span style={{ color: '#B8A9FA' }}>await</span> db.<span style={{ color: '#53C3D7' }}>insert</span>(req.body)</div>
-                        <div className="pl-4"><span style={{ color: '#B8A9FA' }}>return</span> <span style={{ color: '#F5D76E' }}>{'{ ok: true, order }'}</span><span style={{ animation: 'tooltipPulse 1s step-end infinite' }}>|</span></div>
-                        <div>{'}'}</div>
+                        <TypedCode />
                       </div>
                     </div>
                     {/* CI/CD pipeline */}
