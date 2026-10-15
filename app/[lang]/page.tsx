@@ -72,11 +72,11 @@ export default function HomePage({ params }: { params: { lang: string } }) {
       <Navbar lang={lang} tr={tr} transparent />
       <Hero lang={lang} tr={tr} />
       <CoreSkills lang={lang} tr={tr} />
+      <FeaturedWork lang={lang} tr={tr} />
       <WhatWeDo lang={lang} tr={tr} />
       <FlowDiagram lang={lang} />
       <Clients lang={lang} tr={tr} />
       {/* Services and Work sections removed */}
-      <FeaturedWork lang={lang} tr={tr} />
       <PortfolioGallery lang={lang} tr={tr} />
       <LatestThinking lang={lang} tr={tr} />
       <FAQ lang={lang} tr={tr} />
