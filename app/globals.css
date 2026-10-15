@@ -555,3 +555,13 @@ html[data-theme="light"] .cta-final a[href$="/contact"]:hover { background: #EEE
 @media (min-width:1024px){.svc-thumb.svc-hero-vis{--zm:1.6}}
 @media (min-width:1280px){.svc-thumb.svc-hero-vis{--zm:1.9}}
 @media (prefers-reduced-motion:reduce){.svc-thumb .items-end>*,.svc-code span{animation:none!important;width:auto}}
+
+/* typed text inside panels (replaces bottom code strip) */
+.svc-thumb .svc-code{display:none}
+.svc-thumb span:not(:has(*)):not(.svc-code span){display:inline-block;white-space:nowrap;clip-path:inset(0 100% 0 0);animation:svcInType 6.5s steps(16) infinite;border-right:1.5px solid transparent}
+.svc-thumb div:nth-child(2)>span:not(:has(*)){animation-delay:.5s}
+.svc-thumb div:nth-child(3)>span:not(:has(*)){animation-delay:1s}
+.svc-thumb div:nth-child(4)>span:not(:has(*)){animation-delay:1.5s}
+.svc-thumb div:nth-child(5)>span:not(:has(*)){animation-delay:2s}
+@keyframes svcInType{0%,4%{clip-path:inset(0 100% 0 0);border-right-color:var(--lime)}22%{clip-path:inset(0 0 0 0);border-right-color:var(--lime)}26%,88%{clip-path:inset(0 0 0 0);border-right-color:transparent}96%,100%{clip-path:inset(0 100% 0 0);border-right-color:transparent}}
+@media (prefers-reduced-motion:reduce){.svc-thumb span:not(:has(*)){animation:none!important;clip-path:none}}

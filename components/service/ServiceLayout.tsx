@@ -166,7 +166,6 @@ export default function ServiceLayout({
                     <div className="absolute inset-0 opacity-[0.1] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle,#fff 1px,transparent 1px)', backgroundSize: '18px 18px' }} />
                     <div className="svc-orb svc-orb-a" aria-hidden="true" style={{ width: 300, height: 300, left: '-12%', top: '-18%', opacity: 0.35 }} />
                     <div className="svc-orb svc-orb-c" aria-hidden="true" style={{ width: 280, height: 280, right: '-10%', bottom: '-18%', opacity: 0.3 }} />
-                    <CodeStrip text={`> ${(heroVisual ?? (heroImg ?? '').split('/')[3] ?? 'service')} --run  ✓`} />
                     <ServiceVisual slug={heroVisual ?? (heroImg ?? '').split('/')[3] ?? ''} />
                   </div>
                   : <IP label="Hero Image / Screenshot" height={440} color={color} bg={bg} />

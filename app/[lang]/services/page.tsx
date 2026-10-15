@@ -177,7 +177,6 @@ export default function Page({ params }: { params: { lang: Lang } }) {
                           style={{ ['--d' as any]: `${((ix + ci * 3) % 6) * 0.7}s`, background: 'linear-gradient(160deg,#171025 0%,#0B0813 100%)', border: '1px solid rgb(var(--fg) / 0.07)' }}
                         >
                           <div className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle,#fff 1px,transparent 1px)', backgroundSize: '18px 18px' }} />
-                          <CodeStrip text={['> npm run build  ✓', '> deploy --prod  ✓', '> test --all  ✓', '> agent.run(task)  ✓', '> plan --growth  ✓', '> sync --live  ✓'][(ix + ci * 2) % 6]} />
                           <ServiceVisual slug={slug} />
                         </div>
                         {/* Content */}
