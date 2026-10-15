@@ -421,7 +421,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       lang={params.lang as Lang}
       badge={badge} title={title} subtitle={subtitle}
       heroDesc={heroDesc} heroBullets={heroBullets}
-      heroDark heroSlot={heroSlot} heroShowSecondaryCta={false}
+      heroDark heroVisual="ai-voice-agents" heroSlot={heroSlot} heroShowSecondaryCta={false}
       heroCtaLabel={isEN ? 'Get Started' : 'เริ่มต้นเลย'}
       postHeroSlot={postHeroSlot}
       whyTitle={whyTitle} whyDesc={whyDesc} whyPoints={whyPoints}
