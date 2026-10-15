@@ -96,6 +96,111 @@ function ServiceVisual({ slug }: { slug: string }) {
           </div>
         </div>
       )
+    case 'backend-api':
+      return (
+        <div className="absolute inset-0 flex items-center justify-center gap-4 px-6">
+          <Panel style={{ width: 128 }}>
+            <div style={{ fontSize: 9, color: dim, marginBottom: 6 }}>API</div>
+            {[['GET', '/orders', '200'], ['POST', '/pay', '201'], ['GET', '/users', '200']].map(([m, r, c], i) => (
+              <div key={r} className="flex items-center gap-1.5 mb-1.5" style={{ fontSize: 9, color: 'rgb(var(--fg) / 0.8)', fontFamily: 'monospace' }}>
+                <span className="svc-ping" style={{ width: 5, height: 5, borderRadius: 9, background: 'var(--lime)', animationDelay: `${i * 0.5}s` }} />
+                <span style={{ color: 'var(--purple-light)' }}>{m}</span><span>{r}</span><span style={{ marginLeft: 'auto', color: 'var(--lime)' }}>{c}</span>
+              </div>
+            ))}
+          </Panel>
+          <div className="h-px w-5" style={{ background: 'repeating-linear-gradient(90deg,var(--lime) 0 4px,transparent 4px 8px)' }} />
+          <div className="w-12 h-14 rounded-xl flex items-center justify-center" style={{ background: 'rgba(155,107,255,0.2)', border: glassBorder }}>
+            <i className="ti ti-database" style={{ color: 'var(--accent-2)', fontSize: 22 }} aria-hidden="true" />
+          </div>
+        </div>
+      )
+    case 'design-systems':
+      return (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <Panel style={{ width: 200 }}>
+            <div style={{ fontSize: 9, color: dim, marginBottom: 8 }}>COMPONENTS</div>
+            <div className="grid grid-cols-2 gap-2">
+              <div className="h-7 rounded-md flex items-center justify-center svc-tile" style={{ background: 'linear-gradient(135deg,var(--purple),var(--purple-light))', fontSize: 9, color: '#fff' }}>Button</div>
+              <div className="h-7 rounded-md flex items-center px-2 svc-tile" style={{ border: glassBorder, animationDelay: '.4s' }}><Bar w={60} color="rgb(var(--fg) / 0.2)" /></div>
+              <div className="h-7 rounded-md flex items-center px-2 svc-tile" style={{ border: glassBorder, animationDelay: '.8s' }}><span className="w-6 h-3 rounded-full" style={{ background: 'var(--lime)' }} /></div>
+              <div className="h-7 rounded-md flex items-center justify-center gap-1 svc-tile" style={{ animationDelay: '1.2s', border: glassBorder }}>
+                {['var(--purple)', 'var(--lime)', '#53C3D7'].map((c) => (<span key={c} className="w-2.5 h-2.5 rounded-full" style={{ background: c }} />))}
+              </div>
+            </div>
+          </Panel>
+        </div>
+      )
+    case 'product-discovery':
+      return (
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-6">
+          <div className="flex items-center gap-2 w-full justify-center">
+            {['PROBLEM', 'TEST', 'DECIDE'].map((l, i) => (
+              <div key={l} className="flex items-center gap-2">
+                <Panel style={{ padding: '6px 10px', animationDelay: `${i * 0.5}s` }} className="svc-tile"><span style={{ fontSize: 9, color: 'rgb(var(--fg) / 0.85)' }}>{l}</span></Panel>
+                {i < 2 && <i className="ti ti-arrow-right" style={{ color: 'var(--lime)', fontSize: 12 }} aria-hidden="true" />}
+              </div>
+            ))}
+          </div>
+          <div className="flex gap-2">
+            {[['BUILD', 'var(--lime)'], ['PIVOT', 'var(--purple-light)'], ['STOP', 'rgb(var(--fg) / 0.35)']].map(([l, c], i) => (
+              <span key={l} className="svc-tile" style={{ fontSize: 9, padding: '3px 10px', borderRadius: 99, border: `1px solid ${c}`, color: c, animationDelay: `${i * 0.7}s` }}>{l}</span>
+            ))}
+          </div>
+        </div>
+      )
+    case 'qa-testing':
+      return (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <Panel style={{ width: 190 }}>
+            <div className="flex items-center justify-between mb-2"><span style={{ fontSize: 9, color: dim }}>TEST RUN</span><span style={{ fontSize: 9, color: 'var(--lime)' }}>42 / 45</span></div>
+            <div className="h-1.5 rounded-full overflow-hidden mb-3" style={{ background: 'rgb(var(--fg) / 0.1)' }}><div className="h-full svc-fill" style={{ width: '90%', background: 'linear-gradient(90deg,var(--purple),var(--lime))', transformOrigin: 'left' }} /></div>
+            <div className="flex flex-col gap-1.5">
+              <Check label="Login flow" /><Check label="Checkout" />
+              <div className="flex items-center gap-1.5"><i className="ti ti-bug svc-ping" style={{ color: '#FF8A8A', fontSize: 11 }} aria-hidden="true" /><span style={{ fontSize: 10, color: 'rgb(var(--fg) / 0.85)' }}>Payment edge case</span></div>
+            </div>
+          </Panel>
+        </div>
+      )
+    case 'rapid-prototyping':
+      return (
+        <div className="absolute inset-0 flex items-center justify-center gap-4">
+          {[0, 1].map((n) => (
+            <div key={n} className="rounded-xl relative svc-tile" style={{ width: 70, height: 112, padding: 7, background: 'rgb(var(--fg) / 0.06)', border: glassBorder, animationDelay: `${n * 0.8}s` }}>
+              <div className="h-1.5 rounded-full mb-2" style={{ width: '60%', background: 'rgb(var(--fg) / 0.25)' }} />
+              <div className="rounded-md mb-2" style={{ height: 40, background: n ? 'linear-gradient(135deg,var(--lime),var(--purple-light))' : 'linear-gradient(135deg,var(--purple),var(--purple-light))', opacity: 0.6 }} />
+              <div className="h-4 rounded-md" style={{ background: 'rgb(var(--fg) / 0.1)' }} />
+              {n === 0 && <span className="absolute svc-ping" style={{ right: 10, bottom: 12, width: 14, height: 14, borderRadius: 99, border: '2px solid var(--lime)' }} />}
+            </div>
+          ))}
+          <i className="ti ti-arrow-right" style={{ position: 'absolute', color: 'var(--lime)', fontSize: 16 }} aria-hidden="true" />
+        </div>
+      )
+    case 'support':
+      return (
+        <div className="absolute inset-0 flex items-center justify-center gap-4 px-6">
+          <div className="rounded-full flex items-center justify-center svc-ping-ring" style={{ width: 62, height: 62, background: 'rgba(155,107,255,0.2)', border: '1px solid var(--purple-light)' }}>
+            <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--ink)' }}>24/7</span>
+          </div>
+          <Panel style={{ width: 116 }}>
+            <div style={{ fontSize: 9, color: dim, marginBottom: 6 }}>UPTIME 99.9%</div>
+            <div className="flex items-end gap-0.5" style={{ height: 26 }}>
+              {Array.from({ length: 14 }).map((_, i) => (<span key={i} className="flex-1 rounded-sm svc-tile" style={{ height: `${i === 8 ? 55 : 100}%`, background: i === 8 ? '#F5D76E' : 'var(--lime)', opacity: 0.8, animationDelay: `${i * 0.12}s` }} />))}
+            </div>
+          </Panel>
+        </div>
+      )
+    case 'user-research':
+      return (
+        <div className="absolute inset-0 flex items-center justify-center gap-3 px-6">
+          <div className="flex flex-col gap-2">
+            <Panel style={{ width: 96, padding: '6px 8px' }}><Bar w={80} color="rgb(var(--fg) / 0.22)" /><div className="h-1" /><Bar w={50} color="rgb(var(--fg) / 0.15)" /></Panel>
+            <Panel style={{ width: 96, padding: '6px 8px', marginLeft: 16, animationDelay: '.5s' }} className="svc-tile"><Bar w={65} color="var(--purple-light)" /><div className="h-1" /><Bar w={40} color="rgb(var(--fg) / 0.15)" /></Panel>
+          </div>
+          <div className="grid grid-cols-3 gap-1.5">
+            {['#F5D76E', '#B8A9FA', '#53C3D7', '#B8A9FA', '#F5D76E', '#53C3D7'].map((c, i) => (<span key={i} className="rounded svc-tile" style={{ width: 22, height: 22, background: c, opacity: 0.85, animationDelay: `${i * 0.25}s` }} />))}
+          </div>
+        </div>
+      )
     case 'ux-ui-design':
       return (
         <div className="absolute inset-0 flex items-center justify-center">
@@ -542,14 +647,14 @@ export default function Page({ params }: { params: { lang: Lang } }) {
               <div key={cat.key} className={`py-12 ${ci !== 0 ? 'border-t' : ''}`} style={{ borderColor: 'rgb(var(--fg) / 0.06)' }}>
                 <h2 className="mb-8" style={{ fontWeight: 500, fontSize: '1.4rem', color: 'var(--accent-2)' }}>{cat.label}</h2>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14">
-                  {cat.items.map((it) => {
+                  {cat.items.map((it, ix) => {
                     const slug = it.href.split('/').pop() as string
                     return (
                       <Link key={it.href} href={`${prefix}${it.href}`} className="group flex flex-col">
                         {/* Visual mockup thumbnail */}
                         <div
-                          className="theme-dark relative h-56 rounded-2xl overflow-hidden mb-6 group-hover:border-[var(--purple-light)]/40 transition-colors"
-                          style={{ background: 'linear-gradient(160deg,#171025 0%,#0B0813 100%)', border: '1px solid rgb(var(--fg) / 0.07)' }}
+                          className="theme-dark svc-thumb relative h-56 rounded-2xl overflow-hidden mb-6 group-hover:border-[var(--purple-light)]/40 transition-colors"
+                          style={{ ['--d' as any]: `${((ix + ci * 3) % 6) * 0.7}s`, background: 'linear-gradient(160deg,#171025 0%,#0B0813 100%)', border: '1px solid rgb(var(--fg) / 0.07)' }}
                         >
                           <div className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle,#fff 1px,transparent 1px)', backgroundSize: '18px 18px' }} />
                           <ServiceVisual slug={slug} />
