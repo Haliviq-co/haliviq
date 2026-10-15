@@ -456,7 +456,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
         <p className="mt-6 text-sm" style={{ color: 'rgb(var(--fg) / 0.7)' }}>
           {isEN ? 'Ongoing maintenance and monitoring is available from $500/month.' : 'บริการดูแลและเฝ้าระวังต่อเนื่องเริ่มที่ ฿5,900/เดือน'}
         </p>
-        <div className="mt-10">
+        <div className="mt-10 flex flex-wrap items-center gap-4">
           <Link
             href={`${prefix}/contact`}
             className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-medium transition-opacity hover:opacity-90"
@@ -465,6 +465,16 @@ export default function Page({ params }: { params: { lang: Lang } }) {
             {isEN ? 'Book an audit' : 'จองการตรวจ'}
             <i className="ti ti-arrow-right" style={{ fontSize: 17 }} aria-hidden="true" />
           </Link>
+          <a
+            href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0je6QG4mvfhRlih-PGXzRyFuCp-M3VyWFMwv8cbGiikwZ9Lo_17rWIR7q_ssEg92l9juim9xXE"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-base font-medium transition-opacity hover:opacity-90"
+            style={{ border: '1px solid rgb(var(--fg) / 0.3)', color: 'var(--ink)', fontWeight: 500 }}
+          >
+            {isEN ? 'Book a free 30-min call' : 'จองคุยฟรี 30 นาที'}
+            <i className="ti ti-video" style={{ fontSize: 17 }} aria-hidden="true" />
+          </a>
         </div>
       </div>
     </section>

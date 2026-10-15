@@ -54,6 +54,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
   ]
 
   const channels = isEN ? [
+    { icon: 'ti-video', title: 'Book a call', value: 'Free 30-min video call', sub: 'Pick a time, Google Meet', href: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0je6QG4mvfhRlih-PGXzRyFuCp-M3VyWFMwv8cbGiikwZ9Lo_17rWIR7q_ssEg92l9juim9xXE' },
     { icon: 'ti-phone', title: 'Call', value: '+66 90 918 9009', sub: 'Direct line', href: 'tel:+66909189009' },
     { icon: 'ti-mail', title: 'Sales', value: 'wu@haliviq.com', sub: 'New projects & partnerships', href: 'mailto:wu@haliviq.com' },
     { icon: 'ti-headset', title: 'Support', value: 'info@haliviq.com', sub: 'Existing clients & support', href: 'mailto:info@haliviq.com' },
@@ -62,6 +63,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { icon: 'ti-map-pin', title: 'Office — Thailand', value: '111 Sukhumvit Rd, Bang Chak,', sub: 'Phra Khanong, Bangkok 10260', href: '#' },
     { icon: 'ti-map-pin', title: 'Office — USA', value: '2025 Olympic Hwy N Ste 105,', sub: 'Shelton, WA', href: '#' },
   ] : [
+    { icon: 'ti-video', title: 'จองนัดคุย', value: 'วิดีโอคอลฟรี 30 นาที', sub: 'เลือกเวลาได้เอง ผ่าน Google Meet', href: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0je6QG4mvfhRlih-PGXzRyFuCp-M3VyWFMwv8cbGiikwZ9Lo_17rWIR7q_ssEg92l9juim9xXE' },
     { icon: 'ti-phone', title: 'โทร', value: '+66 90 918 9009', sub: 'ติดต่อโดยตรง', href: 'tel:+66909189009' },
     { icon: 'ti-mail', title: 'ฝ่ายขาย', value: 'wu@haliviq.com', sub: 'โปรเจกต์ใหม่และพาร์ทเนอร์', href: 'mailto:wu@haliviq.com' },
     { icon: 'ti-headset', title: 'ฝ่ายซัพพอร์ต', value: 'info@haliviq.com', sub: 'ลูกค้าเดิมและงานซัพพอร์ต', href: 'mailto:info@haliviq.com' },
