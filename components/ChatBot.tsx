@@ -392,7 +392,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
           role="dialog"
           aria-label={isEN ? 'Havy, Haliviq assistant' : 'น้องฮาวี่ ผู้ช่วย Haliviq'}
           className={`chat-panel ${open ? 'chat-in' : 'chat-out'} mb-3 flex flex-col overflow-hidden rounded-3xl`}
-          style={{ width: 'min(330px, calc(100vw - 32px))', height: 'min(470px, calc(100vh - 120px))', border: '1px solid rgb(var(--fg) / 0.12)', boxShadow: '0 30px 70px -20px rgba(60,50,160,0.45)' }}
+          style={{ border: '1px solid rgb(var(--fg) / 0.12)', boxShadow: '0 30px 70px -20px rgba(60,50,160,0.45)' }}
         >
           <div className="flex items-center gap-3 px-4 py-3" style={{ background: 'linear-gradient(135deg, #7B6EF6 0%, #53C3D7 100%)', color: '#fff' }}>
             <span className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden" style={{ background: 'rgba(255,255,255,0.22)' }} aria-hidden="true">
