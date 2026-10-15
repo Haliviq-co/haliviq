@@ -87,8 +87,8 @@ export default function Page({ params }: { params: { lang: Lang } }) {
             style={{ background: 'radial-gradient(circle, rgba(123,110,246,0.28) 0%, transparent 70%)', filter: 'blur(20px)' }}
           />
           <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-20 lg:pt-28 pb-20">
-            <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-              <div>
+            <div className="grid lg:grid-cols-2 gap-x-16 lg:gap-x-24 gap-y-16 lg:gap-y-0 items-start">
+              <div className="lg:col-start-1 lg:row-start-1">
                 <p className="t-label mb-5">{isEN ? 'Get in Touch' : 'ติดต่อเรา'}</p>
                 <h1 className="t-display text-[clamp(3rem,6vw,5.5rem)] leading-relaxed mb-8" style={{ color: 'var(--ink)' }}>
                   {isEN
@@ -98,16 +98,9 @@ export default function Page({ params }: { params: { lang: Lang } }) {
                 <p className="leading-relaxed mb-12" style={{ fontSize: '1.15rem', color: 'rgb(var(--fg) / 0.85)', fontWeight: 400, maxWidth: 520 }}>
                   {isEN ? 'Tell us about your project, even if it is still a rough idea. We will get back to you within 24 hours with our first thoughts and a suggested next step. If you would rather talk, call us or message us on LINE, and we can set up a first consultation at no cost.' : 'เล่าเรื่องโปรเจกต์ของคุณให้เราฟังได้เลย แม้จะเป็นแค่ไอเดียคร่าว ๆ เราจะตอบกลับภายใน 24 ชั่วโมง พร้อมความเห็นเบื้องต้นและขั้นตอนถัดไปที่เราแนะนำ ถ้าอยากคุยเลย โทรหาเราหรือทักทาง LINE ได้ แล้วเรานัดปรึกษาครั้งแรกให้ฟรี'}
                 </p>
-                <a
-                  href="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0je6QG4mvfhRlih-PGXzRyFuCp-M3VyWFMwv8cbGiikwZ9Lo_17rWIR7q_ssEg92l9juim9xXE"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 mb-8 px-8 py-4 rounded-xl text-base transition-opacity hover:opacity-90"
-                  style={{ background: 'linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%)', color: '#fff', fontWeight: 500 }}
-                >
-                  <i className="ti ti-video" style={{ fontSize: 18 }} aria-hidden="true" />
-                  {isEN ? 'Book a free call on Google Meet' : 'จองคุยฟรีผ่าน Google Meet'}
-                </a>
+              </div>
+
+              <div className="lg:col-start-1 lg:row-start-2">
                 <div className="space-y-4 mb-12">
                   {channels.map(c => (
                     <a key={c.title} href={c.href}
@@ -136,7 +129,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
                 </div>
               </div>
 
-              <div className="contact-card rounded-3xl p-8 lg:p-10 lg:sticky lg:top-24" style={{ border: '1px solid rgb(var(--fg) / 0.08)' }}>
+              <div className="contact-card rounded-3xl p-8 lg:p-10 lg:sticky lg:top-24 lg:col-start-2 lg:row-start-2" style={{ border: '1px solid rgb(var(--fg) / 0.08)' }}>
                 <h2 className="mb-8" style={{ fontWeight: 500, fontSize: '1.3rem', color: 'var(--ink)' }}>{isEN ? 'Tell us about your project' : 'เล่าเรื่องโปรเจกต์ของคุณ'}</h2>
                 <ContactFormShell lang={lang}>
                   <div className="grid sm:grid-cols-2 gap-5">
