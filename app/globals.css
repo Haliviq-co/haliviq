@@ -437,9 +437,7 @@ html[data-theme="light"] .cta-final a[href$="/contact"]:hover { background: #EEE
 
 /* phones: Havy fades out while the page scrolls, returns when it stops */
 .chat-mascot-btn { transition: opacity .25s ease, transform .25s ease; }
-@media (max-width: 767px) {
-  .chat-mascot-btn.is-scrolling { opacity: 0; pointer-events: none; }
-}
+/* Havy stays visible while scrolling on phones too */
 
 /* ── Services hero banner ── */
 .svc-orb{position:absolute;border-radius:50%;pointer-events:none;opacity:.55;will-change:transform}
