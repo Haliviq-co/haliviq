@@ -304,10 +304,10 @@ export const t = {
       desc: 'สตูดิโอพัฒนาผลิตภัณฑ์ดิจิทัลในกรุงเทพฯ เราออกแบบและพัฒนาซอฟต์แวร์ที่ช่วยให้ธุรกิจของคุณแข่งขันได้จริง ตั้งแต่เว็บไซต์ แอป ไปจนถึงระบบ AI',
       sections: {
         'บริการ': [
-          {l:'กลยุทธ์และที่ปรึกษา',h:'/services/strategy'},
-          {l:'ออกแบบ UX / UI',h:'/services/design'},
-          {l:'พัฒนาเว็บไซต์',h:'/services/web'},
-          {l:'แอปมือถือ',h:'/services/mobile'},
+          {l:'กลยุทธ์และที่ปรึกษา',h:'/services/digital-transformation'},
+          {l:'ออกแบบ UX / UI',h:'/services/ux-ui-design'},
+          {l:'พัฒนาเว็บไซต์',h:'/services/web-development'},
+          {l:'แอปมือถือ',h:'/services/mobile-apps'},
           {l:'ระบบ AI',h:'/services/ai'},
         ],
         'บริษัท': [
@@ -635,10 +635,10 @@ export const t = {
       desc: 'A digital product studio in Bangkok. We design and build software, from websites and apps to AI systems, that helps your business compete.',
       sections: {
         'Services': [
-          {l:'Strategy & Consulting',h:'/services/strategy'},
-          {l:'UX / UI Design',h:'/services/design'},
-          {l:'Web Development',h:'/services/web'},
-          {l:'Mobile Apps',h:'/services/mobile'},
+          {l:'Strategy & Consulting',h:'/services/digital-transformation'},
+          {l:'UX / UI Design',h:'/services/ux-ui-design'},
+          {l:'Web Development',h:'/services/web-development'},
+          {l:'Mobile Apps',h:'/services/mobile-apps'},
           {l:'AI Solutions',h:'/services/ai'},
         ],
         'Company': [
