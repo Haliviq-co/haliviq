@@ -21,6 +21,16 @@ export default function SocialIcons({ className = '', tone, lang }: { className?
         </a>
         )
       })}
+      {[
+        { name: 'Phone', url: 'tel:+66909189009', icon: 'ti-phone' },
+        { name: 'Email', url: 'mailto:wu@haliviq.com', icon: 'ti-mail' },
+      ].map(({ name, url, icon }) => (
+        <a key={name} href={url} aria-label={name}
+          className="w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-110"
+          style={{ background: 'rgb(var(--fg) / 0.06)', border: '1px solid rgb(var(--fg) / 0.1)' }}>
+          <i className={`ti ${icon}`} style={{ fontSize: 16, color: 'rgb(var(--fg) / 0.7)' }} aria-hidden="true" />
+        </a>
+      ))}
     </div>
   )
 }
