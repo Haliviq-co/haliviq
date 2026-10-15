@@ -118,17 +118,17 @@ const flagshipIndustriesTh = [
 ]
 
 const workMenuTh = [
-  { title: 'Digital Banking Super App', href: '/work', client: 'ธนาคารชั้นนำ', desc: 'ออกแบบ Mobile Banking ใหม่ สำหรับผู้ใช้ 4 ล้านคน' },
-  { title: 'Patient Digital Ecosystem', href: '/work', client: 'กลุ่มโรงพยาบาล', desc: 'ระบบสุขภาพดิจิทัล ตั้งแต่ค้นหาแพทย์จนถึงจองนัด' },
-  { title: 'Omnichannel Retail Platform', href: '/work', client: 'เครือค้าปลีก', desc: 'Unified Commerce เชื่อมกว่า 2,000 สาขาเข้าด้วยกัน' },
-  { title: 'AI Document Intelligence', href: '/work', client: 'บริษัทประกันภัย', desc: 'AI อ่านเอกสารอัตโนมัติ ลดงานที่ต้องทำเองลง 80%' },
+  { title: 'MBK Center', href: '/work/mbk', client: 'MBK Center', desc: 'แอปมือถือค้นหาร้านค้าและระบบสมาชิก สำหรับศูนย์การค้าชื่อดัง' },
+  { title: 'DITP กรมส่งเสริมการค้าระหว่างประเทศ', href: '/work/ditp', client: 'DITP', desc: 'แอปมือถือบริการภาครัฐ พร้อมข้อมูลตลาดส่งออก' },
+  { title: 'PAÑPURI', href: '/work/panpuri', client: 'PAÑPURI', desc: 'ออกแบบ UX/UI และเว็บไซต์ Shopify สำหรับแบรนด์เวลเนส' },
+  { title: 'Sena Development', href: '/work/sena-development', client: 'Sena Development', desc: 'CRM อสังหาริมทรัพย์และงานพัฒนา AI สำหรับทีมขาย' },
 ]
 
 const workMenuEn = [
-  { title: 'Digital Banking Super App', href: '/work', client: 'Leading Bank', desc: 'A redesigned mobile banking app serving 4 million users.' },
-  { title: 'Patient Digital Ecosystem', href: '/work', client: 'Hospital Group', desc: 'A digital health system covering everything from finding a doctor to booking a visit.' },
-  { title: 'Omnichannel Retail Platform', href: '/work', client: 'Retail Group', desc: 'Unified commerce connecting 2,000+ branches on one platform.' },
-  { title: 'AI Document Intelligence', href: '/work', client: 'Insurance Company', desc: 'AI that reads documents automatically and cut manual work by 80%.' },
+  { title: 'MBK Center', href: '/work/mbk', client: 'MBK Center', desc: 'A mobile app for store search and membership at a landmark shopping mall.' },
+  { title: 'DITP', href: '/work/ditp', client: 'DITP', desc: 'A government service mobile app with export market information.' },
+  { title: 'PAÑPURI', href: '/work/panpuri', client: 'PAÑPURI', desc: 'UX/UI design and a Shopify website for a wellness brand.' },
+  { title: 'Sena Development', href: '/work/sena-development', client: 'Sena Development', desc: 'A real estate CRM and AI tools for the sales team.' },
 ]
 
 const insightsMenuTh = [
