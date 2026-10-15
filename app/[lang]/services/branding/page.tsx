@@ -103,32 +103,32 @@ export default function Page({ params }: { params: { lang: Lang } }) {
   const whenLabel = isEN ? 'Right when' : 'เหมาะเมื่อ'
 
   const servicesSection = (
-    <section style={{ background: 'var(--bg)', padding: '80px 0 24px' }}>
+    <section style={{ background: 'var(--bg)', padding: '88px 0 24px' }}>
       <div className="max-w-7xl mx-auto px-4 lg:px-10">
-        <div className="mb-10 max-w-2xl">
-          <h2 className="t-display mb-4" style={{ color: 'var(--ink)', fontSize: 'clamp(1.8rem,3.4vw,2.6rem)', lineHeight: 1.25 }}>
+        <div className="grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-6 lg:gap-16 mb-10">
+          <h2 className="t-display" style={{ color: 'var(--ink)', fontSize: 'clamp(1.8rem,3.4vw,2.6rem)', lineHeight: 1.25 }}>
             {isEN ? 'Eight services, used on their own or together' : 'บริการเดี่ยว 8 อย่าง ใช้แยกหรือรวมกันก็ได้'}
           </h2>
-          <p style={{ color: 'rgb(var(--fg) / 0.85)', lineHeight: 1.8 }}>
+          <p style={{ color: 'rgb(var(--fg) / 0.85)', lineHeight: 1.85, alignSelf: 'end' }}>
             {isEN ? 'Choose the service that fits where your business is today.' : 'เลือกบริการที่เหมาะกับสถานการณ์ของธุรกิจคุณในวันนี้'}
           </p>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div style={{ borderTop: '1px solid rgb(var(--fg) / 0.16)' }}>
           {features.map((f, k) => (
-            <article key={f.title} className="rounded-2xl p-6 flex flex-col gap-4" style={{ border: '1px solid rgb(var(--fg) / 0.14)', background: 'rgb(var(--fg) / 0.03)' }}>
-              <div className="flex items-start justify-between">
-                <span className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: 'var(--purple-bg)', color: 'var(--accent)' }}>
-                  <i className={`ti ${f.icon}`} style={{ fontSize: 24 }} aria-hidden="true" />
-                </span>
-                <span aria-hidden="true" style={{ color: 'var(--accent)', fontWeight: 600 }}>{String(k + 1).padStart(2, '0')}</span>
+            <article key={f.title} className="grid lg:grid-cols-[110px_minmax(0,5fr)_minmax(0,6fr)] gap-x-12 gap-y-4 py-9" style={{ borderBottom: '1px solid rgb(var(--fg) / 0.16)' }}>
+              <span aria-hidden="true" style={{ color: 'var(--accent)', fontWeight: 600, fontSize: '1.1rem' }}>{String(k + 1).padStart(2, '0')}</span>
+              <div className="flex flex-col gap-3">
+                <h3 className="flex items-center gap-3" style={{ color: 'var(--ink)', fontSize: '1.2rem', fontWeight: 600, lineHeight: 1.4 }}>
+                  <i className={`ti ${f.icon}`} style={{ fontSize: 22, color: 'var(--accent)' }} aria-hidden="true" />
+                  <span>{f.title}</span>
+                </h3>
+                <p style={{ color: 'rgb(var(--fg) / 0.85)', lineHeight: 1.8 }}>{f.desc}</p>
               </div>
-              <h3 style={{ color: 'var(--ink)', fontSize: '1.1rem', fontWeight: 600, lineHeight: 1.4 }}>{f.title}</h3>
-              <p className="text-sm" style={{ color: 'rgb(var(--fg) / 0.85)', lineHeight: 1.75 }}>{f.desc}</p>
-              <div className="mt-auto pt-4" style={{ borderTop: '1px solid rgb(var(--fg) / 0.12)' }}>
-                <p className="text-xs mb-2" style={{ color: 'var(--accent)', letterSpacing: '0.04em' }}>{whenLabel}</p>
-                <ul className="grid gap-1.5 text-sm" style={{ color: 'rgb(var(--fg) / 0.85)', lineHeight: 1.6 }}>
+              <div>
+                <p className="text-xs mb-2" style={{ color: 'var(--accent)', letterSpacing: '0.06em' }}>{whenLabel}</p>
+                <ul className="grid gap-1.5" style={{ color: 'rgb(var(--fg) / 0.85)', lineHeight: 1.7 }}>
                   {when[k].map((w) => (
-                    <li key={w} className="flex gap-2"><span aria-hidden="true" style={{ color: 'var(--accent)' }}>•</span><span>{w}</span></li>
+                    <li key={w} className="flex gap-2"><span aria-hidden="true" style={{ color: 'var(--accent)' }}>–</span><span>{w}</span></li>
                   ))}
                 </ul>
               </div>
@@ -199,11 +199,10 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     <BrandingPackages
       pkgs={packages}
       heading={isEN ? 'Which stage is your business in?' : 'ธุรกิจของคุณอยู่ในช่วงไหน?'}
-      intro={isEN ? 'Each stage needs a different answer about the brand. Tap yours to jump to the package we would combine for it. We adjust every package to your case.' : 'แต่ละช่วงของธุรกิจต้องการคำตอบเรื่องแบรนด์ไม่เหมือนกัน กดเลือกช่วงของคุณเพื่อไปที่แพ็กเกจที่เรารวมไว้ให้ และเราปรับเนื้อหาให้ตรงกับกรณีของคุณ'}
+      intro={isEN ? 'Each stage needs a different answer about the brand. Pick yours to jump to the package we would combine for it. We adjust every package to your case.' : 'แต่ละช่วงของธุรกิจต้องการคำตอบเรื่องแบรนด์ไม่เหมือนกัน เลือกช่วงของคุณเพื่อไปที่แพ็กเกจที่เรารวมไว้ให้ และเราปรับเนื้อหาให้ตรงกับกรณีของคุณ'}
       forLabel={isEN ? 'For:' : 'เหมาะกับ:'}
-      partsLabel={isEN ? 'WHAT IS INCLUDED' : 'สิ่งที่รวมอยู่'}
-      situationLabel={isEN ? 'YOUR SITUATION' : 'สถานการณ์ของคุณ'}
-      pkgLabel={isEN ? 'PACKAGE' : 'แพ็กเกจ'}
+      partsLabel={isEN ? 'Included' : 'สิ่งที่รวมอยู่'}
+      situationLabel={isEN ? 'Your situation' : 'สถานการณ์ของคุณ'}
     />
     </>
   )
