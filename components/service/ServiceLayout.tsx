@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import { ServiceVisual, CodeStrip } from '@/components/service/ServiceVisual'
 import { t, type Lang } from '@/lib/i18n'
 
 type Feature  = { icon: string; title: string; desc: string; detail?: string }
@@ -18,6 +19,7 @@ type Props = {
   heroSlot?: React.ReactNode
   heroDark?: boolean
   heroMotion?: boolean
+  heroVisual?: string
   heroShowBullets?: boolean
   heroCtaLabel?: string
   heroShowSecondaryCta?: boolean
@@ -44,7 +46,7 @@ export default function ServiceLayout({
   badge, title, subtitle, heroDesc, heroBullets,
   color='var(--purple)', bg='var(--purple-bg)',
   heroImg, whyImg, whyImg2, featureImg, processImg,
-  heroSlot, heroDark=false, heroMotion=false, heroShowBullets=false, heroCtaLabel, heroShowSecondaryCta=true, postHeroSlot,
+  heroSlot, heroDark=false, heroMotion=false, heroVisual, heroShowBullets=false, heroCtaLabel, heroShowSecondaryCta=true, postHeroSlot,
   whyTitle, whyDesc, whyPoints,
   features, steps, outcomes, caseStudies, faqs, related,
   ctaTitle='อยากเริ่มโปรเจกต์กับเราไหม?',
@@ -159,9 +161,13 @@ export default function ServiceLayout({
                     </Link>
                   </div>
                 </div>
-                {heroImg
-                  ? <div className="w-full rounded-2xl overflow-hidden">
-                    <img src={heroImg} alt={title} className="w-full h-auto block" />
+                {(heroVisual || heroImg)
+                  ? <div className="svc-thumb svc-hero-vis theme-dark relative w-full rounded-3xl overflow-hidden" style={{ minHeight: 440, background: 'linear-gradient(160deg,#161230 0%,#0E0B1F 100%)', border: '1px solid rgba(123,110,246,0.28)', boxShadow: '0 30px 70px -20px rgba(0,0,0,0.6)' }}>
+                    <div className="absolute inset-0 opacity-[0.1] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle,#fff 1px,transparent 1px)', backgroundSize: '18px 18px' }} />
+                    <div className="svc-orb svc-orb-a" aria-hidden="true" style={{ width: 300, height: 300, left: '-12%', top: '-18%', opacity: 0.35 }} />
+                    <div className="svc-orb svc-orb-c" aria-hidden="true" style={{ width: 280, height: 280, right: '-10%', bottom: '-18%', opacity: 0.3 }} />
+                    <CodeStrip text={`> ${(heroVisual ?? (heroImg ?? '').split('/')[3] ?? 'service')} --run  ✓`} />
+                    <ServiceVisual slug={heroVisual ?? (heroImg ?? '').split('/')[3] ?? ''} />
                   </div>
                   : <IP label="Hero Image / Screenshot" height={440} color={color} bg={bg} />
                 }

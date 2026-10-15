@@ -135,7 +135,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       features={features} steps={steps}
       faqs={faqs} related={related}
       color="var(--purple)" bg="var(--purple-bg)"
-      heroImg="/images/services/growth-strategy/hero.jpg"
+      heroVisual="seo-aeo-geo" heroImg="/images/services/growth-strategy/hero.jpg"
       whyImg="/images/services/growth-strategy/why1.jpg"
       whyImg2="/images/services/growth-strategy/why2.jpg"
       featureImg="/images/services/growth-strategy/feature.jpg"
