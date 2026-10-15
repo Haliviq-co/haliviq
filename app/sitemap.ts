@@ -38,6 +38,7 @@ const staticRoutes = [
   'services/automation',
   'services/backend-api',
   'services/brand-experience',
+  'services/branding',
   'services/cloud-devops',
   'services/cloud-services-migration',
   'services/cybersecurity',

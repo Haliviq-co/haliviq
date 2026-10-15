@@ -20,6 +20,7 @@ const servicesMenuTh = {
     {label:'ออกแบบ UX / UI',href:'/services/ux-ui-design'},
     {label:'ระบบดีไซน์',href:'/services/design-systems'},
     {label:'ทำ Prototype',href:'/services/rapid-prototyping'},
+    {label:'สร้างแบรนด์',href:'/services/branding'},
     {label:'ประสบการณ์แบรนด์',href:'/services/brand-experience'},
   ],
   'พัฒนาซอฟต์แวร์': [
@@ -59,6 +60,7 @@ const servicesMenuEn = {
     {label:'UX / UI Design',href:'/services/ux-ui-design'},
     {label:'Design Systems',href:'/services/design-systems'},
     {label:'Rapid Prototyping',href:'/services/rapid-prototyping'},
+    {label:'Brand Strategy & Identity',href:'/services/branding'},
     {label:'Brand Experience',href:'/services/brand-experience'},
   ],
   'Engineering': [
