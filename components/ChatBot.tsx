@@ -22,7 +22,72 @@ const SERVICES_Q = /(ให้บริการ|รับทำ|รับงา
 const START_Q = /(อยากมี|ต้องการมี|อยากทำ|ต้องการทำ|อยากสร้าง|ต้องการสร้าง|รับทำ|จะทำ|จะสร้าง|จะมี).{0,20}(เว็บ|เว็บไซต์|website|แอป|แอพ|app|ระบบ|ร้านค้าออนไลน์|แพลตฟอร์ม)|(เริ่ม(ต้น)?|เริ่มยังไง|เริ่มจาก).{0,20}(เว็บ|เว็บไซต์|แอป|แอพ|โปรเจกต์|โปรเจค|ระบบ)|(เว็บ|เว็บไซต์|แอป|แอพ|ระบบ).{0,25}(เริ่ม(ต้น)?(ยังไง|อย่างไร|ที่)|ต้องเตรียมอะไร|ต้องทำอะไร)|(how (do|can|should) i|where (do|should) i) (start|begin|get started)|(i )?(want|need) (to (build|make|create|get)|a|my own).{0,25}(website|web site|app|platform|system)|build (a|my) (website|app)|(สนใจ|อยากได้|ต้องการ|ขอ).{0,8}(เว็บ|เว็บไซต์|แอป|แอพ)|(ทำ|สร้าง)(เว็บ|เว็บไซต์|แอป|แอพ)(ให้|ไหม|หน่อย|ได้ไหม)|interested in (a |building |getting )?(website|web site|app)/i
 
 // Business types the visitor can tap when asking about packages. Each gets a short, honest reply and a hand-off to the team.
+
+// What the visitor is asking about, so price / time / "can you do X" questions get an answer about THAT service,
+// instead of being matched to the website FAQ just because they share words like "ราคา" or "ทำ".
+type Prod = { k: string; re: RegExp; chip: string; chipEn: string; th: string; en: string; fTh: string; fEn: string; qTh: string; qEn: string; capTh: string; capEn: string }
+const PRODUCTS: Prod[] = [
+  { k: 'chatbot', re: /แชท\s?บอท|แชตบอท|chat\s?bot|บอทตอบ/i, chip: 'แชทบอท', chipEn: 'Chatbot', th: 'แชทบอท', en: 'a chatbot',
+    fTh: 'จะให้ตอบเรื่องอะไร มีข้อมูลหรือเอกสารให้ตอบมากแค่ไหน และจะใช้บน LINE หรือเว็บไซต์', fEn: 'what it should answer, how much information it has to draw on, and whether it runs on LINE or your website',
+    qTh: 'ตอนนี้ลูกค้าถามอะไรบ่อยที่สุดครับ', qEn: 'What do customers ask you most often?',
+    capTh: 'ได้ครับ เราทำแชทบอท AI ที่ตอบจากเอกสารของธุรกิจคุณ และเชื่อมกับ LINE หรือเว็บไซต์ได้', capEn: 'Yes. We build AI chatbots that answer from your own documents and connect to LINE or your website.' },
+  { k: 'line', re: /\bline\b|ไลน์/i, chip: 'LINE OA', chipEn: 'LINE OA', th: 'LINE OA / LINE Mini App', en: 'a LINE OA or LINE Mini App',
+    fTh: 'ฟีเจอร์ที่ต้องมี เช่น ระบบจอง สะสมแต้ม สั่งซื้อ และต้องเชื่อมกับระบบเดิมไหม', fEn: 'the features you need, such as booking, loyalty points or ordering, and whether it must connect to existing systems',
+    qTh: 'อยากให้ลูกค้าทำอะไรผ่าน LINE ครับ', qEn: 'What should customers be able to do through LINE?',
+    capTh: 'ได้ครับ ตั้งแต่ระบบจอง สะสมแต้ม ไปจนถึงสั่งซื้อผ่าน LINE ลูกค้าไม่ต้องโหลดแอปเพิ่ม', capEn: 'Yes, from booking and loyalty points to ordering through LINE, with no extra app for customers to install.' },
+  { k: 'app', re: /แอป|แอพ|\bapp\b|mobile|มือถือ|ios|android/i, chip: 'แอปมือถือ', chipEn: 'Mobile app', th: 'แอปมือถือ', en: 'a mobile app',
+    fTh: 'ฟีเจอร์ที่ต้องมี ทำทั้ง iOS และ Android ไหม และต้องมีระบบหลังบ้านหรือไม่', fEn: 'the features you need, whether it is iOS, Android or both, and whether it needs a back office',
+    qTh: 'ผู้ใช้จะทำอะไรในแอปบ้างครับ', qEn: 'What will users do in the app?',
+    capTh: 'ได้ครับ ทั้ง iOS และ Android ตั้งแต่ออกแบบ พัฒนา จนขึ้นร้านแอป', capEn: 'Yes, for both iOS and Android, from design and development to publishing on the app stores.' },
+  { k: 'erp', re: /erp|crm|ระบบ(บัญชี|สต็อก|สต๊อก|จัดการ|หลังบ้าน|ขาย|จอง|ภายใน)/i, chip: 'ระบบ ERP/CRM', chipEn: 'ERP / CRM', th: 'ระบบ ERP/CRM หรือระบบหลังบ้าน', en: 'an ERP, CRM or back-office system',
+    fTh: 'งานที่อยากให้ระบบจัดการ จำนวนผู้ใช้ และต้องเชื่อมกับระบบเดิมไหม', fEn: 'the work it should handle, the number of users, and whether it must connect to your current systems',
+    qTh: 'ตอนนี้ทีมทำงานนี้ด้วยวิธีไหนอยู่ครับ', qEn: 'How does your team do this work today?',
+    capTh: 'ได้ครับ ระบบจัดการลูกค้า ขาย สต็อก หรืองานภายในบริษัท ออกแบบให้ตรงกับวิธีทำงานของคุณ', capEn: 'Yes. Customer, sales, stock or internal systems, designed around how your team actually works.' },
+  { k: 'ai', re: /\bai\b|เอไอ|ปัญญาประดิษฐ์|\bllm\b|agent|เอเจนต์/i, chip: 'ระบบ AI', chipEn: 'AI system', th: 'ระบบ AI', en: 'an AI system',
+    fTh: 'งานที่อยากให้ AI ช่วย ข้อมูลที่มี และต้องเชื่อมกับระบบไหนบ้าง', fEn: 'the job you want AI to do, the data you have, and which systems it must connect to',
+    qTh: 'งานไหนที่ทีมใช้เวลามากที่สุดตอนนี้ครับ', qEn: 'Which task takes your team the most time today?',
+    capTh: 'ได้ครับ ทั้ง AI Agent ระบบที่ตอบจากเอกสารของคุณ และฟีเจอร์ AI ที่เข้ากับงานจริง', capEn: 'Yes. AI agents, systems that answer from your own documents, and AI features that fit real tasks.' },
+  { k: 'seo', re: /seo|aeo|geo|ติดอันดับ|ทำโฆษณา/i, chip: 'SEO', chipEn: 'SEO', th: 'SEO', en: 'SEO',
+    fTh: 'ขนาดเว็บ คู่แข่งในตลาด และเป้าหมายที่อยากได้', fEn: 'the size of your site, your competition and the goal you want',
+    qTh: 'ตอนนี้อยากให้คนมาเว็บจากทางไหนเป็นหลักครับ', qEn: 'Where do you most want visitors to come from?',
+    capTh: 'ได้ครับ ทั้ง SEO แบบเดิม และแบบที่ทำให้เว็บถูกแนะนำใน AI อย่าง ChatGPT และ Google AI', capEn: 'Yes, both classic SEO and the kind that gets your site recommended in AI such as ChatGPT and Google AI.' },
+  { k: 'design', re: /ดีไซน์|ออกแบบ|\bux\b|\bui\b|โลโก้|แบรนด์|logo|branding|design/i, chip: 'ออกแบบ UX/UI', chipEn: 'UX / UI design', th: 'งานออกแบบ', en: 'design work',
+    fTh: 'จำนวนหน้าจอ งานที่ต้องการ (โลโก้ แบรนด์ หรือ UX/UI) และต้องวิจัยผู้ใช้ไหม', fEn: 'the number of screens, what you need (logo, brand or UX/UI) and whether user research is needed',
+    qTh: 'อยากออกแบบอะไรเป็นอย่างแรกครับ', qEn: 'What would you like designed first?',
+    capTh: 'ได้ครับ ตั้งแต่แบรนด์ ประสบการณ์ผู้ใช้ จนถึงหน้าตาเว็บและแอป', capEn: 'Yes, from brand and user experience to how your website and app look.' },
+  { k: 'web', re: /เว็บ|website|web\s?site|landing|หน้าเว็บ/i, chip: 'เว็บไซต์', chipEn: 'Website', th: 'เว็บไซต์', en: 'a website',
+    fTh: 'จำนวนหน้า มีระบบสมาชิกหรือชำระเงินไหม และต้องการกี่ภาษา', fEn: 'the number of pages, whether it needs membership or payments, and how many languages',
+    qTh: 'เว็บนี้ไว้ทำอะไรครับ', qEn: 'What will the website be used for?',
+    capTh: 'ได้ครับ ทำเว็บไซต์ได้ทุกแบบ ตั้งแต่เว็บบริษัท ไปจนถึงร้านค้าออนไลน์และระบบสมาชิก', capEn: 'Yes. We build all kinds of websites, from company sites to online shops and membership systems.' },
+]
+const prodOf = (q: string) => PRODUCTS.find((x) => x.re.test(q))
+const PRICE_W = /ราคา|เท่าไหร่|เท่าไร|กี่บาท|ค่าใช้จ่าย|ค่าบริการ|ค่าทำ|ค่าจ้าง|งบ|price|pricing|cost|how much|fee/i
+const PRICE_SKIP = /forward|fde|retainer|vibe|lovable|bolt|cursor|audit|แพ็?[คก]เ?[กค]จ|package/i
+const TIME_W = /ใช้เวลา|กี่วัน|กี่เดือน|กี่สัปดาห์|นานไหม|นานแค่ไหน|เสร็จเมื่อไหร่|how long|timeline|turnaround/i
+const QUOTE_W = /ใบเสนอราคา|ขอราคา|ประเมินราคา|quotation|\bquote\b/i
+const DISCOUNT_W = /ลดราคา|ส่วนลด|ต่อราคา|ถูกกว่า|discount|cheaper|negotiate/i
+const CAN_W = /ได้ไหม|ได้หรือเปล่า|ได้มั้ย|ได้รึเปล่า|รับทำ|ทำให้ได้|can you|could you|do you (do|build|make|offer)|is it possible|possible to/i
+// Fixing / improving something that already exists has its own FAQ answer, so the generic "yes we build it" must not catch it.
+const FIX_W = /แก้|ปรับปรุง|ซ่อม|บั๊ก|เว็บเดิม|แอปเดิม|ระบบเดิม|ที่มีอยู่|fix|improve|existing|redesign|revamp|migrate|ย้าย/i
+const TECH_W = /wordpress|wix|shopify|laravel|php|\bnode\b|django|flutter|react|next\.?js|vue|angular|\bsql\b|aws|azure|gcp|docker|kubernetes|api|blockchain|crypto|เกม|game|vr|ar\b/i
+const CAPS: { re: RegExp; th: string; en: string }[] = [
+  { re: /(หลายภาษา|2 ?ภาษา|สองภาษา|multi.?lingual|multiple languages|bilingual)|(เว็บ|แอป|website|app).{0,10}ภาษา|ภาษา.{0,6}(เว็บ|แอป)/i,
+    th: 'ได้ครับ ทำเว็บสองภาษาไทยและอังกฤษได้ และจัดโครงสร้างให้ทั้งสองเวอร์ชันตรงกันเสมอ ถ้าอยากได้ภาษาอื่นด้วย บอกทีมได้เลยว่าภาษาอะไร เดี๋ยวประเมินให้ครับ',
+    en: 'Yes. We build bilingual Thai and English sites and keep both versions in step. If you need other languages too, tell the team which ones and we will scope it.' },
+  { re: /ขายของ|ร้านค้าออนไลน์|e-?commerce|ตะกร้า|online (shop|store)|sell (products|online)/i,
+    th: 'ได้ครับ ทำร้านค้าออนไลน์ได้ ตั้งแต่หน้าสินค้า ตะกร้า ไปจนถึงชำระเงิน ถ้าสินค้ายังไม่เยอะ เริ่มจากเว็บเล็ก ๆ ก่อนแล้วค่อยต่อยอดก็ได้ครับ',
+    en: 'Yes. We build online shops, from product pages and cart to payment. If you have few products, we can start small and grow it.' },
+  { re: /ระบบสมาชิก|สมาชิก|ล็อกอิน|เข้าสู่ระบบ|\blogin\b|member(ship)?/i,
+    th: 'ได้ครับ ทำระบบสมาชิก สมัคร เข้าสู่ระบบ และหน้าข้อมูลส่วนตัวของแต่ละคนได้',
+    en: 'Yes. We build membership systems with sign-up, login and a personal page for each user.' },
+  { re: /ตามแบบ|ตามดีไซน์|ตามภาพ|แบบที่(มี|เรา|ผม|ฉัน)|figma|ไฟล์ออกแบบ|mockup/i,
+    th: 'ได้ครับ ถ้ามีแบบหรือไฟล์ Figma อยู่แล้ว ส่งให้ทีมดูได้เลย จะพัฒนาตามแบบให้ ถ้ายังไม่มีแบบ เรามีทีมออกแบบช่วยทำให้ครับ',
+    en: 'Yes. If you already have a design or a Figma file, send it over and we will build to it. If you do not have one yet, our design team can create it.' },
+]
+
 const PACKAGE_Q = /แพ็?[คก]เ?[กค]จ|แพ็คเกจ|แพคเกจ|แพ็กเกจ|package|pricing plan|starter|โปรโมชั่น|โปรโมชัน|ธุรกิจ(เริ่มต้น|เล็ก|ใหม่)|(เริ่มต้น|เริ่มทำ|เริ่มขาย).{0,10}ธุรกิจ|small business|new business|start.?up/i
+// A bare "I'm interested" / "tell me more" is a buying signal, so ask what they need instead of matching some random FAQ.
+const INTEREST = /^\s*(สนใจ|สนใจจ้า|สนใจนะ|อยากทราบ|อยากรู้|อยากรู้เพิ่ม|ขอรายละเอียด|ขอข้อมูล|ขอข้อมูลเพิ่ม|ได้|ได้เลย|โอเค|ok|okay|yes|ใช่|interested|i'?m interested|tell me more|sounds good)[\sa-z\u0e00-\u0e7f!.]{0,8}$/i
 const BUSINESS: { key: string; th: string; en: string; tha: string; ena: string }[] = [
   { key: 'food', th: 'ร้านอาหาร/คาเฟ่', en: 'Restaurant / cafe', tha: 'ร้านอาหารและคาเฟ่มักเริ่มจากเว็บไซต์ที่มีเมนูและแผนที่ ต่อด้วยระบบจองโต๊ะหรือสั่งอาหาร และ LINE OA เก็บลูกค้าประจำครับ', ena: 'Restaurants and cafes usually start with a simple website with menu and map, then table booking or online ordering, and a LINE OA to keep regulars coming back.' },
   { key: 'shop', th: 'ร้านค้าออนไลน์', en: 'Online store', tha: 'ร้านค้าออนไลน์มักเริ่มจากหน้าร้านที่ใช้งานง่าย มีตะกร้าและชำระเงิน แล้วค่อยต่อระบบสต็อกและออเดอร์เมื่อขายได้มากขึ้นครับ', ena: 'Online stores usually start with an easy storefront with cart and payments, then add stock and order management as sales grow.' },
@@ -358,6 +423,71 @@ export default function ChatBot({ lang }: { lang: Lang }) {
         ],
       }
     }
+    if (q.length < 140 && QUOTE_W.test(q) && !PRICE_SKIP.test(q)) {
+      return {
+        idx: -1,
+        text: isEN
+          ? 'Of course, a quote is free. Tell us briefly what you want built and the team will send a clear price and timeline. The contact page has a short form, or you can book a free 30-minute call.'
+          : 'ได้เลยครับ ใบเสนอราคาไม่มีค่าใช้จ่าย เล่าให้ทีมฟังคร่าว ๆ ว่าอยากได้อะไร แล้วทีมจะส่งราคาและระยะเวลาที่ชัดเจนกลับไปครับ กรอกฟอร์มสั้น ๆ ที่หน้าติดต่อ หรือนัดคุยฟรี 30 นาทีก็ได้ครับ',
+        links: [{ label: isEN ? 'Request a quote' : 'ขอใบเสนอราคา', href: `/${lang}/contact` }],
+        meet: true,
+      }
+    }
+    if (q.length < 100 && DISCOUNT_W.test(q) && !PRICE_SKIP.test(q)) {
+      return {
+        idx: -1,
+        text: isEN
+          ? 'The team looks at pricing against the real scope of the work. Tell them what you need and a rough budget, and they can shape the plan to fit. Message the team or book a free call.'
+          : 'เรื่องราคาทีมงานจะดูตามขอบเขตงานจริงครับ เล่าสิ่งที่อยากได้และงบคร่าว ๆ ให้ทีมฟัง ทีมจะช่วยปรับแนวทางให้พอดีกับงบได้ครับ ทักทีมงานหรือนัดคุยฟรีได้เลย',
+        agent: true,
+      }
+    }
+    if (q.length < 120 && PRICE_W.test(q) && !PRICE_SKIP.test(q)) {
+      const pr = prodOf(q)
+      if (pr) {
+        return {
+          idx: -1,
+          text: isEN
+            ? `The price of ${pr.en} depends on ${pr.fEn}. I would rather not guess a number and get it wrong. ${pr.qEn} Tell the team roughly what you need and they will give you a clear estimate for free, with no cost for the first chat.`
+            : `ราคา${pr.th}ขึ้นอยู่กับ${pr.fTh}ครับ ผมไม่อยากเดาตัวเลขให้คลาดเคลื่อน ${pr.qTh} เล่าให้ทีมฟังคร่าว ๆ แล้วเราจะประเมินราคาที่ชัดเจนให้ฟรี ไม่มีค่าใช้จ่ายในการคุยครั้งแรกครับ`,
+          agent: true,
+        }
+      }
+      return {
+        idx: -1,
+        text: isEN
+          ? 'Pricing depends on what you need, and I would rather not guess. What are you interested in? Tap one below, or ask the team.'
+          : 'ราคาขึ้นอยู่กับงานที่ต้องการครับ ผมไม่อยากเดาให้ผิด สนใจทำอะไรอยู่ครับ กดเลือกได้เลย หรือสอบถามแอดมินได้ครับ',
+        choices: [
+          ...PRODUCTS.map((x) => ({ key: 'svc:' + x.k, label: isEN ? x.chipEn : x.chip })),
+          { key: 'agent', label: isEN ? '💬 Talk to the team' : '💬 คุยกับแอดมิน' },
+        ],
+      }
+    }
+    if (q.length < 100 && TIME_W.test(q)) {
+      const pr = prodOf(q)
+      if (pr) {
+        return {
+          idx: -1,
+          text: isEN
+            ? `How long ${pr.en} takes depends on the size of the work. A small one and a large system are very different. Once we know what you want, the team gives a clear timeline together with the quote. ${pr.qEn}`
+            : `ระยะเวลาทำ${pr.th}ขึ้นอยู่กับขนาดงานครับ งานเล็กกับระบบใหญ่ใช้เวลาต่างกันมาก พอรู้ว่าอยากได้อะไร ทีมจะบอกระยะเวลาที่ชัดเจนพร้อมใบเสนอราคาครับ ${pr.qTh}`,
+          agent: true,
+        }
+      }
+    }
+    if (q.length < 100 && CAN_W.test(q) && !FIX_W.test(q) && !TECH_W.test(q)) {
+      const sp = CAPS.find((c) => c.re.test(q))
+      const pr = prodOf(q)
+      const body = sp ? (isEN ? sp.en : sp.th) : pr ? (isEN ? pr.capEn : pr.capTh) : ''
+      if (body) {
+        return {
+          idx: -1,
+          text: body + (isEN ? ' Tell me a little more about what you have in mind, or talk to the team.' : ' เล่าเพิ่มได้เลยครับว่าอยากได้แบบไหน หรือคุยกับทีมงานได้เลยครับ'),
+          agent: true,
+        }
+      }
+    }
     if (q.length < 140 && START_Q.test(q) && !/ราคา|เท่าไหร่|price|cost|how much|vibe|lovable|bolt|cursor/i.test(q)) {
       return {
         idx: -1,
@@ -373,6 +503,18 @@ export default function ChatBot({ lang }: { lang: Lang }) {
           { label: isEN ? 'Contact the team' : 'ติดต่อทีมงาน', href: `/${lang}/contact` },
         ],
         meet: true,
+      }
+    }
+    if (q.length < 24 && INTEREST.test(q)) {
+      return {
+        idx: -1,
+        text: isEN
+          ? 'Great! What are you looking for? A website, a mobile app, an AI assistant or a business system? Tell me a bit about it, or tap your type of business below.'
+          : 'ยินดีครับ สนใจด้านไหนเป็นพิเศษครับ เว็บไซต์ แอปมือถือ ระบบ AI หรือระบบจัดการธุรกิจ เล่าให้ผมฟังได้เลยครับ หรือกดเลือกประเภทธุรกิจของคุณด้านล่างก็ได้ครับ',
+        choices: [
+          ...BUSINESS.map((b) => ({ key: b.key, label: isEN ? b.en : b.th })),
+          { key: 'agent', label: isEN ? '💬 Talk to the team' : '💬 คุยกับแอดมิน' },
+        ],
       }
     }
     if (q.length < 70 && SERVICES_Q.test(q) && !/ราคา|เท่าไหร่|price|cost|how much/i.test(q)) {
@@ -402,7 +544,10 @@ export default function ChatBot({ lang }: { lang: Lang }) {
       let hit = 0, qhit = 0
       g.forEach((x) => { const w = idf.get(x) || 0; if (e.g.has(x)) hit += w; if (e.qg.has(x)) qhit += w })
       if (!hit) return
-      if (g.size <= 1 && !e.it.p) return // a single bare word is too vague to match a niche answer
+      // A timing or price answer is only right when the visitor actually asked about time or price.
+      if (/ใช้เวลา|นานแค่ไหน|how long|take long/i.test(e.it.q) && !TIME_W.test(q)) return
+      if (/ราคา|เท่าไหร่|คิดราคา|\bcost|price|pricing|how much/i.test(e.it.q) && !PRICE_W.test(q)) return
+      if ((g.size <= 1 || q.length < 12) && !e.it.p) return // a single bare word is too vague to match a niche answer
       const cov = qtotal ? hit / qtotal : 0
       const qcov = qtotal ? qhit / qtotal : 0
       const kw = e.kl.length > 2 && ql.includes(e.kl) ? 0.12 : 0
@@ -441,6 +586,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
 
   const pick = (key: string, label: string) => {
     if (key === 'agent') { ask(isEN ? 'Chat with an agent' : 'คุยกับเจ้าหน้าที่'); return }
+    if (key.startsWith('svc:')) { const pd = PRODUCTS.find((x) => x.k === key.slice(4)); if (pd) ask(isEN ? `price of ${pd.chipEn}` : `ราคา${pd.chip}`); return }
     const b = BUSINESS.find((x) => x.key === key)
     if (!b) return
     const tail = isEN
