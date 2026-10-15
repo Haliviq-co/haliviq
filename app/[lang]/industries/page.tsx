@@ -4,6 +4,9 @@ import Link from 'next/link'
 import { t, type Lang } from '@/lib/i18n'
 import type { Metadata } from 'next'
 import { alt } from '@/lib/seo'
+import IndustryHero from '@/components/industry/IndustryHero'
+
+const HERO_KINDS = new Set(['aerospace-defense','agriculture','automotive','consumer-goods','education','energy-utilities','fintech','government','healthcare','hospitality-travel','logistics','manufacturing','media-entertainment','professional-services','retail','technology','telecommunications'])
 
 export async function generateStaticParams() {
   return [{ lang: 'th' }, { lang: 'en' }]
@@ -251,11 +254,13 @@ export default function Page({ params }: { params: { lang: Lang } }) {
               {industries.map((it) => (
                 <Link key={it.href} href={`${prefix}${it.href}`} className="group flex flex-col">
                   <div
-                    className="theme-dark relative h-56 rounded-2xl overflow-hidden mb-6 group-hover:border-[var(--purple-light)]/40 transition-colors"
+                    className="theme-dark relative h-72 rounded-2xl overflow-hidden mb-6 group-hover:border-[var(--purple-light)]/40 transition-colors"
                     style={{ background: 'linear-gradient(160deg,#171025 0%,#0B0813 100%)', border: '1px solid rgb(var(--fg) / 0.07)' }}
                   >
                     <div className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle,#fff 1px,transparent 1px)', backgroundSize: '18px 18px' }} />
-                    <IndustryVisual slug={it.slug} />
+                    {HERO_KINDS.has(it.slug)
+                      ? <div className="ind-cover" aria-hidden="true"><IndustryHero kind={it.slug} isEN={isEN} /></div>
+                      : <IndustryVisual slug={it.slug} />}
                   </div>
                   <h3 className="text-[color:var(--ink)] mb-2.5" style={{ fontWeight: 500, fontSize: '1.2rem' }}>{it.title}</h3>
                   <p className="text-sm leading-relaxed mb-4" style={{ color: 'rgb(var(--fg) / 0.85)', fontWeight: 400 }}>{it.desc}</p>
