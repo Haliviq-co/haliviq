@@ -19,7 +19,7 @@ const CHANNELS = [
 const SERVICES_Q = /(ให้บริการ|รับทำ|รับงาน|บริการ(อะไร|ด้านไหน|อะไรบ้าง|ของ)|ทำอะไร(ได้)?บ้าง|ช่วย.{0,12}(ธุรกิจ|องค์กร|บริษัท).{0,8}(อะไร|ยังไง|อย่างไร)|what (services|do you (do|offer))|what does (haliviq|your company) do|services (do you|you) (offer|provide)|what are your services|tell me about (your )?(services|company))/i
 
 // "I want my own website / app, where do I start?" is a buying question, so it gets a real answer, not a dead end.
-const START_Q = /(อยากมี|ต้องการมี|อยากทำ|ต้องการทำ|อยากสร้าง|ต้องการสร้าง|รับทำ|จะทำ|จะสร้าง|จะมี).{0,20}(เว็บ|เว็บไซต์|website|แอป|แอพ|app|ระบบ|ร้านค้าออนไลน์|แพลตฟอร์ม)|(เริ่ม(ต้น)?|เริ่มยังไง|เริ่มจาก).{0,20}(เว็บ|เว็บไซต์|แอป|แอพ|โปรเจกต์|โปรเจค|ระบบ)|(เว็บ|เว็บไซต์|แอป|แอพ|ระบบ).{0,25}(เริ่ม(ต้น)?(ยังไง|อย่างไร|ที่)|ต้องเตรียมอะไร|ต้องทำอะไร)|(how (do|can|should) i|where (do|should) i) (start|begin|get started)|(i )?(want|need) (to (build|make|create|get)|a|my own).{0,25}(website|web site|app|platform|system)|build (a|my) (website|app)/i
+const START_Q = /(อยากมี|ต้องการมี|อยากทำ|ต้องการทำ|อยากสร้าง|ต้องการสร้าง|รับทำ|จะทำ|จะสร้าง|จะมี).{0,20}(เว็บ|เว็บไซต์|website|แอป|แอพ|app|ระบบ|ร้านค้าออนไลน์|แพลตฟอร์ม)|(เริ่ม(ต้น)?|เริ่มยังไง|เริ่มจาก).{0,20}(เว็บ|เว็บไซต์|แอป|แอพ|โปรเจกต์|โปรเจค|ระบบ)|(เว็บ|เว็บไซต์|แอป|แอพ|ระบบ).{0,25}(เริ่ม(ต้น)?(ยังไง|อย่างไร|ที่)|ต้องเตรียมอะไร|ต้องทำอะไร)|(how (do|can|should) i|where (do|should) i) (start|begin|get started)|(i )?(want|need) (to (build|make|create|get)|a|my own).{0,25}(website|web site|app|platform|system)|build (a|my) (website|app)|(สนใจ|อยากได้|ต้องการ|ขอ).{0,8}(เว็บ|เว็บไซต์|แอป|แอพ)|(ทำ|สร้าง)(เว็บ|เว็บไซต์|แอป|แอพ)(ให้|ไหม|หน่อย|ได้ไหม)|interested in (a |building |getting )?(website|web site|app)/i
 
 // Business types the visitor can tap when asking about packages. Each gets a short, honest reply and a hand-off to the team.
 const PACKAGE_Q = /แพ็?[คก]เ?[กค]จ|แพ็คเกจ|แพคเกจ|แพ็กเกจ|package|pricing plan|starter|โปรโมชั่น|โปรโมชัน|ธุรกิจ(เริ่มต้น|เล็ก|ใหม่)|(เริ่มต้น|เริ่มทำ|เริ่มขาย).{0,10}ธุรกิจ|small business|new business|start.?up/i
@@ -322,6 +322,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
     } catch {}
   }
 
+  const fbCount = useRef(0)
   const answer = (q: string): { text: string; links?: Msg['links']; idx: number; agent?: boolean; meet?: boolean; fallback?: boolean; choices?: { key: string; label: string }[] } => {
     if (q.length < 60 && ASKS_IDENTITY.test(q)) {
       return {
@@ -357,12 +358,16 @@ export default function ChatBot({ lang }: { lang: Lang }) {
         ],
       }
     }
-    if (q.length < 140 && START_Q.test(q)) {
+    if (q.length < 140 && START_Q.test(q) && !/ราคา|เท่าไหร่|price|cost|how much|vibe|lovable|bolt|cursor/i.test(q)) {
       return {
         idx: -1,
         text: isEN
-          ? 'Easy to start, and you do not need any tech knowledge. Just tell us what the website is for and who will use it. We reply with what we would build, how long it takes and a clear price. The simplest way is a free 30-minute call, so we can hear your idea first.'
-          : 'เริ่มง่ายมากครับ ไม่ต้องมีความรู้เรื่องเทคนิคเลย แค่เล่าให้เราฟังว่าอยากได้เว็บไว้ทำอะไร ใครจะเป็นคนใช้ แล้วทีมจะกลับมาบอกว่าเราจะทำอะไรให้ ใช้เวลาเท่าไหร่ และราคาเท่าไหร่ แบบชัด ๆ ครับ ถ้าอยากเริ่มเลย นัดคุยฟรี 30 นาทีได้เลยครับ จะได้เล่าไอเดียให้ทีมฟังก่อน',
+          ? 'Happy to help. It works in four simple steps: 1) we listen and understand what you need, 2) we propose an approach with a clear timeline and price, 3) we design and build it and show you progress along the way, 4) we launch and keep looking after it. To start, what kind of business are you in? Tap one below.'
+          : 'ยินดีครับ ขั้นตอนง่าย ๆ มี 4 ขั้น 1) คุยให้เข้าใจว่าคุณอยากได้อะไร 2) เสนอแนวทาง ระยะเวลา และราคาที่ชัดเจน 3) ออกแบบและพัฒนา พร้อมให้ดูความคืบหน้าเป็นระยะ 4) เปิดใช้งานและดูแลต่อให้ ก่อนอื่นขอรู้จักคุณหน่อยครับ ทำธุรกิจด้านใดอยู่ครับ กดเลือกได้เลย',
+        choices: [
+          ...BUSINESS.map((b) => ({ key: b.key, label: isEN ? b.en : b.th })),
+          { key: 'agent', label: isEN ? '💬 Talk to the team' : '💬 คุยกับแอดมิน' },
+        ],
         links: [
           { label: isEN ? 'Web development' : 'บริการพัฒนาเว็บไซต์', href: `/${lang}/services/web-development` },
           { label: isEN ? 'Contact the team' : 'ติดต่อทีมงาน', href: `/${lang}/contact` },
@@ -414,11 +419,20 @@ export default function ChatBot({ lang }: { lang: Lang }) {
       return { text: items[best].a, idx: best, links: [...main, ...routeLinks(q, lang, [main[0].href, `/${lang}/contact`], 2)].slice(0, 3) }
     }
     const rl = routeLinks(q, lang, [`/${lang}/contact`], 2)
+    const FB_TH = [
+      'อันนี้ผมอยากให้ทีมงานช่วยตอบให้ตรงกับงานของคุณครับ เล่าเพิ่มอีกนิดได้ไหมครับว่าอยากได้อะไร เดี๋ยวผมช่วยดูให้ หรือทักทีมงานได้เลย',
+      'ขอโทษครับ ผมยังไม่แน่ใจว่าเข้าใจตรงไหมครับ ลองพิมพ์ใหม่อีกแบบได้ไหมครับ เช่น บอกประเภทธุรกิจหรืองานที่อยากทำ หรือจะคุยกับแอดมินเลยก็ได้ครับ',
+      'เรื่องนี้ให้แอดมินดูแลจะดีที่สุดครับ เลือกแอปที่สะดวกด้านล่างได้เลย หรือนัดคุยออนไลน์ฟรี 30 นาทีก็ได้ครับ',
+    ]
+    const FB_EN = [
+      'I would like the team to answer this one properly for your situation. Could you tell me a little more about what you need? I can take another look, or you can message the team.',
+      'Sorry, I am not sure I understood. Could you try saying it another way, for example the type of business or what you want to build? Or talk to the team directly.',
+      'This one is best handled by the team. Pick the app you like below, or book a free 30-minute online call.',
+    ]
+    const fbN = fbCount.current++ % 3
     return {
       idx: -1,
-      text: isEN
-        ? 'Good question. I would rather not guess on this one, since our team can answer it properly for your situation. Message us on the app you like, or book a free 30-minute call.'
-        : 'คำถามดีครับ แต่เรื่องนี้ผมไม่อยากเดาให้ผิด ให้ทีมงานตอบจะตรงกับงานของคุณที่สุดครับ ทักทีมทางแอปที่สะดวกได้เลย หรือนัดคุยออนไลน์ฟรี 30 นาทีก็ได้ครับ',
+      text: isEN ? FB_EN[fbN] : FB_TH[fbN],
       links: rl.length ? rl : undefined,
       agent: true,
       fallback: true,
@@ -430,8 +444,8 @@ export default function ChatBot({ lang }: { lang: Lang }) {
     const b = BUSINESS.find((x) => x.key === key)
     if (!b) return
     const tail = isEN
-      ? ' The right package depends on your size and goals, so the team will price it properly for you. Message the team or book a free call.'
-      : ' แพ็กเกจที่เหมาะขึ้นอยู่กับขนาดและเป้าหมายของคุณ ทีมจะประเมินราคาให้ตรงกับงานจริงครับ ทักแอดมินหรือนัดคุยฟรีได้เลยครับ'
+      ? ' Tell me a bit more, such as whether you want a website, an app or a system, and a rough budget, and the team can suggest a package that fits. You can also message the team or book a free call.'
+      : ' เล่าเพิ่มได้เลยครับว่าอยากได้เว็บไซต์ แอป หรือระบบแบบไหน และงบประมาณคร่าว ๆ ทีมจะเสนอแพ็กเกจที่พอดีให้ หรือทักแอดมิน หรือนัดคุยฟรีได้เลยครับ'
     setMsgs((m) => [...m, { from: 'me', text: label }, { from: 'bot', fresh: true, agent: true, text: (isEN ? b.ena : b.tha) + tail }])
     log(label, -1)
   }
