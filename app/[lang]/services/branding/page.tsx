@@ -180,6 +180,45 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     </>
   )
 
+  const heroSlot = (
+    <div className="relative pb-6">
+      <div className="theme-dark relative rounded-3xl p-6" style={{ background: '#15112A', border: '1px solid rgba(123,110,246,0.35)', backgroundImage: 'radial-gradient(rgb(255 255 255 / 0.07) 1px, transparent 1px)', backgroundSize: '16px 16px', boxShadow: '0 30px 70px -20px rgba(0,0,0,0.65)' }}>
+        <div className="flex items-center justify-between mb-4">
+          <span className="text-[11px]" style={{ letterSpacing: '0.2em', color: 'rgb(255 255 255 / 0.65)' }}>{isEN ? 'BRAND BOARD' : 'บอร์ดแบรนด์'}</span>
+          <span className="text-[10px] px-2.5 py-0.5 rounded-full" style={{ background: 'rgba(245,215,110,0.14)', color: '#F5D76E' }}>{isEN ? 'Guidelines v1.0' : 'คู่มือแบรนด์ v1.0'}</span>
+        </div>
+        <div className="grid grid-cols-5 gap-4">
+          <div className="col-span-3 rounded-2xl flex items-center justify-center svc-ping-ring" style={{ background: '#1B1A33', border: '1px solid rgba(255,255,255,0.08)', minHeight: 190 }}>
+            <svg width="130" height="130" viewBox="0 0 84 84" fill="none" aria-hidden="true">
+              <defs><linearGradient id="bh-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#7B6EF6" /><stop offset="100%" stopColor="#53C3D7" /></linearGradient></defs>
+              <rect className="hs-draw" x="8" y="8" width="68" height="68" rx="20" stroke="url(#bh-g)" strokeWidth="2" />
+              <rect className="hs-fillin" x="8" y="8" width="68" height="68" rx="20" fill="url(#bh-g)" />
+              <path className="hs-letter" d="M28 58V26h8v12h12V26h8v32h-8V45H36v13z" fill="#15112A" />
+            </svg>
+          </div>
+          <div className="col-span-2 flex flex-col gap-4">
+            <div className="rounded-2xl flex-1 flex items-center justify-center" style={{ background: '#1B1A33', border: '1px solid rgba(255,255,255,0.08)' }}>
+              <span className="svc-grad-text" style={{ fontSize: 52, fontWeight: 700, lineHeight: 1 }}>Aa</span>
+            </div>
+            <div className="rounded-2xl flex-1 flex flex-col justify-center gap-2 px-4" style={{ background: '#1B1A33', border: '1px solid rgba(255,255,255,0.08)' }}>
+              {[90, 70, 80].map((w, i) => (<div key={i} className="h-1.5 rounded-full hs-line" style={{ width: `${w}%`, background: 'rgb(255 255 255 / 0.28)', animationDelay: `${i * 0.5}s` }} />))}
+            </div>
+          </div>
+        </div>
+        <div className="flex gap-2.5 mt-4">
+          {['#7B6EF6', '#B8A9FA', '#53C3D7', '#F5D76E', '#F7F4EF'].map((c, i) => (
+            <span key={c} className="flex-1 rounded-xl hs-swatch" style={{ background: c, height: 44, animationDelay: `${i * 0.35}s` }} />
+          ))}
+        </div>
+        <div className="flex flex-wrap gap-2 mt-4">
+          {(isEN ? ['Website', 'App', 'LINE', 'Sales deck', 'Print'] : ['เว็บไซต์', 'แอป', 'LINE', 'เอกสารนำเสนอ', 'สื่อพิมพ์']).map((t, i) => (
+            <span key={t} className="hs-chip px-3 py-1 rounded-full text-xs" style={{ border: '1px solid rgba(255,255,255,0.18)', color: 'rgb(255 255 255 / 0.85)', animationDelay: `${i * 1.2}s` }}>{t}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+
   return (
     <ServiceLayout
       lang={params.lang as Lang}
@@ -191,7 +230,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       faqs={faqs} related={related}
       postHeroSlot={programs}
       color="var(--accent)" bg="var(--purple-bg)"
-      heroImg="/images/services/brand-experience/hero.jpg"
+      heroDark heroMotion heroShowBullets heroSlot={heroSlot} heroCtaLabel={isEN ? 'Free Consultation' : 'ปรึกษาฟรี'}
       whyImg="/images/services/brand-experience/why1.jpg"
       whyImg2="/images/services/brand-experience/why2.jpg"
       featureImg="/images/services/brand-experience/feature.jpg"

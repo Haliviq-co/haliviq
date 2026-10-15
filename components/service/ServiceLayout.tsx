@@ -18,6 +18,7 @@ type Props = {
   heroSlot?: React.ReactNode
   heroDark?: boolean
   heroMotion?: boolean
+  heroShowBullets?: boolean
   heroCtaLabel?: string
   heroShowSecondaryCta?: boolean
   postHeroSlot?: React.ReactNode
@@ -43,7 +44,7 @@ export default function ServiceLayout({
   badge, title, subtitle, heroDesc, heroBullets,
   color='var(--purple)', bg='var(--purple-bg)',
   heroImg, whyImg, whyImg2, featureImg, processImg,
-  heroSlot, heroDark=false, heroMotion=false, heroCtaLabel, heroShowSecondaryCta=true, postHeroSlot,
+  heroSlot, heroDark=false, heroMotion=false, heroShowBullets=false, heroCtaLabel, heroShowSecondaryCta=true, postHeroSlot,
   whyTitle, whyDesc, whyPoints,
   features, steps, outcomes, caseStudies, faqs, related,
   ctaTitle='อยากเริ่มโปรเจกต์กับเราไหม?',
@@ -88,6 +89,18 @@ export default function ServiceLayout({
                     )}
                   </h1>
                   <p className={`leading-relaxed mb-10${heroMotion ? ' svc-rise' : ''}`} style={{ fontSize: '1.15rem', color: 'rgb(var(--fg) / 0.85)', fontWeight: 400, maxWidth: 560, animationDelay: '.15s' }}>{heroDesc}</p>
+                  {heroShowBullets && heroBullets && (
+                    <ul className="space-y-3 mb-10">
+                      {heroBullets.map((b, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'rgb(var(--fg) / 0.08)' }}>
+                            <i className="ti ti-check" style={{ fontSize: 12, color: 'var(--accent-2)' }} aria-hidden="true" />
+                          </div>
+                          <span className="leading-relaxed" style={{ fontWeight: 400, fontSize: '1.05rem', color: 'rgb(var(--fg) / 0.88)' }}>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                   <div className="flex flex-wrap gap-4">
                     <Link
                       href={`${prefix}/contact`}
