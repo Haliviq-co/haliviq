@@ -6,7 +6,7 @@ import { t, type Lang } from '@/lib/i18n'
 // A free, rule-based assistant. It answers from the FAQ already on the site, so it has no API cost.
 // Optional dashboard: set NEXT_PUBLIC_CHAT_LOG_URL to a Google Apps Script web-app URL and each question is
 // appended to a Google Sheet (no names, emails or other identifiers are sent).
-type Msg = { from: 'bot' | 'me'; text: string; links?: { label: string; href: string }[]; agent?: boolean; meet?: boolean; pending?: boolean; fresh?: boolean }
+type Msg = { from: 'bot' | 'me'; text: string; links?: { label: string; href: string }[]; agent?: boolean; meet?: boolean; pending?: boolean; choices?: { key: string; label: string }[]; fresh?: boolean }
 type QA = { q: string; a: string; h?: string; k?: string; x?: string; p?: number }
 
 const CHANNELS = [
@@ -20,6 +20,20 @@ const SERVICES_Q = /(ให้บริการ|รับทำ|รับงา
 
 // "I want my own website / app, where do I start?" is a buying question, so it gets a real answer, not a dead end.
 const START_Q = /(อยากมี|ต้องการมี|อยากทำ|ต้องการทำ|อยากสร้าง|ต้องการสร้าง|รับทำ|จะทำ|จะสร้าง|จะมี).{0,20}(เว็บ|เว็บไซต์|website|แอป|แอพ|app|ระบบ|ร้านค้าออนไลน์|แพลตฟอร์ม)|(เริ่ม(ต้น)?|เริ่มยังไง|เริ่มจาก).{0,20}(เว็บ|เว็บไซต์|แอป|แอพ|โปรเจกต์|โปรเจค|ระบบ)|(เว็บ|เว็บไซต์|แอป|แอพ|ระบบ).{0,25}(เริ่ม(ต้น)?(ยังไง|อย่างไร|ที่)|ต้องเตรียมอะไร|ต้องทำอะไร)|(how (do|can|should) i|where (do|should) i) (start|begin|get started)|(i )?(want|need) (to (build|make|create|get)|a|my own).{0,25}(website|web site|app|platform|system)|build (a|my) (website|app)/i
+
+// Business types the visitor can tap when asking about packages. Each gets a short, honest reply and a hand-off to the team.
+const PACKAGE_Q = /แพ็?[คก]เ?[กค]จ|แพ็คเกจ|แพคเกจ|แพ็กเกจ|package|pricing plan|starter|โปรโมชั่น|โปรโมชัน|ธุรกิจ(เริ่มต้น|เล็ก|ใหม่)|(เริ่มต้น|เริ่มทำ|เริ่มขาย).{0,10}ธุรกิจ|small business|new business|start.?up/i
+const BUSINESS: { key: string; th: string; en: string; tha: string; ena: string }[] = [
+  { key: 'food', th: 'ร้านอาหาร/คาเฟ่', en: 'Restaurant / cafe', tha: 'ร้านอาหารและคาเฟ่มักเริ่มจากเว็บไซต์ที่มีเมนูและแผนที่ ต่อด้วยระบบจองโต๊ะหรือสั่งอาหาร และ LINE OA เก็บลูกค้าประจำครับ', ena: 'Restaurants and cafes usually start with a simple website with menu and map, then table booking or online ordering, and a LINE OA to keep regulars coming back.' },
+  { key: 'shop', th: 'ร้านค้าออนไลน์', en: 'Online store', tha: 'ร้านค้าออนไลน์มักเริ่มจากหน้าร้านที่ใช้งานง่าย มีตะกร้าและชำระเงิน แล้วค่อยต่อระบบสต็อกและออเดอร์เมื่อขายได้มากขึ้นครับ', ena: 'Online stores usually start with an easy storefront with cart and payments, then add stock and order management as sales grow.' },
+  { key: 'service', th: 'คลินิก/ความงาม/บริการ', en: 'Clinic / beauty / services', tha: 'ธุรกิจบริการมักต้องการเว็บที่น่าเชื่อถือ ระบบนัดหมายออนไลน์ และการแจ้งเตือนลูกค้าผ่าน LINE ครับ', ena: 'Service businesses usually need a trustworthy website, online appointment booking and customer reminders through LINE.' },
+  { key: 'property', th: 'อสังหาริมทรัพย์', en: 'Real estate', tha: 'ธุรกิจอสังหาฯ มักต้องการเว็บแสดงโครงการ ระบบรับลูกค้าสนใจ และ CRM ติดตามลูกค้าครับ', ena: 'Real estate usually needs a project showcase website, lead capture and a CRM to follow up with buyers.' },
+  { key: 'edu', th: 'การศึกษา/คอร์สออนไลน์', en: 'Education / courses', tha: 'งานด้านการศึกษามักต้องการระบบสมัครเรียน หน้าคอร์ส และระบบเรียนออนไลน์ครับ', ena: 'Education usually needs course pages, enrolment and an online learning system.' },
+  { key: 'hotel', th: 'โรงแรม/ท่องเที่ยว', en: 'Hotel / travel', tha: 'โรงแรมและท่องเที่ยวมักต้องการเว็บที่สวยและรับจองตรง เชื่อมระบบห้องพักหรือทัวร์ครับ', ena: 'Hotels and travel businesses usually need a beautiful site with direct booking, connected to rooms or tours.' },
+  { key: 'b2b', th: 'โรงงาน/ธุรกิจ B2B', en: 'Factory / B2B', tha: 'ธุรกิจ B2B มักต้องการเว็บบริษัทที่น่าเชื่อถือ ระบบขอใบเสนอราคา และระบบภายในอย่าง ERP หรือ CRM ครับ', ena: 'B2B companies usually need a credible company website, quote requests and internal systems like ERP or CRM.' },
+  { key: 'startup', th: 'สตาร์ทอัพ/แอปใหม่', en: 'Startup / new app', tha: 'สตาร์ทอัพมักเริ่มจากต้นแบบที่ใช้งานได้จริงเพื่อทดสอบตลาด แล้วค่อยพัฒนาให้พร้อมรองรับผู้ใช้จำนวนมากครับ', ena: 'Startups usually begin with a working prototype to test the market, then grow it to handle many users.' },
+  { key: 'other', th: 'อื่น ๆ', en: 'Something else', tha: 'ธุรกิจของคุณอาจมีความต้องการเฉพาะ เล่าให้ทีมฟังสั้น ๆ ก็พอครับ', ena: 'Your business may have its own needs. A short chat with the team is all it takes.' },
+]
 
 const MEET_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0je6QG4mvfhRlih-PGXzRyFuCp-M3VyWFMwv8cbGiikwZ9Lo_17rWIR7q_ssEg92l9juim9xXE'
 const MEET_WANT = /(นัด|จอง)\s*(ประชุม|คุย|โทร|ปรึกษา|ออนไลน์|วิดีโอ|วีดีโอ)|ประชุมออนไลน์|วิดีโอคอล|วีดีโอคอล|google\s*meet|gmeet|video\s*(call|meeting)|(book|schedule|set up|arrange)\s*(a|an|the)?\s*(call|meeting|appointment|consultation|demo)|online\s*meeting/i
@@ -308,7 +322,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
     } catch {}
   }
 
-  const answer = (q: string): { text: string; links?: Msg['links']; idx: number; agent?: boolean; meet?: boolean; fallback?: boolean } => {
+  const answer = (q: string): { text: string; links?: Msg['links']; idx: number; agent?: boolean; meet?: boolean; fallback?: boolean; choices?: { key: string; label: string }[] } => {
     if (q.length < 60 && ASKS_IDENTITY.test(q)) {
       return {
         idx: -1,
@@ -330,6 +344,18 @@ export default function ChatBot({ lang }: { lang: Lang }) {
     }
     if (q.length < 40 && BYE.test(q)) {
       return { idx: -1, text: isEN ? 'Goodbye! Come back any time, or reach the team on the contact page.' : 'แล้วพบกันครับ ถ้ามีคำถามเพิ่มเติม กลับมาถามได้ตลอด หรือติดต่อทีมงานผ่านหน้าติดต่อเราได้ครับ' }
+    }
+    if (q.length < 120 && PACKAGE_Q.test(q) && !/vibe|lovable|bolt|cursor/i.test(q)) {
+      return {
+        idx: -1,
+        text: isEN
+          ? 'Every business needs something a little different, so we shape the package around your size and budget. What kind of business do you run? Tap one and I will tell you what usually fits, or talk to the team directly.'
+          : 'แต่ละธุรกิจต้องการไม่เหมือนกัน เราเลยจัดแพ็กเกจให้พอดีกับขนาดและงบของคุณครับ ธุรกิจของคุณเป็นแบบไหนครับ กดเลือกได้เลย เดี๋ยวผมบอกว่าปกติเหมาะกับอะไร หรือจะคุยกับแอดมินเลยก็ได้ครับ',
+        choices: [
+          ...BUSINESS.map((b) => ({ key: b.key, label: isEN ? b.en : b.th })),
+          { key: 'agent', label: isEN ? '💬 Talk to the team' : '💬 คุยกับแอดมิน' },
+        ],
+      }
     }
     if (q.length < 140 && START_Q.test(q)) {
       return {
@@ -399,6 +425,17 @@ export default function ChatBot({ lang }: { lang: Lang }) {
     }
   }
 
+  const pick = (key: string, label: string) => {
+    if (key === 'agent') { ask(isEN ? 'Chat with an agent' : 'คุยกับเจ้าหน้าที่'); return }
+    const b = BUSINESS.find((x) => x.key === key)
+    if (!b) return
+    const tail = isEN
+      ? ' The right package depends on your size and goals, so the team will price it properly for you. Message the team or book a free call.'
+      : ' แพ็กเกจที่เหมาะขึ้นอยู่กับขนาดและเป้าหมายของคุณ ทีมจะประเมินราคาให้ตรงกับงานจริงครับ ทักแอดมินหรือนัดคุยฟรีได้เลยครับ'
+    setMsgs((m) => [...m, { from: 'me', text: label }, { from: 'bot', fresh: true, agent: true, text: (isEN ? b.ena : b.tha) + tail }])
+    log(label, -1)
+  }
+
   const ask = (q: string) => {
     const clean = q.trim()
     if (!clean) return
@@ -434,7 +471,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
         .catch(showFallback)
       return
     }
-    setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, text: r.text, links: r.links, agent: r.agent, meet: r.meet }])
+    setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, text: r.text, links: r.links, agent: r.agent, meet: r.meet, choices: r.choices }])
     setText('')
     log(clean, r.idx)
   }
@@ -481,6 +518,13 @@ export default function ChatBot({ lang }: { lang: Lang }) {
                     <a href={MEET_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 px-3.5 py-2 rounded-2xl text-[13px]" style={{ background: '#fff', color: '#1B1A2E', fontWeight: 600 }}>
                       <MeetIcon />{isEN ? 'Book a Google Meet call' : 'นัดประชุมออนไลน์ Google Meet'}
                     </a>
+                  </div>
+                )}
+                {m.choices && (
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {m.choices.map((c) => (
+                      <button key={c.key} type="button" onClick={() => pick(c.key, c.label)} className="text-xs px-3 py-1.5 rounded-full text-left" style={{ border: '1px solid var(--accent)', color: 'var(--accent)', background: 'transparent' }}>{c.label}</button>
+                    ))}
                   </div>
                 )}
                 {m.links && (
