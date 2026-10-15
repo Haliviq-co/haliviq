@@ -350,7 +350,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
         idx: -1,
         text: isEN
           ? 'What kind of business are you in? Tap the one that fits and I will tell you what usually works, or ask the team for more details.'
-          : 'ทำธุรกิจด้านใดนะครับ สามารถคลิกเลือกธุรกิจที่ต้องการ และสอบถามเพิ่มเติมกับแอดมินได้เลยครับ'
+          : 'ทำธุรกิจด้านใดนะครับ สามารถคลิกเลือกธุรกิจที่ต้องการ และสอบถามเพิ่มเติมกับแอดมินได้เลยครับ',
         choices: [
           ...BUSINESS.map((b) => ({ key: b.key, label: isEN ? b.en : b.th })),
           { key: 'agent', label: isEN ? '💬 Talk to the team' : '💬 คุยกับแอดมิน' },
