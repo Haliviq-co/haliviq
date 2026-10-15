@@ -89,6 +89,8 @@ const CAPS: { re: RegExp; th: string; en: string }[] = [
 
 const PACKAGE_Q = /แพ็?[คก]เ?[กค]จ|แพ็คเกจ|แพคเกจ|แพ็กเกจ|package|pricing plan|starter|โปรโมชั่น|โปรโมชัน|ธุรกิจ(เริ่มต้น|เล็ก|ใหม่)|(เริ่มต้น|เริ่มทำ|เริ่มขาย).{0,10}ธุรกิจ|small business|new business|start.?up/i
 // A bare "I'm interested" / "tell me more" is a buying signal, so ask what they need instead of matching some random FAQ.
+// Confusion, complaints and test messages ("ตอบมั่ว", "งง", "ไม่เข้าใจ") should get an apology and a way forward, never a random FAQ.
+const CONFUSED = /^\s*(ตอบ(มั่ว|มั่วๆ|ไม่ตรง|ผิด|แปลก|ไม่รู้เรื่อง)|มั่ว|มั่วๆ|ไม่เข้าใจ|ไม่รู้เรื่อง|งง.{0,12}|ไม่ตรง|ผิดแล้ว|ผิด|ห๊ะ|หา+|อะไรวะ|อะไรเนี่ย|ทดสอบ|เทส|test|testing|wrong( answer)?|huh|what\??|nonsense|you are wrong|not what i asked)[\sa-z\u0e00-\u0e7f!?.]{0,6}$/i
 const INTEREST = /^\s*(สนใจ|สนใจจ้า|สนใจนะ|อยากทราบ|อยากรู้|อยากรู้เพิ่ม|ขอรายละเอียด|ขอข้อมูล|ขอข้อมูลเพิ่ม|ได้|ได้เลย|โอเค|ok|okay|yes|ใช่|interested|i'?m interested|tell me more|sounds good)[\sa-z\u0e00-\u0e7f!.]{0,8}$/i
 const BUSINESS: { key: string; th: string; en: string; tha: string; ena: string }[] = [
   { key: 'food', th: 'ร้านอาหาร/คาเฟ่', en: 'Restaurant / cafe', tha: 'ร้านอาหารและคาเฟ่มักเริ่มจากเว็บไซต์ที่มีเมนูและแผนที่ ต่อด้วยระบบจองโต๊ะหรือสั่งอาหาร และ LINE OA เก็บลูกค้าประจำครับ', ena: 'Restaurants and cafes usually start with a simple website with menu and map, then table booking or online ordering, and a LINE OA to keep regulars coming back.' },
@@ -425,6 +427,20 @@ export default function ChatBot({ lang }: { lang: Lang }) {
         ],
       }
     }
+    if (q.length < 30 && CONFUSED.test(q)) {
+      return {
+        idx: -1,
+        text: isEN
+          ? 'Sorry, I may have misunderstood. Could you tell me again what you would like to know? For example our services, pricing or how long a project takes, or tap one below. You can also talk to the team directly.'
+          : 'ขอโทษครับ ผมอาจเข้าใจคำถามคลาดเคลื่อนไป ช่วยบอกอีกครั้งได้ไหมครับว่าอยากรู้เรื่องอะไร เช่น บริการของเรา ราคา หรือระยะเวลาทำงาน หรือกดเลือกด้านล่างก็ได้ครับ จะคุยกับแอดมินโดยตรงก็ได้เลยครับ',
+        choices: [
+          { key: 'q:' + (isEN ? 'What services do you offer' : 'ให้บริการอะไรบ้าง'), label: isEN ? 'Our services' : 'บริการของเรา' },
+          { key: 'q:' + (isEN ? 'How much does it cost' : 'ราคาเท่าไหร่'), label: isEN ? 'Pricing' : 'ราคา' },
+          { key: 'q:' + (isEN ? 'How long does it take' : 'ใช้เวลาเท่าไหร่'), label: isEN ? 'How long it takes' : 'ระยะเวลาทำงาน' },
+          { key: 'agent', label: isEN ? '💬 Talk to the team' : '💬 คุยกับแอดมิน' },
+        ],
+      }
+    }
     if (q.length < 140 && QUOTE_W.test(q) && !PRICE_SKIP.test(q)) {
       return {
         idx: -1,
@@ -598,6 +614,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
 
   const pick = (key: string, label: string) => {
     if (key === 'agent') { ask(isEN ? 'Chat with an agent' : 'คุยกับเจ้าหน้าที่'); return }
+    if (key.startsWith('q:')) { ask(key.slice(2)); return }
     if (key.startsWith('svt:')) { const pd = PRODUCTS.find((x) => x.k === key.slice(4)); if (pd) ask(isEN ? `how long does ${pd.chipEn} take` : `ใช้เวลาทำ${pd.chip}กี่วัน`); return }
     if (key.startsWith('svc:')) { const pd = PRODUCTS.find((x) => x.k === key.slice(4)); if (pd) ask(isEN ? `price of ${pd.chipEn}` : `ราคา${pd.chip}`); return }
     const b = BUSINESS.find((x) => x.key === key)
