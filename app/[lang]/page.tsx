@@ -71,11 +71,11 @@ export default function HomePage({ params }: { params: { lang: string } }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }} />
       <Navbar lang={lang} tr={tr} transparent />
       <Hero lang={lang} tr={tr} />
+      <Clients lang={lang} tr={tr} />
       <CoreSkills lang={lang} tr={tr} />
       <FeaturedWork lang={lang} tr={tr} />
       <WhatWeDo lang={lang} tr={tr} />
       <FlowDiagram lang={lang} />
-      <Clients lang={lang} tr={tr} />
       {/* Services and Work sections removed */}
       <PortfolioGallery lang={lang} tr={tr} />
       <LatestThinking lang={lang} tr={tr} />
