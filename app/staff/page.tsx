@@ -19,7 +19,7 @@ type Answer = { text: string; faq?: Faq[] }
 type Msg = { from: 'bot' | 'me'; text: string; chips?: Chip[]; cards?: PCard[]; note?: string; faq?: Faq[] }
 
 // Section positions are the same in both handbooks.
-const S = { sells: 2, confirmed: 4, brand: 5, web: 6, usa: 7, other: 8, ind: 9, app: 10, erp: 12, wt: 13, q: 14, cases: 15, pkg: 16, det: 17, scope: 18 }
+const S = { sells: 2, confirmed: 4, brand: 5, web: 6, usa: 7, other: 8, ind: 9, app: 10, erp: 12, wt: 13, q: 14, cases: 15, pkg: 16, det: 17, scope: 18, tier: 19 }
 
 type Svc = { q: string; pk?: string; kind: 'web' | 'brand' | 'app' | 'fix' | 'erp' | 'wt' | 'other'; key?: string; th: string; en: string; keyEn?: string }
 const SERVICES: Svc[] = [
@@ -356,20 +356,17 @@ export default function StaffPage() {
     const sv = SERVICES[ctx.current.svc as number]
     const dk = sv ? sv.q + (sv.pk && sv.pk !== sv.q ? '-' + sv.pk : '') : ''
     const blk = (secs[S.det]?.blocks || []).find((b) => b.h2.startsWith('D:' + dk + ' ') && /20/.test(b.h2))
-    if (!blk) return cards
-    const it = (n: number) => { const l = blk.lines.find((x) => x.startsWith(n + '. ')) || ''; const i = l.indexOf(' => '); return i > 0 ? l.slice(i + 4).replace(/ ¶ /g, ' ') : '' }
-    const hd = (n: number) => { const l = blk.lines.find((x) => x.startsWith(n + '. ')) || ''; const i = l.indexOf(' => '); return i > 0 ? l.slice(l.indexOf('. ') + 2, i) : '' }
+    const it = (n: number) => { const l = blk?.lines.find((x) => x.startsWith(n + '. ')) || ''; const i = l.indexOf(' => '); return i > 0 ? l.slice(i + 4).replace(/ ¶ /g, ' ') : '' }
     const th = L === 'th'
-    const steps = [7, 8, 9, 10, 11].map((n, k) => (k + 1) + ') ' + hd(n).replace(/^(ขั้นที่ \d+ |Step \d+: )/, '')).join('  ')
-    const extra = [
-      (th ? 'เหมาะกับธุรกิจ: ' : 'Fits businesses: ') + it(3),
-      (th ? 'ลูกค้าพร้อมซื้อเมื่อ: ' : 'Ready to buy when: ') + it(4),
-      (th ? 'ขั้นตอนทำงาน: ' : 'Work steps: ') + steps,
-      (th ? 'ค่าใช้จ่ายและเงื่อนไข: ' : 'Costs and terms: ') + it(19),
+    const tk = dk === 'erp-ai' ? 'erp' : dk
+    const generic = [
       (th ? 'ถ้าลูกค้าบอกว่าแพง: ' : 'If they say too expensive: ') + it(16),
       (th ? 'ส่งหัวหน้าทีมเมื่อ: ' : 'Pass to team lead when: ') + it(20),
-    ].filter((x) => x.length > 22)
-    return cards.map((c) => ({ ...c, scope: [...c.scope, ...extra] }))
+    ].filter((x) => x.length > 24)
+    return cards.map((c, i) => {
+      const tb = (secs[S.tier]?.blocks || []).find((b) => b.h2 === 'K:' + tk + '#' + (i + 1) + ' tier')
+      return { ...c, scope: [...c.scope, ...(tb ? tb.lines : []), ...generic] }
+    })
   }
 
   function priceCards(): { head: string; cards: PCard[] } | null {

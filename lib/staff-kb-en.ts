@@ -2111,4 +2111,511 @@ Detailed audit (3–7 days): issue report ranked by risk
 Fix (1–4 weeks by level): fix in order, security and payments first
 Test and go live (2–5 days): retest and set monitoring
 Total estimate: 1–6 weeks (estimate, depends on size and complexity)
+
+# Details specific to each package (used in the price cards)
+
+## K:seo#1 tier
+Best for: A site already exists but SEO was never done seriously; local businesses and SMEs wanting nearby customers to find them first and not ready to spend heavily
+What you get: A full site audit and ranked fix list, a core keyword list that matches customers, key page optimisation, Google Business Profile setup and a monthly report showing clicks, rankings and enquiries
+Timeline and steps: Month 1 audit and basic fixes, months 2 to 3 page work and profile setup, trends appear around 3 to 6 months (estimate, never promise). Minimum term 3 to 6 months; confirm terms with the team lead
+Customer prepares: Access to the site and Google Search Console, correct photos and business details, the services to rank for and a coordinator who answers within 2 working days
+Not included: Ongoing article writing, link building, ad spend, optional tools and site fixes needing heavy coding (quoted separately)
+What moves the price: Number of pages, the state of the current site (slow, many errors), number of branches needing profiles and keyword competition
+How to pitch it: I would start with the small package that audits and fixes the basics, you see real reports for three months, and if the trend is there we step up to ongoing articles
+Upgrade when: The customer wants continuous articles and content, competitors start overtaking, or they want AI such as ChatGPT to recommend them
+## K:seo#2 tier
+Best for: Businesses wanting serious growth from Google with a steady monthly budget and a team willing to review content, such as clinics, hotels, real estate and online shops
+What you get: Everything in the small package plus 2 to 4 articles a month, quality link building, competitor tracking and content shaped so AI such as ChatGPT and Google AI Overviews can cite it (AEO and GEO)
+Timeline and steps: Month 1 plans keywords and a content calendar, from month 2 articles and links are produced monthly, rankings reviewed and the plan adjusted each month. Results firm up around 3 to 6 months (estimate)
+Customer prepares: A subject expert who checks articles within 3 working days, agreed service and price information we may mention, real customer reviews and a list of competitors to compare
+Not included: Ad spend, photo or video shoots, translation into other languages and new site development (quoted separately)
+What moves the price: Articles per month, keyword competition, how specialised the content is (medical or legal needs closer review) and the number of competitors tracked
+How to pitch it: If you want Google and AI to see you as a trusted source you need content coming out every month. This package covers articles, links and AI citation shaping
+Upgrade when: The market is highly competitive, they want several languages or markets, or a monthly strategy review meeting
+## K:seo#3 tier
+Best for: Highly competitive businesses or those selling in several markets and languages, with many products or branches, where SEO is a main revenue channel
+What you get: Everything in the middle package plus more articles and content, multiple languages, deep technical SEO (speed, structure, advanced schema data) and monthly reports with review meetings
+Timeline and steps: Month 1 builds the multi-market strategy and deep audit, from month 2 several content pieces a month and continuous technical fixes with monthly meetings. Full evaluation takes around 6 months or more (estimate)
+Customer prepares: A decision maker who joins monthly meetings, sales data and targets per market, access to all analytics and a team able to act on the site side when we advise
+Not included: Ad spend, specialist professional translation, new site or feature development and outside PR (quoted separately)
+What moves the price: Number of languages and markets, content volume per month, technical complexity of the site, page count and competitor intensity
+How to pitch it: If SEO is a main revenue channel this package puts a full team on it with monthly reports and meetings, so you clearly see what the investment returns
+Upgrade when: They want pay on results, the site was penalised by Google, or several countries and laws are involved. Pass to the team lead for a special assessment
+## K:ai#1 tier
+Best for: Businesses wanting to start easing chat workload with clear repeat questions, one main channel such as web or LINE, and a wish to try before investing much
+What you get: A chatbot answering frequent questions on 1 channel, learning from agreed documents and FAQ, handing to a person when unsure, in 1 language (Thai or English), plus a guide to maintaining answers
+Timeline and steps: Week 1 collect questions and documents, weeks 2 to 3 configure and test, weeks 4 to 5 trial with the team then launch, about 3 to 5 weeks in all
+Customer prepares: 30 to 50 frequent questions with correct answers, past chat history if available, rights to the channel to install on and someone who reviews answers
+Not included: Booking, CRM or stock integration, multiple channels, a second language and monthly AI model usage paid directly to the provider
+What moves the price: Number of questions and documents to learn, answer complexity, the chosen channel and monthly message volume
+How to pitch it: Start with the small package on the one channel customers message most, and if it truly cuts chat workload add channels and integrations later, with no full investment up front
+Upgrade when: Chat grows enough to need several channels, the bot must capture customer data and bookings, or it must link to CRM or booking
+## K:ai#2 tier
+Best for: Businesses with heavy chat wanting the bot to help sell, across several channels such as web, LINE and Facebook and in two languages, such as clinics, hotels and online shops
+What you get: Everything in the small package plus several channels, two languages, automatic customer data and booking capture, 1 CRM or booking system link and a monthly usage report
+Timeline and steps: About 1 to 2 months: design conversations and handover rules, connect channels and systems, test with real questions in two rounds, then launch and tune over the first two weeks of real use
+Customer prepares: Chat history and documents in both languages, access to the CRM or booking system to connect, rules on which topics go to a person and a business side coordinator
+Not included: Linking many systems, voice work, AI API costs, channel message costs and support after the warranty period (quoted separately)
+What moves the price: Number of channels, languages, systems connected, monthly message volume and the complexity of handover rules
+How to pitch it: This package makes the bot do more than answer: it captures names and numbers, books and pushes to the CRM for the team to follow up, so night time leads are not lost
+Upgrade when: They need an internal assistant for staff, many system links, access control and usage logs, or a bot that performs real transactions
+## K:ai#3 tier
+Best for: Organisations wanting an AI assistant working inside real systems, both answering customers and helping internal staff, with many systems and data needing access control
+What you get: Everything in the middle package plus an internal assistant for staff, many system links, answers from real organisation data, access control and usage logs, brand specific tone and an ongoing care plan
+Timeline and steps: About 2 to 3 months: two weeks surveying systems and data, then phase by phase, with security and permission tests before rolling out company wide and team training
+Customer prepares: An IT coordinator and legal or PDPA contact, a map of systems to connect, sample real data cleared for use and criteria for what the bot may decide itself
+Not included: Monthly AI API costs (separate), channel message costs, hardware if it must run in house and work on existing systems that must change to connect
+What moves the price: Number of systems connected, volume and sensitivity of data, number of internal users, security requirements and service level terms
+How to pitch it: This package places AI as part of real working systems, not just a web bot. It fits when the organisation wants to cut repeat work front and back office while keeping security
+Upgrade when: They need a fixed accuracy SLA, sensitive health or finance data, or a bot that decides and transacts on its own. Pass to the team lead at once
+## K:voice#1 tier
+Best for: Businesses that often miss calls and want someone always answering, with clear repeat questions such as hours, prices and location, in a single language
+What you get: A call answering bot that speaks naturally, answers frequent questions, notes caller details (name, number, need) and sends a summary to LINE or email, in 1 language, with a script and voice chosen together
+Timeline and steps: About 2 months: weeks 1 to 2 design the script and choose the voice, weeks 3 to 5 set up the number and notifications, weeks 6 to 8 test real calls and launch
+Customer prepares: The questions customers ask by phone, the number to use or rights to forward calls, correct business information and who receives each day's call summary
+Not included: Booking, multi-branch operations, a second language, phone minutes and monthly AI service by actual volume
+What moves the price: Calls per day, question difficulty, a dedicated number to obtain and the number of accents to test
+How to pitch it: Start by answering after hours or missed calls only, with no need to change how all calls are handled. See real results in the first month, then decide to expand
+Upgrade when: They need bookings or appointments, rules to transfer calls to a person, or two languages
+## K:voice#2 tier
+Best for: Booking or appointment businesses such as clinics, service centres and beauty shops wanting AI to take and confirm bookings in place of some staff work
+What you get: Everything in the small package plus booking and appointments linked to 1 calendar system, transfer to a person by rule, two languages and PDPA compliant call recording with call summary reports
+Timeline and steps: About 3 months, adding a booking system integration phase, testing double bookings and cancellations, and trialling with a number of real calls before full launch
+Customer prepares: Access to the booking system or calendar, booking rules (time slots, providers, duration per slot), PDPA notice text for recording and who handles handovers
+Not included: Linking many systems or branches, outbound reminder calls, phone minutes and monthly AI service
+What moves the price: Booking rule complexity, number of providers and calendars, call volume and the recordings to retain
+How to pitch it: This package lets customers book at once even when nobody answers and cancel or reschedule by voice, cutting empty slots caused by unanswered calls
+Upgrade when: There are many branches and systems, outbound reminder or follow up calls are needed, call analysis is needed or brand specific voice and accent tuning
+## K:voice#3 tier
+Best for: Customer service centres, multi-branch businesses or organisations with heavy call volume wanting analytics, brand specific voice and campaign outbound calls
+What you get: Everything in the middle package plus many branches and systems, outbound reminder or follow up calls, call analysis and deep reports, brand specific voice and accent tuning and an ongoing care plan
+Timeline and steps: About 3 to 4 months, done in phases by branch, testing peak call load, checking security and recording retention and training the call supervisors
+Customer prepares: Calls per day and peak hours, the existing phone system (PBX), the list of systems to connect and the organisation's security and PDPA rules
+Not included: Phone minutes, AI service by actual volume, tailoring of the existing phone system and any service level guarantee (SLA) must be assessed separately
+What moves the price: Call volume, number of branches and systems connected, complexity of the existing phone setup, recording retention rules and campaign outbound calling
+How to pitch it: This package lets AI take many calls at once and gathers analytics on what customers ask most, so services can be tuned accurately. It suits call volumes too big to hire for fast enough
+Upgrade when: They need a firm SLA, have sensitive medical or finance calls, or a complex PBX. Pass to the team lead to assess before quoting
+## K:erp-crm#1 tier
+Best for: Small sales teams still using Excel or LINE, losing leads, wanting a place to keep customers and follow up in order before investing much
+What you get: Customer and lead storage, a pipeline set to the business, follow up and appointment tracking, LINE notifications, basic sales reports, mobile use and import of existing data
+Timeline and steps: About 2 to 3 months: weeks 1 to 2 study the sales process, weeks 3 to 6 configure and import data, weeks 7 to 10 test with the sales team and train before launch
+Customer prepares: Existing Excel files or customer lists, the current sales process, user names and roles and a business side data owner
+Not included: Quotes and contracts, accounting integration, AI, multi-system links and monthly or yearly hosting and user fees
+What moves the price: Number of users, how many data fields need tailoring, volume of data to import and number of lead channels to connect
+How to pitch it: Start here so the team leaves Excel and sees every lead in one place, and if the team really uses it add quotes and an executive dashboard
+Upgrade when: The sales team grows past five, there are several products, quotes, role permissions are needed or links to the web, email and accounting
+## K:erp-crm#2 tier
+Best for: Companies with several salespeople and products that issue quotes and contracts and whose executives want sales and forecasts
+What you get: Everything in the small package plus quotes and contracts, role permissions, web and email links, 1 accounting system link, an executive dashboard and role based training
+Timeline and steps: About 3 to 5 months, split into core system and integrations, tested with several sales groups and run in parallel with the old method for a period before retiring it
+Customer prepares: Quote and contract templates, team structure and permissions, data about the accounting system to connect and an executive who defines dashboard metrics
+Not included: Linking many systems, AI lead scoring, multi step automation, hosting and user fees and tailoring when processes are non-standard
+What moves the price: Number of users, number of document templates, systems connected, permission complexity and data volume to migrate
+How to pitch it: This package lets sales issue quotes inside the system, executives see sales and forecasts daily and data flows to the web and accounting with no re-keying
+Upgrade when: They want AI lead scoring and sales forecasting, many system links, or CRM as the customer hub of the whole organisation
+## K:erp-crm#3 tier
+Best for: Organisations wanting CRM as the customer hub, with several teams and systems and AI to score leads and summarise conversations
+What you get: Everything in the middle package plus AI lead scoring and conversation summaries, sales forecasting, multi step automation, many system links and a security assessment
+Timeline and steps: About 5 to 8 months, in phases: first the CRM core, then integrations and AI, with security and permission tests before company wide launch
+Customer prepares: A map of all systems, historical lead and sales data for the AI to learn from, coordinators from sales, marketing and IT and security requirements
+Not included: Monthly AI model service, hosting, user fees, large data migration and any service level guarantee (SLA)
+What moves the price: Number of systems connected, data volume for the AI to learn, number of teams and users, security requirements and the number of automated steps
+How to pitch it: This package has AI point to leads most likely to close, summarise conversations for the team and forecast sales, so sales spends time on leads with real chances
+Upgrade when: They need an SLA, sensitive data, several group companies or more tailoring than standard. Pass to the team lead to assess
+## K:line#1 tier
+Best for: Shops or services whose customers live in LINE and who want customers to do one thing in LINE themselves, such as book, order, view promos or register
+What you get: A LINE Mini App on 1 main task such as booking or ordering, viewing promotions or simple member registration, plus LINE Official Account setup and linked menus
+Timeline and steps: About 3 to 6 weeks: define the main task, design screens, build, test on real phones, then launch and review the first week's data
+Customer prepares: The LINE Official Account and admin rights, product or service data, images and booking or ordering rules
+Not included: Membership and points, payments, stock or POS integration and message costs beyond the LINE quota, which are paid directly to LINE
+What moves the price: Number of screens, booking or ordering complexity and the number of products or services to load
+How to pitch it: Start by making one task as easy as possible in LINE, and once real usage shows add membership and points
+Upgrade when: They want to build regular members, need points, coupons or payment, or need order history
+## K:line#2 tier
+Best for: Businesses wanting regular members and repeat buying, such as restaurants, beauty shops and retail, whose customers live in LINE
+What you get: Everything in the small package plus membership and points, coupons, payment, order history and a back office to manage members, with usage reports
+Timeline and steps: About 1 to 2 months, adding a phase to design the points system and rules, test real payments and train the team on the back office before launch
+Customer prepares: Points rules and promotions, the business's payment provider account, existing member data if any and a team to run the back office
+Not included: POS and stock integration, multiple branches, AI product recommendation campaigns and payment fees paid directly to the provider
+What moves the price: Number of points and coupon rules, payment methods supported, members to migrate and reports needed
+How to pitch it: This package gives customers a reason to return with points and coupons, and shows the business who bought what so promos reach the right group
+Upgrade when: There are several branches or brands, POS and stock must connect, or a recommendation system is wanted
+## K:line#3 tier
+Best for: Multi-branch or multi-brand networks that must link POS and stock and want automated campaigns
+What you get: Everything in the middle package plus POS and stock link, many branches, automatic notifications, reports and campaigns, AI product recommendation and an ongoing care plan
+Timeline and steps: About 2 to 3 months, branch or brand one at a time, testing the POS link with real data and releasing to a group before the whole chain
+Customer prepares: POS system information and link rights, a list of branches and their differing rules, a coordinator per branch and campaign goals
+Not included: Tailoring an existing POS lacking an API, monthly message and AI service costs and extra work beyond scope
+What moves the price: Number of branches and brands, POS type and age, number of automated campaigns and member volume
+How to pitch it: This package ties in-store sales to LINE so members earn points at every branch and campaigns are sent automatically from real behaviour
+Upgrade when: They need links to enterprise payment or membership systems, sensitive data or several countries. Pass to the team lead to assess
+## K:ux#1 tier
+Best for: Teams with an existing site or app wanting to know where to fix first, not ready to redesign the whole system
+What you get: A UX audit from data and real use, wireframes of key pages and a report of recommendations ranked by importance
+Timeline and steps: About 3 weeks: week 1 gather data and observe use, week 2 analyse and sketch layouts, week 3 present the report and fix approach
+Customer prepares: Access to usage data (such as Google Analytics), the current site or app, the main goal such as getting bookings or orders and sample users to talk to if possible
+Not included: Full screen design, a clickable prototype, testing with real users and coding the recommended changes
+What moves the price: Number of pages and user journeys to review, data volume available and product complexity
+How to pitch it: Start with the audit to learn where the real problem is. Sometimes fixing two or three spots is enough with no full redesign
+Upgrade when: They want a real new design, a prototype or files handed to developers
+## K:ux#2 tier
+Best for: New projects or whole system redesigns wanting design ready for developers, such as a store, app or back office
+What you get: 10 to 20 screens of design, a clickable prototype, colours and fonts matching the brand, files and a guide handed to developers and agreed revision rounds
+Timeline and steps: About 4 to 6 weeks: layouts and user journeys, visual design, prototype, revision rounds, then handover of files with a usage guide
+Customer prepares: Product goals, sample work or sites they like, logo and brand guidance, the core content of each page and a decision maker answering within 3 working days
+Not included: User research and interviews, a full Design System, testing with real users and coding
+What moves the price: Number of screens, interaction complexity, number of user roles and revision rounds beyond the agreed
+How to pitch it: This package gives a design you can see and click before any code is written, cutting rework during development, which costs far more than fixing at design time
+Upgrade when: The product is complex with many roles, needs testing with real users, or needs a Design System for the whole organisation
+## K:ux#3 tier
+Best for: Products that must be precise and scalable, such as platforms, apps with several user groups or enterprise systems
+What you get: Everything in the middle package plus user research and interviews, a full Design System, testing with real users and revisions from test results
+Timeline and steps: About 6 to 8 weeks: user research, design, first test round, revise, retest, then build the Design System and hand over
+Customer prepares: Real users willing to be interviewed or test, goal metrics, existing product data and the development team that receives the files
+Not included: Participant recruitment fees if hiring is needed, coding and support after handover
+What moves the price: Number of user groups, test rounds, Design System size and product complexity
+How to pitch it: This package fits when a design mistake is expensive: we bring evidence from real users to decide, not team opinion
+Upgrade when: They need accessibility design, industry specific requirements or several products at once. Pass to the team lead
+## K:sec#1 tier
+Best for: Businesses that need complete PDPA documents, such as sites with contact forms, shops and clinics lacking a privacy policy or cookie banner
+What you get: A privacy policy, a cookie banner and consent flow that works on the site, a PDPA checklist and basic advice on what to do next
+Timeline and steps: About 2 weeks: week 1 survey the data held and run a questionnaire, week 2 prepare documents and install the banner, then hand over with the checklist
+Customer prepares: A list of personal data held (forms, customers, staff), where data is collected, a contact who answers for the business and site editing rights
+Not included: Legal advice from a lawyer, appointing a data protection officer (DPO), vulnerability scanning and fixing existing systems
+What moves the price: Number of sites and systems holding data, number of data types and number of document languages
+How to pitch it: This is the cheapest right starting point so the business has the documents and banner PDPA requires, before looking at technical security
+Upgrade when: They hold customer data on a site or app, want vulnerability scanning, or enterprise partners ask for security documents
+## K:sec#2 tier
+Best for: Businesses holding customer data on a site or app, such as online shops, clinics and member systems, wanting to know real weaknesses and a fix plan
+What you get: Everything in the starter package plus web and app vulnerability scans, a priority ranked report, a workable fix plan and team training on passwords and phishing
+Timeline and steps: About 3 to 4 weeks: survey systems, scan and check by hand, rank risks, present the report, then one training session
+Customer prepares: A list of sites, apps and servers, written permission to scan, a system admin who answers questions and a window where scanning will not affect users
+Not included: Actually fixing all weaknesses, penetration testing, standard certificates and continuous monitoring
+What moves the price: Number of systems and pages to scan, app complexity, users to train and urgency
+How to pitch it: This package reports what weaknesses exist and how to fix them in order, so executives see risk as figures with a clear plan
+Upgrade when: They need penetration testing, want us to fix the weaknesses or are preparing for a standard such as ISO 27001
+## K:sec#3 tier
+Best for: Organisations that must pass a standard or partner requirement, hold highly sensitive data or have been attacked and want a serious response
+What you get: Everything in the standard package plus penetration testing, fixing weaknesses, preparing for a standard such as ISO 27001 and an incident response plan with a drill
+Timeline and steps: About 4 to 6 weeks for the first round, followed by periodic re-checks. Written permission and test scope are needed before each start
+Customer prepares: Written penetration test permission, a system map, an executive owning risk, emergency contacts and existing security policy documents
+Not included: Third party certification fees, protective software, 24 hour monitoring and any guarantee of being safe (there is none)
+What moves the price: Number of systems, penetration scope, the standard to pass, urgency and number of re-check rounds
+How to pitch it: This package fits when partners or law demand evidence: we provide reports and a response plan that can be audited later
+Upgrade when: They were just attacked and need urgent help, want a standard certificate or hold large health and finance data. Pass to the team lead at once
+## K:cloud#1 tier
+Best for: Businesses still on an office server or old hosting, with a slow or once failed site, wanting to move to the cloud safely
+What you get: Move the system to the cloud, set automatic backups, basic monitoring with alerts and easy to read system documents
+Timeline and steps: About 1 month: week 1 review and plan, weeks 2 to 3 migrate and test, week 4 switch over and watch, with a rollback plan
+Customer prepares: Access to the existing server and domain, a list of running systems, a low traffic window for switching and a business side cloud account holder
+Not included: Monthly cloud fees paid directly to the provider, automated deployment (CI/CD), autoscaling and ongoing care
+What moves the price: Number of servers and databases, data volume to move, downtime risk and the chosen cloud provider
+How to pitch it: Start by moving and setting up backups to close the risk of data loss when a machine fails, with no need yet to invest in full automation
+Upgrade when: The dev team ships updates often, needs separate test and live environments, or wants systematic cloud cost reduction
+## K:cloud#2 tier
+Best for: Dev teams that ship updates often and want to ship safely without downtime
+What you get: Everything in the starter package plus automated deployment (CI/CD), monitoring and alerts, separate test and live environments and cloud cost reduction
+Timeline and steps: About 1 to 2 months: set automated deployment, test rollback, configure monitoring and alerts and train the dev team on the new flow
+Customer prepares: Source code and repository rights, the current release process, a dev team to co-design and past cloud cost reports to find savings
+Not included: Monthly cloud fees, paid optional tools, any guarantee of no downtime and large amounts of automated test writing
+What moves the price: Number of services and environments, release frequency, monitoring tools and complexity of the existing system
+How to pitch it: This package lets the team ship several times a day with no downtime and an alert system warns before customers see problems
+Upgrade when: The system has many users and cannot go down, needs autoscaling, several regions or a disaster recovery plan
+## K:cloud#3 tier
+Best for: Systems with many users that cannot go down, such as large shops, platforms or services earning every minute
+What you get: Everything in the standard package plus autoscaling, multiple regions, a disaster recovery plan, load testing and extra security
+Timeline and steps: About 2 to 3 months: design a high availability architecture, simulate peak load tests, rehearse disaster recovery, then hand over with a response guide
+Customer prepares: Past peak user volume data, the downtime target the business can accept, data residency rules and a team to join drills
+Not included: Multi region cloud fees paid directly, 24 hour operations, an SLA guarantee and specialised software licences
+What moves the price: Number of regions, peak users, recovery targets, security requirements and complexity of the existing system
+How to pitch it: This package fits when each minute of downtime is lost revenue; against this package's price, one outage costs more
+Upgrade when: They need a firm SLA, a very old system hard to move or data residency requirements. Pass to the team lead to assess
+## K:data#1 tier
+Best for: Businesses wanting key numbers in one place with no more than two data sources, such as a sales system and Google Analytics
+What you get: 1 dashboard from 1 to 2 data sources, 5 key metrics (KPIs), automatic refresh and a reading guide for the team
+Timeline and steps: About 1 month: week 1 define questions and KPIs, week 2 connect data, week 3 design and test the numbers, week 4 train and launch
+Customer prepares: Access to the source systems, the numbers executives want with agreed calculation methods and a main user who opens it daily
+Not included: Combining many sources into a central store, cleaning large amounts of data, many dashboards and AI forecasting
+What moves the price: Quality and readiness of source data, number of complex KPIs and the chosen visualisation tool
+How to pitch it: Start with the one dashboard that answers the most frequent question, and once the value shows add data sources and report sets
+Upgrade when: Data is scattered across many sources, role based dashboards are needed or numbers from each place disagree
+## K:data#2 tier
+Best for: Businesses with data scattered across accounting, an online store and ads wanting role based dashboards for each department
+What you get: Everything in the starter package plus many sources combined into a central store, data cleaning, several role based dashboards, access control and user training
+Timeline and steps: About 1 to 2 months: survey sources, build the data pipelines into the store, verify numbers against sources, design dashboards per role, test and train
+Customer prepares: Access to every data source, metric definitions agreed across departments, an owner of data quality for each source and a user list with permissions
+Not included: AI forecasting, automatic anomaly alerts, monthly tool and hosting fees and ongoing care
+What moves the price: Number of sources, data volume and cleanliness, number of dashboards and roles and refresh frequency
+How to pitch it: This package puts every department on one set of numbers, ending debates over whose figure is right, and executives see the overview daily
+Upgrade when: They want forecasts ahead, anomaly alerts, or huge data volumes needing a large data warehouse
+## K:data#3 tier
+Best for: Businesses wanting to decide ahead, such as forecasting sales, stock and customer behaviour, with enough historical data
+What you get: Everything in the standard package plus AI models for forecasting and anomaly detection, automatic plain language summaries, proactive alerts and accuracy tracking
+Timeline and steps: About 2 to 3 months: check data readiness, build a model prototype, test on data the model has not seen, trial alongside the old method, then expand
+Customer prepares: Historical data of at least several months to a year, the questions the AI should answer, users willing to trial alongside the old method and an owner who watches accuracy
+Not included: Monthly model and compute fees, extra data collection devices if needed and any guarantee of accuracy (none given)
+What moves the price: Volume and quality of historical data, number of models, compute frequency and security requirements
+How to pitch it: This package turns the dashboard from looking back to looking ahead, seeing signals before problems, but results depend on data so never promise exact accuracy
+Upgrade when: Very little or no data, real time AI is needed, people-safety implications or several organisations. Pass to the team lead to assess
+## K:support#1 tier
+Best for: Small sites or systems needing someone to watch them, such as company sites, clinic sites and small shops with no IT team and little change
+What you get: A monthly system check, security and software updates, automatic backups, minor bug fixes and a reply within 1 to 2 working days, with a short monthly report
+Timeline and steps: Monthly: the first month does an initial health check and documents the system, then updates and checks every month, replying to reports within 1 to 2 working days
+Customer prepares: Full access to host, domain and back office, a main contact who can decide and a list of past fixes or known problems
+Not included: New features, development hours, urgent out of hours fixes, hosting, domain and optional tool fees
+What moves the price: System size and complexity, number of sites or systems cared for and the age of existing software
+How to pitch it: Like a regular car service plan: no waiting for a breakdown before finding someone to fix it, and the site gets steady updates and backups
+Upgrade when: The system is vital to revenue, they want faster response, monthly development hours or proactive monitoring with alerts
+## K:support#2 tier
+Best for: Businesses whose system is vital to revenue, such as online shops, booking systems and member systems, and who want small changes monthly
+What you get: Everything in the basic package plus 8 to 12 development hours a month, monitoring with instant alerts when down or slow, a reply within 4 working hours and a detailed monthly report
+Timeline and steps: Monthly: monitoring is set from month one, development hours cover small fixes and improvements and the report is reviewed with the customer every month
+Customer prepares: A prioritised task list, a coordinator who replies within a day and access to analytics, monitoring and code
+Not included: Development hours over quota, a 24 hour response guarantee, large features (quoted as a project) and outside service fees
+What moves the price: Number of systems, how often fixes are needed, development hours truly used and monitoring intensity
+How to pitch it: This package keeps the system watched and fixed fast enough for steady revenue, with development hours to improve the site monthly without approving each task separately
+Upgrade when: The system cannot go down, they want a 1 hour response, out of hours support or a dedicated advisor
+## K:support#3 tier
+Best for: Systems that cannot go down, such as platforms, large shops or systems earning every minute, wanting a dedicated advisor
+What you get: Everything in the standard package plus extra development hours, a 1 hour response, out of hours support, a dedicated advisor and quarterly review meetings
+Timeline and steps: Monthly: a dedicated urgent channel, incident response drills and quarterly meetings reviewing risks and the improvement plan
+Customer prepares: Emergency contacts and escalation order, the availability the business can accept and peak usage data
+Not included: 24 hour support, agreed case by case, outside service fees and large feature development
+What moves the price: Number of systems, out of hours coverage needed, response time wanted and development hours per month
+How to pitch it: This package fits when every hour of downtime is lost revenue: a team that knows the system and responds fast, with an advisor planning ahead
+Upgrade when: They need a 24 hour SLA, a system built by others with no documentation, or several systems. Pass to the team lead
+## K:strategy#1 tier
+Best for: Executives wanting direction quickly before deciding to invest, unsure what to do and which first
+What you get: 1 to 2 workshops with the executive team, a summary of digital problems and opportunities, a prioritised list of what to do first and a 1 document summary
+Timeline and steps: About 1 week: prepare data and short interviews, run 1 to 2 workshops, then send the summary document within a few days of the workshop
+Customer prepares: Decision making executives attending the workshop, business and current system information, a list of problems and a rough available budget
+Not included: A detailed plan, full budget estimates, an audit of existing systems, a 12 month roadmap and any development
+What moves the price: Number of participants and departments involved, number of workshops and business complexity
+How to pitch it: If you are unsure where to start, spend one week thinking it through first. It is far cheaper than starting to build the wrong system
+Upgrade when: They want a detailed plan, budget and value estimates, or must present to a board or investors
+## K:strategy#2 tier
+Best for: Businesses about to invest in digital for real who need a clear plan, budget and value estimates and have several ideas to prioritise
+What you get: Everything in the workshop plus an audit of existing systems, a 12 month phased roadmap, budget and value estimates, priorities, success metrics and a presentation to decision makers
+Timeline and steps: About 2 to 3 weeks: week 1 interviews and system review, week 2 filter and rank opportunities, week 3 write the plan and present
+Customer prepares: Time for the team to be interviewed across departments, access to systems and data in use, relevant sales and cost data and an internal project owner
+Not included: Building according to the plan, full process and data structure design, tool selection and team training
+What moves the price: Number of departments and systems to review, number of projects to rank, depth of budget estimating and number of presentations
+How to pitch it: This package gives a document you can really decide and seek budget with, showing what comes first and how each phase is expected to pay off
+Upgrade when: They must change how the whole organisation works, or want us to design processes, select tools and train the team
+## K:strategy#3 tier
+Best for: Organisations changing how they work entirely, with many departments and systems, needing help setting processes, selecting tools and preparing the team
+What you get: Everything in the roadmap plus process and data structure design, tool selection against criteria, team preparation and training and early follow up after work begins
+Timeline and steps: About 4 weeks for plan and design, followed by a care and follow up period as agreed, acting as an advisor tracking real execution
+Customer prepares: Senior executive sponsorship, department leaders who co-design, time for team training and all process and system information
+Not included: Software fees, system development, specialist outside training and any guarantee of business results (none given)
+What moves the price: Number of departments and group companies, process complexity, length of the follow up period and number of tools to select
+How to pitch it: This package is not just a plan; it helps the plan happen with processes, tools and a ready team, lowering the risk of an expensive digital project nobody uses
+Upgrade when: It is a large multi-unit organisation, must present to a board or investors, or has a project worth many millions. Pass to the team lead
+## K:brand#1 tier
+Best for: New or budget limited businesses wanting a good enough look straight away, such as a new shop, a freelancer or a page about to get a website
+What you get: 1 discussion to capture needs, 2 logo directions to choose from with 2 revision rounds, 3 logo versions (horizontal, vertical, icon), a main palette of 2 to 3 colours, Thai and English fonts, full delivery files (AI, PDF, PNG, SVG) and a short guide
+Timeline and steps: About 2 to 3 weeks: week 1 discuss and propose directions, week 2 refine the design and colour and font set, week 3 deliver files with the short guide
+Customer prepares: The decided business name, a description of what it does and its customers, examples of logos or styles liked and disliked and a quick decision maker
+Not included: Research, strategy, ad materials, packaging, merchandise (caps, shirts), actual production and revision rounds beyond the agreed
+What moves the price: Number of revision rounds, logo complexity, number of versions and urgency
+How to pitch it: If you want to start with a professional look first without a big strategy exercise, this gives usable assets from business cards to the website
+Upgrade when: They need a full brand for online and offline, or a workshop to settle the brand's position
+## K:brand#2 tier
+Best for: SMEs wanting a full brand for online and offline with many media that must look like one
+What you get: Everything in the starter package plus a short workshop settling brand position and voice, 3 logo directions with 3 revision rounds, supporting graphics, an icon set, image style, a full brand guideline, basic media and 1 merchandise design
+Timeline and steps: About 4 to 6 weeks: workshop, logo and visual system, tests on real media, revision rounds, brand guide production and handover
+Customer prepares: Executives who join the workshop, customer and competitor knowledge they have, the list of media needed and the merchandise or sign designs wanted
+Not included: Actual production (caps, printed cards, signs), market research, full strategy, packaging and revision rounds beyond the agreed
+What moves the price: Number of media to design, revision rounds, visual system complexity and number of merchandise designs
+How to pitch it: This package gives a complete system the team can keep using, every medium looks like one and the guide lets others follow it
+Upgrade when: They compete in a crowded market, are launching a new product, need research and strategy or packaging
+## K:brand#3 tier
+Best for: Businesses building a serious brand, competing in a crowded market or launching a new product, needing market evidence behind decisions
+What you get: Everything in the standard package plus market and competitor research, interviews with 5 to 8 target customers, brand strategy (brand core, values, key message), naming and slogan if wanted, packaging and a full media set
+Timeline and steps: About 8 to 12 weeks: research and interviews, strategy, naming and slogan, identity and packaging, tests on real media, media set and handover
+Customer prepares: Access to target customers for interviews, sales and existing customer data, executives who join every decision and a launch date if any
+Not included: Actual packaging production, trademark registration, launch campaigns and ads and ongoing brand care
+What moves the price: Number of target groups and markets, number of products needing packaging, research depth and naming that needs trademark checks
+How to pitch it: This package starts from real market evidence and then designs, so the brand has reasoning behind it rather than team taste
+Upgrade when: An organisation wide rebrand with sub-brands, trademark issues or a large launch campaign. Pass to the team lead
+## K:web#1 tier
+Best for: Companies wanting a formal site telling their story, services and work and taking enquiries, with AI answering basic customer questions
+What you get: A custom designed 5 to 7 page site, mobile ready, Thai and English, a back office to edit content (CMS), a contact form, basic SEO, Google Analytics and training, plus a chatbot for basic questions and shaping the site so AI such as ChatGPT and Google AI recommends us (AEO and GEO)
+Timeline and steps: About 6 to 10 weeks: layout and content, design, build, configure the chatbot from frequent questions, test, then launch and train. The customer's design and content approval time usually sets the pace
+Customer prepares: Text and images for each page, logo and brand colours, frequent questions with correct answers, a domain name and a decision maker answering within 3 working days
+Not included: Membership, payments, internal system links, yearly domain and hosting fees, monthly AI model usage and content writing
+What moves the price: Number of pages, languages, design complexity, number of questions the bot must learn and content the customer prepares versus we write
+How to pitch it: This package gives a professional looking site with AI answering customers at all times, so night time leads do not slip away. It suits businesses whose site is the main storefront
+Upgrade when: They want to sell, book, membership, payment or links to CRM, ERP or LINE, which means moving up a tier
+## K:web#2 tier
+Best for: Businesses wanting the site to work, such as selling, booking, membership or linking other systems, with AI screening customers
+What you get: Everything in Essential plus custom features, payments (PromptPay and cards), CRM, ERP and LINE links, an advanced chatbot, AI lead screening handed to sales and AI help writing and translating content
+Timeline and steps: About 3 to 5 months, phased by feature, testing payments and integrations with real data, released in steps and tuned from real use
+Customer prepares: A prioritised feature list, access to systems to connect, the business's payment provider account, content and products and lead screening rules
+Not included: Payment provider fees paid directly, hosting, monthly AI API costs, tailoring existing systems that must change to connect and content writing
+What moves the price: Number of screens, number of systems to connect, complexity of custom features, extra design work and AI rule complexity
+How to pitch it: This package turns the site from a brochure into a tool that takes customers and money, with AI screening which leads are really interesting so sales follows only promising ones
+Upgrade when: A large organisation with a complex multi-team system needing advanced security and PDPA, which is the Enterprise tier and needs a special assessment
+## K:web#3 tier
+Best for: Large organisations with complex multi-team systems needing high security and PDPA, or sites that are the core of the business
+What you get: Assessed only after understanding the work, generally covering custom architecture, many system links, multi-role permissions, security and PDPA, an ongoing care plan and AI tailored to organisational data
+Timeline and steps: Several months, starting with a Discovery phase talking to several departments before quoting, done in phases with acceptance checkpoints for each
+Customer prepares: Requirements and documents of existing systems, coordinators from business, IT and legal, the organisation's security policy and a rough budget
+Not included: Hosting and outside systems, AI API costs, third party certification fees and out of scope work agreed as a new project
+What moves the price: Number of teams and systems, security requirements, number of users, service level terms and number of phases
+How to pitch it: Do not quote a figure. Say we need to understand first because work this size is assessed from real needs, then arrange a handover to the team lead
+Upgrade when: Pass to the team lead in every case. Never quote yourself
+## K:app#1 tier
+Best for: Businesses wanting to test the market with an app first, with one clear core feature and ready to start small and grow with real users
+What you get: The most essential features to test the market, iOS and Android together, custom screen design, basic membership, notifications and submission to the App Store and Play Store
+Timeline and steps: About 2 to 3 months: define features and design, prototype, build, test on many real devices, submit to the stores, whose review times are the store's own
+Customer prepares: A version one feature list, sample apps they like, logo and brand, starting content and data and Apple and Google developer accounts in the business's name
+Not included: Advanced features, payments, chat or AI in the app, many system links, Apple developer fees (about $99 a year), Google fees (about $25 once) and hosting
+What moves the price: Number of screens, complexity of the core feature, systems to connect and platforms to release
+How to pitch it: Start with a small first version and measure, see whether users really use it before a big investment. The starting cost is far lower than a full app
+Upgrade when: Full features are needed, payment, system links, or users grow enough to need scaling
+## K:app#2 tier
+Best for: Businesses that know what users want and need an app with full features, payment, system links and reports
+What you get: Full features, payments, system links, chat or AI in the app, reports, a back office for data, careful testing on iOS and Android and store submission
+Timeline and steps: About 3 to 6 months, phased by feature, testing with a small user group before real launch, with a fix round after early use
+Customer prepares: A feature list with priorities, link rights and payment providers, content and data, trial users and a team to run the back office
+Not included: Developer account fees, hosting, payment service fees paid directly, monthly AI costs and maintenance and updates for OS changes
+What moves the price: Number of screens and features, systems connected, payment and back office complexity and multi-language support
+How to pitch it: This package fits once market tests are clear, giving a full app users can really use regularly with reports showing the business what users do
+Upgrade when: They need a platform (an app plus a large back office), multiple user roles or very many users
+## K:app#3 tier
+Best for: Organisations or start-ups needing a platform, meaning an app plus a back office for the business to manage users, data and transactions
+What you get: Assessed only after Discovery, generally including a multi-role app, an admin back office, many system links, security and PDPA and an ongoing care plan
+Timeline and steps: Several months to a year, starting with Discovery talking to several parties, phased with acceptance checkpoints and released group by group
+Customer prepares: Requirement documents or a business plan, decision makers and product owner, existing system information, security requirements and phased budget
+Not included: Hosting and outside services, monthly AI costs, certification fees and extra work beyond scope agreed as a new project
+What moves the price: Number of user roles, features and system links, security requirements, user volume and number of phases
+How to pitch it: Do not quote a figure. Offer a Discovery conversation first because work this size needs understanding the business and users before assessing, then pass to the team lead
+Upgrade when: Pass to the team lead in every case. Never quote yourself
+## K:erp#1 tier
+Best for: Businesses wanting to quit Excel, starting with the most painful area such as sales and stock, with up to about 10 users
+What you get: 1 to 2 modules (for example sales and stock), screens designed for the business, up to about 10 users, key reports, basic migration of existing data and training
+Timeline and steps: About 3 to 4 months: study processes, design, configure and migrate data, test on real processes, run alongside the old method for a period, then launch and support the early period
+Customer prepares: Current workflow of the departments involved, existing data files (products, customers, balances), key users who give time for testing and training and an internal project owner
+Not included: Full accounting, complex integration with existing systems, multiple branches, AI, hosting, user fees and monthly or yearly care
+What moves the price: Number of modules, users, volume and cleanliness of data to migrate and how non-standard the workflows are
+How to pitch it: Start at the most painful spot and avoid changing the whole company at once. See results then add modules, lowering the risk of it not working out
+Upgrade when: Several departments must share the data, accounting and purchasing are needed, existing systems must connect or there are several branches
+## K:erp#2 tier
+Best for: Businesses wanting several departments on one system, sales, purchasing, stock and accounting, with executives who want the overview
+What you get: Several modules (sales, purchasing, stock, accounting, executive reports), multi-level user permissions, links to systems in use (such as accounting, LINE and payments), migration of existing data, a dashboard and AI to query data in plain language
+Timeline and steps: About 4 to 6 months, phased by module, testing every department on real processes, a parallel run before retiring the old system and training per role
+Customer prepares: Process maps for each department, existing system data to connect and migrate, department leaders who co-design, time for the team to test and train and an executive who decides
+Not included: Complex multi-branch operations, full production, a field mobile app, hosting and user fees and tailoring when workflows are non-standard
+What moves the price: Number of modules and users, systems connected, data volume to migrate, permission complexity and tailoring
+How to pitch it: This package puts every department on one set of data, closes the books faster, makes stock accurate and lets executives view a dashboard daily instead of waiting for month end reports
+Upgrade when: They need several branches, production, a field app, many existing system links or enterprise security and PDPA
+## K:erp#3 tier
+Best for: Mid to large organisations, every department, several branches, needing security and PDPA and ERP as the backbone of operations
+What you get: All needed modules, a mobile app for field teams, links to many existing systems, several branches, security and PDPA, full AI and an ongoing care plan
+Timeline and steps: About 6 to 12 months, in phases with acceptance checkpoints, starting with Discovery across departments, opened branch by branch or work group and closely supported at first
+Customer prepares: Senior executive sponsorship, coordinators from every department and IT, documents of all processes and systems, security policy and phased budget
+Not included: Software and hosting, monthly AI costs, certification fees, any guarantee of business results (none given) and out of scope work agreed as a new project
+What moves the price: Number of departments, branches and group companies, systems connected, security requirements, number of users and number of phases
+How to pitch it: This is an enterprise level project. Do not give a fixed figure; say it starts with Discovery so the price matches the real work, then pass to the team lead
+Upgrade when: Pass to the team lead in every case. Never quote yourself
+## K:wt-basic#1 tier
+Best for: Small businesses, freelancers or shops wanting a good look and a place for customers to make contact, not needing lots of content or frequent self edits
+What you get: Custom design for 1 to 3 pages (one long page or several), mobile ready, a contact form, call and LINE buttons, a map, basic SEO and a domain ready to go live
+Timeline and steps: About 2 to 3 weeks: week 1 discuss and layout, week 2 design and build, week 3 test, launch and hand over
+Customer prepares: Text and images for each page, logo and brand colours, contact details and map, the domain name wanted and a quick decision maker
+Not included: A content editing system (CMS), two languages, membership or payments, AI, yearly domain and hosting fees and content writing
+What moves the price: Number of pages, design complexity, content the customer prepares versus we write and urgency
+How to pitch it: If you have no site now, this gives a credible online address fastest, with a link you can send new customers at once
+Upgrade when: They need 5 to 10 pages, self editable content or two languages
+## K:wt-basic#2 tier
+Best for: Companies or SMEs wanting a formal 5 to 10 page site telling their story, services and work and taking enquiries, and wanting to edit content themselves
+What you get: Custom design for 5 to 10 pages, mobile ready, Thai and English, a content back office (CMS), a contact form, basic SEO, Google Analytics and training
+Timeline and steps: About 3 to 5 weeks: layout and content, design, build, test, launch and training on editing content. Pace depends on the customer sending content
+Customer prepares: Text and images for every page in both languages (or we translate as a separate item), logo and brand, a decision maker and whoever will edit after launch
+Not included: An AI chatbot, membership, payments, internal system links, yearly domain and hosting fees and content writing or translation
+What moves the price: Number of pages, languages, design complexity, content to write or translate and special features such as a gallery or blog
+How to pitch it: This package gives a formal site corporate customers trust, and the team can change text on their own without waiting for us
+Upgrade when: They need a chatbot and AI, membership, payments or system links, which means moving to website + AI or e-commerce
+## K:wt-ecom#1 tier
+Best for: Small shops starting to sell online with up to about 50 products, wanting their own shop alongside selling on platforms
+What you get: Custom design, product pages, cart, payment (PromptPay and cards), product and order back office, shipping calculation, notification emails and training
+Timeline and steps: About 2 to 3 months: plan the shop and products, design, build, connect payment and shipping, test real orders, load products, then launch and train
+Customer prepares: Product data (name, price, images, description), the business's payment provider account, shipping and returns policy, logo and brand and an order manager
+Not included: Stock or accounting integration, several warehouses, advanced membership, AI product recommendation, payment fees paid directly, hosting and shipping costs
+What moves the price: Number of products and options (size, colour), payment and shipping methods supported, design complexity and product loading
+How to pitch it: This package gives a shop of your own, keeping customers and data yourself with no per order commission to a platform, and it can run alongside Shopee or Lazada
+Upgrade when: Products exceed a hundred, stock and accounting must connect, or membership, coupons or loyalty points are needed
+## K:wt-ecom#2 tier
+Best for: Businesses selling seriously with hundreds of products wanting stock and accounting integration, membership and promotions
+What you get: Everything in the starter level plus stock and accounting integration, membership, coupons and loyalty points, detailed sales reports, automatic tax invoices and bulk product management
+Timeline and steps: About 3 to 4 months, phased by system connected, testing stock and accounting with real data and running alongside the old method for a period before full launch
+Customer prepares: Large product data in file form, access to the existing stock and accounting systems, promotion and points rules and warehouse and accounting teams who join testing
+Not included: Several countries or currencies, multi-vendor platforms, AI recommendation, payment fees, hosting, shipping and bulk product loading if files are not ready
+What moves the price: Number of products, systems connected, promotion rules, permission complexity and order volume
+How to pitch it: This package keeps stock, accounting and orders matching everywhere, cutting re-keying and sales of out of stock items, with membership and promotions to bring customers back
+Upgrade when: They sell in several countries or currencies, need a multi-vendor marketplace or thousands of products with complex integrations
+## K:fix#1 tier
+Best for: Founders or teams who built an app with AI and want to know whether to continue, whether it is secure enough and what must be fixed, before spending
+What you get: Read the whole codebase, report problems, security and what to fix ranked by risk, with an assessment of whether fixing or rebuilding is cheaper. No code is changed
+Timeline and steps: Usually short since it is reading and analysis, with the report delivered with next step advice (confirm the timing with the team lead)
+Customer prepares: Access to source code and related accounts, a description of what the app should do, the tool used to build it and the problems seen
+Not included: Fixing the code, adding features, going live and ongoing care
+What moves the price: Size of the code, app complexity and the number of connected systems (this is a confirmed fixed price, never use other figures)
+How to pitch it: If you are unsure whether to continue with the AI built app, pay a little to know the truth first, better than spending more without knowing about weaknesses
+Upgrade when: They want us to fix the problems found and prepare to go live
+## K:fix#2 tier
+Best for: Those who know the app's problems and want only the necessary fixes, such as broken login, failing payments or clear weaknesses
+What you get: Fix the key problems found, close the main weaknesses, correct login and database, test after fixing and summarise what changed in readable form, within the scope agreed at assessment
+Timeline and steps: Depends on the number of problems agreed, agree the list and order before starting, fix in rounds, test every round and hand over with a summary (confirm timing with the team lead)
+Customer prepares: The audit report or list of problems to fix, access to code and host account and a decision maker on priorities
+Not included: New features, extra integrations, ongoing care and problems outside the agreed list
+What moves the price: Number and difficulty of problems to fix (this is a confirmed fixed price, never use other figures)
+How to pitch it: This package fits when most of the app works but a few spots block going live, so fixing the key spots is better value than a rebuild
+Upgrade when: They want the app fully production ready across the system, including backups and monitoring
+## K:fix#3 tier
+Best for: Those wanting an AI built app fully ready for real users across the system: security, payments and going live
+What you get: Fix problems found, close weaknesses, set authentication and database correctly, connect real payments if any, test the whole system, set the domain, SSL, backups, monitoring and go live, with handover documents
+Timeline and steps: Depends on app size, done in steps: review code, fix, test, set up production, then watch after launch (confirm timing with the team lead)
+Customer prepares: Access to code and host account, payment provider and domain accounts, key data to migrate and testers before launch
+Not included: Missing features needing extra development, monthly hosting and outside services and ongoing care after going live
+What moves the price: Code size, systems connected, risk of data held and urgency (this is a confirmed fixed price, never use other figures)
+How to pitch it: This package lets the app launch to real users with confidence, with backups and monitoring, not just bugs fixed enough to pass
+Upgrade when: Missing features must be built and more systems connected, which goes to the full build-out level
+## K:fix#4 tier
+Best for: Those wanting to build missing features, link systems and continue from an AI built app into a full product
+What you get: Build missing features, link systems, restructure so it can scale and ongoing care, within a scope agreed as a new project, with documents and training
+Timeline and steps: Depends on scope, phased with acceptance checkpoints, starting by defining scope clearly (confirm timing with the team lead)
+Customer prepares: A prioritised feature list, the code review result from earlier levels, a decision maker and a rough budget
+Not included: Hosting and outside services, monthly AI costs and out of scope work agreed
+What moves the price: Number of features, complexity of systems linked and phases wanted (this is a confirmed fixed price, never use other figures)
+How to pitch it: This package turns an AI prototype into a real product the business can depend on, with engineers responsible for both quality and security
+Upgrade when: The customer wants a bigger scope than agreed, very many users or sensitive data. Pass to the team lead to assess
+## K:erp-ai#1 tier
+Best for: Businesses wanting to quit Excel, starting with the most painful area such as sales and stock, with up to about 10 users
+What you get: 1 to 2 modules (for example sales and stock), screens designed for the business, up to about 10 users, key reports, basic migration of existing data and training
+Timeline and steps: About 3 to 4 months: study processes, design, configure and migrate data, test on real processes, run alongside the old method for a period, then launch and support the early period
+Customer prepares: Current workflow of the departments involved, existing data files (products, customers, balances), key users who give time for testing and training and an internal project owner
+Not included: Full accounting, complex integration with existing systems, multiple branches, AI, hosting, user fees and monthly or yearly care
+What moves the price: Number of modules, users, volume and cleanliness of data to migrate and how non-standard the workflows are
+How to pitch it: Start at the most painful spot and avoid changing the whole company at once. See results then add modules, lowering the risk of it not working out
+Upgrade when: Several departments must share the data, accounting and purchasing are needed, existing systems must connect or there are several branches
+## K:erp-ai#2 tier
+Best for: Businesses wanting several departments on one system, sales, purchasing, stock and accounting, with executives who want the overview
+What you get: Several modules (sales, purchasing, stock, accounting, executive reports), multi-level user permissions, links to systems in use (such as accounting, LINE and payments), migration of existing data, a dashboard and AI to query data in plain language
+Timeline and steps: About 4 to 6 months, phased by module, testing every department on real processes, a parallel run before retiring the old system and training per role
+Customer prepares: Process maps for each department, existing system data to connect and migrate, department leaders who co-design, time for the team to test and train and an executive who decides
+Not included: Complex multi-branch operations, full production, a field mobile app, hosting and user fees and tailoring when workflows are non-standard
+What moves the price: Number of modules and users, systems connected, data volume to migrate, permission complexity and tailoring
+How to pitch it: This package puts every department on one set of data, closes the books faster, makes stock accurate and lets executives view a dashboard daily instead of waiting for month end reports
+Upgrade when: They need several branches, production, a field app, many existing system links or enterprise security and PDPA
+## K:erp-ai#3 tier
+Best for: Mid to large organisations, every department, several branches, needing security and PDPA and ERP as the backbone of operations
+What you get: All needed modules, a mobile app for field teams, links to many existing systems, several branches, security and PDPA, full AI and an ongoing care plan
+Timeline and steps: About 6 to 12 months, in phases with acceptance checkpoints, starting with Discovery across departments, opened branch by branch or work group and closely supported at first
+Customer prepares: Senior executive sponsorship, coordinators from every department and IT, documents of all processes and systems, security policy and phased budget
+Not included: Software and hosting, monthly AI costs, certification fees, any guarantee of business results (none given) and out of scope work agreed as a new project
+What moves the price: Number of departments, branches and group companies, systems connected, security requirements, number of users and number of phases
+How to pitch it: This is an enterprise level project. Do not give a fixed figure; say it starts with Discovery so the price matches the real work, then pass to the team lead
+Upgrade when: Pass to the team lead in every case. Never quote yourself
 `
