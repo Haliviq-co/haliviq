@@ -54,8 +54,8 @@ export default function Footer({ lang, tr }: Props) {
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-6 py-16 lg:py-20">
           {/* Brand column */}
           <div className="col-span-2">
-            <img src="/haliviq-logo-light.svg" alt="Haliviq" className="logo-for-dark h-9 w-auto mb-4" />
-            <img src="/haliviq-logo.svg" alt="Haliviq" className="logo-for-light h-9 w-auto mb-4" />
+            <img loading="lazy" decoding="async" src="/haliviq-logo-light.svg" alt="Haliviq" className="logo-for-dark h-9 w-auto mb-4" />
+            <img loading="lazy" decoding="async" src="/haliviq-logo.svg" alt="Haliviq" className="logo-for-light h-9 w-auto mb-4" />
             <p style={{ color: 'rgb(var(--fg) / 0.85)', fontSize: '0.9rem', fontWeight: 400 }}>
               {f.locations}
             </p>

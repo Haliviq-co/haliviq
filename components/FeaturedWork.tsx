@@ -80,7 +80,7 @@ export default function FeaturedWork({ lang, tr }: Props) {
                 </div>
                 <div className="relative order-1 lg:order-2 rounded-2xl overflow-hidden" style={{ minHeight: 300 }}>
                   {it.img ? (
-                    <img src={it.img} alt={it.title} className="absolute inset-0 w-full h-full object-cover" />
+                    <img loading="lazy" decoding="async" src={it.img} alt={it.title} className="absolute inset-0 w-full h-full object-cover" />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center" style={{ background: i % 2 === 0 ? 'linear-gradient(135deg, var(--purple) 0%, var(--purple-light) 100%)' : 'linear-gradient(135deg, var(--purple-light) 0%, var(--lime) 100%)' }}>
                       <i className="ti ti-photo" style={{ fontSize: 36, color: 'var(--ink)', opacity: 0.35 }} aria-hidden="true" />

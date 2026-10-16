@@ -141,7 +141,7 @@ export default function Page({ params }: { params: { lang: Lang; slug: string } 
 
         <div className="max-w-6xl mx-auto px-6 lg:px-10 mb-14">
           <div className="relative w-full rounded-3xl overflow-hidden bg-[var(--bg)]" style={{ aspectRatio: '16/8' }}>
-            <img src={coverOf(a)} alt={l.title} className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: topPos }} />
+            <img loading="lazy" decoding="async" src={coverOf(a)} alt={l.title} className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: topPos }} />
           </div>
         </div>
 

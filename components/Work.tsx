@@ -54,7 +54,7 @@ export default function Work({ lang, tr }: Props) {
               </div>
 
               {/* Image */}
-              {c.img && <img src={c.img} alt={isEN ? c.title_en : c.title_th}
+              {c.img && <img loading="lazy" decoding="async" src={c.img} alt={isEN ? c.title_en : c.title_th}
                 className="absolute inset-0 w-full h-full object-cover"/>}
 
               {/* Gradient */}

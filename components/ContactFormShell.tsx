@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 // Fires a lead conversion. Consent Mode (set in app/layout.tsx) keeps this cookieless until the visitor accepts.
 // Optional: set NEXT_PUBLIC_ADS_CONVERSION_LABEL (the part after "AW-18293218603/" in Google Ads) to report it as an Ads conversion.
@@ -17,6 +17,7 @@ export default function ContactFormShell({ lang, children }: { lang: 'en' | 'th'
   const isEN = lang === 'en'
   const [state, setState] = useState<'idle' | 'sending' | 'ok' | 'error'>('idle')
   const busy = useRef(false)
+  const saved = useRef<Record<string, unknown> | null>(null)
   const formRef = useRef<HTMLFormElement>(null)
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -30,18 +31,33 @@ export default function ContactFormShell({ lang, children }: { lang: 'en' | 'th'
       message: fd.get('message'), currency: fd.get('currency'), budget: fd.get('budget'), source: fd.get('source'), interests: fd.getAll('interest'),
       newsletter: fd.get('newsletter') === 'on', website: fd.get('website'), lang, page: window.location.pathname,
     }
+    // Show the thank-you screen right away so the form feels instant, and deliver in the background.
+    // If delivery fails (after one automatic retry) we go back to the form with the text restored.
+    saved.current = payload as Record<string, unknown>
+    setState('ok')
+    const send = () => fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
     try {
-      const r = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+      let r = await send().catch(() => null)
+      if (!r || !r.ok) { await new Promise((res) => setTimeout(res, 800)); r = await send() }
       if (!r.ok) throw new Error(String(r.status))
-      setState('ok')
       trackLead()
-      formRef.current?.reset()
+      saved.current = null
     } catch {
       setState('error')
     } finally {
       busy.current = false
     }
   }
+
+  useEffect(() => {
+    if (state !== 'error' || !saved.current || !formRef.current) return
+    const f = formRef.current
+    for (const k of ['name', 'email', 'phone', 'message', 'budget']) {
+      const el = f.elements.namedItem(k) as HTMLInputElement | null
+      const v = saved.current[k]
+      if (el && typeof v === 'string' && 'value' in el) el.value = v
+    }
+  }, [state])
 
   if (state === 'ok') {
     return (

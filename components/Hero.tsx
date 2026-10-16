@@ -10,9 +10,12 @@ export default function Hero({ lang, tr }: Props) {
 
   return (
     <section className="relative overflow-hidden" style={{minHeight:'100vh', background:'#050310'}}>
-      {/* Purple dune landscape background — animated GIF (motion baked into the file) */}
-      <img src="/images/hero/dune-bg.gif" alt=""
-        className="absolute inset-0 w-full h-full object-cover" style={{zIndex:0}}/>
+      {/* Purple dune landscape background — looping muted video (about 80 KB; the old GIF was 4.7 MB). The JPG poster shows instantly. */}
+      <video autoPlay muted loop playsInline preload="auto" poster="/images/hero/dune-bg.jpg" aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover" style={{zIndex:0}}>
+        <source src="/images/hero/dune-bg.webm" type="video/webm"/>
+        <source src="/images/hero/dune-bg.mp4" type="video/mp4"/>
+      </video>
       {/* Light mode: translucent white veil over the dunes so the hero reads as a light surface */}
       <div className="hero-veil absolute inset-0" style={{zIndex:1}}/>
       {/* Soft top-to-bottom overlay for nav + text legibility (dark mode) */}

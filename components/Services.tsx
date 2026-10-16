@@ -148,9 +148,9 @@ const IconBox = ({ gi, ii }: { gi: number; ii: number }) => {
     <div className="theme-dark w-12 h-12 rounded-2xl flex items-center justify-center mb-2 overflow-hidden flex-shrink-0"
       style={{ background: isPng ? 'transparent' : '#10122A' }}>
       {isEnt
-        ? <img src={enterpriseImgs[ii]} alt="" style={{ width: 38, height: 38, objectFit: 'contain' }}/>
+        ? <img loading="lazy" decoding="async" src={enterpriseImgs[ii]} alt="" style={{ width: 38, height: 38, objectFit: 'contain' }}/>
         : isPng
-          ? <img src={pngSrc} alt="" style={{ width: 64, height: 64, objectFit: 'cover', borderRadius: 16 }}/>
+          ? <img loading="lazy" decoding="async" src={pngSrc} alt="" style={{ width: 64, height: 64, objectFit: 'cover', borderRadius: 16 }}/>
           : <div style={{ width: 36, height: 36 }}>{icon}</div>
       }
     </div>

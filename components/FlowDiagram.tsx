@@ -152,7 +152,7 @@ export default function FlowDiagram({ lang }: { lang: Lang }) {
           </div>
           <div className="fd-mline" aria-hidden="true" />
           <div className="rounded-3xl p-5" style={{ background: 'rgb(var(--fg) / 0.05)', border: '1px dashed rgb(var(--fg) / 0.2)' }}>
-            <img src="/haliviq-logo-light.svg" alt="Haliviq" className="mx-auto mb-4 h-8 w-auto" />
+            <img loading="lazy" decoding="async" src="/haliviq-logo-light.svg" alt="Haliviq" className="mx-auto mb-4 h-8 w-auto" />
             <div className="flex flex-wrap gap-2 justify-center">
               {c.services.map((s, i) => (
                 <span key={s} className="px-3.5 py-2 rounded-full text-sm inline-flex items-center gap-2" style={{ background: 'rgb(var(--fg) / 0.07)', border: '1px solid rgb(var(--fg) / 0.14)', color: 'var(--ink)' }}><MiniIcon color={i % 2 ? '#53C3D7' : '#9A90FF'} size={18}>{ICON_SVC[i]}</MiniIcon>{s}</span>
