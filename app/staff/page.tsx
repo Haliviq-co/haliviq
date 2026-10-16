@@ -54,6 +54,7 @@ const INDUSTRIES: { th: string; en: string }[] = [
   { th: 'สตาร์ทอัพ', en: 'Startup' },
   { th: 'การเงิน / องค์กรใหญ่', en: 'Finance / enterprise' },
   { th: 'ก่อสร้าง / ขนส่ง', en: 'Construction / logistics' },
+  { th: 'โรงแรมและแบรนด์หรู (USA)', en: 'Luxury hotels and brands (USA)' },
 ]
 const TOPIC_KEYS = ['price', 'scope', 'ask', 'sell', 'plain'] as const
 

@@ -268,6 +268,16 @@ Services that help: job and document tracking system, ERP, dashboards, mobile ap
 Common problems (conversation openers): field work has no real-time data
 Note: Propose mobile app + ERP.
 
+## Luxury hotels and high-end brands (USA market, top-tier design)
+Services that help: top-tier website design for hotels, resorts, spas and luxury brands, premium Branding, UX/UI of the direct booking flow, an AI Concierge answering guests and suggesting experiences 24 hours a day, SEO/AEO so AI recommends the property
+Rough prices [estimate, not confirmed, USA customers only]: high-end website $25,000 – $80,000 | premium Branding $40,000 and up | AI Concierge $15,000 – $60,000. Estimate for real after Discovery and check with the team lead before quoting
+High-end design principles (use to help the customer picture it): less but richer, generous white space, photography as the hero, large full-screen images, slow soft motion, elegant type (often a serif paired with a clean sans), a quiet menu, not crammed with information, every page tells the story and feel of the place before the price
+What brands like Aman and Four Seasons do to feel luxurious: calm tones (cream, black, gold, deep green), imagery that feels quiet and private, short copy, a booking button that is clear but not loud, no pushy pop-ups, no stock photos
+Selling angle: the website is the "first lobby" where a guest decides to book or not. Luxury-looking design supports higher room rates and cuts reliance on OTAs (Booking, Expedia), so more guests book direct. The AI Concierge answers like a front-desk host, not a stiff bot
+Questions to ask: How should guests feel about the brand, which hotels or brands do you admire, what share of bookings are direct versus OTA today, roughly how much commission do you pay per year, which booking engine is used (must we integrate), are professional photos and videos ready, do you need multiple languages and currencies, are there multiple brands or properties in the group
+Common problems (conversation openers): the current site looks like a template and does not match the room rates, few direct bookings and high OTA commission, cannot answer foreign guests in time
+Note: top-tier work needs high-quality photography, so the customer should prepare it or hire a photographer. Never promise bookings. Always pass to the team lead before quoting
+
 
 # App Store and Play Store apps / platforms (our main target) sales guide
 Prices are [estimate], not confirmed. Always keep Thailand and USA separate. Ask first whether the customer is in Thailand or the US.
