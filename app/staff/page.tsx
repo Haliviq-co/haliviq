@@ -82,7 +82,7 @@ export default function StaffPage() {
 
   function start() {
     ctx.current = { step: 'svc' }
-    setMsgs([{ from: 'bot', text: 'สวัสดีครับ ผมน้องฮาวี่ สำหรับทีมภายใน อยากรู้เรื่องบริการอะไรครับ เลือกจากปุ่ม หรือพิมพ์ถามได้เลย เช่น "ลูกค้าบอกแพง ตอบยังไง"\nHi, I'm Havy for the internal team. Which service do you want to know about? Pick a button or just type, e.g. "customer says it's too expensive".', chips: svcChips }])
+    setMsgs([{ from: 'bot', text: 'สวัสดีครับ ผมน้องฮาวี่ สำหรับทีมภายใน อยากรู้เรื่องบริการอะไรครับ เลือกจากปุ่ม หรือพิมพ์ถามได้เลย เช่น "ลูกค้าบอกแพง ตอบยังไง"\nHi, I am Havy for the internal team. Which service do you want to know about? Pick a button or just type, e.g. "customer says it is too expensive".', chips: svcChips }])
   }
   useEffect(start, []) // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => { endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' }) }, [msgs])
@@ -158,7 +158,7 @@ export default function StaffPage() {
 
   function answerIndustry(label: string): string {
     const b = find('ถามธุรกิจ')?.blocks.find((x) => x.h2.includes(label.split(' · ')[0].split(' / ')[0]))
-    return b ? `${b.h2}\n${fmt(b.lines)}\n\nถ้าบอกว่าลูกค้าอยู่ไทยหรือ USA ผมจะบอกราคาตามตลาดนั้นครับ\nTell me if the customer is in Thailand or the USA and I'll quote that market.` : 'ยังไม่มีข้อมูลธุรกิจนี้ในคู่มือครับ ลองบอกปัญหาหลักของธุรกิจ แล้วผมแนะนำบริการให้'
+    return b ? `${b.h2}\n${fmt(b.lines)}\n\nถ้าบอกว่าลูกค้าอยู่ไทยหรือ USA ผมจะบอกราคาตามตลาดนั้นครับ\nTell me if the customer is in Thailand or the USA and I will quote that market.` : 'ยังไม่มีข้อมูลธุรกิจนี้ในคู่มือครับ ลองบอกปัญหาหลักของธุรกิจ แล้วผมแนะนำบริการให้'
   }
 
   function answerFree(q: string): string {
