@@ -4,7 +4,7 @@ export const runtime = 'nodejs'
 
 /**
  * Chat hand-off: the visitor agreed to let the team contact them, so push a short summary to LINE.
- * Needs LINE_CHANNEL_TOKEN (Messaging API long-lived token) and LINE_NOTIFY_TO (user or group ID).
+ * Needs LINE_CHANNEL_TOKEN (Messaging API long-lived token) and LINE_NOTIFY_TO (comma-separated user/group IDs).
  * Without them this returns 503 and the widget tells the visitor to use the contact channels instead.
  */
 
@@ -50,43 +50,73 @@ export async function POST(req: Request) {
     tap ? '' : 'ลูกค้ายินยอมให้ติดต่อกลับแล้ว',
   ].filter(Boolean).join('\n')
 
-  // Delivery: LINE first if configured, otherwise email (Resend), otherwise the webhook.
-  try {
-    if (token && to) {
-      // LINE_NOTIFY_TO may hold one user/group ID, or several user IDs separated by commas (sent as a multicast).
-      const ids = to.split(',').map((x) => x.trim()).filter(Boolean)
-      const multi = ids.length > 1
-      const r = await fetch(`https://api.line.me/v2/bot/message/${multi ? 'multicast' : 'push'}`, {
+  const lineText = text.slice(0, 4900)
+
+  // LINE_NOTIFY_TO may hold user IDs (U...), group IDs (C...) and room IDs (R...) separated by commas.
+  // The multicast endpoint only accepts user IDs, so groups/rooms are pushed one by one.
+  // Returns true when at least one LINE request succeeded.
+  async function sendLine(): Promise<{ ok: boolean; status?: number; detail?: string }> {
+    const ids = Array.from(new Set((to || '').split(',').map((x) => x.trim()).filter(Boolean)))
+    const users = ids.filter((id) => id.startsWith('U'))
+    const others = ids.filter((id) => !id.startsWith('U'))
+    const call = async (path: 'push' | 'multicast', dest: string | string[]) => {
+      const r = await fetch(`https://api.line.me/v2/bot/message/${path}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ to: multi ? ids.slice(0, 500) : ids[0], messages: [{ type: 'text', text: text.slice(0, 4900) }] }),
+        body: JSON.stringify({ to: dest, messages: [{ type: 'text', text: lineText }] }),
       })
       if (!r.ok) {
         const body = await r.text().catch(() => '')
-        console.error('LINE push failed', r.status, body.slice(0, 300))
-        return NextResponse.json({ ok: false, error: 'line', status: r.status, detail: body.slice(0, 200) }, { status: 502 })
+        console.error('LINE', path, 'failed', r.status, body.slice(0, 300))
+        return { ok: false, status: r.status, detail: body.slice(0, 200) }
       }
-    } else if (resendKey) {
-      const esc = (x: string) => x.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c] as string))
-      const r = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${resendKey}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          from: process.env.CONTACT_FROM || 'Haliviq Website <onboarding@resend.dev>',
-          to: ['info@haliviq.com'],
-          subject: tap ? `ลูกค้ากำลังทักทาง ${channel} (จากน้องฮาวี่)` : `ลูกค้าขอให้ติดต่อกลับ (จากน้องฮาวี่): ${contact}`,
-          html: `<div style="font-family:-apple-system,Segoe UI,Arial,'Noto Sans Thai',sans-serif;font-size:15px;line-height:1.7;white-space:pre-wrap">${esc(text)}</div>`,
-        }),
-      })
-      if (!r.ok) {
-        console.error('lead email failed', r.status, (await r.text().catch(() => '')).slice(0, 300))
-        return NextResponse.json({ ok: false, error: 'email' }, { status: 502 })
-      }
-    } else if (hook) {
-      const r = await fetch(hook, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text, contact, topics }) })
-      if (!r.ok) return NextResponse.json({ ok: false, error: 'webhook' }, { status: 502 })
+      return { ok: true as const }
     }
-    return NextResponse.json({ ok: true })
+    const jobs: Promise<{ ok: boolean; status?: number; detail?: string }>[] = []
+    if (users.length === 1) jobs.push(call('push', users[0]))
+    else if (users.length > 1) jobs.push(call('multicast', users.slice(0, 500)))
+    for (const id of others.slice(0, 20)) jobs.push(call('push', id))
+    if (!jobs.length) return { ok: false, detail: 'no_ids' }
+    const results = await Promise.all(jobs.map((j) => j.catch(() => ({ ok: false as boolean, status: undefined, detail: 'net' }))))
+    const good = results.some((r) => r.ok)
+    const bad = results.find((r) => !r.ok)
+    return good ? { ok: true } : { ok: false, status: bad?.status, detail: bad?.detail }
+  }
+
+  async function sendEmail(): Promise<boolean> {
+    if (!resendKey) return false
+    const esc = (x: string) => x.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c] as string))
+    const r = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${resendKey}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        from: process.env.CONTACT_FROM || 'Haliviq Website <onboarding@resend.dev>',
+        to: ['info@haliviq.com'],
+        subject: tap ? `ลูกค้ากำลังทักทาง ${channel} (จากน้องฮาวี่)` : `ลูกค้าขอให้ติดต่อกลับ (จากน้องฮาวี่): ${contact}`,
+        html: `<div style="font-family:-apple-system,Segoe UI,Arial,'Noto Sans Thai',sans-serif;font-size:15px;line-height:1.7;white-space:pre-wrap">${esc(text)}</div>`,
+      }),
+    })
+    if (!r.ok) console.error('lead email failed', r.status, (await r.text().catch(() => '')).slice(0, 300))
+    return r.ok
+  }
+
+  async function sendHook(): Promise<boolean> {
+    if (!hook) return false
+    const r = await fetch(hook, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text, contact, topics }) })
+    return r.ok
+  }
+
+  // Delivery: LINE first if configured. If LINE fails (or is not configured), fall back to email (Resend), then the webhook.
+  let line: { ok: boolean; status?: number; detail?: string } | null = null
+  try {
+    if (token && to) {
+      line = await sendLine()
+      if (line.ok) return NextResponse.json({ ok: true })
+    }
+    try { if (await sendEmail()) return NextResponse.json({ ok: true }) } catch (e) { console.error('lead email error', e) }
+    try { if (await sendHook()) return NextResponse.json({ ok: true }) } catch (e) { console.error('lead webhook error', e) }
+    if (line) return NextResponse.json({ ok: false, error: 'line', status: line.status, detail: line.detail }, { status: 502 })
+    return NextResponse.json({ ok: false, error: 'delivery' }, { status: 502 })
   } catch {
     return NextResponse.json({ ok: false, error: 'net' }, { status: 502 })
   }
