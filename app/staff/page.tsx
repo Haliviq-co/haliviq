@@ -239,12 +239,12 @@ export default function StaffPage() {
     if (!blocks.length) return t.none
     const pick = (re: RegExp) => blocks.filter((b) => re.test(b.h2))
     if (topic === 'price') {
-      const priced = blocks.filter((b) => p.pricedBlock.test(b.h2) || b.lines.some((l) => p.moneyLine.test(l)))
+      const priced = blocks.filter((b) => !p.askBlock.test(b.h2) && !p.sellBlock.test(b.h2) && !p.whatBlock.test(b.h2) && b.lines.some((l) => p.moneyLine.test(l)))
       const out = priced.map((b) => {
         const ls = b.lines.filter((l) => p.priceLine.test(l) || p.priceExtra.test(l))
         return `${b.h2}\n${fmt(ls.length ? ls : b.lines.slice(0, 3), m)}`
       })
-      const direct = intro.filter((l) => p.moneyLine.test(l))
+      const direct = intro.filter((l) => p.moneyLine.test(l) && !/^(Note|หมายเหตุ)/.test(l))
       return `${title} · ${t.priceHead(m)}\n\n${[...direct, ...out].join('\n\n')}\n\n${t.draft}`
     }
     if (topic === 'scope') {
