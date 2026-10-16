@@ -53,6 +53,14 @@ function forMarket(line: string, m: Market) {
   if (!/(^|\| )(ไทย:|USA:)/.test(line)) return line
   return line.split(' | ').filter((p) => !p.startsWith(other)).join(' | ')
 }
+const EN: [RegExp, string][] = [
+  [/price|cost|how much|quote|pricing/i, 'ราคา บาท'], [/website|web site|web\b/i, 'เว็บไซต์'], [/brand|logo/i, 'Branding แบรนด์'],
+  [/app\b|mobile|ios|android/i, 'แอป'], [/expensive|too much|discount|cheap/i, 'แพง ลดราคา'], [/clinic|hospital|beauty/i, 'คลินิก'],
+  [/restaurant|cafe/i, 'ร้านอาหาร'], [/hotel|resort|luxury/i, 'โรงแรม'], [/seo|aeo|geo/i, 'SEO AEO GEO'], [/chatbot|assistant/i, 'AI Assistant'],
+  [/scope|include/i, 'ขอบเขต'], [/business card|namecard/i, 'นามบัตร'], [/sell|pitch|objection/i, 'จุดขาย วิธีขาย'], [/usa|us market|dollar/i, 'USA'],
+  [/timeline|how long|duration/i, 'ระยะเวลา'], [/security|pdpa/i, 'ความปลอดภัย'], [/ecommerce|e-commerce|shop/i, 'อีคอมเมิร์ซ'],
+]
+const expand = (q: string) => q + ' ' + EN.filter(([r]) => r.test(q)).map(([, t]) => t).join(' ')
 const grams = (s: string) => { const g = new Set<string>(); const t = s.toLowerCase().replace(/\s+/g, ''); for (let i = 0; i + 3 <= t.length; i++) g.add(t.slice(i, i + 3)); return g }
 
 const chipStyle: React.CSSProperties = { border: '1px solid rgb(var(--fg) / 0.2)', borderRadius: 999, padding: '8px 14px', fontSize: 14, color: 'var(--ink)', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit' }
@@ -74,8 +82,7 @@ export default function StaffPage() {
 
   function start() {
     ctx.current = { step: 'svc' }
-    setMsgs([{ from: 'bot', text: 'สวัสดีครับ ผมน้องฮาวี่ สำหรับทีมภายใน อยากรู้เรื่องบริการอะไรครับ เลือกจากปุ่ม หรือพิมพ์ถามได้เลย เช่น "ลูกค้าบอกแพง ตอบยังไง"
-Hi, I'm Havy for the internal team. Which service do you want to know about? Pick a button or just type, e.g. "customer says it's too expensive".', chips: svcChips }])
+    setMsgs([{ from: 'bot', text: 'สวัสดีครับ ผมน้องฮาวี่ สำหรับทีมภายใน อยากรู้เรื่องบริการอะไรครับ เลือกจากปุ่ม หรือพิมพ์ถามได้เลย เช่น "ลูกค้าบอกแพง ตอบยังไง"\nHi, I'm Havy for the internal team. Which service do you want to know about? Pick a button or just type, e.g. "customer says it's too expensive".', chips: svcChips }])
   }
   useEffect(start, []) // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => { endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' }) }, [msgs])
@@ -155,7 +162,7 @@ Hi, I'm Havy for the internal team. Which service do you want to know about? Pic
   }
 
   function answerFree(q: string): string {
-    const g = grams(q)
+    const g = grams(expand(q))
     if (g.size === 0) return 'พิมพ์ถามเพิ่มได้เลยครับ'
     const cand: { score: number; head: string; lines: string[] }[] = []
     for (const s of secs) {
@@ -222,7 +229,7 @@ Hi, I'm Havy for the internal team. Which service do you want to know about? Pic
             <div style={{ color: 'var(--accent)', fontSize: 12, letterSpacing: '.14em', textTransform: 'uppercase' }}>Haliviq Staff</div>
             <div style={{ fontSize: 18, fontWeight: 600 }}>น้องฮาวี่ สำหรับทีมภายใน · Havy for the internal team</div>
           </div>
-          <button onClick={start} style={{ ...chipStyle, fontSize: 13 }}>เริ่มใหม่</button>
+          <button onClick={start} style={{ ...chipStyle, fontSize: 13 }}>เริ่มใหม่ · Restart</button>
         </header>
 
         {msgs.map((m, i) => (
@@ -242,7 +249,7 @@ Hi, I'm Havy for the internal team. Which service do you want to know about? Pic
 
       <form onSubmit={submit} style={{ position: 'fixed', left: 0, right: 0, bottom: 0, background: 'var(--bg)', borderTop: '1px solid rgb(var(--fg) / 0.12)', padding: '12px 16px calc(12px + env(safe-area-inset-bottom))' }}>
         <div style={{ maxWidth: 760, margin: '0 auto', display: 'flex', gap: 8 }}>
-          <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="พิมพ์ถามได้เลย เช่น ลูกค้าบอกแพง ตอบยังไง" style={{ flex: 1, padding: '12px 16px', borderRadius: 999, border: '1px solid rgb(var(--fg) / 0.25)', background: 'transparent', color: 'var(--ink)', fontSize: 16, fontFamily: 'inherit', minWidth: 0 }} />
+          <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="พิมพ์ถามได้เลย · Ask anything (ไทย / English)" style={{ flex: 1, padding: '12px 16px', borderRadius: 999, border: '1px solid rgb(var(--fg) / 0.25)', background: 'transparent', color: 'var(--ink)', fontSize: 16, fontFamily: 'inherit', minWidth: 0 }} />
           <button type="submit" disabled={!input.trim()} style={{ padding: '0 20px', borderRadius: 999, border: 0, background: 'var(--accent)', color: '#14131A', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', opacity: input.trim() ? 1 : 0.5 }}>ส่ง · Send</button>
         </div>
       </form>
