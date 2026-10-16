@@ -201,10 +201,11 @@ function grams(s: string, stop: string[]) {
 }
 
 
-function lineItem(l: string): { q: string; a: string[] } {
+function lineItem(l: string): { q: string; a: string[] } { return lineItemX(l, false) }
+function lineItemX(l: string, keepNum: boolean): { q: string; a: string[] } {
   const raw = l.replace(/^- /, '')
   const n = raw.match(/^\d+\.\s*(.*?)\s*=>\s*(.*)$/)
-  if (n) return { q: n[1], a: n[2].split(' ¶ ') }
+  if (n) return { q: keepNum ? raw.match(/^\d+\./)![0] + ' ' + n[1] : n[1], a: n[2].split(' ¶ ') }
   if (/^\d+\./.test(raw)) return { q: raw.replace(/^\d+\.\s*/, ''), a: [] }
   const j = raw.indexOf(': ')
   if (j > 0 && j < 70 && !/^https?:/.test(raw)) return { q: raw.slice(0, j), a: [raw.slice(j + 2)] }
@@ -255,7 +256,9 @@ const USD_BULLET = /^(.+?): (\$[\d,]+(?:\s*[–-]\s*\$[\d,]+)?(?:\s*(?:ขึ้
 function PriceCards({ cards, tapScope, tapHide }: { cards: PCard[]; tapScope: string; tapHide: string }) {
   const [open, setOpen] = useState<number | null>(null)
   return (
-    <div style={{ display: 'flex', gap: 12, overflowX: 'auto', scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch', padding: '4px 2px 10px', alignItems: 'flex-start' }}>
+    <>
+    <style>{'.pc-row::-webkit-scrollbar{height:3px}.pc-row::-webkit-scrollbar-track{background:transparent}.pc-row::-webkit-scrollbar-thumb{background:rgba(123,110,246,.7);border-radius:3px}'}</style>
+    <div className="pc-row" style={{ display: 'flex', gap: 12, overflowX: 'auto', scrollbarWidth: 'thin', scrollbarColor: 'rgba(123,110,246,.7) transparent', scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch', padding: '4px 2px 10px', alignItems: 'flex-start' }}>
       {cards.map((c, i) => {
         const on = open === i
         return (
@@ -277,6 +280,7 @@ function PriceCards({ cards, tapScope, tapHide }: { cards: PCard[]; tapScope: st
         )
       })}
     </div>
+    </>
   )
 }
 
@@ -348,6 +352,26 @@ export default function StaffPage() {
 
   const fmt = (lines: string[], m?: Market) => lines.map((l) => (m ? forMarket(l, m, L) : l)).join('\n')
 
+  function enrich(cards: PCard[]): PCard[] {
+    const sv = SERVICES[ctx.current.svc as number]
+    const dk = sv ? sv.q + (sv.pk && sv.pk !== sv.q ? '-' + sv.pk : '') : ''
+    const blk = (secs[S.det]?.blocks || []).find((b) => b.h2.startsWith('D:' + dk + ' ') && /20/.test(b.h2))
+    if (!blk) return cards
+    const it = (n: number) => { const l = blk.lines.find((x) => x.startsWith(n + '. ')) || ''; const i = l.indexOf(' => '); return i > 0 ? l.slice(i + 4).replace(/ ¶ /g, ' ') : '' }
+    const hd = (n: number) => { const l = blk.lines.find((x) => x.startsWith(n + '. ')) || ''; const i = l.indexOf(' => '); return i > 0 ? l.slice(l.indexOf('. ') + 2, i) : '' }
+    const th = L === 'th'
+    const steps = [7, 8, 9, 10, 11].map((n, k) => (k + 1) + ') ' + hd(n).replace(/^(ขั้นที่ \d+ |Step \d+: )/, '')).join('  ')
+    const extra = [
+      (th ? 'เหมาะกับธุรกิจ: ' : 'Fits businesses: ') + it(3),
+      (th ? 'ลูกค้าพร้อมซื้อเมื่อ: ' : 'Ready to buy when: ') + it(4),
+      (th ? 'ขั้นตอนทำงาน: ' : 'Work steps: ') + steps,
+      (th ? 'ค่าใช้จ่ายและเงื่อนไข: ' : 'Costs and terms: ') + it(19),
+      (th ? 'ถ้าลูกค้าบอกว่าแพง: ' : 'If they say too expensive: ') + it(16),
+      (th ? 'ส่งหัวหน้าทีมเมื่อ: ' : 'Pass to team lead when: ') + it(20),
+    ].filter((x) => x.length > 22)
+    return cards.map((c) => ({ ...c, scope: [...c.scope, ...extra] }))
+  }
+
   function priceCards(): { head: string; cards: PCard[] } | null {
     const c = ctx.current
     if (c.svc === undefined) return null
@@ -371,7 +395,7 @@ export default function StaffPage() {
         const mm = x.match(/^(.*?)\s*(\$[\d,]+)$/)
         if (mm) cards.push({ title: mm[1], price: mm[2], scope: [intro.length ? '' : L === 'th' ? 'ราคาเหมาจ่ายเป็นดอลลาร์ ยืนยันแล้ว' : 'Fixed price in USD, confirmed'] })
       }
-      return cards.length ? { head: `${title} · ${t.priceHead('us')}`, cards } : null
+      return cards.length ? { head: `${title} · ${t.priceHead('us')}`, cards: enrich(cards) } : null
     }
     for (const b of blocks) {
       if (p.askBlock.test(b.h2) || p.sellBlock.test(b.h2) || p.whatBlock.test(b.h2)) continue
@@ -420,7 +444,7 @@ export default function StaffPage() {
         }
       }
     }
-    return cards.length ? { head: `${title} · ${t.priceHead(m)}`, cards } : null
+    return cards.length ? { head: `${title} · ${t.priceHead(m)}`, cards: enrich(cards) } : null
   }
 
   function casesFor(tags: string[], max: number): { list: { q: string; a: string[] }[]; direct: boolean } {
@@ -495,7 +519,7 @@ export default function StaffPage() {
       const groups: Faq[] = bs.map((b) => ({ head: b.h2, items: b.lines.map(lineItem) }))
       const sv2 = SERVICES[ctx.current.svc as number]
       const k2 = sv2 ? sv2.q + (sv2.pk && sv2.pk !== sv2.q ? '-' + sv2.pk : '') : ''
-      ;(secs[S.det]?.blocks || []).filter((b) => b.h2.startsWith('D:' + k2 + ' ') && /ขาย|ข้อโต้แย้ง|sell|objection/i.test(b.h2)).forEach((b) => groups.push({ head: b.h2.replace(/^D:\S+\s/, ''), items: b.lines.map(lineItem) }))
+      ;(secs[S.det]?.blocks || []).filter((b) => b.h2.startsWith('D:' + k2 + ' ') && /ขาย|ข้อโต้แย้ง|sell|objection/i.test(b.h2)).forEach((b) => groups.push({ head: b.h2.replace(/^D:\S+\s/, ''), items: b.lines.map((l) => lineItemX(l, true)) }))
       groups.push({ head: t.sellsHead, items: sells.map(lineItem) })
       return { text: `${title}\n${t.tapHint}`, faq: groups }
     }
@@ -506,7 +530,7 @@ export default function StaffPage() {
     if (dblocks.length) {
       const dwhat = dblocks.filter((b) => !/ขาย|ข้อโต้แย้ง|sell|objection/i.test(b.h2))
       const base = dwhat.length > 1 ? dwhat : [...dwhat, ...pick(p.whatBlock)]
-      const groups: Faq[] = base.map((b) => ({ head: dStrip(b.h2), items: b.lines.map(lineItem) }))
+      const groups: Faq[] = base.map((b) => ({ head: dStrip(b.h2), items: b.lines.map((l) => lineItemX(l, true)) }))
       return { text: `${title}\n${t.tapHint}`, faq: groups }
     }
     const what = pick(p.whatBlock)

@@ -891,7 +891,7 @@ Best for: Organisations changing how they work end to end
 Includes: Everything in Roadmap plus process and data design, tool selection, team readiness and training, early follow up
 Excludes: Software and development costs
 
-# In depth detail of each service (goal flow, steps, examples, how to sell)
+# In depth detail of each service (goal flow, 20 point detail, how to sell)
 
 ## D:wt-basic The ultimate goal of a basic website
 Not just: having a good looking site, but making customers trust you and contact you easily
@@ -899,488 +899,608 @@ Customer path: sees us on Google or LINE → opens the site → understands what
 Example: An air con repair shop: Search → Home → Services and areas → Call button
 Why it matters: most customers check the site before deciding. A slow site or missing information sends them to a competitor
 What we do: a simple, fast site that looks good on mobile, with contact buttons on every page and a structure ready to grow
+## D:wt-basic Detailed explanation in 20 points
+1. What it is (plain explanation) => A basic website (company or business intro site) is the business's online face: who we are, what we do, rough prices, past work and how to contact. ¶ No complex ordering system; it focuses on credibility and easy contact
+2. Why a business needs it => Most customers check a website before deciding. A business with no site or an old one looks untrustworthy. A good site works as a sales rep 24 hours and holds accurate information
+3. Which businesses it fits => It suits service businesses, repair shops, consultants, clinics, restaurants, factories and SMEs wanting easy contact without an online sales system
+4. Signals the customer is ready to buy => The customer has no site yet, uses only a Facebook page, has an old site not mobile friendly, corporate clients ask to see the site first, or they want an official online address
+5. Who makes the decision => Usually the owner or marketing manager. Ask who can prepare content and photos, which usually delays projects most
+6. What the customer concretely gets => A fast mobile site, key pages, call and LINE buttons, a contact form, a map, and a domain with business email, per the chosen package
+7. Step 1: Goals and page structure => Discuss goals and target customers and agree the page structure, such as home, services, work, about and contact, plus content needed
+8. Step 2: Visual design => Design the look to match the brand and read well on mobile, shown to the customer for feedback before coding
+9. Step 3: Build and add content => Build the site, add content and images, tune speed, set basic SEO and connect the contact form to email or LINE
+10. Step 4: Test => Test every page on mobile and desktop, check links and forms, and let the customer review before launch
+11. Step 5: Launch and hand over => Launch, set the domain and email, teach basic text editing if in the package and hand over documents
+12. Example 1: An air con repair shop => An air con repair shop: customers search, see the services and coverage area and tap to call straight from mobile
+13. Example 2: An accounting firm => An accounting firm: the site shows services, starting prices and work, so corporate clients trust it before meeting
+14. Example 3: A manufacturer => A manufacturer: the site presents products, standards and certificates with a quote request form, so foreign buyers can reach out
+15. Opening sales line (you can say this) => Where do new customers look to learn about you now? If you could send a credible site link at once, would closing be easier? Let me outline which pages your site should have
+16. If the customer says it is too expensive => Compare with customers lost for lack of information. A site is a lasting asset unlike ads, and you can start with the basic package and extend later
+17. If the customer says a Facebook page is enough => If the customer says a Facebook page is enough: the page belongs to a platform that can change rules, is hard to find on Google and looks informal. A site is yours and works alongside the page
+18. Cautions and what never to say => Never promise Google rankings, never use unlicensed images or fonts, and never start before agreeing page scope and revision rounds
+19. Costs and terms to tell the customer => Domain, hosting and business email are yearly and separate from the build. Content writing and photos cost extra if wanted, and added pages later are quoted separately
+20. Pass to the team lead when => The customer wants membership, payments or internal integration, several languages or branches, or a site bigger than five to ten pages. Prepare page count, languages and sample sites they like for the team lead
+## D:wt-basic How to sell and handle objections
+15. Opening sales line (you can say this) => Where do new customers look to learn about you now? If you could send a credible site link at once, would closing be easier? Let me outline which pages your site should have
+16. If the customer says it is too expensive => Compare with customers lost for lack of information. A site is a lasting asset unlike ads, and you can start with the basic package and extend later
+17. If the customer says a Facebook page is enough => If the customer says a Facebook page is enough: the page belongs to a platform that can change rules, is hard to find on Google and looks informal. A site is yours and works alongside the page
+18. Cautions and what never to say => Never promise Google rankings, never use unlicensed images or fonts, and never start before agreeing page scope and revision rounds
 ## D:wt-ecom The ultimate goal of an e-commerce site
 Not just: an online shopfront, but making people reorder and keeping the customers as your own
 Customer path: searches or sees an ad → product page → add to cart → pay → receive goods → buy again
 Example: A roastery: Instagram → product page → PromptPay → tracking number on LINE
 Why it matters: every awkward step makes customers abandon the cart. A good system cuts steps and makes orders easy for the team
 What we do: a store with easy checkout, shipping and stock links, automatic tax invoices and sales reports
+## D:wt-ecom Detailed explanation in 20 points
+1. What it is (plain explanation) => An e-commerce site is your own online shop with product pages, cart, payment, shipping and a back office for orders. ¶ Unlike marketplaces, customers and data are yours, with no heavy commission and full brand control
+2. Why a business needs it => Selling on others' platforms makes customers theirs and competes on price. Your own shop builds repeat customers, keeps data for remarketing and improves margin per item
+3. Which businesses it fits => It suits shops with their own products, brands wanting repeat customers, makers wanting direct sales and sellers across channels wanting a central hub
+4. Signals the customer is ready to buy => The customer says marketplace commission is high, wants their own shop, sells via LINE and chat and cannot manage orders, or wants payment and parcel tracking
+5. Who makes the decision => Usually the shop owner or online manager. Ask who handles stock and packing after launch, as it is routine work someone must own
+6. What the customer concretely gets => A shop ready to sell, payment through PromptPay, cards or agreed channels, shipping calculation, a product and order system and sales reports
+7. Step 1: Understand products and channels => Understand the products, item count, selling and shipping methods and current channels to define truly needed features
+8. Step 2: Design product pages and checkout => Design product pages and a short, trustworthy checkout, mobile first because most customers buy on phones
+9. Step 3: Build and integrate => Build the shop, connect payment, shipping and stock, and set tax invoices or receipts as the business needs
+10. Step 4: Test real orders => Test real orders with every payment method, check shipping calculation and notification emails, and import starting products
+11. Step 5: Launch and train => Launch with team training on orders, set abandoned cart follow up and review early sales reports to adjust
+12. Example 1: A roastery => A roastery: customers come from Instagram to a product page, pay by PromptPay and get the tracking number on LINE, so the team stops repeating chat answers
+13. Example 2: A clothing brand => A clothing brand: customers choose size and colour with real stock shown, reducing orders for sold out items and size enquiry chats
+14. Example 3: A dry food maker => A dry food maker: direct to consumer alongside distributors with membership and repeat promotions, adding a better margin channel
+15. Opening sales line (you can say this) => Which channels do you sell through, and what percent of sales go to commission and ads? If you had your own shop for repeat customers, how could cost per order fall? Let me calculate
+16. If the customer says it is too expensive => Compare with commission paid on every order forever. Your own site is a one time cost with lower monthly fees, and moving only some regulars can pay it back. Run it alongside marketplaces
+17. If the customer says Shopee or Lazada is enough => If the customer says Shopee or Lazada is enough: customers there belong to the platform and compete on price. Your own shop keeps regulars, and both can run together
+18. Cautions and what never to say => Never promise sales and never take payments into our own account for the customer. Payments go directly to the customer via a licensed provider, with a privacy policy and return terms in place
+19. Costs and terms to tell the customer => Payment provider fees are deducted from sales and paid directly to the provider, hosting is monthly or yearly, shipping is actual, and bulk product loading or migration is quoted separately
+20. Pass to the team lead when => The customer has thousands of products, needs links to existing stock or accounting, sells across countries and currencies, or wants a multi-vendor marketplace. Prepare product count, existing systems and channels for the team lead
+## D:wt-ecom How to sell and handle objections
+15. Opening sales line (you can say this) => Which channels do you sell through, and what percent of sales go to commission and ads? If you had your own shop for repeat customers, how could cost per order fall? Let me calculate
+16. If the customer says it is too expensive => Compare with commission paid on every order forever. Your own site is a one time cost with lower monthly fees, and moving only some regulars can pay it back. Run it alongside marketplaces
+17. If the customer says Shopee or Lazada is enough => If the customer says Shopee or Lazada is enough: customers there belong to the platform and compete on price. Your own shop keeps regulars, and both can run together
+18. Cautions and what never to say => Never promise sales and never take payments into our own account for the customer. Payments go directly to the customer via a licensed provider, with a privacy policy and return terms in place
 ## D:web The ultimate goal of a website + AI
 Not just: a site with a fancy chatbot, but AI that turns visitors into customers around the clock
 Customer path: finds us → visits → asks the chatbot at 2am → gets an instant answer → leaves a number → the team calls back in the morning
 Example: A clinic: Search → Website → chatbot answers price and hours → appointment into the CRM
 Why it matters: customers do not wait. If you reply late they ask someone else. A bot that answers correctly and captures numbers reduces lost leads
 What we do: a site AI can find and cite, a chatbot that learns from the business data, with handover to a person when unsure
+## D:web Detailed explanation in 20 points
+1. What it is (plain explanation) => A website + AI is a business site with a chatbot or AI that answers customers, captures leads and hands to the team 24 hours. ¶ It also structures content so AI search such as ChatGPT and Google AI Overviews can understand and cite us
+2. Why a business needs it => Most visitors leave without contacting if they cannot find an answer at once. AI answering at 2 am catches leads that normally slip away and cuts repeat question work for the team
+3. Which businesses it fits => It suits clinics, schools, real estate, professional services, tourism and firms with many enquiries wanting a practical start with AI
+4. Signals the customer is ready to buy => The customer says people ask the same things daily, message after hours with no reply, want AI but do not know where to start, or want the site to sell any time
+5. Who makes the decision => Usually the owner or marketing manager. Ask who maintains the answers and checks the accuracy of data given to the bot
+6. What the customer concretely gets => A website with a chatbot trained on real business data, capture of names and numbers, handover rules and a report of frequent customer questions
+7. Step 1: Plan and gather content => Plan the site and gather content and frequent questions, which serve as both site copy and the bot's knowledge base
+8. Step 2: Design and build the site => Design and build a fast, mobile friendly site with basic SEO and structured data so AI search understands it
+9. Step 3: Configure the chatbot => Configure the chatbot with verified data, set tone, what it can answer and what goes to a person
+10. Step 4: Test with real questions => Test with real customer questions, fix weak answers and verify captured leads reach the team correctly
+11. Step 5: Launch and improve => Launch and review unanswered questions monthly, add knowledge and adjust the site to what customers want to know
+12. Example 1: A clinic => A clinic: a customer asks about price and hours at night, the bot answers and captures a number, and the team calls back in the morning and books
+13. Example 2: Real estate => Real estate: an enquirer asks about projects, price and transport, the bot qualifies budget and location and passes a quality lead to sales
+14. Example 3: A school => A school: parents ask about courses and fees after hours, the bot informs and books a visit, reducing repeat calls
+15. Opening sales line (you can say this) => What share of customers message after hours, and do you reply the next morning in time? If the site could answer at once, let me show a sample bot answering from data like yours
+16. If the customer says it is too expensive => Compare with leads lost each week and team time repeating answers. Start with a site and basic bot, then add CRM or LINE links based on real results
+17. If the customer fears AI answering wrongly => If the customer fears AI answering wrongly: explain the bot answers only from verified data, hands to a person when unsure, and we provide reports to check and fix monthly
+18. Cautions and what never to say => Never promise 100 percent accuracy, never promise ranking in AI Overviews or ChatGPT, never load secret data into the bot and always tell users they are talking to AI
+19. Costs and terms to tell the customer => The site and bot build is one time, while AI usage, hosting and channel message costs are monthly by actual use. Tell the customer before quoting
+20. Pass to the team lead when => The customer wants the bot linked to several back office systems, holds sensitive health or finance data, needs many languages or takes orders via the bot. Prepare bot data, systems and handover rules for the team lead
+## D:web How to sell and handle objections
+15. Opening sales line (you can say this) => What share of customers message after hours, and do you reply the next morning in time? If the site could answer at once, let me show a sample bot answering from data like yours
+16. If the customer says it is too expensive => Compare with leads lost each week and team time repeating answers. Start with a site and basic bot, then add CRM or LINE links based on real results
+17. If the customer fears AI answering wrongly => If the customer fears AI answering wrongly: explain the bot answers only from verified data, hands to a person when unsure, and we provide reports to check and fix monthly
+18. Cautions and what never to say => Never promise 100 percent accuracy, never promise ranking in AI Overviews or ChatGPT, never load secret data into the bot and always tell users they are talking to AI
 ## D:brand The ultimate goal of branding
 Not just: getting a nice logo, but making people remember you, trust you and pay a fair price
 Customer path: sees the brand → remembers it → feels trust → chooses us over rivals → recommends us
 Example: A restaurant: shop sign → social → menu → packaging all looking like one set
 Why it matters: a business that looks inconsistent seems unprofessional and competes on price because there is nothing to remember
 What we do: a full brand system: logo, colours, fonts, guideline and applications usable on web and print
+## D:brand Detailed explanation in 20 points
+1. What it is (plain explanation) => Branding builds a business identity people remember and trust, from name, logo, colours, type and voice to how customers feel meeting us. ¶ It is not just a pretty logo but a system making everything feel like one story
+2. Why a business needs it => Customers judge by feel before reason. A clear brand supports higher prices, memorability and consistent marketing, while a muddled brand wastes ad money on mismatched messages
+3. Which businesses it fits => It suits new businesses, those whose logo and materials look unsystematic, brands refreshing their image for a new audience and companies preparing to expand or raise funds
+4. Signals the customer is ready to buy => The customer says the logo differs everywhere, the brand looks old, competitors look more credible, they want higher prices but the brand is weak, or they are launching a new business
+5. Who makes the decision => Usually the owner or executives, since brand reflects vision. The owner must take part in key decisions or work gets revised many times
+6. What the customer concretely gets => A brand guideline, logo file set, colours and fonts, communication voice, examples on key media and, per package, social templates
+7. Step 1: Interview and research the market => Interview the owner and study the market, competitors and customers to find a distinct position
+8. Step 2: Define the brand core => Define the brand core, such as values, personality and key message, agreed before design starts
+9. Step 3: Design logo and visual system => Design the logo and visual system, colours, fonts and patterns, offering several directions to choose and refine
+10. Step 4: Try on real media => Try it on real media such as cards, web, signs and packaging to check it works at every size
+11. Step 5: Brand guide and handover => Produce the brand guide, deliver all file formats and advise the team how to apply it consistently
+12. Example 1: A new café => A new café: name, logo, warm colours and friendly voice make the sign, cups and page feel like one from day one
+13. Example 2: A clinic refresh => A clinic refresh: from an old look to a clean credible brand, supporting confidence in premium pricing
+14. Example 3: A B2B company => A B2B company: unified mismatched logos and documents into one system for more professional proposals to corporate clients
+15. Opening sales line (you can say this) => If someone saw your card, site and page together, would they know it is one brand? May I look at your materials and point out where the image breaks
+16. If the customer says it is too expensive => Compare with ad spend on mismatched messages. A clear brand makes every medium work together, and you can start with basics such as logo and colour and font guidance
+17. If the customer says the current logo is fine => If the customer says the current logo is fine: ask if it is consistent across media and distinct from competitors. If not, the issue is the system more than the logo, and organising it may be enough
+18. Cautions and what never to say => Never copy or imitate another brand, never use unlicensed fonts, images or icons, check names against trademark databases, and never promise sales from a rebrand
+19. Costs and terms to tell the customer => Trademark registration with the Department of Intellectual Property is a separate cost and process, revision rounds are set in the package, and actual print or packaging costs are separate
+20. Pass to the team lead when => The customer wants an organisation wide rebrand with sub-brands, has trademark issues, or wants a large launch campaign. Prepare the current brand, target market and budget for the team lead
+## D:brand How to sell and handle objections
+15. Opening sales line (you can say this) => If someone saw your card, site and page together, would they know it is one brand? May I look at your materials and point out where the image breaks
+16. If the customer says it is too expensive => Compare with ad spend on mismatched messages. A clear brand makes every medium work together, and you can start with basics such as logo and colour and font guidance
+17. If the customer says the current logo is fine => If the customer says the current logo is fine: ask if it is consistent across media and distinct from competitors. If not, the issue is the system more than the logo, and organising it may be enough
+18. Cautions and what never to say => Never copy or imitate another brand, never use unlicensed fonts, images or icons, check names against trademark databases, and never promise sales from a rebrand
 ## D:app The ultimate goal of a mobile app
 Not just: an app on the App Store, but people using it daily and coming back
 Customer path: hears of the app → downloads → signs up → uses the main feature → gets a notification → returns
 Example: A loyalty app: download → sign up by phone → scan for points → coupon notification
 Why it matters: an app nobody reuses is wasted money. Starting with an MVP that solves one problem well lowers the risk
 What we do: a cross platform app, back office, notifications, and publishing on the App Store and Play Store under the customer account
+## D:app Detailed explanation in 20 points
+1. What it is (plain explanation) => A mobile app is the business's program on phones that customers or staff download, for ordering, booking, loyalty or fieldwork. ¶ Unlike a website it uses full phone features such as notifications, camera and location
+2. Why a business needs it => An app keeps customers close on the phone screen, sends direct notifications and lets staff work on site. But it must pay off, since apps cost more to build and maintain than websites. Build one only with a clear reason
+3. Which businesses it fits => It suits businesses with frequently returning customers, such as restaurants, fitness, booking services, fieldwork, logistics and organisations needing internal mobile tools
+4. Signals the customer is ready to buy => The customer says they want their own app, need loyalty points and notifications, field staff fill paper forms, or the website is not convenient enough on mobile
+5. Who makes the decision => Usually the owner or executives, plus the department head who will use an internal app. Ask why it must be an app rather than a website or LINE
+6. What the customer concretely gets => An app on iOS and Android or cross-platform as agreed, a back office for data, store publishing and handover documents
+7. Step 1: Check value and define features => Check whether an app beats a website or LINE Mini App, then define the most essential features for version one
+8. Step 2: Design and prototype => Design screens and user journeys and build a clickable prototype before development to cut later rework
+9. Step 3: Build the app and back office => Develop the app and back office, connecting payments, notifications and existing business systems within scope
+10. Step 4: Test and prepare for stores => Test on many real devices, let a small user group try first, fix bugs and prepare documents for submission to the App Store and Google Play
+11. Step 5: Launch and track => Launch, track usage, take feedback, fix early problems and plan the next version
+12. Example 1: A restaurant => A restaurant: customers pre-order, collect points and get promo notifications, returning more often
+13. Example 2: Fieldwork => Fieldwork: technicians check in on site, photograph reports and send them straight into the system, with no paper to bring back
+14. Example 3: A fitness club => A fitness club: members book classes and scan in with the app, and the team sees usage and follows up on lapsed members
+15. Opening sales line (you can say this) => How often do customers come back, and what do you want to send directly? If a website or LINE does it all, an app may be unnecessary. I will assess honestly whether it pays off
+16. If the customer says it is too expensive => Compare with building and maintaining an app all year. It needs enough regular users to pay off. Start with a small first version and measure before adding features
+17. If the customer wants an app like the big players => If the customer wants an app like the big players: explain they have big budgets and teams of dozens. We start with core features that show results, then expand
+18. Cautions and what never to say => Never promise download or user numbers, never guarantee App Store approval since the store decides, and never start before version one features are clear
+19. Costs and terms to tell the customer => Apple and Google developer accounts are yearly, paid directly, hosting and add-on services are monthly, and maintenance and OS updates are an ongoing cost
+20. Pass to the team lead when => The customer wants complex features such as live video, real time maps, multi-currency payments or big enterprise integration, or sensitive data. Prepare the feature list and expected users for the team lead
+## D:app How to sell and handle objections
+15. Opening sales line (you can say this) => How often do customers come back, and what do you want to send directly? If a website or LINE does it all, an app may be unnecessary. I will assess honestly whether it pays off
+16. If the customer says it is too expensive => Compare with building and maintaining an app all year. It needs enough regular users to pay off. Start with a small first version and measure before adding features
+17. If the customer wants an app like the big players => If the customer wants an app like the big players: explain they have big budgets and teams of dozens. We start with core features that show results, then expand
+18. Cautions and what never to say => Never promise download or user numbers, never guarantee App Store approval since the store decides, and never start before version one features are clear
 ## D:ai The ultimate goal of an AI assistant / chatbot
 Not just: a bot that answers chats, but cutting repetitive team work and never leaving customers waiting
 Customer path: customer messages → bot understands → answers from real data → if unsure hands to a person → data saved to CRM
 Example: A salon: asks the price → bot answers → invites booking → appointment into the calendar
 Why it matters: a team answering the same questions for hours has no time for revenue work. An accurate bot gives that time back
 What we do: collect real questions from past chats, prepare the data, test before launch, and give a monthly report
-## D:ai What it is (plain explanation for customers)
-Comparison: like a new employee who has read the whole company handbook, answers customers at any hour, never tires, never forgets, and calls a real person when unsure.
-An AI Assistant is a chatbot that answers from the business own data, not generic like plain ChatGPT, so it answers about prices, hours and services correctly.
-It works on the web, LINE, Facebook and Instagram, and can capture leads, book appointments and hand over to sales.
-## D:ai Who it fits and the buying signals
-Good fits: clinics, restaurants, hotels, real estate, online shops, schools, any business whose customers ask the same questions daily.
-Signals: staff answer chat all day, customers write after hours with no reply, leads lost to slow replies, repeated questions.
-Decision makers: the owner, the head of sales or customer service.
-## D:ai What we do, step by step
-Step 1 Collect frequent customer questions and the business documents.
-Step 2 Design the bot personality and tone to match the brand.
-Step 3 Train the bot on real data and set rules for what it may answer and what goes to a person.
-Step 4 Connect channels (web, LINE, etc.) and related systems such as CRM or booking.
-Step 5 Test with the team and fix weak answers.
-Step 6 Launch, review monthly reports, and keep improving.
-## D:ai Example situations to tell customers
-Clinic: a customer asks about prices and appointments at night. The bot answers the basics and takes a phone number for a morning call back.
-Online shop: customers ask order status. The bot answers from the system at once, so staff do not repeat themselves.
-Hotel: a foreign guest asks about rooms and travel in English. The bot answers like a front desk host.
-Note: use these as example situations. Never promise figures like percent workload cut unless measured with that customer.
+## D:ai Detailed explanation in 20 points
+1. What it is (plain explanation) => An AI assistant is a chatbot that answers from the business's own data, not generic like plain ChatGPT. ¶ It is like a new employee who has read the whole company manual, answers customers any time, never tires or forgets, and calls a real person when unsure
+2. Why a business needs it => Customers do not wait. If you reply slowly they ask someone else, and a team answering the same questions for hours has no time for revenue work. A bot that answers correctly cuts lost leads and gives time back
+3. Which businesses it fits => It suits clinics, restaurants, hotels, real estate, online shops, schools and any business where customers ask the same questions daily, such as price, hours, how to order or status
+4. Signals the customer is ready to buy => The team answers chat all day, customers message after hours with no reply, leads are lost to slow replies, questions repeat, or the owner complains of no time for other work
+5. Who makes the decision => Usually the owner, head of sales or head of customer service. Ask who actually handles the chat and who takes over when the bot hands off
+6. What the customer concretely gets => A working bot on web or LINE, an agreed knowledge base, handover rules, a screen for the team to view chats, and a monthly report of unanswered questions
+7. Step 1: Collect questions and documents => Collect frequent questions and business documents, ask for past chat history as the best starting data, and let the customer write the correct answers
+8. Step 2: Design personality and rules => Design the bot personality and tone to match the brand, such as friendly or formal, and decide what it may answer and what goes to a person
+9. Step 3: Prepare data and connect channels => Prepare data and connect channels: web, LINE, Facebook, plus related systems such as CRM or booking if in the package
+10. Step 4: Test with the team => Test with real questions and let the team try before launch, fix weak answers and set topics that must go to a person, such as money, health and refunds
+11. Step 5: Launch and improve => Launch and keep improving: review unanswered questions monthly, add knowledge and send a summary report to the owner
+12. Example 1: A clinic => A clinic: a customer messages about price and appointments at night, the bot answers the basics and captures a number for the team to call in the morning, so no after hours lead is lost
+13. Example 2: An online shop => An online shop: a customer asks about order status, the bot answers from the system at once, so the team does not repeat itself and complaints about waiting fall
+14. Example 3: A hotel => A hotel: a foreign guest asks about rooms and transport in English, the bot answers like a concierge and hands to a person for special requests
+15. Opening sales line (you can say this) => Who answers customer chats now, and how many hours a day? If I could see 20 past messages, I will show how the bot would answer and where it helps
+16. If the customer says it is too expensive => Calculate from the time the team spends on chat per day against that salary share. Start with Starter and expand once results show, no need to go full from day one
+17. If the customer says they can use ChatGPT themselves => If the customer says they can use ChatGPT themselves: plain ChatGPT does not know the business, does not connect to systems, does not capture leads and cannot be controlled. Our bot answers from agreed data with handover rules
+18. Cautions and what never to say => Never promise 100 percent accuracy, never load secret data without agreeing storage and access under PDPA, and never say the bot fully replaces people
+19. Costs and terms to tell the customer => The build is one time, while AI model usage and channel message costs are monthly, paid directly to providers by actual volume. State this at quoting time
+20. Pass to the team lead when => The customer needs many integrations or sensitive data, wants a bot that decides or transacts, or asks for an SLA and fixed accuracy. Prepare data types, systems to connect and the figures they want for the team lead
 ## D:ai How to sell and handle objections
-Customer says the bot answers badly: our bot answers from the business own data, has hand over rules, and we improve monthly from real conversations.
-Customer fears wrong answers: set the bot to say it is unsure and hand over. Money, health and legal topics are always reviewed by a person.
-Customer says they can use ChatGPT themselves: plain ChatGPT does not know the business, does not connect to systems, does not capture leads and cannot be controlled.
-Customer says it is expensive: compute the staff time spent on chat per day against the salary saved. Start with Starter.
-Closing: ask for 20 past chat messages, then show how the bot would answer them.
-## D:ai Cautions and what never to say
-Never promise 100 percent accuracy. AI can be wrong, so hand over rules and review are needed.
-Never load confidential or sensitive data without agreeing storage and access, under PDPA.
-The AI API cost is monthly and separate. Tell the customer when quoting.
-Never say the bot replaces people entirely. Say it reduces workload so people do more valuable work.
-## D:ai Pass to the team lead when
-The customer needs several integrations or handles sensitive data (health, finance)
-The customer wants a bot that decides or transacts by itself
-The customer asks for a service level agreement (SLA) or a guaranteed accuracy
+15. Opening sales line (you can say this) => Who answers customer chats now, and how many hours a day? If I could see 20 past messages, I will show how the bot would answer and where it helps
+16. If the customer says it is too expensive => Calculate from the time the team spends on chat per day against that salary share. Start with Starter and expand once results show, no need to go full from day one
+17. If the customer says they can use ChatGPT themselves => If the customer says they can use ChatGPT themselves: plain ChatGPT does not know the business, does not connect to systems, does not capture leads and cannot be controlled. Our bot answers from agreed data with handover rules
+18. Cautions and what never to say => Never promise 100 percent accuracy, never load secret data without agreeing storage and access under PDPA, and never say the bot fully replaces people
 ## D:voice The ultimate goal of an AI voice agent
 Not just: an automatic phone system, but never missing a customer call even after hours
 Customer path: customer calls → bot answers at once → understands the need → books or answers → transfers to a person when needed
 Example: A dental clinic: a call at 8pm → the bot books a slot → confirmation on LINE
 Why it matters: an unanswered call is a customer going to another provider at once, after you paid ads to bring them
 What we do: design the conversation, test with real voices, set transfer rules and announce recording under PDPA
-## D:voice What it is (plain explanation for customers)
-Comparison: like a phone receptionist who never takes leave, handles several calls at once, speaks Thai and English, and notes everything.
-An AI Voice Agent is a bot that answers and makes calls by real speech, answers frequent questions, takes bookings, screens calls and transfers to a person when needed.
-Unlike old press one press two menus, customers can simply talk naturally.
-## D:voice Who it fits and the buying signals
-Good fits: clinics, restaurants, hotels, car service centres, real estate, any business taking bookings by phone.
-Signals: frequent missed calls, calls overflowing at peak times, hiring extra phone staff, calls after hours.
-Decision makers: the owner or the customer service manager.
-## D:voice What we do, step by step
-Step 1 Analyse existing calls: volume, timing, frequent topics.
-Step 2 Design the conversation: opening lines, screening questions, transfer rules.
-Step 3 Choose a voice and accent that fit the brand and test with real accents.
-Step 4 Connect booking or calendar and set alerts to LINE or email.
-Step 5 Test live calls with the team and tune.
-Step 6 Launch and review call reports monthly.
-## D:voice Example situations to tell customers
-Clinic: lunch hour calls overflow. The bot books appointments and sends a summary to staff on LINE.
-Restaurant: a customer calls to book a table when staff are busy. The bot checks free tables and confirms at once.
-Service centre: a customer asks about repair status. The bot answers from the system and transfers to a technician for complex matters.
-Note: tell them as situations. Never promise figures that were not measured.
+## D:voice Detailed explanation in 20 points
+1. What it is (plain explanation) => Voice AI answers and places calls like a staff member, speaking Thai and English, understanding what the caller says, answering from business data, booking, capturing details and handing to a person when needed. ¶ Unlike press-1-for-menu systems, callers just speak naturally
+2. Why a business needs it => Many businesses miss calls because nobody picks up, it is after hours, or lines overlap. Every missed call is a lost sale. Voice AI takes every call at once and never rests
+3. Which businesses it fits => It suits clinics, hotels, restaurants, service centres, real estate and any business with many booking or enquiry calls, plus repetitive follow-up and reminder calls
+4. Signals the customer is ready to buy => Calls often drop, extra phone staff are being hired, reminder calls take hours, after hours callers get no answer, or the owner says staff cannot keep up
+5. Who makes the decision => Usually the owner or operations manager. With multiple branches, IT may weigh in on the existing phone system
+6. What the customer concretely gets => A working call answering system, an agreed conversation script, links to the booking system, handover rules and call summary reports with recordings as agreed
+7. Step 1: Define the AI's jobs => Define the jobs for the AI, such as booking, hours, prices and location, and list topics it must not answer and must hand to a person
+8. Step 2: Script and voice => Write the script and choose a voice that sounds natural and on brand in Thai and English, including how to handle off-topic speech
+9. Step 3: Connect number and systems => Connect the phone number and booking system or CRM so captured data is saved automatically, and check readiness of the existing phone system
+10. Step 4: Test real calls => Test real calls across accents and situations, fix misunderstandings, set handover rules and handle noisy lines
+11. Step 5: Launch and monitor => Launch and monitor: listen to sample calls and review monthly reports to improve the script
+12. Example 1: A clinic => A clinic: a patient calls to book at night, the AI checks free slots and confirms, then sends a summary to staff in the morning
+13. Example 2: A hotel => A hotel: a guest calls about room availability and check in time, the AI answers at once and hands group or special requests to reservations
+14. Example 3: A service centre => A service centre: the AI calls ahead to remind and lets the customer confirm or reschedule, reducing no-shows and helping technician scheduling
+15. Opening sales line (you can say this) => About how many calls go unanswered each week? If each could be a real customer, let me calculate the lost opportunity and whether Voice AI pays off
+16. If the customer says it is too expensive => Compare with hiring another phone operator: Voice AI handles many calls at once, never takes sick leave and works after hours. Start with after hours only to lower risk
+17. If the customer dislikes talking to a robot => If the customer dislikes talking to a robot: the AI identifies itself clearly and can transfer to a person any time. Most callers want a fast answer more than a human
+18. Cautions and what never to say => Tell callers they are speaking with AI and get consent under PDPA if recording. Never promise it understands every accent and never use it for medical emergencies
+19. Costs and terms to tell the customer => Build is one time, while phone minutes and AI service are monthly by actual volume, and a dedicated number may cost extra. Tell the customer before quoting
+20. Pass to the team lead when => The customer has high call volume, a complex PBX, many integrations, or sensitive medical or financial calls. Prepare calls per day, existing phone system and call patterns for the team lead
 ## D:voice How to sell and handle objections
-Customer says the bot sounds stiff: let them hear real samples and tune the tone to be friendly in the brand style.
-Customer says customers want a person: set transfer rules to a person when asked or when the matter is complex.
-Customer says it is expensive: compare with a phone staff wage and the value of customers lost to missed calls.
-Customer fears call recording: tell callers, store safely under PDPA and set a retention period.
-Closing: ask for last week call stats and work out the missed calls together.
-## D:voice Cautions and what never to say
-Never promise to understand every accent. Test first.
-Call charges and AI API cost are monthly and separate from build cost.
-Never let the bot handle emergencies or urgent medical matters. There must be an instant path to a person.
-Never say phone staff are no longer needed at all.
-## D:voice Pass to the team lead when
-The customer wants high volume outbound calls (telemarketing rules)
-The customer needs many branches, systems or languages
-The customer must keep a number tied to a specific carrier
+15. Opening sales line (you can say this) => About how many calls go unanswered each week? If each could be a real customer, let me calculate the lost opportunity and whether Voice AI pays off
+16. If the customer says it is too expensive => Compare with hiring another phone operator: Voice AI handles many calls at once, never takes sick leave and works after hours. Start with after hours only to lower risk
+17. If the customer dislikes talking to a robot => If the customer dislikes talking to a robot: the AI identifies itself clearly and can transfer to a person any time. Most callers want a fast answer more than a human
+18. Cautions and what never to say => Tell callers they are speaking with AI and get consent under PDPA if recording. Never promise it understands every accent and never use it for medical emergencies
 ## D:erp The ultimate goal of an ERP
 Not just: having management software, but every department seeing the same numbers and deciding faster
 Work path: receive order → plan and purchase → produce or deliver → collect payment → accounting and executive reports
 Example: A factory: purchase order → raw stock → production order → delivery note → invoice → profit per order
 Why it matters: data scattered across many Excel files means mismatched numbers, slow closes and an owner who does not know real profit
 What we do: start with the biggest pain as phase one, then add modules step by step, with training and ongoing care
+## D:erp Detailed explanation in 20 points
+1. What it is (plain explanation) => An ERP is a business management system joining sales, purchasing, stock, production, accounting and HR, where data is entered once and every department sees the same. ¶ Unlike separate programs that need re-keying and disagree on numbers
+2. Why a business needs it => As a business grows, Excel and separate programs make data slow, error prone and without an overview. An ERP cuts duplicate work and errors and lets leaders decide from real numbers
+3. Which businesses it fits => It suits factories, wholesalers, distributors, construction firms and companies with many departments, large stock or several branches
+4. Signals the customer is ready to buy => The customer says stock does not match, the team re-keys data in many places, closing the books is slow, real unit costs are unknown, or many Excel files only one person understands
+5. Who makes the decision => Usually the owner or executives, but sales, warehouse, accounting and production managers must join since an ERP touches every department, and an internal project owner is needed
+6. What the customer concretely gets => A system configured for the chosen modules, migrated legacy data, per department training, manuals and early support after go-live
+7. Step 1: Study the processes => Study each department's current process, how data flows and where it sticks, to define needed modules and not add more than necessary
+8. Step 2: Design the system and phases => Design the system and phased plan, starting with quick win modules such as stock and sales, then adding accounting or production
+9. Step 3: Configure and migrate data => Configure and tailor the system and migrate legacy data such as customers, products and balances, with accuracy checks
+10. Step 4: Test and train => Test with each department's real processes, run alongside the old system for a period (parallel run) and train users
+11. Step 5: Go live and support => Go live by phase, support closely at first, fix problems and review before adding the next module
+12. Example 1: A wholesaler => A wholesaler: stock and sales update instantly, sales see what is truly available and over-selling falls
+13. Example 2: A factory => A factory: sees raw materials, production cost and finished stock and knows real profit per product instead of estimating
+14. Example 3: A multi-branch business => A multi-branch business: leaders see sales and stock for every branch in one place and transfer goods between branches in order
+15. Opening sales line (you can say this) => How many days do closing and stock checks take, and do all departments agree on numbers? How would less re-keying and instant real numbers help decisions? Let me hear the current workflow before proposing modules
+16. If the customer says it is too expensive => Compare with the cost of stock errors and re-keying time. Start with the single most painful module, with no need to change the whole company at once
+17. If the customer says the current accounting software is enough => If the customer says the current accounting software is enough: ask whether stock, production and sales feed accounting automatically. If not, an ERP joins them, or start by linking only the missing part
+18. Cautions and what never to say => Never promise a go-live date before studying processes, never promise everyone will be fluent at once, and never migrate data without backup and verification. A system change needs executive backing
+19. Costs and terms to tell the customer => Setup and migration are one time, hosting, users and support are monthly or yearly, the team must set aside time for training and testing, and tailoring may cost more if processes are non-standard
+20. Pass to the team lead when => The customer has several group companies, multiple currencies, complex production or needs machine or special tax system links. Prepare process maps, user count and current systems for the team lead
+## D:erp How to sell and handle objections
+15. Opening sales line (you can say this) => How many days do closing and stock checks take, and do all departments agree on numbers? How would less re-keying and instant real numbers help decisions? Let me hear the current workflow before proposing modules
+16. If the customer says it is too expensive => Compare with the cost of stock errors and re-keying time. Start with the single most painful module, with no need to change the whole company at once
+17. If the customer says the current accounting software is enough => If the customer says the current accounting software is enough: ask whether stock, production and sales feed accounting automatically. If not, an ERP joins them, or start by linking only the missing part
+18. Cautions and what never to say => Never promise a go-live date before studying processes, never promise everyone will be fluent at once, and never migrate data without backup and verification. A system change needs executive backing
 ## D:erp-ai The ultimate goal of AI for industry
 Not just: using AI to look modern, but helping decisions from the real data of the plant or project
 Data path: collect data from systems → clean it → AI analyses → alerts and summaries → a person decides
 Example: Raw stock: pull past usage → AI forecasts → alert to reorder before it runs out
 Why it matters: AI is only as good as its data. Starting with a system that records data correctly matters more than picking a fancy model
 What we do: start with an ERP that records data well, then add AI for querying, report summaries and anomaly alerts, never promising accuracy
+## D:erp-ai Detailed explanation in 20 points
+1. What it is (plain explanation) => AI for industry applies AI to factory and business data, such as demand forecasting, defect detection from images, machine failure alerts and production planning. ¶ It needs good enough data first, so it often builds on an ERP or an existing data system
+2. Why a business needs it => Defects, downtime and surplus or missing stock cost a lot. AI aimed at the right spot spots early signs and cuts losses, but you must pick problems that can be measured
+3. Which businesses it fits => It suits factories with production data, wholesalers needing sales and stock forecasts and businesses with repeating, predictable problems
+4. Signals the customer is ready to buy => The customer says defect rates are high, machines fail suddenly, forecasts are often wrong, they want AI but not where to start, or have lots of data unused
+5. Who makes the decision => Usually the factory owner or production and IT managers. Someone who knows the floor must help define the problem, since AI that misses it goes unused
+6. What the customer concretely gets => A data readiness report, a prototype AI model or system for one problem, test results against the old method and an expansion plan if it works
+7. Step 1: Pick the problem and metrics => Pick one measurable, worthwhile problem such as cutting defects or forecasting stock, and agree success metrics before starting
+8. Step 2: Check data readiness => Check existing data for completeness, cleanliness and sufficiency. If not enough, plan extra collection first, which may be the main job of phase one
+9. Step 3: Build a prototype and train => Build a prototype and train on the customer's real data, testing on unseen data to see true accuracy
+10. Step 4: Trial on the real floor => Trial on a small real scale alongside the old method, compare results and hear operators' views before deciding to expand
+11. Step 5: Expand and monitor => Expand once results are good, integrate with the ERP or existing systems, train users and monitor accuracy periodically since data drifts over time
+12. Example 1: A parts factory => A parts factory: cameras inspect flaws on the line and flag abnormal pieces, reducing defects that reach customers
+13. Example 2: A wholesaler => A wholesaler: forecasts sales per product from history to guide ordering, cutting dead stock and shortages
+14. Example 3: A food factory => A food factory: detects abnormal machine readings and alerts for repair before failure, reducing unplanned downtime
+15. Opening sales line (you can say this) => Which problem costs the factory most each month, and is data recorded? If you could pick one to trial AI on, I will help assess whether the data suffices and how to measure
+16. If the customer says it is too expensive => Compare with that problem's monthly loss. Start with a small measurable pilot, which can stop at limited cost if it does not work
+17. If the customer wants AI like in the news => If the customer wants AI like in the news: explain factory AI works when the problem is narrow and data exists, not magic. Start with one problem and expand
+18. Cautions and what never to say => Never promise accuracy or defect reduction percentages in advance, as results depend on data. Never say AI replaces all inspectors, and consider machine safety when connecting systems
+19. Costs and terms to tell the customer => Sensors, cameras or collection devices may cost extra if data is lacking, model development is project based, compute and model upkeep are monthly, and someone in the factory must keep data flowing
+20. Pass to the team lead when => The customer has little or no data, wants real time AI on the line, has people-safety implications, or wants multi-plant use. Prepare the problem, available data and loss value for the team lead
+## D:erp-ai How to sell and handle objections
+15. Opening sales line (you can say this) => Which problem costs the factory most each month, and is data recorded? If you could pick one to trial AI on, I will help assess whether the data suffices and how to measure
+16. If the customer says it is too expensive => Compare with that problem's monthly loss. Start with a small measurable pilot, which can stop at limited cost if it does not work
+17. If the customer wants AI like in the news => If the customer wants AI like in the news: explain factory AI works when the problem is narrow and data exists, not magic. Start with one problem and expand
+18. Cautions and what never to say => Never promise accuracy or defect reduction percentages in advance, as results depend on data. Never say AI replaces all inspectors, and consider machine safety when connecting systems
 ## D:erp-crm The ultimate goal of a CRM
 Not just: storing a contact list, but never letting an interested customer slip away because nobody followed up
 Customer path: interested customer arrives → logged in the CRM → sales follows up → quote sent → deal closed → after sales care
 Example: Web form → into the CRM automatically → reminds sales to call within 1 hour → followed through to close
 Why it matters: slow replied leads vanish fast and managers cannot see where deals stall. A CRM shows the whole pipeline
 What we do: set sales stages to the real business, connect web, LINE and email, with a sales performance dashboard
-## D:erp-crm What it is (plain explanation for customers)
-Comparison: like a smart customer notebook that remembers who is interested in what, how far each talk went, when to follow up, and reminds the team so nothing is forgotten.
-A CRM puts customer data and sales work in one place, replacing scattered Excel, LINE and notebooks. You see the whole pipeline from lead to closed sale.
-Unlike ERP, a CRM focuses on customers and sales, while ERP runs the whole company (accounting, stock, purchasing). If they want both, do it in phases.
-## D:erp-crm Who it fits and the buying signals
-Good fits: real estate, travel, clinics, factories and B2B, businesses with sales teams and long sales cycles.
-Signals: leads lost with no follow up, unclear who each sales person has talked to, data lost when sales staff change, executives want to see revenue and pipeline.
-Decision makers: the owner, head of sales, marketing manager.
-## D:erp-crm What we do, step by step
-Step 1 Map the current sales process from enquiry to close.
-Step 2 Design data fields, lead statuses and user permissions.
-Step 3 Build: leads, pipeline, follow up tasks, appointments, quotes, LINE alerts.
-Step 4 Import old Excel data and connect web forms so leads enter automatically.
-Step 5 Train the sales team and executives.
-Step 6 Follow up, tune, and add AI (lead scoring, conversation summaries) when ready.
-## D:erp-crm Example situations to tell customers
-Real estate: interested buyers arrive from many channels. The system gathers them, reminds sales to call and book viewings.
-Travel business: compare packages and track leads by sales person, see who closes how much.
-B2B factory: long sales cycle, with reminders to follow up outstanding quotes.
-For real work, use the Case studies button and send the links to the customer.
+## D:erp-crm Detailed explanation in 20 points
+1. What it is (plain explanation) => A CRM keeps customer data in one place: who said what, which stage each customer is at, and when to follow up. ¶ Unlike notebooks or Excel, the whole team sees the same data, gets reminders and nothing is lost when staff leave
+2. Why a business needs it => Leads that are not followed up usually vanish. Data scatters across chats, notebooks and staff memory, so owners do not know sales or bottlenecks. A CRM gives the overview and complete follow-up
+3. Which businesses it fits => It suits businesses with a sales team, many customers or a staged sales process: B2B, real estate, insurance, clinics and professional services
+4. Signals the customer is ready to buy => Leads drop because nobody remembered to follow up, nobody knows who talked to whom, many Excel files exist, data vanished when staff left, or the owner wants a sales forecast
+5. Who makes the decision => Usually the owner or head of sales, but real users are the salespeople. Involve the sales team from the start or the system will not be used
+6. What the customer concretely gets => A CRM configured to the business's sales stages, a sales dashboard, follow-up reminders, import of existing data and team training
+7. Step 1: Understand the sales process => Understand the current sales process: where customers come from, how many stages, who hands over and what data to capture
+8. Step 2: Design stages and fields => Design the CRM stages and fields simple enough that staff will really fill them in, not more complex than needed
+9. Step 3: Import data and connect channels => Import existing customer data from Excel or chats and connect the channels customers use, such as web forms, LINE or email
+10. Step 4: Test with the sales team => Test with the real sales team and fix on feedback, set automatic reminders and per role data access
+11. Step 5: Train and launch => Train the team and launch, watch early usage and adjust, and send a summary report to the owner
+12. Example 1: An insurer => An insurer: agents see customers whose policies are due and get early reminders, reducing lapsed renewals
+13. Example 2: Real estate => Real estate: leads from web and ads enter the CRM at once, sales see who viewed which project, schedule viewings and follow up systematically
+14. Example 3: A clinic => A clinic: service interest, appointments and promotions sent are in one place, so reception answers returning customers accurately
+15. Opening sales line (you can say this) => Where are incoming leads recorded now, and if one salesperson quit tomorrow, would their customer data stay? Let me show a sample CRM set to a sales process like yours
+16. If the customer says it is too expensive => Compare with sales lost to forgotten follow ups: closing just a few extra deals may pay for the CRM. Start with a small module and expand
+17. If the customer says Excel is enough => If the customer says Excel is enough: ask how they follow leads when many people share a file. Excel does not remind, show live status or control access. Try migrating some data first
+18. Cautions and what never to say => Never promise sales will rise for sure. The system helps the team work in order, but results depend on real use. Never load customer data without PDPA notice
+19. Costs and terms to tell the customer => Setup and data import are one time, while hosting, user licences and maintenance are monthly or yearly, and someone must own data quality
+20. Pass to the team lead when => The customer wants links to accounting or stock, has many users, sensitive data or heavy customisation. Prepare user count, existing systems and sales process for the team lead
 ## D:erp-crm How to sell and handle objections
-Customer says Excel is enough: Excel does not remind, gives no real time overview, and data is lost when sales staff leave.
-Customer says the team will not use it: design for easy mobile use and train the team, starting with features that make sales work easier.
-Customer says off the shelf CRM is better: off the shelf is cheap at first but hard to fit to the business process and per seat fees add up. Ours is tailored and owned by you.
-Customer says it is expensive: compute the lead value lost monthly. Recovering a part of it pays back.
-Closing: ask for last month leads and simulate their pipeline to show it for real.
-## D:erp-crm Cautions and what never to say
-Never promise higher sales. A CRM makes work systematic, results depend on how the team uses it.
-Integration with accounting or ERP adds scope. Say so when quoting.
-Customer data is personal data. Discuss PDPA and access rights.
-When comparing with other vendors, never disparage their products.
-## D:erp-crm Pass to the team lead when
-The customer wants CRM and ERP together as one system
-The customer has over 50 users or many branches
-The customer needs to connect a legacy system with no API
+15. Opening sales line (you can say this) => Where are incoming leads recorded now, and if one salesperson quit tomorrow, would their customer data stay? Let me show a sample CRM set to a sales process like yours
+16. If the customer says it is too expensive => Compare with sales lost to forgotten follow ups: closing just a few extra deals may pay for the CRM. Start with a small module and expand
+17. If the customer says Excel is enough => If the customer says Excel is enough: ask how they follow leads when many people share a file. Excel does not remind, show live status or control access. Try migrating some data first
+18. Cautions and what never to say => Never promise sales will rise for sure. The system helps the team work in order, but results depend on real use. Never load customer data without PDPA notice
 ## D:line The ultimate goal of a LINE Mini App
 Not just: an app inside LINE, but letting customers transact without downloading anything
 Customer path: adds the LINE OA → opens the menu → books or orders → gets points and alerts → returns
 Example: A massage shop: scan QR → book in LINE → reminder before the appointment → collect points
 Why it matters: Thai users live in LINE daily. Fewer sign up steps means more usage and the business owns its customer base
 What we do: design the menu, membership and points, link to POS and set up the LINE OA under the customer account
-## D:line What it is (plain explanation for customers)
-Comparison: like having the shop own app inside LINE. Customers download nothing and can book, order and collect points from the chat they already use.
-A LINE Mini App is a small app opened inside LINE, using the customer LINE account as the member, with no new sign up.
-Unlike a LINE OA, which is a chat channel, a Mini App is a full screen experience such as menus, cart and queue.
-## D:line Who it fits and the buying signals
-Good fits: restaurants, cafes, clinics, retail, service businesses whose Thai customers live in LINE.
-Signals: many LINE OA friends but orders still taken by typing in chat, want membership and points, want to avoid platform commissions.
-Note: the main market is Thailand. There is no USA price.
-## D:line What we do, step by step
-Step 1 Define the main thing customers do in LINE, such as booking, ordering, collecting points.
-Step 2 Design easy screens that fit the brand.
-Step 3 Build the Mini App and a back office for members, orders and promotions.
-Step 4 Connect the LINE OA and existing systems such as POS or booking.
-Step 5 Submit for LINE review (a verified account is required) and test.
-Step 6 Launch and run a campaign inviting existing customers.
-## D:line Example situations to tell customers
-Cafe: customers order and pay ahead in LINE and collect without queuing, with points added automatically.
-Clinic: book and view appointments in LINE, with reminders before the date.
-Retail: coupons and points usable at every branch, with the owner seeing their own customer data.
+## D:line Detailed explanation in 20 points
+1. What it is (plain explanation) => A connected LINE OA makes the business LINE work for you: auto replies, segmented promotions, bookings and capturing customer data into a database. ¶ It is not just a LINE ID waiting for someone to reply
+2. Why a business needs it => Thai customers use LINE as their main channel. Slow replies or irrelevant broadcasts get ignored or blocked. A connected system answers fast, targets interested people and measures results
+3. Which businesses it fits => It suits shops, clinics, restaurants, spas, schools and service businesses whose customers mainly use LINE and who have repeat customers
+4. Signals the customer is ready to buy => Sending the same promo to everyone and getting blocked, slow chat replies, not knowing who bought what, or wanting customers to book and order inside LINE
+5. Who makes the decision => Usually the owner or marketing manager and whoever runs the current LINE OA. Ask who owns the real LINE OA account so settings can be accessed
+6. What the customer concretely gets => A new rich menu, automatic replies, customer segmentation, booking or ordering in LINE and message performance reports
+7. Step 1: Review account and set goal => Review the existing LINE OA, follower count, settings and data, then set a goal such as more bookings or less chat workload
+8. Step 2: Design rich menu and messages => Design the rich menu and auto replies so customers find what they need within a couple of taps, in the brand voice
+9. Step 3: Connect systems and segment => Connect booking, ordering or CRM and segment customers by behaviour, such as last purchase and service of interest
+10. Step 4: Test => Test every menu and message on real devices and check the monthly message quota of the LINE plan
+11. Step 5: Launch and review => Launch and review reports: open rate, clicks and bookings, then refine messages monthly
+12. Example 1: A beauty shop => A beauty shop: customers book via the rich menu, the system reminds before the appointment and sends promos only to those who used that service
+13. Example 2: A restaurant => A restaurant: pre-order and loyalty points in LINE, automatic birthday coupons, so regulars return more often
+14. Example 3: A tutoring school => A tutoring school: parents register and get class news via LINE, cutting repeat phone enquiries
+15. Opening sales line (you can say this) => How many LINE followers do you have, and do you send everyone the same message? Segmented messages to interested people usually perform much better. May I review the account and propose an approach?
+16. If the customer says it is too expensive => Compare with wasted message costs and chat time. The system reduces both and raises repeat purchases. Start with the rich menu and auto replies
+17. If the customer says they can run LINE OA themselves => If the customer says they can run LINE OA themselves: fine at a basic level, but segmentation, booking integration and measurement need proper setup. We help where it is hard to DIY
+18. Cautions and what never to say => Never promise exact sales, never send promos without consent and never collect more personal data than needed. Follow LINE rules and PDPA
+19. Costs and terms to tell the customer => Messages beyond the LINE plan quota are a monthly cost paid directly to LINE by actual volume. Tell the customer before agreeing
+20. Pass to the team lead when => The customer has many followers, wants membership or payment integration, or has multiple branches. Prepare follower count, LINE plan and systems to connect for the team lead
 ## D:line How to sell and handle objections
-Customer says they already have a LINE OA: an OA is a chat channel, a Mini App is ordering, booking and membership built in, and they work together.
-Customer says customers dislike signing up: inside LINE there is no sign up, just tapping allow.
-Customer says it costs more than a ready platform: a Mini App cuts commission and gives you your own customer data.
-Closing: look at OA friend count and monthly orders, and compute the commission saved.
-## D:line Cautions and what never to say
-It must pass LINE review. Approval time is LINE own, so never promise an exact launch date.
-LINE notification message fees are a separate monthly cost.
-Never promise features LINE does not yet support. Check with the team lead first.
-Do not pitch to the USA market, it is not a main market.
-## D:line Pass to the team lead when
-The customer needs POS or multi branch stock integration
-The customer needs complex payments
-The customer is outside Thailand
+15. Opening sales line (you can say this) => How many LINE followers do you have, and do you send everyone the same message? Segmented messages to interested people usually perform much better. May I review the account and propose an approach?
+16. If the customer says it is too expensive => Compare with wasted message costs and chat time. The system reduces both and raises repeat purchases. Start with the rich menu and auto replies
+17. If the customer says they can run LINE OA themselves => If the customer says they can run LINE OA themselves: fine at a basic level, but segmentation, booking integration and measurement need proper setup. We help where it is hard to DIY
+18. Cautions and what never to say => Never promise exact sales, never send promos without consent and never collect more personal data than needed. Follow LINE rules and PDPA
 ## D:ux The ultimate goal of UX/UI design
 Not just: good looking screens, but letting users do what they want fast without confusion
 User path: arrives → understands at once what they can do → completes the main task → is satisfied → returns
 Example: sign up cut from 8 steps to 3, so more people complete it
 Why it matters: every confusing point is where users quit. Fixing in design is far cheaper than after the code is written
 What we do: study users, design the flow, build a clickable prototype, test with real users, and hand over files to developers
-## D:ux What it is (plain explanation for customers)
-Comparison: like designing a room so people do not bump into things and find the light switch at once. UX is the experience of using it, UI is the look. Together they make a website or app easy and pleasant to return to.
-Our work: find where users get stuck, design the screen structure (wireframes), design real screens, and build a clickable prototype before any code.
-Benefit: it cuts rework in code later, which costs far more than changing a design.
-## D:ux Who it fits and the buying signals
-Good fits: startups about to build an app, companies with hard to use legacy systems, online sellers with many drop offs at checkout.
-Signals: users complain it is hard to use, people sign up and never return, the dev team argues about looks, a prototype is needed for funding or investors.
-Decision makers: the product owner, executives, marketing.
-## D:ux What we do, step by step
-Step 1 Understand users and goals: interviews, review existing usage data.
-Step 2 UX audit and map the user journey.
-Step 3 Wireframe the main screens.
-Step 4 Design real screens in the brand: colours, fonts, buttons.
-Step 5 Build a clickable prototype and test with real users.
-Step 6 Hand over files to the dev team with documentation and a design system.
-## D:ux Example situations to tell customers
-Online shop: cut checkout from 5 steps to 2 so fewer people abandon carts (tell it as an approach, not a guaranteed number).
-Health app: reshape menus so older users tap easily, with larger text.
-Internal system: design screens so a new employee learns it in a day.
+## D:ux Detailed explanation in 20 points
+1. What it is (plain explanation) => UX/UI makes a website or app easy to use and trustworthy. UX is the experience: can users find what they want and finish a task. UI is the look: colours, type and buttons. ¶ Good design means people use it without thinking hard
+2. Why a business needs it => If a page is hard to use, customers leave before buying or abandon the form, wasting ad spend already paid. A targeted UX fix raises completions without needing more traffic
+3. Which businesses it fits => It suits sites with visitors but few sales or enquiries, apps users abandon, online shops with abandoned carts, and businesses planning a new site or app who want it designed right
+4. Signals the customer is ready to buy => The customer says many visit but do not buy, forms are not finished, the site looks old and untrustworthy, mobile is hard to use, or the app is downloaded but unused
+5. Who makes the decision => Usually the owner, marketing manager or digital product owner. For an app an existing dev team may decide too. Ask who approves the design
+6. What the customer concretely gets => A prioritised usability issues report, a clickable prototype, a design set handed to developers and advice on measuring after the change
+7. Step 1: Review current experience => Review the current experience, study user behaviour from data and observation, and find where people get stuck or leave
+8. Step 2: Define journey and layout => Define the most important user journey, such as home page to checkout, and redesign the page structure to be short and clear
+9. Step 3: Visual design => Design the look to match the brand: colours, type, buttons and mobile display, trustworthy and easy to read
+10. Step 4: Prototype and test => Build a prototype and test it with a number of real users, see where they stumble and fix before handoff
+11. Step 5: Handoff and measure => Hand over design files with a guide to developers and advise how to measure before and after, such as completion rate
+12. Example 1: An online shop => An online shop: fewer checkout steps and showing shipping early so fewer people abandon carts (describe as an approach, no guaranteed figure)
+13. Example 2: A clinic => A clinic: a hard appointment form is cut to a few fields, easy to tap on mobile, finishing in about a minute
+14. Example 3: An app => An app: a home screen with too many menus is rearranged to show the three main tasks at once, so new users understand without a tutorial
+15. Opening sales line (you can say this) => How many people visit your site monthly and how many contact or buy? If the gap is big, the issue is often the experience. May I look at key pages and name the three easiest fixes?
+16. If the customer says it is too expensive => Compare with ad money that brings visitors who then leave. Even a small rise in completions pays off. Start by auditing one main journey
+17. If the customer says the site is already pretty => If the customer says the site is already pretty: pretty and usable are different. A pretty site where people cannot find the button does not sell. Look at user behaviour data as evidence
+18. Cautions and what never to say => Never promise exact conversion rates, as results depend on product, price and traffic. Never copy a competitor's design or use unlicensed images and fonts
+19. Costs and terms to tell the customer => Design is separate from building the code, so developing the design needs its own estimate. Testing with real users may cost for recruiting participants
+20. Pass to the team lead when => The customer has a complex product with many user roles, wants an organisation wide design system, or has accessibility requirements. Prepare the current pages or app and usage data for the team lead
 ## D:ux How to sell and handle objections
-Customer says let the developers just build it: developers are strong at code, but experience design is a different skill. Without design first, rework is common.
-Customer says it wastes time: a prototype takes less time than coding and fixing, and speeds decisions.
-Customer says a template is enough: templates are cheap and fast but do not fit that business customer behaviour. Offer Starter (audit and structure).
-Closing: ask where users get stuck most and offer to fix that one point as a pilot.
-## D:ux Cautions and what never to say
-Never promise change figures (percent sales growth) without test data.
-Design work excludes coding. If the customer wants development, quote it separately.
-Agree the number of revision rounds and the final decision maker from the start.
-Licensed images and fonts must be supplied by the customer or costed separately.
-## D:ux Pass to the team lead when
-The customer wants large scale user research or several test rounds
-The customer needs a design system across several products
-The customer wants design and build through to launch as one package
+15. Opening sales line (you can say this) => How many people visit your site monthly and how many contact or buy? If the gap is big, the issue is often the experience. May I look at key pages and name the three easiest fixes?
+16. If the customer says it is too expensive => Compare with ad money that brings visitors who then leave. Even a small rise in completions pays off. Start by auditing one main journey
+17. If the customer says the site is already pretty => If the customer says the site is already pretty: pretty and usable are different. A pretty site where people cannot find the button does not sell. Look at user behaviour data as evidence
+18. Cautions and what never to say => Never promise exact conversion rates, as results depend on product, price and traffic. Never copy a competitor's design or use unlicensed images and fonts
 ## D:seo The ultimate goal of SEO
 Not just: getting the business onto page one of Google, but bringing the right people all the way to contacting or buying
 Customer path: the right person searches → finds the business → visits the site → trusts the brand → contacts, signs up or buys
 Example: Search → Website → Service page → Contact form or call
 Why it matters: a site with 100,000 visits a month from the wrong audience can be worth less than one with 5,000 visits from exactly the right people
 What we do: plan pages and keywords around what customers really type, write titles and descriptions well, make content citable by AI such as ChatGPT, and measure down to enquiries
-## D:seo What it is (plain explanation for customers)
-Comparison: like putting the shop in a prime spot on a busy street. SEO gets the website near the top when customers search on Google, without paying for each click.
-AEO and GEO adjust content so AI such as ChatGPT, Gemini and Google AI Overviews pick us to recommend. More people now ask AI instead of searching.
-SEO is not magic. It takes 3 to 6 months to show, like growing a tree.
-## D:seo Who it fits and the buying signals
-Good fits: clinics, hotels, real estate, online shops, professional services, local businesses that need to be found.
-Signals: searching the business name does not show page one, ad spend never stops, competitors rank above, customers ask how to find them.
-Decision makers: the owner, marketing.
-## D:seo What we do, step by step
-Step 1 Audit the site: speed, mobile, structure, technical issues.
-Step 2 Keyword research: what customers really type and what competitors use.
-Step 3 Optimise key pages: titles, content, internal links, structured data (schema).
-Step 4 Set up and tune the Google Business Profile and gather reviews.
-Step 5 Produce ongoing content (articles, FAQs) and optimise for AI citation.
-Step 6 Monthly report: rankings, visits, enquiries and next month plan.
-## D:seo Example situations to tell customers
-Clinic: someone searches for a laser clinic near me and finds the service page and trustworthy reviews.
-Hotel: AI recommends the property when people ask for stays in that city.
-Online shop: category pages rank for main keywords, reducing reliance on ads.
-Note: never promise an exact rank. Tell it as goals and metrics tracked together.
+## D:seo Detailed explanation in 20 points
+1. What it is (plain explanation) => SEO makes people who are searching for what you sell find you on Google before they find a competitor. ¶ AEO and GEO shape content so AI such as ChatGPT, Gemini and Google AI Overviews pick it up and recommend you, which matters more as people ask AI instead of searching
+2. Why a business needs it => Most people search before buying or hiring. If you are not in the results, customers do not know you exist. Unlike ads that stop bringing people once you stop paying, good SEO builds up and keeps bringing quality customers
+3. Which businesses it fits => It suits businesses whose customers search before buying: clinics, hotels, real estate, online shops, professional services, local businesses wanting nearby customers, and B2B firms whose buyers research before contacting
+4. Signals the customer is ready to buy => The customer says people cannot find the site, leads come only from ads, a competitor ranks first, a new site has no visitors, or they just finished a site and ask how to get seen
+5. Who makes the decision => Usually the owner, marketing manager or head of online sales. In larger firms IT or an existing agency may weigh in. Ask clearly who signs off
+6. What the customer concretely gets => A site health report, a keyword list matching customers, optimised pages, articles produced, and a monthly report showing clicks, rankings and enquiries
+7. Step 1: Audit the site => Full site audit: speed, mobile display, page structure, broken links and errors Google reports, summarised as fixes ranked by importance
+8. Step 2: Keyword research => Keyword research: find what customers really type, not what the business calls itself, check search volume and competitors, and group terms by the page that should serve them
+9. Step 3: Optimise key pages => Optimise key pages: write titles and descriptions worth clicking, clear headings, add structured data (schema) so Google and AI understand what the business does, and improve internal links
+10. Step 4: Google Business Profile and reviews => Set up Google Business Profile and collect real reviews. For local businesses the profile and reviews strongly affect map rankings. Never buy reviews
+11. Step 5: Content and reporting => Produce content and report monthly: articles and question pages answering what customers wonder, written so AI can cite them, then review results each month to adjust the plan
+12. Example 1: A clinic => A laser clinic: people search for a laser clinic near me and find a clear service page with credible reviews and can book at once, bringing more direct enquiries (describe as an approach, not a guaranteed figure)
+13. Example 2: A hotel => A hotel: foreign guests search in English for hotels in the city. An English site with structured data appears in results and gets recommended by AI, reducing reliance on booking platforms that take commission
+14. Example 3: An online shop => An online shop: product pages matched to what people really search, with product data Google can read, so shoppers land directly on product pages instead of through ads
+15. Opening sales line (you can say this) => How do most customers find you now? If only from ads, they vanish when you stop paying. SEO builds a way in that does not cost per click. May I look at your site and name the 3 quickest wins?
+16. If the customer says it is too expensive => Compared with ads: ad spend ends when you stop, while SEO accumulates and lowers cost per customer over time. Start with Starter to audit and fix basics without a long commitment (contract terms to be confirmed with the team lead)
+17. If the customer says they tried before and saw no results => If the customer says they hired before and saw no results: ask what was done and measured. It is often unclear reporting or spam links. Explain we report monthly and use legitimate methods, with results starting in 3 to 6 months (estimate, never promise)
+18. Cautions and what never to say => Never promise first place or page one. Results depend on Google and AI algorithms that keep changing. Never buy spam links as they can get the site penalised. If the customer asks for pay on results, pass to the team lead
+19. Costs and terms to tell the customer => Content writing, ads and extra tools, if wanted, are separate items. Results take 3 to 6 months (estimate) and someone in the business must check content accuracy
+20. Pass to the team lead when => The customer wants several countries and languages, the site was penalised by Google or had bad SEO before, or wants pay on results. Prepare the domain, target markets and past SEO history for the team lead
 ## D:seo How to sell and handle objections
-Customer says ads are enough: when you stop paying, visits stop. SEO builds up over time and works alongside ads.
-Customer says they hired before with no result: ask what was done and measured. We report clear numbers and begin by finding where the problem is.
-Customer says it takes too long: say honestly 3 to 6 months, with first signals in 1 to 2 months such as the number of ranking keywords.
-Customer asks if page one is guaranteed: say nobody can honestly guarantee it. We guarantee our work and transparent reports.
-Closing: offer a first site check and send the issue report before they decide.
-## D:seo Cautions and what never to say
-Never promise rank one or page one.
-Never use shortcuts that break Google rules such as buying spam links, which can get the site penalised.
-Results depend on Google and AI algorithms that keep changing. Tell the customer.
-Extra content or ad costs, if wanted, must be quoted separately.
-## D:seo Pass to the team lead when
-The customer wants multi country, multi language marketing
-The customer site was penalised by Google or had bad past SEO
-The customer wants a pay for results contract
+15. Opening sales line (you can say this) => How do most customers find you now? If only from ads, they vanish when you stop paying. SEO builds a way in that does not cost per click. May I look at your site and name the 3 quickest wins?
+16. If the customer says it is too expensive => Compared with ads: ad spend ends when you stop, while SEO accumulates and lowers cost per customer over time. Start with Starter to audit and fix basics without a long commitment (contract terms to be confirmed with the team lead)
+17. If the customer says they tried before and saw no results => If the customer says they hired before and saw no results: ask what was done and measured. It is often unclear reporting or spam links. Explain we report monthly and use legitimate methods, with results starting in 3 to 6 months (estimate, never promise)
+18. Cautions and what never to say => Never promise first place or page one. Results depend on Google and AI algorithms that keep changing. Never buy spam links as they can get the site penalised. If the customer asks for pay on results, pass to the team lead
 ## D:sec The ultimate goal of cybersecurity / PDPA
 Not just: passing a legal check, but keeping customer trust and not stopping because of an attack
 Work path: find vulnerabilities → rank risks → fix → recheck → set policy and monitor
 Example: A clinic booking system: shared password found → separate permissions → encrypt health data → obtain PDPA consent
 Why it matters: a leak costs money, trust and may bring legal penalties. Prevention is far cheaper than cleanup
 What we do: check, report in language owners understand, fix by risk order and help prepare policy documents. We are not legal counsel
-## D:sec What it is (plain explanation for customers)
-Comparison: like checking the house before a trip, lock the doors, turn off the gas, check the spare keys, so burglars cannot get in. Cybersecurity is checking and closing the weak points in a business website, app and data systems.
-What PDPA is: the personal data protection law. A business holding customer names, phones, emails, health or financial data must get consent, store it safely and delete it on request. Breaking it brings fines and damage to reputation.
-Our work has two parts: paperwork and process (policy, cookies, consent) and technical work (vulnerability checks, fixes, backups).
-## D:sec Who it fits and the buying signals
-Good fits: clinics and hospitals, schools, online shops, businesses with members, businesses taking payments, companies selling to large enterprises.
-Signals: the site was hacked or showed strange messages, enterprise customers sent security questionnaires, no privacy policy yet, shared passwords, customer data scattered in Excel files.
-Decision makers: the owner, IT, or legal and compliance. If a partner demands it, they usually decide fast.
-## D:sec What we do, step by step
-Step 1 Scope: list the systems and data held, who can access it, where it is stored.
-Step 2 Check: scan the website and app for vulnerabilities, review passwords and permissions, review backups.
-Step 3 Report: summarise problems by urgency (high, medium, low) in language executives understand.
-Step 4 Fix: fix the critical issues first, set baseline security, add encryption and backups.
-Step 5 PDPA documents: privacy policy, cookie banner, consent forms, a record of data processing activities.
-Step 6 Train and follow up: train the team and schedule re-checks.
-## D:sec Example situations to tell customers
-Situation 1: an online shop whose order form had injected code that leaked customer data. Checked in advance, the hole closes in hours.
-Situation 2: a clinic keeping client records in a shared file anyone can open. A PDPA risk, health data is sensitive.
-Situation 3: a company asked by an enterprise customer for security documents before signing. Without them, a big deal can be lost.
-Note: tell these as general situations. Never name a real customer or quote damage figures without a source.
+## D:sec Detailed explanation in 20 points
+1. What it is (plain explanation) => Cybersecurity protects the website, systems and customer data from hacking, theft or attacks that take them down. ¶ It also helps the business comply with personal data protection law (PDPA)
+2. Why a business needs it => Even small sites get attacked by automated scanners. Damage is leaked data, downtime, reputation loss and possible PDPA fines. Prevention costs far less than fixing after an incident
+3. Which businesses it fits => It suits online shops taking payments, clinics and firms holding personal data, companies selling to large clients who ask for security checks, and businesses already hacked once
+4. Signals the customer is ready to buy => The site was hacked or shows odd content, a corporate client asks for security documents, PDPA worries, or the team reuses passwords and has no backups
+5. Who makes the decision => Usually the owner, IT manager or legal and compliance. For PDPA a data protection officer (DPO) may join
+6. What the customer concretely gets => A vulnerability report ranked by risk, a list of fixes done, an incident response plan and advice on passwords, backups and access rights
+7. Step 1: Inventory systems and data => Inventory all systems in use: websites, servers, user accounts and stored data, then assess what matters most and is riskiest
+8. Step 2: Scan for weaknesses => Scan for weaknesses with tools and manual checks, such as outdated software, misconfiguration and weak passwords
+9. Step 3: Fix and protect => Fix weaknesses by risk order, enable two factor authentication, tidy access rights and set up backups
+10. Step 4: Test recovery and incident plan => Test that data can really be restored and prepare an incident plan: who does what and whom to notify, and by when
+11. Step 5: Deliver and train => Deliver the summary report and train the team on spotting phishing, passwords and data handling, and advise periodic re-checks
+12. Example 1: An online shop => An online shop: an outdated plugin was found as a weakness, updated and protected before an incident, so card data was not lost
+13. Example 2: A clinic => A clinic: patient data sat in a file anyone could open, so access was restricted and encrypted with a PDPA privacy policy
+14. Example 3: A B2B company => A B2B company: a corporate client asked for a security questionnaire before signing, and we helped prepare documents and fix gaps so the deal was not lost
+15. Opening sales line (you can say this) => If your site were hacked tomorrow, how long could the business stop, and is there a recent backup? May I do a basic check and name the top three risks?
+16. If the customer says it is too expensive => Compare with the damage of a leak: recovery cost, reputation and PDPA fines. A basic check costs far less. Start with a small package
+17. If the customer says they are too small to be hacked => If the customer says they are too small to be hacked: explain most attacks are automated and random, and small businesses with little protection are easy targets
+18. Cautions and what never to say => Never promise 100 percent security, as no system is perfectly safe. Never give legal advice in place of a lawyer. Never test systems without written authorisation
+19. Costs and terms to tell the customer => Penetration testing needs written permission and a clear scope, fixes cost separately from the audit, and re-checks are needed periodically as new threats appear
+20. Pass to the team lead when => The customer was just attacked and needs urgent help, wants a standard certificate such as ISO 27001, or holds lots of health and financial data. Give the team lead the incident, systems and deadline immediately
 ## D:sec How to sell and handle objections
-Customer says they have never been hacked: most do not know when they are breached. A check is like an annual health check, cheaper before you are ill.
-Customer says it is expensive: compare with PDPA fines, data recovery and reputation damage. Start from a basic package and build up.
-Customer says their IT already handles it: offer a third party check, a different view and a report to show partners.
-Customer says the business is small and nobody cares: attackers use automated tools that scan every site regardless of size.
-Closing: offer a short first check, let them see a real report, and the fix work becomes easier to close.
-## D:sec Cautions and what never to say
-Never promise 100 percent safe. No system is perfectly secure. You can say it lowers risk and creates evidence of care.
-Never give legal advice in place of a lawyer. We help with documents and process. For complex matters, suggest a legal specialist.
-Never test anyone system without written authorisation.
-Never promise a certification such as ISO 27001. We help prepare, the certificate comes from an external body.
-## D:sec Pass to the team lead when
-The customer was just hacked or leaked data and needs urgent help
-The customer wants penetration testing or ISO preparation
-The customer is government or finance with specific requirements
-The customer asks about legal liability or guarantees
+15. Opening sales line (you can say this) => If your site were hacked tomorrow, how long could the business stop, and is there a recent backup? May I do a basic check and name the top three risks?
+16. If the customer says it is too expensive => Compare with the damage of a leak: recovery cost, reputation and PDPA fines. A basic check costs far less. Start with a small package
+17. If the customer says they are too small to be hacked => If the customer says they are too small to be hacked: explain most attacks are automated and random, and small businesses with little protection are easy targets
+18. Cautions and what never to say => Never promise 100 percent security, as no system is perfectly safe. Never give legal advice in place of a lawyer. Never test systems without written authorisation
 ## D:cloud The ultimate goal of Cloud / DevOps
 Not just: moving to cloud, but a stable system, fast feature releases and controlled cost
 Work path: write code → automated tests → release → monitor → alert and recover at once
 Example: an update that took half a day and risked an outage now takes minutes and can be rolled back
 Why it matters: an outage mid promotion is lost sales and lost trust. A solid setup lets owners sleep
 What we do: review the existing setup, set backups and recovery, automate releases and watch monthly cost
-## D:cloud What it is (plain explanation for customers)
-Comparison: like renting a warehouse with fire suppression, cameras and backup power instead of keeping goods in a small room at home. Cloud is renting servers from a large provider that is stable and scalable.
-DevOps is a way of working that lets developers release updates fast, safely and reversibly, using automation.
-Benefit: fewer outages, faster releases and paying for what you use.
-## D:cloud Who it fits and the buying signals
-Good fits: companies with a busy website or app, ERP systems on office servers, fast growing startups.
-Signals: frequent outages, slow at peak times, high server costs, no backups, anxiety at every release.
-Decision makers: the owner, IT manager, head of development.
-## D:cloud What we do, step by step
-Step 1 Review the current system: where it runs, cost, risks.
-Step 2 Design the cloud architecture to fit the business size.
-Step 3 Migrate with a plan, test before switching, minimise downtime.
-Step 4 Set automated backups and test restores.
-Step 5 Set automated releases (CI/CD), monitoring and alerts.
-Step 6 Tune cost and report monthly.
-## D:cloud Example situations to tell customers
-Online shop: the site crashes during a big campaign. Auto scaling absorbs the traffic.
-Company on an office server: a power cut destroyed data. Move to cloud with automated backups.
-Dev team: manual releases wait for the weekend. Automated releases can go daily.
+## D:cloud Detailed explanation in 20 points
+1. What it is (plain explanation) => Cloud and DevOps set up websites or apps on stable, scalable servers that update without downtime. ¶ DevOps is a way of working that automates build and operations, cutting manual mistakes
+2. Why a business needs it => A site that is slow or down under load loses sales, and manual updates risk breaking things. A good cloud setup stays up, costs track usage and recovers quickly
+3. Which businesses it fits => It suits online shops with peak sales, apps with growing users, businesses on old expensive servers and teams wanting a safe move to the cloud
+4. Signals the customer is ready to buy => The site crashes during campaigns, hosting costs rise with no idea why, updates often break things, or one person alone manages the servers
+5. Who makes the decision => Usually the owner or IT manager, sometimes finance questioning cloud bills. Ask who holds the real cloud provider account
+6. What the customer concretely gets => An easy to read system diagram, automated deployment, backups, monitoring with alerts and a cloud cost report
+7. Step 1: Review current setup => Review the current setup: servers, databases, costs and past outages, then set a goal such as more stability or lower cost
+8. Step 2: Design the cloud structure => Design a cloud structure sized to the business, not bigger than needed, with an estimated monthly cost
+9. Step 3: Set up deployment and backups => Set up automated deployment (CI/CD) and backups so new versions ship safely and can roll back if they break
+10. Step 4: Migrate and test => Migrate in stages and test, choose a low traffic time, have a rollback plan and verify everything before shutting the old one
+11. Step 5: Monitor and hand over => Set up monitoring and alerts for slowness or outages, hand over documentation and train the team, with a monthly cost report
+12. Example 1: An online shop => An online shop: moved to autoscaling cloud so the site holds during big sales while costs fall on normal days
+13. Example 2: A software firm => A software firm: automated deployment lets developers ship several times a day without downtime
+14. Example 3: A business on an old server => A business on an old server: moved to cloud with automatic backups, cutting the risk of data loss when the machine fails
+15. Opening sales line (you can say this) => Has the site ever gone down under heavy traffic, and who fixed it? What happens if that person is away? May I review the current setup and name three risk points?
+16. If the customer says it is too expensive => Compare with sales lost during outages and server cost paid unnecessarily. A well planned cloud reduces both. Start by auditing and proposing a plan before deciding to migrate
+17. If the customer says the old server is fine => If the customer says the old server is fine: ask how fast they could recover if it failed tomorrow. If no problem yet, start with backups and monitoring without moving
+18. Cautions and what never to say => Never promise the system will never go down, since cloud providers have outages too. Never say moving will definitely be cheaper, as cost depends on actual usage
+19. Costs and terms to tell the customer => Cloud costs are monthly, paid directly to the provider by real usage, and can vary with traffic. Migration is one time. Someone on the team must hold the account and admin rights
+20. Pass to the team lead when => The customer has a complex multi-server system, needs high availability, has data residency rules, or a very old system hard to move. Prepare the system diagram, current cost and user count for the team lead
 ## D:cloud How to sell and handle objections
-Customer says cloud is more expensive: when right sized and unused resources are removed, it is often the same or cheaper and more stable. Ask for the current bill to compare.
-Customer fears data leaks: large clouds invest more in security than a typical server room. We set permissions and encryption.
-Customer says the old system still works: ask what a one day outage would cost.
-Closing: offer a system health check and a cost comparison as the first job.
-## D:cloud Cautions and what never to say
-Never promise 100 percent uptime.
-Monthly cloud bills are paid directly to the provider, separate from our service fee.
-Migrating an old system with no documentation is high risk. Assess before agreeing a price.
-The customer should own the cloud account.
-## D:cloud Pass to the team lead when
-The system must serve very many users or several regions
-The customer needs specific security standards (ISO or government rules)
-The old system has no documentation or code
+15. Opening sales line (you can say this) => Has the site ever gone down under heavy traffic, and who fixed it? What happens if that person is away? May I review the current setup and name three risk points?
+16. If the customer says it is too expensive => Compare with sales lost during outages and server cost paid unnecessarily. A well planned cloud reduces both. Start by auditing and proposing a plan before deciding to migrate
+17. If the customer says the old server is fine => If the customer says the old server is fine: ask how fast they could recover if it failed tomorrow. If no problem yet, start with backups and monitoring without moving
+18. Cautions and what never to say => Never promise the system will never go down, since cloud providers have outages too. Never say moving will definitely be cheaper, as cost depends on actual usage
 ## D:data The ultimate goal of data and analytics
 Not just: a pretty dashboard, but leaders deciding faster on numbers they can trust
 Data path: gather data from sources → clean → compute indicators → show on a dashboard → decide and act
 Example: POS sales plus social ads → see cost per new customer every morning
 Why it matters: reports at month end are too late, and numbers the team does not believe go unused
 What we do: choose at most 5 KPIs, combine data, build dashboards by role and automate hand made reports
-## D:data What it is (plain explanation for customers)
-Comparison: like a car dashboard showing speed, fuel and temperature in one place without opening the bonnet. A data dashboard lets executives see key business numbers on one screen.
-Our work is to gather scattered data (Excel, accounting, social, web) in one place, clean it, and show it in easy charts that refresh automatically.
-Advanced: use AI to summarise reports in plain language, ask the data by typing, and forecast trends.
-## D:data Who it fits and the buying signals
-Good fits: multi branch businesses, online shops, factories, businesses with data in several systems.
-Signals: reports made by hand for hours every week, numbers from departments do not match, executives wait for numbers, decisions made by gut feel.
-Decision makers: the owner, finance or marketing executives.
-## D:data What we do, step by step
-Step 1 Ask what decisions are needed and which numbers to see (5 KPIs).
-Step 2 Survey all data sources and data quality.
-Step 3 Bring data into a central store and clean it.
-Step 4 Design role based dashboards for executives, sales and accounting.
-Step 5 Set automatic refresh and access rights.
-Step 6 Train and add reports or AI as needed.
-## D:data Example situations to tell customers
-Multi branch business: the owner opens a phone in the morning and sees yesterday sales per branch at once.
-Online shop: see best sellers, slow stock and the channels customers come from.
-Factory: see production against target and daily waste.
+## D:data Detailed explanation in 20 points
+1. What it is (plain explanation) => Data and dashboards combine numbers from many places, such as sales, accounting, ads and back office, into one screen you can decide from. ¶ No more merging Excel by hand every week
+2. Why a business needs it => Owners who cannot see real numbers decide by feel, and numbers from different places disagree. A trusted dashboard shows problems early and where money and time go
+3. Which businesses it fits => It suits businesses with many data sources, teams making manual monthly reports, shops selling on several channels and executives wanting a real time overview
+4. Signals the customer is ready to buy => Reports take days at month end, department numbers disagree, the owner wants today's sales but must wait, or nobody knows which product really earns profit
+5. Who makes the decision => Usually the owner, finance manager or head of analytics. Real users are executives and department heads. Ask which numbers they most want to see
+6. What the customer concretely gets => A dashboard to open daily, agreed key metrics, automatic data connections, a user guide and user training
+7. Step 1: Define questions and metrics => Ask which decisions are made most often, then define metrics that answer them, not everything until it is unreadable
+8. Step 2: Survey data sources => Survey all data sources, such as accounting, online store and ads, and check data quality for completeness and accuracy
+9. Step 3: Connect and clean data => Connect and clean the data, fixing duplicates and bad formats so numbers from different places match
+10. Step 4: Design and test the dashboard => Design an easy dashboard with fitting charts focused on what to act on, then test with real users, verify figures against the source and set who may see which data
+11. Step 5: Hand over and refine => Hand over with training, set automatic data refresh, then follow usage and adjust metrics as the business changes
+12. Example 1: A multi-channel shop => A multi-channel online shop: sees combined sales from Shopee, web and store on one page and knows which channel nets the best profit
+13. Example 2: A multi-branch restaurant => A multi-branch restaurant: compares daily sales and ingredient costs by branch and spots abnormal costs fast
+14. Example 3: A service company => A service company: sees close rate and average time per stage, and knows where leads get stuck
+15. Opening sales line (you can say this) => How many days until you know last month's sales, and do department numbers match? May I see the reports you use and suggest a way to see them daily?
+16. If the customer says it is too expensive => Compare with team time spent on manual reports and wrong decisions from stale numbers. Start with a small dashboard answering one key question
+17. If the customer says Excel can do it => If the customer says Excel can do it: it can, but someone must merge each time and errors creep in. A dashboard refreshes itself and many people view at once
+18. Cautions and what never to say => Never promise 100 percent accurate data, as results depend on source quality. Never show personal data unnecessarily or against PDPA
+19. Costs and terms to tell the customer => Build is one time, the visualisation tool or hosting is monthly by user count, and someone in the team must own source data quality
+20. Pass to the team lead when => The customer has huge data volumes, needs a data warehouse or AI forecasting, or holds sensitive data. Prepare the data source list, volume and questions to answer for the team lead
 ## D:data How to sell and handle objections
-Customer says Excel works: ask how many hours a week reports take, compare with salary spent, and whether numbers are often wrong.
-Customer says the data is messy: normal. We clean it as part of the work, starting with the main sources.
-Customer says they already have free tools: free tools suit a start, but combining sources and trustworthy numbers needs design.
-Closing: ask for a report they make now and build a small sample dashboard to show.
-## D:data Cautions and what never to say
-Never promise forecast accuracy. It depends on history and market conditions.
-Customer data is personal data. Agree access rights and PDPA.
-If the data is incomplete, say upfront that results will be limited and how to fix it.
-The AI API cost is monthly and separate.
-## D:data Pass to the team lead when
-The data is very large or needs real time
-The customer needs a specialised forecasting or machine learning model
-The data sits in a legacy system with no API
+15. Opening sales line (you can say this) => How many days until you know last month's sales, and do department numbers match? May I see the reports you use and suggest a way to see them daily?
+16. If the customer says it is too expensive => Compare with team time spent on manual reports and wrong decisions from stale numbers. Start with a small dashboard answering one key question
+17. If the customer says Excel can do it => If the customer says Excel can do it: it can, but someone must merge each time and errors creep in. A dashboard refreshes itself and many people view at once
+18. Cautions and what never to say => Never promise 100 percent accurate data, as results depend on source quality. Never show personal data unnecessarily or against PDPA
 ## D:support The ultimate goal of support and maintenance
 Not just: fixing when it breaks, but keeping it from breaking and improving it steadily
 Work path: monitor → spot an issue → fix by urgency → security updates → continuous improvement
 Example: an alert for odd payment behaviour at 3am → the team fixes it before customers wake
 Why it matters: an unattended system gets old and unsafe until it breaks, and fixing costs more than steady care
 What we do: monthly packages by chosen response speed, including health checks, backups and a few development hours
-## D:support What it is (plain explanation for customers)
-Comparison: like insurance and a car service centre, periodic checks, replacing worn parts, and a technician ready when it breaks. A support package is the people keeping your website or system running.
-Routine work: health checks, security updates, backups, bug fixes, and small features within the agreed hours.
-Benefit: no need to hire a full time developer, and the system does not age into uselessness.
-## D:support Who it fits and the buying signals
-Good fits: any business with a website, app or system used daily, especially where the original developer has gone.
-Signals: the site is slow or often down, nobody dares to change it, plugins expired, security warnings, the original developer cannot be reached.
-Decision makers: the owner, IT manager.
-## D:support What we do, step by step
-Step 1 Take over the system: review code, documents, access, current state.
-Step 2 Fix urgent problems and vulnerabilities found.
-Step 3 Set monitoring and automated backups.
-Step 4 Check and update monthly.
-Step 5 Take issue reports within the agreed response time (SLA).
-Step 6 Monthly report and recommend what to develop next.
-## D:support Example situations to tell customers
-Company website: plugin and security updates every month, no hack from old holes.
-Online shop: the payment system breaks at night. Someone takes the report and fixes it within the agreed time.
-Internal system: add small reports the team asks for, from the monthly development hours.
+## D:support Detailed explanation in 20 points
+1. What it is (plain explanation) => Support and maintenance means we keep the website or system running after handover: updates, monitoring, backups and fixes under a monthly or yearly plan. ¶ Like a car service plan with regular checks, not waiting for a breakdown
+2. Why a business needs it => A site not updated becomes slow, vulnerable and breaks when software changes. Whoever built it may be gone. Having ongoing care means fast fixes and no silent failures
+3. Which businesses it fits => It suits businesses where the site or system is core revenue, online shops, firms without an IT team and people who just received a system with no idea how to maintain it
+4. Signals the customer is ready to buy => The site broke and nobody can fix it, the original developer vanished, it keeps slowing, update warnings arrive with no idea what to do, or they want frequent text and image edits
+5. Who makes the decision => Usually the owner or manager responsible for the site. Ask who the main contact is when problems arise and whether host and domain access is complete
+6. What the customer concretely gets => A care plan with clear tasks, response times, monthly reports, backups and minor edit hours per package
+7. Step 1: Initial health check and backup => Initial health check, backup and documentation of what the site uses and where it lives, so there is a reference when trouble hits
+8. Step 2: Set up monitoring => Set up uptime and speed monitoring that alerts us at once when the site goes down or slows abnormally
+9. Step 3: Scheduled updates => Update software, plugins and security on a schedule, testing before release so nothing breaks
+10. Step 4: Fixes and small edits => Fix problems and do small requested changes, such as text, images or bugs within the package scope
+11. Step 5: Monthly report => Send a monthly report of work done, system status and improvement suggestions, and review the package yearly
+12. Example 1: An online shop => An online shop: a risky plugin was caught and updated within the day before a sale, so the customer never knew there was a problem
+13. Example 2: A clinic => A clinic: the booking site went down at night, monitoring alerted us and it was fixed before morning, limiting lost bookings
+14. Example 3: A service company => A service company: marketing sends weekly text and banner edits through package hours, without hiring a full time developer
+15. Opening sales line (you can say this) => If the site were down today, whom would you call and how fast do they answer? Would a plan with guaranteed response time reassure you? Let me summarise what each package covers
+16. If the customer says it is too expensive => Compare with costlier emergency fixes and sales lost during downtime. A care plan is cheaper insurance. Start with the basic package
+17. If the customer says they will fix it only when it breaks => If the customer says they will hire only when it breaks: ask what they would do if it broke during peak sales. Emergency fixes are slower and costlier, and data may be lost without backups
+18. Cautions and what never to say => Never promise the system will never fail, never promise fix times beyond the package, and never take on a system we have not inspected. Do an initial health check before quoting
+19. Costs and terms to tell the customer => Care plans are billed monthly or yearly, out of scope or over hours work costs extra, host and domain are separate, and full system access is needed to start
+20. Pass to the team lead when => The customer wants a 24 hour response guarantee (SLA), the system was built by others with no documentation, or there are many systems. Prepare the system list, access held and problem frequency for the team lead
 ## D:support How to sell and handle objections
-Customer says it works fine, no care needed: ask what happens if it goes down tomorrow and who fixes it. A system that is not updated gathers vulnerabilities.
-Customer says monthly is expensive: compare with a full time developer wage and outage damage. Start with Basic.
-Customer says to call for repair as needed: one off fixes are slower and costlier because we must relearn the system every time.
-Closing: offer a free or light system health check and send the issue report first.
-## D:support Cautions and what never to say
-Never promise 100 percent uptime or answers to every problem within minutes.
-Unused development hours do not roll over unless agreed. Say so upfront.
-Problems from other services (hosting, payment providers) we help coordinate but do not control.
-We need access to the system and code before starting support.
-## D:support Pass to the team lead when
-The inherited system has no documents or code
-The customer wants 24 hour support or a strict SLA
-The customer wants several systems supported at once
+15. Opening sales line (you can say this) => If the site were down today, whom would you call and how fast do they answer? Would a plan with guaranteed response time reassure you? Let me summarise what each package covers
+16. If the customer says it is too expensive => Compare with costlier emergency fixes and sales lost during downtime. A care plan is cheaper insurance. Start with the basic package
+17. If the customer says they will fix it only when it breaks => If the customer says they will hire only when it breaks: ask what they would do if it broke during peak sales. Emergency fixes are slower and costlier, and data may be lost without backups
+18. Cautions and what never to say => Never promise the system will never fail, never promise fix times beyond the package, and never take on a system we have not inspected. Do an initial health check before quoting
 ## D:strategy The ultimate goal of digital strategy
 Not just: a thick plan document, but a sequence of work that shows real business results
 Work path: understand business goals → survey what exists → find gaps → phase the work → act and measure
 Example: phase 1 fixes the biggest pain in 2 months, phase 2 builds on the results
 Why it matters: businesses that buy tools without a plan often pay twice and nobody uses them. A good plan saves budget
 What we do: workshops with leadership, a phased plan with estimated figures, and the option for our team to carry it out
-## D:strategy What it is (plain explanation for customers)
-Comparison: like hiring a trip planner before starting the car, knowing where to go, which route and what budget, instead of driving around and getting lost.
-Digital strategy is planning what technology the business should use and in what order to meet business goals, not buying a system because others use it.
-Output: a roadmap with priorities, budget and metrics.
-## D:strategy Who it fits and the buying signals
-Good fits: growing SMEs, organisations with many unconnected systems, executives who want digital but do not know where to start.
-Signals: past system investments unused, several vendors proposing different things, limited budget that must be spent right, executives disagreeing.
-Decision makers: the owner, managing director.
-## D:strategy What we do, step by step
-Step 1 Interview executives and the team to understand goals and problems.
-Step 2 Review existing tools and systems.
-Step 3 Analyse gaps and opportunities, rank by return and difficulty.
-Step 4 Write a 6 to 12 month roadmap in phases with budget estimates.
-Step 5 Present and refine with executives.
-Step 6 (optional) help select a builder or deliver phase one.
-## D:strategy Example situations to tell customers
-Factory business: found that a stock system should come before a website, because stock outs cost more customers.
-Service business: same budget, reordered. Start with a website and a lead answering bot before a big system.
-Organisation with many systems: found three systems doing duplicate work, cut to one and connected the data.
+## D:strategy Detailed explanation in 20 points
+1. What it is (plain explanation) => Digital strategy plans which technology a business should use, in what order, to meet business goals. ¶ Before buying or building, we help answer what to do first, what to skip and how to measure results
+2. Why a business needs it => Many businesses buy trendy tools and never use them, or build systems that miss the real problem. Planning first spends money in the right place and lowers waste
+3. Which businesses it fits => It suits owners who know they must adapt but not where to begin, firms whose past system investments failed, and organisations with many projects needing priority
+4. Signals the customer is ready to buy => They want AI but not sure what, invested in a system nobody uses, have many ideas with a limited budget, are unsure whom to hire, or want a plan before approaching investors
+5. Who makes the decision => Usually the owner or senior executives, with department managers who will use the system helping plan. Ask who controls the budget
+6. What the customer concretely gets => A current state report, a prioritised plan, budget and time estimates, success metrics and a phased action plan
+7. Step 1: Interview and understand goals => Interview the owner and team to understand business goals, current problems and what was tried before
+8. Step 2: Assess current state => Review all existing systems and data, assessing what can stay, what should change and what is missing
+9. Step 3: Filter and prioritise opportunities => Brainstorm and filter opportunities by clear criteria such as business impact, difficulty and cost, then choose what to start first
+10. Step 4: Build the phased plan => Write a phased plan with budget and time estimates, risks and what the customer must prepare
+11. Step 5: Present and deliver => Present the plan, answer decision makers' questions, adjust to feedback and deliver the final document with next steps
+12. Example 1: A retail shop => A retail shop: from many ideas, three were chosen as most worthwhile, starting with stock then the online store, saving budget that would go to things not yet needed
+13. Example 2: A factory => A factory: the plan showed shop floor data must be collected before AI since there was not enough, avoiding an AI project that would fail
+14. Example 3: A multi-branch clinic => A multi-branch clinic: the plan sequences booking, CRM and LINE in steps, each showing results before the next investment
+15. Opening sales line (you can say this) => How many digital projects do you want and with what budget? If you could pick only one, which would help most? I can compare them for you
+16. If the customer says it is too expensive => Compare with the loss on a system bought and unused. Planning first is often cheaper than one mistake, and can start with a short workshop
+17. If the customer says they already know what to do => If the customer says they already know what to do: ask whether everyone agrees on order and budget. If not, a plan aligns the team or serves as a document for investors
+18. Cautions and what never to say => Never promise a specific ROI, never propose a plan before understanding the business, and never recommend tools we earn commission on without disclosing it
+19. Costs and terms to tell the customer => Strategy is a one time fee, separate from implementing the plan. The customer need not hire us to build, but must give time for interviews and the data requested
+20. Pass to the team lead when => The customer is a large multi-unit organisation, wants an enterprise transformation plan, or must present to a board or investors. Prepare the org structure, budget and goals for the team lead
 ## D:strategy How to sell and handle objections
-Customer says they already know what to do: ask whether there is a written plan, budget and sequence. If not, starting with a plan lowers risk.
-Customer says paying only for a plan is wasteful: a good plan saves money otherwise lost on unsuitable systems, and it belongs to the customer, anyone can continue it.
-Customer says they want real work now: offer a short workshop as step one, then phase one backed by the plan.
-Closing: book an hour with executives to summarise goals and raise key questions.
-## D:strategy Cautions and what never to say
-Never promise business results (sales, profit). A plan helps decisions, results depend on execution.
-Never sell a plan and force our delivery. The customer may choose their builder.
-We need real data from the customer. Without it the plan is broad and less useful.
-State that budgets in the plan are estimates, not quotes.
-## D:strategy Pass to the team lead when
-The customer is a large organisation or wants a company wide transformation plan
-The customer wants a board meeting or shareholder presentation
-The customer wants ongoing monthly advisory work
+15. Opening sales line (you can say this) => How many digital projects do you want and with what budget? If you could pick only one, which would help most? I can compare them for you
+16. If the customer says it is too expensive => Compare with the loss on a system bought and unused. Planning first is often cheaper than one mistake, and can start with a short workshop
+17. If the customer says they already know what to do => If the customer says they already know what to do: ask whether everyone agrees on order and budget. If not, a plan aligns the team or serves as a document for investors
+18. Cautions and what never to say => Never promise a specific ROI, never propose a plan before understanding the business, and never recommend tools we earn commission on without disclosing it
 ## D:fix The ultimate goal of fixing AI built apps
 Not just: fixing bugs so it runs, but making it safe enough for real users and ready to grow
 Work path: review code → rank problems → fix security and payments first → test → prepare for production
 Example: an app built with Lovable: login lets users see each others data → close the hole → test → go live on a real domain
 Why it matters: AI built apps often look finished but hide vulnerabilities. Launching without a check risks user data
 What we do: review, make ready, or build on, at the level the customer picks, with confirmed fix prices by tier
+## D:fix Detailed explanation in 20 points
+1. What it is (plain explanation) => Fixing AI built apps means taking a site or app made with AI tools such as Lovable, Bolt or Cursor that stalled or cannot run in real life, then inspecting, fixing bugs, hardening security and making it production ready. ¶ AI builds prototypes fast, but stability and safety still need engineers
+2. Why a business needs it => AI built apps often look fine in trials but break with real users, carry weaknesses such as insecure password storage, or cannot be extended further. Not fixing before launch costs time, money and credibility
+3. Which businesses it fits => It suits founders or teams who prototyped with AI and got stuck, start-ups preparing to launch and businesses whose hired build is unstable
+4. Signals the customer is ready to buy => The customer says an AI built app is half done and stuck, fixing one bug breaks another, login or payment fails, or they want to launch but doubt security
+5. Who makes the decision => Usually a founder or product owner who is not a programmer. Ask which tool built it and whether code and host account access is complete
+6. What the customer concretely gets => A code and security review report, a list of bugs fixed, a system live in production, brief documentation of the structure and advice for ongoing care
+7. Step 1: Review code and assess => Review existing code and features to see what works and what must be rewritten, and assess whether fixing or rebuilding is cheaper
+8. Step 2: Security review => Check basic security such as password storage, user permissions, secret keys leaked in code and protection against common attacks
+9. Step 3: Fix bugs and restructure => Fix bugs and restructure code so it can be read and extended, connecting missing pieces such as payments or email
+10. Step 4: Test the whole system => Test the whole system against real user situations and set backups and monitoring before launch
+11. Step 5: Go live and hand over => Go live, hand over documents and advise on ongoing care, either self-managed or through our support service
+12. Example 1: A start-up => A start-up: an AI built booking app broke login with several users, we fixed user management and the database, and it opened to real users
+13. Example 2: A shop => A shop: an AI built store had incomplete payments, so we connected a real payment provider and checked security
+14. Example 3: A service firm => A service firm: an AI written job system had secret keys embedded in code, so we moved them to safe storage and closed the weakness before customer data leaked
+15. Opening sales line (you can say this) => Where is the app stuck now, and are there real users yet? If I could review the code or screens for an hour, I could say whether to fix or rebuild and roughly how long
+16. If the customer says it is too expensive => Compared with a full rebuild, fixing is often cheaper and faster if the structure is decent. Start with a review and estimate before deciding, with no commitment to the whole project
+17. If the customer says AI can keep fixing it => If the customer says AI can keep fixing it: AI fixes small spots but often creates new problems as structure grows and takes no responsibility for security. A person must review before real users arrive
+18. Cautions and what never to say => Never take on work without reviewing the code first, never promise everything is fixable or a firm deadline before assessment, and never work on real customer data without agreeing access and PDPA
+19. Costs and terms to tell the customer => Access to code, host account and database is needed, outside services such as hosting, payments and AI models are paid directly by use, and a major rewrite is quoted as a new project
+20. Pass to the team lead when => The customer already has many real users, sensitive health or finance data, a very large codebase or a firm launch date. Prepare the code, accounts and problems found for the team lead
+## D:fix How to sell and handle objections
+15. Opening sales line (you can say this) => Where is the app stuck now, and are there real users yet? If I could review the code or screens for an hour, I could say whether to fix or rebuild and roughly how long
+16. If the customer says it is too expensive => Compared with a full rebuild, fixing is often cheaper and faster if the structure is decent. Start with a review and estimate before deciding, with no commitment to the whole project
+17. If the customer says AI can keep fixing it => If the customer says AI can keep fixing it: AI fixes small spots but often creates new problems as structure grows and takes no responsibility for security. A person must review before real users arrive
+18. Cautions and what never to say => Never take on work without reviewing the code first, never promise everything is fixable or a firm deadline before assessment, and never work on real customer data without agreeing access and PDPA
 
 # Detailed scope of every service (what is included, customer prep, steps, timeline, after handover)
 
