@@ -223,16 +223,16 @@ function FaqView({ groups }: { groups: Faq[] }) {
       <div className="faq">
         {groups.map((g, gi) => (
           <div key={gi} style={{ marginTop: gi ? 18 : 0 }}>
-            {g.head && <div style={{ fontSize: 13, fontWeight: 600, opacity: 0.75, margin: '0 4px 8px' }}>{g.head}</div>}
+            {g.head && <div style={{ fontSize: 13, fontWeight: 600, color: '#B9ADF7', margin: '0 4px 8px' }}>{g.head}</div>}
             <div style={{ border: line, borderRadius: 16, overflow: 'hidden', background: 'rgb(var(--fg) / 0.03)' }}>
               {g.items.map((it, i) =>
                 it.a.length === 0 ? (
                   <div key={i} style={{ padding: '12px 16px', fontSize: 15, lineHeight: 1.65, borderTop: i ? line : 0 }}><Linkified text={it.q} /></div>
                 ) : (
                   <details key={i} style={{ borderTop: i ? line : 0 }}>
-                    <summary style={{ cursor: 'pointer', padding: '12px 16px', fontSize: 15, lineHeight: 1.55, fontWeight: 600, display: 'flex', gap: 12, justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                    <summary style={{ cursor: 'pointer', padding: '12px 16px', fontSize: 15, lineHeight: 1.55, fontWeight: 600, color: '#B9ADF7', display: 'flex', gap: 12, justifyContent: 'space-between', alignItems: 'flex-start' }}>
                       <span>{it.q}</span>
-                      <span className="chev" aria-hidden="true" style={{ opacity: 0.6, flex: '0 0 auto' }}>▾</span>
+                      <span className="chev" aria-hidden="true" style={{ color: '#B9ADF7', flex: '0 0 auto' }}>▾</span>
                     </summary>
                     <div style={{ padding: '0 16px 14px', fontSize: 15, lineHeight: 1.7, opacity: 0.92 }}>
                       {it.a.map((x, k) => <div key={k} style={{ marginTop: k ? 8 : 0, whiteSpace: 'pre-wrap' }}><Linkified text={x} /></div>)}
