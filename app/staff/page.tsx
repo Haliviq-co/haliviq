@@ -2,35 +2,135 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { STAFF_KB } from '@/lib/staff-kb'
+import { STAFF_KB_EN } from '@/lib/staff-kb-en'
 
-// Staff-only Havy. A free, rule-based assistant like the customer one: it answers from the internal handbook
-// (lib/staff-kb.ts), so it has no API cost and no password. The page is noindex and not linked anywhere.
+// Staff-only Havy. Free, rule-based assistant in the style of the customer one. It answers from the internal
+// handbook (lib/staff-kb.ts in Thai, lib/staff-kb-en.ts in English), so no API cost and no password.
+// The user picks Thai or English first and everything after that is in that one language.
 
+type Lang = 'th' | 'en'
+type Market = 'th' | 'us'
 type Block = { h2: string; lines: string[] }
 type Sec = { h1: string; intro: string[]; blocks: Block[] }
-type Market = 'th' | 'us'
-type Msg = { from: 'bot' | 'me'; text: string; chips?: { key: string; label: string; tone?: 'ghost' }[] }
+type Chip = { key: string; label: string; tone?: 'ghost' }
+type Msg = { from: 'bot' | 'me'; text: string; chips?: Chip[] }
 
-const SERVICES: { label: string; kind: 'web' | 'brand' | 'app' | 'fix' | 'other'; key?: string }[] = [
-  { label: 'เว็บไซต์ · Website', kind: 'web' },
-  { label: 'Branding · แบรนด์', kind: 'brand' },
-  { label: 'แอปมือถือ · Mobile app (iOS/Android)', kind: 'app' },
-  { label: 'AI Assistant · แชตบอต Chatbot', kind: 'other', key: 'AI Assistant' },
-  { label: 'AI Voice Agent · ผู้ช่วยเสียง', kind: 'other', key: 'AI Voice' },
-  { label: 'ERP / CRM · ระบบหลังบ้าน', kind: 'other', key: 'ERP' },
-  { label: 'อีคอมเมิร์ซ · E-commerce', kind: 'other', key: 'อีคอมเมิร์ซ' },
-  { label: 'LINE Mini App · แอปบน LINE', kind: 'other', key: 'LINE' },
-  { label: 'ออกแบบ UX/UI · Design', kind: 'other', key: 'UX/UI' },
-  { label: 'SEO / AEO / GEO · ติดอันดับ', kind: 'other', key: 'SEO' },
-  { label: 'ความปลอดภัย · Cybersecurity / PDPA', kind: 'other', key: 'ความปลอดภัย' },
-  { label: 'Cloud / DevOps · คลาวด์', kind: 'other', key: 'Cloud' },
-  { label: 'ข้อมูล · Data & Analytics', kind: 'other', key: 'ข้อมูลและ' },
-  { label: 'ดูแลระบบ · Maintenance', kind: 'other', key: 'ดูแลรักษา' },
-  { label: 'กลยุทธ์ · Digital strategy', kind: 'other', key: 'กลยุทธ์' },
-  { label: 'แก้แอปที่ AI สร้าง · Fix AI-built apps', kind: 'fix' },
+// Section positions are the same in both handbooks.
+const S = { sells: 2, confirmed: 4, brand: 5, web: 6, usa: 7, other: 8, ind: 9, app: 10 }
+
+type Svc = { kind: 'web' | 'brand' | 'app' | 'fix' | 'other'; key?: string; th: string; en: string; keyEn?: string }
+const SERVICES: Svc[] = [
+  { kind: 'web', th: 'เว็บไซต์', en: 'Website' },
+  { kind: 'brand', th: 'Branding (แบรนด์)', en: 'Branding' },
+  { kind: 'app', th: 'แอปมือถือ (iOS/Android)', en: 'Mobile app (iOS/Android)' },
+  { kind: 'other', th: 'AI Assistant / แชตบอต', en: 'AI Assistant / chatbot', key: 'AI Assistant', keyEn: 'AI Assistant' },
+  { kind: 'other', th: 'AI Voice Agent', en: 'AI Voice Agent', key: 'AI Voice', keyEn: 'AI Voice' },
+  { kind: 'other', th: 'ERP / CRM', en: 'ERP / CRM', key: 'ERP', keyEn: 'ERP' },
+  { kind: 'other', th: 'อีคอมเมิร์ซ', en: 'E-commerce', key: 'อีคอมเมิร์ซ', keyEn: 'E-commerce' },
+  { kind: 'other', th: 'LINE Mini App', en: 'LINE Mini App', key: 'LINE', keyEn: 'LINE' },
+  { kind: 'other', th: 'ออกแบบ UX/UI', en: 'UX/UI design', key: 'UX/UI', keyEn: 'UX/UI' },
+  { kind: 'other', th: 'SEO / AEO / GEO', en: 'SEO / AEO / GEO', key: 'SEO', keyEn: 'SEO' },
+  { kind: 'other', th: 'ความปลอดภัยไซเบอร์ / PDPA', en: 'Cybersecurity / PDPA', key: 'ความปลอดภัย', keyEn: 'Cybersecurity' },
+  { kind: 'other', th: 'Cloud / DevOps', en: 'Cloud / DevOps', key: 'Cloud', keyEn: 'Cloud' },
+  { kind: 'other', th: 'ข้อมูลและการวิเคราะห์', en: 'Data & Analytics', key: 'ข้อมูลและ', keyEn: 'Data' },
+  { kind: 'other', th: 'ดูแลรักษาระบบ', en: 'Support & Maintenance', key: 'ดูแลรักษา', keyEn: 'Support' },
+  { kind: 'other', th: 'กลยุทธ์ดิจิทัล', en: 'Digital strategy', key: 'กลยุทธ์', keyEn: 'Strategy' },
+  { kind: 'fix', th: 'แก้แอปที่ AI สร้าง', en: 'Fix AI-built apps' },
 ]
-const INDUSTRIES = ['คลินิก / โรงพยาบาล / ความงาม · Clinic & Beauty', 'ร้านอาหาร / คาเฟ่ · Restaurant & Cafe', 'ร้านค้าปลีก / ขายออนไลน์ · Retail', 'อสังหาริมทรัพย์ · Real estate', 'โรงงาน / B2B · Manufacturing', 'โรงเรียน / คอร์สออนไลน์ · Education', 'โรงแรม / ท่องเที่ยว · Hospitality', 'บริการวิชาชีพ · Professional services', 'สตาร์ทอัพ · Startup', 'การเงิน / องค์กรใหญ่ · Finance & Enterprise', 'ก่อสร้าง / ขนส่ง · Construction & Logistics']
-const TOPICS = ['ราคา · Price', 'ขอบเขตงาน · Scope (ได้อะไรบ้าง)', 'คำถามที่ควรถามลูกค้า · Questions to ask', 'วิธีขายและตอบข้อโต้แย้ง · Selling & objections', 'อธิบายให้เข้าใจง่าย · Plain explanation']
+// same order as the industry blocks in the handbook
+const INDUSTRIES: { th: string; en: string }[] = [
+  { th: 'คลินิก / โรงพยาบาล / ความงาม', en: 'Clinic / hospital / beauty' },
+  { th: 'ร้านอาหาร / คาเฟ่', en: 'Restaurant / cafe' },
+  { th: 'ร้านค้าปลีก / ขายออนไลน์', en: 'Retail / online selling' },
+  { th: 'อสังหาริมทรัพย์', en: 'Real estate' },
+  { th: 'โรงงาน / B2B', en: 'Factory / B2B' },
+  { th: 'โรงเรียน / คอร์สออนไลน์', en: 'School / online courses' },
+  { th: 'โรงแรม / ท่องเที่ยว', en: 'Hotel / travel' },
+  { th: 'บริการวิชาชีพ', en: 'Professional services' },
+  { th: 'สตาร์ทอัพ', en: 'Startup' },
+  { th: 'การเงิน / องค์กรใหญ่', en: 'Finance / enterprise' },
+  { th: 'ก่อสร้าง / ขนส่ง', en: 'Construction / logistics' },
+]
+const TOPIC_KEYS = ['price', 'scope', 'ask', 'sell', 'plain'] as const
+
+const T = {
+  th: {
+    title: 'น้องฮาวี่ สำหรับทีมภายใน',
+    restart: 'เริ่มใหม่',
+    placeholder: 'พิมพ์ถามได้เลย เช่น ลูกค้าบอกแพง ตอบยังไง',
+    send: 'ส่ง',
+    hello: 'สวัสดีครับ ผมน้องฮาวี่ สำหรับทีมภายใน อยากรู้เรื่องบริการอะไรครับ เลือกจากปุ่ม หรือพิมพ์ถามได้เลย เช่น "ลูกค้าบอกแพง ตอบยังไง"',
+    whichService: 'อยากรู้เรื่องบริการอะไรครับ',
+    whichMarket: 'ลูกค้าอยู่ตลาดไหนครับ (ราคาไทยกับ USA แยกกัน)',
+    markets: { th: 'ไทย (บาท)', us: 'USA (ดอลลาร์)' },
+    whatKnow: 'อยากรู้เรื่องอะไรครับ',
+    whichIndustry: 'ลูกค้าทำธุรกิจอะไรครับ',
+    topics: { price: 'ราคา', scope: 'ขอบเขตงาน (ได้อะไรบ้าง)', ask: 'คำถามที่ควรถามลูกค้า', sell: 'วิธีขายและตอบข้อโต้แย้ง', plain: 'อธิบายให้เข้าใจง่าย' },
+    byIndustry: 'ถามตามธุรกิจลูกค้า',
+    changeService: 'เปลี่ยนบริการ',
+    pickForPrice: 'เลือกบริการเพื่อดูราคา',
+    otherIndustry: 'ธุรกิจอื่น',
+    industryTail: 'ถ้าบอกว่าลูกค้าอยู่ไทยหรือ USA ผมจะบอกราคาตามตลาดนั้นครับ',
+    none: 'ยังไม่มีข้อมูลหัวข้อนี้ในคู่มือครับ',
+    noneIndustry: 'ยังไม่มีข้อมูลธุรกิจนี้ในคู่มือครับ',
+    notFound: 'ยังไม่เจอเรื่องนี้ในคู่มือครับ ลองเลือกบริการจากปุ่ม หรือเปลี่ยนคำถาม เช่น "ราคาเว็บ" "ลูกค้าบอกแพง" "นามบัตร"',
+    typeMore: 'พิมพ์ถามเพิ่มได้เลยครับ',
+    draft: '(ราคาส่วนใหญ่เป็นประมาณการ ยังไม่ยืนยัน ก่อนเสนอลูกค้าให้เช็กกับหัวหน้าทีม)',
+    priceHead: (m: Market) => `ราคา ${m === 'th' ? 'ไทย (บาท)' : 'USA (ดอลลาร์)'}`,
+    scopeHead: 'ขอบเขตงาน',
+    noQuestions: 'ยังไม่มีชุดคำถามเฉพาะ คำถามพื้นฐานที่ใช้ได้กับทุกงาน:\n1. ปัญหาที่อยากแก้คืออะไร ใครคือผู้ใช้\n2. มีระบบหรือเว็บเดิมไหม\n3. ต้องเชื่อมระบบอะไรบ้าง\n4. งบประมาณคร่าว ๆ และกำหนดเวลา\n5. ใครเป็นผู้ตัดสินใจ',
+    sellsHead: 'จุดขายของเรา (เรียงตามลำดับ)',
+  },
+  en: {
+    title: 'Havy for the internal team',
+    restart: 'Restart',
+    placeholder: 'Ask anything, e.g. customer says it is too expensive',
+    send: 'Send',
+    hello: 'Hi, I am Havy, for the internal team. Which service do you want to know about? Pick a button or just type, e.g. "customer says it is too expensive".',
+    whichService: 'Which service?',
+    whichMarket: 'Which market is the customer in? (Thai and USA prices are separate)',
+    markets: { th: 'Thailand (THB)', us: 'USA (USD)' },
+    whatKnow: 'What do you want to know?',
+    whichIndustry: 'What business is the customer in?',
+    topics: { price: 'Price', scope: 'Scope (what is included)', ask: 'Questions to ask the customer', sell: 'Selling and handling objections', plain: 'Plain explanation' },
+    byIndustry: 'By customer industry',
+    changeService: 'Change service',
+    pickForPrice: 'Pick a service for pricing',
+    otherIndustry: 'Other industry',
+    industryTail: 'Tell me if the customer is in Thailand or the USA and I will quote that market.',
+    none: 'No information on this topic in the handbook yet.',
+    noneIndustry: 'No information on this industry in the handbook yet.',
+    notFound: 'Not found in the handbook. Pick a service button or rephrase, e.g. "website price", "too expensive", "business card".',
+    typeMore: 'Type another question.',
+    draft: '(Most prices are estimates, not yet confirmed. Check with the team lead before quoting a customer.)',
+    priceHead: (m: Market) => `Price, ${m === 'th' ? 'Thailand (THB)' : 'USA (USD)'}`,
+    scopeHead: 'Scope',
+    noQuestions: 'No specific question set yet. Basic questions that work for any project:\n1. What problem do they want to solve, who are the users\n2. Is there an existing site or system\n3. Which systems must connect\n4. Rough budget and deadline\n5. Who decides',
+    sellsHead: 'Our selling points (in order)',
+  },
+}
+
+// language-specific patterns for reading the handbook
+const P = {
+  th: {
+    other: 'USA:', otherTh: 'ไทย:', marketLine: /(^|\| )(ไทย:|USA:)/,
+    pkgSkip: /^แพ็กเกจ/, webUsa: 'เว็บไซต์', fixLine: 'แก้แอป',
+    pricedBlock: /(แพ็กเกจ|Essential|Growth|Enterprise|Starter|Standard|Premium|Branding|เว็บไซต์|แอปเริ่มต้น|แพลตฟอร์ม|แก้แอป)/,
+    moneyLine: /บาท|\$[0-9]/, priceLine: /(บาท|\$[0-9]|ไทย:|USA:|ราคา)/, priceExtra: /(เหมาะกับ|ได้อะไร|เว็บ:|AI:)/,
+    scopeLine: /^(เหมาะกับ|ได้อะไร|ไม่ได้อะไร|ไม่รวม|เว็บ:|AI:|ขอบเขต|คืออะไร|ปัจจัยราคา|- )/,
+    askBlock: /คำถาม|ขั้นตอนขาย/, sellBlock: /วิธีขาย|ตอบข้อโต้แย้ง|ขั้นตอนขาย/, whatBlock: /คืออะไร/, whatLine: 'คืออะไร',
+    skipSec: [0, 1], stop: [] as string[],
+  },
+  en: {
+    other: 'USA:', otherTh: 'Thai:', marketLine: /(^|\| )(Thai:|USA:)/,
+    pkgSkip: /^Package/, webUsa: 'Website', fixLine: 'AI-built',
+    pricedBlock: /(Package|Essential|Growth|Enterprise|Starter|Standard|Premium|Branding|Website|App|Platform|Fixing)/i,
+    moneyLine: /THB|\$[0-9]/, priceLine: /(THB|\$[0-9]|Thai:|USA:|price)/i, priceExtra: /(Best for|Includes|Web:|AI:)/,
+    scopeLine: /^(Best for|Includes|Excludes|Web:|AI:|Scope|What it is|Price factors|- )/,
+    askBlock: /questions|sales steps/i, sellBlock: /selling|objection|sales steps/i, whatBlock: /what is|what are/i, whatLine: 'What it is',
+    skipSec: [0, 1], stop: ['the', 'and', 'for', 'with', 'what', 'how', 'can', 'are', 'you', 'our', 'does', 'that', 'this', 'from', 'when', 'about', 'say', 'tell', 'customer'],
+  },
+}
 
 function parse(text: string): Sec[] {
   const secs: Sec[] = []
@@ -47,178 +147,197 @@ function parse(text: string): Sec[] {
   return secs
 }
 
-// Keep only the chosen market in lines like "ไทย: X บาท | USA: Y | ระยะเวลา..."
-function forMarket(line: string, m: Market) {
-  const other = m === 'th' ? 'USA:' : 'ไทย:'
-  if (!/(^|\| )(ไทย:|USA:)/.test(line)) return line
-  return line.split(' | ').filter((p) => !p.startsWith(other)).join(' | ')
+// Keep only the chosen market in lines like "Thai: X | USA: Y | time..."
+function forMarket(line: string, m: Market, lang: Lang) {
+  const p = P[lang]
+  if (!p.marketLine.test(line)) return line
+  const drop = m === 'th' ? p.other : p.otherTh
+  return line.split(' | ').filter((x) => !x.startsWith(drop)).join(' | ')
 }
-const EN: [RegExp, string][] = [
+
+// Thai users sometimes type English words. Map a few to Thai terms so the Thai handbook still matches.
+const EN_TO_TH: [RegExp, string][] = [
   [/price|cost|how much|quote|pricing/i, 'ราคา บาท'], [/website|web site|web\b/i, 'เว็บไซต์'], [/brand|logo/i, 'Branding แบรนด์'],
   [/app\b|mobile|ios|android/i, 'แอป'], [/expensive|too much|discount|cheap/i, 'แพง ลดราคา'], [/clinic|hospital|beauty/i, 'คลินิก'],
-  [/restaurant|cafe/i, 'ร้านอาหาร'], [/hotel|resort|luxury/i, 'โรงแรม'], [/seo|aeo|geo/i, 'SEO AEO GEO'], [/chatbot|assistant/i, 'AI Assistant'],
-  [/scope|include/i, 'ขอบเขต'], [/business card|namecard/i, 'นามบัตร'], [/sell|pitch|objection/i, 'จุดขาย วิธีขาย'], [/usa|us market|dollar/i, 'USA'],
+  [/restaurant|cafe/i, 'ร้านอาหาร'], [/hotel|resort|luxury/i, 'โรงแรม'], [/chatbot|assistant/i, 'AI Assistant'],
+  [/scope|include/i, 'ขอบเขต'], [/business card|namecard/i, 'นามบัตร'], [/sell|pitch|objection/i, 'จุดขาย วิธีขาย'],
   [/timeline|how long|duration/i, 'ระยะเวลา'], [/security|pdpa/i, 'ความปลอดภัย'], [/ecommerce|e-commerce|shop/i, 'อีคอมเมิร์ซ'],
 ]
-const expand = (q: string) => q + ' ' + EN.filter(([r]) => r.test(q)).map(([, t]) => t).join(' ')
-const grams = (s: string) => { const g = new Set<string>(); const t = s.toLowerCase().replace(/\s+/g, ''); for (let i = 0; i + 3 <= t.length; i++) g.add(t.slice(i, i + 3)); return g }
+
+function grams(s: string, stop: string[]) {
+  const g = new Set<string>()
+  const words = s.toLowerCase().split(/[\s,.;:!?()"/]+/).filter((w) => w && !stop.includes(w))
+  const t = words.join('')
+  for (let i = 0; i + 3 <= t.length; i++) g.add(t.slice(i, i + 3))
+  return g
+}
 
 const chipStyle: React.CSSProperties = { border: '1px solid rgb(var(--fg) / 0.2)', borderRadius: 999, padding: '8px 14px', fontSize: 14, color: 'var(--ink)', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit' }
 
 export default function StaffPage() {
-  const secs = useMemo(() => parse(STAFF_KB), [])
-  const find = (k: string) => secs.find((s) => s.h1.includes(k))
-  const ctx = useRef<{ svc?: number; market?: Market; ind?: string; step: 'svc' | 'market' | 'ind' | 'topic' | 'free' }>({ step: 'svc' })
+  const kb = useMemo(() => ({ th: parse(STAFF_KB), en: parse(STAFF_KB_EN) }), [])
+  const [lang, setLang] = useState<Lang | null>(null)
+  const ctx = useRef<{ svc?: number; market?: Market }>({})
   const [msgs, setMsgs] = useState<Msg[]>([])
   const [input, setInput] = useState('')
   const endRef = useRef<HTMLDivElement>(null)
 
-  const svcChips = SERVICES.map((s, i) => ({ key: 'svc:' + i, label: s.label }))
-  const topicChips = [
-    ...TOPICS.map((t) => ({ key: 'topic:' + t, label: t })),
-    { key: 'ind', label: 'ถามตามธุรกิจลูกค้า · By industry', tone: 'ghost' as const },
-    { key: 'svc', label: 'เปลี่ยนบริการ · Change service', tone: 'ghost' as const },
-  ]
-
   function start() {
-    ctx.current = { step: 'svc' }
-    setMsgs([{ from: 'bot', text: 'สวัสดีครับ ผมน้องฮาวี่ สำหรับทีมภายใน อยากรู้เรื่องบริการอะไรครับ เลือกจากปุ่ม หรือพิมพ์ถามได้เลย เช่น "ลูกค้าบอกแพง ตอบยังไง"\nHi, I am Havy for the internal team. Which service do you want to know about? Pick a button or just type, e.g. "customer says it is too expensive".', chips: svcChips }])
+    ctx.current = {}
+    setLang(null)
+    setMsgs([{ from: 'bot', text: 'สวัสดีครับ เลือกภาษาที่ต้องการใช้\nHello! Please choose your language.', chips: [{ key: 'lang:th', label: 'ภาษาไทย' }, { key: 'lang:en', label: 'English' }] }])
   }
   useEffect(start, []) // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => { endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' }) }, [msgs])
 
-  // blocks that belong to the chosen service and market
+  const L: Lang = lang || 'th'
+  const t = T[L]
+  const p = P[L]
+  const secs = kb[L]
+  const svcLabel = (i: number) => SERVICES[i][L]
+  const svcChips: Chip[] = SERVICES.map((s, i) => ({ key: 'svc:' + i, label: s[L] }))
+  const topicChips: Chip[] = [
+    ...TOPIC_KEYS.map((k) => ({ key: 'topic:' + k, label: t.topics[k] })),
+    { key: 'ind', label: t.byIndustry, tone: 'ghost' as const },
+    { key: 'svc', label: t.changeService, tone: 'ghost' as const },
+  ]
+
   function blocksFor(): { title: string; blocks: Block[]; intro: string[] } {
     const c = ctx.current
     if (c.svc === undefined) return { title: '', blocks: [], intro: [] }
     const s = SERVICES[c.svc]
     const m = c.market || 'th'
-    const usa = find('ตลาดสหรัฐฯ (USA)')
+    const usa = secs[S.usa]
+    const title = s[L]
     if (s.kind === 'web') {
-      const sec = find('เว็บไซต์ + AI')
-      return { title: s.label, intro: sec?.intro || [], blocks: m === 'us' ? [...(usa?.blocks.filter((b) => b.h2.includes('เว็บไซต์')) || []), ...(sec?.blocks.filter((b) => !/^(Essential|Growth|Enterprise)/.test(b.h2)) || [])] : sec?.blocks || [] }
+      const sec = secs[S.web]
+      return { title, intro: sec.intro, blocks: m === 'us' ? [...usa.blocks.filter((b) => b.h2.includes(p.webUsa)), ...sec.blocks.filter((b) => !/^(Essential|Growth|Enterprise)/.test(b.h2))] : sec.blocks }
     }
     if (s.kind === 'brand') {
-      const sec = find('Branding (ราคา')
-      return { title: s.label, intro: [], blocks: m === 'us' ? [...(usa?.blocks.filter((b) => b.h2.includes('Branding')) || []), ...(sec?.blocks.filter((b) => !b.h2.startsWith('แพ็กเกจ')) || [])] : sec?.blocks || [] }
+      const sec = secs[S.brand]
+      return { title, intro: [], blocks: m === 'us' ? [...usa.blocks.filter((b) => b.h2.includes('Branding')), ...sec.blocks.filter((b) => !p.pkgSkip.test(b.h2))] : sec.blocks }
     }
     if (s.kind === 'app') {
-      const sec = find('แอปบน App Store')
-      return { title: s.label, intro: sec?.intro || [], blocks: sec?.blocks || [] }
+      const sec = secs[S.app]
+      return { title, intro: sec.intro, blocks: sec.blocks }
     }
     if (s.kind === 'fix') {
-      const lines = (find('ราคาที่ยืนยันแล้ว')?.intro || []).filter((l) => l.includes('แก้แอป'))
-      return { title: s.label, intro: [], blocks: [{ h2: 'แก้แอปที่ AI สร้าง (ราคายืนยันแล้ว ดอลลาร์ เหมาจ่าย)', lines }] }
+      const lines = secs[S.confirmed].intro.filter((l) => l.includes(p.fixLine))
+      return { title, intro: [], blocks: [{ h2: title, lines }] }
     }
-    const b = find('บริการอื่น ๆ')?.blocks.find((x) => x.h2.includes(s.key || '___'))
-    return { title: s.label, intro: [], blocks: b ? [b] : [] }
+    const key = L === 'th' ? s.key : s.keyEn
+    const b = secs[S.other].blocks.find((x) => x.h2.includes(key || '___'))
+    return { title, intro: [], blocks: b ? [b] : [] }
   }
 
-  const fmt = (lines: string[], m?: Market) => lines.map((l) => (m ? forMarket(l, m) : l)).join('\n')
+  const fmt = (lines: string[], m?: Market) => lines.map((l) => (m ? forMarket(l, m, L) : l)).join('\n')
 
   function answerTopic(topic: string): string {
-    const c = ctx.current
-    const m = c.market || 'th'
+    const m = ctx.current.market || 'th'
     const { title, blocks, intro } = blocksFor()
-    const mark = (s: string) => s + (/\[ประมาณการ/.test(s) || /ประมาณการ/.test(s) ? '' : '')
-    const draftNote = '\n\n(ราคาส่วนใหญ่เป็นประมาณการ ยังไม่ยืนยัน)\n(Most prices are estimates, not yet confirmed.)'
-    const sells = find('จุดขาย')?.intro.join('\n') || ''
-    if (!blocks.length) return 'ยังไม่มีข้อมูลหัวข้อนี้ในคู่มือครับ\nNo information on this topic in the handbook yet.'
+    const sells = secs[S.sells].intro.join('\n')
+    if (!blocks.length) return t.none
     const pick = (re: RegExp) => blocks.filter((b) => re.test(b.h2))
-    if (topic.startsWith('ราคา')) {
-      const priced = blocks.filter((b) => /(แพ็กเกจ|Essential|Growth|Enterprise|Starter|Standard|Premium|Branding|เว็บไซต์|แอปเริ่มต้น|แพลตฟอร์ม|แก้แอป)/.test(b.h2) || b.lines.some((l) => /บาท|\$[0-9]/.test(l)))
-      const out: string[] = []
-      for (const b of priced) {
-        const ls = b.lines.filter((l) => /(บาท|\$[0-9]|ไทย:|USA:|ราคา)/.test(l) || /(เหมาะกับ|ได้อะไร|เว็บ:|AI:)/.test(l))
-        out.push(`${b.h2}\n${fmt(ls.length ? ls : b.lines.slice(0, 3), m)}`)
-      }
-      const direct = intro.filter((l) => /บาท|\$[0-9]/.test(l))
-      return mark(`${title} · ราคา Price ${m === 'th' ? 'ไทย Thailand (THB)' : 'USA (USD)'}\n\n${[...direct, ...out].join('\n\n')}` + draftNote)
+    if (topic === 'price') {
+      const priced = blocks.filter((b) => p.pricedBlock.test(b.h2) || b.lines.some((l) => p.moneyLine.test(l)))
+      const out = priced.map((b) => {
+        const ls = b.lines.filter((l) => p.priceLine.test(l) || p.priceExtra.test(l))
+        return `${b.h2}\n${fmt(ls.length ? ls : b.lines.slice(0, 3), m)}`
+      })
+      const direct = intro.filter((l) => p.moneyLine.test(l))
+      return `${title} · ${t.priceHead(m)}\n\n${[...direct, ...out].join('\n\n')}\n\n${t.draft}`
     }
-    if (topic.startsWith('ขอบเขต')) {
+    if (topic === 'scope') {
       const out = blocks.map((b) => {
-        const ls = b.lines.filter((l) => /^(เหมาะกับ|ได้อะไร|ไม่ได้อะไร|ไม่รวม|เว็บ:|AI:|ขอบเขต|คืออะไร|ปัจจัยราคา|- )/.test(l))
+        const ls = b.lines.filter((l) => p.scopeLine.test(l))
         return ls.length ? `${b.h2}\n${fmt(ls, m)}` : ''
       }).filter(Boolean)
-      return out.length ? `${title} · ขอบเขตงาน\n\n${out.join('\n\n')}` : `${title}\n\n${blocks.map((b) => `${b.h2}\n${fmt(b.lines, m)}`).join('\n\n')}`
+      return out.length ? `${title} · ${t.scopeHead}\n\n${out.join('\n\n')}` : `${title}\n\n${blocks.map((b) => `${b.h2}\n${fmt(b.lines, m)}`).join('\n\n')}`
     }
-    if (topic.startsWith('คำถาม')) {
-      const bs = pick(/คำถาม|ขั้นตอนขาย/)
-      return bs.length ? bs.map((b) => `${b.h2}\n${fmt(b.lines)}`).join('\n\n') : `ยังไม่มีชุดคำถามเฉพาะของ ${title} ครับ คำถามพื้นฐานที่ใช้ได้กับทุกงาน:\n1. ปัญหาที่อยากแก้คืออะไร ใครคือผู้ใช้\n2. มีระบบหรือเว็บเดิมไหม\n3. ต้องเชื่อมระบบอะไรบ้าง\n4. งบประมาณคร่าว ๆ และกำหนดเวลา\n5. ใครเป็นผู้ตัดสินใจ`
+    if (topic === 'ask') {
+      const bs = pick(p.askBlock)
+      return bs.length ? bs.map((b) => `${b.h2}\n${fmt(b.lines)}`).join('\n\n') : t.noQuestions
     }
-    if (topic.startsWith('วิธีขาย')) {
-      const bs = pick(/วิธีขาย|ตอบข้อโต้แย้ง|ขั้นตอนขาย/)
-      return `${bs.length ? bs.map((b) => `${b.h2}\n${fmt(b.lines)}`).join('\n\n') + '\n\n' : ''}จุดขายของเรา (เรียงตามลำดับ)\n${sells}`
+    if (topic === 'sell') {
+      const bs = pick(p.sellBlock)
+      return `${bs.length ? bs.map((b) => `${b.h2}\n${fmt(b.lines)}`).join('\n\n') + '\n\n' : ''}${t.sellsHead}\n${sells}`
     }
-    const intro2 = pick(/คืออะไร/)
-    if (intro2.length) return intro2.map((b) => `${b.h2}\n${fmt(b.lines)}`).join('\n\n')
+    const what = pick(p.whatBlock)
+    if (what.length) return what.map((b) => `${b.h2}\n${fmt(b.lines)}`).join('\n\n')
     const first = blocks[0]
-    return `${title}\n\n${first.lines.filter((l) => l.startsWith('คืออะไร')).join('\n') || fmt(first.lines.slice(0, 3))}`
+    return `${title}\n\n${first.lines.filter((l) => l.startsWith(p.whatLine)).join('\n') || fmt(first.lines.slice(0, 3))}`
   }
 
-  function answerIndustry(label: string): string {
-    const b = find('ถามธุรกิจ')?.blocks.find((x) => x.h2.includes(label.split(' · ')[0].split(' / ')[0]))
-    return b ? `${b.h2}\n${fmt(b.lines)}\n\nถ้าบอกว่าลูกค้าอยู่ไทยหรือ USA ผมจะบอกราคาตามตลาดนั้นครับ\nTell me if the customer is in Thailand or the USA and I will quote that market.` : 'ยังไม่มีข้อมูลธุรกิจนี้ในคู่มือครับ ลองบอกปัญหาหลักของธุรกิจ แล้วผมแนะนำบริการให้'
+  function answerIndustry(i: number): string {
+    const b = secs[S.ind].blocks[i]
+    return b ? `${b.h2}\n${fmt(b.lines)}\n\n${t.industryTail}` : t.noneIndustry
   }
 
   function answerFree(q: string): string {
-    const g = grams(expand(q))
-    if (g.size === 0) return 'พิมพ์ถามเพิ่มได้เลยครับ'
+    const expanded = L === 'th' ? q + ' ' + EN_TO_TH.filter(([r]) => r.test(q)).map(([, x]) => x).join(' ') : q
+    const g = grams(expanded, p.stop)
+    if (g.size === 0) return t.typeMore
     const cand: { score: number; head: string; lines: string[] }[] = []
-    for (const s of secs) {
-      if (s.h1.startsWith('บทบาท') || s.h1.startsWith('กฎเรื่องตลาด')) continue
-      const units: { head: string; lines: string[] }[] = [{ head: s.h1.replace(/\s*\(.*$/, ''), lines: s.intro }, ...s.blocks.map((b) => ({ head: b.h2, lines: b.lines }))]
+    secs.forEach((s, si) => {
+      if (p.skipSec.includes(si)) return
+      const units = [{ head: s.h1.replace(/\s*\(.*$/, ''), lines: s.intro }, ...s.blocks.map((b) => ({ head: b.h2, lines: b.lines }))]
       for (const u of units) {
         if (!u.lines.length) continue
-        const hit = u.lines.filter((l) => { let n = 0; const lg = grams(l); g.forEach((x) => { if (lg.has(x)) n++ }); return n >= Math.min(3, g.size) })
+        const hit = u.lines.filter((l) => { let n = 0; const lg = grams(l, p.stop); g.forEach((x) => { if (lg.has(x)) n++ }); return n >= Math.min(3, g.size) })
         if (!hit.length) continue
-        const bg = grams(u.head + ' ' + u.lines.join(' '))
+        const bg = grams(u.head + ' ' + u.lines.join(' '), p.stop)
         let score = 0; g.forEach((x) => { if (bg.has(x)) score++ })
         cand.push({ score: score + hit.length, head: u.head, lines: hit })
       }
-    }
+    })
     cand.sort((a, b) => b.score - a.score)
     const top = cand.slice(0, 3)
-    if (!top.length) return 'ยังไม่เจอเรื่องนี้ในคู่มือครับ ลองเลือกบริการจากปุ่ม หรือเปลี่ยนคำถาม เช่น "ราคาเว็บ" "ลูกค้าบอกแพง" "นามบัตร"\nNot found in the handbook. Pick a service button or rephrase, e.g. "website price", "too expensive", "business card".'
+    if (!top.length) return t.notFound
     const m = ctx.current.market
-    return top.map((t) => `${t.head}\n${t.lines.slice(0, 4).map((l) => (m ? forMarket(l, m) : l)).join('\n')}`).join('\n\n')
+    return top.map((x) => `${x.head}\n${x.lines.slice(0, 4).map((l) => (m ? forMarket(l, m, L) : l)).join('\n')}`).join('\n\n')
   }
 
-  function push(...add: Msg[]) { setMsgs((p) => [...p.map((x) => ({ ...x, chips: undefined })), ...add]) }
+  function push(...add: Msg[]) { setMsgs((prev) => [...prev.map((x) => ({ ...x, chips: undefined })), ...add]) }
 
   function onChip(key: string) {
     const c = ctx.current
-    if (key === 'svc') { c.step = 'svc'; push({ from: 'bot', text: 'อยากรู้เรื่องบริการอะไรครับ\nWhich service?', chips: svcChips }); return }
-    if (key === 'ind') { c.step = 'ind'; push({ from: 'bot', text: 'ลูกค้าทำธุรกิจอะไรครับ\nWhat business is the customer in?', chips: INDUSTRIES.map((x) => ({ key: 'ind:' + x, label: x })) }); return }
+    if (key.startsWith('lang:')) {
+      const l = key.slice(5) as Lang
+      setLang(l)
+      const tt = T[l]
+      push({ from: 'me', text: l === 'th' ? 'ภาษาไทย' : 'English' }, { from: 'bot', text: tt.hello, chips: SERVICES.map((s, i) => ({ key: 'svc:' + i, label: s[l] })) })
+      return
+    }
+    if (key === 'svc') { push({ from: 'bot', text: t.whichService, chips: svcChips }); return }
+    if (key === 'ind') { push({ from: 'bot', text: t.whichIndustry, chips: INDUSTRIES.map((x, i) => ({ key: 'ind:' + i, label: x[L] })) }); return }
     if (key.startsWith('svc:')) {
-      c.svc = Number(key.slice(4)); c.step = 'market'
-      push({ from: 'me', text: SERVICES[c.svc].label }, { from: 'bot', text: 'ลูกค้าอยู่ตลาดไหนครับ (ราคาไทยกับ USA แยกกัน)\nWhich market? (Thai and USA prices are separate)', chips: [{ key: 'm:th', label: 'ไทย · Thailand (THB)' }, { key: 'm:us', label: 'USA · United States (USD)' }] })
+      c.svc = Number(key.slice(4))
+      push({ from: 'me', text: svcLabel(c.svc) }, { from: 'bot', text: t.whichMarket, chips: [{ key: 'm:th', label: t.markets.th }, { key: 'm:us', label: t.markets.us }] })
       return
     }
     if (key.startsWith('m:')) {
-      c.market = key.slice(2) as Market; c.step = 'topic'
-      push({ from: 'me', text: c.market === 'th' ? 'ไทย · Thailand (THB)' : 'USA · United States (USD)' }, { from: 'bot', text: 'อยากรู้เรื่องอะไรครับ\nWhat do you want to know?', chips: topicChips })
+      c.market = key.slice(2) as Market
+      push({ from: 'me', text: t.markets[c.market] }, { from: 'bot', text: t.whatKnow, chips: topicChips })
       return
     }
     if (key.startsWith('topic:')) {
-      const t = key.slice(6)
-      if (!ctx.current.market) ctx.current.market = 'th'
-      push({ from: 'me', text: t }, { from: 'bot', text: answerTopic(t), chips: topicChips })
+      const k = key.slice(6) as (typeof TOPIC_KEYS)[number]
+      if (!c.market) c.market = 'th'
+      push({ from: 'me', text: t.topics[k] }, { from: 'bot', text: answerTopic(k), chips: topicChips })
       return
     }
     if (key.startsWith('ind:')) {
-      const l = key.slice(4)
-      push({ from: 'me', text: l }, { from: 'bot', text: answerIndustry(l), chips: svcChips.length ? [{ key: 'svc', label: 'เลือกบริการเพื่อดูราคา · Pick a service for pricing' }, { key: 'ind', label: 'ธุรกิจอื่น · Other industry', tone: 'ghost' }] : undefined })
+      const i = Number(key.slice(4))
+      push({ from: 'me', text: INDUSTRIES[i][L] }, { from: 'bot', text: answerIndustry(i), chips: [{ key: 'svc', label: t.pickForPrice }, { key: 'ind', label: t.otherIndustry, tone: 'ghost' as const }] })
     }
   }
 
   function submit(e: React.FormEvent) {
     e.preventDefault()
     const q = input.trim()
-    if (!q) return
+    if (!q || !lang) return
     setInput('')
-    const chips = ctx.current.svc !== undefined ? topicChips : svcChips
-    push({ from: 'me', text: q }, { from: 'bot', text: answerFree(q), chips })
+    push({ from: 'me', text: q }, { from: 'bot', text: answerFree(q), chips: ctx.current.svc !== undefined ? topicChips : svcChips })
   }
 
   return (
@@ -227,9 +346,9 @@ export default function StaffPage() {
         <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '8px 0 14px' }}>
           <div>
             <div style={{ color: 'var(--accent)', fontSize: 12, letterSpacing: '.14em', textTransform: 'uppercase' }}>Haliviq Staff</div>
-            <div style={{ fontSize: 18, fontWeight: 600 }}>น้องฮาวี่ สำหรับทีมภายใน · Havy for the internal team</div>
+            <div style={{ fontSize: 18, fontWeight: 600 }}>{lang ? t.title : 'Havy · น้องฮาวี่'}</div>
           </div>
-          <button onClick={start} style={{ ...chipStyle, fontSize: 13 }}>เริ่มใหม่ · Restart</button>
+          <button onClick={start} style={{ ...chipStyle, fontSize: 13 }}>{lang ? t.restart : 'Language · ภาษา'}</button>
         </header>
 
         {msgs.map((m, i) => (
@@ -249,8 +368,8 @@ export default function StaffPage() {
 
       <form onSubmit={submit} style={{ position: 'fixed', left: 0, right: 0, bottom: 0, background: 'var(--bg)', borderTop: '1px solid rgb(var(--fg) / 0.12)', padding: '12px 16px calc(12px + env(safe-area-inset-bottom))' }}>
         <div style={{ maxWidth: 760, margin: '0 auto', display: 'flex', gap: 8 }}>
-          <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="พิมพ์ถามได้เลย · Ask anything (ไทย / English)" style={{ flex: 1, padding: '12px 16px', borderRadius: 999, border: '1px solid rgb(var(--fg) / 0.25)', background: 'transparent', color: 'var(--ink)', fontSize: 16, fontFamily: 'inherit', minWidth: 0 }} />
-          <button type="submit" disabled={!input.trim()} style={{ padding: '0 20px', borderRadius: 999, border: 0, background: 'var(--accent)', color: '#14131A', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', opacity: input.trim() ? 1 : 0.5 }}>ส่ง · Send</button>
+          <input value={input} disabled={!lang} onChange={(e) => setInput(e.target.value)} placeholder={lang ? t.placeholder : 'เลือกภาษาก่อน · Choose a language first'} style={{ flex: 1, padding: '12px 16px', borderRadius: 999, border: '1px solid rgb(var(--fg) / 0.25)', background: 'transparent', color: 'var(--ink)', fontSize: 16, fontFamily: 'inherit', minWidth: 0 }} />
+          <button type="submit" disabled={!input.trim() || !lang} style={{ padding: '0 20px', borderRadius: 999, border: 0, background: 'var(--accent)', color: '#14131A', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', opacity: input.trim() && lang ? 1 : 0.5 }}>{lang ? t.send : 'ส่ง · Send'}</button>
         </div>
       </form>
     </main>
