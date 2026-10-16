@@ -53,10 +53,13 @@ export async function POST(req: Request) {
   // Delivery: LINE first if configured, otherwise email (Resend), otherwise the webhook.
   try {
     if (token && to) {
-      const r = await fetch('https://api.line.me/v2/bot/message/push', {
+      // LINE_NOTIFY_TO may hold one user/group ID, or several user IDs separated by commas (sent as a multicast).
+      const ids = to.split(',').map((x) => x.trim()).filter(Boolean)
+      const multi = ids.length > 1
+      const r = await fetch(`https://api.line.me/v2/bot/message/${multi ? 'multicast' : 'push'}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ to, messages: [{ type: 'text', text: text.slice(0, 4900) }] }),
+        body: JSON.stringify({ to: multi ? ids.slice(0, 500) : ids[0], messages: [{ type: 'text', text: text.slice(0, 4900) }] }),
       })
       if (!r.ok) {
         const body = await r.text().catch(() => '')
