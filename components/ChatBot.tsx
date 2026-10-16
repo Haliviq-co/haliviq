@@ -829,15 +829,20 @@ export default function ChatBot({ lang }: { lang: Lang }) {
                 {i === lastIdx && lastChips && (
                   <div className="flex flex-wrap gap-2 mt-2">
                     {lastChips.map((c) => (
-                      <button key={c.key} type="button" onClick={() => pick(c.key, c.label)} className="text-xs px-3 py-1.5 rounded-full text-left" style={{ border: '1px solid var(--accent)', color: 'var(--accent)', background: 'transparent' }}>{c.label}</button>
+                      <button key={c.key} type="button" onClick={() => pick(c.key, c.label)} className="text-xs px-3 py-1.5 rounded-full text-left" style={c.key === 'agent' ? { border: '1px solid #ECD37D', color: '#ECD37D', background: 'transparent' } : { border: '1px solid var(--accent)', color: 'var(--accent)', background: 'transparent' }}>{c.label}</button>
                     ))}
                   </div>
                 )}
                 {m.links && (
                   <div className="flex flex-wrap gap-2 mt-2">
                     {m.links.map((l) => (
-                      <Link key={l.href} href={l.href} className="text-xs px-3 py-1.5 rounded-full" style={{ border: '1px solid var(--accent)', color: 'var(--accent)' }}>{l.label} →</Link>
+                      <Link key={l.href} href={l.href} className="text-xs px-3 py-1.5 rounded-full" style={l.href.endsWith('/work') ? { border: '1px solid #53C3D7', color: '#53C3D7' } : { border: '1px solid var(--accent)', color: 'var(--accent)' }}>{l.label} →</Link>
                     ))}
+                  </div>
+                )}
+                {i === lastIdx && m.from === 'bot' && !m.pending && lastIdx > 0 && (
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    <Link href={`/${lang}`} className="text-xs px-3 py-1.5 rounded-full" style={{ background: 'linear-gradient(135deg,#7B6EF6,#53C3D7)', color: '#fff', fontWeight: 600 }}>{isEN ? 'Go to home' : 'ไปหน้าหลัก'}</Link>
                   </div>
                 )}
                   </BotBubble>

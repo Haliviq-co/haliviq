@@ -1381,4 +1381,614 @@ Work path: review code → rank problems → fix security and payments first →
 Example: an app built with Lovable: login lets users see each others data → close the hole → test → go live on a real domain
 Why it matters: AI built apps often look finished but hide vulnerabilities. Launching without a check risks user data
 What we do: review, make ready, or build on, at the level the customer picks, with confirmed fix prices by tier
+
+# Detailed scope of every service (what is included, customer prep, steps, timeline, after handover)
+
+## S:wt-basic Starter: what is included and excluded
+Pages: 1–3 pages (one long page, or home, services, contact), custom designed to the business logo and colours
+Responsive: looks right on mobile, tablet and desktop
+Contact form: sent to the business email, with call and LINE buttons
+Map and business info: map, opening hours, address, social links
+Basic SEO: page titles, descriptions, speed, Google Search Console link
+Security: SSL certificate, domain setup (the customer pays domain and hosting)
+Excluded: content editor (CMS), two languages, membership or payments, AI chatbot
+## S:wt-basic Standard: what is included and excluded
+Pages: 5–10 pages, custom design, with a blog or news page
+Two languages: Thai and English with a language switch and separate SEO
+Content editor (CMS): the customer edits text, images and posts, with training
+Forms and alerts: contact form, quote request form, alerts to email or LINE
+Measurement: Google Analytics tracking enquiries and traffic sources
+Training: 1 video call session with a short guide
+Excluded: AI chatbot, membership, payments, internal integrations
+## S:wt-basic What the customer must prepare
+Logo, colours, fonts. If missing, offer Branding Starter as a bundle
+Text and photos: service descriptions, prices (if shown), real photos of the business
+Accounts: domain (if any), business email, LINE OA
+A decision maker: one person who approves the design
+## S:wt-basic Process and timeline
+Brief (2–3 days): a 30 minute call, then pages and content summarised in a document
+Design (3–5 days): main page design, edits within the agreed rounds
+Build and test (1–2 weeks): build the site, test on all devices
+Launch (1–2 days): go live on the domain, set up Analytics
+Total estimate: Starter 2–3 weeks, Standard 3–5 weeks (estimate)
+## S:wt-basic After launch and add ons
+Grow later: add an AI chatbot, booking or online selling without rebuilding, because the structure was planned for it
+Add ons: content writing, photography, a third language, logo and Branding, monthly SEO
+Monthly care: health checks, backups, minor text edits
+## S:wt-ecom Starter: what is included and excluded
+Online store: custom design, home, categories, product pages, cart and checkout, for up to about 50 products
+Product options: size, colour, quantity, price, several photos, descriptions
+Payments: PromptPay and credit or debit cards with automatic receipts
+Order management: a back office to view orders, change status, print packing slips, with new order alerts to LINE or email
+Product management: add, edit, delete products yourself, import from an Excel file
+Shipping: shipping fees by weight or zone, tracking number sent to customers
+Responsive and basic SEO: Google readable product pages, product schema
+Excluded: stock or accounting integration, multi warehouse, advanced membership, coupons, AI product recommendation
+## S:wt-ecom Standard: what is included and excluded
+Everything in Starter: store, payments, product and order management, responsive
+Large catalogue: hundreds of products, bulk product import, advanced filters and search
+Stock and accounting link: sync stock and sales with 1–2 accounting or ERP systems
+Members and coupons: sign up, order history, loyalty points, coupons and promotions
+Shipping: carrier integration, automatic fee calculation, label printing, tracking
+Tax invoices: automatic tax invoices for business customers
+Sales reports: sales by day, best sellers, traffic sources, cart abandonment rate
+AI: a chatbot answering customers and recommending products, giving order status, and summarising frequent questions
+Excluded: multi country and multi currency selling, complex multi warehouse, full ERP (quoted separately)
+## S:wt-ecom What the customer must prepare
+Product data: names, photos, descriptions, prices, options (Excel in our template)
+Payment account: sign up with a payment provider (the customer owns the account)
+Shipping information: carriers used, rates, returns policy
+Company details: name, address, tax ID for tax invoices
+A store operator: name who handles orders daily so training reaches the right person
+## S:wt-ecom Process and timeline
+Discovery (1–2 weeks): summarise products, sales channels, payment, delivery and systems to connect
+Design (2–3 weeks): store, product, cart and checkout design
+Build (4–8 weeks): build the store, back office, payment and shipping, other integrations
+Test (1–2 weeks): real test orders on every payment method, fix issues
+Open the store (2–3 days): import real products, go live, train the team
+Total estimate: Starter 2–3 months, Standard 3–4 months (estimate)
+## S:wt-ecom After launch and add ons
+Provider costs: payment fees, hosting and domain belong to the customer and are paid directly to providers
+Add ons: product photography, product copywriting, Google and social ads, Shopee and Lazada link, advanced membership
+Monthly care: payment checks, backups, updates, bug fixes
+Grow: ERP, central stock or overseas selling as the business grows
+## S:web Essential + AI: what is included and excluded
+Website: a formal 5–7 page site (home, about, services, portfolio, blog or news, contact), custom designed to the brand, not a ready made template
+Responsive: designed and tested on mobile, tablet, desktop and main browsers (Chrome, Safari, Edge)
+Content editor (CMS): the customer edits text, images and posts without code, with one training session
+Basic AI chatbot: answers frequent questions from business data in 1 language, captures name and phone, and forwards to the team via LINE or email
+Basic AEO/GEO: structured data (schema), an FAQ page and content that AI such as ChatGPT and Google AI can read and cite (set once during the build)
+Basic SEO: page titles, descriptions, sitemap, load speed, Google Analytics and Search Console set up
+Contact and customer channels: a form to email, LINE button, call button, map
+Security and hosting: SSL certificate, backups, domain and company email setup (the customer pays domain and hosting fees)
+Excluded: membership, payments, CRM or ERP integration, multi channel chatbot and large volumes of content (article writing is separate)
+## S:web Growth + AI: what is included and excluded
+Everything in Essential: custom design, responsive, CMS, basic SEO and AEO/GEO
+Business specific features: for example booking, member sign up, a customer portal, calculators, a product catalogue (scoped together in Discovery)
+Payments: PromptPay, cards or the provider the customer picks, with automatic receipts
+Internal integrations: 1–2 CRM or ERP systems, such as sending leads into the CRM automatically or showing stock or status
+Advanced AI chatbot: several channels (web, LINE, Facebook), two languages, appointments, lead capture with scoring, CRM link
+Two languages: Thai and English with language separated SEO (hreflang)
+Dashboard and measurement: reports on visitors, lead count and conversion, monthly
+Training and handover: 2 team sessions, a user guide as a document and short videos
+Excluded: large multi department systems, more than 2 integrations, large data migration (quoted separately)
+## S:web Enterprise + AI: what is included and excluded
+Everything in Growth: custom features, payments, integrations, advanced chatbot, two languages, dashboard
+Full Discovery: stakeholder interviews, analysis of existing systems, architecture and a phased plan
+Design system: a component set and design guidelines reusable across several company sites or apps
+Many integrations: ERP, CRM, booking, accounting, membership, with agreed data migration
+Enterprise AI: an internal staff assistant answering from real company data, with access control and usage logs
+Security and PDPA: vulnerability check before launch, policy and consent, backups and recovery plan
+Performance and scale: load testing, auto scaling cloud setup, monitoring and alerts
+Project management: a dedicated project manager, weekly meetings, progress reports
+Note: price and scope are estimated only after Discovery. Always pass to the team lead before quoting
+## S:web What the customer must prepare
+Content and images: text, product or service photos, portfolio (if not ready we can structure and write it as an add on)
+Brand assets: logo, colours, fonts (if missing, offer Branding as a bundle)
+A decision maker: name one final approver and respond to review rounds within the agreed time
+Accounts and access: domain, hosting, LINE OA, Google Analytics and access to existing systems to connect
+Chatbot data: frequent questions, prices, service terms and policies
+## S:web Process and timeline
+Discovery (1 week): discuss goals, users and content, and summarise the scope in a document
+Design (1–2 weeks): wireframes and key page designs, with customer review and edits within the agreed rounds
+Build (2–4 weeks): build the site, back office, chatbot and integrations
+Test (1 week): test across devices, speed and security, and fix issues
+Launch (2–3 days): move to the live domain, set measurement, train the team
+Total estimate: Essential 4–8 weeks, Growth 2–3 months, Enterprise by phase (estimate, depends on content readiness)
+## S:web After launch and add ons
+After handover: the customer owns the code and accounts. Bug fix and post launch care terms must be confirmed with the team lead before stating numbers
+Monthly care package: health checks, security updates, backups, minor edits, see the Support & Maintenance service
+Add ons you can sell: content writing, photography, a third language, monthly SEO, Google Ads, membership
+Out of scope work: if the customer asks for more during the build, log it as a change request and quote extra. Never agree verbally
+## S:brand Starter: what is included and excluded
+Brief call: 1 session capturing the business, audience and brands they like
+Logo: 2 directions to choose from, 2 revision rounds, 3 versions delivered (horizontal, vertical, icon)
+Colours and fonts: 2–3 main colours, Thai and English fonts
+Delivery files: AI, PDF, PNG, SVG ready for print and online
+1 business card design, profile picture and social cover
+A 2 page guide to using the logo and colours
+Excluded: research, strategy, advertising, packaging, merchandise such as caps or shirts
+## S:brand Standard: what is included and excluded
+Everything in Starter plus a short workshop to find brand positioning and tone of voice
+Logo: 3 directions, 3 revision rounds
+Supporting graphics: icon set, photo style, patterns
+Brand Guideline: 15–25 pages
+Business stationery: business card, letterhead, envelope, email signature
+Social and presentation: 5 post templates, presentation template
+1 sign or banner and 1 merchandise design (cap, shirt or mug) with mockups
+Note: design means supplying the files. Real production costs such as printing cards or making caps are paid separately by the customer
+## S:brand Premium: what is included and excluded
+Everything in Standard plus research: market, competitors and 5–8 target audience interviews
+Brand strategy: brand core, values, key messages, personality, market position
+Naming and slogan (if wanted) with a basic duplicate name check
+1–2 packaging pieces
+Business media: advertising, brochure, company profile
+Physical applications: uniforms, shop signs, vehicles
+3 merchandise designs (cap, shirt, tote) and 15 or more social media pieces
+Guidelines for using the brand on web and app, and a handover workshop for the customer team
+Excluded: real production costs, trademark registration fees, font and image licences
+## S:brand What the customer must prepare
+Business information: company story, services, target customers, competitors
+References: at least 3 brands they like and dislike
+A decision maker: one person approving each round
+Existing files: current logo, photos, past media (if any)
+## S:brand Process and timeline
+Brief and research (week 1): talk, gather information and references
+Logo directions (week 2): present directions, the customer picks and revises in rounds
+Brand system (weeks 3–4): colours, fonts, graphics, guideline
+Applications (weeks 4–8): cards, social, packaging, per package
+Handover: complete files, guideline, and workshop (Premium)
+Total estimate: Starter 2–3 weeks, Standard 4–6 weeks, Premium 8–12 weeks (estimate)
+## S:brand Terms and add ons
+Revision rounds: beyond the agreed rounds costs extra. Tell the customer every time
+Ownership: the customer owns the work once paid in full
+Discount: Branding bundled with a website gets about 10 percent off (estimate, confirm with the team lead)
+Add ons: photography, brand video, web design, signage and print, trademark registration
+## S:app Starter app (MVP): what is included and excluded
+App: iOS and Android from one codebase (cross platform), 8–12 core screens
+Core features: 3–5 agreed in Discovery, such as sign up and login, profile, list and detail, basic booking or ordering
+UX/UI: user flow, brand aligned design of every screen, one clickable prototype, edits within agreed rounds
+Basic back office: an admin views users and edits core data via the web
+Notifications: basic mobile push notifications
+Testing and publishing: test on real devices and submit to the App Store and Play Store under the customer developer accounts
+Excluded: in app payments, live chat, many system integrations, a second language, Apple and Google developer fees
+## S:app Full app: what is included and excluded
+Everything in MVP: cross platform, UX/UI, back office, notifications, publishing
+Full features: 8–15 such as membership and points, payments, chat, search and filters, maps, photo upload
+Integrations: 1–3 systems such as POS, accounting, CRM or external services via API
+Full back office: manage users, content, orders, reports and role permissions
+Two languages and dark mode (if agreed in scope)
+Security: encrypt key data, pre launch check, basic PDPA setup
+Launch: App Store and Play Store listing material, screenshots, descriptions, and handling store review
+Excluded: large multi organisation systems, large data migration, launch marketing (quoted separately)
+## S:app Platform: what is included and excluded
+Multi role apps: for example customer, staff and admin, each with different screens and permissions
+Full back office: dashboards, reports, content, user and finance management on the web
+Enterprise integrations: ERP, CRM, POS, payments and several external services
+Built to scale: structure for many users, load tests, monitoring and alerts
+AI in the app: an assistant that answers, recommends or summarises (if agreed in scope)
+Project management: a dedicated project manager, weekly meetings, phased plan
+Note: scope and price are estimated only after Discovery. Pass to the team lead before quoting
+## S:app What the customer must prepare
+Developer accounts: Apple and Google in the customer company name, registered early as approval takes days to weeks
+A decision maker: one person approving design and features, replying within the agreed time
+Content and data: logo, images, text, product or service lists, test data
+Legal documents: privacy policy and terms of use (we can draft a structure but this is not legal advice)
+Systems to connect: API documentation and access to test systems
+## S:app Process and timeline
+Discovery (1–2 weeks): goals, users, must have features, and a scope document
+UX/UI (2–4 weeks): flows, design, a clickable prototype and customer trial
+Build (6–16 weeks): build the app, back office, integrations, delivered in rounds for testing
+Testing (2–3 weeks): test on many real devices, fix issues, security test
+Store submission and launch (1–3 weeks): stores take time to review and may send it back for fixes
+Total estimate: MVP 2–3 months, full 3–6 months, platform by phase (estimate)
+## S:app After launch and add ons
+After handover: the customer owns the code and store accounts. Warranty and post launch care terms must be confirmed with the team lead
+Monthly care: bug fixes, updates for new OS versions, security checks, and a few hours of small feature work
+Add ons: launch marketing, extra languages, phase two features, usage reports, user testing
+Provider costs: developer accounts, servers, SMS and notification fees belong to the customer and are paid directly
+## S:ai Starter: what is included and excluded
+A bot answering frequent questions on 1 channel (web or LINE) in 1 language, from 20–50 prepared items
+Capture name and phone and alert the team via LINE or email
+Hand over to a person when unsure, with an agreed polite message
+Test with real questions and adjust before launch
+Monthly summary: question count and unanswered questions
+Excluded: several channels, languages, booking, integrations and AI provider costs
+## S:ai Standard: what is included and excluded
+Everything in Starter plus 2–3 channels such as web, LINE, Facebook
+Two languages, Thai and English, in one bot
+A knowledge base from documents, prices and manuals, about 100–300 items, with an update process
+Booking and scored lead capture, linked to a calendar or 1 CRM
+A screen for the team to view chats and take over from the bot
+Monthly report and one improvement round a month
+## S:ai Advanced: what is included and excluded
+Everything in Standard plus an assistant answering from live system data, such as order status, availability and stock
+An internal staff assistant with role based access and usage logs
+Many integrations such as CRM, ERP, booking, accounting
+An answer quality test set and rules for topics that always go to a person, such as money and health
+Security and PDPA: forbidden data rules and safe storage
+Note: scope assessed after Discovery. Pass to the team lead before quoting
+## S:ai What the customer must prepare
+10–30 frequent questions with correct answers, or past chat history
+Documents, prices, terms and policies as readable files
+Who takes over when the bot hands off, and the reply time
+Channel accounts: LINE OA, Facebook page and admin rights
+## S:ai Process and timeline
+Collect data (1 week): real questions, documents and handover rules
+Build and connect (2–4 weeks): build the bot, connect channels and systems
+Test (1–2 weeks): test with real questions and let the team try before launch
+Launch and improve (ongoing): review unanswered questions monthly and add knowledge
+Total estimate: Starter 2–3 weeks, Standard 4–6 weeks, Advanced 2–3 months (estimate)
+## S:ai After launch and add ons
+AI provider and channel costs belong to the customer and depend on usage
+Monthly care: update knowledge, review wrong answers, report results
+Add ons: more languages, more channels, voice, and further integrations
+## S:voice Starter: what is included and excluded
+A bot answering 1 number in 1 language, screening the topic and capturing name, number and reason
+Answers basic questions such as hours and location
+Summarises calls to the team LINE or email, with a transcript
+Announces recording to callers and basic privacy settings
+Excluded: booking, complex transfers, several languages and phone costs
+## S:voice Standard: what is included and excluded
+Everything in Starter plus taking bookings and checking availability from a calendar or 1 booking system
+Transfers to a person on rules such as an angry caller or money matters
+Sends a confirmation by SMS or LINE after booking
+Two languages, Thai and English
+Monthly report: call count, average time, transfers and call reasons
+## S:voice Advanced: what is included and excluded
+Everything in Standard plus several numbers or branches, and outbound calls such as appointment reminders
+CRM and ERP integration with automatic customer records
+Voice and accent tuned to the brand, tested with real voices over several rounds
+Quality monitoring: review sample calls and adjust scripts monthly
+Note: scope assessed after Discovery. Pass to the team lead before quoting
+## S:voice What the customer must prepare
+The number to use, and the current phone provider details if forwarding in
+Sample real calls or a list of frequent call reasons
+Calendar or booking system and access
+Transfer rules and a backup person to take calls
+## S:voice Process and timeline
+Collect data and design the conversation (1–2 weeks)
+Build and connect systems (2–4 weeks)
+Test with real voices and adjust (1–2 weeks)
+Pilot during certain hours before full launch (1 week)
+Total estimate: 4–10 weeks (estimate)
+## S:erp ERP Starter: what is included and excluded
+2–3 core modules: such as sales, stock and purchasing, around the biggest pain
+Sales: quotes, sales orders, delivery notes, invoices and payment status
+Stock: receipts, issues, balances, reorder points and low stock alerts
+Purchasing: requests, purchase orders, approvals and supplier comparison
+Users and permissions: roles and role based visibility, for example sales cannot see cost
+Basic reports: sales, stock, receivables and an owner dashboard
+Data import: customers and products from an Excel file in our template
+Excluded: full accounting, machines and IoT, many integrations, complex multi branch
+## S:erp ERP Standard: what is included and excluded
+Everything in Starter plus 4–6 more modules such as accounting, finance, production, projects, HR
+Accounting and finance: automatic postings from sales and purchases, tax, withholding, basic statements
+Production or projects: production orders or project costing, bills of materials, or milestones
+Multi branch and multi warehouse: stock transfers, consolidated and per branch reports
+2–4 integrations such as e-Tax, payments, LINE, banks
+Dashboards by role: owner, managers, accountants, and mobile viewing
+Data migration: clean, map and import, with accuracy checks together with the customer
+User training: by department, with a guide and short videos
+## S:erp Full ERP platform: what is included and excluded
+Everything in Standard plus industry specific modules as assessed
+Multi company or complex multi branch, consolidation and fine grained permissions
+Mobile apps for the field: stock issue, inspections, time logging, photos, working offline
+Machine, GPS or device integration (assessed per real device)
+AI: ask data in plain language, report summaries, forecasts and anomaly alerts
+Security and continuity: audit logs, backups, recovery plan, pre launch check
+Project management: dedicated manager, phased go live and a parallel run with the old system
+Note: price and scope are estimated only after Discovery. Pass to the team lead before quoting
+## S:erp What the customer must prepare
+An internal owner: someone who decides on process and coordinates throughout
+Real workflows: documents, forms and sample data from each department
+Existing data: Excel files or databases with someone who understands the data
+Key users per department: they join testing and training, not just the executive
+Access to existing systems to connect and the name of their administrator
+## S:erp Process and timeline
+Discovery (2–4 weeks): study processes and pains and design phase one
+Configure and build (2–4 months for phase one): configure modules, build customisations, connect systems
+Data migration and testing (4–8 weeks): test with real data together with key users
+Training and go live (2–4 weeks): train each department, run in parallel with the old system briefly
+Hypercare (1–3 months): fix on site issues and extend modules in the next phase
+Total estimate: Starter 2–4 months, Standard 4–8 months, platform by phase (estimate)
+## S:erp After go live and add ons
+After handover: the customer owns their data and the code we develop. Warranty terms must be confirmed with the team lead
+Monthly care: fixes, backups, updates and a few hours of small adjustments
+Add ons: new modules, field mobile apps, custom reports, AI, extra training
+Provider costs: cloud, third party software licences and connection services belong to the customer
+## S:erp-ai AI for industry: what is included and excluded
+Data readiness assessment: check data is sufficient and clean enough for AI before building
+Data assistant: ask in plain language, such as this month sales, low stock, over budget projects
+Automatic report summaries: daily or weekly, sent to LINE or email
+Anomaly alerts: for example a cost spike, missing stock or odd machine behaviour, by agreed rules
+Basic forecasting: demand or stock, once there is enough history, with no accuracy guarantee
+Security: control who can ask what, usage logs, and no customer data sent to train public models
+Excluded: the base ERP (must exist or be built together), installing new sensors and any guarantee of business results
+## S:erp-ai What the customer must prepare
+At least 6–12 months of history and someone who understands the data
+3–5 questions or decisions they want AI to help with first
+A small pilot user group giving steady feedback
+## S:erp-ai Process and timeline
+Data assessment (1–2 weeks): check sources and quality
+Prototype (3–6 weeks): build the assistant or report for the first questions and trial with a small group
+Refine and extend (4–8 weeks): adjust to feedback, add questions and permissions
+Total estimate: 2–4 months (estimate, depends on data readiness)
+## S:erp-crm CRM Starter: what is included and excluded
+Customer base: customers, contacts, companies, interaction history and notes
+Sales pipeline: 5–7 stages to fit the business, drag to change status, and lost reasons
+Follow up: reminders to call back, tasks and appointments
+Capture leads from web forms into the CRM automatically with LINE or email alerts to sales
+Reports: lead count, close rate and performance per person
+Up to 5–10 users and import of existing contacts from Excel
+Excluded: advanced marketing automation, many integrations and large numbers of users
+## S:erp-crm CRM Standard: what is included and excluded
+Everything in Starter plus quotes and contracts from templates, with approval status
+Channel links: LINE OA, email, web and phone, with customer history in one place
+Lead scoring and assignment to sales by rule, such as area or product type
+Commission: calculated by agreed rules, with sales team reports
+Link to 1–2 accounting or ERP systems
+Executive dashboard: forecast pipeline, closed value and reasons for lost deals
+2 sales team training sessions and a guide
+## S:erp-crm CRM Advanced + AI: what is included and excluded
+Everything in Standard plus AI that summarises conversations, suggests next steps and drafts replies
+A chatbot capturing leads on web and LINE and scoring before handing to sales
+Marketing automation: emails and messages by the stage the customer is in
+Many integrations with permissions by team and branch
+In depth reports: cost per lead, best closing channels, average time to close
+Note: scope assessed after Discovery. Pass to the team lead before quoting
+## S:erp-crm What the customer must prepare
+The current sales process: from interest to close and who owns each step
+Existing customer and lead lists (Excel) with column meanings
+Channels to connect: LINE OA, web, email, and access rights
+1–2 key sales users to help test
+## S:erp-crm Process and timeline
+Discovery (1 week): sales process, lead channels and desired reports
+Setup (2–4 weeks): pipeline, fields, permissions, web forms and channel links
+Data import and test (1–2 weeks): real trial with a small sales group
+Training and go live (1 week): train the team and watch early use
+Total estimate: Starter 3–5 weeks, Standard 6–10 weeks, Advanced 3–4 months (estimate)
+## S:line Starter: what is included and excluded
+A LINE Mini App with 1 core function such as booking or viewing menu or products, 4–6 screens
+Login with a LINE account, no new sign up
+A basic back office for the team to view bookings or orders
+Basic notifications when a booking or order is made
+Excluded: points, payments, POS integration and LINE message fees
+## S:line Standard: what is included and excluded
+Everything in Starter plus membership, loyalty points, coupons and history
+Payments in LINE (PromptPay or cards via a provider)
+Campaigns and promotions by customer segment within an agreed message budget
+Link to 1 POS or back office system
+Member and usage reports
+## S:line Advanced: what is included and excluded
+Everything in Standard plus multi branch, several staff roles and fine permissions
+An AI chatbot in the LINE OA linked to the Mini App
+Many integrations: CRM, ERP, POS and booking
+Customer analysis and target segments for campaigns
+Note: scope assessed after Discovery. Pass to the team lead before quoting
+## S:line What the customer must prepare
+A verified LINE OA and admin rights, registered early as it takes time
+Product, service and price lists and points or coupon rules
+Details of the POS or back office to connect
+Monthly LINE message budget and desired frequency
+## S:line Process and timeline
+Discovery and design (1–3 weeks): functions, screens and points rules
+Build (3–8 weeks): Mini App, back office, POS link
+Test and submit to LINE for review (1–2 weeks)
+Launch and train the team (1 week)
+Total estimate: 4–12 weeks (estimate)
+## S:ux Starter: what is included and excluded
+Design of 5–10 key screens in the brand style with the main user flow
+A clickable prototype of 1 main path
+Edits within the agreed rounds
+Files handed to developers
+Excluded: user research, user testing and a design system
+## S:ux Standard: what is included and excluded
+Everything in Starter plus 15–30 screens on web and mobile
+Basic user research: 3–5 interviews and analysis of current usage data
+Clickable prototypes of several paths and one round of testing with 5 users
+A basic component set (a small design system)
+Handover documents explaining each screen behaviour
+## S:ux Premium: what is included and excluded
+Everything in Standard plus in depth research, several test rounds and a whole system journey map
+A full design system with usage and maintenance guidelines
+Accessibility design and multi device support
+Helping developers review the built work against the design
+Note: scope assessed after Discovery. Pass to the team lead before quoting
+## S:ux What the customer must prepare
+Existing product details, links, usage stats and complaints
+Brand guideline or logo, colours, fonts
+5 real users for interviews and testing (if in the package)
+One decision maker and review turnaround time
+## S:ux Process and timeline
+Understand (1 week): goals, users and problems
+User flow and wireframes (1–2 weeks)
+Design and prototype (2–4 weeks)
+Test and refine (1–2 weeks) and hand over
+Total estimate: 3–10 weeks (estimate)
+## S:seo Starter: what is included and excluded
+Site audit: speed, mobile, structure, broken links and errors Google reports
+Keyword research: 20–30 terms customers really search, grouped by page
+Optimise 5–10 existing pages: titles, descriptions, headings and structured data
+Set up Google Business Profile and connect Search Console and Analytics
+Monthly report with indicators
+Excluded: ongoing article writing, link building and any ranking guarantee
+## S:seo Standard: what is included and excluded
+Everything in Starter plus 2–4 articles a month on chosen keywords
+AEO/GEO: question and answer content, structured data and AI citable content
+New page optimisation and internal link structure
+Competitor analysis and keyword gaps
+Monthly report and review meeting
+## S:seo Growth: what is included and excluded
+Everything in Standard plus 6–10 articles a month and several markets or languages
+In depth technical SEO: speed, structure and ongoing fixes
+Online reputation: reviews, business listings and mentions from credible sources (no bought links)
+A tracking dashboard and measurement down to enquiries
+Note: never promise rankings. Results start to show in about 3–6 months (estimate)
+## S:seo What the customer must prepare
+Access to the website, Search Console, Analytics and Google Business Profile
+Service details, strengths, service areas and frequent customer questions
+Someone to check content accuracy before publishing
+## S:seo Process and timeline
+Audit and plan (2–3 weeks)
+Fix site basics and key pages (3–6 weeks)
+Produce content and measure (monthly)
+Results begin in 3–6 months (estimate, never promised)
+## S:sec Starter (basic PDPA): what is included and excluded
+A list of personal data held, where and who accesses it (data map)
+Privacy policy, cookie banner and consent forms on the web
+Basic vulnerability check of 1 website with a risk ranked report
+Advice on passwords, permissions and backups for the team
+Excluded: legal counsel, vulnerability fixes and standard certification
+## S:sec Standard: what is included and excluded
+Everything in Starter plus checks of several web and app systems including the back office
+Fix found vulnerabilities by risk order and recheck
+Internal policies: data access, breach response and data subject rights
+1 staff training session on PDPA and phishing prevention
+An executive summary report
+## S:sec Advanced: what is included and excluded
+Everything in Standard plus penetration testing within an agreed scope
+Standards readiness such as ISO 27001 (certification must go through an accredited auditor)
+An incident response plan and drills
+Continuous monitoring and quarterly reports
+Note: scope assessed after Discovery. We are not legal counsel
+## S:sec What the customer must prepare
+List of systems, websites, apps and cloud to check with agreed test access
+A data or IT contact and an approver for fixes
+Existing policy documents and data processor contracts
+## S:sec Process and timeline
+Set scope and build the data map (1–2 weeks)
+Check and test (1–4 weeks)
+Fix and recheck (2–6 weeks)
+Policies and training (1–2 weeks)
+Total estimate: 3–12 weeks (estimate)
+## S:cloud Starter: what is included and excluded
+Review of the current setup and cost with a risk list
+Set automatic backups and test one restore
+Basic monitoring and alerts such as downtime and full disk
+Initial cost tuning: switch off unused resources and right size
+Excluded: large migrations, auto scaling and 24 hour cover
+## S:cloud Standard: what is included and excluded
+Everything in Starter plus moving 1–3 systems to cloud with a migration plan and tests
+Automated releases (CI/CD) with rollback
+Separate test and production environments
+Basic cloud security: permissions, encryption and network
+Monthly cost report and savings advice
+## S:cloud Advanced: what is included and excluded
+Everything in Standard plus auto scaling and load tests before promotions
+Reusable infrastructure as code and a disaster recovery plan
+In depth monitoring and severity based alerts
+Security review and readiness for the standards the customer needs
+Note: scope assessed after Discovery. Pass to the team lead before quoting
+## S:cloud What the customer must prepare
+List of running systems, owners and cloud accounts owned by the customer
+Windows when downtime for migration is acceptable
+Current cloud cost and the budget set
+## S:cloud Process and timeline
+Review and plan (1–2 weeks)
+Set backups and monitoring (1 week)
+Migrate and set automated releases (2–6 weeks)
+Test and hand over (1–2 weeks)
+Total estimate: 2–10 weeks (estimate)
+## S:data Starter: what is included and excluded
+1 dashboard from 1–2 data sources such as Excel, accounting or the website
+5 key indicators agreed together with clear definitions
+Automatic daily or weekly data refresh
+Basic data cleaning
+Excluded: forecasting, AI models and combining many systems
+## S:data Standard: what is included and excluded
+Everything in Starter plus 3–5 role based dashboards and 3–5 data sources
+A central data store combining systems consistently
+Automatic reports sent to LINE or email on a schedule
+Data access by role
+User training and guide
+## S:data Advanced + AI: what is included and excluded
+Everything in Standard plus AI to ask data in plain language and auto summaries
+Basic forecasting and anomaly alerts when enough history exists, with no accuracy guarantee
+Data quality checks and error monitoring
+Note: scope assessed after Discovery. Pass to the team lead before quoting
+## S:data What the customer must prepare
+Access to data sources and someone who understands the data
+The questions or decisions they want data to support
+List of dashboard users and what each should see
+## S:data Process and timeline
+Define indicators and check the data (1–2 weeks)
+Connect and clean the data (2–4 weeks)
+Build the dashboard and trial (2–4 weeks)
+Train and go live (1 week)
+Total estimate: 4–12 weeks (estimate)
+## S:support Basic: what is included and excluded
+Monthly health check: system running, SSL certificate and backups
+Necessary security updates
+Minor bug fixes in business hours with a reply within 1 business day (response time to be confirmed with the team lead)
+A short monthly report
+Excluded: new features, after hours emergencies and fixes needing a rewrite
+## S:support Standard: what is included and excluded
+Everything in Basic plus a few development hours a month for improvements or small features
+Faster response for urgent issues (response time to be confirmed with the team lead)
+Quarterly performance and security reviews
+Monthly review meeting and next month plan
+## S:support Premium: what is included and excluded
+Everything in Standard plus continuous monitoring and the fastest agreed response time
+More development hours and a main contact who knows the customer system
+A recovery plan and one drill a year
+Note: 24 hour cover terms must be confirmed with the team lead before quoting
+## S:support What the customer must prepare
+Access to the system, code and documentation (owned by the customer)
+Contacts who may report issues and the reporting channel
+Related provider accounts such as hosting and domain
+## S:support Process and timeline
+Pre support system review (1–2 weeks), especially if we did not build it
+Start support and set monitoring (1 week)
+Ongoing monthly support. Minimum term and cancellation to be confirmed with the team lead
+## S:strategy Workshop: what is included and excluded
+A half to full day workshop with executives and key team
+A summary of business goals, digital weak points and 3–5 opportunities
+A first priority list and next steps
+A 5–10 page summary document
+Excluded: detailed phased plan, budget estimates and implementation
+## S:strategy Roadmap: what is included and excluded
+Everything in Workshop plus 5–10 stakeholder interviews and a survey of existing systems
+A 12–24 month digital roadmap in phases with order and risks
+Estimated budget and return (estimates)
+Selecting suitable tools or systems with an impartial comparison
+One executive presentation
+## S:strategy Transformation: what is included and excluded
+Everything in Roadmap plus redesigned processes and a supporting team structure
+A project manager and ongoing phase tracking
+Training and change management with the internal team
+Note: software and development are separate per project. Pass scope to the team lead before quoting
+## S:strategy What the customer must prepare
+An executive sponsor attending every key session
+Business information, basic figures and a list of systems in use
+Names of interviewees and their available times
+## S:strategy Process and timeline
+Prepare and gather data (1 week)
+Workshop and interviews (1–3 weeks)
+Analyse and draft the plan (2–4 weeks)
+Present and refine (1 week)
+Total estimate: Workshop 1–2 weeks, Roadmap 4–8 weeks, Transformation by phase (estimate)
+## S:fix Levels of work for fixing AI built apps
+Code audit: read all code and report issues, security and fixes ranked by risk, without changing code
+Make production ready: fix found issues, close vulnerabilities, set authentication and database properly, test and deploy
+Full build out: develop missing features, integrate systems and support, as a new project with agreed scope
+Confirmed prices for each level are in the confirmed prices section. Do not use other numbers
+## S:fix What is usually checked and fixed
+Authentication: login, password reset and separating user permissions
+Data security: secrets leaked in code, database access, and data visible across users
+Payments: verify real payments, no price tampering and proper webhook handling
+Code quality: duplication, unhandled errors and parts hard to extend
+Performance: slow pages, repeated data calls and oversized images
+Going live: domain, SSL, backups and monitoring
+## S:fix What the customer must prepare
+Code access (GitHub), and if still in an AI tool, export the code first
+A short video or list of problems with what the app should do
+Service accounts in use, such as database and payments, shared by invitation, never by sending passwords in chat
+Real user data (if any) to plan a backup and work on a copy
+## S:fix Process and timeline
+Initial review (1–3 days): look at code and app, assess level and quote
+Detailed audit (3–7 days): issue report ranked by risk
+Fix (1–4 weeks by level): fix in order, security and payments first
+Test and go live (2–5 days): retest and set monitoring
+Total estimate: 1–6 weeks (estimate, depends on size and complexity)
 `

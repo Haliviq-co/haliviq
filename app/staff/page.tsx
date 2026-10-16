@@ -19,7 +19,7 @@ type Answer = { text: string; faq?: Faq[] }
 type Msg = { from: 'bot' | 'me'; text: string; chips?: Chip[]; cards?: PCard[]; note?: string; faq?: Faq[] }
 
 // Section positions are the same in both handbooks.
-const S = { sells: 2, confirmed: 4, brand: 5, web: 6, usa: 7, other: 8, ind: 9, app: 10, erp: 12, wt: 13, q: 14, cases: 15, pkg: 16, det: 17 }
+const S = { sells: 2, confirmed: 4, brand: 5, web: 6, usa: 7, other: 8, ind: 9, app: 10, erp: 12, wt: 13, q: 14, cases: 15, pkg: 16, det: 17, scope: 18 }
 
 type Svc = { q: string; pk?: string; kind: 'web' | 'brand' | 'app' | 'fix' | 'erp' | 'wt' | 'other'; key?: string; th: string; en: string; keyEn?: string }
 const SERVICES: Svc[] = [
@@ -467,6 +467,10 @@ export default function StaffPage() {
       return { text: `${title} · ${t.priceHead(m)}\n${t.draft}`, faq: [{ items }] }
     }
     if (topic === 'scope') {
+      const svS = SERVICES[ctx.current.svc as number]
+      const skey = svS ? svS.q + (svS.pk && svS.pk !== svS.q ? '-' + svS.pk : '') : ''
+      const sb = (secs[S.scope]?.blocks || []).filter((b) => b.h2.startsWith('S:' + skey + ' '))
+      if (sb.length) return { text: `${title} · ${t.scopeHead}\n${t.tapHint}`, faq: [{ items: sb.map((b) => ({ q: b.h2.replace(/^S:\S+\s/, ''), a: b.lines.map((l) => { const x = lineItem(l); return x.a.length ? x.q + ': ' + x.a.join(' ') : x.q }) })) }] }
       const items = blocks.map((b) => {
         const ls = b.lines.filter((l) => p.scopeLine.test(l))
         return { q: b.h2, a: mk(ls.length ? ls : b.lines) }

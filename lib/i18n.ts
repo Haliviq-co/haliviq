@@ -6,7 +6,7 @@ export const t = {
   th: {
     // ── NAV ──
     nav: {
-      services: 'บริการ', industries: 'อุตสาหกรรม', work: 'ผลงาน', partners: 'พาร์ทเนอร์',
+      home: 'หน้าหลัก', services: 'บริการ', industries: 'อุตสาหกรรม', work: 'ผลงาน', partners: 'พาร์ทเนอร์',
       careers: 'ร่วมงาน', blog: 'บทความ', contact: 'ติดต่อ', cta: 'เริ่มโปรเจกต์',
       servicesNotSure: 'ยังไม่แน่ใจว่าจะเริ่มตรงไหน?', talkToUs: 'คุยกับเรา →',
       allIndustries: 'อุตสาหกรรมทั้งหมด', insights: 'บทความและแนวคิด',
@@ -187,10 +187,6 @@ export const t = {
           a: 'Haliviq เป็นสตูดิโอพัฒนาผลิตภัณฑ์ดิจิทัลในกรุงเทพฯ เราช่วยดูตั้งแต่วางกลยุทธ์ ออกแบบ UX/UI พัฒนาเว็บและแอป ไปจนถึงงาน AI และระบบหลังบ้านขององค์กร ถ้าคุณมีแค่ไอเดีย เราช่วยทำให้เป็นผลิตภัณฑ์ที่ใช้งานได้จริง ถ้ามีระบบอยู่แล้ว เราช่วยปรับให้ดีขึ้นและขยายต่อได้',
         },
         {
-          q: 'Haliviq ให้บริการอะไรบ้าง?',
-          a: 'หลักๆ มี 6 กลุ่มคือ กลยุทธ์ดิจิทัล ออกแบบ UX/UI พัฒนาเว็บและแอปมือถือ AI Agents & Generative AI ระบบองค์กรอย่าง ERP, CRM, POS และ E-Commerce และงานดูแลระบบหลังเปิดใช้ นอกจากนี้ยังมี Data Engineering & Analytics, Cloud & Infrastructure และ Digital Transformation คุณจะจ้างทั้งชุดหรือเลือกเฉพาะส่วนที่ต้องการก็ได้',
-        },
-        {
           q: 'Haliviq เคยทำงานร่วมกับบริษัทไหนบ้าง?',
           a: 'เราเคยทำงานกับแบรนด์และองค์กรหลายอุตสาหกรรมทั่วเอเชีย ตั้งแต่ Startup ที่ได้รับเงินทุนไปจนถึงองค์กรขนาดใหญ่ ทั้งอสังหาริมทรัพย์ ค้าปลีก ท่องเที่ยว และหน่วยงานภาครัฐ ดูตัวอย่างผลงานได้ที่หน้า Work',
         },
@@ -304,6 +300,7 @@ export const t = {
       desc: 'สตูดิโอพัฒนาผลิตภัณฑ์ดิจิทัลในกรุงเทพฯ เราออกแบบและพัฒนาซอฟต์แวร์ที่ช่วยให้ธุรกิจของคุณแข่งขันได้จริง ตั้งแต่เว็บไซต์ แอป ไปจนถึงระบบ AI',
       sections: {
         'บริการ': [
+          {l:'หน้าหลัก',h:''},
           {l:'กลยุทธ์และที่ปรึกษา',h:'/services/digital-transformation'},
           {l:'สร้างแบรนด์ Branding',h:'/services/branding'},
           {l:'ออกแบบ UX / UI',h:'/services/ux-ui-design'},
@@ -346,7 +343,7 @@ export const t = {
 
   en: {
     nav: {
-      services: 'Services', industries: 'Industries', work: 'Work', partners: 'Partners',
+      home: 'Home', services: 'Services', industries: 'Industries', work: 'Work', partners: 'Partners',
       careers: 'Careers', blog: 'Blog', contact: 'Contact', cta: 'Start a Project',
       servicesNotSure: 'Not sure where to start?', talkToUs: 'Talk to us →', insights: 'Insights',
       allIndustries: 'All Industries',
@@ -525,10 +522,6 @@ export const t = {
           a: 'Haliviq is a digital product studio in Bangkok. We handle strategy, UX/UI design, web and mobile development, AI, and the back-office systems companies run on. If you only have an idea, we help turn it into something people can use. If you already have a system, we help improve it and make it easier to grow.',
         },
         {
-          q: 'Which services does Haliviq offer?',
-          a: 'Our work falls into six groups: digital strategy, UX/UI design, web and mobile development, AI agents and generative AI, business systems such as ERP, CRM, POS and e-commerce, and support after launch. Data engineering and analytics, cloud and infrastructure, and digital transformation sit across those groups. You can hire us for the whole journey or for one piece of it.',
-        },
-        {
           q: 'Which companies has Haliviq worked with?',
           a: 'We have worked with brands and organizations across Asia, from funded startups to large enterprises, in property, retail, travel, food and beverage, and government services. See examples on the Work page.',
         },
@@ -636,6 +629,7 @@ export const t = {
       desc: 'A digital product studio in Bangkok. We design and build software, from websites and apps to AI systems, that helps your business compete.',
       sections: {
         'Services': [
+          {l:'Home',h:''},
           {l:'Strategy & Consulting',h:'/services/digital-transformation'},
           {l:'Branding',h:'/services/branding'},
           {l:'UX / UI Design',h:'/services/ux-ui-design'},

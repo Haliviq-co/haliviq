@@ -247,6 +247,7 @@ export default function Navbar({ lang, tr, transparent = false }: Props) {
 
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-8">
+            <Link href={`${prefix}`} className="transition-colors" style={{fontWeight:400,fontSize:'16px', color:navTextColor}}>{n.home}</Link>
             <div className="relative" ref={servicesRef}>
               <button onClick={() => setServicesOpen(!servicesOpen)}
                 className="flex items-center gap-1.5 transition-colors"
@@ -457,6 +458,7 @@ export default function Navbar({ lang, tr, transparent = false }: Props) {
       <div className={`fixed inset-0 z-40 transition-all duration-300 lg:hidden ${menuOpen?'opacity-100 visible':'opacity-0 invisible'}`} style={{ background: mobileBg }}>
         <div className="flex flex-col h-full pt-20 pb-10 px-5 overflow-y-auto">
           <nav className="flex flex-col mt-2">
+            <Link href={`${prefix}`} onClick={() => setMenuOpen(false)} className="block py-3 border-b" style={{fontWeight:400,fontSize:"1.15rem", color: mobileHeadColor, borderColor: mobileBorder}}>{n.home}</Link>
 
             {/* บริการ accordion */}
             <div className="border-b" style={{ borderColor: mobileBorder }}>
