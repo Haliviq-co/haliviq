@@ -14,31 +14,33 @@ type Block = { h2: string; lines: string[] }
 type Sec = { h1: string; intro: string[]; blocks: Block[] }
 type Chip = { key: string; label: string; tone?: 'ghost' }
 type PCard = { title: string; price: string; time?: string; scope: string[] }
-type Msg = { from: 'bot' | 'me'; text: string; chips?: Chip[]; cards?: PCard[]; note?: string }
+type Faq = { head?: string; items: { q: string; a: string[] }[] }
+type Answer = { text: string; faq?: Faq[] }
+type Msg = { from: 'bot' | 'me'; text: string; chips?: Chip[]; cards?: PCard[]; note?: string; faq?: Faq[] }
 
 // Section positions are the same in both handbooks.
-const S = { sells: 2, confirmed: 4, brand: 5, web: 6, usa: 7, other: 8, ind: 9, app: 10, erp: 12, wt: 13, q: 14, cases: 15 }
+const S = { sells: 2, confirmed: 4, brand: 5, web: 6, usa: 7, other: 8, ind: 9, app: 10, erp: 12, wt: 13, q: 14, cases: 15, pkg: 16 }
 
-type Svc = { q: string; kind: 'web' | 'brand' | 'app' | 'fix' | 'erp' | 'wt' | 'other'; key?: string; th: string; en: string; keyEn?: string }
+type Svc = { q: string; pk?: string; kind: 'web' | 'brand' | 'app' | 'fix' | 'erp' | 'wt' | 'other'; key?: string; th: string; en: string; keyEn?: string }
 const SERVICES: Svc[] = [
   { q: 'wt-basic', kind: 'wt', th: 'เว็บไซต์ธรรมดา (ไม่มี AI)', en: 'Basic website (no AI)', key: 'ธรรมดา', keyEn: 'Basic website' },
   { q: 'wt-ecom', kind: 'wt', th: 'เว็บไซต์อีคอมเมิร์ซ', en: 'E-commerce website', key: 'อีคอมเมิร์ซ', keyEn: 'E-commerce website' },
   { q: 'web', kind: 'web', th: 'เว็บไซต์ + AI', en: 'Website + AI' },
   { q: 'brand', kind: 'brand', th: 'Branding (แบรนด์)', en: 'Branding' },
   { q: 'app', kind: 'app', th: 'แอปมือถือ (iOS/Android)', en: 'Mobile app (iOS/Android)' },
-  { q: 'ai', kind: 'other', th: 'AI Assistant / แชตบอต', en: 'AI Assistant / chatbot', key: 'AI Assistant', keyEn: 'AI Assistant' },
-  { q: 'voice', kind: 'other', th: 'AI Voice Agent', en: 'AI Voice Agent', key: 'AI Voice', keyEn: 'AI Voice' },
+  { q: 'ai', pk: 'ai', kind: 'other', th: 'AI Assistant / แชตบอต', en: 'AI Assistant / chatbot', key: 'AI Assistant', keyEn: 'AI Assistant' },
+  { q: 'voice', pk: 'voice', kind: 'other', th: 'AI Voice Agent', en: 'AI Voice Agent', key: 'AI Voice', keyEn: 'AI Voice' },
   { q: 'erp', kind: 'erp', th: 'ERP / ระบบบริหารองค์กร', en: 'ERP / enterprise system' },
-  { q: 'erp', kind: 'erp', th: 'AI สำหรับอุตสาหกรรม / ERP', en: 'AI for industry / ERP', key: 'AI', keyEn: 'AI' },
-  { q: 'erp', kind: 'other', th: 'CRM (จัดการลูกค้า)', en: 'CRM', key: 'ERP', keyEn: 'ERP' },
-  { q: 'line', kind: 'other', th: 'LINE Mini App', en: 'LINE Mini App', key: 'LINE', keyEn: 'LINE' },
-  { q: 'ux', kind: 'other', th: 'ออกแบบ UX/UI', en: 'UX/UI design', key: 'UX/UI', keyEn: 'UX/UI' },
-  { q: 'seo', kind: 'other', th: 'SEO / AEO / GEO', en: 'SEO / AEO / GEO', key: 'SEO', keyEn: 'SEO' },
-  { q: 'sec', kind: 'other', th: 'ความปลอดภัยไซเบอร์ / PDPA', en: 'Cybersecurity / PDPA', key: 'ความปลอดภัย', keyEn: 'Cybersecurity' },
-  { q: 'cloud', kind: 'other', th: 'Cloud / DevOps', en: 'Cloud / DevOps', key: 'Cloud', keyEn: 'Cloud' },
-  { q: 'data', kind: 'other', th: 'ข้อมูลและการวิเคราะห์', en: 'Data & Analytics', key: 'ข้อมูลและ', keyEn: 'Data' },
-  { q: 'support', kind: 'other', th: 'ดูแลรักษาระบบ', en: 'Support & Maintenance', key: 'ดูแลรักษา', keyEn: 'Support' },
-  { q: 'strategy', kind: 'other', th: 'กลยุทธ์ดิจิทัล', en: 'Digital strategy', key: 'กลยุทธ์', keyEn: 'Strategy' },
+  { q: 'erp', pk: 'ai', kind: 'erp', th: 'AI สำหรับอุตสาหกรรม / ERP', en: 'AI for industry / ERP', key: 'AI', keyEn: 'AI' },
+  { q: 'erp', pk: 'crm', kind: 'other', th: 'CRM (จัดการลูกค้า)', en: 'CRM', key: 'ERP', keyEn: 'ERP' },
+  { q: 'line', pk: 'line', kind: 'other', th: 'LINE Mini App', en: 'LINE Mini App', key: 'LINE', keyEn: 'LINE' },
+  { q: 'ux', pk: 'ux', kind: 'other', th: 'ออกแบบ UX/UI', en: 'UX/UI design', key: 'UX/UI', keyEn: 'UX/UI' },
+  { q: 'seo', pk: 'seo', kind: 'other', th: 'SEO / AEO / GEO', en: 'SEO / AEO / GEO', key: 'SEO', keyEn: 'SEO' },
+  { q: 'sec', pk: 'sec', kind: 'other', th: 'ความปลอดภัยไซเบอร์ / PDPA', en: 'Cybersecurity / PDPA', key: 'ความปลอดภัย', keyEn: 'Cybersecurity' },
+  { q: 'cloud', pk: 'cloud', kind: 'other', th: 'Cloud / DevOps', en: 'Cloud / DevOps', key: 'Cloud', keyEn: 'Cloud' },
+  { q: 'data', pk: 'data', kind: 'other', th: 'ข้อมูลและการวิเคราะห์', en: 'Data & Analytics', key: 'ข้อมูลและ', keyEn: 'Data' },
+  { q: 'support', pk: 'support', kind: 'other', th: 'ดูแลรักษาระบบ', en: 'Support & Maintenance', key: 'ดูแลรักษา', keyEn: 'Support' },
+  { q: 'strategy', pk: 'strategy', kind: 'other', th: 'กลยุทธ์ดิจิทัล', en: 'Digital strategy', key: 'กลยุทธ์', keyEn: 'Strategy' },
   { q: 'fix', kind: 'fix', th: 'แก้แอปที่ AI สร้าง', en: 'Fix AI-built apps' },
 ]
 // same order as the industry blocks in the handbook
@@ -55,9 +57,11 @@ const INDUSTRIES: { th: string; en: string }[] = [
   { th: 'การเงิน / องค์กรใหญ่', en: 'Finance / enterprise' },
   { th: 'ก่อสร้าง / ขนส่ง', en: 'Construction / logistics' },
   { th: 'โรงแรมและแบรนด์หรู (USA)', en: 'Luxury hotels and brands (USA)' },
+  { th: 'พลังงานทดแทน / โซลาร์ / สิ่งแวดล้อม', en: 'Renewable energy / solar / environment' },
 ]
+const INDUSTRY_ORDER = [12, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 const TOPIC_KEYS = ['price', 'scope', 'ask', 'sell', 'plain', 'cases'] as const
-const INDUSTRY_TAGS = ['health', 'fnb', 'retail', 'realestate', 'factory', 'edu', 'hotel', 'prof', 'startup', 'gov', 'construction', 'luxury']
+const INDUSTRY_TAGS = ['health', 'fnb', 'retail', 'realestate', 'factory', 'edu', 'hotel', 'prof', 'startup', 'gov', 'construction', 'luxury', 'energy']
 const SVC_TAGS: Record<string, string[]> = { web: ['web'], 'wt-basic': ['web'], 'wt-ecom': ['ecom'], brand: ['brand'], app: ['app'], ai: ['ai'], voice: ['ai'], erp: ['crm', 'ai'], line: ['app'], ux: ['ux'], seo: ['seo', 'web'], fix: ['app'] }
 
 const T = {
@@ -91,6 +95,10 @@ const T = {
     casesNone: 'ยังไม่มีผลงานตรงกลุ่มนี้ ใช้ผลงานใกล้เคียงด้านล่างแทน',
     tapScope: 'แตะเพื่อดูขอบเขตงาน',
     tapHide: 'แตะเพื่อซ่อน',
+    askHead: (n: string) => `คำถามที่ควรถามลูกค้า · ${n}\nแตะที่คำถามเพื่อดูคำตอบเบื้องต้น`,
+    askHow: 'วิธีใช้ชุดคำถามนี้',
+    indQ: 'คำถามเฉพาะธุรกิจนี้ (แตะดูคำตอบเบื้องต้น)',
+    tapHint: 'แตะหัวข้อเพื่อขยาย',
   },
   en: {
     title: 'Havy for the internal team',
@@ -122,6 +130,10 @@ const T = {
     casesNone: 'No direct case for this yet, use these close ones instead',
     tapScope: 'Tap to see scope',
     tapHide: 'Tap to hide',
+    askHead: (n: string) => `Questions to ask the customer · ${n}\nTap a question to see the basic answer`,
+    askHow: 'How to use these questions',
+    indQ: 'Questions for this industry (tap for the basic answer)',
+    tapHint: 'Tap a heading to expand',
   },
 }
 
@@ -189,6 +201,53 @@ function grams(s: string, stop: string[]) {
 }
 
 
+function lineItem(l: string): { q: string; a: string[] } {
+  const raw = l.replace(/^- /, '')
+  const n = raw.match(/^\d+\.\s*(.*?)\s*=>\s*(.*)$/)
+  if (n) return { q: n[1], a: [n[2]] }
+  if (/^\d+\./.test(raw)) return { q: raw.replace(/^\d+\.\s*/, ''), a: [] }
+  const j = raw.indexOf(': ')
+  if (j > 0 && j < 70 && !/^https?:/.test(raw)) return { q: raw.slice(0, j), a: [raw.slice(j + 2)] }
+  return { q: raw, a: [] }
+}
+
+function Linkified({ text }: { text: string }) {
+  return <>{text.split(/(https?:\/\/\S+)/g).map((x, i) => (/^https?:/.test(x) ? <a key={i} href={x} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent)', wordBreak: 'break-all' }}>{x}</a> : <span key={i}>{x}</span>))}</>
+}
+
+function FaqView({ groups }: { groups: Faq[] }) {
+  const line = '1px solid rgb(var(--fg) / 0.12)'
+  return (
+    <div style={{ marginTop: 10 }}>
+      <style>{'.faq summary{list-style:none}.faq summary::-webkit-details-marker{display:none}.faq details[open] .chev{transform:rotate(180deg)}.faq .chev{transition:transform .15s}'}</style>
+      <div className="faq">
+        {groups.map((g, gi) => (
+          <div key={gi} style={{ marginTop: gi ? 18 : 0 }}>
+            {g.head && <div style={{ fontSize: 13, fontWeight: 600, opacity: 0.75, margin: '0 4px 8px' }}>{g.head}</div>}
+            <div style={{ border: line, borderRadius: 16, overflow: 'hidden', background: 'rgb(var(--fg) / 0.03)' }}>
+              {g.items.map((it, i) =>
+                it.a.length === 0 ? (
+                  <div key={i} style={{ padding: '12px 16px', fontSize: 15, lineHeight: 1.65, borderTop: i ? line : 0 }}><Linkified text={it.q} /></div>
+                ) : (
+                  <details key={i} style={{ borderTop: i ? line : 0 }}>
+                    <summary style={{ cursor: 'pointer', padding: '12px 16px', fontSize: 15, lineHeight: 1.55, fontWeight: 600, display: 'flex', gap: 12, justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                      <span>{it.q}</span>
+                      <span className="chev" aria-hidden="true" style={{ opacity: 0.6, flex: '0 0 auto' }}>▾</span>
+                    </summary>
+                    <div style={{ padding: '0 16px 14px', fontSize: 15, lineHeight: 1.7, opacity: 0.92 }}>
+                      {it.a.map((x, k) => <div key={k} style={{ marginTop: k ? 8 : 0, whiteSpace: 'pre-wrap' }}><Linkified text={x} /></div>)}
+                    </div>
+                  </details>
+                )
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 const PALETTE = ['#7B6EF6', '#B9ADF7', '#72C0D4', '#ECD37D', '#E8E7E4']
 const HEAD_PRICE = /(\d[\d,]*(?:\s*[–-]\s*\d[\d,]*)?\s*(?:บาท|THB)(?:\s*(?:ขึ้นไป|and up))?)/
 const USD_BULLET = /^(.+?): (\$[\d,]+(?:\s*[–-]\s*\$[\d,]+)?(?:\s*(?:ขึ้นไป|and up))?)\s*(.*)$/
@@ -226,7 +285,7 @@ const chipStyle: React.CSSProperties = { border: '1px solid rgb(var(--fg) / 0.2)
 export default function StaffPage() {
   const kb = useMemo(() => ({ th: parse(STAFF_KB), en: parse(STAFF_KB_EN) }), [])
   const [lang, setLang] = useState<Lang | null>(null)
-  const ctx = useRef<{ svc?: number; market?: Market }>({})
+  const ctx = useRef<{ svc?: number; market?: Market; next?: string }>({})
   const [msgs, setMsgs] = useState<Msg[]>([])
   const [input, setInput] = useState('')
   const endRef = useRef<HTMLDivElement>(null)
@@ -294,7 +353,10 @@ export default function StaffPage() {
     if (c.svc === undefined) return null
     const m: Market = c.market || 'th'
     const s = SERVICES[c.svc]
-    const { title, blocks, intro } = blocksFor()
+    const base = blocksFor()
+    const { title, intro } = base
+    const pkBlocks = s.pk ? secs[S.pkg].blocks.filter((b) => b.h2.startsWith('P:' + s.pk + ' ')).map((b) => ({ ...b, h2: b.h2.replace(/^P:\S+\s/, '') })) : []
+    const blocks = pkBlocks.length ? pkBlocks : base.blocks
     const cards: PCard[] = []
     const refs = s.kind === 'web' ? secs[S.web].blocks : s.kind === 'brand' ? secs[S.brand].blocks : []
     const refScope = (name: string) => {
@@ -361,7 +423,7 @@ export default function StaffPage() {
     return cards.length ? { head: `${title} · ${t.priceHead(m)}`, cards } : null
   }
 
-  function casesFor(tags: string[], max: number): { list: string; direct: boolean } {
+  function casesFor(tags: string[], max: number): { list: { q: string; a: string[] }[]; direct: boolean } {
     const rows = secs[S.cases].blocks[0].lines.filter((l) => l.startsWith('- ')).map((l) => {
       const [slug, tg, ...rest] = l.slice(2).split('|')
       return { slug, tags: tg.split(','), text: rest.join('|') }
@@ -369,37 +431,47 @@ export default function StaffPage() {
     let hit = rows.map((r) => ({ r, n: r.tags.filter((x) => tags.includes(x)).length })).filter((x) => x.n > 0).sort((a, b) => b.n - a.n).map((x) => x.r)
     const direct = hit.length > 0
     if (!direct) hit = rows
-    return { direct, list: hit.slice(0, max).map((r) => `• ${r.text}\n  https://www.haliviq.com/${L}/case-studies/${r.slug}`).join('\n\n') }
+    return {
+      direct,
+      list: hit.slice(0, max).map((r) => {
+        const j = r.text.indexOf('): ')
+        const k = j > 0 ? j + 1 : r.text.indexOf(': ')
+        const q = k > 0 ? r.text.slice(0, k) : r.text
+        const rest = k > 0 ? r.text.slice(k).replace(/^[:\s]+/, '') : ''
+        return { q, a: [rest, `https://www.haliviq.com/${L}/case-studies/${r.slug}`].filter(Boolean) }
+      }),
+    }
   }
 
-  function answerCases(): string {
+  function answerCases(): Answer {
     const sv = SERVICES[ctx.current.svc as number]
     const { direct, list } = casesFor(SVC_TAGS[sv.q] || [], 6)
-    return `${direct ? '' : t.casesNone + '\n\n'}${t.casesHead}\n\n${list}`
+    return { text: (direct ? '' : t.casesNone + '\n') + t.casesHead, faq: [{ items: list }] }
   }
 
-  function answerTopic(topic: string): string {
+  function answerTopic(topic: string): Answer {
     const m = ctx.current.market || 'th'
     const { title, blocks, intro } = blocksFor()
-    const sells = secs[S.sells].intro.join('\n')
-    if (!blocks.length) return t.none
+    const mk = (ls: string[]) => ls.map((l) => forMarket(l, m, L))
+    const sells = secs[S.sells].intro
+    if (!blocks.length) return { text: t.none }
     const pick = (re: RegExp) => blocks.filter((b) => re.test(b.h2))
     if (topic === 'cases') return answerCases()
     if (topic === 'price') {
       const priced = blocks.filter((b) => !p.askBlock.test(b.h2) && !p.sellBlock.test(b.h2) && !p.whatBlock.test(b.h2) && b.lines.some((l) => p.moneyLine.test(l)))
-      const out = priced.map((b) => {
-        const ls = b.lines.filter((l) => p.priceLine.test(l) || p.priceExtra.test(l))
-        return `${b.h2}\n${fmt(ls.length ? ls : b.lines.slice(0, 3), m)}`
-      })
       const direct = intro.filter((l) => p.moneyLine.test(l) && !/^(Note|หมายเหตุ)/.test(l))
-      return `${title} · ${t.priceHead(m)}\n\n${[...direct, ...out].join('\n\n')}\n\n${t.draft}`
+      const items = [...direct.map((l) => ({ q: l, a: [] as string[] })), ...priced.map((b) => {
+        const ls = b.lines.filter((l) => p.priceLine.test(l) || p.priceExtra.test(l))
+        return { q: b.h2, a: mk(ls.length ? ls : b.lines.slice(0, 3)) }
+      })]
+      return { text: `${title} · ${t.priceHead(m)}\n${t.draft}`, faq: [{ items }] }
     }
     if (topic === 'scope') {
-      const out = blocks.map((b) => {
+      const items = blocks.map((b) => {
         const ls = b.lines.filter((l) => p.scopeLine.test(l))
-        return ls.length ? `${b.h2}\n${fmt(ls, m)}` : ''
-      }).filter(Boolean)
-      return out.length ? `${title} · ${t.scopeHead}\n\n${out.join('\n\n')}` : `${title}\n\n${blocks.map((b) => `${b.h2}\n${fmt(b.lines, m)}`).join('\n\n')}`
+        return { q: b.h2, a: mk(ls.length ? ls : b.lines) }
+      })
+      return { text: `${title} · ${t.scopeHead}\n${t.tapHint}`, faq: [{ items }] }
     }
     if (topic === 'ask') {
       const sv = SERVICES[ctx.current.svc as number]
@@ -408,33 +480,44 @@ export default function StaffPage() {
       const mine = qb.filter((b) => b.h2.startsWith('Q:' + sv.q + ' '))
       const gen = qb.filter((b) => b.h2.startsWith('Q:g'))
       const all = [...mine, ...gen]
-      return all.length ? all.map((b) => `${strip(b.h2)}\n${fmt(b.lines)}`).join('\n\n') : t.noQuestions
+      if (!all.length) return { text: t.noQuestions }
+      const groups: Faq[] = []
+      if (secs[S.q].intro.length) groups.push({ items: [{ q: t.askHow, a: secs[S.q].intro }] })
+      all.forEach((b) => groups.push({ head: strip(b.h2), items: b.lines.map(lineItem) }))
+      return { text: t.askHead(title), faq: groups }
     }
     if (topic === 'sell') {
       const bs = pick(p.sellBlock)
-      return `${bs.length ? bs.map((b) => `${b.h2}\n${fmt(b.lines)}`).join('\n\n') + '\n\n' : ''}${t.sellsHead}\n${sells}`
+      const groups: Faq[] = bs.map((b) => ({ head: b.h2, items: b.lines.map(lineItem) }))
+      groups.push({ head: t.sellsHead, items: sells.map(lineItem) })
+      return { text: `${title}\n${t.tapHint}`, faq: groups }
     }
     const what = pick(p.whatBlock)
-    if (what.length) return what.map((b) => `${b.h2}\n${fmt(b.lines)}`).join('\n\n')
+    if (what.length) return { text: `${title}\n${t.tapHint}`, faq: what.map((b) => ({ head: b.h2, items: b.lines.map(lineItem) })) }
     const first = blocks[0]
-    return `${title}\n\n${first.lines.filter((l) => l.startsWith(p.whatLine)).join('\n') || fmt(first.lines.slice(0, 3))}`
+    const wl = first.lines.filter((l) => l.startsWith(p.whatLine))
+    return { text: title, faq: [{ items: (wl.length ? wl : first.lines.slice(0, 3)).map(lineItem) }] }
   }
 
-  function answerIndustry(i: number): string {
+  function answerIndustry(i: number): Answer {
     const b = secs[S.ind].blocks[i]
-    if (!b) return t.noneIndustry
+    if (!b) return { text: t.noneIndustry }
     const cs = casesFor([INDUSTRY_TAGS[i]], 4)
-    return `${b.h2}\n${fmt(b.lines)}\n\n${cs.direct ? '' : t.casesNone + '\n\n'}${t.casesHead}\n\n${cs.list}\n\n${t.industryTail}`
+    const groups: Faq[] = [{ items: b.lines.map(lineItem) }]
+    const qb = secs[S.q].blocks.find((x) => x.h2.startsWith('Q:ind' + i + ' '))
+    if (qb) groups.push({ head: t.indQ, items: qb.lines.map(lineItem) })
+    groups.push({ head: (cs.direct ? '' : t.casesNone + ' · ') + t.casesHead, items: cs.list })
+    return { text: `${b.h2}\n${t.industryTail}`, faq: groups }
   }
 
-  function answerFree(q: string): string {
+  function answerFree(q: string): Answer {
     const expanded = L === 'th' ? q + ' ' + EN_TO_TH.filter(([r]) => r.test(q)).map(([, x]) => x).join(' ') : q
     const g = grams(expanded, p.stop)
-    if (g.size === 0) return t.typeMore
+    if (g.size === 0) return { text: t.typeMore }
     const cand: { score: number; head: string; lines: string[] }[] = []
     secs.forEach((s, si) => {
       if (p.skipSec.includes(si)) return
-      const units = [{ head: s.h1.replace(/\s*\(.*$/, ''), lines: s.intro }, ...s.blocks.map((b) => ({ head: b.h2.replace(/^Q:\S+\s/, ''), lines: b.lines }))]
+      const units = [{ head: s.h1.replace(/\s*\(.*$/, ''), lines: s.intro }, ...s.blocks.map((b) => ({ head: b.h2.replace(/^[QP]:\S+\s/, ''), lines: b.lines }))]
       for (const u of units) {
         if (!u.lines.length) continue
         const hit = u.lines.filter((l) => { let n = 0; const lg = grams(l, p.stop); g.forEach((x) => { if (lg.has(x)) n++ }); return n >= Math.min(3, g.size) })
@@ -446,12 +529,19 @@ export default function StaffPage() {
     })
     cand.sort((a, b) => b.score - a.score)
     const top = cand.slice(0, 3)
-    if (!top.length) return t.notFound
+    if (!top.length) return { text: t.notFound }
     const m = ctx.current.market
-    return top.map((x) => `${x.head}\n${x.lines.slice(0, 4).map((l) => (m ? forMarket(l, m, L) : l)).join('\n')}`).join('\n\n')
+    return { text: t.tapHint, faq: top.map((x) => ({ head: x.head, items: x.lines.slice(0, 6).map((l) => lineItem(m ? forMarket(l, m, L) : l)) })) }
   }
 
   function push(...add: Msg[]) { setMsgs((prev) => [...prev.map((x) => ({ ...x, chips: undefined })), ...add]) }
+
+  function showPrice(userText: string, chips?: Chip[]) {
+    const pc = priceCards()
+    if (pc) { push({ from: 'me', text: userText }, { from: 'bot', text: pc.head, cards: pc.cards, note: t.draft, chips: chips || topicChips }); return }
+    const ans = answerTopic('price')
+    push({ from: 'me', text: userText }, { from: 'bot', text: ans.text, faq: ans.faq, chips: chips || topicChips })
+  }
 
   function onChip(key: string) {
     const c = ctx.current
@@ -463,7 +553,7 @@ export default function StaffPage() {
       return
     }
     if (key === 'svc') { push({ from: 'bot', text: t.whichService, chips: svcChips }); return }
-    if (key === 'ind') { push({ from: 'bot', text: t.whichIndustry, chips: INDUSTRIES.map((x, i) => ({ key: 'ind:' + i, label: x[L] })) }); return }
+    if (key === 'ind') { push({ from: 'bot', text: t.whichIndustry, chips: INDUSTRY_ORDER.map((i) => ({ key: 'ind:' + i, label: INDUSTRIES[i][L] })) }); return }
     if (key.startsWith('svc:')) {
       c.svc = Number(key.slice(4))
       push({ from: 'me', text: svcLabel(c.svc) }, { from: 'bot', text: t.whichMarket, chips: [{ key: 'm:th', label: t.markets.th }, { key: 'm:us', label: t.markets.us }] })
@@ -471,22 +561,22 @@ export default function StaffPage() {
     }
     if (key.startsWith('m:')) {
       c.market = key.slice(2) as Market
+      if (c.next === 'price') { c.next = undefined; showPrice(t.markets[c.market]); return }
       push({ from: 'me', text: t.markets[c.market] }, { from: 'bot', text: t.whatKnow, chips: topicChips })
       return
     }
     if (key.startsWith('topic:')) {
       const k = key.slice(6) as (typeof TOPIC_KEYS)[number]
       if (!c.market) c.market = 'th'
-      if (k === 'price') {
-        const pc = priceCards()
-        if (pc) { push({ from: 'me', text: t.topics[k] }, { from: 'bot', text: pc.head, cards: pc.cards, note: t.draft, chips: topicChips }); return }
-      }
-      push({ from: 'me', text: t.topics[k] }, { from: 'bot', text: answerTopic(k), chips: topicChips })
+      if (k === 'price') { showPrice(t.topics[k]); return }
+      const ans = answerTopic(k)
+      push({ from: 'me', text: t.topics[k] }, { from: 'bot', text: ans.text, faq: ans.faq, chips: topicChips })
       return
     }
     if (key.startsWith('ind:')) {
       const i = Number(key.slice(4))
-      push({ from: 'me', text: INDUSTRIES[i][L] }, { from: 'bot', text: answerIndustry(i), chips: [{ key: 'svc', label: t.pickForPrice }, { key: 'ind', label: t.otherIndustry, tone: 'ghost' as const }] })
+      const ans = answerIndustry(i)
+      push({ from: 'me', text: INDUSTRIES[i][L] }, { from: 'bot', text: ans.text, faq: ans.faq, chips: [{ key: 'svc', label: t.pickForPrice }, { key: 'ind', label: t.otherIndustry, tone: 'ghost' as const }] })
     }
   }
 
@@ -495,7 +585,15 @@ export default function StaffPage() {
     const q = input.trim()
     if (!q || !lang) return
     setInput('')
-    push({ from: 'me', text: q }, { from: 'bot', text: answerFree(q), chips: ctx.current.svc !== undefined ? topicChips : svcChips })
+    if (/ราคา|แพ็กเกจ|แพคเกจ|แพจเกจ|แพ็คเกจ|package|pricing|price|cost|how much|quote/i.test(q)) {
+      const c = ctx.current
+      if (c.svc !== undefined && c.market) { showPrice(q); return }
+      c.next = 'price'
+      push({ from: 'me', text: q }, { from: 'bot', text: c.svc !== undefined ? t.whichMarket : t.pickForPrice, chips: c.svc !== undefined ? [{ key: 'm:th', label: t.markets.th }, { key: 'm:us', label: t.markets.us }] : svcChips })
+      return
+    }
+    const ans = answerFree(q)
+    push({ from: 'me', text: q }, { from: 'bot', text: ans.text, faq: ans.faq, chips: ctx.current.svc !== undefined ? topicChips : svcChips })
   }
 
   return (
@@ -511,9 +609,10 @@ export default function StaffPage() {
 
         {msgs.map((m, i) => (
           <div key={i} style={{ margin: '10px 0' }}>
-            <div style={{ display: 'flex', justifyContent: m.from === 'me' ? 'flex-end' : 'flex-start' }}>
+            {m.text && <div style={{ display: 'flex', justifyContent: m.from === 'me' ? 'flex-end' : 'flex-start' }}>
               <div style={{ maxWidth: '90%', padding: '12px 16px', borderRadius: 18, whiteSpace: 'pre-wrap', lineHeight: 1.65, fontSize: 15, ...(m.from === 'me' ? { background: 'var(--accent)', color: '#14131A', borderBottomRightRadius: 6 } : { background: 'rgb(var(--fg) / 0.07)', borderBottomLeftRadius: 6 }) }}>{m.text}</div>
-            </div>
+            </div>}
+            {m.faq && <FaqView groups={m.faq} />}
             {m.cards && (
               <div style={{ marginTop: 10 }}>
                 <PriceCards cards={m.cards} tapScope={T[L].tapScope} tapHide={T[L].tapHide} />
