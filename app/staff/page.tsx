@@ -19,7 +19,7 @@ type Answer = { text: string; faq?: Faq[] }
 type Msg = { from: 'bot' | 'me'; text: string; chips?: Chip[]; cards?: PCard[]; note?: string; faq?: Faq[] }
 
 // Section positions are the same in both handbooks.
-const S = { sells: 2, confirmed: 4, brand: 5, web: 6, usa: 7, other: 8, ind: 9, app: 10, erp: 12, wt: 13, q: 14, cases: 15, pkg: 16, det: 17, scope: 18, tier: 19 }
+const S = { sells: 2, confirmed: 4, brand: 5, web: 6, usa: 7, other: 8, ind: 9, app: 10, erp: 12, wt: 13, q: 14, cases: 15, pkg: 16, det: 17, scope: 18, tier: 19, tech: 20 }
 
 type Svc = { q: string; pk?: string; kind: 'web' | 'brand' | 'app' | 'fix' | 'erp' | 'wt' | 'other'; key?: string; th: string; en: string; keyEn?: string }
 const SERVICES: Svc[] = [
@@ -80,6 +80,8 @@ const T = {
     byIndustry: 'ถามตามธุรกิจลูกค้า',
     changeService: 'เปลี่ยนบริการ',
     pickForPrice: 'เลือกบริการเพื่อดูราคา',
+    techGuide: 'คู่มือเลือกเทคโนโลยี',
+    whichTech: 'อยากดูคู่มือเรื่องไหนครับ',
     otherIndustry: 'ธุรกิจอื่น',
     industryTail: 'ถ้าบอกว่าลูกค้าอยู่ไทยหรือ USA ผมจะบอกราคาตามตลาดนั้นครับ',
     none: 'ยังไม่มีข้อมูลหัวข้อนี้ในคู่มือครับ',
@@ -115,6 +117,8 @@ const T = {
     byIndustry: 'By customer industry',
     changeService: 'Change service',
     pickForPrice: 'Pick a service for pricing',
+    techGuide: 'Technology picking guides',
+    whichTech: 'Which guide would you like?',
     otherIndustry: 'Other industry',
     industryTail: 'Tell me if the customer is in Thailand or the USA and I will quote that market.',
     none: 'No information on this topic in the handbook yet.',
@@ -307,10 +311,11 @@ export default function StaffPage() {
   const p = P[L]
   const secs = kb[L]
   const svcLabel = (i: number) => SERVICES[i][L]
-  const svcChips: Chip[] = SERVICES.map((s, i) => ({ key: 'svc:' + i, label: s[L] }))
+  const svcChips: Chip[] = [...SERVICES.map((s, i) => ({ key: 'svc:' + i, label: s[L] })), { key: 'tech', label: t.techGuide, tone: 'ghost' as const }]
   const topicChips: Chip[] = [
     ...TOPIC_KEYS.map((k) => ({ key: 'topic:' + k, label: t.topics[k] })),
     { key: 'ind', label: t.byIndustry, tone: 'ghost' as const },
+    { key: 'tech', label: t.techGuide, tone: 'ghost' as const },
     { key: 'svc', label: t.changeService, tone: 'ghost' as const },
   ]
 
@@ -587,10 +592,16 @@ export default function StaffPage() {
       const l = key.slice(5) as Lang
       setLang(l)
       const tt = T[l]
-      push({ from: 'me', text: l === 'th' ? 'ภาษาไทย' : 'English' }, { from: 'bot', text: tt.hello, chips: SERVICES.map((s, i) => ({ key: 'svc:' + i, label: s[l] })) })
+      push({ from: 'me', text: l === 'th' ? 'ภาษาไทย' : 'English' }, { from: 'bot', text: tt.hello, chips: [...SERVICES.map((s, i) => ({ key: 'svc:' + i, label: s[l] })), { key: 'tech', label: tt.techGuide, tone: 'ghost' as const }] })
       return
     }
     if (key === 'svc') { push({ from: 'bot', text: t.whichService, chips: svcChips }); return }
+    if (key === 'tech') { push({ from: 'bot', text: t.whichTech, chips: [...(secs[S.tech]?.blocks || []).map((b, i) => ({ key: 'tech:' + i, label: b.h2.replace(/^T:\S+\s/, '') })), { key: 'svc', label: t.changeService, tone: 'ghost' as const }] }); return }
+    if (key.startsWith('tech:')) {
+      const tb = (secs[S.tech]?.blocks || [])[Number(key.slice(5))]
+      if (tb) push({ from: 'me', text: tb.h2.replace(/^T:\S+\s/, '') }, { from: 'bot', text: t.tapHint, faq: [{ items: tb.lines.map(lineItem) }], chips: [{ key: 'tech', label: t.techGuide }, { key: 'svc', label: t.changeService, tone: 'ghost' as const }] })
+      return
+    }
     if (key === 'ind') { push({ from: 'bot', text: t.whichIndustry, chips: INDUSTRY_ORDER.map((i) => ({ key: 'ind:' + i, label: INDUSTRIES[i][L] })) }); return }
     if (key.startsWith('svc:')) {
       c.svc = Number(key.slice(4))

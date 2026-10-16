@@ -2618,4 +2618,110 @@ Not included: Software and hosting, monthly AI costs, certification fees, any gu
 What moves the price: Number of departments, branches and group companies, systems connected, security requirements, number of users and number of phases
 How to pitch it: This is an enterprise level project. Do not give a fixed figure; say it starts with Discovery so the price matches the real work, then pass to the team lead
 Upgrade when: Pass to the team lead in every case. Never quote yourself
+
+# Technology picking guides (September 2026, for explaining to customers and technical direction; rankings are guidance, not benchmarks)
+
+## T:ai-assistants AI Assistants: which AI tool fits your work (September 2026)
+1. How to read grades => S is a very good fit, A a fit, B has trade-offs, C is not the main use. Ratings are guidance from work types and tools, not model benchmark results. Scores reflect fit for the job, not overall intelligence. Features depend on plan, version and access rights, not only the free plan
+2. ChatGPT (writing S, web research A, code S, documents S) => Wide ranging work from thinking to producing files; for code use Codex alongside
+3. Claude (writing S, web research A, code S, documents S) => Drafting, analysis and building deliverables; for code use Claude Code alongside
+4. Gemini (writing A, web research S, code A, documents A) => Research and extending work inside Google, depending on connected services
+5. Perplexity (writing B, web research S, code B, documents A) => Web search with cited sources; open the original sources to verify
+6. Gemini Notebook / NotebookLM (writing B, web research A, code C, documents S) => Reads and summarises from a set of sources; suits prepared documents
+7. Microsoft 365 Copilot (writing A, web research A, code C, documents S) => Works inside Word, Excel and PowerPoint; it is not GitHub Copilot
+8. Pick by task => Writing: ChatGPT or Claude. Research: Perplexity or Gemini. Reference documents: Gemini Notebook
+## T:backend Backend frameworks for JavaScript and TypeScript: which to pick
+1. Criteria and scope => For starting a new API system on Node.js, judged by structure, ready made tools and assembly effort. The ranking is guidance, not a benchmark. C does not mean bad, and if the team already knows it the ranking can change. NestJS can run on Express or Fastify
+2. S best choice for most teams: NestJS => Strength: clear structure, good for teams. Trade-off: you must learn the framework patterns
+3. S best choice for most teams: Fastify => Strength: light API with schema and plugins. Trade-off: you define the app structure yourself
+4. A great fit when it matches: AdonisJS => Strength: full toolset for business web. Trade-off: you must follow the framework way
+5. A great fit when it matches: Hono => Strength: light, uses Web Standards. Trade-off: large systems need extra tooling
+6. B flexible but needs more assembly: Express => Strength: easy start, highly customisable. Trade-off: you choose validation and structure yourself
+7. B flexible but needs more assembly: hapi => Strength: configuration and plugin focus. Trade-off: specific patterns to learn
+8. C choose only for specific reasons: Koa => Strength: small core, control your own middleware. Trade-off: much basic assembly needed
+9. Best by job => Large team: NestJS. Light API: Fastify. Edge: Hono. Business web: AdonisJS
+## T:headless-cms Example headless CMS: Next.js + Payload CMS (beautiful, fast, easy to edit, scalable)
+1. Best for => Resorts, hotels, restaurants and SMEs of every kind, wanting an easy to edit site without coding, supporting marketing and SEO, able to connect AI and other systems later, secure and scalable
+2. Frontend website (Next.js) => A beautiful, modern, fast site that is SEO friendly
+3. Headless CMS (Payload CMS) => Manage content through an Admin Panel, changing text, images and promotions at once
+4. Multi-channel => One content set serves many channels: website (Next.js), mobile app, marketing (email, social) and an API for outside systems
+5. AI content help => Auto article drafts, SEO titles and descriptions, Thai and English translation, promotion ideas and AI generated images
+6. System architecture => Next.js (frontend) calls the API of Payload CMS (headless CMS), which uses PostgreSQL as database, cloud storage for media files and can connect AI services (such as OpenAI)
+7. Five selling points => Faster with Next.js, easy for the marketing team, scalable across channels, AI connected content creation, enterprise grade security (as stated in the material; confirm details with the team lead before promising customers)
+## T:cross-platform Cross-platform: Flutter vs React Native vs Kotlin and others (September 2026)
+1. How to read grades => S very suitable, A suitable, B trade-offs, C not the first choice yet, a dash means not a direct target. The order is guidance, not a benchmark. Web app means an app in the browser, not content site or SEO ranking
+2. Flutter / Dart (mobile S, web app B, desktop A) => Highly shareable UI, but Dart must be learned
+3. React Native / TypeScript + React (mobile S, web app A, desktop B) => Web and desktop use extra projects
+4. Kotlin Multiplatform / Kotlin + Compose (mobile S, web app C, desktop A) => Compose on web is still Beta
+5. Ionic + Capacitor / TypeScript + HTML/CSS (mobile A, web app S, desktop B) => Mobile uses a WebView and desktop needs extras
+6. .NET MAUI / C# + XAML (mobile A, web app not a target, desktop A) => Desktop mainly Windows and macOS
+7. Tauri / Web UI + Rust (mobile B, web app not a target, desktop S) => Uses the system WebView; check supported plugins
+8. Electron / JavaScript and TypeScript (mobile not a target, web app not a target, desktop S) => Chromium based so apps are larger
+9. Kotlin is not Kotlin Multiplatform => Kotlin is the language; KMP shares business logic, with separate native UI or shared UI via Compose Multiplatform. Here KMP is rated on sharing UI with Compose
+10. Pick by situation => Want to share UI across screens: Flutter. Know React: React Native + Expo (extendable to web and desktop). Android background: Kotlin Multiplatform. Desktop from web: Tauri or Electron
+## T:vercel What Vercel is: a platform to deploy and run web apps in the cloud
+1. What it is => Vercel takes code from GitHub to a live website quickly, safely and reliably, especially for Next.js, React and popular frameworks
+2. How it works => Write code and push it to GitHub; Vercel checks and deploys automatically through build, deploy, CDN setup and HTTPS, ready at once and reachable worldwide
+3. What it does => Auto deployment on every GitHub update, Preview Deployments with a sample link per change, a global CDN, automatic HTTPS, custom domains, serverless Functions and APIs, analytics and observability, and support for AI and web apps such as SaaS and e-commerce
+4. Hobby plan (free) => $0 forever, for personal projects, trials and small sites. 1 developer only, no team collaboration, basic deploy features
+5. Pro plan => $20 per month per developer seat with free viewer seats, includes $20 a month as flexible usage credit for usage billed services. Team collaboration, spend management and alerts, on-demand concurrent builds and some self-serve Enterprise capabilities such as SAML SSO and HIPAA BAA. Some services can cost more with usage, such as Functions, Storage and Bandwidth
+6. Who it fits => Start-ups, SMEs, agencies, AI platforms, SaaS, e-commerce and corporate sites; especially good with Next.js and GitHub
+7. Price note => Plan information is based on Vercel as of September 2026. Prices and rights may change; check the official Vercel site before telling customers
+## T:prospecting AI powered prospecting and digital growth system: find, analyse, advise and contact 500 businesses a day by email
+1. Concept => Use AI to analyse each website and business and write specific advice, to raise the chance of closing sales. Target: 500 businesses a day
+2. Step 1: find target businesses on Google Maps => Set the goal of 500 a day by type, such as restaurants and cafes, hotels and resorts, retail and stores, clinics and healthcare, manufacturing and industrial, or others as targeted
+3. Step 2: collect and record data (500 a day) => Capture business name, website, phone, email, address and business type
+4. Step 3: AI analyses each website and business => Automatic analysis summarising what to improve, such as incomplete SEO (title, meta, keywords), unattractive site content, location pages not SEO friendly, no customer capture or loyalty system and no AI use yet
+5. Step 4: AI writes specific advice for the business => Website and design (refresh design, raise conversion and CTAs, fix location pages), content (rewrite, tell the identity, branch specific content), local SEO (title, meta, H1 to H3, Local SEO and Google Maps, keywords) and AI solutions (AI review and customer insights, AI loyalty and CRM, AI chat assistant for customers)
+6. Step 5: send a personalised email with AI advice => Email the owner or manager saying we found the business on Google Maps, analysed the site and found chances to improve the website, local SEO and customer engagement, attach a short business specific summary and invite a brief chat
+7. Step 6: follow up and book a call to close => Use the analysis as the conversation starter; the interested customer replies, present details and examples, close and start the website work, then care continuously with AI and marketing
+8. After the customer agrees => Build and care continuously: redesign the site, refine content, do SEO and install AI to raise customers and sales. Covers redesign, content development, SEO, AI systems (chat assistant, loyalty and CRM, review intelligence, customer insights), digital marketing (local Google Ads, social, email) and reports (traffic, customer growth, conversion, AI insight report)
+9. Caution (added by the assistant) => Before sending bulk cold email, check email marketing law and rules, such as CAN-SPAM in the US and PDPA in Thailand: identify the sender, give a working unsubscribe and never write misleading text. Confirm with the team lead before real use
+10. What the customer gets => A beautiful, easy site, better Google ranking, more new customers, returning customers, AI helping run the business and steady sales growth (describe as direction only, never promise figures)
+## T:js-frameworks JavaScript frameworks: which is best for your work (September 2026)
+1. How to read grades => S very suitable, A suitable, B trade-offs, C less suitable. Ranked by job, not speed or popularity. C means a mismatch when used alone, not a bad tool. React is a library. Enterprise apps are judged by each tool role. Columns: learning to make web pages, full web (pages plus server), enterprise apps (team structure), API (back end)
+2. React (learning A, full web B, enterprise A, API C) => UI library
+3. Vue (learning S, full web B, enterprise A, API C) => Frontend
+4. Angular (learning B, full web B, enterprise S, API C) => Frontend
+5. Svelte (learning S, full web B, enterprise B, API C) => Frontend
+6. Next.js (learning B, full web S, enterprise A, API A) => Full-stack
+7. Nuxt (learning A, full web S, enterprise A, API A) => Full-stack
+8. SvelteKit (learning A, full web A, enterprise B, API A) => Full-stack
+9. Express (learning C, full web C, enterprise B, API A) => Backend
+10. NestJS (learning C, full web C, enterprise S, API S) => Backend
+11. Fastify (learning C, full web C, enterprise A, API S) => Backend
+12. Pick by job => Start with web pages: Vue. Full web: Next.js or Nuxt. Structured API: NestJS
+## T:code-or-cms Hand coding or CMS: ranking ways to build business websites (September 2026)
+1. How to read grades => S strongly recommended, A very suitable, B trade-offs, C only for specific jobs. Columns: flexibility, speed to deliver and content editing. This ranking is practical guidance, not a benchmark
+2. 1 Custom code + headless CMS (flexibility S, speed A, content editing S) => Best balanced, but needs developers
+3. 2 Fully hand coded (flexibility S, speed C, content editing C) => High freedom but costs much time and budget
+4. 3 Webflow CMS (flexibility A, speed S, content editing S) => Fast design but has monthly fees
+5. 4 WordPress (flexibility A, speed A, content editing S) => Flexible but plugins need care
+6. 5 Shopify (flexibility B, speed S, content editing S) => Great for online selling but add-on apps cost money
+7. 6 Website builder (flexibility C, speed S, content editing S) => Easy start but limited expansion
+8. 7 Ready made template (flexibility C, speed S, content editing B) => Economical but little differentiation
+9. What custom code + headless CMS is => Developers design the system freely while the business team edits content through a CMS and sends data to the website, app and other channels via API. Highly flexible with easy content management
+10. Pick by job => Specialised system: hand code. Premium website: headless CMS. SME site: WordPress or Webflow. Online store: Shopify
+## T:cms-ranking CMS ranking for websites: WordPress vs Webflow vs Shopify and others (September 2026)
+1. How to read grades => S strongly recommended, A very suitable, B trade-offs, C specialised. Columns: business site, store, enterprise. This ranking is practical guidance, not a benchmark
+2. WordPress (business S, store A, enterprise A) => Highly flexible but plugins need care
+3. Webflow (business S, store B, enterprise A) => Strong design but cost scales with size
+4. Shopify (business B, store S, enterprise A) => Great for online selling but add-on apps cost money
+5. Sanity (business A, store B, enterprise S) => Suits headless work but needs developers
+6. Strapi (business A, store B, enterprise S) => Full control of the system but servers need care
+7. Drupal (business B, store C, enterprise S) => Complex system needing expert teams
+8. HubSpot (business A, store B, enterprise A) => Good CRM link but high price
+9. Wix Studio (business A, store B, enterprise C) => Easy to use but deep customisation is limited
+10. Ghost (business A, store C, enterprise B) => Strong for articles and memberships
+11. Framer (business A, store C, enterprise C) => Beautiful pages but large scale CMS is not a strength
+12. What a headless CMS is => Separates content from the look of the site and sends data via API to the website, mobile app and many channels
+13. Pick by job => Company site: WordPress. Premium brand: Webflow. Online store: Shopify. High end web and apps: Sanity or Strapi
+## T:industrial-ai Developing AI for industry: tools, systems and starting approach for business (September 2026)
+1. Principle => Start from a measurable problem. Adjust this approach to the machines, data, safety and budget. Key rule: AI should not command machines directly without a safety system and approval
+2. Four AI jobs that create factory value => 1) Camera quality inspection: find flaws, count pieces, check components. 2) Machine failure prediction: analyse vibration, temperature, sound and current. 3) Raise production efficiency: cut defects, find bottlenecks, plan capacity. 4) A knowledge assistant: search manuals, summarise reports and guide procedures
+3. Recommended toolset (S is the recommended core, A as fits) => AI development: Python + PyTorch (S). Vision: YOLO + OpenCV (S). Sensor data: XGBoost + Scikit-learn (S). Edge compute: NVIDIA Jetson + TensorRT (S). Machine connection: MQTT + OPC UA (S). Back end: FastAPI + PostgreSQL (A). Cloud and MLOps: Azure ML + Microsoft Fabric (A). Deployment: Docker (S). Dashboard: Power BI + Grafana (A). Web app: Next.js (A)
+4. Five layer Industrial AI architecture => 1) Cameras and sensors capture images, vibration, temperature and PLC data. 2) Edge AI (Jetson) processes at once, cutting delay. 3) AI model (YOLO or machine learning) analyses data. 4) Business systems link MES, ERP, maintenance and quality. 5) Dashboard and alerts with real time reports
+5. First product HALIVIQ should start with: AI Visual Inspection => A camera AI system inspecting product quality: easy to show and demo, measured by defects and inspection time, quick to install as a pilot and expandable across production lines. Flow: camera, edge AI, pass or fail check, dashboard, alert
+6. Five step project plan => 1) Pick the problem, set KPIs and current cost. 2) Collect data: images, sensors and production history. 3) Build a pilot on one machine or one line. 4) Measure accuracy, downtime, defects and ROI. 5) Expand, linking MES and ERP and adding more inspection points
+7. Pick by job => Product inspection: YOLO + OpenCV. Machine failure: XGBoost + sensors. Factory data: Azure + MQTT. Management screen: Next.js + Power BI
 `
