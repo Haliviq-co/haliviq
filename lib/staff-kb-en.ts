@@ -305,4 +305,62 @@ A platform = an app plus a back office (Admin) so the business can manage users,
 - SEO/AEO/GEO in a website package = a one-time basic setup while building the site. The monthly SEO/AEO/GEO service = ongoing work (writing content, improving, tracking results). They do not overlap. Never promise rankings.
 - Phase = splitting work into stages, doing the key parts first
 - Production-ready = an app ready for real people to use safely and reliably
+
+
+# ERP + AI for business and industry (prices are [estimate], not confirmed, always keep Thailand and USA separate)
+Ask first whether the customer is in Thailand or the US. Prices are "starting from". Always Discovery first. Never give a fixed price at first contact. Check with the team lead before quoting a customer.
+## What is ERP (explain to sales)
+ERP is one central system that puts every department of the company in one place, such as sales, stock, purchasing, production and accounting, replacing scattered Excel files and paper. Data connects automatically and executives see real numbers right away.
+Simple comparison: like a central brain for the company. Every department uses the same data, nobody re-types anything and nobody asks which number is right.
+Good-fit customers: factories, wholesalers, logistics, construction, businesses with several branches or departments that have outgrown Excel.
+## ERP Starter level
+Thai: 300,000 – 600,000 THB | USA: $40,000 – $80,000 | Typical time: 3–4 months
+Best for: businesses that want to leave Excel and start with the most painful part first.
+Includes: 1–2 modules (for example sales + stock), custom screens for the business, up to about 10 users, core reports, basic migration of existing data, user training.
+Excludes: full accounting, complex integration with existing systems, multiple branches.
+## ERP Standard level
+Thai: 600,000 – 1,500,000 THB | USA: $80,000 – $200,000 | Typical time: 4–6 months
+Best for: businesses that want several departments working on one system.
+Includes: several modules (sales, purchasing, stock, accounting, executive reports), multi-level user permissions, integration with systems already in use (for example accounting, LINE, payments), migrating existing data, dashboards, AI that answers data questions and summarizes reports.
+## ERP full Platform level
+Thai: 1,500,000 THB and up | USA: $200,000 and up | Typical time: 6–12 months, done in phases
+Best for: mid to large organizations, all departments, multiple branches, needing security and PDPA.
+Includes: every module needed, mobile app for field teams, integration with several existing systems, advanced AI (forecasting, anomaly alerts), full back office and permissions. Estimate only after Discovery. Pass to the team lead.
+## ERP modules (explain to sales what each one does)
+- Sales: quotations, sales orders, customers
+- Purchasing: purchase orders, suppliers, approvals
+- Stock: goods in and out, balances, low-stock alerts
+- Production: production plans, recipes (bills of materials), costing
+- Accounting and finance: receivables, payables, financial reports
+- HR: employees, leave, working time
+- Reports and dashboards: key numbers executives can see right away
+## AI in ERP and industry
+AI is our number two selling point. We put it in ERP so the system "thinks for you" and does not just store data.
+- Ask data in plain language: for example "which customer bought the most this month" and get an answer right away
+- Automatic report summaries: daily or weekly sales and stock summaries
+- Stock and demand forecasting: warns in advance what will run out
+- Anomaly alerts: for example unusual sales, scrap rate spikes, abnormal machines
+- Answer questions from internal documents and manuals: staff ask and get answers from company documents
+- Help fill in documents: read a purchase order or invoice and enter it into the system
+Price: AI is included from the Standard level up, or bought separately as an AI Assistant (Thai: 80,000 – 400,000 THB | USA: $10,000 – $60,000). Monthly AI API cost is separate. Never promise accuracy.
+## AI examples by industry
+- Factory: scrap forecasting, machine alerts, production planning
+- Logistics: route planning, real-time job tracking, arrival time estimates
+- Retail and wholesale: stock forecasting, product recommendations, answering customer chats
+- Construction: project progress and cost tracking, site report summaries
+- Finance and large enterprise: anomaly detection, executive report summaries, internal document search assistant
+## Questions sales should ask before quoting ERP
+1. What do they work with now (Excel, accounting software, paper) and where does it hurt most
+2. How many departments, branches and users will use the system
+3. Which modules are needed, which one to start with
+4. What existing systems must connect (accounting, payments, LINE, machines)
+5. Is there existing data to migrate, how much, in what format
+6. Who decides, what budget and deadline
+## Selling steps and handling ERP objections
+- "Off-the-shelf software is cheaper": off-the-shelf software forces the business to adapt to the system. Ours is designed around how they really work, can be extended, the customer owns the code and pays no yearly per-seat license.
+- "Excel is fine": ask how many hours a day are lost re-typing and fixing numbers that do not match, and what a mistake costs.
+- "Expensive and afraid it will not work": offer the Starter level or phase one first, starting with the most painful part, lowering the budget risk.
+- "Staff will not know how to use it": designed to be easy, with training and AI to help when they get stuck.
+- "Give me a discount": do not cut the price directly. Reduce the number of modules or split into phases, and pass to the team lead for anything more.
+- Sell in phases: phase 1 the most painful module, phase 2 add modules and integrations, phase 3 advanced AI and mobile app. Close by booking a free 30-minute call, then Discovery before issuing a quote.
 `

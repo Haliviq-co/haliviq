@@ -16,16 +16,18 @@ type Chip = { key: string; label: string; tone?: 'ghost' }
 type Msg = { from: 'bot' | 'me'; text: string; chips?: Chip[] }
 
 // Section positions are the same in both handbooks.
-const S = { sells: 2, confirmed: 4, brand: 5, web: 6, usa: 7, other: 8, ind: 9, app: 10 }
+const S = { sells: 2, confirmed: 4, brand: 5, web: 6, usa: 7, other: 8, ind: 9, app: 10, erp: 12 }
 
-type Svc = { kind: 'web' | 'brand' | 'app' | 'fix' | 'other'; key?: string; th: string; en: string; keyEn?: string }
+type Svc = { kind: 'web' | 'brand' | 'app' | 'fix' | 'erp' | 'other'; key?: string; th: string; en: string; keyEn?: string }
 const SERVICES: Svc[] = [
   { kind: 'web', th: 'เว็บไซต์', en: 'Website' },
   { kind: 'brand', th: 'Branding (แบรนด์)', en: 'Branding' },
   { kind: 'app', th: 'แอปมือถือ (iOS/Android)', en: 'Mobile app (iOS/Android)' },
   { kind: 'other', th: 'AI Assistant / แชตบอต', en: 'AI Assistant / chatbot', key: 'AI Assistant', keyEn: 'AI Assistant' },
   { kind: 'other', th: 'AI Voice Agent', en: 'AI Voice Agent', key: 'AI Voice', keyEn: 'AI Voice' },
-  { kind: 'other', th: 'ERP / CRM', en: 'ERP / CRM', key: 'ERP', keyEn: 'ERP' },
+  { kind: 'erp', th: 'ERP / ระบบบริหารองค์กร', en: 'ERP / enterprise system' },
+  { kind: 'erp', th: 'AI สำหรับอุตสาหกรรม / ERP', en: 'AI for industry / ERP', key: 'AI', keyEn: 'AI' },
+  { kind: 'other', th: 'CRM (จัดการลูกค้า)', en: 'CRM', key: 'ERP', keyEn: 'ERP' },
   { kind: 'other', th: 'อีคอมเมิร์ซ', en: 'E-commerce', key: 'อีคอมเมิร์ซ', keyEn: 'E-commerce' },
   { kind: 'other', th: 'LINE Mini App', en: 'LINE Mini App', key: 'LINE', keyEn: 'LINE' },
   { kind: 'other', th: 'ออกแบบ UX/UI', en: 'UX/UI design', key: 'UX/UI', keyEn: 'UX/UI' },
@@ -220,6 +222,10 @@ export default function StaffPage() {
     if (s.kind === 'app') {
       const sec = secs[S.app]
       return { title, intro: sec.intro, blocks: sec.blocks }
+    }
+    if (s.kind === 'erp') {
+      const sec = secs[S.erp]
+      return { title, intro: sec.intro, blocks: s.key ? sec.blocks.filter((x) => x.h2.includes(s.key as string)) : sec.blocks }
     }
     if (s.kind === 'fix') {
       const lines = secs[S.confirmed].intro.filter((l) => l.includes(p.fixLine))
