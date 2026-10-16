@@ -646,4 +646,39 @@ Ask one group at a time. Do not fire every question at once. Listen, then ask fo
 3. If we send a proposal, who needs to see it and when can you reply
 4. When is a good time for a free 30-minute video call to sum up the needs
 5. Do you want an NDA signed before discussing details
+
+
+# Case studies (reference work to show customers)
+Sales use real work as proof. Pick the case closest to the customer's business or service, then send the link. Never quote result numbers that are not on the case page.
+## Case list
+- savelberg|fnb,web,ai|Savelberg (Michelin-starred restaurant): bilingual website with an AI chatbot answering menu and booking questions
+- ovo|fnb,web,ecom|OVO (ice cream brand): photo-first website where customers browse the menu and order online
+- sra-bua|fnb,web,luxury|Sra Bua by Kiin Kiin (fine dining): bilingual website with online reservations that lets the food and room speak first
+- bbk-menu|fnb,web,ux|BBK Menu (restaurant discovery): UX/UI and a website to discover restaurants and dishes by cuisine and occasion
+- baan-khanitha|fnb,web,seo|Baan Khanitha (Thai restaurant): easy-to-browse website with menu, branches, booking and basic local SEO
+- suda|fnb,brand,web,usa|SUDA (Thai restaurant in the US): brand identity and launch website for a contemporary Thai restaurant in Bellevue, WA
+- base|fitness,web|BASE (fitness studio): modern website with trainer profiles and a class schedule for booking a trial class
+- blue-bear|factory,web|Blue Bear (medical uniforms): catalogue website for hospital and clinic buyers who then request a quote
+- thai-metal-aluminium|factory,web|Thai Metal Aluminium (precision parts): corporate website showing machinery, process and quality standards to industrial buyers
+- vera|retail,ecom,web|VERA (bag brand): own-brand online store with multi-angle photos, one-page checkout and order tracking
+- panpuri|retail,ecom,web,ux|PAÑPURI (wellness and skincare): UX/UI design then a Shopify store with a premium look and simple checkout
+- mbk|retail,app|MBK Center (shopping mall): mobile app with stores, promotions, directory and member points
+- jampha-shopping-mall|retail,ecom,web,ai|Jampha Shopping Mall (community mall): e-commerce website and AI assistant opening an online channel and easing back-office work
+- nfi|gov,web|NFI (National Food Institute): website sorting lab services and research into clear categories with search
+- ditp|gov,app|DITP (export promotion): new version of the export-promotion app for market data and trade events
+- excise-department|gov,app|Excise Department: tax inspection app that brings data from several agencies together on-site
+- itagc|gov,web,ux|ITAGC (government contractor transparency): UX/UI then a website explaining the assessment steps credibly
+- department-of-water-resources|gov,app,ai|Department of Water Resources: AI module added to the existing app to forecast water conditions and flag anomalies
+- immigration-bureau|gov,app,ai|Immigration Bureau: inspection app with AI document and face verification
+- ministry-of-culture|gov,app|Ministry of Culture: culture and heritage app kept in step with the existing website automatically
+- world-surprise-travel|hotel,web,brand,ai,crm|World Surprise Travel (tours): brand, website and AI CRM to compare packages and follow every lead
+- shanghai-mansion-bangkok|hotel,web|Shanghai Mansion Bangkok (boutique hotel): website and online room-booking so guests browse rooms and request a booking themselves
+- awii-house|construction,realestate,web,crm|Awii House (home builder): website showing house designs and a CRM following each customer from consultation to contract
+- admire|construction,realestate,web,ux,ai,crm|Admire (custom home builder): UX/UI, new website and an AI-assisted CRM so every enquiry is followed up
+- canapaya-residences|realestate,web,brand,crm|Canapaya Residences (riverside project): brand identity, website and property-sales CRM from first viewing to ownership transfer
+- sena-development|realestate,crm,ai|Sena Development (developer): CRM and AI giving sales and management one shared view of customers and sales
+- rfs|factory,web,ai,crm|RFS (telecom, Singapore): website and AI CRM built for long B2B buying cycles
+- prima-marine|factory,web|Prima Marine (marine logistics): corporate website for a listed company laying out fleet, services and company information
+- dsk|health,web,ux,ai,crm|DSK (aesthetic clinic): business consulting, website, UX/UI and an AI-assisted CRM to earn trust and keep leads warm
+- meko-international-hospital|health,brand,web|MEKO International Hospital (aesthetic hospital): brand, website and graphics giving one polished look across web, social and print
 `

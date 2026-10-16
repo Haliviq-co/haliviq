@@ -17,7 +17,7 @@ type PCard = { title: string; price: string; time?: string; scope: string[] }
 type Msg = { from: 'bot' | 'me'; text: string; chips?: Chip[]; cards?: PCard[]; note?: string }
 
 // Section positions are the same in both handbooks.
-const S = { sells: 2, confirmed: 4, brand: 5, web: 6, usa: 7, other: 8, ind: 9, app: 10, erp: 12, wt: 13, q: 14 }
+const S = { sells: 2, confirmed: 4, brand: 5, web: 6, usa: 7, other: 8, ind: 9, app: 10, erp: 12, wt: 13, q: 14, cases: 15 }
 
 type Svc = { q: string; kind: 'web' | 'brand' | 'app' | 'fix' | 'erp' | 'wt' | 'other'; key?: string; th: string; en: string; keyEn?: string }
 const SERVICES: Svc[] = [
@@ -56,7 +56,9 @@ const INDUSTRIES: { th: string; en: string }[] = [
   { th: 'ก่อสร้าง / ขนส่ง', en: 'Construction / logistics' },
   { th: 'โรงแรมและแบรนด์หรู (USA)', en: 'Luxury hotels and brands (USA)' },
 ]
-const TOPIC_KEYS = ['price', 'scope', 'ask', 'sell', 'plain'] as const
+const TOPIC_KEYS = ['price', 'scope', 'ask', 'sell', 'plain', 'cases'] as const
+const INDUSTRY_TAGS = ['health', 'fnb', 'retail', 'realestate', 'factory', 'edu', 'hotel', 'prof', 'startup', 'gov', 'construction', 'luxury']
+const SVC_TAGS: Record<string, string[]> = { web: ['web'], 'wt-basic': ['web'], 'wt-ecom': ['ecom'], brand: ['brand'], app: ['app'], ai: ['ai'], voice: ['ai'], erp: ['crm', 'ai'], line: ['app'], ux: ['ux'], seo: ['seo', 'web'], fix: ['app'] }
 
 const T = {
   th: {
@@ -70,7 +72,7 @@ const T = {
     markets: { th: 'ไทย (บาท)', us: 'USA (ดอลลาร์)' },
     whatKnow: 'อยากรู้เรื่องอะไรครับ',
     whichIndustry: 'ลูกค้าทำธุรกิจอะไรครับ',
-    topics: { price: 'ราคา', scope: 'ขอบเขตงาน (ได้อะไรบ้าง)', ask: 'คำถามที่ควรถามลูกค้า', sell: 'วิธีขายและตอบข้อโต้แย้ง', plain: 'อธิบายให้เข้าใจง่าย' },
+    topics: { price: 'ราคา', scope: 'ขอบเขตงาน (ได้อะไรบ้าง)', ask: 'คำถามที่ควรถามลูกค้า', sell: 'วิธีขายและตอบข้อโต้แย้ง', plain: 'อธิบายให้เข้าใจง่าย', cases: 'ผลงานอ้างอิงที่ใช้ขายได้' },
     byIndustry: 'ถามตามธุรกิจลูกค้า',
     changeService: 'เปลี่ยนบริการ',
     pickForPrice: 'เลือกบริการเพื่อดูราคา',
@@ -85,6 +87,8 @@ const T = {
     scopeHead: 'ขอบเขตงาน',
     noQuestions: 'ยังไม่มีชุดคำถามเฉพาะ คำถามพื้นฐานที่ใช้ได้กับทุกงาน:\n1. ปัญหาที่อยากแก้คืออะไร ใครคือผู้ใช้\n2. มีระบบหรือเว็บเดิมไหม\n3. ต้องเชื่อมระบบอะไรบ้าง\n4. งบประมาณคร่าว ๆ และกำหนดเวลา\n5. ใครเป็นผู้ตัดสินใจ',
     sellsHead: 'จุดขายของเรา (เรียงตามลำดับ)',
+    casesHead: 'ผลงานจริงที่ใช้อ้างอิงได้ (ส่งลิงก์ให้ลูกค้าดูได้เลย)',
+    casesNone: 'ยังไม่มีผลงานตรงกลุ่มนี้ ใช้ผลงานใกล้เคียงด้านล่างแทน',
     tapScope: 'แตะเพื่อดูขอบเขตงาน',
     tapHide: 'แตะเพื่อซ่อน',
   },
@@ -99,7 +103,7 @@ const T = {
     markets: { th: 'Thailand (THB)', us: 'USA (USD)' },
     whatKnow: 'What do you want to know?',
     whichIndustry: 'What business is the customer in?',
-    topics: { price: 'Price', scope: 'Scope (what is included)', ask: 'Questions to ask the customer', sell: 'Selling and handling objections', plain: 'Plain explanation' },
+    topics: { price: 'Price', scope: 'Scope (what is included)', ask: 'Questions to ask the customer', sell: 'Selling and handling objections', plain: 'Plain explanation', cases: 'Case studies to show' },
     byIndustry: 'By customer industry',
     changeService: 'Change service',
     pickForPrice: 'Pick a service for pricing',
@@ -114,6 +118,8 @@ const T = {
     scopeHead: 'Scope',
     noQuestions: 'No specific question set yet. Basic questions that work for any project:\n1. What problem do they want to solve, who are the users\n2. Is there an existing site or system\n3. Which systems must connect\n4. Rough budget and deadline\n5. Who decides',
     sellsHead: 'Our selling points (in order)',
+    casesHead: 'Real work you can reference (send the link to the customer)',
+    casesNone: 'No direct case for this yet, use these close ones instead',
     tapScope: 'Tap to see scope',
     tapHide: 'Tap to hide',
   },
@@ -355,12 +361,30 @@ export default function StaffPage() {
     return cards.length ? { head: `${title} · ${t.priceHead(m)}`, cards } : null
   }
 
+  function casesFor(tags: string[], max: number): { list: string; direct: boolean } {
+    const rows = secs[S.cases].blocks[0].lines.filter((l) => l.startsWith('- ')).map((l) => {
+      const [slug, tg, ...rest] = l.slice(2).split('|')
+      return { slug, tags: tg.split(','), text: rest.join('|') }
+    })
+    let hit = rows.map((r) => ({ r, n: r.tags.filter((x) => tags.includes(x)).length })).filter((x) => x.n > 0).sort((a, b) => b.n - a.n).map((x) => x.r)
+    const direct = hit.length > 0
+    if (!direct) hit = rows
+    return { direct, list: hit.slice(0, max).map((r) => `• ${r.text}\n  https://www.haliviq.com/${L}/case-studies/${r.slug}`).join('\n\n') }
+  }
+
+  function answerCases(): string {
+    const sv = SERVICES[ctx.current.svc as number]
+    const { direct, list } = casesFor(SVC_TAGS[sv.q] || [], 6)
+    return `${direct ? '' : t.casesNone + '\n\n'}${t.casesHead}\n\n${list}`
+  }
+
   function answerTopic(topic: string): string {
     const m = ctx.current.market || 'th'
     const { title, blocks, intro } = blocksFor()
     const sells = secs[S.sells].intro.join('\n')
     if (!blocks.length) return t.none
     const pick = (re: RegExp) => blocks.filter((b) => re.test(b.h2))
+    if (topic === 'cases') return answerCases()
     if (topic === 'price') {
       const priced = blocks.filter((b) => !p.askBlock.test(b.h2) && !p.sellBlock.test(b.h2) && !p.whatBlock.test(b.h2) && b.lines.some((l) => p.moneyLine.test(l)))
       const out = priced.map((b) => {
@@ -398,7 +422,9 @@ export default function StaffPage() {
 
   function answerIndustry(i: number): string {
     const b = secs[S.ind].blocks[i]
-    return b ? `${b.h2}\n${fmt(b.lines)}\n\n${t.industryTail}` : t.noneIndustry
+    if (!b) return t.noneIndustry
+    const cs = casesFor([INDUSTRY_TAGS[i]], 4)
+    return `${b.h2}\n${fmt(b.lines)}\n\n${cs.direct ? '' : t.casesNone + '\n\n'}${t.casesHead}\n\n${cs.list}\n\n${t.industryTail}`
   }
 
   function answerFree(q: string): string {
