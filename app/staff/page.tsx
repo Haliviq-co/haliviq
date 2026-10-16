@@ -223,7 +223,7 @@ function FaqView({ groups }: { groups: Faq[] }) {
       <div className="faq">
         {groups.map((g, gi) => (
           <div key={gi} style={{ marginTop: gi ? 18 : 0 }}>
-            {g.head && <div style={{ fontSize: 13, fontWeight: 600, color: '#B9ADF7', margin: '0 4px 8px' }}>{g.head}</div>}
+            {g.head && <div style={{ fontSize: 14, fontWeight: 700, color: '#ECD37D', margin: '0 4px 8px' }}>{g.head}</div>}
             <div style={{ border: line, borderRadius: 16, overflow: 'hidden', background: 'rgb(var(--fg) / 0.03)' }}>
               {g.items.map((it, i) =>
                 it.a.length === 0 ? (
