@@ -19,7 +19,7 @@ type Answer = { text: string; faq?: Faq[] }
 type Msg = { from: 'bot' | 'me'; text: string; chips?: Chip[]; cards?: PCard[]; note?: string; faq?: Faq[] }
 
 // Section positions are the same in both handbooks.
-const S = { sells: 2, confirmed: 4, brand: 5, web: 6, usa: 7, other: 8, ind: 9, app: 10, erp: 12, wt: 13, q: 14, cases: 15, pkg: 16 }
+const S = { sells: 2, confirmed: 4, brand: 5, web: 6, usa: 7, other: 8, ind: 9, app: 10, erp: 12, wt: 13, q: 14, cases: 15, pkg: 16, det: 17 }
 
 type Svc = { q: string; pk?: string; kind: 'web' | 'brand' | 'app' | 'fix' | 'erp' | 'wt' | 'other'; key?: string; th: string; en: string; keyEn?: string }
 const SERVICES: Svc[] = [
@@ -204,7 +204,7 @@ function grams(s: string, stop: string[]) {
 function lineItem(l: string): { q: string; a: string[] } {
   const raw = l.replace(/^- /, '')
   const n = raw.match(/^\d+\.\s*(.*?)\s*=>\s*(.*)$/)
-  if (n) return { q: n[1], a: [n[2]] }
+  if (n) return { q: n[1], a: n[2].split(' ¶ ') }
   if (/^\d+\./.test(raw)) return { q: raw.replace(/^\d+\.\s*/, ''), a: [] }
   const j = raw.indexOf(': ')
   if (j > 0 && j < 70 && !/^https?:/.test(raw)) return { q: raw.slice(0, j), a: [raw.slice(j + 2)] }
@@ -223,7 +223,7 @@ function FaqView({ groups }: { groups: Faq[] }) {
       <div className="faq">
         {groups.map((g, gi) => (
           <div key={gi} style={{ marginTop: gi ? 18 : 0 }}>
-            {g.head && <div style={{ fontSize: 14, fontWeight: 700, color: '#ECD37D', margin: '0 4px 8px' }}>{g.head}</div>}
+            {g.head && <div style={{ fontSize: 19, fontWeight: 700, lineHeight: 1.4, color: '#ECD37D', margin: '4px 4px 10px' }}>{g.head}</div>}
             <div style={{ border: line, borderRadius: 16, overflow: 'hidden', background: 'rgb(var(--fg) / 0.03)' }}>
               {g.items.map((it, i) =>
                 it.a.length === 0 ? (
@@ -489,7 +489,20 @@ export default function StaffPage() {
     if (topic === 'sell') {
       const bs = pick(p.sellBlock)
       const groups: Faq[] = bs.map((b) => ({ head: b.h2, items: b.lines.map(lineItem) }))
+      const sv2 = SERVICES[ctx.current.svc as number]
+      const k2 = sv2 ? sv2.q + (sv2.pk && sv2.pk !== sv2.q ? '-' + sv2.pk : '') : ''
+      ;(secs[S.det]?.blocks || []).filter((b) => b.h2.startsWith('D:' + k2 + ' ') && /ขาย|ข้อโต้แย้ง|sell|objection/i.test(b.h2)).forEach((b) => groups.push({ head: b.h2.replace(/^D:\S+\s/, ''), items: b.lines.map(lineItem) }))
       groups.push({ head: t.sellsHead, items: sells.map(lineItem) })
+      return { text: `${title}\n${t.tapHint}`, faq: groups }
+    }
+    const svD = SERVICES[ctx.current.svc as number]
+    const dkey = svD ? svD.q + (svD.pk && svD.pk !== svD.q ? '-' + svD.pk : '') : ''
+    const dblocks = (secs[S.det]?.blocks || []).filter((b) => b.h2.startsWith('D:' + dkey + ' '))
+    const dStrip = (h: string) => h.replace(/^D:\S+\s/, '')
+    if (dblocks.length) {
+      const dwhat = dblocks.filter((b) => !/ขาย|ข้อโต้แย้ง|sell|objection/i.test(b.h2))
+      const base = dwhat.length > 1 ? dwhat : [...dwhat, ...pick(p.whatBlock)]
+      const groups: Faq[] = base.map((b) => ({ head: dStrip(b.h2), items: b.lines.map(lineItem) }))
       return { text: `${title}\n${t.tapHint}`, faq: groups }
     }
     const what = pick(p.whatBlock)
