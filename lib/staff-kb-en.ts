@@ -81,7 +81,7 @@ The customer asks for a discount beyond the set one, wants to combine several se
 # Website + AI (Thailand market, prices are [estimate], not confirmed)
 Note: the current public website still says websites "start at about 300,000 THB". If staff are asked, say the prices in this handbook are a new draft not yet updated on the site, and must be confirmed with the team lead before quoting a customer.
 ## Sales principle
-Every website package has AI at its core. We do not sell an ordinary website without AI. The customer gets "a website that answers customers and finds customers", not just a company page. If a customer asks to remove AI to lower the price, re-discuss scope and pass to the team lead.
+The "+ AI" packages have AI at their core. The customer gets "a website that answers customers and finds customers", not just a company page. Offer these first. If the customer wants a simple website without AI, a Basic website is sold separately at a lower price, and AI can be added later.
 ## What is a website (explain to sales)
 Built to work for real, not just look good: screens designed, code written, content added, a back office so the customer can edit it themselves, fast loading, findable on Google and great on mobile. Unlike an off-the-shelf site, it is designed for the business, can be extended, and the customer owns the code and accounts. Always starts with Discovery (exploring needs).
 
@@ -363,4 +363,277 @@ Price: AI is included from the Standard level up, or bought separately as an AI 
 - "Staff will not know how to use it": designed to be easy, with training and AI to help when they get stuck.
 - "Give me a discount": do not cut the price directly. Reduce the number of modules or split into phases, and pass to the team lead for anything more.
 - Sell in phases: phase 1 the most painful module, phase 2 add modules and integrations, phase 3 advanced AI and mobile app. Close by booking a free 30-minute call, then Discovery before issuing a quote.
+
+
+# Basic website and e-commerce website (prices are [estimate], not confirmed, always keep Thailand and USA separate)
+Use when the customer wants a simpler website, or a website that sells. Ask first whether the customer is in Thailand or the US. Prices are "starting from". Check with the team lead before quoting a customer. If the customer is interested, you can always offer an upgrade to Website + AI.
+## What is a Basic website (explain to sales)
+A Basic website is an online company page that says who we are, what we do, our work and how to contact us. It is still custom designed with no templates, but has no AI and no complex systems.
+Unlike Website + AI, it has no chatbot answering customers and is not tuned for AI like ChatGPT to recommend us. Good for businesses that want a simple start on a limited budget.
+## Basic website Starter level
+Thai: 30,000 – 60,000 THB | USA: $2,500 – $5,000 | Typical time: 2–3 weeks
+Best for: small businesses, freelancers, anyone who wants a good look and a place for customers to get in touch.
+Includes: custom design 1–3 pages (one long page or several), mobile-friendly, contact form, basic SEO.
+Excludes: self-edit back office (CMS), two languages, membership or payments, AI.
+## Basic website Standard level
+Thai: 60,000 – 150,000 THB | USA: $5,000 – $12,000 | Typical time: 3–5 weeks
+Best for: companies or SMEs that need a formal 5–10 page website.
+Includes: custom design 5–10 pages, mobile-friendly, Thai/English, self-edit back office (CMS), contact form, basic SEO, Google Analytics, usage training.
+Excludes: AI chatbot, membership, payments, internal system integrations.
+## Questions to ask and selling for a Basic website
+1. What is the site for, who visits it, how many pages
+2. Do they want to edit content themselves, do they need Thai/English
+3. Are the logo and photos ready
+4. Launch date and rough budget
+- "Why more expensive than a template": ours is custom designed, the customer owns the code, it loads fast, ranks on Google and works well on mobile.
+- "Can we skip AI": yes, offer the Basic website and say AI can be added later without rebuilding everything.
+- If the customer starts getting more enquiries than they can answer, offer Website + AI.
+## What is an E-commerce website (explain to sales)
+An E-commerce website is a site that really sells: product listings, cart, payments (PromptPay, cards), and a back office to manage stock and orders. Like a shop that is open 24 hours a day.
+Unlike selling on a marketplace, the brand is ours, the repeat customers are ours, and we pay no per-order commission to a platform.
+## E-commerce website Starter level
+Thai: 150,000 – 300,000 THB | USA: $15,000 – $30,000 | Typical time: 2–3 months
+Best for: small shops starting to sell online, up to about 50 products.
+Includes: custom design, product pages, cart, payments (PromptPay, cards), product and order management, order notifications, mobile-friendly, basic SEO.
+Excludes: stock or accounting integration, multiple warehouses, advanced membership, AI product recommendations.
+## E-commerce website Standard level
+Thai: 300,000 – 600,000 THB | USA: $30,000 – $80,000 | Typical time: 3–4 months
+Best for: serious sellers with hundreds of products who need integrations.
+Includes: everything in Starter plus stock and accounting integration, membership and coupons, shipping carrier integration, sales reports, AI product recommendations and a chatbot answering customers.
+## Questions to ask and selling for an E-commerce website
+1. What do they sell, how many items, which channels do they sell through now
+2. Which payment and shipping options are needed
+3. Must it connect to the stock or accounting they use
+4. Do they need membership, coupons, loyalty points
+5. Shop launch date and rough budget
+- "Selling on Shopee/Lazada is enough": it works as an extra channel, but their own site makes the brand and repeat customers theirs, with no high commission.
+- "Too expensive": offer the Starter level first and expand as sales grow, instead of cutting the price.
+- Payment fees, domain, hosting and shipping costs are paid separately by the customer. Never promise sales.
+
+
+# Question set for sales (ask a lot, the more you know, the better you propose and the easier you sell)
+Ask one group at a time. Do not fire every question at once. Listen, then ask follow-ups from what the customer says. Write the answers down for the proposal. If the customer does not know, say there is no need to decide yet, we can help think it through in Discovery.
+## Q:web Specific questions: Website + AI
+1. What is the website mainly for (company story, finding customers, selling, booking)
+2. Is there an existing site, what is wrong with it, what to keep
+3. How many pages, are content and photos ready
+4. Who will edit content, do they want to edit it themselves
+5. Thai/English or other languages
+6. What must it connect to (payments, CRM, ERP, LINE, booking, accounting)
+7. What should the chatbot answer, are there frequently asked questions
+8. Any websites they like or competitors to look different from
+9. How do customers find you today (Google, ads, LINE, word of mouth)
+10. Do you already have a domain and hosting
+11. What will you measure from the site (enquiries, bookings)
+12. After launch who will maintain it, do they want a monthly care package
+## Q:wt-basic Specific questions: Basic website
+1. What is the site for, who are the main visitors
+2. How many pages (one long page or several)
+3. Are the logo, colors, fonts and photos ready
+4. Do they want to edit text and photos themselves
+5. Do they need two languages
+6. Do they need a contact form, map or LINE button
+7. Any example sites they like
+8. Launch date and rough budget
+9. If they later want AI or selling, should we build it so it can grow
+## Q:wt-ecom Specific questions: E-commerce website
+1. What do they sell, how many items, any options (size, color)
+2. Where do they sell today (store, LINE, Shopee, Lazada, Facebook)
+3. What are monthly online sales and how much growth do they want
+4. Which payments (PromptPay, cards, installments, cash on delivery)
+5. How do they ship, which carriers, how is shipping priced
+6. Is there stock that must connect to the system or accounting they use
+7. Do they need membership, coupons, loyalty points
+8. Multiple warehouses or branches
+9. Do they need automatic tax invoices
+10. Who will manage orders and answer customers every day
+11. Do they want AI product recommendations or chat answers
+12. Any plan to sell abroad or in several currencies
+## Q:brand Specific questions: Branding
+1. Is there an existing logo or brand, what to keep
+2. Why build the brand now (new launch, expansion, refresh, fundraising)
+3. What should the brand personality be (luxury, friendly, modern, serious)
+4. Who is the target customer, age, lifestyle, income level
+5. Brands they like and dislike
+6. Who are the main competitors, how should we differ
+7. Where will the brand be used (web, social, store, packaging, giveaways, uniforms)
+8. Is there a brand name already or do they need naming and a slogan
+9. Is the trademark registered
+10. Who decides on design, how many people
+## Q:app Specific questions: Mobile app
+1. What problem does the app solve, who are the users
+2. Why an app and not a website (notifications, daily use, camera, location)
+3. iOS, Android or both
+4. What are the core features for version one (no more than 5)
+5. Is membership, payments, chat or notifications needed
+6. Is a back office needed for the team to manage it
+7. Which existing systems must connect
+8. Any competitor apps or apps they like as examples
+9. How many users expected in the first year
+10. Do they already have Apple and Google developer accounts
+11. Start with an MVP and grow, or build fully
+12. How will they get the first users (existing customers, ads)
+## Q:ai Specific questions: AI Assistant / chatbot
+1. Who should the bot answer (customers, staff, both)
+2. Who answers chats or questions now, how many hours a day
+3. Which channels do customers use (web, LINE, Facebook, Instagram)
+4. What are the 10 most frequent questions
+5. Is there data for the bot to answer from (documents, manuals, prices, FAQ), in what format
+6. What should the bot be able to do (answer, book, collect customer data, hand over to a person)
+7. What should it do when it does not know the answer
+8. Does it need multiple languages
+9. Anything the bot must not answer or must hand to a person
+10. Must it connect to CRM, booking or stock systems
+11. How will success be measured (response time, leads, satisfaction)
+## Q:voice Specific questions: AI Voice Agent
+1. How many calls come in a day, when do they overflow
+2. How often are calls missed or not returned in time
+3. What do most calls ask about (booking, price, status)
+4. Should the bot take bookings or screen and hand over to a person
+5. Which languages and accents
+6. Which booking system or calendar must it connect to
+7. When must the call be transferred to a real person
+8. Any rules about call recording and privacy
+9. Use the existing phone number or a new one
+## Q:erp Specific questions: ERP / CRM
+1. What do they work with now (Excel, accounting software, paper) and where does it hurt most
+2. How many departments, branches and users
+3. What is the main workflow (from taking an order to delivery and collecting payment)
+4. Which modules are needed, which one first
+5. Which existing systems must connect (accounting, tax, payments, LINE, machines)
+6. How many existing records, in what format, must they be migrated
+7. Who needs to see which reports (owner, manager, accounting)
+8. Is role-based data access needed
+9. Must it work outside the office or on mobile
+10. Tried off-the-shelf systems before, why did they not fit
+11. Who administers the system inside the company
+12. Start with phase one on the most painful part
+13. What should AI help with (ask data, summarize reports, forecast, alerts)
+## Q:line Specific questions: LINE Mini App
+1. How much do customers contact you through LINE now, how many LINE OA friends
+2. What should customers do in LINE (book, order, collect points, see coupons)
+3. Is membership and loyalty points needed
+4. Must it connect to a back office or POS
+5. Do they want notifications or promotions sent to customers
+6. Do they already have a verified LINE OA account
+## Q:ux Specific questions: UX/UI design
+1. Design for web, app or both
+2. Who are the main users, is there usage data or complaints
+3. Where do users get confused or leave in the current product
+4. Is there a Brand Guideline or Design System already
+5. Is user research or testing with real users needed
+6. Deliver as screen designs, a clickable prototype, or including help building
+7. Who will build from the design (the customer team or us)
+## Q:seo Specific questions: SEO / AEO / GEO
+1. What words do customers use to search for your business
+2. Which keywords does the site rank for now, how many customers come from Google
+3. Who are the main competitors that rank
+4. Is there content, articles or a blog already, who writes it
+5. Is there a Google Business Profile and reviews
+6. Thai market, foreign market or both
+7. What numeric goals (enquiries, bookings), and do they know it takes 3–6 months
+8. Have they hired SEO before, what happened (never promise rankings)
+## Q:sec Specific questions: Cybersecurity / PDPA
+1. What personal data is collected (name, phone, health, financial)
+2. Where is it stored, who can access it
+3. Any past data leaks or hacks
+4. Is there a privacy policy and consent process yet
+5. Which systems need checking (web, app, internal systems, cloud)
+6. Do customers or partners require security standards
+7. Only vulnerability scanning, or fixing too
+8. Is there a data protection officer (DPO) yet
+## Q:cloud Specific questions: Cloud / DevOps
+1. Where does the system run now (office server, hosting, which cloud)
+2. What is the monthly cost now, does it feel too high
+3. Has the system gone down, how often, what did it cost
+4. How are updates released now, does it take long
+5. Is there backup and a recovery plan
+6. What is peak usage, must it handle growth
+7. Does the team have someone to run the system
+## Q:data Specific questions: Data & Analytics
+1. What decisions are made with data, and where is the data viewed now
+2. Where is data scattered (Excel, accounting system, social, web)
+3. Who needs which report, how often
+4. What are the 5 key numbers (KPIs) they want to see every day
+5. How many hours a week are spent building reports
+6. How clean and trustworthy is the data
+7. Do they want forecasting or AI summaries
+## Q:support Specific questions: Support & Maintenance
+1. What system needs care, who built it
+2. What problems exist now (slow, down, bugs, needs updating)
+3. How fast should we respond (within 1 hour, 1 day)
+4. What coverage hours (business hours or 24 hours)
+5. Do they want small new features continuously
+6. Does the customer hold the code and documentation
+## Q:strategy Specific questions: Digital strategy / Consulting
+1. Where does the business want to be in 1–3 years
+2. What digital tools and systems exist now
+3. What is the weakest point of the business digitally
+4. Have they invested in digital before without results, why
+5. Total budget ready to invest this year
+6. How ready is the internal team to learn and run new systems
+7. Who is the executive sponsor of the project
+## Q:fix Specific questions: Fix AI-built apps
+1. What was it built with (Lovable, Bolt, Cursor, v0)
+2. What can the app do now, where is it stuck
+3. Are there real users or real data in it yet
+4. Only an audit, a fix, production-ready, or a full build-out
+5. Where is the code (GitHub), do we have access
+6. When do they want to launch
+7. Any security or payment concerns to watch
+## Q:g1 General questions 1: know the customer business
+1. What does the business do and sell, how many years open
+2. Who are your main customers (individuals, companies, foreigners)
+3. What makes your business different from competitors
+4. How many people, how many branches, where
+5. Where does most revenue come from (store, online, phone, LINE)
+6. Is the business growing, steady or adjusting
+7. Any plan to expand or enter new markets in the next 1–2 years
+8. What websites, apps or systems do you already use
+## Q:g2 General questions 2: goals and problems
+1. Why do this now, what triggered it
+2. If this project succeeds, what does success look like (sales, new customers, time saved)
+3. What is the most painful problem right now
+4. Roughly how much money or opportunity does this problem cost per month
+5. Have you tried to fix it before, what did you do, what happened
+6. If nothing is done in the next 6 months, what happens
+7. What measures will show it worked
+8. Is there anything that must never happen
+## Q:g3 General questions 3: current situation
+1. How is this work done today (Excel, paper, off-the-shelf software, hired help)
+2. About how many hours per week and how many people spend on this
+3. Have you hired another team before, how was the experience
+4. What do you like and want to keep from what you have
+5. What do you dislike and want to get rid of
+6. Is there existing data (customers, products, documents) to reuse, in what format
+7. Any legal or regulatory requirements to follow (PDPA, licenses)
+## Q:g4 General questions 4: users and their customers
+1. Who will really use it, how many people
+2. How comfortable are the users with technology (mostly phone or computer)
+3. Which channel do your customers use most (LINE, Facebook, Google, phone)
+4. What do your customers ask or complain about most often
+5. Which languages must it support
+6. Do you have foreign customers or other markets to serve
+## Q:g5 General questions 5: budget, timing and decision
+1. Is there a deadline, and why (event, branch opening, season)
+2. Roughly what budget range is set aside (ask for a range, not exact)
+3. Is the budget already approved or still needs approval
+4. Who makes the final decision, how many people must agree
+5. What matters most in this decision (price, quality, speed, credibility)
+6. Have you asked for quotes elsewhere, what did they offer
+7. Can we start with a small first phase or do you want everything at once
+8. Any preferred payment arrangement (installments, monthly)
+## Q:g6 General questions 6: about AI
+1. Have you used AI in the business, for what, how did it go
+2. Which repetitive tasks would you like AI to take over
+3. How often do customers ask the same questions again and again
+4. Is there data, documents or manuals you want AI to answer from
+5. Is there sensitive data AI must be careful with
+6. Should AI answer fully on its own or have a person check some topics first
+## Q:g7 General questions 7: closing and follow-up
+1. From what we discussed, which point matters most to you
+2. Is anything still worrying you or needing more explanation
+3. If we send a proposal, who needs to see it and when can you reply
+4. When is a good time for a free 30-minute video call to sum up the needs
+5. Do you want an NDA signed before discussing details
 `

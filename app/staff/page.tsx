@@ -13,31 +13,33 @@ type Market = 'th' | 'us'
 type Block = { h2: string; lines: string[] }
 type Sec = { h1: string; intro: string[]; blocks: Block[] }
 type Chip = { key: string; label: string; tone?: 'ghost' }
-type Msg = { from: 'bot' | 'me'; text: string; chips?: Chip[] }
+type PCard = { title: string; price: string; time?: string; scope: string[] }
+type Msg = { from: 'bot' | 'me'; text: string; chips?: Chip[]; cards?: PCard[]; note?: string }
 
 // Section positions are the same in both handbooks.
-const S = { sells: 2, confirmed: 4, brand: 5, web: 6, usa: 7, other: 8, ind: 9, app: 10, erp: 12 }
+const S = { sells: 2, confirmed: 4, brand: 5, web: 6, usa: 7, other: 8, ind: 9, app: 10, erp: 12, wt: 13, q: 14 }
 
-type Svc = { kind: 'web' | 'brand' | 'app' | 'fix' | 'erp' | 'other'; key?: string; th: string; en: string; keyEn?: string }
+type Svc = { q: string; kind: 'web' | 'brand' | 'app' | 'fix' | 'erp' | 'wt' | 'other'; key?: string; th: string; en: string; keyEn?: string }
 const SERVICES: Svc[] = [
-  { kind: 'web', th: 'เว็บไซต์', en: 'Website' },
-  { kind: 'brand', th: 'Branding (แบรนด์)', en: 'Branding' },
-  { kind: 'app', th: 'แอปมือถือ (iOS/Android)', en: 'Mobile app (iOS/Android)' },
-  { kind: 'other', th: 'AI Assistant / แชตบอต', en: 'AI Assistant / chatbot', key: 'AI Assistant', keyEn: 'AI Assistant' },
-  { kind: 'other', th: 'AI Voice Agent', en: 'AI Voice Agent', key: 'AI Voice', keyEn: 'AI Voice' },
-  { kind: 'erp', th: 'ERP / ระบบบริหารองค์กร', en: 'ERP / enterprise system' },
-  { kind: 'erp', th: 'AI สำหรับอุตสาหกรรม / ERP', en: 'AI for industry / ERP', key: 'AI', keyEn: 'AI' },
-  { kind: 'other', th: 'CRM (จัดการลูกค้า)', en: 'CRM', key: 'ERP', keyEn: 'ERP' },
-  { kind: 'other', th: 'อีคอมเมิร์ซ', en: 'E-commerce', key: 'อีคอมเมิร์ซ', keyEn: 'E-commerce' },
-  { kind: 'other', th: 'LINE Mini App', en: 'LINE Mini App', key: 'LINE', keyEn: 'LINE' },
-  { kind: 'other', th: 'ออกแบบ UX/UI', en: 'UX/UI design', key: 'UX/UI', keyEn: 'UX/UI' },
-  { kind: 'other', th: 'SEO / AEO / GEO', en: 'SEO / AEO / GEO', key: 'SEO', keyEn: 'SEO' },
-  { kind: 'other', th: 'ความปลอดภัยไซเบอร์ / PDPA', en: 'Cybersecurity / PDPA', key: 'ความปลอดภัย', keyEn: 'Cybersecurity' },
-  { kind: 'other', th: 'Cloud / DevOps', en: 'Cloud / DevOps', key: 'Cloud', keyEn: 'Cloud' },
-  { kind: 'other', th: 'ข้อมูลและการวิเคราะห์', en: 'Data & Analytics', key: 'ข้อมูลและ', keyEn: 'Data' },
-  { kind: 'other', th: 'ดูแลรักษาระบบ', en: 'Support & Maintenance', key: 'ดูแลรักษา', keyEn: 'Support' },
-  { kind: 'other', th: 'กลยุทธ์ดิจิทัล', en: 'Digital strategy', key: 'กลยุทธ์', keyEn: 'Strategy' },
-  { kind: 'fix', th: 'แก้แอปที่ AI สร้าง', en: 'Fix AI-built apps' },
+  { q: 'wt-basic', kind: 'wt', th: 'เว็บไซต์ธรรมดา (ไม่มี AI)', en: 'Basic website (no AI)', key: 'ธรรมดา', keyEn: 'Basic website' },
+  { q: 'wt-ecom', kind: 'wt', th: 'เว็บไซต์อีคอมเมิร์ซ', en: 'E-commerce website', key: 'อีคอมเมิร์ซ', keyEn: 'E-commerce website' },
+  { q: 'web', kind: 'web', th: 'เว็บไซต์ + AI', en: 'Website + AI' },
+  { q: 'brand', kind: 'brand', th: 'Branding (แบรนด์)', en: 'Branding' },
+  { q: 'app', kind: 'app', th: 'แอปมือถือ (iOS/Android)', en: 'Mobile app (iOS/Android)' },
+  { q: 'ai', kind: 'other', th: 'AI Assistant / แชตบอต', en: 'AI Assistant / chatbot', key: 'AI Assistant', keyEn: 'AI Assistant' },
+  { q: 'voice', kind: 'other', th: 'AI Voice Agent', en: 'AI Voice Agent', key: 'AI Voice', keyEn: 'AI Voice' },
+  { q: 'erp', kind: 'erp', th: 'ERP / ระบบบริหารองค์กร', en: 'ERP / enterprise system' },
+  { q: 'erp', kind: 'erp', th: 'AI สำหรับอุตสาหกรรม / ERP', en: 'AI for industry / ERP', key: 'AI', keyEn: 'AI' },
+  { q: 'erp', kind: 'other', th: 'CRM (จัดการลูกค้า)', en: 'CRM', key: 'ERP', keyEn: 'ERP' },
+  { q: 'line', kind: 'other', th: 'LINE Mini App', en: 'LINE Mini App', key: 'LINE', keyEn: 'LINE' },
+  { q: 'ux', kind: 'other', th: 'ออกแบบ UX/UI', en: 'UX/UI design', key: 'UX/UI', keyEn: 'UX/UI' },
+  { q: 'seo', kind: 'other', th: 'SEO / AEO / GEO', en: 'SEO / AEO / GEO', key: 'SEO', keyEn: 'SEO' },
+  { q: 'sec', kind: 'other', th: 'ความปลอดภัยไซเบอร์ / PDPA', en: 'Cybersecurity / PDPA', key: 'ความปลอดภัย', keyEn: 'Cybersecurity' },
+  { q: 'cloud', kind: 'other', th: 'Cloud / DevOps', en: 'Cloud / DevOps', key: 'Cloud', keyEn: 'Cloud' },
+  { q: 'data', kind: 'other', th: 'ข้อมูลและการวิเคราะห์', en: 'Data & Analytics', key: 'ข้อมูลและ', keyEn: 'Data' },
+  { q: 'support', kind: 'other', th: 'ดูแลรักษาระบบ', en: 'Support & Maintenance', key: 'ดูแลรักษา', keyEn: 'Support' },
+  { q: 'strategy', kind: 'other', th: 'กลยุทธ์ดิจิทัล', en: 'Digital strategy', key: 'กลยุทธ์', keyEn: 'Strategy' },
+  { q: 'fix', kind: 'fix', th: 'แก้แอปที่ AI สร้าง', en: 'Fix AI-built apps' },
 ]
 // same order as the industry blocks in the handbook
 const INDUSTRIES: { th: string; en: string }[] = [
@@ -82,6 +84,8 @@ const T = {
     scopeHead: 'ขอบเขตงาน',
     noQuestions: 'ยังไม่มีชุดคำถามเฉพาะ คำถามพื้นฐานที่ใช้ได้กับทุกงาน:\n1. ปัญหาที่อยากแก้คืออะไร ใครคือผู้ใช้\n2. มีระบบหรือเว็บเดิมไหม\n3. ต้องเชื่อมระบบอะไรบ้าง\n4. งบประมาณคร่าว ๆ และกำหนดเวลา\n5. ใครเป็นผู้ตัดสินใจ',
     sellsHead: 'จุดขายของเรา (เรียงตามลำดับ)',
+    tapScope: 'แตะเพื่อดูขอบเขตงาน',
+    tapHide: 'แตะเพื่อซ่อน',
   },
   en: {
     title: 'Havy for the internal team',
@@ -109,6 +113,8 @@ const T = {
     scopeHead: 'Scope',
     noQuestions: 'No specific question set yet. Basic questions that work for any project:\n1. What problem do they want to solve, who are the users\n2. Is there an existing site or system\n3. Which systems must connect\n4. Rough budget and deadline\n5. Who decides',
     sellsHead: 'Our selling points (in order)',
+    tapScope: 'Tap to see scope',
+    tapHide: 'Tap to hide',
   },
 }
 
@@ -121,7 +127,7 @@ const P = {
     moneyLine: /บาท|\$[0-9]/, priceLine: /(บาท|\$[0-9]|ไทย:|USA:|ราคา)/, priceExtra: /(เหมาะกับ|ได้อะไร|เว็บ:|AI:)/,
     scopeLine: /^(เหมาะกับ|ได้อะไร|ไม่ได้อะไร|ไม่รวม|เว็บ:|AI:|ขอบเขต|คืออะไร|ปัจจัยราคา|- )/,
     askBlock: /คำถาม|ขั้นตอนขาย/, sellBlock: /วิธีขาย|ตอบข้อโต้แย้ง|ขั้นตอนขาย/, whatBlock: /คืออะไร/, whatLine: 'คืออะไร',
-    skipSec: [0, 1], stop: [] as string[],
+    skipSec: [0, 1], stop: [] as string[], thPrefix: 'ไทย:', timeLabel: /^ระยะเวลาโดยประมาณ:\s*/,
   },
   en: {
     other: 'USA:', otherTh: 'Thai:', marketLine: /(^|\| )(Thai:|USA:)/,
@@ -130,6 +136,7 @@ const P = {
     moneyLine: /THB|\$[0-9]/, priceLine: /(THB|\$[0-9]|Thai:|USA:|price)/i, priceExtra: /(Best for|Includes|Web:|AI:)/,
     scopeLine: /^(Best for|Includes|Excludes|Web:|AI:|Scope|What it is|Price factors|- )/,
     askBlock: /questions|sales steps/i, sellBlock: /selling|objection|sales steps/i, whatBlock: /what is|what are/i, whatLine: 'What it is',
+    thPrefix: 'Thai:', timeLabel: /^Typical time:\s*/,
     skipSec: [0, 1], stop: ['the', 'and', 'for', 'with', 'what', 'how', 'can', 'are', 'you', 'our', 'does', 'that', 'this', 'from', 'when', 'about', 'say', 'tell', 'customer'],
   },
 }
@@ -172,6 +179,39 @@ function grams(s: string, stop: string[]) {
   const t = words.join('')
   for (let i = 0; i + 3 <= t.length; i++) g.add(t.slice(i, i + 3))
   return g
+}
+
+
+const PALETTE = ['#7B6EF6', '#B9ADF7', '#72C0D4', '#ECD37D', '#E8E7E4']
+const HEAD_PRICE = /(\d[\d,]*(?:\s*[–-]\s*\d[\d,]*)?\s*(?:บาท|THB)(?:\s*(?:ขึ้นไป|and up))?)/
+const USD_BULLET = /^(.+?): (\$[\d,]+(?:\s*[–-]\s*\$[\d,]+)?(?:\s*(?:ขึ้นไป|and up))?)\s*(.*)$/
+
+function PriceCards({ cards, tapScope, tapHide }: { cards: PCard[]; tapScope: string; tapHide: string }) {
+  const [open, setOpen] = useState<number | null>(null)
+  return (
+    <div style={{ display: 'flex', gap: 12, overflowX: 'auto', scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch', padding: '4px 2px 10px', alignItems: 'flex-start' }}>
+      {cards.map((c, i) => {
+        const on = open === i
+        return (
+          <button key={i} onClick={() => setOpen(on ? null : i)} style={{ flex: '0 0 auto', width: 'min(78vw, 300px)', scrollSnapAlign: 'start', textAlign: 'left', border: 0, borderRadius: 22, padding: '18px 18px 14px', background: PALETTE[i % PALETTE.length], color: '#14131A', cursor: 'pointer', fontFamily: 'inherit', boxShadow: on ? '0 8px 24px rgba(0,0,0,.35)' : 'none' }}>
+            <div style={{ fontSize: 14, fontWeight: 600, opacity: 0.8 }}>{c.title}</div>
+            <div style={{ fontSize: c.price.length > 26 ? 15 : 24, fontWeight: 700, lineHeight: 1.25, margin: '6px 0 4px' }}>{c.price}</div>
+            {c.time && <div style={{ fontSize: 13, opacity: 0.75 }}>{c.time}</div>}
+            {on && (
+              <div style={{ marginTop: 12, paddingTop: 12, borderTop: '1px solid rgba(20,19,26,.2)', fontSize: 14, lineHeight: 1.6 }}>
+                {c.scope.map((l, k) => {
+                  const j = l.indexOf(': ')
+                  const label = j > 0 && j < 22 ? l.slice(0, j) : ''
+                  return <div key={k} style={{ marginBottom: 6 }}>{label ? <><b>{label}:</b> {l.slice(j + 2)}</> : l}</div>
+                })}
+              </div>
+            )}
+            <div style={{ fontSize: 12, marginTop: 10, opacity: 0.65 }}>{on ? '▲ ' + tapHide : '▼ ' + tapScope}</div>
+          </button>
+        )
+      })}
+    </div>
+  )
 }
 
 const chipStyle: React.CSSProperties = { border: '1px solid rgb(var(--fg) / 0.2)', borderRadius: 999, padding: '8px 14px', fontSize: 14, color: 'var(--ink)', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit' }
@@ -223,6 +263,10 @@ export default function StaffPage() {
       const sec = secs[S.app]
       return { title, intro: sec.intro, blocks: sec.blocks }
     }
+    if (s.kind === 'wt') {
+      const key = (L === 'th' ? s.key : s.keyEn) || '___'
+      return { title, intro: [], blocks: secs[S.wt].blocks.filter((x) => x.h2.includes(key)) }
+    }
     if (s.kind === 'erp') {
       const sec = secs[S.erp]
       return { title, intro: sec.intro, blocks: s.key ? sec.blocks.filter((x) => x.h2.includes(s.key as string)) : sec.blocks }
@@ -237,6 +281,78 @@ export default function StaffPage() {
   }
 
   const fmt = (lines: string[], m?: Market) => lines.map((l) => (m ? forMarket(l, m, L) : l)).join('\n')
+
+  function priceCards(): { head: string; cards: PCard[] } | null {
+    const c = ctx.current
+    if (c.svc === undefined) return null
+    const m: Market = c.market || 'th'
+    const s = SERVICES[c.svc]
+    const { title, blocks, intro } = blocksFor()
+    const cards: PCard[] = []
+    const refs = s.kind === 'web' ? secs[S.web].blocks : s.kind === 'brand' ? secs[S.brand].blocks : []
+    const refScope = (name: string) => {
+      const w = name.split(/[ +]/)[0]
+      const b = refs.find((x) => x.h2.includes(w) && x.lines.some((l) => p.scopeLine.test(l)))
+      return b ? b.lines.filter((l) => p.scopeLine.test(l) && !l.startsWith('- ')) : []
+    }
+    if (s.kind === 'fix') {
+      const line = secs[S.confirmed].intro.find((l) => l.includes(p.fixLine)) || ''
+      const parts = line.slice(line.lastIndexOf('): ') + 3).split(', ')
+      for (const x of parts) {
+        const mm = x.match(/^(.*?)\s*(\$[\d,]+)$/)
+        if (mm) cards.push({ title: mm[1], price: mm[2], scope: [intro.length ? '' : L === 'th' ? 'ราคาเหมาจ่ายเป็นดอลลาร์ ยืนยันแล้ว' : 'Fixed price in USD, confirmed'] })
+      }
+      return cards.length ? { head: `${title} · ${t.priceHead('us')}`, cards } : null
+    }
+    for (const b of blocks) {
+      if (p.askBlock.test(b.h2) || p.sellBlock.test(b.h2) || p.whatBlock.test(b.h2)) continue
+      // 1) price in the heading (Thai-market tiers)
+      const hm = m === 'th' ? b.h2.match(HEAD_PRICE) : null
+      if (hm && hm.index !== undefined) {
+        const name = b.h2.slice(0, hm.index).replace(/[\s(]+$/, '').replace(/^(แพ็กเกจ|Package)\s+/, '')
+        const time = b.h2.slice(hm.index + hm[0].length).replace(/\[[^\]]*\]/g, '').trim()
+        cards.push({ title: name, price: hm[1], time: time || undefined, scope: b.lines })
+        continue
+      }
+      // 2) "Thai: x | USA: y | time" line
+      const pl = b.lines.find((l) => p.marketLine.test(l))
+      if (pl) {
+        const segs = pl.split(' | ')
+        const pre = m === 'th' ? p.thPrefix : 'USA:'
+        const seg = segs.find((x) => x.startsWith(pre))
+        const tseg = segs.find((x) => p.timeLabel.test(x))
+        if (seg) {
+          cards.push({ title: b.h2.replace(/\s*\(.*$/, ''), price: seg.slice(pre.length).trim(), time: tseg ? tseg.replace(p.timeLabel, '') : undefined, scope: b.lines.filter((l) => l !== pl) })
+          continue
+        }
+      }
+      // 3) bullet lines
+      for (const l of b.lines) {
+        if (!l.startsWith('- ')) continue
+        const body = l.slice(2)
+        if (/ \| USA\s*\$/.test(body)) {
+          const segs = body.split(' | ')
+          const i0 = segs[0].search(/\s(ไทย|Thai)\s/)
+          if (i0 < 0) continue
+          const name = segs[0].slice(0, i0)
+          const thPrice = segs[0].slice(i0).replace(/^\s*(ไทย|Thai)\s*/, '')
+          let usPrice = segs[1].replace(/^USA\s*/, '')
+          let desc = ''
+          let time = ''
+          const k = usPrice.indexOf(': ')
+          if (k > 0) { desc = usPrice.slice(k + 2); usPrice = usPrice.slice(0, k) }
+          if (segs[2]) { const j = segs[2].indexOf(': '); time = j > 0 ? segs[2].slice(0, j) : segs[2]; desc = j > 0 ? segs[2].slice(j + 2) : desc }
+          let price = m === 'th' ? thPrice : usPrice
+          if (m === 'th' && !/บาท|THB/.test(price)) price += L === 'th' ? ' บาท' : ' THB'
+          cards.push({ title: name, price, time: time || undefined, scope: desc ? [desc] : [] })
+        } else if (m === 'us') {
+          const um = body.match(USD_BULLET)
+          if (um) cards.push({ title: um[1], price: um[2], scope: [...(um[3] ? [um[3]] : []), ...refScope(um[1])] })
+        }
+      }
+    }
+    return cards.length ? { head: `${title} · ${t.priceHead(m)}`, cards } : null
+  }
 
   function answerTopic(topic: string): string {
     const m = ctx.current.market || 'th'
@@ -261,8 +377,13 @@ export default function StaffPage() {
       return out.length ? `${title} · ${t.scopeHead}\n\n${out.join('\n\n')}` : `${title}\n\n${blocks.map((b) => `${b.h2}\n${fmt(b.lines, m)}`).join('\n\n')}`
     }
     if (topic === 'ask') {
-      const bs = pick(p.askBlock)
-      return bs.length ? bs.map((b) => `${b.h2}\n${fmt(b.lines)}`).join('\n\n') : t.noQuestions
+      const sv = SERVICES[ctx.current.svc as number]
+      const strip = (h: string) => h.replace(/^Q:\S+\s/, '')
+      const qb = secs[S.q].blocks
+      const mine = qb.filter((b) => b.h2.startsWith('Q:' + sv.q + ' '))
+      const gen = qb.filter((b) => b.h2.startsWith('Q:g'))
+      const all = [...mine, ...gen]
+      return all.length ? all.map((b) => `${strip(b.h2)}\n${fmt(b.lines)}`).join('\n\n') : t.noQuestions
     }
     if (topic === 'sell') {
       const bs = pick(p.sellBlock)
@@ -286,7 +407,7 @@ export default function StaffPage() {
     const cand: { score: number; head: string; lines: string[] }[] = []
     secs.forEach((s, si) => {
       if (p.skipSec.includes(si)) return
-      const units = [{ head: s.h1.replace(/\s*\(.*$/, ''), lines: s.intro }, ...s.blocks.map((b) => ({ head: b.h2, lines: b.lines }))]
+      const units = [{ head: s.h1.replace(/\s*\(.*$/, ''), lines: s.intro }, ...s.blocks.map((b) => ({ head: b.h2.replace(/^Q:\S+\s/, ''), lines: b.lines }))]
       for (const u of units) {
         if (!u.lines.length) continue
         const hit = u.lines.filter((l) => { let n = 0; const lg = grams(l, p.stop); g.forEach((x) => { if (lg.has(x)) n++ }); return n >= Math.min(3, g.size) })
@@ -329,6 +450,10 @@ export default function StaffPage() {
     if (key.startsWith('topic:')) {
       const k = key.slice(6) as (typeof TOPIC_KEYS)[number]
       if (!c.market) c.market = 'th'
+      if (k === 'price') {
+        const pc = priceCards()
+        if (pc) { push({ from: 'me', text: t.topics[k] }, { from: 'bot', text: pc.head, cards: pc.cards, note: t.draft, chips: topicChips }); return }
+      }
       push({ from: 'me', text: t.topics[k] }, { from: 'bot', text: answerTopic(k), chips: topicChips })
       return
     }
@@ -362,6 +487,12 @@ export default function StaffPage() {
             <div style={{ display: 'flex', justifyContent: m.from === 'me' ? 'flex-end' : 'flex-start' }}>
               <div style={{ maxWidth: '90%', padding: '12px 16px', borderRadius: 18, whiteSpace: 'pre-wrap', lineHeight: 1.65, fontSize: 15, ...(m.from === 'me' ? { background: 'var(--accent)', color: '#14131A', borderBottomRightRadius: 6 } : { background: 'rgb(var(--fg) / 0.07)', borderBottomLeftRadius: 6 }) }}>{m.text}</div>
             </div>
+            {m.cards && (
+              <div style={{ marginTop: 10 }}>
+                <PriceCards cards={m.cards} tapScope={T[L].tapScope} tapHide={T[L].tapHide} />
+                {m.note && <div style={{ fontSize: 13, opacity: 0.7, marginTop: 2 }}>{m.note}</div>}
+              </div>
+            )}
             {m.chips && (
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 10 }}>
                 {m.chips.map((c) => <button key={c.key} style={{ ...chipStyle, ...(c.tone === 'ghost' ? { opacity: 0.7 } : {}) }} onClick={() => onChip(c.key)}>{c.label}</button>)}
