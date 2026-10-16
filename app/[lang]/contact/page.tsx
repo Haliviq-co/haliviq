@@ -6,6 +6,7 @@ import FAQ from '@/components/FAQ'
 import SocialIcons from '@/components/SocialIcons'
 import ContactFields from '@/components/ContactFields'
 import ContactFormShell from '@/components/ContactFormShell'
+import ChatPrefill from '@/components/ChatPrefill'
 import { alt } from '@/lib/seo'
 
 export async function generateStaticParams() {
@@ -162,6 +163,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
                     <textarea name="message" rows={5} placeholder={isEN ? 'Tell us about your project...' : 'เล่าเรื่องโปรเจกต์ของคุณ...'} required
                       className="w-full px-5 py-3.5 rounded-xl text-sm outline-none transition-colors resize-none"
                       style={{ background: 'rgb(var(--fg) / 0.05)', border: '1px solid rgb(var(--fg) / 0.12)', color: 'var(--ink)', fontWeight: 400 }} />
+                    <ChatPrefill lang={lang} />
                   </div>
 
                   <ContactFields lang={lang} part="budget" />

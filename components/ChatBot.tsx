@@ -406,6 +406,25 @@ export default function ChatBot({ lang }: { lang: Lang }) {
 
   const fbCount = useRef(0)
 
+  const [copied, setCopied] = useState(false)
+  // Plain-text recap of what the visitor asked, so they never have to retype it for the team.
+  const chatSummary = () => {
+    const mine = msgs.filter((x) => x.from === 'me').map((x) => x.text)
+    if (!mine.length) return ''
+    const topics = Array.from(new Set(mine.map((t) => prodOf(t)).filter(Boolean).map((x) => (isEN ? x!.chipEn : x!.chip))))
+    return (isEN ? 'Hi Haliviq team, I was chatting with Havy on your website. Here is what I asked:\n' : 'สวัสดีครับ ผมคุยกับน้องฮาวี่ในเว็บไซต์ Haliviq มาแล้ว สรุปที่ผมถามไว้:\n')
+      + (topics.length ? (isEN ? 'Interested in: ' : 'สนใจ: ') + topics.join(', ') + '\n' : '')
+      + mine.slice(-8).map((t) => '- ' + t.slice(0, 200)).join('\n')
+  }
+  useEffect(() => {
+    try { const sm = chatSummary(); if (sm) sessionStorage.setItem('hv_chat', JSON.stringify({ text: sm, ts: Date.now() })) } catch {}
+  }, [msgs]) // eslint-disable-line react-hooks/exhaustive-deps
+  const copySummary = () => {
+    const sm = chatSummary()
+    if (!sm) return
+    try { navigator.clipboard.writeText(sm).then(() => setCopied(true)).catch(() => {}) } catch {}
+  }
+
   const submitLead = async () => {
     const contact = leadContact.trim()
     if (contact.length < 5) { setLeadErr(isEN ? 'Please add a phone, LINE ID or email.' : 'กรุณาใส่เบอร์โทร LINE ID หรืออีเมลครับ'); return }
@@ -417,7 +436,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
       const r = await fetch('/api/lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contact, consent: true, topics, lines: mine.slice(-4), lang, page: typeof window !== 'undefined' ? window.location.pathname : '' }),
+        body: JSON.stringify({ contact, consent: true, topics, lines: mine.slice(-8), lang, page: typeof window !== 'undefined' ? window.location.pathname : '' }),
       })
       const d = await r.json().catch(() => ({}))
       if (r.ok && d.ok) {
@@ -704,7 +723,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
       return
     }
     if (wantsAgent(clean) && !(clean.length < 60 && ASKS_IDENTITY.test(clean))) {
-      setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, agent: true, lead: true, text: isEN ? 'Happy to. There is nothing to decide right now. Just tell the team briefly what you need. Pick the channel you like below and they will reply there, so you do not have to repeat yourself.' : 'ได้เลยครับ ไม่ต้องตัดสินใจทำอะไรตอนนี้ เล่าเรื่องที่อยากได้ให้ทีมฟังคร่าว ๆ ก็พอ เลือกช่องทางที่สะดวกด้านล่าง ทีมจะติดต่อกลับทางนั้น โดยไม่ต้องเล่าซ้ำจากต้นครับ' }])
+      setMsgs((m) => [...m, { from: 'me', text: clean }, { from: 'bot', fresh: true, agent: true, lead: true, text: isEN ? 'Happy to. There is nothing to decide right now. Just tell the team briefly what you need. Pick the channel you like below. I will copy a summary of our chat so you can paste it there, or leave your contact and I will send the summary to the team.' : 'ได้เลยครับ ไม่ต้องตัดสินใจทำอะไรตอนนี้ เล่าเรื่องที่อยากได้ให้ทีมฟังคร่าว ๆ ก็พอ เลือกช่องทางที่สะดวกด้านล่าง ผมจะคัดลอกสรุปที่คุยกันไว้ให้วางในแชตได้เลย หรือฝากช่องทางติดต่อไว้ ผมจะส่งสรุปให้ทีมครับ' }])
       setText('')
       log(clean, -1)
       return
@@ -805,13 +824,20 @@ export default function ChatBot({ lang }: { lang: Lang }) {
                 {(m.agent || m.meet) && (
                   <div className="flex flex-col gap-2 mt-2">
                     {m.agent && CHANNELS.map((c) => (
-                      <a key={c.id} href={c.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 px-3.5 py-2 rounded-2xl text-[13px]" style={{ background: c.bg, color: '#fff', fontWeight: 600 }}>
+                      <a key={c.id} href={c.href} onClick={copySummary} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 px-3.5 py-2 rounded-2xl text-[13px]" style={{ background: c.bg, color: '#fff', fontWeight: 600 }}>
                         <ChannelIcon id={c.id} />{isEN ? `Chat on ${c.label}` : `คุยทาง ${c.label}`}
                       </a>
                     ))}
-                    <a href={MEET_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 px-3.5 py-2 rounded-2xl text-[13px]" style={{ background: '#fff', color: '#1B1A2E', fontWeight: 600 }}>
+                    <a href={MEET_URL} onClick={copySummary} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 px-3.5 py-2 rounded-2xl text-[13px]" style={{ background: '#fff', color: '#1B1A2E', fontWeight: 600 }}>
                       <MeetIcon />{isEN ? 'Book a Google Meet call' : 'นัดประชุมออนไลน์ Google Meet'}
                     </a>
+                    {m.agent && chatSummary() && (
+                      <div className="text-[11.5px]" style={{ lineHeight: 1.5, opacity: 0.85 }}>
+                        {copied
+                          ? (isEN ? 'Copied a summary of this chat. Paste it into the conversation so you do not have to retype.' : 'คัดลอกสรุปที่คุยกับน้องฮาวี่ไว้ให้แล้ว วางในแชตได้เลย ไม่ต้องพิมพ์ใหม่ครับ')
+                          : (isEN ? 'Tapping a channel copies a summary of this chat, so you can paste it there.' : 'กดช่องทางแล้วระบบจะคัดลอกสรุปที่คุยกันไว้ให้ วางในแชตได้เลยครับ')}
+                      </div>
+                    )}
                   </div>
                 )}
                 {m.lead && !leadDone && (
