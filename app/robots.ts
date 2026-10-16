@@ -5,6 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
+      disallow: ['/staff', '/api/staff-chat'],
     },
     sitemap: 'https://www.haliviq.com/sitemap.xml',
   }

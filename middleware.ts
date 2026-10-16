@@ -12,6 +12,6 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  // Everything except: root, /th, /en, /api, Next internals and files with an extension.
-  matcher: ['/((?!$|th(?:/|$)|en(?:/|$)|api(?:/|$)|_next/|.*\\..*).+)'],
+  // Everything except: root, /th, /en, /staff, /api, Next internals and files with an extension.
+  matcher: ['/((?!$|th(?:/|$)|en(?:/|$)|staff(?:/|$)|api(?:/|$)|_next/|.*\\..*).+)'],
 }
