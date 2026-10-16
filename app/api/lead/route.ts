@@ -31,20 +31,23 @@ export async function POST(req: Request) {
 
   let b: any
   try { b = await req.json() } catch { return NextResponse.json({ ok: false }, { status: 400 }) }
-  if (b?.consent !== true) return NextResponse.json({ ok: false, error: 'consent' }, { status: 400 })
+  // kind 'tap': the visitor tapped a chat channel (the page tells them the team gets the recap). No contact details are sent.
+  const tap = b?.kind === 'tap'
+  if (!tap && b?.consent !== true) return NextResponse.json({ ok: false, error: 'consent' }, { status: 400 })
 
-  const contact = clip(b.contact, 120)
-  if (contact.length < 5) return NextResponse.json({ ok: false, error: 'contact' }, { status: 400 })
+  const contact = tap ? '' : clip(b.contact, 120)
+  if (!tap && contact.length < 5) return NextResponse.json({ ok: false, error: 'contact' }, { status: 400 })
+  const channel = clip(b.channel, 30)
   const topics = Array.isArray(b.topics) ? b.topics.slice(0, 6).map((t: unknown) => clip(t, 60)).filter(Boolean) : []
   const lines = Array.isArray(b.lines) ? b.lines.slice(0, 10).map((t: unknown) => '- ' + clip(t, 240)) : []
 
   const text = [
-    '🔔 ลูกค้าขอให้ทีมติดต่อกลับ (จากน้องฮาวี่)',
-    `ช่องทางติดต่อ: ${contact}`,
+    tap ? `👆 ลูกค้ากำลังจะทักทาง ${channel || 'ช่องทางแชต'} (จากน้องฮาวี่)` : '🔔 ลูกค้าขอให้ทีมติดต่อกลับ (จากน้องฮาวี่)',
+    tap ? 'ยังไม่ได้ฝากเบอร์ ให้รอข้อความจากลูกค้าทางช่องทางนี้ สรุปด้านล่างคือสิ่งที่ลูกค้าจะวางให้' : `ช่องทางติดต่อ: ${contact}`,
     `สนใจ: ${topics.length ? topics.join(', ') : 'ยังไม่ระบุ'}`,
     lines.length ? 'ที่คุยกัน:\n' + lines.join('\n') : '',
     `ภาษา: ${clip(b.lang, 5)} | หน้า: ${clip(b.page, 100)}`,
-    'ลูกค้ายินยอมให้ติดต่อกลับแล้ว',
+    tap ? '' : 'ลูกค้ายินยอมให้ติดต่อกลับแล้ว',
   ].filter(Boolean).join('\n')
 
   // Delivery: LINE first if configured, otherwise email (Resend), otherwise the webhook.
@@ -68,7 +71,7 @@ export async function POST(req: Request) {
         body: JSON.stringify({
           from: process.env.CONTACT_FROM || 'Haliviq Website <onboarding@resend.dev>',
           to: ['info@haliviq.com'],
-          subject: `ลูกค้าขอให้ติดต่อกลับ (จากน้องฮาวี่): ${contact}`,
+          subject: tap ? `ลูกค้ากำลังทักทาง ${channel} (จากน้องฮาวี่)` : `ลูกค้าขอให้ติดต่อกลับ (จากน้องฮาวี่): ${contact}`,
           html: `<div style="font-family:-apple-system,Segoe UI,Arial,'Noto Sans Thai',sans-serif;font-size:15px;line-height:1.7;white-space:pre-wrap">${esc(text)}</div>`,
         }),
       })

@@ -419,10 +419,21 @@ export default function ChatBot({ lang }: { lang: Lang }) {
   useEffect(() => {
     try { const sm = chatSummary(); if (sm) sessionStorage.setItem('hv_chat', JSON.stringify({ text: sm, ts: Date.now() })) } catch {}
   }, [msgs]) // eslint-disable-line react-hooks/exhaustive-deps
-  const copySummary = () => {
+  const notified = useRef<Record<string, boolean>>({})
+  const copySummary = (channel = '') => {
     const sm = chatSummary()
     if (!sm) return
     try { navigator.clipboard.writeText(sm).then(() => setCopied(true)).catch(() => {}) } catch {}
+    // Tell the team (LINE) once per channel that the visitor is about to message them, with the recap. No contact details are sent.
+    if (channel && !notified.current[channel]) {
+      notified.current[channel] = true
+      try {
+        const mine = msgs.filter((x) => x.from === 'me').map((x) => x.text)
+        const topics = Array.from(new Set(mine.map((t) => prodOf(t)).filter(Boolean).map((x) => (isEN ? x!.chipEn : x!.chip))))
+        fetch('/api/lead', { method: 'POST', keepalive: true, headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ kind: 'tap', channel, topics, lines: mine.slice(-8), lang, page: location.pathname }) }).catch(() => {})
+      } catch {}
+    }
   }
 
   const submitLead = async () => {
@@ -824,18 +835,18 @@ export default function ChatBot({ lang }: { lang: Lang }) {
                 {(m.agent || m.meet) && (
                   <div className="flex flex-col gap-2 mt-2">
                     {m.agent && CHANNELS.map((c) => (
-                      <a key={c.id} href={c.href} onClick={copySummary} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 px-3.5 py-2 rounded-2xl text-[13px]" style={{ background: c.bg, color: '#fff', fontWeight: 600 }}>
+                      <a key={c.id} href={c.href} onClick={() => copySummary(c.label)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 px-3.5 py-2 rounded-2xl text-[13px]" style={{ background: c.bg, color: '#fff', fontWeight: 600 }}>
                         <ChannelIcon id={c.id} />{isEN ? `Chat on ${c.label}` : `คุยทาง ${c.label}`}
                       </a>
                     ))}
-                    <a href={MEET_URL} onClick={copySummary} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 px-3.5 py-2 rounded-2xl text-[13px]" style={{ background: '#fff', color: '#1B1A2E', fontWeight: 600 }}>
+                    <a href={MEET_URL} onClick={() => copySummary('Google Meet')} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 px-3.5 py-2 rounded-2xl text-[13px]" style={{ background: '#fff', color: '#1B1A2E', fontWeight: 600 }}>
                       <MeetIcon />{isEN ? 'Book a Google Meet call' : 'นัดประชุมออนไลน์ Google Meet'}
                     </a>
                     {m.agent && chatSummary() && (
                       <div className="text-[11.5px]" style={{ lineHeight: 1.5, opacity: 0.85 }}>
                         {copied
                           ? (isEN ? 'Copied a summary of this chat. Paste it into the conversation so you do not have to retype.' : 'คัดลอกสรุปที่คุยกับน้องฮาวี่ไว้ให้แล้ว วางในแชตได้เลย ไม่ต้องพิมพ์ใหม่ครับ')
-                          : (isEN ? 'Tapping a channel copies a summary of this chat, so you can paste it there.' : 'กดช่องทางแล้วระบบจะคัดลอกสรุปที่คุยกันไว้ให้ วางในแชตได้เลยครับ')}
+                          : (isEN ? 'Tapping a channel copies a summary of this chat so you can paste it there, and lets the team see that summary too.' : 'กดช่องทางแล้วระบบจะคัดลอกสรุปที่คุยกันไว้ให้ วางในแชตได้เลย และทีมงานจะเห็นสรุปนี้ด้วย (ไม่มีข้อมูลติดต่อของคุณ)')}
                       </div>
                     )}
                   </div>
