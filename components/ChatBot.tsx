@@ -879,7 +879,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
                 )}
                 {i === lastIdx && m.from === 'bot' && !m.pending && lastIdx > 0 && (
                   <div className="flex flex-wrap gap-2 mt-2">
-                    <Link href={`/${lang}`} className="text-xs px-3 py-1.5 rounded-full" style={{ background: 'linear-gradient(135deg,#7B6EF6,#53C3D7)', color: '#fff', fontWeight: 600 }}>{isEN ? 'Go to home' : 'ไปหน้าหลัก'}</Link>
+                    <button type="button" onClick={() => { setMsgs([{ from: 'bot', text: hello }]); setText(''); setLeadErr(''); setCopied(false) }} className="text-xs px-3 py-1.5 rounded-full" style={{ background: 'linear-gradient(135deg,#7B6EF6,#53C3D7)', color: '#fff', fontWeight: 600 }}>{isEN ? 'Back to start' : 'ไปหน้าหลัก'}</button>
                   </div>
                 )}
                   </BotBubble>
