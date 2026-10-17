@@ -106,14 +106,16 @@ export async function POST(req: Request) {
     return r.ok
   }
 
-  // Delivery: LINE first if configured. If LINE fails (or is not configured), fall back to email (Resend), then the webhook.
+  // Delivery: LINE and email (Resend) are both sent when configured, so info@haliviq.com always has a copy.
+  // The webhook is only a last resort when neither of them got through.
   let line: { ok: boolean; status?: number; detail?: string } | null = null
   try {
-    if (token && to) {
-      line = await sendLine()
-      if (line.ok) return NextResponse.json({ ok: true })
-    }
-    try { if (await sendEmail()) return NextResponse.json({ ok: true }) } catch (e) { console.error('lead email error', e) }
+    const [lineRes, emailOk] = await Promise.all([
+      token && to ? sendLine() : Promise.resolve(null),
+      sendEmail().catch((e) => { console.error('lead email error', e); return false }),
+    ])
+    line = lineRes
+    if (line?.ok || emailOk) return NextResponse.json({ ok: true })
     try { if (await sendHook()) return NextResponse.json({ ok: true }) } catch (e) { console.error('lead webhook error', e) }
     if (line) return NextResponse.json({ ok: false, error: 'line', status: line.status, detail: line.detail }, { status: 502 })
     return NextResponse.json({ ok: false, error: 'delivery' }, { status: 502 })
