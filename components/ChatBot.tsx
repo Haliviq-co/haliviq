@@ -382,7 +382,17 @@ export default function ChatBot({ lang }: { lang: Lang }) {
   const [msgs, setMsgs] = useState<Msg[]>([{ from: 'bot', text: hello }])
   const end = useRef<HTMLDivElement>(null)
   const box = useRef<HTMLDivElement>(null)
-  const toEnd = () => { const el = box.current; if (el) el.scrollTop = el.scrollHeight }
+  // Keep the visitor's latest question in view: when there is one, scroll so it sits at the top of the panel
+  // (the answer and the chips follow below it) instead of jumping to the very bottom and hiding it.
+  const toEnd = () => {
+    const el = box.current
+    if (!el) return
+    const qs = el.querySelectorAll<HTMLElement>('[data-me]')
+    const q = qs[qs.length - 1]
+    if (!q) { el.scrollTop = el.scrollHeight; return }
+    const target = el.scrollTop + (q.getBoundingClientRect().top - el.getBoundingClientRect().top) - 8
+    el.scrollTop = Math.max(0, Math.min(target, el.scrollHeight - el.clientHeight))
+  }
 
   useEffect(() => { toEnd() }, [msgs, open]) // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => { setKb([]) }, [lang]) // drop the other language's knowledge base when the page language changes
@@ -827,7 +837,7 @@ export default function ChatBot({ lang }: { lang: Lang }) {
 
           <div ref={box} className="flex-1 overflow-y-auto px-3.5 py-3.5 flex flex-col gap-2.5" style={{ background: 'var(--bg)', overscrollBehavior: 'contain' }}>
             {msgs.map((m, i) => (
-              <div key={i} className={m.from === 'me' ? 'self-end max-w-[85%]' : 'self-start max-w-[90%]'}>
+              <div key={i} data-me={m.from === 'me' ? '1' : undefined} className={m.from === 'me' ? 'self-end max-w-[85%]' : 'self-start max-w-[90%]'}>
                 {m.from === 'me' ? (
                   <div className="px-3.5 py-2 text-[13px] rounded-2xl" style={{ background: 'linear-gradient(135deg, #7B6EF6, #5A4ED4)', color: '#fff', borderTopRightRadius: 6, lineHeight: 1.6 }}>{m.text}</div>
                 ) : (
