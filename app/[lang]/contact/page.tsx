@@ -58,7 +58,6 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { icon: 'ti-video', title: 'Book a call', value: 'Free 30-min video call', sub: 'Pick a time, Google Meet', href: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0je6QG4mvfhRlih-PGXzRyFuCp-M3VyWFMwv8cbGiikwZ9Lo_17rWIR7q_ssEg92l9juim9xXE' },
     { icon: 'ti-phone', title: 'Call', value: '+66 90 918 9009', sub: 'Direct line', href: 'tel:+66909189009' },
     { icon: 'ti-mail', title: 'Sales', value: 'info@haliviq.com', sub: 'New projects & partnerships', href: 'mailto:info@haliviq.com' },
-    { icon: 'ti-headset', title: 'Support', value: 'info@haliviq.com', sub: 'Existing clients & support', href: 'mailto:info@haliviq.com' },
     { icon: 'ti-brand-whatsapp', title: 'WhatsApp', value: '+1 (206) 849 6901', sub: 'US team', href: 'https://wa.me/message/TM3WC6DUJAFEK1' },
     { icon: 'ti-brand-line', title: 'LINE OA', value: '@haliviq', sub: 'Fastest response', href: 'https://lin.ee/zyTrkx4' },
     { icon: 'ti-map-pin', title: 'Office — Thailand', value: '111 Sukhumvit Rd, Bang Chak,', sub: 'Phra Khanong, Bangkok 10260', href: '#' },
@@ -67,7 +66,6 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { icon: 'ti-video', title: 'จองนัดคุย', value: 'วิดีโอคอลฟรี 30 นาที', sub: 'เลือกเวลาได้เอง ผ่าน Google Meet', href: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0je6QG4mvfhRlih-PGXzRyFuCp-M3VyWFMwv8cbGiikwZ9Lo_17rWIR7q_ssEg92l9juim9xXE' },
     { icon: 'ti-phone', title: 'โทร', value: '+66 90 918 9009', sub: 'ติดต่อโดยตรง', href: 'tel:+66909189009' },
     { icon: 'ti-mail', title: 'ฝ่ายขาย', value: 'info@haliviq.com', sub: 'โปรเจกต์ใหม่และพาร์ทเนอร์', href: 'mailto:info@haliviq.com' },
-    { icon: 'ti-headset', title: 'ฝ่ายซัพพอร์ต', value: 'info@haliviq.com', sub: 'ลูกค้าเดิมและงานซัพพอร์ต', href: 'mailto:info@haliviq.com' },
     { icon: 'ti-brand-whatsapp', title: 'WhatsApp', value: '+1 (206) 849 6901', sub: 'ทีมสหรัฐฯ', href: 'https://wa.me/message/TM3WC6DUJAFEK1' },
     { icon: 'ti-brand-line', title: 'LINE OA', value: '@haliviq', sub: 'ตอบไวที่สุด', href: 'https://lin.ee/zyTrkx4' },
     { icon: 'ti-map-pin', title: 'ออฟฟิศ — ไทย', value: '111 ถนนสุขุมวิท แขวงบางจาก,', sub: 'เขตพระโขนง กรุงเทพฯ 10260', href: '#' },
@@ -101,36 +99,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
                 </p>
               </div>
 
-              <div className="lg:col-start-1 lg:row-start-2">
-                <div className="space-y-4 mb-12">
-                  {channels.map(c => (
-                    <a key={c.title} href={c.href}
-                      className="flex items-center gap-5 p-5 rounded-2xl transition-all group"
-                      style={{ border: '1px solid rgb(var(--fg) / 0.1)', background: 'rgb(var(--fg) / 0.03)' }}>
-                      <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-colors"
-                        style={{ background: 'rgba(123,110,246,0.15)' }}>
-                        <i className={`ti ${c.icon}`} style={{ fontSize: 22, color: 'var(--accent)' }} aria-hidden="true" />
-                      </div>
-                      <div>
-                        <p className="text-sm mb-0.5" style={{ fontWeight: 400, color: 'rgb(var(--fg) / 0.5)' }}>{c.title}</p>
-                        <p style={{ fontWeight: 500, fontSize: '1.15rem', color: 'var(--ink)' }}>{c.value}</p>
-                        <p className="text-sm" style={{ fontWeight: 400, color: 'rgb(var(--fg) / 0.5)' }}>{c.sub}</p>
-                      </div>
-                    </a>
-                  ))}
-                </div>
-                <SocialIcons lang={lang} className="mb-8" />
-                <div className="flex items-center gap-3 flex-wrap">
-                  {(isEN ? ['Free first consultation', 'NDA on request', 'Response within 24 hours'] : ['ปรึกษาครั้งแรกฟรี', 'มี NDA พร้อมให้ลงนาม', 'ตอบกลับภายใน 24 ชั่วโมง']).map(txt => (
-                    <div key={txt} className="flex items-center gap-1.5">
-                      <i className="ti ti-circle-check" style={{ fontSize: 14, color: 'var(--accent-2)' }} aria-hidden="true" />
-                      <span className="text-sm" style={{ fontWeight: 400, color: 'rgb(var(--fg) / 0.6)' }}>{txt}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="contact-card rounded-3xl p-8 lg:p-10 lg:sticky lg:top-24 lg:col-start-2 lg:row-start-2" style={{ border: '1px solid rgb(var(--fg) / 0.08)' }}>
+              <div className="contact-card rounded-3xl p-8 lg:p-10 lg:sticky lg:top-24 lg:col-start-2 lg:row-start-2 lg:row-span-2" style={{ border: '1px solid rgb(var(--fg) / 0.08)' }}>
                 <h2 className="mb-8" style={{ fontWeight: 500, fontSize: '1.3rem', color: 'var(--ink)' }}>{isEN ? 'Tell us about your project' : 'เล่าเรื่องโปรเจกต์ของคุณ'}</h2>
                 <ContactFormShell lang={lang}>
                   <div className="grid sm:grid-cols-2 gap-5">
@@ -212,6 +181,38 @@ export default function Page({ params }: { params: { lang: Lang } }) {
                     )}
                   </p>
                 </ContactFormShell>
+              </div>
+
+              <div className="lg:col-start-1 lg:row-start-2">
+                <div className="space-y-4 lg:mb-12">
+                  {channels.map(c => (
+                    <a key={c.title} href={c.href}
+                      className="flex items-center gap-5 p-5 rounded-2xl transition-all group"
+                      style={{ border: '1px solid rgb(var(--fg) / 0.1)', background: 'rgb(var(--fg) / 0.03)' }}>
+                      <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-colors"
+                        style={{ background: 'rgba(123,110,246,0.15)' }}>
+                        <i className={`ti ${c.icon}`} style={{ fontSize: 22, color: 'var(--accent)' }} aria-hidden="true" />
+                      </div>
+                      <div>
+                        <p className="text-sm mb-0.5" style={{ fontWeight: 400, color: 'rgb(var(--fg) / 0.5)' }}>{c.title}</p>
+                        <p style={{ fontWeight: 500, fontSize: '1.15rem', color: 'var(--ink)' }}>{c.value}</p>
+                        <p className="text-sm" style={{ fontWeight: 400, color: 'rgb(var(--fg) / 0.5)' }}>{c.sub}</p>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <div className="lg:col-start-1 lg:row-start-3">
+                <SocialIcons lang={lang} className="mb-8" />
+                <div className="flex items-center gap-3 flex-wrap">
+                  {(isEN ? ['Free first consultation', 'NDA on request', 'Response within 24 hours'] : ['ปรึกษาครั้งแรกฟรี', 'มี NDA พร้อมให้ลงนาม', 'ตอบกลับภายใน 24 ชั่วโมง']).map(txt => (
+                    <div key={txt} className="flex items-center gap-1.5">
+                      <i className="ti ti-circle-check" style={{ fontSize: 14, color: 'var(--accent-2)' }} aria-hidden="true" />
+                      <span className="text-sm" style={{ fontWeight: 400, color: 'rgb(var(--fg) / 0.6)' }}>{txt}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
