@@ -100,7 +100,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
               </div>
 
               <div className="contact-card rounded-3xl p-8 lg:p-10 lg:sticky lg:top-24 lg:col-start-2 lg:row-start-2 lg:row-span-2" style={{ border: '1px solid rgb(var(--fg) / 0.08)' }}>
-                <h2 className="mb-8" style={{ fontWeight: 500, fontSize: '1.3rem', color: 'var(--ink)' }}>{isEN ? 'Tell us about your project' : 'เล่าเรื่องโปรเจกต์ของคุณ'}</h2>
+                <h2 className="mb-8" style={{ fontWeight: 500, fontSize: '1.3rem', color: 'var(--ink)' }}>{isEN ? 'Tell us about your project' : 'ประเมินโปรเจกต์ของคุณ'}</h2>
                 <ContactFormShell lang={lang}>
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
