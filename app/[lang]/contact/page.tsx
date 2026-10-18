@@ -85,7 +85,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
             className="absolute -top-40 -left-32 w-[560px] h-[560px] rounded-full pointer-events-none"
             style={{ background: 'radial-gradient(circle, rgba(123,110,246,0.28) 0%, transparent 70%)', filter: 'blur(20px)' }}
           />
-          <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pt-20 lg:pt-28 pb-20">
+          <div className="relative max-w-7xl mx-auto px-8 lg:px-10 pt-20 lg:pt-28 pb-20">
             <div className="grid lg:grid-cols-2 gap-x-16 lg:gap-x-24 gap-y-16 lg:gap-y-0 items-start">
               <div className="lg:col-start-1 lg:row-start-1">
                 <p className="t-label mb-5">{isEN ? 'Get in Touch' : 'ติดต่อเรา'}</p>
