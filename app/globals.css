@@ -592,3 +592,8 @@ html[data-theme="light"] .cta-final a[href$="/contact"]:hover { background: #EEE
 .ind-cover{position:absolute;left:50%;top:50%;width:470px;transform:translate(-50%,-50%) scale(.6);transform-origin:center;pointer-events:none}
 @media (min-width:1024px){.ind-cover{transform:translate(-50%,-50%) scale(.64)}}
 @media (max-width:420px){.ind-cover{transform:translate(-50%,-50%) scale(.56)}}
+
+/* Mobile Safari zooms into any field smaller than 16px on focus; keep form fields at 16px so the page does not jump */
+@media (max-width:767px){
+  .contact-card input:not([type="checkbox"]):not([type="radio"]), .contact-card select, .contact-card textarea { font-size:16px !important }
+}
