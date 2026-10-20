@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { brevoUpsert } from '@/lib/brevo'
 
 export const runtime = 'nodejs'
 
@@ -85,5 +86,7 @@ export async function POST(req: Request) {
     console.error('[contact-form] delivery failed', e)
     return NextResponse.json({ ok: false, error: 'delivery_failed' }, { status: 502 })
   }
+  // Add to Brevo CRM (no-op unless BREVO_API_KEY is set). Awaited so the serverless function does not exit early; never fails the form.
+  await brevoUpsert({ email: data.email, name: data.name, newsletter: data.newsletter })
   return NextResponse.json({ ok: true })
 }

@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { brevoUpsert } from '@/lib/brevo'
 
 export const runtime = 'nodejs'
 
@@ -51,6 +52,9 @@ export async function POST(req: Request) {
   ].filter(Boolean).join('\n')
 
   const lineText = text.slice(0, 4900)
+
+  // If the visitor left an email as their contact, add it to Brevo (no-op unless BREVO_API_KEY is set)
+  if (!tap && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact)) await brevoUpsert({ email: contact })
 
   // LINE_NOTIFY_TO may hold user IDs (U...), group IDs (C...) and room IDs (R...) separated by commas.
   // The multicast endpoint only accepts user IDs, so groups/rooms are pushed one by one.
