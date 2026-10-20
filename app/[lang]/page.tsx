@@ -5,6 +5,7 @@ import CoreSkills from '@/components/CoreSkills'
 import WhatWeDo from '@/components/WhatWeDo'
 import FlowDiagram from '@/components/FlowDiagram'
 import Testimonials from '@/components/Testimonials'
+import IntroVideo from '@/components/IntroVideo'
 import Clients from '@/components/Clients'
 import Work from '@/components/Work'
 import FeaturedWork from '@/components/FeaturedWork'
@@ -77,6 +78,7 @@ export default function HomePage({ params }: { params: { lang: string } }) {
       <FeaturedWork lang={lang} tr={tr} />
       <WhatWeDo lang={lang} tr={tr} />
       <FlowDiagram lang={lang} />
+      <IntroVideo lang={lang} />
       <Testimonials lang={lang} />
       {/* Services and Work sections removed */}
       <PortfolioGallery lang={lang} tr={tr} />
