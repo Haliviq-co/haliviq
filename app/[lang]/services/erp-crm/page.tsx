@@ -161,28 +161,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     { icon: 'ti-messages', title: 'รับออเดอร์จากแชตและอีเมล', desc: 'AI จับคู่รหัสสินค้า เช็กราคา แล้วร่างคำสั่งขายให้ทีมยืนยัน' },
     { icon: 'ti-message-search', title: 'ถามข้อมูลธุรกิจด้วยภาษาคน', desc: 'ถามยอดขาย สต็อก หรือลูกค้า พร้อมดูรายการต้นทางของตัวเลขแต่ละตัว ตามสิทธิ์ของผู้ใช้แต่ละคน' },
   ]
-  const aiMore  = isEN
-    ? 'Next, depending on your data: debt-collection follow-up, a purchasing assistant, stock planning, flagging unusual entries, and an assistant that answers from your ERP manuals.'
-    : 'ขั้นต่อไปตามความพร้อมของข้อมูล: ช่วยติดตามลูกหนี้ ผู้ช่วยจัดซื้อ ช่วยวางแผนสต็อก ตรวจรายการผิดปกติ และผู้ช่วยตอบจากคู่มือการใช้ ERP'
-  const aiRules = isEN ? [
-    'A person approves anything important',
-    'Access follows each person’s role, and every action is logged',
-    'We check what AI your ERP already offers first, and build only what adds value',
-  ] : [
-    'รายการสำคัญให้คนอนุมัติเสมอ',
-    'ใช้สิทธิ์ตามหน้าที่ของแต่ละคน และบันทึกประวัติทุกการทำงาน',
-    'ตรวจก่อนว่า ERP ของคุณมีฟังก์ชัน AI อะไรอยู่แล้ว แล้วพัฒนาเฉพาะส่วนที่เพิ่มคุณค่า',
-  ]
-  const aiSteps = isEN ? [
-    { no: '1', title: 'Trial one job', desc: 'Test with sample data first' },
-    { no: '2', title: 'Install', desc: 'Connect your ERP and set the approval steps' },
-    { no: '3', title: 'Monthly care', desc: 'Track quality and usage cost' },
-  ] : [
-    { no: '1', title: 'ทดลองหนึ่งงาน', desc: 'ทดสอบด้วยข้อมูลตัวอย่างก่อน' },
-    { no: '2', title: 'ติดตั้ง', desc: 'เชื่อม ERP และตั้งขั้นตอนอนุมัติ' },
-    { no: '3', title: 'ดูแลรายเดือน', desc: 'ติดตามคุณภาพและค่าใช้งาน' },
-  ]
-  const aiCta = isEN ? 'Talk to the team about AI + ERP' : 'คุยกับทีมเรื่อง AI + ERP'
+  const aiCta = isEN ? 'See all 8 AI + ERP services' : 'ดูทั้ง 8 บริการ AI + ERP'
 
   const postHeroSlot = (
     <section className="relative overflow-hidden" style={{ background: 'var(--bg)' }}>
@@ -202,29 +181,9 @@ export default function Page({ params }: { params: { lang: Lang } }) {
             </div>
           ))}
         </div>
-        <p className="mt-6" style={{ color: 'rgb(var(--fg) / 0.7)', fontSize: '1rem', maxWidth: 820 }}>{aiMore}</p>
 
-        <div className="mt-10 grid md:grid-cols-3 gap-4">
-          {aiSteps.map((st) => (
-            <div key={st.no} className="flex items-start gap-4 p-5 rounded-2xl" style={{ border: '1px solid rgb(var(--fg) / 0.08)' }}>
-              <span className="w-9 h-9 rounded-full flex items-center justify-center shrink-0 font-semibold" style={{ background: 'var(--accent)', color: '#fff' }}>{st.no}</span>
-              <div>
-                <p style={{ color: 'var(--ink)', fontWeight: 600 }}>{st.title}</p>
-                <p style={{ color: 'rgb(var(--fg) / 0.75)', fontSize: '0.95rem' }}>{st.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
 
-        <ul className="mt-8 space-y-2">
-          {aiRules.map((r) => (
-            <li key={r} className="flex items-start gap-3" style={{ color: 'rgb(var(--fg) / 0.85)' }}>
-              <span style={{ color: 'var(--accent-2)' }} aria-hidden="true">✓</span>{r}
-            </li>
-          ))}
-        </ul>
-
-        <Link href={`/${params.lang}/contact`} className="inline-block mt-10 px-7 py-3 rounded-full font-semibold" style={{ background: 'linear-gradient(135deg,#7B6EF6,#53C3D7)', color: '#fff' }}>
+        <Link href={`/${params.lang}/services/ai-erp`} className="inline-block mt-10 px-7 py-3 rounded-full font-semibold" style={{ background: 'linear-gradient(135deg,#7B6EF6,#53C3D7)', color: '#fff' }}>
           {aiCta}
         </Link>
       </div>

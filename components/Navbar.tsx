@@ -33,6 +33,7 @@ const servicesMenuTh = {
   ],
   'AI & นวัตกรรม': [
     {label:'พัฒนาผลิตภัณฑ์ AI',href:'/services/ai'},
+    {label:'AI + ERP',href:'/services/ai-erp'},
     {label:'ระบบอัตโนมัติ',href:'/services/automation'},
     {label:'บำรุงรักษาและซัพพอร์ต',href:'/services/support'},
   ],
@@ -73,6 +74,7 @@ const servicesMenuEn = {
   ],
   'AI & Innovation': [
     {label:'AI Product Development',href:'/services/ai'},
+    {label:'AI + ERP',href:'/services/ai-erp'},
     {label:'Automation',href:'/services/automation'},
     {label:'Support & Maintenance',href:'/services/support'},
   ],

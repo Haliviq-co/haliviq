@@ -332,13 +332,57 @@ const SCENES: Record<string, (t: X) => React.ReactNode> = {
       </Win>
     </Wrap>
   ),
-  'enterprise-solutions': (t) => (
-    <Wrap float={<Float label="Systems"><div style={{ fontSize: 22, fontWeight: 700, color: Y }}>12</div></Float>}>
-      <Win url="enterprise.map">
-        <div className="relative mx-auto" style={{ width: 250, height: 250 }}>
-          <div className="absolute inset-0 rounded-full" style={{ border: `1px dashed ${fg(0.25)}` }} />
-          <div className="hx-spin absolute inset-0">{['ti-users', 'ti-database', 'ti-credit-card', 'ti-chart-bar', 'ti-cloud'].map((ic, i) => { const a = (i / 5) * Math.PI * 2; return <span key={i} className="absolute w-9 h-9 rounded-lg flex items-center justify-center" style={{ left: 125 + Math.cos(a) * 105 - 18, top: 125 + Math.sin(a) * 105 - 18, background: CARD, border: `1px solid ${PL}88` }}><i className={`ti ${ic}`} style={{ color: PL, fontSize: 17 }} /></span> })}</div>
-          <span className="absolute w-16 h-16 rounded-2xl flex items-center justify-center" style={{ left: 93, top: 93, background: `linear-gradient(135deg,${P},${TL})` }}><i className="ti ti-hierarchy-3" style={{ color: '#fff', fontSize: 28 }} /></span>
+  'enterprise-solutions': (t) => {
+    const nodes = [['ti-users', 'HR'], ['ti-database', 'ERP'], ['ti-credit-card', t('บัญชี', 'Finance')], ['ti-chart-bar', 'BI'], ['ti-cloud', 'Cloud'], ['ti-truck', t('คลัง', 'Stock')]]
+    const R0 = 112, C = 150
+    return (
+      <Wrap float={<Float label={t('ระบบที่เชื่อม', 'Systems linked')}><div className="flex items-end gap-2"><span style={{ fontSize: 26, fontWeight: 700, color: Y, lineHeight: 1 }}>12</span><span style={{ fontSize: 10, color: G }}>● {t('ออนไลน์', 'online')}</span></div></Float>}>
+        <Win url="enterprise.map" right={<span className="rounded-full px-2 py-0.5" style={{ fontSize: 9, background: `${G}26`, color: G }}>LIVE</span>}>
+          <div className="relative mx-auto" style={{ width: 300, height: 300, maxWidth: '100%' }}>
+            <svg viewBox="0 0 300 300" className="absolute inset-0 w-full h-full" aria-hidden="true">
+              <defs>
+                <radialGradient id="entGlow"><stop offset="0%" stopColor={P} stopOpacity="0.55" /><stop offset="100%" stopColor={P} stopOpacity="0" /></radialGradient>
+                <linearGradient id="entLine" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor={TL} /><stop offset="100%" stopColor={P} /></linearGradient>
+              </defs>
+              <circle cx={C} cy={C} r="95" fill="url(#entGlow)" className="hx-blink" />
+              <circle cx={C} cy={C} r="72" fill="none" stroke={fg(0.12)} strokeWidth="1" />
+              <circle cx={C} cy={C} r={R0} fill="none" stroke={fg(0.22)} strokeWidth="1" strokeDasharray="3 6" />
+              {nodes.map((_, i) => { const a = (i / nodes.length) * Math.PI * 2 - Math.PI / 2; return <line key={i} x1={C} y1={C} x2={C + Math.cos(a) * R0} y2={C + Math.sin(a) * R0} stroke="url(#entLine)" strokeWidth="1.2" strokeOpacity="0.55" strokeDasharray="4 5" className="hx-flow" style={dl(i, 0.25)} /> })}
+            </svg>
+            <div className="hx-spin absolute inset-0" style={{ animationDuration: '40s' }}>
+              {nodes.map(([ic, lb], i) => { const a = (i / nodes.length) * Math.PI * 2 - Math.PI / 2; return (
+                <span key={i} className="absolute flex flex-col items-center" style={{ left: C + Math.cos(a) * R0 - 24, top: C + Math.sin(a) * R0 - 24, width: 48 }}>
+                  <span className="hx-spinr flex flex-col items-center" style={{ animationDuration: '40s' }}>
+                    <span className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: CARD, border: `1px solid ${PL}77`, boxShadow: `0 6px 18px -6px ${P}` }}><i className={`ti ${ic}`} style={{ color: PL, fontSize: 18 }} /></span>
+                    <span style={{ fontSize: 9, color: fg(0.75), marginTop: 3 }}>{lb}</span>
+                  </span>
+                </span>) })}
+            </div>
+            <span className="absolute w-[76px] h-[76px] rounded-3xl flex flex-col items-center justify-center hx-bob" style={{ left: C - 38, top: C - 38, background: `linear-gradient(135deg,${P},${TL})`, boxShadow: `0 0 40px ${P}` }}>
+              <i className="ti ti-hierarchy-3" style={{ color: '#fff', fontSize: 30 }} />
+              <span style={{ fontSize: 8, color: '#fff', letterSpacing: 1.5, marginTop: 2 }}>CORE</span>
+            </span>
+          </div>
+        </Win>
+      </Wrap>
+    )
+  },
+  'ai-erp': (t) => (
+    <Wrap float={<Float label={t('คนอนุมัติ', 'Human approves')}><div className="flex items-center gap-2"><span className="w-7 h-7 rounded-full flex items-center justify-center" style={{ background: `${G}30` }}><i className="ti ti-check" style={{ color: G, fontSize: 16 }} /></span><span style={{ fontSize: 12, color: Y, fontWeight: 600 }}>SO-2041</span></div></Float>}>
+      <Win url="ai-erp.flow" right={<span className="rounded-full px-2 py-0.5" style={{ fontSize: 9, background: `${P}33`, color: PL }}>AI</span>}>
+        <div className="flex items-center justify-between gap-2 mb-4">
+          <div className="hx-in rounded-xl p-2.5 text-center" style={{ ...dl(0), width: 74, background: CARD, border: `1px solid ${fg(0.1)}` }}><i className="ti ti-file-text" style={{ color: PL, fontSize: 22 }} /><div style={{ fontSize: 9, color: fg(0.7) }}>PO-1042</div></div>
+          <div className="relative flex-1 h-1 rounded-full" style={{ background: fg(0.1) }}><span className="hx-travel absolute -top-[3px] w-2.5 h-2.5 rounded-full" style={{ background: Y }} /></div>
+          <div className="relative rounded-2xl p-3 flex items-center justify-center" style={{ width: 62, height: 62, background: `linear-gradient(135deg,${P},${TL})`, boxShadow: `0 0 30px ${P}` }}><span className="svc-ping-ring absolute inset-0 rounded-2xl" style={{ border: `2px solid ${TL}` }} /><i className="ti ti-sparkles" style={{ color: '#fff', fontSize: 26 }} /></div>
+          <div className="relative flex-1 h-1 rounded-full" style={{ background: fg(0.1) }}><span className="hx-travel absolute -top-[3px] w-2.5 h-2.5 rounded-full" style={{ ...dl(1, 0.8), background: Y }} /></div>
+          <div className="hx-in rounded-xl p-2.5 text-center" style={{ ...dl(3), width: 74, background: CARD, border: `1px solid ${PL}77` }}><i className="ti ti-database" style={{ color: PL, fontSize: 22 }} /><div style={{ fontSize: 9, color: fg(0.7) }}>ERP</div></div>
+        </div>
+        <div className="space-y-2">
+          <Row i={1} ic="ti-scan" t={t('AI อ่านใบสั่งซื้อ', 'AI reads the PO')} s={t("ข้อความ 12 บรรทัด","12 lines extracted")} tag="✓" />
+          <Row i={2} ic="ti-barcode" t={t('จับคู่รหัสสินค้า', 'Match item codes')} s={t('ตรง 12/12 รายการ', '12 of 12 items matched')} tag="✓" />
+          <Row i={3} ic="ti-currency-baht" t={t('เช็กราคาตามตกลง', 'Check agreed prices')} s={t('พบ 1 จุดต่างราคา', '1 price difference flagged')} tag="!" tc={Y} />
+          <Row i={4} ic="ti-user-check" t={t('รอคนตรวจและอนุมัติ', 'Waiting for a person')} tag={t('ร่าง', 'Draft')} tc={PL} />
+          <Row i={5} ic="ti-file-check" t={t('สร้างคำสั่งขายใน ERP', 'Sales order created in ERP')} tag="SO-2041" />
         </div>
       </Win>
     </Wrap>

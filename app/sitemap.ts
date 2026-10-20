@@ -48,6 +48,7 @@ const staticRoutes = [
   'services/ecommerce',
   'services/enterprise-solutions',
   'services/erp-crm',
+  'services/ai-erp',
   'services/finish-your-vibe-coded-app',
   'services/forward-deployed-engineering',
   'services/growth-strategy',
