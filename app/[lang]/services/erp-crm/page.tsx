@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import ServiceLayout from '@/components/service/ServiceLayout'
 import { type Lang } from '@/lib/i18n'
 import { alt } from '@/lib/seo'
+import Link from 'next/link'
 
 export async function generateStaticParams() {
   return [{ lang: 'th' }, { lang: 'en' }]
@@ -43,6 +44,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       'Data migration from old systems or spreadsheets, with checks and a rollback plan',
       'Role-based access, workflows, and approval chains that follow your real org chart',
       'Links to accounting, e-commerce, HR, logistics, and LINE or email so data is entered once',
+      'AI on top of your ERP: start with one job, such as reading documents or taking orders, and expand once it is measured',
       'Training, go-live support, and ongoing administration after launch',
     ] : [
       'ประเมินความต้องการ ERP และ CRM พร้อมเทียบแพลตฟอร์มที่เป็นไปได้ตามตรง',
@@ -50,6 +52,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       'ย้ายข้อมูลจากระบบเก่าหรือ Spreadsheet พร้อมตรวจความถูกต้องและแผนย้อนกลับ',
       'กำหนดสิทธิ์ตามบทบาท Workflow และสายอนุมัติให้ตรงกับโครงสร้างองค์กรจริง',
       'เชื่อมกับระบบบัญชี E-commerce HR โลจิสติกส์ รวมถึง LINE และอีเมล ให้กรอกข้อมูลครั้งเดียว',
+      'AI ต่อยอด ERP เดิม เริ่มจากหนึ่งงาน เช่น อ่านเอกสารหรือรับออเดอร์ แล้วขยายเมื่อวัดผลได้',
       'อบรมผู้ใช้ ช่วยตอนเปิดใช้งานจริง และดูแลระบบต่อเนื่องหลังเปิด',
     ]
   const whyPoints   = isEN ? [
@@ -120,6 +123,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       {q: 'Will staff adopt the new system?', a: 'Adoption is planned from week one. We train by role, work with a champion in each department, and stay close during the first weeks after launch. We also build the workflows around how people already work wherever we can, so the new system feels like a shortcut and not extra homework.'},
       {q: 'Should we pick an ERP or a CRM first?', a: 'It depends where the pain is. If the problem is orders, stock, and month-end, start with ERP. If it is lost leads and unclear sales pipeline, start with CRM. Either way we design the first one so the second can plug in later without redoing your data.'},
       {q: 'Can the system connect to our accounting software, e-commerce store, or LINE?', a: 'Usually yes. We connect through APIs or standard connectors, and where none exist we build a small integration. Common links include accounting packages, online stores, payment gateways, shipping providers, and LINE or email for customer messages.'},
+      {q: 'Can AI connect to the ERP we already use?', a: 'Often yes, but it depends on the ERP, its version and how it can be connected. We check that first, along with the data quality and who may see what. Then we start with one job, such as reading invoices into draft entries, measure it, and only then expand. A person still approves anything important.'},
       {q: 'What does it cost?', a: 'Cost depends on the platform licences, number of modules and users, the amount of customisation, and how much data has to be migrated. We scope after the assessment and give a written estimate with the assumptions behind it, so you can see what moves the price.'}
     ] : [
       {q: 'ERP ตัวไหนดีที่สุด?', a: 'ไม่มีตัวที่ดีที่สุดตัวเดียว SAP เหมาะกับองค์กรใหญ่ที่ความต้องการซับซ้อน Odoo เหมาะกับ SME ที่กำลังโตและอยากได้ความยืดหยุ่นกับค่าลิขสิทธิ์ที่ต่ำกว่า ส่วน Microsoft Dynamics เหมาะกับองค์กรที่ใช้ผลิตภัณฑ์ Microsoft เป็นหลักอยู่แล้ว เราเทียบให้ตามขั้นตอนทำงาน งบประมาณ และทีมของคุณ แล้วแนะนำตัวที่เหมาะที่สุด ไม่ว่าจะเป็นของเจ้าไหน'},
@@ -128,6 +132,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       {q: 'พนักงานจะยอมใช้ระบบใหม่ไหม?', a: 'เราวางแผนเรื่องนี้ตั้งแต่สัปดาห์แรก อบรมตามบทบาท มีตัวแทนในแต่ละแผนกคอยช่วย และอยู่ใกล้ชิดช่วงสัปดาห์แรกๆ หลังเปิดใช้ เรายังออกแบบ Workflow ให้ใกล้กับวิธีที่คนทำงานอยู่แล้วเท่าที่ทำได้ ระบบใหม่จะรู้สึกเป็นทางลัด ไม่ใช่การบ้านเพิ่ม'},
       {q: 'ควรเริ่มจาก ERP หรือ CRM ก่อน?', a: 'ดูว่าปัญหาอยู่ตรงไหน ถ้าปัญหาคือออเดอร์ สต็อก และการปิดงวดบัญชี เริ่มที่ ERP ถ้าปัญหาคือลีดหาย และไม่เห็นภาพ Pipeline การขาย เริ่มที่ CRM ไม่ว่าเริ่มตัวไหน เราออกแบบให้อีกตัวต่อเข้ามาทีหลังได้โดยไม่ต้องทำข้อมูลใหม่'},
       {q: 'เชื่อมกับโปรแกรมบัญชี ร้านออนไลน์ หรือ LINE ได้ไหม?', a: 'ส่วนใหญ่ได้ เราเชื่อมผ่าน API หรือ Connector มาตรฐาน และถ้าไม่มีให้ใช้ ก็เขียนตัวเชื่อมเล็กๆ ขึ้นมา ที่เชื่อมบ่อยคือโปรแกรมบัญชี ร้านออนไลน์ Payment Gateway ผู้ให้บริการขนส่ง รวมถึง LINE หรืออีเมลสำหรับส่งข้อความหาลูกค้า'},
+      {q: 'AI เชื่อมกับ ERP ที่ใช้อยู่ได้ไหม?', a: 'หลายกรณีทำได้ แต่ขึ้นกับ ERP ที่ใช้ รุ่น และช่องทางเชื่อมต่อ เราตรวจเรื่องนี้ก่อน รวมถึงคุณภาพข้อมูลและสิทธิ์ว่าใครเห็นอะไรได้ แล้วเริ่มจากหนึ่งงาน เช่น อ่านใบแจ้งหนี้เป็นรายการร่าง วัดผล แล้วค่อยขยาย รายการสำคัญยังให้คนอนุมัติเสมอ'},
       {q: 'ค่าใช้จ่ายประมาณเท่าไหร่?', a: 'ขึ้นอยู่กับค่าลิขสิทธิ์ของแพลตฟอร์ม จำนวน Module และผู้ใช้ ปริมาณงานปรับแต่ง และปริมาณข้อมูลที่ต้องย้าย เราประเมินหลังขั้นตอนตรวจสถานะปัจจุบัน และให้ใบประเมินเป็นลายลักษณ์อักษรพร้อมสมมติฐาน คุณจะเห็นว่าอะไรทำให้ราคาขยับ'}
     ]
   const related     = isEN ? [
@@ -142,11 +147,96 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       {label: 'Cloud & DevOps', href: '/services/cloud-devops'}
     ]
 
+  const aiTag      = isEN ? 'AI + ERP' : 'AI + ERP'
+  const aiTitle    = isEN ? 'Build on the system you already have' : 'ต่อยอดระบบเดิมด้วย AI'
+  const aiIntro    = isEN
+    ? 'You do not have to replace your ERP. Pick the one repetitive job that wastes the most time, let AI read, summarise and draft the entry, and let your people check it. Measure the result, then expand.'
+    : 'ไม่ต้องรื้อ ERP ที่ใช้อยู่ เลือกงานซ้ำๆ ที่เสียเวลาที่สุดสักหนึ่งงาน ให้ AI ช่วยอ่าน สรุป และร่างรายการ แล้วให้คนของคุณตรวจ วัดผลให้เห็น แล้วค่อยขยาย'
+  const aiJobs = isEN ? [
+    { icon: 'ti-file-text', title: 'Read documents into the system', desc: 'AI reads invoices and purchase orders and creates draft entries for a person to check. We measure time per document and how many fields still need correcting.' },
+    { icon: 'ti-messages', title: 'Take orders from chat and email', desc: 'AI matches product codes, checks prices and drafts the sales order for your team to confirm.' },
+    { icon: 'ti-message-search', title: 'Ask your business data in plain language', desc: 'Ask about sales, stock or customers and see the source records behind each number, within each user’s permissions.' },
+  ] : [
+    { icon: 'ti-file-text', title: 'อ่านเอกสารเข้าระบบ', desc: 'AI อ่านใบแจ้งหนี้และใบสั่งซื้อ แล้วสร้างรายการร่างให้คนตรวจ วัดผลจากเวลาต่อเอกสารและจำนวนจุดที่ยังต้องแก้' },
+    { icon: 'ti-messages', title: 'รับออเดอร์จากแชตและอีเมล', desc: 'AI จับคู่รหัสสินค้า เช็กราคา แล้วร่างคำสั่งขายให้ทีมยืนยัน' },
+    { icon: 'ti-message-search', title: 'ถามข้อมูลธุรกิจด้วยภาษาคน', desc: 'ถามยอดขาย สต็อก หรือลูกค้า พร้อมดูรายการต้นทางของตัวเลขแต่ละตัว ตามสิทธิ์ของผู้ใช้แต่ละคน' },
+  ]
+  const aiMore  = isEN
+    ? 'Next, depending on your data: debt-collection follow-up, a purchasing assistant, stock planning, flagging unusual entries, and an assistant that answers from your ERP manuals.'
+    : 'ขั้นต่อไปตามความพร้อมของข้อมูล: ช่วยติดตามลูกหนี้ ผู้ช่วยจัดซื้อ ช่วยวางแผนสต็อก ตรวจรายการผิดปกติ และผู้ช่วยตอบจากคู่มือการใช้ ERP'
+  const aiRules = isEN ? [
+    'A person approves anything important',
+    'Access follows each person’s role, and every action is logged',
+    'We check what AI your ERP already offers first, and build only what adds value',
+  ] : [
+    'รายการสำคัญให้คนอนุมัติเสมอ',
+    'ใช้สิทธิ์ตามหน้าที่ของแต่ละคน และบันทึกประวัติทุกการทำงาน',
+    'ตรวจก่อนว่า ERP ของคุณมีฟังก์ชัน AI อะไรอยู่แล้ว แล้วพัฒนาเฉพาะส่วนที่เพิ่มคุณค่า',
+  ]
+  const aiSteps = isEN ? [
+    { no: '1', title: 'Trial one job', desc: 'Test with sample data first' },
+    { no: '2', title: 'Install', desc: 'Connect your ERP and set the approval steps' },
+    { no: '3', title: 'Monthly care', desc: 'Track quality and usage cost' },
+  ] : [
+    { no: '1', title: 'ทดลองหนึ่งงาน', desc: 'ทดสอบด้วยข้อมูลตัวอย่างก่อน' },
+    { no: '2', title: 'ติดตั้ง', desc: 'เชื่อม ERP และตั้งขั้นตอนอนุมัติ' },
+    { no: '3', title: 'ดูแลรายเดือน', desc: 'ติดตามคุณภาพและค่าใช้งาน' },
+  ]
+  const aiCta = isEN ? 'Talk to the team about AI + ERP' : 'คุยกับทีมเรื่อง AI + ERP'
+
+  const postHeroSlot = (
+    <section className="relative overflow-hidden" style={{ background: 'var(--bg)' }}>
+      <div className="relative max-w-7xl mx-auto px-4 lg:px-10 py-16 lg:py-24">
+        <p className="mb-5 text-xs tracking-widest uppercase" style={{ color: 'var(--accent-2)', fontWeight: 600 }}>{aiTag}</p>
+        <h2 className="t-display mb-4" style={{ color: 'var(--ink)', fontSize: 'clamp(2rem,4vw,3rem)' }}>{aiTitle}</h2>
+        <p className="mb-12" style={{ color: 'rgb(var(--fg) / 0.85)', fontSize: '1.15rem', maxWidth: 780 }}>{aiIntro}</p>
+
+        <div className="grid md:grid-cols-3 gap-5">
+          {aiJobs.map((j) => (
+            <div key={j.title} className="p-7 rounded-2xl" style={{ background: 'rgb(var(--fg) / 0.03)', border: '1px solid rgb(var(--fg) / 0.07)' }}>
+              <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style={{ background: 'rgba(123,110,246,0.15)' }}>
+                <i className={`ti ${j.icon}`} style={{ fontSize: 20, color: 'var(--accent)' }} aria-hidden="true" />
+              </div>
+              <h3 className="mb-2" style={{ color: 'var(--ink)', fontWeight: 600, fontSize: '1.25rem' }}>{j.title}</h3>
+              <p className="leading-relaxed" style={{ color: 'rgb(var(--fg) / 0.85)', fontSize: '1.05rem' }}>{j.desc}</p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-6" style={{ color: 'rgb(var(--fg) / 0.7)', fontSize: '1rem', maxWidth: 820 }}>{aiMore}</p>
+
+        <div className="mt-10 grid md:grid-cols-3 gap-4">
+          {aiSteps.map((st) => (
+            <div key={st.no} className="flex items-start gap-4 p-5 rounded-2xl" style={{ border: '1px solid rgb(var(--fg) / 0.08)' }}>
+              <span className="w-9 h-9 rounded-full flex items-center justify-center shrink-0 font-semibold" style={{ background: 'var(--accent)', color: '#fff' }}>{st.no}</span>
+              <div>
+                <p style={{ color: 'var(--ink)', fontWeight: 600 }}>{st.title}</p>
+                <p style={{ color: 'rgb(var(--fg) / 0.75)', fontSize: '0.95rem' }}>{st.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <ul className="mt-8 space-y-2">
+          {aiRules.map((r) => (
+            <li key={r} className="flex items-start gap-3" style={{ color: 'rgb(var(--fg) / 0.85)' }}>
+              <span style={{ color: 'var(--accent-2)' }} aria-hidden="true">✓</span>{r}
+            </li>
+          ))}
+        </ul>
+
+        <Link href={`/${params.lang}/contact`} className="inline-block mt-10 px-7 py-3 rounded-full font-semibold" style={{ background: 'linear-gradient(135deg,#7B6EF6,#53C3D7)', color: '#fff' }}>
+          {aiCta}
+        </Link>
+      </div>
+    </section>
+  )
+
   return (
     <ServiceLayout
       lang={params.lang as Lang}
       badge={badge} title={title} subtitle={subtitle}
       heroDesc={heroDesc} heroBullets={heroBullets}
+      postHeroSlot={postHeroSlot}
       whyTitle={whyTitle} whyDesc={whyDesc} whyPoints={whyPoints}
       outcomes={outcomes} ctaTitle={ctaTitle} ctaDesc={ctaDesc}
       features={features} steps={steps} caseStudies={caseStudies}
