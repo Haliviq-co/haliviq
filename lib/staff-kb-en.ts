@@ -20,7 +20,7 @@ When introducing any service, start with design, then AI, then ease of use.
 
 # Company information
 Haliviq is a software and AI studio with offices in Bangkok and Shelton, WA (USA).
-Contact: phone +66 90 918 9009, LINE @haliviq, WhatsApp +1 (206) 849 6901, email info@haliviq.com
+Contact: phone +66 90 918 9009, LINE @haliviq, WhatsApp +66 90 914 9236, email info@haliviq.com
 Free first consultation (30-minute Google Meet video call), reply within 24 hours, an NDA can be signed first, the customer owns their code and accounts.
 Services: websites, mobile apps, AI and Voice Agents, UX/UI and branding, ERP/CRM, e-commerce, LINE Mini App, SEO/AEO/GEO, cybersecurity, Cloud/DevOps, data and analytics, support, strategy, and fixing apps built with AI (Lovable, Bolt, Cursor, v0).
 
@@ -126,7 +126,7 @@ Monthly SEO/AEO/GEO, monthly system maintenance, Branding with a website about 1
 
 
 # United States market (USA), prices in USD [estimate], not confirmed, completely separate from Thailand
-Use only when the customer is in the United States. Contact via WhatsApp +1 (206) 849 6901 or email info@haliviq.com, Shelton, WA office.
+Use only when the customer is in the United States. Contact via WhatsApp +66 90 914 9236 or email info@haliviq.com, Shelton, WA office.
 Always tell the customer these are "starting" prices and a quote follows a short call. Always check with the team lead before quoting.
 ## Website + AI (USA)
 - Essential + AI: $8,000 – $17,000 formal 5–7 page site, custom design, CMS, basic AI chatbot, site tuned for AI recommendation (AEO/GEO)

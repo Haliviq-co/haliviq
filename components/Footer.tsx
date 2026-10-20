@@ -33,7 +33,7 @@ export default function Footer({ lang, tr }: Props) {
           <div className="grid sm:grid-cols-2 gap-5 max-w-3xl mx-auto">
             {[
               { label: f.thailandLabel, lines: f.addressLines as string[], phone: f.phone, tel: 'tel:+66909189009', icon: 'ti-phone' },
-              { label: f.usaLabel, lines: f.usaAddressLines as string[], phone: f.whatsapp, tel: 'https://wa.me/message/TM3WC6DUJAFEK1', icon: 'ti-brand-whatsapp' },
+              { label: f.usaLabel, lines: f.usaAddressLines as string[], phone: f.whatsapp, tel: 'https://wa.me/66909149236', icon: 'ti-brand-whatsapp' },
             ].map(o => (
               <a key={o.label} href={o.tel} {...(o.tel.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="glass-hover block rounded-xl p-8" style={{ border: '1px solid rgb(var(--fg) / 0.1)' }}>
                 <p className="mb-4 uppercase" style={{ color: 'var(--ink)', fontWeight: 600, fontSize: '1.15rem', letterSpacing: '0.04em' }}>{o.label}</p>
@@ -64,7 +64,7 @@ export default function Footer({ lang, tr }: Props) {
 
             <div className="mt-3" style={{ color: 'rgb(var(--fg) / 0.85)', fontSize: '0.85rem', fontWeight: 400, lineHeight: 1.8 }}>
               <p>{f.phone}</p>
-              <p>WhatsApp: <a href="https://wa.me/message/TM3WC6DUJAFEK1" target="_blank" rel="noopener noreferrer" className="hover:text-[color:var(--ink)] transition-colors">{f.whatsapp}</a></p>
+              <p>WhatsApp: <a href="https://wa.me/66909149236" target="_blank" rel="noopener noreferrer" className="hover:text-[color:var(--ink)] transition-colors">{f.whatsapp}</a></p>
               <p>LINE: {f.line}</p>
               <p>{f.salesLabel}: info@haliviq.com</p>
               <p>{f.supportLabel}: info@haliviq.com</p>
