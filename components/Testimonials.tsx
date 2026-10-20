@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import type { Lang } from '@/lib/i18n'
 import type { Review, VideoReview } from '@/lib/testimonials'
 import { REVIEWS, VIDEOS } from '@/lib/testimonials'
@@ -18,6 +18,9 @@ export default function Testimonials({ lang, reviews = REVIEWS, videos = VIDEOS,
   const t = lang === 'en' ? T.en : T.th
   const [page, setPage] = useState(0)
   const [open, setOpen] = useState<VideoReview | null>(null)
+  const strip = useRef<HTMLDivElement>(null)
+  const slide = (d: number) => strip.current?.scrollBy({ left: d * 320, behavior: 'smooth' })
+  const arrow = (side: 'left' | 'right'): React.CSSProperties => ({ position: 'absolute', top: '50%', [side]: -6, transform: 'translateY(-50%)', width: 36, height: 36, borderRadius: '50%', background: 'var(--accent)', color: '#fff', zIndex: 2, fontSize: 20 })
   if (!reviews.length && !videos.length) return null
   const pages = Math.max(1, Math.ceil(reviews.length / PER))
   const avg = reviews.length ? reviews.reduce((a, r) => a + r.stars, 0) / reviews.length : 0
@@ -38,7 +41,10 @@ export default function Testimonials({ lang, reviews = REVIEWS, videos = VIDEOS,
         </div>
 
         {videos.length > 0 && (
-          <div className="flex gap-3 overflow-x-auto pb-4 mb-8 snap-x" style={{ scrollbarWidth: 'thin' }}>
+          <div className="relative mb-8">
+          <button type="button" aria-label="prev" onClick={() => slide(-1)} style={arrow('left')}>‹</button>
+          <button type="button" aria-label="next" onClick={() => slide(1)} style={arrow('right')}>›</button>
+          <div ref={strip} className="flex gap-3 overflow-x-auto pb-4 snap-x" style={{ scrollbarWidth: 'thin' }}>
             {videos.map((v, i) => (
               <button key={i} type="button" onClick={() => setOpen(v)} className="relative shrink-0 snap-start rounded-xl overflow-hidden" style={{ width: 150, height: 230, border: `1px solid ${border}` }} aria-label={v.name}>
                 <img src={v.thumb} alt={v.name} className="w-full h-full object-cover" />
@@ -46,6 +52,7 @@ export default function Testimonials({ lang, reviews = REVIEWS, videos = VIDEOS,
                 <span className="absolute bottom-0 inset-x-0 p-2 text-xs text-left" style={{ background: 'linear-gradient(transparent,rgba(0,0,0,.7))', color: '#fff' }}>{v.name}</span>
               </button>
             ))}
+          </div>
           </div>
         )}
 
