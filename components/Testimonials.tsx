@@ -69,7 +69,7 @@ export default function Testimonials({ lang, reviews = REVIEWS, videos = VIDEOS,
                     <span className="text-xs" style={{ color: '#2FB26B' }}>✓ {t.verified}</span>
                     {r.date && <span className="text-xs" style={{ color: 'rgb(var(--fg) / 0.45)' }}>{r.date}</span>}
                   </div>
-                  <h3 className="mt-2 font-semibold">{r.title}</h3>
+                  <h3 className="mt-2" style={{ fontSize: 16, fontWeight: 600, lineHeight: 1.4, letterSpacing: 0 }}>{r.title}</h3>
                   <p className="mt-1 text-sm leading-relaxed" style={{ color: 'rgb(var(--fg) / 0.8)' }}>{r.text}</p>
                   {r.reply && (
                     <div className="mt-4 pl-4 text-sm" style={{ borderLeft: '2px solid var(--accent-2)' }}>
