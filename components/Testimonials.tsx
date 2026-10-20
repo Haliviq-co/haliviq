@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { Lang } from '@/lib/i18n'
 import type { Review, VideoReview } from '@/lib/testimonials'
 import { REVIEWS, VIDEOS } from '@/lib/testimonials'
@@ -24,13 +24,15 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
   const t = lang === 'en' ? T.en : T.th
   const [page, setPage] = useState(0)
   const [open, setOpen] = useState<VideoReview | null>(null)
+  const [mob, setMob] = useState(false)
+  useEffect(() => { const m = window.matchMedia('(max-width: 639px)'); const f = () => setMob(m.matches); f(); m.addEventListener('change', f); return () => m.removeEventListener('change', f) }, [])
   const strip = useRef<HTMLDivElement>(null)
   const slide = (d: number) => strip.current && strip.current.scrollBy({ left: d * strip.current.clientWidth * 0.6, behavior: 'smooth' })
   const arrow = (side: 'left' | 'right'): React.CSSProperties => ({ position: 'absolute', top: '50%', [side]: -6, transform: 'translateY(-50%)', width: 36, height: 36, borderRadius: '50%', background: 'var(--accent)', color: '#fff', zIndex: 2, fontSize: 20 })
   if (!reviews.length && !videos.length) return null
   const pages = Math.max(1, Math.ceil(reviews.length / PER))
   const avg = reviews.length ? reviews.reduce((a, r) => a + r.stars, 0) / reviews.length : 0
-  const shown = reviews.slice(page * PER, page * PER + PER)
+  const shown = mob ? reviews : reviews.slice(page * PER, page * PER + PER)
   const border = 'rgb(var(--fg) / 0.1)'
   return (
     <section className="py-20" style={{ background: 'var(--bg-1)' }}>
@@ -48,12 +50,12 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
 
         {videos.length > 0 && (
           <div className="relative mb-8">
-          <button type="button" aria-label="prev" onClick={() => slide(-1)} style={arrow('left')}>‹</button>
-          <button type="button" aria-label="next" onClick={() => slide(1)} style={arrow('right')}>›</button>
+          <button type="button" aria-label="prev" onClick={() => slide(-1)} style={arrow('left')} className="hidden sm:block">‹</button>
+          <button type="button" aria-label="next" onClick={() => slide(1)} style={arrow('right')} className="hidden sm:block">›</button>
           <div ref={strip} className="tm-strip flex gap-3 overflow-x-auto pb-4 snap-x" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           <style>{`.tm-strip::-webkit-scrollbar{display:none}`}</style>
             {videos.map((v, i) => (
-              <button key={i} type="button" onClick={() => v.src && setOpen(v)} className="relative shrink-0 grow-0 snap-start overflow-hidden rounded-lg basis-[calc((100%_-_12px)/2.3)] sm:basis-[calc((100%_-_48px)/5)]" style={{ aspectRatio: '150 / 230', border: `1px solid ${border}` }} aria-label={v.name}>
+              <button key={i} type="button" onClick={() => v.src && setOpen(v)} className="relative shrink-0 grow-0 snap-start overflow-hidden rounded-lg basis-[calc((100%_-_6px)/1.5)] sm:basis-[calc((100%_-_48px)/5)]" style={{ aspectRatio: '150 / 230', border: `1px solid ${border}` }} aria-label={v.name}>
                 <img src={v.thumb} alt={v.name} className="w-full h-full object-cover" />
                 <span className="absolute inset-0 flex items-center justify-center"><span className="w-11 h-11 rounded-full flex items-center justify-center" style={{ background: 'rgba(0,0,0,.55)', color: '#fff' }}>▶</span></span>
                 <span className="absolute bottom-0 inset-x-0 p-2 text-xs text-left" style={{ background: 'linear-gradient(transparent,rgba(0,0,0,.7))', color: '#fff' }}>{v.name}</span>
@@ -63,9 +65,9 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
           </div>
         )}
 
-        <div className="space-y-4">
+        <div className="tm-strip flex gap-3 overflow-x-auto snap-x snap-mandatory items-stretch pb-2 sm:block sm:space-y-4 sm:overflow-visible sm:pb-0" style={{ scrollbarWidth: 'none' }}>
           {shown.map((r, i) => (
-            <article key={i} className="grid sm:grid-cols-[220px_1fr] gap-y-5 p-5 sm:p-8 rounded-3xl" style={{ background: 'rgb(var(--fg) / 0.04)', border: `1px solid ${border}` }}>
+            <article key={i} className="grid sm:grid-cols-[220px_1fr] gap-y-5 p-5 sm:p-8 rounded-3xl shrink-0 snap-start basis-[calc((100%_-_6px)/1.5)] sm:basis-auto" style={{ background: 'rgb(var(--fg) / 0.04)', border: `1px solid ${border}` }}>
               <div className="sm:pr-8 sm:border-r flex sm:block items-center gap-4" style={{ borderColor: border }}>
                 <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center shrink-0 font-semibold text-2xl" style={{ background: 'linear-gradient(135deg,#7B6EF6,#53C3D7)', color: '#fff' }}>{r.name.replace(/^คุณ/, '').charAt(0)}</div>
                 <div className="sm:mt-5">
@@ -90,7 +92,7 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
           ))}
         </div>
 
-        {pages > 1 && (
+        {pages > 1 && !mob && (
           <div className="flex justify-center items-center gap-2 mt-8 text-sm">
             <button type="button" disabled={page === 0} onClick={() => setPage(page - 1)} className="px-3 py-1 rounded-full disabled:opacity-30">‹ {t.prev}</button>
             {Array.from({ length: pages }, (_, i) => (
