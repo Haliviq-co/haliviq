@@ -25,7 +25,7 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
   const [page, setPage] = useState(0)
   const [open, setOpen] = useState<VideoReview | null>(null)
   const strip = useRef<HTMLDivElement>(null)
-  const slide = (d: number) => strip.current?.scrollBy({ left: d * 320, behavior: 'smooth' })
+  const slide = (d: number) => strip.current && strip.current.scrollBy({ left: d * strip.current.clientWidth * 0.6, behavior: 'smooth' })
   const arrow = (side: 'left' | 'right'): React.CSSProperties => ({ position: 'absolute', top: '50%', [side]: -6, transform: 'translateY(-50%)', width: 36, height: 36, borderRadius: '50%', background: 'var(--accent)', color: '#fff', zIndex: 2, fontSize: 20 })
   if (!reviews.length && !videos.length) return null
   const pages = Math.max(1, Math.ceil(reviews.length / PER))
@@ -53,7 +53,7 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
           <div ref={strip} className="tm-strip flex gap-3 overflow-x-auto pb-4 snap-x" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           <style>{`.tm-strip::-webkit-scrollbar{display:none}`}</style>
             {videos.map((v, i) => (
-              <button key={i} type="button" onClick={() => v.src && setOpen(v)} className="relative shrink-0 snap-start overflow-hidden rounded-lg" style={{ width: 150, height: 230, border: `1px solid ${border}` }} aria-label={v.name}>
+              <button key={i} type="button" onClick={() => v.src && setOpen(v)} className="relative shrink-0 grow-0 snap-start overflow-hidden rounded-lg basis-[calc((100%_-_12px)/2.3)] sm:basis-[calc((100%_-_48px)/5)]" style={{ aspectRatio: '150 / 230', border: `1px solid ${border}` }} aria-label={v.name}>
                 <img src={v.thumb} alt={v.name} className="w-full h-full object-cover" />
                 <span className="absolute inset-0 flex items-center justify-center"><span className="w-11 h-11 rounded-full flex items-center justify-center" style={{ background: 'rgba(0,0,0,.55)', color: '#fff' }}>▶</span></span>
                 <span className="absolute bottom-0 inset-x-0 p-2 text-xs text-left" style={{ background: 'linear-gradient(transparent,rgba(0,0,0,.7))', color: '#fff' }}>{v.name}</span>
