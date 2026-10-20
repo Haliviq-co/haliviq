@@ -3,6 +3,7 @@ import { useRef, useState } from 'react'
 import type { Lang } from '@/lib/i18n'
 import type { Review, VideoReview } from '@/lib/testimonials'
 import { REVIEWS, VIDEOS } from '@/lib/testimonials'
+import { SAMPLE_REVIEWS, SAMPLE_VIDEOS } from '@/lib/testimonials-sample'
 
 const T = {
   th: { h: 'เสียงจากลูกค้าของเรา', sub: 'รีวิวจากลูกค้าที่ใช้งานจริง', verified: 'ลูกค้าจริง', reply: 'ตอบกลับจาก Haliviq', prev: 'ก่อนหน้า', next: 'ถัดไป', sample: 'ตัวอย่างโครงสร้าง ข้อมูลสมมติ ไม่ใช่รีวิวจริง' },
@@ -14,7 +15,12 @@ function Stars({ n }: { n: number }) {
   return <span aria-label={`${n}/5`} style={{ color: '#F5B301', letterSpacing: 2 }}>{'★'.repeat(n)}<span style={{ opacity: .25 }}>{'★'.repeat(5 - n)}</span></span>
 }
 
-export default function Testimonials({ lang, reviews = REVIEWS, videos = VIDEOS, sample = false }: { lang?: Lang; reviews?: Review[]; videos?: VideoReview[]; sample?: boolean }) {
+export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm }: { lang?: Lang; reviews?: Review[]; videos?: VideoReview[]; sample?: boolean }) {
+  // No real data yet -> show the clearly-labelled placeholder layout
+  const noReal = !rv && !vd && !REVIEWS.length && !VIDEOS.length
+  const reviews = rv ?? (noReal ? SAMPLE_REVIEWS : REVIEWS)
+  const videos = vd ?? (noReal ? SAMPLE_VIDEOS : VIDEOS)
+  const sample = sm ?? noReal
   const t = lang === 'en' ? T.en : T.th
   const [page, setPage] = useState(0)
   const [open, setOpen] = useState<VideoReview | null>(null)
@@ -31,7 +37,7 @@ export default function Testimonials({ lang, reviews = REVIEWS, videos = VIDEOS,
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-10">
           <h2 style={{ fontSize: 'clamp(1.6rem,3.5vw,2.2rem)', fontWeight: 600 }}>{t.h}</h2>
-          {reviews.length > 0 && (
+          {reviews.length > 0 && !sample && (
             <p className="mt-3 text-sm" style={{ color: 'rgb(var(--fg) / 0.7)' }}>
               <Stars n={Math.round(avg)} /> <b>{avg.toFixed(1)}</b> · {reviews.length} {lang === 'en' ? 'reviews' : 'รีวิว'}
             </p>
@@ -47,7 +53,7 @@ export default function Testimonials({ lang, reviews = REVIEWS, videos = VIDEOS,
           <div ref={strip} className="tm-strip flex gap-3 overflow-x-auto pb-4 snap-x" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           <style>{`.tm-strip::-webkit-scrollbar{display:none}`}</style>
             {videos.map((v, i) => (
-              <button key={i} type="button" onClick={() => setOpen(v)} className="relative shrink-0 snap-start overflow-hidden" style={{ width: 150, height: 230, border: `1px solid ${border}` }} aria-label={v.name}>
+              <button key={i} type="button" onClick={() => v.src && setOpen(v)} className="relative shrink-0 snap-start overflow-hidden" style={{ width: 150, height: 230, border: `1px solid ${border}` }} aria-label={v.name}>
                 <img src={v.thumb} alt={v.name} className="w-full h-full object-cover" />
                 <span className="absolute inset-0 flex items-center justify-center"><span className="w-11 h-11 flex items-center justify-center" style={{ background: 'rgba(0,0,0,.55)', color: '#fff' }}>▶</span></span>
                 <span className="absolute bottom-0 inset-x-0 p-2 text-xs text-left" style={{ background: 'linear-gradient(transparent,rgba(0,0,0,.7))', color: '#fff' }}>{v.name}</span>
