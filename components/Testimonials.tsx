@@ -6,8 +6,8 @@ import { REVIEWS, VIDEOS } from '@/lib/testimonials'
 import { SAMPLE_REVIEWS, SAMPLE_VIDEOS } from '@/lib/testimonials-sample'
 
 const T = {
-  th: { h: 'เสียงจากลูกค้าของเรา', sub: 'รีวิวจากลูกค้าที่ใช้งานจริง', verified: 'ลูกค้าจริง', reply: 'ตอบกลับจาก Haliviq', prev: 'ก่อนหน้า', next: 'ถัดไป', sample: 'ตัวอย่างโครงสร้าง ข้อมูลสมมติ ไม่ใช่รีวิวจริง' },
-  en: { h: 'What our clients say', sub: 'Reviews from real clients', verified: 'Verified client', reply: 'Reply from Haliviq', prev: 'Prev', next: 'Next', sample: 'Layout preview. Sample data, not real reviews' },
+  th: { h: 'เสียงจากลูกค้าของเรา', sub: 'รีวิวจากลูกค้าที่ใช้งานจริง', verified: 'ลูกค้าจริง', reply: 'ตอบกลับจาก Haliviq', replyLabel: 'ตอบกลับ:', prev: 'ก่อนหน้า', next: 'ถัดไป', sample: 'ตัวอย่างโครงสร้าง ข้อมูลสมมติ ไม่ใช่รีวิวจริง' },
+  en: { h: 'What our clients say', sub: 'Reviews from real clients', verified: 'Verified client', reply: 'Reply from Haliviq', replyLabel: 'Reply:', prev: 'Prev', next: 'Next', sample: 'Layout preview. Sample data, not real reviews' },
 }
 const PER = 5
 
@@ -65,26 +65,26 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
 
         <div className="space-y-4">
           {shown.map((r, i) => (
-            <article key={i} className="p-5 sm:p-6" style={{ background: 'rgb(var(--fg) / 0.04)', border: `1px solid ${border}` }}>
-              <div className="flex gap-4">
-                <div className="hidden sm:flex w-12 h-12 items-center justify-center shrink-0 font-semibold" style={{ background: 'linear-gradient(135deg,#7B6EF6,#53C3D7)', color: '#fff' }}>{r.name.replace(/^คุณ/, '').charAt(0)}</div>
-                <div className="min-w-0">
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
-                    <Stars n={r.stars} />
-                    <b>{r.name}</b>
-                    {r.place && <span style={{ color: 'rgb(var(--fg) / 0.55)' }}>{r.place}</span>}
-                    <span className="text-xs" style={{ color: '#2FB26B' }}>✓ {t.verified}</span>
-                    {r.date && <span className="text-xs" style={{ color: 'rgb(var(--fg) / 0.45)' }}>{r.date}</span>}
-                  </div>
-                  <h3 className="mt-2" style={{ fontSize: 16, fontWeight: 600, lineHeight: 1.4, letterSpacing: 0 }}>{r.title}</h3>
-                  <p className="mt-1 text-sm leading-relaxed" style={{ color: 'rgb(var(--fg) / 0.8)' }}>{r.text}</p>
-                  {r.reply && (
-                    <div className="mt-4 pl-4 text-sm" style={{ borderLeft: '2px solid var(--accent-2)' }}>
-                      <p className="font-semibold text-xs mb-1" style={{ color: 'var(--accent-2)' }}>{t.reply}</p>
-                      <p style={{ color: 'rgb(var(--fg) / 0.7)' }}>{r.reply}</p>
-                    </div>
-                  )}
+            <article key={i} className="grid sm:grid-cols-[220px_1fr] gap-y-5 p-5 sm:p-8" style={{ background: 'rgb(var(--fg) / 0.04)', border: `1px solid ${border}` }}>
+              <div className="sm:pr-8 sm:border-r flex sm:block items-center gap-4" style={{ borderColor: border }}>
+                <div className="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center shrink-0 font-semibold text-2xl" style={{ background: 'linear-gradient(135deg,#7B6EF6,#53C3D7)', color: '#fff' }}>{r.name.replace(/^คุณ/, '').charAt(0)}</div>
+                <div className="sm:mt-5">
+                  <div className="font-bold">{r.name}</div>
+                  {r.place && <div className="text-sm" style={{ color: 'rgb(var(--fg) / 0.65)' }}>{r.place}</div>}
+                  <div className="mt-2 text-sm font-semibold" style={{ color: '#2FB26B' }}>✓ {t.verified}</div>
+                  {r.date && <div className="sm:mt-4 sm:pt-4 sm:border-t text-sm" style={{ borderColor: border, color: 'rgb(var(--fg) / 0.55)' }}>{r.date}</div>}
                 </div>
+              </div>
+              <div className="min-w-0 sm:pl-8">
+                <div style={{ color: '#4DB5F0', fontSize: 26, letterSpacing: 4 }} aria-label={`${r.stars}/5`}>{'★'.repeat(r.stars)}<span style={{ opacity: .25 }}>{'★'.repeat(5 - r.stars)}</span></div>
+                <h3 className="mt-3" style={{ fontSize: 20, fontWeight: 700, lineHeight: 1.4, letterSpacing: 0 }}>{r.title}</h3>
+                <p className="mt-2 leading-relaxed" style={{ color: 'rgb(var(--fg) / 0.8)' }}>{r.text}</p>
+                {r.reply && (
+                  <div className="mt-5 pt-5 border-t" style={{ borderColor: border }}>
+                    <p className="font-bold text-lg">{t.replyLabel}</p>
+                    <p className="mt-1 leading-relaxed" style={{ color: 'rgb(var(--fg) / 0.75)' }}>{r.reply}</p>
+                  </div>
+                )}
               </div>
             </article>
           ))}
