@@ -10,7 +10,7 @@ type Msg = { from: 'bot' | 'me'; text: string; links?: { label: string; href: st
 type QA = { q: string; a: string; h?: string; k?: string; x?: string; p?: number }
 
 const CHANNELS = [
-  { id: 'whatsapp', label: 'WhatsApp', href: 'https://wa.me/message/TM3WC6DUJAFEK1', bg: '#25D366' },
+  { id: 'whatsapp', label: 'WhatsApp', href: 'https://wa.me/66909149236', bg: '#25D366' },
   { id: 'messenger', label: 'Messenger', href: 'https://m.me/haliviq', bg: 'linear-gradient(135deg,#00B2FF,#7A5CFF 60%,#FF5CA8)' },
   { id: 'line', label: 'LINE', href: 'https://lin.ee/zyTrkx4', bg: '#06C755' },
 ] as const
