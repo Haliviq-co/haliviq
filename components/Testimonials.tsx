@@ -34,7 +34,7 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
   const border = 'rgb(var(--fg) / 0.1)'
   return (
     <section className="py-20" style={{ background: 'var(--bg-1)' }}>
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
         <div className="text-center mb-10">
           <h2 style={{ fontSize: 'clamp(1.6rem,3.5vw,2.2rem)', fontWeight: 600 }}>{t.h}</h2>
           {reviews.length > 0 && !sample && (
