@@ -2747,4 +2747,13 @@ Upgrade when: Pass to the team lead in every case. Never quote yourself
 5. How ERP differs from accounting software => Accounting software focuses on recording money, tax and financial statements, while ERP connects accounting with sales, purchasing, stock and other work. Some accounting packages can add business modules
 6. ERP examples => SAP, Oracle, Microsoft Dynamics 365, Odoo
 7. Caution => Choose to fit the process, budget and the team that will look after it. ERP helps connect work, but the system still has to be set up and the data prepared well
+## T:erp-vendors SAP and ERP competitors: which one fits the business (October 2026)
+1. Principle => Compare by the work, the organisation size and the team's readiness. This focuses on ERP systems and does not cover every SAP product. It is a shortlisting guide, not a quality ranking or market share
+2. Where SAP sits => SAP S/4HANA: strength: connects finance, purchasing, production and the supply chain. Consider: the version used, system scope and the implementation team. SAP Business One: strength: an ERP that brings the main work together for small to mid-size businesses. Consider: add-ons, Thai tax and partners
+3. Group 01 Large organisations, complex systems => Oracle Fusion Cloud ERP: strength: finance, purchasing and enterprise work on the cloud. Consider: project scope and system connections. Microsoft Dynamics 365 Finance + Supply Chain Management: strength: finance and supply chain, connected to the Microsoft world. Consider: choose the apps and licences fully
+4. Group 02 Growing mid-size businesses => Oracle NetSuite: strength: cloud ERP combining finance and business work. Consider: add-ons and each country's requirements. Microsoft Dynamics 365 Business Central: strength: ERP for small to mid-size businesses. Consider: complex work may need add-ons
+5. Group 03 Specialised industries => Infor CloudSuite: strength: ERP suites by industry. Consider: choose the suite that fits the business and its processes. IFS Cloud: strength: ERP for assets and field service. Consider: fit with the work and the implementation team
+6. Group 04 Start as modules, expand gradually => Odoo: strength: business apps across many areas, used as modules. Consider: the version used, customisation and partners
+7. Choose to fit the need => Complex organisations: S/4HANA, Oracle, Dynamics 365. Small to mid-size businesses: Business One, NetSuite, Business Central. Industry: Infor, IFS. Start one module at a time: Odoo
+8. Cautions => This is a shortlisting guide, not a quality ranking or market share. Compare with S/4HANA or Business One at the right business size. Check Thai tax, data migration and total cost before choosing. Referenced from the vendors' websites (October 2026)
 `
