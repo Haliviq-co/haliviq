@@ -9,7 +9,7 @@ const T = {
   th: { h: 'เสียงจากลูกค้าของเรา', sub: 'รีวิวจากลูกค้าที่ใช้งานจริง', verified: 'ลูกค้าจริง', reply: 'ตอบกลับจาก Haliviq', prev: 'ก่อนหน้า', next: 'ถัดไป', sample: 'ตัวอย่างโครงสร้าง ข้อมูลสมมติ ไม่ใช่รีวิวจริง' },
   en: { h: 'What our clients say', sub: 'Reviews from real clients', verified: 'Verified client', reply: 'Reply from Haliviq', prev: 'Prev', next: 'Next', sample: 'Layout preview. Sample data, not real reviews' },
 }
-const PER = 3
+const PER = 5
 
 function Stars({ n }: { n: number }) {
   return <span aria-label={`${n}/5`} style={{ color: '#F5B301', letterSpacing: 2 }}>{'★'.repeat(n)}<span style={{ opacity: .25 }}>{'★'.repeat(5 - n)}</span></span>
