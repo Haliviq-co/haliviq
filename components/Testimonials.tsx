@@ -44,7 +44,8 @@ export default function Testimonials({ lang, reviews = REVIEWS, videos = VIDEOS,
           <div className="relative mb-8">
           <button type="button" aria-label="prev" onClick={() => slide(-1)} style={arrow('left')}>‹</button>
           <button type="button" aria-label="next" onClick={() => slide(1)} style={arrow('right')}>›</button>
-          <div ref={strip} className="flex gap-3 overflow-x-auto pb-4 snap-x" style={{ scrollbarWidth: 'thin' }}>
+          <div ref={strip} className="tm-strip flex gap-3 overflow-x-auto pb-4 snap-x" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+          <style>{`.tm-strip::-webkit-scrollbar{display:none}`}</style>
             {videos.map((v, i) => (
               <button key={i} type="button" onClick={() => setOpen(v)} className="relative shrink-0 snap-start rounded-xl overflow-hidden" style={{ width: 150, height: 230, border: `1px solid ${border}` }} aria-label={v.name}>
                 <img src={v.thumb} alt={v.name} className="w-full h-full object-cover" />
