@@ -76,7 +76,7 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
                 </div>
               </div>
               <div className="min-w-0 sm:pl-8">
-                <div style={{ color: '#4DB5F0', fontSize: 26, letterSpacing: 4 }} aria-label={`${r.stars}/5`}>{'★'.repeat(r.stars)}<span style={{ opacity: .25 }}>{'★'.repeat(5 - r.stars)}</span></div>
+                <div style={{ color: '#DBC575', fontSize: 26, letterSpacing: 4 }} aria-label={`${r.stars}/5`}>{'★'.repeat(r.stars)}<span style={{ opacity: .25 }}>{'★'.repeat(5 - r.stars)}</span></div>
                 <h3 className="mt-3" style={{ fontSize: 20, fontWeight: 700, lineHeight: 1.4, letterSpacing: 0 }}>{r.title}</h3>
                 <p className="mt-2 leading-relaxed" style={{ color: 'rgb(var(--fg) / 0.8)' }}>{r.text}</p>
                 {r.reply && (
