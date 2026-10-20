@@ -3,7 +3,7 @@ import { useRef, useState } from 'react'
 import type { Lang } from '@/lib/i18n'
 import type { Review, VideoReview } from '@/lib/testimonials'
 import { REVIEWS, VIDEOS } from '@/lib/testimonials'
-import { SAMPLE_REVIEWS, SAMPLE_VIDEOS } from '@/lib/testimonials-sample'
+import { SAMPLE_REVIEWS, SAMPLE_VIDEOS, SAMPLE_REVIEWS_EN, SAMPLE_VIDEOS_EN } from '@/lib/testimonials-sample'
 
 const T = {
   th: { h: 'เสียงจากลูกค้าของเรา', sub: 'รีวิวจากลูกค้าที่ใช้งานจริง', verified: 'ลูกค้าจริง', reply: 'ตอบกลับจาก Haliviq', replyLabel: 'ตอบกลับ:', prev: 'ก่อนหน้า', next: 'ถัดไป', sample: 'ตัวอย่างโครงสร้าง ข้อมูลสมมติ ไม่ใช่รีวิวจริง' },
@@ -18,8 +18,8 @@ function Stars({ n }: { n: number }) {
 export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm }: { lang?: Lang; reviews?: Review[]; videos?: VideoReview[]; sample?: boolean }) {
   // No real data yet -> show the clearly-labelled placeholder layout
   const noReal = !rv && !vd && !REVIEWS.length && !VIDEOS.length
-  const reviews = rv ?? (noReal ? SAMPLE_REVIEWS : REVIEWS)
-  const videos = vd ?? (noReal ? SAMPLE_VIDEOS : VIDEOS)
+  const reviews = rv ?? (noReal ? (lang === 'en' ? SAMPLE_REVIEWS_EN : SAMPLE_REVIEWS) : REVIEWS)
+  const videos = vd ?? (noReal ? (lang === 'en' ? SAMPLE_VIDEOS_EN : SAMPLE_VIDEOS) : VIDEOS)
   const sample = sm ?? noReal
   const t = lang === 'en' ? T.en : T.th
   const [page, setPage] = useState(0)

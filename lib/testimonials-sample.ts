@@ -10,3 +10,12 @@ export const SAMPLE_REVIEWS = Array.from({ length: 25 }, (_, i) => ({ ...BASE[i 
 const ph = (n: number) => `data:image/svg+xml;utf8,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='150' height='230'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop stop-color='#7B6EF6'/><stop offset='1' stop-color='#53C3D7'/></linearGradient></defs><rect width='150' height='230' fill='url(#g)'/><text x='75' y='120' fill='white' font-size='13' text-anchor='middle'>VIDEO ${n}</text></svg>`)}`
 export const SAMPLE_VIDEOS = [1, 2, 3, 4, 5, 6, 7, 8].map(n => ({ name: `วิดีโอตัวอย่าง ${n}`, thumb: ph(n), src: '' }))
 
+
+const BASE_EN = [
+  { stars: 5 as const, title: 'Sample review title', text: 'Placeholder text to preview the layout. This is not a real client review.', name: 'Client name (sample)', place: 'Sample Company', date: '1 month ago', reply: 'Sample reply from the Haliviq team.' },
+  { stars: 5 as const, title: 'Sample review title', text: 'Placeholder text to preview the layout. This is not a real client review.', name: 'Client name (sample)', place: 'Sample Company', date: '2 months ago' },
+  { stars: 4 as const, title: 'Sample review title', text: 'Placeholder text to preview the layout. This is not a real client review.', name: 'Client name (sample)', date: '3 months ago', reply: 'Sample reply from the Haliviq team.' },
+  { stars: 5 as const, title: 'Sample review title', text: 'Placeholder text to preview the layout. This is not a real client review.', name: 'Client name (sample)', date: '4 months ago' },
+]
+export const SAMPLE_REVIEWS_EN = Array.from({ length: 25 }, (_, i) => ({ ...BASE_EN[i % BASE_EN.length], date: `${i + 1} ${i === 0 ? 'month' : 'months'} ago` }))
+export const SAMPLE_VIDEOS_EN = [1, 2, 3, 4, 5, 6, 7, 8].map(n => ({ name: `Sample video ${n}`, thumb: ph(n), src: '' }))
