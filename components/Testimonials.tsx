@@ -26,7 +26,7 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
   const [open, setOpen] = useState<VideoReview | null>(null)
   const strip = useRef<HTMLDivElement>(null)
   const slide = (d: number) => strip.current?.scrollBy({ left: d * 320, behavior: 'smooth' })
-  const arrow = (side: 'left' | 'right'): React.CSSProperties => ({ position: 'absolute', top: '50%', [side]: -6, transform: 'translateY(-50%)', width: 36, height: 36, background: 'var(--accent)', color: '#fff', zIndex: 2, fontSize: 20 })
+  const arrow = (side: 'left' | 'right'): React.CSSProperties => ({ position: 'absolute', top: '50%', [side]: -6, transform: 'translateY(-50%)', width: 36, height: 36, borderRadius: '50%', background: 'var(--accent)', color: '#fff', zIndex: 2, fontSize: 20 })
   if (!reviews.length && !videos.length) return null
   const pages = Math.max(1, Math.ceil(reviews.length / PER))
   const avg = reviews.length ? reviews.reduce((a, r) => a + r.stars, 0) / reviews.length : 0
@@ -43,7 +43,7 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
             </p>
           )}
           <p className="mt-1 text-sm" style={{ color: 'rgb(var(--fg) / 0.55)' }}>{t.sub}</p>
-          {sample && <p className="mt-3 inline-block text-xs px-3 py-1" style={{ background: 'rgb(245 179 1 / .15)', color: '#F5B301' }}>{t.sample}</p>}
+          {sample && <p className="mt-3 inline-block text-xs px-3 py-1 rounded-full" style={{ background: 'rgb(245 179 1 / .15)', color: '#F5B301' }}>{t.sample}</p>}
         </div>
 
         {videos.length > 0 && (
@@ -53,9 +53,9 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
           <div ref={strip} className="tm-strip flex gap-3 overflow-x-auto pb-4 snap-x" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           <style>{`.tm-strip::-webkit-scrollbar{display:none}`}</style>
             {videos.map((v, i) => (
-              <button key={i} type="button" onClick={() => v.src && setOpen(v)} className="relative shrink-0 snap-start overflow-hidden" style={{ width: 150, height: 230, border: `1px solid ${border}` }} aria-label={v.name}>
+              <button key={i} type="button" onClick={() => v.src && setOpen(v)} className="relative shrink-0 snap-start overflow-hidden rounded-2xl" style={{ width: 150, height: 230, border: `1px solid ${border}` }} aria-label={v.name}>
                 <img src={v.thumb} alt={v.name} className="w-full h-full object-cover" />
-                <span className="absolute inset-0 flex items-center justify-center"><span className="w-11 h-11 flex items-center justify-center" style={{ background: 'rgba(0,0,0,.55)', color: '#fff' }}>▶</span></span>
+                <span className="absolute inset-0 flex items-center justify-center"><span className="w-11 h-11 rounded-full flex items-center justify-center" style={{ background: 'rgba(0,0,0,.55)', color: '#fff' }}>▶</span></span>
                 <span className="absolute bottom-0 inset-x-0 p-2 text-xs text-left" style={{ background: 'linear-gradient(transparent,rgba(0,0,0,.7))', color: '#fff' }}>{v.name}</span>
               </button>
             ))}
@@ -65,9 +65,9 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
 
         <div className="space-y-4">
           {shown.map((r, i) => (
-            <article key={i} className="grid sm:grid-cols-[220px_1fr] gap-y-5 p-5 sm:p-8" style={{ background: 'rgb(var(--fg) / 0.04)', border: `1px solid ${border}` }}>
+            <article key={i} className="grid sm:grid-cols-[220px_1fr] gap-y-5 p-5 sm:p-8 rounded-3xl" style={{ background: 'rgb(var(--fg) / 0.04)', border: `1px solid ${border}` }}>
               <div className="sm:pr-8 sm:border-r flex sm:block items-center gap-4" style={{ borderColor: border }}>
-                <div className="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center shrink-0 font-semibold text-2xl" style={{ background: 'linear-gradient(135deg,#7B6EF6,#53C3D7)', color: '#fff' }}>{r.name.replace(/^คุณ/, '').charAt(0)}</div>
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center shrink-0 font-semibold text-2xl" style={{ background: 'linear-gradient(135deg,#7B6EF6,#53C3D7)', color: '#fff' }}>{r.name.replace(/^คุณ/, '').charAt(0)}</div>
                 <div className="sm:mt-5">
                   <div className="font-bold">{r.name}</div>
                   {r.place && <div className="text-sm" style={{ color: 'rgb(var(--fg) / 0.65)' }}>{r.place}</div>}
@@ -92,18 +92,18 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
 
         {pages > 1 && (
           <div className="flex justify-center items-center gap-2 mt-8 text-sm">
-            <button type="button" disabled={page === 0} onClick={() => setPage(page - 1)} className="px-3 py-1 disabled:opacity-30">‹ {t.prev}</button>
+            <button type="button" disabled={page === 0} onClick={() => setPage(page - 1)} className="px-3 py-1 rounded-full disabled:opacity-30">‹ {t.prev}</button>
             {Array.from({ length: pages }, (_, i) => (
-              <button key={i} type="button" onClick={() => setPage(i)} className="w-8 h-8" style={i === page ? { background: 'var(--accent)', color: '#fff' } : { border: `1px solid ${border}` }}>{i + 1}</button>
+              <button key={i} type="button" onClick={() => setPage(i)} className="w-8 h-8 rounded-full" style={i === page ? { background: 'var(--accent)', color: '#fff' } : { border: `1px solid ${border}` }}>{i + 1}</button>
             ))}
-            <button type="button" disabled={page === pages - 1} onClick={() => setPage(page + 1)} className="px-3 py-1 disabled:opacity-30">{t.next} ›</button>
+            <button type="button" disabled={page === pages - 1} onClick={() => setPage(page + 1)} className="px-3 py-1 rounded-full disabled:opacity-30">{t.next} ›</button>
           </div>
         )}
       </div>
 
       {open && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,.85)' }} onClick={() => setOpen(null)}>
-          <video src={open.src} controls autoPlay playsInline className="max-h-[85vh] max-w-full" onClick={e => e.stopPropagation()} />
+          <video src={open.src} controls autoPlay playsInline className="max-h-[85vh] max-w-full rounded-2xl" onClick={e => e.stopPropagation()} />
           <button type="button" aria-label="close" className="absolute top-4 right-4 text-white text-3xl">×</button>
         </div>
       )}
