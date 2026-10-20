@@ -59,7 +59,7 @@ export default function Testimonials({ lang, reviews = REVIEWS, videos = VIDEOS,
 
         <div className="space-y-4">
           {shown.map((r, i) => (
-            <article key={i} className="rounded-2xl p-5 sm:p-6" style={{ background: 'rgb(var(--fg) / 0.04)', border: `1px solid ${border}` }}>
+            <article key={i} className="p-5 sm:p-6" style={{ background: 'rgb(var(--fg) / 0.04)', border: `1px solid ${border}` }}>
               <div className="flex gap-4">
                 <div className="hidden sm:flex w-12 h-12 items-center justify-center shrink-0 font-semibold" style={{ background: 'linear-gradient(135deg,#7B6EF6,#53C3D7)', color: '#fff' }}>{r.name.replace(/^คุณ/, '').charAt(0)}</div>
                 <div className="min-w-0">
