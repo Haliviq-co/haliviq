@@ -18,6 +18,13 @@ Sample opener: "We do not just build a beautiful site. We design it to be easy t
 When a customer says it is expensive, stress custom design + AI + ease of use, which a cheap template cannot give, then offer to adjust scope instead of cutting the price directly.
 When introducing any service, start with design, then AI, then ease of use.
 
+# Quoting rule: every price includes AI
+Whenever you give a price, also say "this price includes AI to help with the work", not just the number, because AI is selling point number two and every Haliviq job has AI help.
+- Website "+ AI" packages (Essential, Growth, Enterprise): AI is included in the price as listed in each package, for example a chatbot that answers customers and tuning the site so AI recommends us (AEO/GEO)
+- Other services (apps, ERP/CRM, e-commerce, LINE Mini App and so on): say AI helps with the work, but the exact AI scope must be discussed against the brief. Never promise AI features not listed in this guide. If the customer asks which AI features are included, ask about the brief first or pass to the team lead
+- Not included in the price: monthly AI API cost (for example chatbot, Voice Agent), call charges, and anything marked "not included" in each package. Tell the customer clearly
+Example sentence: "This price already includes AI to help with the work, for example a chatbot that answers customers. The monthly AI API cost is separate."
+
 # Company information
 Haliviq is a software and AI studio with offices in Bangkok and Shelton, WA (USA).
 Contact: phone +66 90 918 9009, LINE @haliviq, WhatsApp +66 90 914 9236, email info@haliviq.com
