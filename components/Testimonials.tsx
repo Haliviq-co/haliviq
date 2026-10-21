@@ -9,7 +9,7 @@ const T = {
   th: { h: 'เสียงจากลูกค้าของเรา', sub: 'รีวิวจากลูกค้าที่ใช้งานจริง', verified: 'ลูกค้าจริง', reply: 'ตอบกลับจาก Haliviq', replyLabel: 'ตอบกลับ:', prev: 'ก่อนหน้า', next: 'ถัดไป', sample: 'ตัวอย่างโครงสร้าง ข้อมูลสมมติ ไม่ใช่รีวิวจริง' },
   en: { h: 'What our clients say', sub: 'Reviews from real clients', verified: 'Verified client', reply: 'Reply from Haliviq', replyLabel: 'Reply:', prev: 'Prev', next: 'Next', sample: 'Layout preview. Sample data, not real reviews' },
 }
-const PER_WIDE = 6, PER_NARROW = 3
+const PER_WIDE = 4, PER_NARROW = 3, MAX_PAGES = 3
 
 function Stars({ n }: { n: number }) {
   return <span aria-label={`${n}/5`} style={{ color: '#DBC575', letterSpacing: 2 }}>{'★'.repeat(n)}<span style={{ opacity: .25 }}>{'★'.repeat(5 - n)}</span></span>
@@ -32,9 +32,9 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
   const arrow = (side: 'left' | 'right'): React.CSSProperties => ({ position: 'absolute', top: '50%', [side]: -6, transform: 'translateY(-50%)', width: 36, height: 36, borderRadius: '50%', background: 'var(--accent)', color: '#fff', zIndex: 2, fontSize: 20 })
   if (!reviews.length && !videos.length) return null
   const PER = wide ? PER_WIDE : PER_NARROW
-  const pages = Math.max(1, Math.ceil(reviews.length / PER))
+  const pages = Math.min(MAX_PAGES, Math.max(1, Math.ceil(reviews.length / PER)))
   const avg = reviews.length ? reviews.reduce((a, r) => a + r.stars, 0) / reviews.length : 0
-  const shown = mob ? reviews : reviews.slice(page * PER, page * PER + PER)
+  const shown = mob ? reviews.slice(0, 12) : reviews.slice(Math.min(page, pages - 1) * PER, Math.min(page, pages - 1) * PER + PER)
   const border = 'rgb(var(--fg) / 0.1)'
   return (
     <section className="py-20" style={{ background: 'var(--bg-1)' }}>
@@ -98,7 +98,7 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
           <div className="flex justify-center items-center gap-2 mt-8 text-sm">
             <button type="button" disabled={page === 0} onClick={() => setPage(page - 1)} className="px-3 py-1 rounded-full disabled:opacity-30">‹ {t.prev}</button>
             {Array.from({ length: pages }, (_, i) => (
-              <button key={i} type="button" aria-label={`${i + 1}`} onClick={() => setPage(i)} className="h-2 rounded-full transition-all" style={{ width: i === page ? 24 : 8, background: i === page ? 'var(--accent)' : 'rgb(var(--fg) / 0.25)' }} />
+              <button key={i} type="button" onClick={() => setPage(i)} className="w-8 h-8 rounded-full" style={i === page ? { background: 'var(--accent)', color: '#fff' } : { border: `1px solid ${border}` }}>{i + 1}</button>
             ))}
             <button type="button" disabled={page === pages - 1} onClick={() => setPage(page + 1)} className="px-3 py-1 rounded-full disabled:opacity-30">{t.next} ›</button>
           </div>
