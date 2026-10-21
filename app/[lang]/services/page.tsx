@@ -112,22 +112,22 @@ export default function Page({ params }: { params: { lang: Lang } }) {
       <Navbar lang={lang} tr={tr} />
       <main>
         {/* Hero */}
-        <section className="theme-dark svc-hero relative overflow-hidden pt-[80px]" style={{ background: '#0B0813' }}>
+        <section className="svc-hero relative overflow-hidden pt-[80px]" style={{ background: 'var(--bg)' }}>
           <div className="svc-orb svc-orb-a" aria-hidden="true" />
           <div className="svc-orb svc-orb-b" aria-hidden="true" />
           <div className="svc-orb svc-orb-c" aria-hidden="true" />
-          <div className="absolute inset-0 pointer-events-none" aria-hidden="true" style={{ backgroundImage: 'radial-gradient(rgb(255 255 255 / 0.09) 1px, transparent 1px)', backgroundSize: '22px 22px', maskImage: 'radial-gradient(ellipse at 50% 40%, #000 30%, transparent 75%)', WebkitMaskImage: 'radial-gradient(ellipse at 50% 40%, #000 30%, transparent 75%)' }} />
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true" style={{ backgroundImage: 'radial-gradient(rgb(var(--fg) / 0.09) 1px, transparent 1px)', backgroundSize: '22px 22px', maskImage: 'radial-gradient(ellipse at 50% 40%, #000 30%, transparent 75%)', WebkitMaskImage: 'radial-gradient(ellipse at 50% 40%, #000 30%, transparent 75%)' }} />
           <div className="svc-sweep" aria-hidden="true" />
           <div className="relative max-w-5xl mx-auto px-6 lg:px-10 pt-20 lg:pt-28 pb-14 text-center">
             <p className="t-label mb-5 svc-rise" style={{ animationDelay: '0s' }}>{isEN ? 'Services' : 'บริการ'}</p>
-            <h1 className="t-display text-[clamp(2.6rem,5.5vw,4.8rem)] leading-relaxed mb-6 svc-rise" style={{ color: '#fff', animationDelay: '.1s' }}>
+            <h1 className="t-display text-[clamp(2.6rem,5.5vw,4.8rem)] leading-relaxed mb-6 svc-rise" style={{ color: 'var(--ink)', animationDelay: '.1s' }}>
               {isEN ? (
                 <>Everything You Need,<br /><span className="svc-grad-text">In One Studio</span></>
               ) : (
                 <>ทุกความสามารถที่คุณต้องการ<br /><span className="svc-grad-text">ในสตูดิโอเดียว</span></>
               )}
             </h1>
-            <p className="t-body text-lg leading-relaxed max-w-2xl mx-auto svc-rise" style={{ color: 'rgb(255 255 255 / 0.8)', animationDelay: '.2s' }}>
+            <p className="t-body text-lg leading-relaxed max-w-2xl mx-auto svc-rise" style={{ color: 'rgb(var(--fg) / 0.8)', animationDelay: '.2s' }}>
               {isEN
                 ? 'Brand strategy, product design, web and mobile development, AI, data and security. One team looks after the whole product, so you do not have to coordinate a different vendor for each part.'
                 : 'ตั้งแต่สร้างแบรนด์ ออกแบบผลิตภัณฑ์ พัฒนาเว็บและแอปมือถือ ไปจนถึง AI ข้อมูล และความปลอดภัย ทีมเดียวดูแลทั้งผลิตภัณฑ์ คุณจึงไม่ต้องประสานงานกับผู้ให้บริการหลายราย'}
@@ -136,7 +136,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
               <Link href={`${prefix}/services/branding`} className="px-6 py-3 rounded-full text-sm" style={{ background: 'linear-gradient(135deg,#7B6EF6,#5A4ED4)', color: '#fff', fontWeight: 600 }}>
                 {isEN ? 'Start with your brand' : 'เริ่มจากสร้างแบรนด์'}
               </Link>
-              <Link href={`${prefix}/contact`} className="px-6 py-3 rounded-full text-sm" style={{ border: '1px solid rgb(255 255 255 / 0.3)', color: '#fff', fontWeight: 500 }}>
+              <Link href={`${prefix}/contact`} className="px-6 py-3 rounded-full text-sm" style={{ border: '1px solid rgb(var(--fg) / 0.3)', color: 'var(--ink)', fontWeight: 500 }}>
                 {isEN ? 'Talk to us' : 'ปรึกษาโครงการ'}
               </Link>
             </div>
@@ -173,10 +173,10 @@ export default function Page({ params }: { params: { lang: Lang } }) {
                       <Link key={it.href} href={`${prefix}${it.href}`} className="group flex flex-col">
                         {/* Visual mockup thumbnail */}
                         <div
-                          className="theme-dark svc-thumb relative h-56 rounded-2xl overflow-hidden mb-6 group-hover:border-[var(--purple-light)]/40 transition-colors"
-                          style={{ ['--d' as any]: `${((ix + ci * 3) % 6) * 0.7}s`, background: 'linear-gradient(160deg,#171025 0%,#0B0813 100%)', border: '1px solid rgb(var(--fg) / 0.07)' }}
+                          className="svc-thumb relative h-56 rounded-2xl overflow-hidden mb-6 group-hover:border-[var(--purple-light)]/40 transition-colors"
+                          style={{ ['--d' as any]: `${((ix + ci * 3) % 6) * 0.7}s`, background: 'linear-gradient(160deg,var(--bg-1) 0%,var(--bg-deep) 100%)', border: '1px solid var(--line)' }}
                         >
-                          <div className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle,#fff 1px,transparent 1px)', backgroundSize: '18px 18px' }} />
+                          <div className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle,rgb(var(--fg)) 1px,transparent 1px)', backgroundSize: '18px 18px' }} />
                           <ServiceVisual slug={slug} />
                         </div>
                         {/* Content */}
