@@ -9,7 +9,7 @@ const T = {
   th: { h: 'เสียงจากลูกค้าของเรา', sub: 'รีวิวจากลูกค้าที่ใช้งานจริง', verified: 'ลูกค้าจริง', reply: 'ตอบกลับจาก Haliviq', replyLabel: 'ตอบกลับ:', prev: 'ก่อนหน้า', next: 'ถัดไป', sample: 'ตัวอย่างโครงสร้าง ข้อมูลสมมติ ไม่ใช่รีวิวจริง' },
   en: { h: 'What our clients say', sub: 'Reviews from real clients', verified: 'Verified client', reply: 'Reply from Haliviq', replyLabel: 'Reply:', prev: 'Prev', next: 'Next', sample: 'Layout preview. Sample data, not real reviews' },
 }
-const PER = 5
+const PER = 3
 
 function Stars({ n }: { n: number }) {
   return <span aria-label={`${n}/5`} style={{ color: '#DBC575', letterSpacing: 2 }}>{'★'.repeat(n)}<span style={{ opacity: .25 }}>{'★'.repeat(5 - n)}</span></span>
@@ -53,7 +53,7 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
           <button type="button" aria-label="prev" onClick={() => slide(-1)} style={arrow('left')} className="hidden sm:block">‹</button>
           <button type="button" aria-label="next" onClick={() => slide(1)} style={arrow('right')} className="hidden sm:block">›</button>
           <div ref={strip} className="tm-strip flex gap-3 overflow-x-auto pb-4 snap-x" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-          <style>{`.tm-strip::-webkit-scrollbar{display:none}`}</style>
+          <style>{`.tm-strip::-webkit-scrollbar{display:none}@media(min-width:640px){.tm-slide{animation:tmSlide .45s ease-out}}@keyframes tmSlide{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}@media(prefers-reduced-motion:reduce){.tm-slide{animation:none}}`}</style>
             {videos.map((v, i) => (
               <button key={i} type="button" onClick={() => v.src && setOpen(v)} className="relative shrink-0 grow-0 snap-start overflow-hidden rounded-lg basis-[calc((100%_-_6px)/1.5)] sm:basis-[calc((100%_-_48px)/5)]" style={{ aspectRatio: '150 / 230', border: `1px solid ${border}` }} aria-label={v.name}>
                 <img src={v.thumb} alt={v.name} className="w-full h-full object-cover" />
@@ -65,7 +65,7 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
           </div>
         )}
 
-        <div className="tm-strip flex gap-3 overflow-x-auto snap-x snap-mandatory items-stretch pb-2 sm:block sm:space-y-4 sm:overflow-visible sm:pb-0" style={{ scrollbarWidth: 'none' }}>
+        <div key={mob ? 'm' : page} className="tm-strip tm-slide flex gap-3 overflow-x-auto snap-x snap-mandatory items-stretch pb-2 sm:block sm:space-y-4 sm:overflow-visible sm:pb-0" style={{ scrollbarWidth: 'none' }}>
           {shown.map((r, i) => (
             <article key={i} className="grid sm:grid-cols-[220px_1fr] gap-y-3 sm:gap-y-5 p-4 sm:p-8 rounded-2xl sm:rounded-3xl text-[13px] sm:text-base shrink-0 snap-start basis-[calc((100%_-_6px)/1.5)] sm:basis-auto" style={{ background: 'rgb(var(--fg) / 0.04)', border: `1px solid ${border}` }}>
               <div className="sm:pr-8 sm:border-r flex sm:block items-center gap-3 sm:gap-4" style={{ borderColor: border }}>
@@ -96,7 +96,7 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
           <div className="flex justify-center items-center gap-2 mt-8 text-sm">
             <button type="button" disabled={page === 0} onClick={() => setPage(page - 1)} className="px-3 py-1 rounded-full disabled:opacity-30">‹ {t.prev}</button>
             {Array.from({ length: pages }, (_, i) => (
-              <button key={i} type="button" onClick={() => setPage(i)} className="w-8 h-8 rounded-full" style={i === page ? { background: 'var(--accent)', color: '#fff' } : { border: `1px solid ${border}` }}>{i + 1}</button>
+              <button key={i} type="button" aria-label={`${i + 1}`} onClick={() => setPage(i)} className="h-2 rounded-full transition-all" style={{ width: i === page ? 24 : 8, background: i === page ? 'var(--accent)' : 'rgb(var(--fg) / 0.25)' }} />
             ))}
             <button type="button" disabled={page === pages - 1} onClick={() => setPage(page + 1)} className="px-3 py-1 rounded-full disabled:opacity-30">{t.next} ›</button>
           </div>
