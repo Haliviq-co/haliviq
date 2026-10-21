@@ -33,7 +33,7 @@ export default function Footer({ lang, tr }: Props) {
           <div className="grid sm:grid-cols-2 gap-5 max-w-3xl mx-auto">
             {[
               { label: f.thailandLabel, lines: f.addressLines as string[], phone: f.phone, tel: 'tel:+66909189009', icon: 'ti-phone' },
-              { label: f.usaLabel, lines: f.usaAddressLines as string[], phone: f.whatsapp, tel: 'https://wa.me/66909149236', icon: 'ti-brand-whatsapp' },
+              { label: f.usaLabel, lines: f.usaAddressLines as string[], phone: f.usaPhone, tel: 'tel:+12063793643', icon: 'ti-phone' },
             ].map(o => (
               <a key={o.label} href={o.tel} {...(o.tel.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})} className="glass-hover block rounded-xl p-8" style={{ border: '1px solid rgb(var(--fg) / 0.1)' }}>
                 <p className="mb-4 uppercase" style={{ color: 'var(--ink)', fontWeight: 600, fontSize: '1.15rem', letterSpacing: '0.04em' }}>{o.label}</p>

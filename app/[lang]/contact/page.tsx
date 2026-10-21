@@ -57,7 +57,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
   const channels = isEN ? [
     { icon: 'ti-brand-whatsapp', title: 'WhatsApp', value: '+66 90 914 9236', sub: 'Chat with us', href: 'https://wa.me/66909149236' },
     { icon: 'ti-mail', title: 'Sales', value: 'info@haliviq.com', sub: 'New projects & partnerships', href: 'mailto:info@haliviq.com' },
-    { icon: 'ti-brand-line', title: 'LINE OA', value: '@haliviq', sub: 'Fastest response', href: 'https://lin.ee/zyTrkx4' },
+    { icon: 'ti-phone', title: 'Phone (US)', value: '+1 (206) 379-3643', sub: 'Call our US office', href: 'tel:+12063793643' },
     { icon: 'ti-video', title: 'Book a call', value: 'Free 30-min video call', sub: 'Pick a time, Google Meet', href: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0je6QG4mvfhRlih-PGXzRyFuCp-M3VyWFMwv8cbGiikwZ9Lo_17rWIR7q_ssEg92l9juim9xXE' },
     { icon: 'ti-map-pin', title: 'Office — USA', value: '315 East J. Street,', sub: 'Shelton, WA 98584', href: '#' },
   ] : [

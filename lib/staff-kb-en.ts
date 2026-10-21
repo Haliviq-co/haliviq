@@ -133,7 +133,7 @@ Monthly SEO/AEO/GEO, monthly system maintenance, Branding with a website about 1
 
 
 # United States market (USA), prices in USD [estimate], not confirmed, completely separate from Thailand
-Use only when the customer is in the United States. Contact via WhatsApp +66 90 914 9236 or email info@haliviq.com, Shelton, WA office.
+Use only when the customer is in the United States. Contact via phone +1 (206) 379-3643, WhatsApp +66 90 914 9236 or email info@haliviq.com, Shelton, WA office (315 East J. Street, Shelton, WA 98584).
 Always tell the customer these are "starting" prices and a quote follows a short call. Always check with the team lead before quoting.
 ## Website + AI (USA)
 - Essential + AI: $8,000 – $17,000 formal 5–7 page site, custom design, CMS, basic AI chatbot, site tuned for AI recommendation (AEO/GEO)
