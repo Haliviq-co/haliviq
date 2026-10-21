@@ -67,24 +67,24 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
 
         <div className="tm-strip flex gap-3 overflow-x-auto snap-x snap-mandatory items-stretch pb-2 sm:block sm:space-y-4 sm:overflow-visible sm:pb-0" style={{ scrollbarWidth: 'none' }}>
           {shown.map((r, i) => (
-            <article key={i} className="grid sm:grid-cols-[220px_1fr] gap-y-5 p-5 sm:p-8 rounded-3xl shrink-0 snap-start basis-[calc((100%_-_6px)/1.5)] sm:basis-auto" style={{ background: 'rgb(var(--fg) / 0.04)', border: `1px solid ${border}` }}>
-              <div className="sm:pr-8 sm:border-r flex sm:block items-center gap-4" style={{ borderColor: border }}>
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center shrink-0 font-semibold text-2xl" style={{ background: 'linear-gradient(135deg,#7B6EF6,#53C3D7)', color: '#fff' }}>{r.name.replace(/^คุณ/, '').charAt(0)}</div>
+            <article key={i} className="grid sm:grid-cols-[220px_1fr] gap-y-3 sm:gap-y-5 p-4 sm:p-8 rounded-2xl sm:rounded-3xl text-[13px] sm:text-base shrink-0 snap-start basis-[calc((100%_-_6px)/1.5)] sm:basis-auto" style={{ background: 'rgb(var(--fg) / 0.04)', border: `1px solid ${border}` }}>
+              <div className="sm:pr-8 sm:border-r flex sm:block items-center gap-3 sm:gap-4" style={{ borderColor: border }}>
+                <div className="w-11 h-11 sm:w-20 sm:h-20 rounded-full flex items-center justify-center shrink-0 font-semibold text-lg sm:text-2xl" style={{ background: 'linear-gradient(135deg,#7B6EF6,#53C3D7)', color: '#fff' }}>{r.name.replace(/^คุณ/, '').charAt(0)}</div>
                 <div className="sm:mt-5">
-                  <div className="font-bold">{r.name}</div>
-                  {r.place && <div className="text-sm" style={{ color: 'rgb(var(--fg) / 0.65)' }}>{r.place}</div>}
-                  <div className="mt-2 text-sm font-semibold" style={{ color: '#2FB26B' }}>✓ {t.verified}</div>
-                  {r.date && <div className="sm:mt-4 sm:pt-4 sm:border-t text-sm" style={{ borderColor: border, color: 'rgb(var(--fg) / 0.55)' }}>{r.date}</div>}
+                  <div className="font-bold text-[13px] sm:text-base leading-tight">{r.name}</div>
+                  {r.place && <div className="text-[11px] sm:text-sm" style={{ color: 'rgb(var(--fg) / 0.65)' }}>{r.place}</div>}
+                  <div className="mt-1 sm:mt-2 text-[11px] sm:text-sm font-semibold" style={{ color: '#2FB26B' }}>✓ {t.verified}</div>
+                  {r.date && <div className="sm:mt-4 sm:pt-4 sm:border-t text-[11px] sm:text-sm" style={{ borderColor: border, color: 'rgb(var(--fg) / 0.55)' }}>{r.date}</div>}
                 </div>
               </div>
               <div className="min-w-0 sm:pl-8">
-                <div style={{ color: '#DBC575', fontSize: 26, letterSpacing: 4 }} aria-label={`${r.stars}/5`}>{'★'.repeat(r.stars)}<span style={{ opacity: .25 }}>{'★'.repeat(5 - r.stars)}</span></div>
-                <h3 className="mt-3" style={{ fontSize: 20, fontWeight: 700, lineHeight: 1.4, letterSpacing: 0 }}>{r.title}</h3>
-                <p className="mt-2 leading-relaxed" style={{ color: 'rgb(var(--fg) / 0.8)' }}>{r.text}</p>
+                <div className="text-[16px] sm:text-[26px] tracking-[2px] sm:tracking-[4px]" style={{ color: '#DBC575' }} aria-label={`${r.stars}/5`}>{'★'.repeat(r.stars)}<span style={{ opacity: .25 }}>{'★'.repeat(5 - r.stars)}</span></div>
+                <h3 className="mt-2 sm:mt-3 text-[14px] sm:text-[20px]" style={{ fontWeight: 700, lineHeight: 1.4, letterSpacing: 0 }}>{r.title}</h3>
+                <p className="mt-1.5 sm:mt-2 leading-relaxed text-[12px] sm:text-base" style={{ color: 'rgb(var(--fg) / 0.8)' }}>{r.text}</p>
                 {r.reply && (
-                  <div className="mt-5 pt-5 border-t" style={{ borderColor: border }}>
-                    <p className="font-bold text-lg">{t.replyLabel}</p>
-                    <p className="mt-1 leading-relaxed" style={{ color: 'rgb(var(--fg) / 0.75)' }}>{r.reply}</p>
+                  <div className="mt-3 pt-3 sm:mt-5 sm:pt-5 border-t" style={{ borderColor: border }}>
+                    <p className="font-bold text-[13px] sm:text-lg">{t.replyLabel}</p>
+                    <p className="mt-1 leading-relaxed text-[12px] sm:text-base" style={{ color: 'rgb(var(--fg) / 0.75)' }}>{r.reply}</p>
                   </div>
                 )}
               </div>
