@@ -98,7 +98,7 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
           <div className="flex justify-center items-center gap-2 mt-8 text-sm">
             <button type="button" disabled={page === 0} onClick={() => setPage(page - 1)} className="px-3 py-1 rounded-full disabled:opacity-30">‹ {t.prev}</button>
             {Array.from({ length: pages }, (_, i) => (
-              <button key={i} type="button" onClick={() => setPage(i)} className="w-8 h-8 rounded-full" style={i === page ? { background: 'var(--accent)', color: '#fff' } : { border: `1px solid ${border}` }}>{i + 1}</button>
+              <button key={i} type="button" aria-label={`${i + 1}`} onClick={() => setPage(i)} className="h-2 rounded-full transition-all" style={{ width: i === page ? 24 : 8, background: i === page ? 'var(--accent)' : 'rgb(var(--fg) / 0.25)' }} />
             ))}
             <button type="button" disabled={page === pages - 1} onClick={() => setPage(page + 1)} className="px-3 py-1 rounded-full disabled:opacity-30">{t.next} ›</button>
           </div>
