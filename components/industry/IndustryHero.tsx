@@ -454,10 +454,10 @@ export default function IndustryHero({ kind, isEN }: { kind: string; isEN: boole
   const L = (x: Bi) => (isEN ? x.en : x.th)
   return (
     <div className="relative pb-10 pr-6">
-      <div className="theme-dark rounded-2xl overflow-hidden" style={{ background: '#141329', border: '1px solid rgba(123,110,246,0.35)', boxShadow: '0 30px 70px -20px rgba(90,78,212,0.45)' }}>
+      <div className="rounded-2xl overflow-hidden" style={{ background: 'var(--card)', border: '1px solid rgba(123,110,246,0.35)', boxShadow: '0 30px 70px -24px rgb(var(--shadow-c) / 0.45)' }}>
         <div className="flex items-center justify-between px-5 py-3.5" style={{ borderBottom: '1px solid rgb(var(--fg) / 0.08)' }}>
           <span className="text-xs tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)', fontFamily: 'monospace' }}>{c.head}</span>
-          <span className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: 'rgba(83,195,215,0.14)', color: '#53C3D7' }}>{L(c.chip)}</span>
+          <span className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: 'rgba(83,195,215,0.14)', color: 'var(--accent-2)' }}>{L(c.chip)}</span>
         </div>
         <div className="p-4">
           <div className="relative rounded-xl overflow-hidden mb-4" style={{ aspectRatio: '16 / 10' }}>
@@ -485,8 +485,8 @@ export default function IndustryHero({ kind, isEN }: { kind: string; isEN: boole
       </div>
 
       <div
-        className="theme-dark absolute -bottom-2 -right-2 w-[180px] rounded-2xl p-4"
-        style={{ background: '#1B1A33', border: '1px solid rgb(var(--fg) / 0.1)', boxShadow: '0 20px 50px -10px rgba(0,0,0,0.6)', animation: 'badgeFloat 3.4s ease-in-out infinite' }}
+        className="absolute -bottom-2 -right-2 w-[180px] rounded-2xl p-4"
+        style={{ background: 'var(--card)', border: '1px solid rgb(var(--fg) / 0.12)', boxShadow: '0 20px 50px -14px rgb(var(--shadow-c) / 0.5)', animation: 'badgeFloat 3.4s ease-in-out infinite' }}
       >
         <div className="flex items-center justify-between mb-2.5">
           <span className="text-[10px] tracking-widest uppercase" style={{ color: 'rgb(var(--fg) / 0.85)' }}>{L(c.badge.title)}</span>
