@@ -57,6 +57,9 @@ export async function POST(req: Request) {
     ['Newsletter', data.newsletter ? 'yes' : 'no'], ['Language', data.lang], ['Page', data.page],
   ].filter(([, v]) => v)
 
+  // Capture the lead in Brevo first (no-op unless BREVO_API_KEY is set), so it is saved even if the notification email below fails. Awaited so the serverless function does not exit early; never fails the form.
+  await brevoUpsert({ email: data.email, name: data.name, newsletter: data.newsletter })
+
   try {
     const key = process.env.RESEND_API_KEY
     const to = 'info@haliviq.com'
@@ -86,7 +89,5 @@ export async function POST(req: Request) {
     console.error('[contact-form] delivery failed', e)
     return NextResponse.json({ ok: false, error: 'delivery_failed' }, { status: 502 })
   }
-  // Add to Brevo CRM (no-op unless BREVO_API_KEY is set). Awaited so the serverless function does not exit early; never fails the form.
-  await brevoUpsert({ email: data.email, name: data.name, newsletter: data.newsletter })
   return NextResponse.json({ ok: true })
 }
