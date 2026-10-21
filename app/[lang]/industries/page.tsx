@@ -49,7 +49,7 @@ function AnimatedIcon({ icon, badgeLabel, badgeValue, color = 'var(--lime)' }: {
         <div className="rounded-full flex items-center justify-center" style={{ width: 64, height: 64, background: 'rgba(155,107,255,0.18)', border: '1px solid rgba(155,107,255,0.4)', animation: 'iconFloat 3.4s ease-in-out infinite' }}>
           <i className={`ti ${icon}`} style={{ fontSize: 30, color }} aria-hidden="true" />
         </div>
-        <div className="absolute rounded-lg px-2.5 py-1.5 flex items-center gap-1.5" style={{ bottom: -10, right: -38, background: 'rgba(10,8,16,0.9)', border: glassBorder, animation: 'badgeFloat 3.2s ease-in-out infinite' }}>
+        <div className="absolute rounded-lg px-2.5 py-1.5 flex items-center gap-1.5" style={{ bottom: -10, right: -38, background: 'var(--card)', border: glassBorder, animation: 'badgeFloat 3.2s ease-in-out infinite' }}>
           <span className="rounded-full shrink-0" style={{ width: 5, height: 5, background: 'var(--lime)', animation: 'blinkDot 1.6s ease-in-out infinite' }} />
           <div>
             <div style={{ fontSize: 7, color: dim, whiteSpace: 'nowrap' }}>{badgeLabel}</div>
@@ -254,10 +254,10 @@ export default function Page({ params }: { params: { lang: Lang } }) {
               {industries.map((it) => (
                 <Link key={it.href} href={`${prefix}${it.href}`} className="group flex flex-col">
                   <div
-                    className="theme-dark relative h-72 rounded-2xl overflow-hidden mb-6 group-hover:border-[var(--purple-light)]/40 transition-colors"
-                    style={{ background: 'linear-gradient(160deg,#171025 0%,#0B0813 100%)', border: '1px solid rgb(var(--fg) / 0.07)' }}
+                    className="relative h-72 rounded-2xl overflow-hidden mb-6 group-hover:border-[var(--purple-light)]/40 transition-colors"
+                    style={{ background: 'linear-gradient(160deg,var(--bg-1) 0%,var(--bg-deep) 100%)', border: '1px solid var(--line)' }}
                   >
-                    <div className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle,#fff 1px,transparent 1px)', backgroundSize: '18px 18px' }} />
+                    <div className="absolute inset-0 opacity-[0.08] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle,rgb(var(--fg)) 1px,transparent 1px)', backgroundSize: '18px 18px' }} />
                     {HERO_KINDS.has(it.slug)
                       ? <div className="ind-cover" aria-hidden="true"><IndustryHero kind={it.slug} isEN={isEN} /></div>
                       : <IndustryVisual slug={it.slug} />}
