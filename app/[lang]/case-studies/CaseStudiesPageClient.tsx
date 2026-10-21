@@ -237,7 +237,7 @@ export default function CaseStudiesPageClient({ params }: { params: { lang: Lang
 
             {/* Featured case study — cover art + 2 rows of feature cards */}
             <div className="rounded-[32px] overflow-hidden" style={{ border: '1px solid rgb(var(--fg) / 0.1)' }}>
-              <div className="theme-dark relative py-10 lg:py-16 px-6 lg:px-16" style={{ background: 'linear-gradient(160deg, #171232 0%, #1B1A33 100%)' }}>
+              <div className="relative py-10 lg:py-16 px-6 lg:px-16" style={{ background: 'var(--bg-1)' }}>
                 <div className="grid lg:grid-cols-[1fr_auto_1fr] gap-8 items-center">
                   <div className="hidden lg:grid grid-rows-3 gap-5 order-1">
                     {left.map((c) => (

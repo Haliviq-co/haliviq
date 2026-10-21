@@ -258,7 +258,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
         </section>
 
         {/* Team / Leadership */}
-        <section className="theme-dark relative overflow-hidden py-24" style={{ background: '#0A0812' }}>
+        <section className="relative overflow-hidden py-24" style={{ background: 'var(--bg-1)' }}>
           <div
             className="absolute inset-0 pointer-events-none opacity-[0.25]"
             style={{ backgroundImage: 'radial-gradient(rgb(var(--fg) / 0.14) 1px, transparent 1px)', backgroundSize: '22px 22px' }}

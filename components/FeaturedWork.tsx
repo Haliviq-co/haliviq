@@ -38,11 +38,11 @@ export default function FeaturedWork({ lang, tr }: Props) {
               style={{ top: '96px', zIndex: i + 1 }}
             >
               <div
-                className="theme-dark rounded-3xl grid lg:grid-cols-2 items-stretch gap-8 lg:gap-4 p-6 lg:p-10"
+                className="rounded-3xl grid lg:grid-cols-2 items-stretch gap-8 lg:gap-4 p-6 lg:p-10"
                 style={{
-                  background: '#141329',
-                  border: '1px solid rgb(var(--fg) / 0.08)',
-                  boxShadow: '0 30px 60px -20px rgba(0,0,0,0.6)',
+                  background: 'var(--card)',
+                  border: '1px solid var(--line)',
+                  boxShadow: '0 30px 60px -24px rgb(var(--shadow-c) / 0.35)',
                 }}
               >
                 <div className="flex flex-col justify-center order-2 lg:order-1 py-2 lg:py-6">

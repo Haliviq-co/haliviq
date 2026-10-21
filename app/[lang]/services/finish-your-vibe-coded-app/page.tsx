@@ -432,7 +432,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
     </section>
 
 
-    <section className="theme-dark relative overflow-hidden" style={{ background: 'var(--bg)' }}>
+    <section className="relative overflow-hidden" style={{ background: 'var(--bg)' }}>
       <div className="relative max-w-7xl mx-auto px-4 lg:px-10 py-20 lg:py-28">
         <p className="mb-5 text-xs tracking-widest uppercase" style={{ color: 'var(--accent-2)', fontWeight: 600 }}>
           {isEN ? 'Pricing' : 'ราคา'}
