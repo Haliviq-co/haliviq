@@ -55,7 +55,7 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
           <div ref={strip} className="tm-strip flex gap-3 overflow-x-auto pb-4 snap-x" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           <style>{`.tm-strip::-webkit-scrollbar{display:none}@media(min-width:640px){.tm-slide{animation:tmSlide .45s ease-out}}@keyframes tmSlide{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}@media(prefers-reduced-motion:reduce){.tm-slide{animation:none}}`}</style>
             {videos.map((v, i) => (
-              <button key={i} type="button" onClick={() => v.src && setOpen(v)} className="relative shrink-0 grow-0 snap-start overflow-hidden rounded-lg basis-[calc((100%_-_6px)/1.5)] sm:basis-[calc((100%_-_48px)/5)]" style={{ aspectRatio: '150 / 230', border: `1px solid ${border}` }} aria-label={v.name}>
+              <button key={i} type="button" onClick={() => v.src && setOpen(v)} className="relative shrink-0 grow-0 snap-start overflow-hidden rounded-lg basis-[85%] sm:basis-[calc((100%_-_48px)/5)]" style={{ aspectRatio: '150 / 230', border: `1px solid ${border}` }} aria-label={v.name}>
                 <img src={v.thumb} alt={v.name} className="w-full h-full object-cover" />
                 <span className="absolute inset-0 flex items-center justify-center"><span className="w-11 h-11 rounded-full flex items-center justify-center" style={{ background: 'rgba(0,0,0,.55)', color: '#fff' }}>▶</span></span>
                 <span className="absolute bottom-0 inset-x-0 p-2 text-xs text-left" style={{ background: 'linear-gradient(transparent,rgba(0,0,0,.7))', color: '#fff' }}>{v.name}</span>
@@ -67,7 +67,7 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
 
         <div key={mob ? 'm' : page} className="tm-strip tm-slide flex gap-3 overflow-x-auto snap-x snap-mandatory items-stretch pb-2 sm:block sm:space-y-4 sm:overflow-visible sm:pb-0" style={{ scrollbarWidth: 'none' }}>
           {shown.map((r, i) => (
-            <article key={i} className="grid sm:grid-cols-[220px_1fr] gap-y-3 sm:gap-y-5 p-4 sm:p-8 rounded-2xl sm:rounded-3xl text-[13px] sm:text-base shrink-0 snap-start basis-[calc((100%_-_6px)/1.5)] sm:basis-auto" style={{ background: 'rgb(var(--fg) / 0.04)', border: `1px solid ${border}` }}>
+            <article key={i} className="grid sm:grid-cols-[220px_1fr] gap-y-3 sm:gap-y-5 p-4 sm:p-8 rounded-2xl sm:rounded-3xl text-[13px] sm:text-base shrink-0 snap-start basis-[85%] sm:basis-auto" style={{ background: 'rgb(var(--fg) / 0.04)', border: `1px solid ${border}` }}>
               <div className="sm:pr-8 sm:border-r flex sm:block items-center gap-3 sm:gap-4" style={{ borderColor: border }}>
                 <div className="w-11 h-11 sm:w-20 sm:h-20 rounded-full flex items-center justify-center shrink-0 font-semibold text-lg sm:text-2xl" style={{ background: 'linear-gradient(135deg,#7B6EF6,#53C3D7)', color: '#fff' }}>{r.name.replace(/^คุณ/, '').charAt(0)}</div>
                 <div className="sm:mt-5">
