@@ -601,3 +601,18 @@ html[data-theme="light"] .cta-final a[href$="/contact"]:hover { background: #EEE
 @media (max-width:767px){
   .contact-card input:not([type="checkbox"]):not([type="radio"]), .contact-card select, .contact-card textarea { font-size:16px !important }
 }
+
+/* Light mode: dark mock windows / floating cards (pinned with .theme-dark and a hard-coded dark inline background) follow the light tokens. */
+html[data-theme="light"] .theme-dark:is([style*="#141329" i],[style*="rgb(20, 19, 41)"],[style*="#1B1A33" i],[style*="rgb(27, 26, 51)"],[style*="#15112A" i],[style*="rgb(21, 17, 42)"],[style*="#0F1424" i],[style*="rgb(15, 20, 36)"],[style*="#171232" i],[style*="rgb(23, 18, 50)"]) {
+  color-scheme: light;
+  --bg:#FFFFFF; --bg-deep:#F1F0FA; --bg-1:#F7F7FC; --card:#FFFFFF; --ink:#0A0A0F; --fg:10 10 15;
+  --text-2:#3D3D55; --text-3:#6E6E88; --line:#E4E4EC; --line-soft:#F0F0F6; --accent:#5A4ED4; --accent-2:#1F8CA1;
+  --panel:#FFFFFF; --shadow-c:26 27 46; --purple-bg:#EEEDFB; --lime-bg:#E9F7F9;
+  color: var(--ink);
+  background: var(--card) !important;
+  border-color: rgb(var(--fg) / 0.14) !important;
+  box-shadow: 0 24px 50px -24px rgb(var(--shadow-c) / 0.4) !important;
+}
+html[data-theme="light"] .theme-dark:is([style*="#141329" i],[style*="rgb(20, 19, 41)"],[style*="#1B1A33" i],[style*="rgb(27, 26, 51)"],[style*="#15112A" i],[style*="rgb(21, 17, 42)"],[style*="#0F1424" i],[style*="rgb(15, 20, 36)"],[style*="#171232" i],[style*="rgb(23, 18, 50)"]) :is([style*="#141329" i],[style*="rgb(20, 19, 41)"],[style*="#1B1A33" i],[style*="rgb(27, 26, 51)"],[style*="#15112A" i],[style*="rgb(21, 17, 42)"],[style*="#0F1424" i],[style*="rgb(15, 20, 36)"],[style*="#171232" i],[style*="rgb(23, 18, 50)"]):not(.theme-dark) {
+  background: rgb(var(--fg) / 0.045) !important;
+}
