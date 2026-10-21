@@ -431,7 +431,7 @@ html[data-theme="light"] .cta-final a[href$="/contact"]:hover { background: #EEE
 
 /* phones: smaller Havy launcher so it covers less content */
 @media (max-width: 767px) {
-  .chat-mascot-btn { transform: scale(0.68); transform-origin: bottom right; }
+  .chat-mascot-btn { transform: scale(0.85); transform-origin: bottom right; }
   .chat-mascot-btn .chat-name { margin-top: -12px; }
 }
 
