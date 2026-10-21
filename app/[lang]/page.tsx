@@ -47,9 +47,9 @@ export default function HomePage({ params }: { params: { lang: string } }) {
         email: 'info@haliviq.com',
         address: {
           '@type': 'PostalAddress',
-          streetAddress: '111 Sukhumvit Road, Bang Chak, Phra Khanong',
+          streetAddress: 'Spaces Building, Phaya Thai Road, 4th Floor, Room 402, Ratchathewi',
           addressLocality: 'Bangkok',
-          postalCode: '10260',
+          postalCode: '10400',
           addressCountry: 'TH',
         },
         areaServed: ['TH', 'SG', 'MY', 'ID', 'VN', 'PH'],

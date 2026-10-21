@@ -192,7 +192,7 @@ export const t = {
         },
         {
           q: 'Haliviq ตั้งอยู่ที่ไหน?',
-          a: 'สำนักงานหลักอยู่ที่กรุงเทพฯ ประเทศไทย แถวถนนสุขุมวิท (เขตพระโขนง) และมีที่อยู่สำนักงานในสหรัฐอเมริกาด้วย เราทำงานกับลูกค้าทั่วเอเชียและทั่วโลกได้แบบทางไกล คุยได้ทั้งทางโทรศัพท์ LINE WhatsApp และอีเมล',
+          a: 'สำนักงานหลักอยู่ที่กรุงเทพฯ ประเทศไทย ที่อาคาร Spaces ถนนพญาไท (เขตราชเทวี) และมีที่อยู่สำนักงานในสหรัฐอเมริกาด้วย เราทำงานกับลูกค้าทั่วเอเชียและทั่วโลกได้แบบทางไกล คุยได้ทั้งทางโทรศัพท์ LINE WhatsApp และอีเมล',
         },
         {
           q: 'Haliviq ใช้เทคโนโลยีอะไรบ้าง?',
@@ -328,7 +328,7 @@ export const t = {
       terms: 'เงื่อนไขการใช้งาน',
       locations: 'ความคิดของคน สู่อนาคตที่ฉลาดขึ้น',
       legalName: 'บริษัท ฮาลิวิก จำกัด',
-      addressLines: ['111 ถนนสุขุมวิท แขวงบางจาก', 'เขตพระโขนง กรุงเทพฯ 10260'],
+      addressLines: ['อาคาร Spaces ถนนพญาไท ชั้น 4 ห้อง 402', 'เขตราชเทวี กรุงเทพฯ 10400'],
       thailandLabel: 'ประเทศไทย',
       usaLabel: 'สหรัฐอเมริกา',
       usaAddressLines: ['2025 Olympic Hwy N Ste 105,', 'Shelton, WA'],
@@ -527,7 +527,7 @@ export const t = {
         },
         {
           q: 'Where is Haliviq located?',
-          a: 'Our main office is in Bangkok, Thailand, on Sukhumvit Road in Phra Khanong district, and we also keep an office address in the USA. We work remotely with clients across Asia and around the world, and you can reach us by phone, LINE, WhatsApp or email.',
+          a: 'Our main office is in Bangkok, Thailand, at the Spaces Building on Phaya Thai Road in Ratchathewi district, and we also keep an office address in the USA. We work remotely with clients across Asia and around the world, and you can reach us by phone, LINE, WhatsApp or email.',
         },
         {
           q: 'What technologies does Haliviq use?',
@@ -657,7 +657,7 @@ export const t = {
       terms: 'Terms of Service',
       locations: 'Human Ideas. Intelligent Future.',
       legalName: 'Haliviq Co., Ltd.',
-      addressLines: ['111 Sukhumvit Rd, Bang Chak,', 'Phra Khanong, Bangkok 10260'],
+      addressLines: ['Spaces Building, Phaya Thai Rd,', '4th Floor, Room 402, Ratchathewi, Bangkok 10400'],
       thailandLabel: 'Thailand',
       usaLabel: 'USA',
       usaAddressLines: ['2025 Olympic Hwy N Ste 105,', 'Shelton, WA'],
