@@ -9,7 +9,7 @@ const T = {
   th: { h: 'เสียงจากลูกค้าของเรา', sub: 'รีวิวจากลูกค้าที่ใช้งานจริง', verified: 'ลูกค้าจริง', reply: 'ตอบกลับจาก Haliviq', replyLabel: 'ตอบกลับ:', prev: 'ก่อนหน้า', next: 'ถัดไป', sample: 'ตัวอย่างโครงสร้าง ข้อมูลสมมติ ไม่ใช่รีวิวจริง' },
   en: { h: 'What our clients say', sub: 'Reviews from real clients', verified: 'Verified client', reply: 'Reply from Haliviq', replyLabel: 'Reply:', prev: 'Prev', next: 'Next', sample: 'Layout preview. Sample data, not real reviews' },
 }
-const PER = 3
+const PER_WIDE = 6, PER_NARROW = 3
 
 function Stars({ n }: { n: number }) {
   return <span aria-label={`${n}/5`} style={{ color: '#DBC575', letterSpacing: 2 }}>{'★'.repeat(n)}<span style={{ opacity: .25 }}>{'★'.repeat(5 - n)}</span></span>
@@ -25,11 +25,13 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
   const [page, setPage] = useState(0)
   const [open, setOpen] = useState<VideoReview | null>(null)
   const [mob, setMob] = useState(false)
-  useEffect(() => { const m = window.matchMedia('(max-width: 639px)'); const f = () => setMob(m.matches); f(); m.addEventListener('change', f); return () => m.removeEventListener('change', f) }, [])
+  const [wide, setWide] = useState(false)
+  useEffect(() => { const m = window.matchMedia('(max-width: 639px)'); const w = window.matchMedia('(min-width: 1024px)'); const f = () => { setMob(m.matches); setWide(w.matches) }; f(); m.addEventListener('change', f); w.addEventListener('change', f); return () => { m.removeEventListener('change', f); w.removeEventListener('change', f) } }, [])
   const strip = useRef<HTMLDivElement>(null)
   const slide = (d: number) => strip.current && strip.current.scrollBy({ left: d * strip.current.clientWidth * 0.6, behavior: 'smooth' })
   const arrow = (side: 'left' | 'right'): React.CSSProperties => ({ position: 'absolute', top: '50%', [side]: -6, transform: 'translateY(-50%)', width: 36, height: 36, borderRadius: '50%', background: 'var(--accent)', color: '#fff', zIndex: 2, fontSize: 20 })
   if (!reviews.length && !videos.length) return null
+  const PER = wide ? PER_WIDE : PER_NARROW
   const pages = Math.max(1, Math.ceil(reviews.length / PER))
   const avg = reviews.length ? reviews.reduce((a, r) => a + r.stars, 0) / reviews.length : 0
   const shown = mob ? reviews : reviews.slice(page * PER, page * PER + PER)
@@ -65,11 +67,11 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
           </div>
         )}
 
-        <div key={mob ? 'm' : page} className="tm-strip tm-slide flex gap-3 overflow-x-auto snap-x snap-mandatory items-stretch pb-2 sm:block sm:space-y-4 sm:overflow-visible sm:pb-0" style={{ scrollbarWidth: 'none' }}>
+        <div key={mob ? 'm' : page} className="tm-strip tm-slide flex gap-3 overflow-x-auto snap-x snap-mandatory items-stretch pb-2 sm:grid sm:grid-cols-1 lg:grid-cols-2 sm:gap-4 sm:overflow-visible sm:pb-0 sm:items-stretch" style={{ scrollbarWidth: 'none' }}>
           {shown.map((r, i) => (
-            <article key={i} className="grid sm:grid-cols-[220px_1fr] gap-y-3 sm:gap-y-5 p-4 sm:p-8 rounded-2xl sm:rounded-3xl text-[13px] sm:text-base shrink-0 snap-start basis-[85%] sm:basis-auto" style={{ background: 'rgb(var(--fg) / 0.04)', border: `1px solid ${border}` }}>
-              <div className="sm:pr-8 sm:border-r flex sm:block items-center gap-3 sm:gap-4" style={{ borderColor: border }}>
-                <div className="w-11 h-11 sm:w-20 sm:h-20 rounded-full flex items-center justify-center shrink-0 font-semibold text-lg sm:text-2xl" style={{ background: 'linear-gradient(135deg,#7B6EF6,#53C3D7)', color: '#fff' }}>{r.name.replace(/^คุณ/, '').charAt(0)}</div>
+            <article key={i} className="grid sm:grid-cols-[170px_1fr] gap-y-3 sm:gap-y-5 p-4 sm:p-6 rounded-2xl sm:rounded-3xl text-[13px] sm:text-[15px] shrink-0 snap-start basis-[85%] sm:basis-auto" style={{ background: 'rgb(var(--fg) / 0.04)', border: `1px solid ${border}` }}>
+              <div className="sm:pr-5 sm:border-r flex sm:block items-center gap-3 sm:gap-4" style={{ borderColor: border }}>
+                <div className="w-11 h-11 sm:w-16 sm:h-16 rounded-full flex items-center justify-center shrink-0 font-semibold text-lg sm:text-2xl" style={{ background: 'linear-gradient(135deg,#7B6EF6,#53C3D7)', color: '#fff' }}>{r.name.replace(/^คุณ/, '').charAt(0)}</div>
                 <div className="sm:mt-5">
                   <div className="font-bold text-[13px] sm:text-base leading-tight">{r.name}</div>
                   {r.place && <div className="text-[11px] sm:text-sm" style={{ color: 'rgb(var(--fg) / 0.65)' }}>{r.place}</div>}
@@ -77,7 +79,7 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
                   {r.date && <div className="sm:mt-4 sm:pt-4 sm:border-t text-[11px] sm:text-sm" style={{ borderColor: border, color: 'rgb(var(--fg) / 0.55)' }}>{r.date}</div>}
                 </div>
               </div>
-              <div className="min-w-0 sm:pl-8">
+              <div className="min-w-0 sm:pl-5">
                 <div className="text-[16px] sm:text-[26px] tracking-[2px] sm:tracking-[4px]" style={{ color: '#DBC575' }} aria-label={`${r.stars}/5`}>{'★'.repeat(r.stars)}<span style={{ opacity: .25 }}>{'★'.repeat(5 - r.stars)}</span></div>
                 <h3 className="mt-2 sm:mt-3 text-[14px] sm:text-[20px]" style={{ fontWeight: 700, lineHeight: 1.4, letterSpacing: 0 }}>{r.title}</h3>
                 <p className="mt-1.5 sm:mt-2 leading-relaxed text-[12px] sm:text-base" style={{ color: 'rgb(var(--fg) / 0.8)' }}>{r.text}</p>
