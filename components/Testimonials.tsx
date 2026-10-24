@@ -15,6 +15,9 @@ function Stars({ n }: { n: number }) {
   return <span aria-label={`${n}/5`} style={{ color: '#DBC575', letterSpacing: 2 }}>{'★'.repeat(n)}<span style={{ opacity: .25 }}>{'★'.repeat(5 - n)}</span></span>
 }
 
+// Video testimonials hidden for now (both languages). Set to true to bring them back.
+const SHOW_VIDEOS = false
+
 export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm }: { lang?: Lang; reviews?: Review[]; videos?: VideoReview[]; sample?: boolean }) {
   // No real data yet -> show the clearly-labelled placeholder layout
   const noReal = !rv && !vd && !REVIEWS.length && !VIDEOS.length
@@ -50,7 +53,7 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
           {sample && <p className="mt-3 inline-block text-xs px-3 py-1 rounded-full" style={{ background: 'rgb(245 179 1 / .15)', color: '#F5B301' }}>{t.sample}</p>}
         </div>
 
-        {videos.length > 0 && (
+        {SHOW_VIDEOS && videos.length > 0 && (
           <div className="relative mb-8">
           <button type="button" aria-label="prev" onClick={() => slide(-1)} style={arrow('left')} className="hidden sm:block">‹</button>
           <button type="button" aria-label="next" onClick={() => slide(1)} style={arrow('right')} className="hidden sm:block">›</button>
