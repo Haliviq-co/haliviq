@@ -33,6 +33,8 @@ export default function Testimonials({ lang, reviews: rv, videos: vd, sample: sm
   const strip = useRef<HTMLDivElement>(null)
   const slide = (d: number) => strip.current && strip.current.scrollBy({ left: d * strip.current.clientWidth * 0.6, behavior: 'smooth' })
   const arrow = (side: 'left' | 'right'): React.CSSProperties => ({ position: 'absolute', top: '50%', [side]: -6, transform: 'translateY(-50%)', width: 36, height: 36, borderRadius: '50%', background: 'var(--accent)', color: '#fff', zIndex: 2, fontSize: 20 })
+  // Placeholder (fake) reviews must not show on the live site; only the /preview-reviews page forces them with `sample`.
+  if (noReal && sm === undefined) return null
   if (!reviews.length && !videos.length) return null
   const PER = wide ? PER_WIDE : PER_NARROW
   const pages = Math.min(MAX_PAGES, Math.max(1, Math.ceil(reviews.length / PER)))
