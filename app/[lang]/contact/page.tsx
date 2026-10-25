@@ -57,7 +57,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
   const channels = isEN ? [
     { icon: 'ti-brand-whatsapp', title: 'WhatsApp', value: '+66 90 914 9236', sub: 'Chat with us', href: 'https://wa.me/66909149236' },
     { icon: 'ti-mail', title: 'Sales', value: 'info@haliviq.com', sub: 'New projects & partnerships', href: 'mailto:info@haliviq.com' },
-    { icon: 'ti-phone', title: 'Phone (US)', value: '+1 (206) 379-3643', sub: 'Call our US office', href: 'tel:+12063793643' },
+    { icon: 'ti-brand-whatsapp', title: 'Phone (US)', value: '+1 (206) 379-3643', sub: 'Message our US office on WhatsApp', href: 'https://wa.me/66909149236' },
     { icon: 'ti-video', title: 'Book a call', value: 'Free 30-min video call', sub: 'Pick a time, Google Meet', href: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0je6QG4mvfhRlih-PGXzRyFuCp-M3VyWFMwv8cbGiikwZ9Lo_17rWIR7q_ssEg92l9juim9xXE' },
     { icon: 'ti-map-pin', title: 'Office — USA', value: '315 East J. Street,', sub: 'Shelton, WA 98584', href: '#' },
   ] : [
@@ -199,7 +199,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
                   {channels.filter(c => c.icon !== 'ti-video').map(c => {
                     const book = false
                     return (
-                    <a key={c.title} href={c.href} {...(book ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    <a key={c.title} href={c.href} {...(c.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                       className="flex items-center gap-5 p-5 rounded-2xl transition-all group"
                       style={book
                         ? { border: '1px solid rgb(123 110 246 / 0.6)', background: 'linear-gradient(135deg,#2A1F7A 0%,#6D5DF0 100%)', boxShadow: '0 16px 40px -18px rgb(109 93 240 / 0.7)' }
