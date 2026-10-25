@@ -3,6 +3,7 @@ import FAQ from '@/components/FAQ'
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import FloatingCta from '@/components/FloatingCta'
 import { t, type Lang } from '@/lib/i18n'
 import { workProjects, getWorkProject } from '@/lib/work-data'
 import { alt } from '@/lib/seo'
@@ -298,6 +299,7 @@ export default function Page({ params }: { params: { lang: Lang; slug: string } 
           </div>
         </section>
       </main>
+      <FloatingCta lang={lang} href={`/${lang}/contact`} />
       <Footer lang={lang} tr={tr} />
     </>
   )

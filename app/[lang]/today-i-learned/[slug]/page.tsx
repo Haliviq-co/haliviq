@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import ArticleSidebar from '@/components/ArticleSidebar'
 import { t, type Lang } from '@/lib/i18n'
 import { tilNotes, getTil } from '@/lib/til-data'
 import { formatDate } from '@/lib/blog-data'
@@ -72,7 +73,8 @@ export default function Page({ params }: { params: { lang: Lang; slug: string } 
           </div>
         </section>
 
-        <article className="max-w-3xl mx-auto px-6 lg:px-10 pb-16">
+        <div className="max-w-6xl mx-auto px-6 lg:px-10 pb-16 lg:grid lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-14">
+        <article className="min-w-0 max-w-3xl mx-auto lg:mx-0 w-full">
           {blocks.map(([h, ps_]) => (
             <section key={h}>
               <h2 className="t-display" style={{ ...h2s, color: 'var(--ink)' }}>{h}</h2>
@@ -113,6 +115,15 @@ export default function Page({ params }: { params: { lang: Lang; slug: string } 
             </Link>
           </div>
         </article>
+        <ArticleSidebar
+          lang={lang}
+          ctaHref={`/${lang}/contact`}
+          latestTitle={isEN ? 'Latest notes' : 'โน้ตล่าสุด'}
+          latest={tilNotes.filter((x) => x.slug !== n.slug).slice(0, 4).map((x) => ({ href: `/${lang}/today-i-learned/${x.slug}`, title: x[lang].title, meta: formatDate(x.date, lang) }))}
+          topicsTitle={isEN ? 'Topics' : 'หัวข้อ'}
+          topics={Array.from(new Set(tilNotes.map((x) => x.topic))).slice(0, 8).map((tp) => ({ label: tp, href: `/${lang}/today-i-learned` }))}
+        />
+        </div>
 
         <section className="py-16" style={{ background: 'var(--bg-1)', borderTop: '1px solid rgb(var(--fg) / 0.06)' }}>
           <div className="max-w-7xl mx-auto px-6 lg:px-10">

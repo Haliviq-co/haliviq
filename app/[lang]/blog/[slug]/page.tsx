@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import FAQ from '@/components/FAQ'
+import ArticleSidebar from '@/components/ArticleSidebar'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Navbar from '@/components/Navbar'
@@ -145,7 +146,8 @@ export default function Page({ params }: { params: { lang: Lang; slug: string } 
           </div>
         </div>
 
-        <article className="max-w-3xl mx-auto px-6 lg:px-10 pb-16">
+        <div className="max-w-6xl mx-auto px-6 lg:px-10 pb-16 lg:grid lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-14">
+        <article className="min-w-0 max-w-3xl mx-auto lg:mx-0 w-full">
           {l.sections.map((s, i) => (
             <section key={s.h}>
               <h2 className="t-display text-[color:var(--ink)]" style={h2}>{s.h}</h2>
@@ -228,6 +230,15 @@ export default function Page({ params }: { params: { lang: Lang; slug: string } 
             <Link href={`/${lang}/contact`} className="btn-primary">{isEN ? 'Talk to us' : 'คุยกับเรา'}</Link>
           </div>
         </article>
+        <ArticleSidebar
+          lang={lang}
+          ctaHref={`/${lang}/contact`}
+          latestTitle={isEN ? 'Latest articles' : 'บทความล่าสุด'}
+          latest={[...articles].filter((x) => x.slug !== a.slug).sort((x, y) => (x.date < y.date ? 1 : -1)).slice(0, 4).map((x) => ({ href: `/${lang}/blog/${x.slug}`, title: x[lang].title, meta: formatDate(x.date, lang) }))}
+          topicsTitle={isEN ? 'Topics' : 'หัวข้อ'}
+          topics={Array.from(new Set(articles.map((x) => x.cat))).map((c) => ({ label: catLabel[c][lang], href: `/${lang}/blog` }))}
+        />
+        </div>
 
         <section className="bg-[var(--bg-1)] border-t border-[color:var(--line)] py-16">
           <div className="max-w-7xl mx-auto px-6 lg:px-10">
