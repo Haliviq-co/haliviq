@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import FloatingCta from '@/components/FloatingCta'
 import Link from 'next/link'
 import { t, type Lang } from '@/lib/i18n'
 import type { Metadata } from 'next'
@@ -304,6 +305,7 @@ export default function Page({ params }: { params: { lang: Lang } }) {
           </div>
         </section>
       </main>
+      <FloatingCta lang={lang} href={`/${lang}/contact`} />
       <Footer lang={lang} tr={tr} />
     </>
   )

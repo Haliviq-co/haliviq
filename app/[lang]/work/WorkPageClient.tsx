@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import { t, type Lang } from '@/lib/i18n'
 import Footer from '@/components/Footer'
+import FloatingCta from '@/components/FloatingCta'
 import { getCaseStudy } from '@/lib/case-studies-data'
 
 const serviceGroupsEN = [
@@ -275,6 +276,7 @@ export default function WorkPageClient({ params }: { params: { lang: Lang } }) {
           </div>
         </section>
       </main>
+      <FloatingCta lang={lang} href={`/${lang}/contact`} />
       <Footer lang={lang} tr={tr} />
     </>
   )

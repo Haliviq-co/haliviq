@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import FloatingCta from '@/components/FloatingCta'
 import { t, type Lang } from '@/lib/i18n'
 import { articles, blogCategories, coverOf, formatDate, type BlogCat } from '@/lib/blog-data'
 
@@ -149,6 +150,7 @@ export default function BlogClient({ lang, newsletter }: { lang: Lang; newslette
         </section>
         {newsletter}
       </main>
+      <FloatingCta lang={lang} href={`/${lang}/contact`} />
       <Footer lang={lang} tr={tr} />
     </>
   )
