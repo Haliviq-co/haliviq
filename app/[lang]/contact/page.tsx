@@ -90,9 +90,24 @@ export default function Page({ params }: { params: { lang: Lang } }) {
                     ? <>Let&apos;s build<br /><span style={{ background: 'linear-gradient(135deg,var(--purple) 0%,var(--purple-light) 50%,#53C3D7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>something great</span></>
                     : <>มาสร้าง<br /><span style={{ background: 'linear-gradient(135deg,var(--purple) 0%,var(--purple-light) 50%,#53C3D7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>สิ่งดี ๆ ด้วยกัน</span></>}
                 </h1>
-                <p className="leading-relaxed mb-12" style={{ fontSize: '1.15rem', color: 'rgb(var(--fg) / 0.85)', fontWeight: 400, maxWidth: 520 }}>
+                <p className="leading-relaxed mb-8" style={{ fontSize: '1.15rem', color: 'rgb(var(--fg) / 0.85)', fontWeight: 400, maxWidth: 520 }}>
                   {isEN ? 'Tell us about your project, even if it is still a rough idea. We will get back to you within 24 hours with our first thoughts and a suggested next step. If you would rather talk, call us or message us on LINE, and we can set up a first consultation at no cost.' : 'เล่าเรื่องโปรเจกต์ของคุณให้เราฟังได้เลย แม้จะเป็นแค่ไอเดียคร่าว ๆ เราจะตอบกลับภายใน 24 ชั่วโมง พร้อมความเห็นเบื้องต้นและขั้นตอนถัดไปที่เราแนะนำ ถ้าอยากคุยเลย โทรหาเราหรือทักทาง LINE ได้ แล้วเรานัดปรึกษาครั้งแรกให้ฟรี'}
                 </p>
+                {(() => { const b = channels.find(c => c.icon === 'ti-video'); return b ? (
+                  <a href={b.href} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center gap-5 p-5 rounded-2xl transition-all group mb-10"
+                    style={{ border: '1px solid rgb(123 110 246 / 0.6)', background: 'linear-gradient(135deg,#2A1F7A 0%,#6D5DF0 100%)', boxShadow: '0 16px 40px -18px rgb(109 93 240 / 0.7)', maxWidth: 520 }}>
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style={{ background: 'rgb(255 255 255 / 0.18)' }}>
+                      <i className={`ti ${b.icon}`} style={{ fontSize: 22, color: '#fff' }} aria-hidden="true" />
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm mb-0.5" style={{ fontWeight: 400, color: 'rgb(255 255 255 / 0.8)' }}>{b.title}</p>
+                      <p style={{ fontWeight: 600, fontSize: '1.2rem', color: '#fff' }}>{b.value}</p>
+                      <p className="text-sm" style={{ fontWeight: 400, color: 'rgb(255 255 255 / 0.8)' }}>{b.sub}</p>
+                    </div>
+                    <i className="ti ti-arrow-right" style={{ fontSize: 22, color: '#fff' }} aria-hidden="true" />
+                  </a>
+                ) : null })()}
               </div>
 
               <div className="contact-card rounded-3xl p-[15px] sm:p-8 lg:p-10 lg:sticky lg:top-24 lg:col-start-2 lg:row-start-2 lg:row-span-2" style={{ border: '1px solid rgb(var(--fg) / 0.08)' }}>
@@ -181,21 +196,27 @@ export default function Page({ params }: { params: { lang: Lang } }) {
 
               <div className="lg:col-start-1 lg:row-start-2">
                 <div className="space-y-4 lg:mb-12">
-                  {channels.map(c => (
-                    <a key={c.title} href={c.href}
+                  {channels.filter(c => c.icon !== 'ti-video').map(c => {
+                    const book = false
+                    return (
+                    <a key={c.title} href={c.href} {...(book ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                       className="flex items-center gap-5 p-5 rounded-2xl transition-all group"
-                      style={{ border: '1px solid rgb(var(--fg) / 0.1)', background: 'rgb(var(--fg) / 0.03)' }}>
+                      style={book
+                        ? { border: '1px solid rgb(123 110 246 / 0.6)', background: 'linear-gradient(135deg,#2A1F7A 0%,#6D5DF0 100%)', boxShadow: '0 16px 40px -18px rgb(109 93 240 / 0.7)' }
+                        : { border: '1px solid rgb(var(--fg) / 0.1)', background: 'rgb(var(--fg) / 0.03)' }}>
                       <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-colors"
-                        style={{ background: 'rgba(123,110,246,0.15)' }}>
-                        <i className={`ti ${c.icon}`} style={{ fontSize: 22, color: 'var(--accent)' }} aria-hidden="true" />
+                        style={{ background: book ? 'rgb(255 255 255 / 0.18)' : 'rgba(123,110,246,0.15)' }}>
+                        <i className={`ti ${c.icon}`} style={{ fontSize: 22, color: book ? '#fff' : 'var(--accent)' }} aria-hidden="true" />
                       </div>
-                      <div>
-                        <p className="text-sm mb-0.5" style={{ fontWeight: 400, color: 'rgb(var(--fg) / 0.5)' }}>{c.title}</p>
-                        <p style={{ fontWeight: 500, fontSize: '1.15rem', color: 'var(--ink)' }}>{c.value}</p>
-                        <p className="text-sm" style={{ fontWeight: 400, color: 'rgb(var(--fg) / 0.5)' }}>{c.sub}</p>
+                      <div className="flex-1">
+                        <p className="text-sm mb-0.5" style={{ fontWeight: 400, color: book ? 'rgb(255 255 255 / 0.8)' : 'rgb(var(--fg) / 0.5)' }}>{c.title}</p>
+                        <p style={{ fontWeight: 500, fontSize: '1.15rem', color: book ? '#fff' : 'var(--ink)' }}>{c.value}</p>
+                        <p className="text-sm" style={{ fontWeight: 400, color: book ? 'rgb(255 255 255 / 0.8)' : 'rgb(var(--fg) / 0.5)' }}>{c.sub}</p>
                       </div>
+                      {book && <i className="ti ti-arrow-right" style={{ fontSize: 22, color: '#fff' }} aria-hidden="true" />}
                     </a>
-                  ))}
+                    )
+                  })}
                 </div>
               </div>
 
