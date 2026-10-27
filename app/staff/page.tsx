@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { STAFF_KB } from '@/lib/staff-kb'
 import { STAFF_KB_EN } from '@/lib/staff-kb-en'
+import QuoteForm, { parsePrice, type QuoteSeed } from './QuoteForm'
 
 // Staff-only Havy. Free, rule-based assistant in the style of the customer one. It answers from the internal
 // handbook (lib/staff-kb.ts in Thai, lib/staff-kb-en.ts in English), so no API cost and no password.
@@ -16,7 +17,7 @@ type Chip = { key: string; label: string; tone?: 'ghost' }
 type PCard = { title: string; price: string; time?: string; scope: string[] }
 type Faq = { head?: string; items: { q: string; a: string[] }[] }
 type Answer = { text: string; faq?: Faq[] }
-type Msg = { from: 'bot' | 'me'; text: string; chips?: Chip[]; cards?: PCard[]; note?: string; faq?: Faq[] }
+type Msg = { from: 'bot' | 'me'; text: string; chips?: Chip[]; cards?: PCard[]; note?: string; faq?: Faq[]; quote?: QuoteSeed }
 
 // Section positions are the same in both handbooks.
 const S = { sells: 2, confirmed: 4, brand: 5, web: 6, usa: 7, other: 8, ind: 9, app: 10, erp: 12, wt: 13, q: 14, cases: 15, pkg: 16, det: 17, scope: 18, tier: 19, tech: 20 }
@@ -101,6 +102,9 @@ const T = {
     askHow: 'วิธีใช้ชุดคำถามนี้',
     indQ: 'คำถามเฉพาะธุรกิจนี้ (แตะดูคำตอบเบื้องต้น)',
     tapHint: 'แตะหัวข้อเพื่อขยาย',
+    quoteBtn: 'ทำใบเสนอราคา',
+    quoteFrom: (n: string) => `ใบเสนอราคา: ${n}`,
+    quoteIntro: 'ได้เลยครับ กรอกฟอร์มด้านล่าง แล้วกด "พิมพ์ / บันทึกเป็น PDF" ได้ใบเสนอราคาพร้อมส่งลูกค้า',
   },
   en: {
     title: 'Havy for the internal team',
@@ -138,6 +142,9 @@ const T = {
     askHow: 'How to use these questions',
     indQ: 'Questions for this industry (tap for the basic answer)',
     tapHint: 'Tap a heading to expand',
+    quoteBtn: 'Make a quotation',
+    quoteFrom: (n: string) => `Quote: ${n}`,
+    quoteIntro: 'Sure. Fill in the form below, then tap "Print / save as PDF" to get a quotation ready to send.',
   },
 }
 
@@ -311,7 +318,7 @@ export default function StaffPage() {
   const p = P[L]
   const secs = kb[L]
   const svcLabel = (i: number) => SERVICES[i][L]
-  const svcChips: Chip[] = [...SERVICES.map((s, i) => ({ key: 'svc:' + i, label: s[L] })), { key: 'tech', label: t.techGuide, tone: 'ghost' as const }]
+  const svcChips: Chip[] = [...SERVICES.map((s, i) => ({ key: 'svc:' + i, label: s[L] })), { key: 'quote', label: t.quoteBtn }, { key: 'tech', label: t.techGuide, tone: 'ghost' as const }]
   const topicChips: Chip[] = [
     ...TOPIC_KEYS.map((k) => ({ key: 'topic:' + k, label: t.topics[k] })),
     { key: 'ind', label: t.byIndustry, tone: 'ghost' as const },
@@ -581,18 +588,28 @@ export default function StaffPage() {
 
   function showPrice(userText: string, chips?: Chip[]) {
     const pc = priceCards()
-    if (pc) { push({ from: 'me', text: userText }, { from: 'bot', text: pc.head, cards: pc.cards, note: t.draft, chips: chips || topicChips }); return }
+    if (pc) { push({ from: 'me', text: userText }, { from: 'bot', text: pc.head, cards: pc.cards, note: t.draft, chips: [...pc.cards.map((c, i) => ({ key: 'quote:' + i, label: t.quoteFrom(c.title) })), ...(chips || topicChips)] }); return }
     const ans = answerTopic('price')
     push({ from: 'me', text: userText }, { from: 'bot', text: ans.text, faq: ans.faq, chips: chips || topicChips })
   }
 
+  // Quotation form in the chat. With a package index, the form starts with that package and its price.
+  function openQuote(userText: string, pkg?: number) {
+    const c = ctx.current
+    const card = pkg !== undefined ? priceCards()?.cards[pkg] : undefined
+    const items = card && c.svc !== undefined ? [{ desc: `${svcLabel(c.svc)} · ${card.title}${card.time ? ` (${card.time})` : ''}`, price: parsePrice(card.price) }] : []
+    push({ from: 'me', text: userText }, { from: 'bot', text: t.quoteIntro, quote: { lang: L, market: c.market || 'th', items } })
+  }
+
   function onChip(key: string) {
     const c = ctx.current
+    if (key === 'quote') { openQuote(t.quoteBtn); return }
+    if (key.startsWith('quote:')) { const i = Number(key.slice(6)); openQuote(t.quoteFrom(priceCards()?.cards[i]?.title || ''), i); return }
     if (key.startsWith('lang:')) {
       const l = key.slice(5) as Lang
       setLang(l)
       const tt = T[l]
-      push({ from: 'me', text: l === 'th' ? 'ภาษาไทย' : 'English' }, { from: 'bot', text: tt.hello, chips: [...SERVICES.map((s, i) => ({ key: 'svc:' + i, label: s[l] })), { key: 'tech', label: tt.techGuide, tone: 'ghost' as const }] })
+      push({ from: 'me', text: l === 'th' ? 'ภาษาไทย' : 'English' }, { from: 'bot', text: tt.hello, chips: [...SERVICES.map((s, i) => ({ key: 'svc:' + i, label: s[l] })), { key: 'quote', label: tt.quoteBtn }, { key: 'tech', label: tt.techGuide, tone: 'ghost' as const }] })
       return
     }
     if (key === 'svc') { push({ from: 'bot', text: t.whichService, chips: svcChips }); return }
@@ -634,6 +651,7 @@ export default function StaffPage() {
     const q = input.trim()
     if (!q || !lang) return
     setInput('')
+    if (/ใบเสนอราคา|ใบเสนอ|quotation|make a quote|create a quote/i.test(q)) { openQuote(q); return }
     if (/ราคา|แพ็กเกจ|แพคเกจ|แพจเกจ|แพ็คเกจ|package|pricing|price|cost|how much|quote/i.test(q)) {
       const c = ctx.current
       if (c.svc !== undefined && c.market) { showPrice(q); return }
@@ -662,6 +680,7 @@ export default function StaffPage() {
               <div style={{ maxWidth: '90%', padding: '12px 16px', borderRadius: 18, whiteSpace: 'pre-wrap', lineHeight: 1.65, fontSize: 15, ...(m.from === 'me' ? { background: 'var(--accent)', color: '#14131A', borderBottomRightRadius: 6 } : { background: 'rgb(var(--fg) / 0.07)', borderBottomLeftRadius: 6 }) }}>{m.text}</div>
             </div>}
             {m.faq && <FaqView groups={m.faq} />}
+            {m.quote && <QuoteForm seed={m.quote} />}
             {m.cards && (
               <div style={{ marginTop: 10 }}>
                 <PriceCards cards={m.cards} tapScope={T[L].tapScope} tapHide={T[L].tapHide} />
