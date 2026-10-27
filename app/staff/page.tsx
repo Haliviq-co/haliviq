@@ -597,7 +597,7 @@ export default function StaffPage() {
   function openQuote(userText: string, pkg?: number) {
     const c = ctx.current
     const card = pkg !== undefined ? priceCards()?.cards[pkg] : undefined
-    const items = card && c.svc !== undefined ? [{ desc: `${svcLabel(c.svc)} · ${card.title}${card.time ? ` (${card.time})` : ''}`, price: parsePrice(card.price) }] : []
+    const items = card && c.svc !== undefined ? [{ desc: `${svcLabel(c.svc)} · ${card.title}`, price: parsePrice(card.price), bullets: card.scope.filter((l) => l.startsWith('- ')).map((l) => l.slice(2)), days: card.time }] : []
     push({ from: 'me', text: userText }, { from: 'bot', text: t.quoteIntro, quote: { lang: L, market: c.market || 'th', items } })
   }
 
