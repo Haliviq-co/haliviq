@@ -92,6 +92,8 @@ const CAPS: { re: RegExp; th: string; en: string }[] = [
     en: 'Yes. If you already have a design or a Figma file, send it over and we will build to it. If you do not have one yet, our design team can create it.' },
 ]
 
+// A yes/no question about promotions or discounts is answered "yes" first, then we ask the business type.
+const PROMO_Q = /โปรโมชั่น|โปรโมชัน|โปร(?!เจ|แกรม|ไฟล์|ดักชัน)|ส่วนลด|ลดราคา|promotion|promo\b|discount|special offer|any deals?/i
 const PACKAGE_Q = /แพ็?[คก]เ?[กค]จ|แพ็คเกจ|แพคเกจ|แพ็กเกจ|package|pricing plan|starter|โปรโมชั่น|โปรโมชัน|ธุรกิจ(เริ่มต้น|เล็ก|ใหม่)|(เริ่มต้น|เริ่มทำ|เริ่มขาย).{0,10}ธุรกิจ|small business|new business|start.?up/i
 // A bare "I'm interested" / "tell me more" is a buying signal, so ask what they need instead of matching some random FAQ.
 // Confusion, complaints and test messages ("ตอบมั่ว", "งง", "ไม่เข้าใจ") should get an apology and a way forward, never a random FAQ.
@@ -494,12 +496,12 @@ export default function ChatBot({ lang }: { lang: Lang }) {
     if (q.length < 40 && BYE.test(q)) {
       return { idx: -1, noChips: true, text: isEN ? 'Goodbye! Come back any time, or reach the team on the contact page.' : 'แล้วพบกันครับ ถ้ามีคำถามเพิ่มเติม กลับมาถามได้ตลอด หรือติดต่อทีมงานผ่านหน้าติดต่อเราได้ครับ' }
     }
-    if (q.length < 120 && PACKAGE_Q.test(q) && !/vibe|lovable|bolt|cursor/i.test(q)) {
+    if (q.length < 120 && (PACKAGE_Q.test(q) || PROMO_Q.test(q)) && !/vibe|lovable|bolt|cursor/i.test(q)) {
       return {
         idx: -1,
         text: isEN
-          ? 'What kind of business are you in? Tap the one that fits and I will tell you what usually works, or ask the team for more details.'
-          : 'ทำธุรกิจด้านใดนะครับ สามารถคลิกเลือกธุรกิจที่ต้องการ และสอบถามเพิ่มเติมกับแอดมินได้เลยครับ',
+          ? (PROMO_Q.test(q) ? 'Yes, we do! ' : '') + 'What kind of business are you in? Tap the one that fits and I will tell you what usually works, or ask the team for more details.'
+          : (PROMO_Q.test(q) ? 'มีครับ ไม่ทราบว่าลูกค้า' : '') + 'ทำธุรกิจด้านใดนะครับ สามารถคลิกเลือกธุรกิจที่ต้องการ และสอบถามเพิ่มเติมกับแอดมินได้เลยครับ',
         choices: [
           ...BUSINESS.map((b) => ({ key: b.key, label: isEN ? b.en : b.th })),
           { key: 'agent', label: isEN ? '💬 Talk to the team' : '💬 คุยกับแอดมิน' },
