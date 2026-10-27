@@ -54,7 +54,7 @@ export default function HomePage({ params }: { params: { lang: string } }) {
         },
         areaServed: ['TH', 'SG', 'MY', 'ID', 'VN', 'PH'],
         knowsAbout: ['UX/UI design', 'Artificial intelligence', 'Web development', 'Mobile app development', 'PDPA compliance'],
-        sameAs: [lang === 'en' ? 'https://www.facebook.com/haliviqco' : 'https://www.facebook.com/haliviq', 'https://www.instagram.com/haliviqco', 'https://lin.ee/zyTrkx4'],
+        sameAs: [lang === 'en' ? 'https://www.facebook.com/haliviqco' : 'https://www.facebook.com/haliviq', lang === 'en' ? 'https://www.instagram.com/haliviq.co' : 'https://www.instagram.com/haliviq.asia', 'https://lin.ee/zyTrkx4'],
       },
       {
         '@type': 'WebSite',
