@@ -1,5 +1,12 @@
 [
  {
+  "q": "Do you have any promotions",
+  "a": "Yes, we do. May I ask what kind of business you run? Tell us a little and the team will check which offer fits your project.",
+  "h": "/en/contact",
+  "x": "promotion promotions promo discount deals offer offers special offer any discount coupon",
+  "p": 1
+ },
+ {
   "q": "I want my own website, where do I start",
   "a": "Easy to start, and you do not need any tech knowledge. Just tell us what the website is for and who will use it. We reply with what we would build, how long it takes and a clear price. The simplest way is a free 30-minute call.",
   "h": "/en/services/web-development",
