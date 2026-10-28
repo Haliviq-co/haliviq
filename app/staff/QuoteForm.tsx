@@ -145,7 +145,7 @@ export default function QuoteForm({ seed }: { seed: QuoteSeed }) {
     const instRows: [string, (x: (typeof inst)[number]) => string, string][] = [
       ['ยอดก่อนหักภาษี', (x) => n2(x.base), 'mid'],
       ...(vat ? [['ภาษีมูลค่าเพิ่ม', (x: (typeof inst)[number]) => n2(x.vat), 'sm'] as [string, (x: (typeof inst)[number]) => string, string], ['ยอดสุทธิ', (x: (typeof inst)[number]) => n2(x.gross), 'big'] as [string, (x: (typeof inst)[number]) => string, string]] : []),
-      ...(wht ? [['หักภาษี ณ ที่จ่าย (3%)', (x: (typeof inst)[number]) => `(${n2(x.wht)})`, 'mid'] as [string, (x: (typeof inst)[number]) => string, string]] : []),
+      ...(wht ? [['หักภาษี ณ ที่จ่าย (3%)', (x: (typeof inst)[number]) => `(${n2(x.wht)})`, 'sm'] as [string, (x: (typeof inst)[number]) => string, string]] : []),
       ['ยอดสุทธิที่ได้รับ', (x) => n2(x.net), 'big'],
     ]
     // Two installments sit inside the items table under Item / Price, like the company layout; more than two get their own table.
