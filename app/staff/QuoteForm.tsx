@@ -185,7 +185,7 @@ tr{page-break-inside:avoid}
 .pay td{border-top:1.5px solid #222;padding:9px 14px}.pay .ph td{border-top:1px solid #E2E0F2;text-align:center;font-size:12.5px;font-weight:700;padding:28px 8px 8px;vertical-align:bottom}
 .pay .ph td:nth-child(n+3),.pay td:nth-child(n+3){border-left:1.5px solid #222}.pay .ph td:nth-child(2),.pay .ph td:first-child{border-top:1px solid #E2E0F2}
 .pay .pl{text-align:right;font-weight:700;font-size:13.5px;padding-right:56px}.pay .c0{background:#DCDCDC}.pay .c1{background:#CDD1C4}
-.pay .big{font-size:18px;font-weight:700;color:#3A3A3A}.pay .mid{font-size:16px;color:#3A3A3A}.pay .sm{font-size:12px;color:#3A3A3A}
+.pay .big,.pay .mid,.pay .sm{font-size:16px;font-weight:700;color:#14132B;text-align:center}
 .grand{width:56%;margin:10px 0 0 auto;background:#11102A;color:#fff;border-radius:12px;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;font-size:20px;page-break-inside:avoid}
 .grand b{font-size:22px}
 .foot{border-top:1px solid #DCDAF0;margin-top:22px;padding-top:10px;text-align:center;color:#5A5870;font-size:11.5px}
