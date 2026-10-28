@@ -177,15 +177,15 @@ ul{margin:2px 0 2px;padding-left:20px}li{margin:1px 0}
 tr{page-break-inside:avoid}
 .sum{width:56%;margin:14px 0 0 auto;border-collapse:collapse;page-break-inside:avoid}
 .sum td{padding:9px 14px;border-bottom:1px solid #E2E0F2;font-size:14px}.sum td:last-child{text-align:right;font-weight:700}
-.inst{width:100%;margin:16px 0 0;border-collapse:collapse;border:1.5px solid #222;page-break-inside:avoid}
-.inst th{background:#F4F4F4;font-weight:700;font-size:13.5px;padding:22px 12px 10px;text-align:center;vertical-align:bottom;border-left:1.5px solid #222;border-bottom:1.5px solid #222}.inst th:first-child{border-left:0}
-.inst td{padding:10px 18px;border-bottom:1.5px solid #222;border-left:1.5px solid #222}.inst .il{background:#F4F4F4;font-weight:700;font-size:14px;border-left:0;width:36%}
-.inst .c0{background:#DCDCDC}.inst .c1{background:#CDD1C4}.inst .big{font-size:20px;font-weight:700;color:#3A3A3A}.inst .mid{font-size:18px;color:#3A3A3A}.inst .sm{font-size:12.5px;color:#3A3A3A}
+.inst{width:100%;margin:16px 0 0;border-collapse:collapse;border:1px solid #DCDAF0;page-break-inside:avoid}
+.inst th{background:#fff;color:#5B4FE0;font-weight:700;font-size:12.5px;padding:18px 10px 8px;text-align:center;vertical-align:bottom;border-left:1px solid #DCDAF0;border-bottom:1px solid #DCDAF0}.inst th:first-child{border-left:0}
+.inst td{padding:8px 14px;border-bottom:1px solid #E2E0F2;border-left:1px solid #DCDAF0;text-align:center;font-size:14px;font-weight:700}.inst .il{background:#fff;font-size:13px;border-left:0;width:36%;text-align:left}
+.inst .c0{background:#F3F2FC}.inst .c1{background:#E8E5FB}
 .split .days,.split .pr{width:170px}
-.pay td{border-top:1.5px solid #222;padding:9px 14px}.pay .ph td{border-top:1px solid #E2E0F2;text-align:center;font-size:12.5px;font-weight:700;padding:28px 8px 8px;vertical-align:bottom}
-.pay .ph td:nth-child(n+3),.pay td:nth-child(n+3){border-left:1.5px solid #222}.pay .ph td:nth-child(2),.pay .ph td:first-child{border-top:1px solid #E2E0F2}
-.pay .pl{text-align:right;font-weight:700;font-size:13.5px;padding-right:56px}.pay .c0{background:#DCDCDC}.pay .c1{background:#CDD1C4}
-.pay .big,.pay .mid,.pay .sm{font-size:16px;font-weight:700;color:#14132B;text-align:center}
+.pay td{border-top:1px solid #E2E0F2;padding:8px 14px}.pay .ph td{text-align:center;font-size:12.5px;font-weight:700;color:#5B4FE0;padding:22px 8px 8px;vertical-align:bottom}
+.pay .ph td:nth-child(n+3),.pay td:nth-child(n+3){border-left:1px solid #DCDAF0}
+.pay .pl{text-align:right;font-weight:700;font-size:13px;padding-right:40px}.pay .c0{background:#F3F2FC}.pay .c1{background:#E8E5FB}
+.pay .big,.pay .mid,.pay .sm{font-size:14px;font-weight:700;color:#14132B;text-align:center}
 .grand{width:56%;margin:10px 0 0 auto;background:#11102A;color:#fff;border-radius:12px;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;font-size:20px;page-break-inside:avoid}
 .grand b{font-size:22px}
 .foot{border-top:1px solid #DCDAF0;margin-top:22px;padding-top:10px;text-align:center;color:#5A5870;font-size:11.5px}
