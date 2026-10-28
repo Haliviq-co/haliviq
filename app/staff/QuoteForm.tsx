@@ -46,7 +46,8 @@ const Q = {
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string))
 // 449000 -> "449,000.-", 13470.5 -> "13,470.50"
 const money = (n: number) => (Number.isInteger(Math.round(n * 100) / 100) ? Math.round(n).toLocaleString('en-US') + '.-' : n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))
-const round2 = (n: number) => Math.round(n * 100) / 100
+// toPrecision first so 37.035 rounds to 37.04 (plain Math.round sees 3703.4999...)
+const round2 = (n: number) => Math.round(Number((n * 100).toPrecision(12))) / 100
 // Thai market uses the Buddhist year like the template (HLQ-2569-001, 20/10/2569)
 const yearOf = (d: Date, m: QuoteMarket) => d.getFullYear() + (m === 'th' ? 543 : 0)
 const showDate = (iso: string, m: QuoteMarket) => { const d = new Date(iso); const p = (n: number) => String(n).padStart(2, '0'); return `${p(d.getDate())}/${p(d.getMonth() + 1)}/${yearOf(d, m)}` }
@@ -62,10 +63,11 @@ export function parsePrice(s: string) {
 
 type Pay = { pct: number; label: string }
 // Payment presets. The template's own layout is a single "50% Last payment on the contract date" line.
-const PRESETS: Record<'last' | 'deposit' | 'full', { pays: Pay[]; grand: number }> = {
-  last: { pays: [{ pct: 50, label: 'Last payment on the contract date' }], grand: 0 },
-  deposit: { pays: [{ pct: 50, label: 'Deposit on the contract date' }, { pct: 50, label: 'Last payment on delivery' }], grand: 0 },
-  full: { pays: [], grand: -1 },
+// With two or more installments the printout shows the per-installment table (pre-tax, VAT, net, WHT 3%, received).
+const PRESETS: Record<'last' | 'deposit' | 'full', { pays: (lang: QuoteLang) => Pay[]; grand: number }> = {
+  last: { pays: () => [{ pct: 50, label: 'Last payment on the contract date' }], grand: 0 },
+  deposit: { pays: (l) => [{ pct: 50, label: l === 'th' ? 'มัดจำ' : 'Deposit' }, { pct: 50, label: l === 'th' ? 'งวดสุดท้าย' : 'Final payment' }], grand: 0 },
+  full: { pays: () => [], grand: -1 },
 }
 
 const emptyStep = (): Step => ({ title: '', bullets: '', days: '' })
@@ -86,7 +88,7 @@ export default function QuoteForm({ seed }: { seed: QuoteSeed }) {
   const [discount, setDiscount] = useState(0)
   const [vat, setVat] = useState(false)
   const [wht, setWht] = useState(seed.market === 'th')
-  const [pays, setPays] = useState<Pay[]>(PRESETS.last.pays)
+  const [pays, setPays] = useState<Pay[]>(PRESETS.last.pays(seed.lang))
   // index of the installment shown as GRAND TOTAL, or -1 for the full amount
   const [grand, setGrand] = useState(PRESETS.last.grand)
   const [err, setErr] = useState('')
@@ -103,10 +105,13 @@ export default function QuoteForm({ seed }: { seed: QuoteSeed }) {
   const net = round2(after + vatAmt - whtAmt)
   const pctSum = pays.reduce((s, x) => s + x.pct, 0)
   // when the installments add up to 100%, the last one takes the rounding remainder so they sum to the total exactly
-  const payAmt = pays.map((x, i) => (pctSum === 100 && i === pays.length - 1 ? round2(net - pays.slice(0, -1).reduce((s, y) => s + round2((net * y.pct) / 100), 0)) : round2((net * x.pct) / 100)))
+  // each installment: its share of the pre-tax amount, then its own VAT and withholding
+  const bases = pays.map((x, i) => (pctSum === 100 && i === pays.length - 1 ? round2(after - pays.slice(0, -1).reduce((s, y) => s + round2((after * y.pct) / 100), 0)) : round2((after * x.pct) / 100)))
+  const inst = bases.map((b) => { const v = vat ? round2(b * 0.07) : 0; const w = wht ? round2(b * 0.03) : 0; return { base: b, vat: v, gross: round2(b + v), wht: w, net: round2(b + v - w) } })
+  const payAmt = inst.map((x) => x.net)
   const due = grand >= 0 && grand < pays.length ? payAmt[grand] : net
   const setPay = (i: number, patch: Partial<Pay>) => setPays((xs) => xs.map((x, k) => (k === i ? { ...x, ...patch } : x)))
-  const preset = (k: keyof typeof PRESETS) => { setPays(PRESETS[k].pays); setGrand(PRESETS[k].grand) }
+  const preset = (k: keyof typeof PRESETS) => { setPays(PRESETS[k].pays(seed.lang)); setGrand(PRESETS[k].grand) }
 
   const setSec = (i: number, patch: Partial<Section>) => setSections((xs) => xs.map((x, k) => (k === i ? { ...x, ...patch } : x)))
   const setStep = (i: number, j: number, patch: Partial<Step>) => setSections((xs) => xs.map((x, k) => (k === i ? { ...x, steps: x.steps.map((s, l) => (l === j ? { ...s, ...patch } : s)) } : x)))
@@ -129,10 +134,21 @@ export default function QuoteForm({ seed }: { seed: QuoteSeed }) {
     }).join('')
     const rows: [string, string][] = [['TOTAL', money(total)]]
     if (discount) rows.push(['Discount', '-' + money(discount)], ['TOTAL', money(after)])
-    if (vat) rows.push(['VAT 7%', money(vatAmt)])
-    if (wht) rows.push(['Withholding TAX 3%', money(whtAmt)])
-    if (vat || wht) rows.push(['TOTAL', money(net)])
-    pays.forEach((x, i) => rows.push([`${x.pct}% ${x.label.trim()}`, money(payAmt[i])]))
+    const split = pays.length > 1
+    if (!split) {
+      if (vat) rows.push(['VAT 7%', money(vatAmt)])
+      if (wht) rows.push(['Withholding TAX 3%', money(whtAmt)])
+      if (vat || wht) rows.push(['TOTAL', money(net)])
+      pays.forEach((x, i) => rows.push([`${x.pct}% ${x.label.trim()}`, money(payAmt[i])]))
+    }
+    const n2 = (n: number) => n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+    const instRows: [string, (x: (typeof inst)[number]) => string, string][] = [
+      ['ยอดก่อนหักภาษี', (x) => n2(x.base), 'big'],
+      ...(vat ? [['ภาษีมูลค่าเพิ่ม', (x: (typeof inst)[number]) => n2(x.vat), 'sm'] as [string, (x: (typeof inst)[number]) => string, string], ['ยอดสุทธิ', (x: (typeof inst)[number]) => n2(x.gross), 'big'] as [string, (x: (typeof inst)[number]) => string, string]] : []),
+      ...(wht ? [['หักภาษี ณ ที่จ่าย (3%)', (x: (typeof inst)[number]) => `(${n2(x.wht)})`, 'mid'] as [string, (x: (typeof inst)[number]) => string, string]] : []),
+      ['ยอดสุทธิที่ได้รับ', (x) => n2(x.net), 'big'],
+    ]
+    const instTable = split ? `<table class="inst"><thead><tr><th></th>${pays.map((x, i) => `<th>งวดที่ ${i + 1}: ${esc(x.label.trim())} (${x.pct}%)</th>`).join('')}</tr></thead><tbody>${instRows.map(([label, f, cls]) => `<tr><td class="il">${label}</td>${inst.map((x, i) => `<td class="${cls} c${i % 2}">${f(x)}</td>`).join('')}</tr>`).join('')}</tbody></table>` : ''
     const font = (w: string, f: string) => `@font-face{font-family:'LINE Seed Sans TH';src:url(${origin}/fonts/LINESeedSansTH_${f}.woff2) format('woff2');font-weight:${w}}`
     const html = `<!doctype html><html lang="${seed.lang}"><head><meta charset="utf-8"><title>${esc(no)} ${esc(cust.name)}</title>
 <style>
@@ -158,6 +174,10 @@ ul{margin:2px 0 2px;padding-left:20px}li{margin:1px 0}
 tr{page-break-inside:avoid}
 .sum{width:56%;margin:14px 0 0 auto;border-collapse:collapse;page-break-inside:avoid}
 .sum td{padding:9px 14px;border-bottom:1px solid #E2E0F2;font-size:14px}.sum td:last-child{text-align:right;font-weight:700}
+.inst{width:100%;margin:16px 0 0;border-collapse:collapse;border:1.5px solid #222;page-break-inside:avoid}
+.inst th{background:#F4F4F4;font-weight:700;font-size:13.5px;padding:22px 12px 10px;text-align:center;vertical-align:bottom;border-left:1.5px solid #222;border-bottom:1.5px solid #222}.inst th:first-child{border-left:0}
+.inst td{padding:10px 18px;border-bottom:1.5px solid #222;border-left:1.5px solid #222}.inst .il{background:#F4F4F4;font-weight:700;font-size:14px;border-left:0;width:36%}
+.inst .c0{background:#DCDCDC}.inst .c1{background:#CDD1C4}.inst .big{font-size:20px;font-weight:700;color:#3A3A3A}.inst .mid{font-size:18px;color:#3A3A3A}.inst .sm{font-size:12.5px;color:#3A3A3A}
 .grand{width:56%;margin:10px 0 0 auto;background:#11102A;color:#fff;border-radius:12px;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;font-size:20px;page-break-inside:avoid}
 .grand b{font-size:22px}
 .foot{border-top:1px solid #DCDAF0;margin-top:22px;padding-top:10px;text-align:center;color:#5A5870;font-size:11.5px}
@@ -166,7 +186,7 @@ tr{page-break-inside:avoid}
 <div class="qt"><h1>QUOTATION</h1><div class="bar"></div><div class="muted">No. ${esc(no)}<br>Date. ${showDate(date, market)}</div></div></div>
 <div class="to"><b>To:</b> ${esc(cust.name)}${cust.addr.trim() ? '<br>' + esc(cust.addr).replace(/\n/g, '<br>') : ''}</div>
 <table class="items"><thead><tr><th>NO.</th><th>Description</th><th>Item</th><th>Price (${cur})</th></tr></thead>${body}</table>
-<table class="sum">${rows.map(([a, b]) => `<tr><td>${esc(a)}</td><td>${b}</td></tr>`).join('')}</table>
+<table class="sum">${rows.map(([a, b]) => `<tr><td>${esc(a)}</td><td>${b}</td></tr>`).join('')}</table>${instTable}
 <div class="grand"><span>GRAND TOTAL</span><b>${money(due)}</b></div>
 <div class="foot">Haliviq Co., Ltd. · ${co.address.map(esc).join(' ')} · ${EMAIL} · ${WEB}</div>
 <script>Promise.all([document.fonts.ready,new Promise(function(r){var i=document.querySelector('.logo');if(i.complete)r();else{i.onload=r;i.onerror=r}})]).then(function(){setTimeout(function(){window.print()},300)})</script>
