@@ -42,7 +42,7 @@ export default function Clients({ lang, tr }: Props) {
         </div>
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .client-logo {
           opacity: 0.75;
           filter: grayscale(1) brightness(1.8);
@@ -54,7 +54,7 @@ export default function Clients({ lang, tr }: Props) {
           opacity: 1;
           filter: grayscale(1) brightness(2);
         }
-      `}</style>
+      ` }} />
     </section>
   )
 }
