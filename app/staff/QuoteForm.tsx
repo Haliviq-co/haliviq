@@ -143,15 +143,15 @@ export default function QuoteForm({ seed }: { seed: QuoteSeed }) {
     }
     const n2 = (n: number) => n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
     const instRows: [string, (x: (typeof inst)[number]) => string, string][] = [
-      ['ยอดก่อนหักภาษี', (x) => n2(x.base), 'big'],
+      ['ยอดก่อนหักภาษี', (x) => n2(x.base), 'sm'],
       ...(vat ? [['ภาษีมูลค่าเพิ่ม', (x: (typeof inst)[number]) => n2(x.vat), 'sm'] as [string, (x: (typeof inst)[number]) => string, string], ['ยอดสุทธิ', (x: (typeof inst)[number]) => n2(x.gross), 'big'] as [string, (x: (typeof inst)[number]) => string, string]] : []),
       ...(wht ? [['หักภาษี ณ ที่จ่าย (3%)', (x: (typeof inst)[number]) => `(${n2(x.wht)})`, 'mid'] as [string, (x: (typeof inst)[number]) => string, string]] : []),
       ['ยอดสุทธิที่ได้รับ', (x) => n2(x.net), 'big'],
     ]
     // Two installments sit inside the items table under Item / Price, like the company layout; more than two get their own table.
     const inTable = pays.length === 2
-    const instRowsInTable = inTable ? `<tbody class="pay"><tr class="ph"><td></td><td></td>${pays.map((x, i) => `<td>งวดที่ ${i + 1}: ${esc(x.label.trim())} (${x.pct}%)</td>`).join('')}</tr>${instRows.map(([label, f, cls]) => `<tr><td></td><td class="pl">${label}</td>${inst.map((x, i) => `<td class="${cls} c${i}">${f(x)}</td>`).join('')}</tr>`).join('')}</tbody>` : ''
-    const instTable = split && !inTable ? `<table class="inst"><thead><tr><th></th>${pays.map((x, i) => `<th>งวดที่ ${i + 1}: ${esc(x.label.trim())} (${x.pct}%)</th>`).join('')}</tr></thead><tbody>${instRows.map(([label, f, cls]) => `<tr><td class="il">${label}</td>${inst.map((x, i) => `<td class="${cls} c${i % 2}">${f(x)}</td>`).join('')}</tr>`).join('')}</tbody></table>` : ''
+    const instRowsInTable = inTable ? `<tbody class="pay"><tr class="ph"><td></td><td></td>${pays.map((x, i) => `<td>งวดที่ ${i + 1}: ${esc(x.label.trim())} (${x.pct}%)</td>`).join('')}</tr>${instRows.map(([label, f, cls]) => `<tr><td></td><td class="pl ${cls}">${label}</td>${inst.map((x, i) => `<td class="${cls} c${i}">${f(x)}</td>`).join('')}</tr>`).join('')}</tbody>` : ''
+    const instTable = split && !inTable ? `<table class="inst"><thead><tr><th></th>${pays.map((x, i) => `<th>งวดที่ ${i + 1}: ${esc(x.label.trim())} (${x.pct}%)</th>`).join('')}</tr></thead><tbody>${instRows.map(([label, f, cls]) => `<tr><td class="il ${cls}">${label}</td>${inst.map((x, i) => `<td class="${cls} c${i % 2}">${f(x)}</td>`).join('')}</tr>`).join('')}</tbody></table>` : ''
     const font = (w: string, f: string) => `@font-face{font-family:'LINE Seed Sans TH';src:url(${origin}/fonts/LINESeedSansTH_${f}.woff2) format('woff2');font-weight:${w}}`
     const html = `<!doctype html><html lang="${seed.lang}"><head><meta charset="utf-8"><title>${esc(no)} ${esc(cust.name)}</title>
 <style>
@@ -179,13 +179,15 @@ tr{page-break-inside:avoid}
 .sum td{padding:9px 14px;border-bottom:1px solid #E2E0F2;font-size:14px}.sum td:last-child{text-align:right;font-weight:700}
 .inst{width:100%;margin:16px 0 0;border-collapse:collapse;border:1px solid #DCDAF0;page-break-inside:avoid}
 .inst th{background:#fff;color:#5B4FE0;font-weight:700;font-size:12.5px;padding:18px 10px 8px;text-align:center;vertical-align:bottom;border-left:1px solid #DCDAF0;border-bottom:1px solid #DCDAF0}.inst th:first-child{border-left:0}
-.inst td{padding:8px 14px;border-bottom:1px solid #E2E0F2;border-left:1px solid #DCDAF0;text-align:center;font-size:14px;font-weight:700}.inst .il{background:#fff;font-size:13px;border-left:0;width:36%;text-align:left}
+.inst td{padding:8px 14px;border-bottom:1px solid #E2E0F2;border-left:1px solid #DCDAF0;text-align:center;font-size:14px}.inst .il{background:#fff;font-size:13px;border-left:0;width:36%;text-align:left}
 .inst .c0{background:#F3F2FC}.inst .c1{background:#E8E5FB}
 .split .days,.split .pr{width:170px}
 .pay td{border-top:1px solid #E2E0F2;padding:8px 14px}.pay .ph td{text-align:center;font-size:12.5px;font-weight:700;color:#5B4FE0;padding:22px 8px 8px;vertical-align:bottom}
 .pay .ph td:nth-child(n+3),.pay td:nth-child(n+3){border-left:1px solid #DCDAF0}
-.pay .pl{text-align:right;font-weight:700;font-size:13px;padding-right:40px}.pay .c0{background:#F3F2FC}.pay .c1{background:#E8E5FB}
-.pay .big,.pay .mid,.pay .sm{font-size:14px;font-weight:700;color:#14132B;text-align:center}
+.pay .pl{text-align:right;font-size:13px;padding-right:40px}.pay .c0{background:#F3F2FC}.pay .c1{background:#E8E5FB}
+.pay .big,.pay .mid,.pay .sm{font-size:14px;color:#14132B;text-align:center}.pay .pl{text-align:right}
+.pay .big,.inst .big{font-weight:700}.pay .mid,.pay .sm,.inst .mid,.inst .sm{font-weight:400}
+.pay td.mid:not(.pl),.inst td.mid:not(.il){font-weight:700}
 .grand{width:56%;margin:10px 0 0 auto;background:#11102A;color:#fff;border-radius:12px;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;font-size:20px;page-break-inside:avoid}
 .grand b{font-size:22px}
 .foot{border-top:1px solid #DCDAF0;margin-top:22px;padding-top:10px;text-align:center;color:#5A5870;font-size:11.5px}
