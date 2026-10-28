@@ -14,8 +14,8 @@ type Step = { title: string; bullets: string; days: string }
 type Section = { title: string; price: number; included: boolean; steps: Step[] }
 
 const CO = {
-  th: { name: 'บริษัท ฮาลิวิก จำกัด (Haliviq Co., Ltd.)', address: ['อาคาร Spaces ถนนพญาไท ชั้น 4 ห้อง 402', 'เขตราชเทวี กรุงเทพฯ 10400'], phone: '+66 90 918 9009' },
-  us: { name: 'Haliviq Co., Ltd.', address: ['315 East J. Street,', 'Shelton, WA 98584'], phone: '+1 (206) 379-3643' },
+  th: { name: 'บริษัท ฮาลิวิก จำกัด (Haliviq Co., Ltd.)', short: 'Haliviq Co., Ltd.', address: ['อาคาร Spaces ถนนพญาไท ชั้น 4 ห้อง 402', 'เขตราชเทวี กรุงเทพฯ 10400'], phone: '+66 90 918 9009' },
+  us: { name: 'HALIVIQ LLC', short: 'HALIVIQ LLC', address: ['315 East J. Street,', 'Shelton, WA 98584'], phone: '+1 (206) 379-3643' },
 }
 const EMAIL = 'info@haliviq.com'
 const WEB = 'www.haliviq.com'
@@ -44,13 +44,15 @@ const Q = {
 }
 
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string))
-// 449000 -> "449,000.-", 13470.5 -> "13,470.50"
-const money = (n: number) => (Number.isInteger(Math.round(n * 100) / 100) ? Math.round(n).toLocaleString('en-US') + '.-' : n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))
+const n2 = (n: number) => n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+// Thai: 449000 -> "449,000.-", 13470.5 -> "13,470.50". USA: "$449,000.00"
+const money = (n: number, m: QuoteMarket = 'th') => (m === 'us' ? '$' + n2(n) : Number.isInteger(Math.round(n * 100) / 100) ? Math.round(n).toLocaleString('en-US') + '.-' : n2(n))
 // toPrecision first so 37.035 rounds to 37.04 (plain Math.round sees 3703.4999...)
 const round2 = (n: number) => Math.round(Number((n * 100).toPrecision(12))) / 100
 // Thai market uses the Buddhist year like the template (HLQ-2569-001, 20/10/2569)
 const yearOf = (d: Date, m: QuoteMarket) => d.getFullYear() + (m === 'th' ? 543 : 0)
-const showDate = (iso: string, m: QuoteMarket) => { const d = new Date(iso); const p = (n: number) => String(n).padStart(2, '0'); return `${p(d.getDate())}/${p(d.getMonth() + 1)}/${yearOf(d, m)}` }
+// Thai DD/MM/BE, USA MM/DD/YYYY
+const showDate = (iso: string, m: QuoteMarket) => { const d = new Date(iso); const p = (n: number) => String(n).padStart(2, '0'); return m === 'us' ? `${p(d.getMonth() + 1)}/${p(d.getDate())}/${d.getFullYear()}` : `${p(d.getDate())}/${p(d.getMonth() + 1)}/${yearOf(d, m)}` }
 const showDays = (s: string) => (/^\s*\d+(\s*[–-]\s*\d+)?\s*$/.test(s) ? `−${s.trim()} Days` : s.trim())
 const seqKey = (y: number) => 'hlq-seq-' + y
 function readSeq(y: number) { try { return Number(localStorage.getItem(seqKey(y))) || 0 } catch { return 0 } }
@@ -64,9 +66,11 @@ export function parsePrice(s: string) {
 type Pay = { pct: number; label: string }
 // Payment presets. The template's own layout is a single "50% Last payment on the contract date" line.
 // With two or more installments the printout shows the per-installment table (pre-tax, VAT, net, WHT 3%, received).
-const PRESETS: Record<'last' | 'deposit' | 'full', { pays: (lang: QuoteLang) => Pay[]; grand: number }> = {
+// Installment labels follow the market: Thai quotes are in Thai, USA quotes are all English.
+const DEP = { th: ['มัดจำ', 'งวดสุดท้าย'], us: ['Deposit', 'Final payment'] }
+const PRESETS: Record<'last' | 'deposit' | 'full', { pays: (m: QuoteMarket) => Pay[]; grand: number }> = {
   last: { pays: () => [{ pct: 50, label: 'Last payment on the contract date' }], grand: 0 },
-  deposit: { pays: (l) => [{ pct: 50, label: l === 'th' ? 'มัดจำ' : 'Deposit' }, { pct: 50, label: l === 'th' ? 'งวดสุดท้าย' : 'Final payment' }], grand: 0 },
+  deposit: { pays: (m) => DEP[m].map((label) => ({ pct: 50, label })), grand: 0 },
   full: { pays: () => [], grand: -1 },
 }
 
@@ -88,7 +92,7 @@ export default function QuoteForm({ seed }: { seed: QuoteSeed }) {
   const [discount, setDiscount] = useState(0)
   const [vat, setVat] = useState(false)
   const [wht, setWht] = useState(seed.market === 'th')
-  const [pays, setPays] = useState<Pay[]>(PRESETS.last.pays(seed.lang))
+  const [pays, setPays] = useState<Pay[]>(PRESETS.last.pays(seed.market))
   // index of the installment shown as GRAND TOTAL, or -1 for the full amount
   const [grand, setGrand] = useState(PRESETS.last.grand)
   const [err, setErr] = useState('')
@@ -111,7 +115,13 @@ export default function QuoteForm({ seed }: { seed: QuoteSeed }) {
   const payAmt = inst.map((x) => x.net)
   const due = grand >= 0 && grand < pays.length ? payAmt[grand] : net
   const setPay = (i: number, patch: Partial<Pay>) => setPays((xs) => xs.map((x, k) => (k === i ? { ...x, ...patch } : x)))
-  const preset = (k: keyof typeof PRESETS) => { setPays(PRESETS[k].pays(seed.lang)); setGrand(PRESETS[k].grand) }
+  const preset = (k: keyof typeof PRESETS) => { setPays(PRESETS[k].pays(market)); setGrand(PRESETS[k].grand) }
+  const fm = (n: number) => money(n, market)
+  function switchMarket(m: QuoteMarket) {
+    setMarket(m); setWht(m === 'th'); if (m === 'us') setVat(false)
+    const from = DEP[m === 'th' ? 'us' : 'th']
+    setPays((xs) => xs.map((x) => { const k = from.indexOf(x.label); return k >= 0 ? { ...x, label: DEP[m][k] } : x }))
+  }
 
   const setSec = (i: number, patch: Partial<Section>) => setSections((xs) => xs.map((x, k) => (k === i ? { ...x, ...patch } : x)))
   const setStep = (i: number, j: number, patch: Partial<Step>) => setSections((xs) => xs.map((x, k) => (k === i ? { ...x, steps: x.steps.map((s, l) => (l === j ? { ...s, ...patch } : s)) } : x)))
@@ -129,31 +139,37 @@ export default function QuoteForm({ seed }: { seed: QuoteSeed }) {
         const lis = st.bullets.split('\n').map((l) => l.replace(/^\s*[-•]\s*/, '').trim()).filter(Boolean).map((l) => `<li>${esc(l)}</li>`).join('')
         return `<tr class="step"><td></td><td class="d">${head}${lis ? `<ul>${lis}</ul>` : ''}</td><td class="days">${esc(showDays(st.days))}</td><td></td></tr>`
       }).join('')
-      const price = s.included ? '<span class="inc">Included</span>' : money(s.price)
+      const price = s.included ? '<span class="inc">Included</span>' : fm(s.price)
       return `<tbody><tr class="sec"><td class="no">${i + 1}</td><td colspan="2" class="sect">${esc(s.title.trim())}</td><td class="pr${s.included ? ' incc' : ''}">${price}</td></tr>${steps}</tbody>`
     }).join('')
-    const rows: [string, string][] = [['TOTAL', money(total)]]
-    if (discount) rows.push(['Discount', '-' + money(discount)], ['TOTAL', money(after)])
+    const rows: [string, string][] = [['TOTAL', fm(total)]]
+    if (discount) rows.push(['Discount', '-' + fm(discount)], ['TOTAL', fm(after)])
     const split = pays.length > 1
     if (!split) {
-      if (vat) rows.push(['VAT 7%', money(vatAmt)])
-      if (wht) rows.push(['Withholding TAX 3%', money(whtAmt)])
-      if (vat || wht) rows.push(['TOTAL', money(net)])
-      pays.forEach((x, i) => rows.push([`${x.pct}% ${x.label.trim()}`, money(payAmt[i])]))
+      if (vat) rows.push(['VAT 7%', fm(vatAmt)])
+      if (wht) rows.push(['Withholding TAX 3%', fm(whtAmt)])
+      if (vat || wht) rows.push(['TOTAL', fm(net)])
+      pays.forEach((x, i) => rows.push([`${x.pct}% ${x.label.trim()}`, fm(payAmt[i])]))
     }
-    const n2 = (n: number) => n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-    const instRows: [string, (x: (typeof inst)[number]) => string, string][] = [
-      ['ยอดก่อนหักภาษี', (x) => n2(x.base), 'mid'],
-      ...(vat ? [['ภาษีมูลค่าเพิ่ม', (x: (typeof inst)[number]) => n2(x.vat), 'sm'] as [string, (x: (typeof inst)[number]) => string, string], ['ยอดสุทธิ', (x: (typeof inst)[number]) => n2(x.gross), 'big'] as [string, (x: (typeof inst)[number]) => string, string]] : []),
-      ...(wht ? [['หักภาษี ณ ที่จ่าย (3%)', (x: (typeof inst)[number]) => `(${n2(x.wht)})`, 'sm'] as [string, (x: (typeof inst)[number]) => string, string]] : []),
-      ['ยอดสุทธิที่ได้รับ', (x) => n2(x.net), 'big'],
+    const us = market === 'us'
+    const L = us
+      ? { base: 'Subtotal', vat: 'VAT 7%', gross: 'Total', wht: 'Withholding tax (3%)', net: 'Amount due', inst: 'Installment' }
+      : { base: 'ยอดก่อนหักภาษี', vat: 'ภาษีมูลค่าเพิ่ม', gross: 'ยอดสุทธิ', wht: 'หักภาษี ณ ที่จ่าย (3%)', net: 'ยอดสุทธิที่ได้รับ', inst: 'งวดที่' }
+    const amt = (n: number) => (us ? '$' : '') + n2(n)
+    type InstRow = [string, (x: (typeof inst)[number]) => string, string]
+    const instRows: InstRow[] = [
+      // a USA quote without taxes needs only the amount due
+      ...(us && !vat && !wht ? [] : [[L.base, (x) => amt(x.base), 'mid'] as InstRow]),
+      ...(vat ? [[L.vat, (x) => amt(x.vat), 'sm'] as InstRow, [L.gross, (x) => amt(x.gross), 'big'] as InstRow] : []),
+      ...(wht ? [[L.wht, (x) => `(${amt(x.wht)})`, 'sm'] as InstRow] : []),
+      [L.net, (x) => amt(x.net), 'big'],
     ]
     // Two installments sit inside the items table under Item / Price, like the company layout; more than two get their own table.
     const inTable = pays.length === 2
-    const instRowsInTable = inTable ? `<tbody class="pay"><tr class="ph"><td></td><td></td>${pays.map((x, i) => `<td>งวดที่ ${i + 1}: ${esc(x.label.trim())} (${x.pct}%)</td>`).join('')}</tr>${instRows.map(([label, f, cls]) => `<tr><td></td><td class="pl ${cls}">${label}</td>${inst.map((x, i) => `<td class="${cls} c${i}">${f(x)}</td>`).join('')}</tr>`).join('')}</tbody>` : ''
-    const instTable = split && !inTable ? `<table class="inst"><thead><tr><th></th>${pays.map((x, i) => `<th>งวดที่ ${i + 1}: ${esc(x.label.trim())} (${x.pct}%)</th>`).join('')}</tr></thead><tbody>${instRows.map(([label, f, cls]) => `<tr><td class="il ${cls}">${label}</td>${inst.map((x, i) => `<td class="${cls} c${i % 2}">${f(x)}</td>`).join('')}</tr>`).join('')}</tbody></table>` : ''
+    const instRowsInTable = inTable ? `<tbody class="pay"><tr class="ph"><td></td><td></td>${pays.map((x, i) => `<td>${L.inst} ${i + 1}: ${esc(x.label.trim())} (${x.pct}%)</td>`).join('')}</tr>${instRows.map(([label, f, cls]) => `<tr><td></td><td class="pl ${cls}">${label}</td>${inst.map((x, i) => `<td class="${cls} c${i}">${f(x)}</td>`).join('')}</tr>`).join('')}</tbody>` : ''
+    const instTable = split && !inTable ? `<table class="inst"><thead><tr><th></th>${pays.map((x, i) => `<th>${L.inst} ${i + 1}: ${esc(x.label.trim())} (${x.pct}%)</th>`).join('')}</tr></thead><tbody>${instRows.map(([label, f, cls]) => `<tr><td class="il ${cls}">${label}</td>${inst.map((x, i) => `<td class="${cls} c${i % 2}">${f(x)}</td>`).join('')}</tr>`).join('')}</tbody></table>` : ''
     const font = (w: string, f: string) => `@font-face{font-family:'LINE Seed Sans TH';src:url(${origin}/fonts/LINESeedSansTH_${f}.woff2) format('woff2');font-weight:${w}}`
-    const html = `<!doctype html><html lang="${seed.lang}"><head><meta charset="utf-8"><title>${esc(no)} ${esc(cust.name)}</title>
+    const html = `<!doctype html><html lang="${market === 'us' ? 'en' : 'th'}"><head><meta charset="utf-8"><title>${esc(no)} ${esc(cust.name)}</title>
 <style>
 ${font('400', 'Rg')}${font('700', 'Bd')}
 @page{size:A4;margin:14mm 14mm 16mm}*{box-sizing:border-box}
@@ -197,8 +213,8 @@ tr{page-break-inside:avoid}
 <div class="to"><b>To:</b> ${esc(cust.name)}${cust.addr.trim() ? '<br>' + esc(cust.addr).replace(/\n/g, '<br>') : ''}</div>
 <table class="items${inTable ? ' split' : ''}"><thead><tr><th>NO.</th><th>Description</th><th>Item</th><th>Price (${cur})</th></tr></thead>${body}${instRowsInTable}</table>
 ${split ? (discount ? `<table class="sum">${rows.map(([a, b]) => `<tr><td>${esc(a)}</td><td>${b}</td></tr>`).join('')}</table>` : '') : `<table class="sum">${rows.map(([a, b]) => `<tr><td>${esc(a)}</td><td>${b}</td></tr>`).join('')}</table>`}${instTable}
-${split ? '' : `<div class="grand"><span>GRAND TOTAL</span><b>${money(due)}</b></div>`}
-<div class="foot">Haliviq Co., Ltd. · ${co.address.map(esc).join(' ')} · ${EMAIL} · ${WEB}</div>
+${split ? '' : `<div class="grand"><span>GRAND TOTAL</span><b>${fm(due)}</b></div>`}
+<div class="foot">${esc(co.short)} · ${co.address.map(esc).join(' ')} · ${EMAIL} · ${WEB}</div>
 <script>Promise.all([document.fonts.ready,new Promise(function(r){var i=document.querySelector('.logo');if(i.complete)r();else{i.onload=r;i.onerror=r}})]).then(function(){setTimeout(function(){window.print()},300)})</script>
 </body></html>`
     const w = window.open('', '_blank')
@@ -227,7 +243,7 @@ ${split ? '' : `<div class="grand"><span>GRAND TOTAL</span><b>${money(due)}</b><
         <div style={{ fontSize: 19, fontWeight: 700 }}>{t.title}</div>
         <div style={{ display: 'flex', gap: 6 }}>
           {(['th', 'us'] as const).map((m) => (
-            <button key={m} type="button" onClick={() => { setMarket(m); setWht(m === 'th'); if (m === 'us') setVat(false) }} style={{ ...small, background: market === m ? 'var(--accent)' : 'transparent', color: market === m ? '#14131A' : 'var(--ink)' }}>{m === 'th' ? 'THB' : 'USD'}</button>
+            <button key={m} type="button" onClick={() => switchMarket(m)} style={{ ...small, background: market === m ? 'var(--accent)' : 'transparent', color: market === m ? '#14131A' : 'var(--ink)' }}>{m === 'th' ? 'THB' : 'USD'}</button>
           ))}
         </div>
       </div>
@@ -283,7 +299,7 @@ ${split ? '' : `<div class="grand"><span>GRAND TOTAL</span><b>${money(due)}</b><
         <div key={i} style={{ border: line, borderRadius: 12, padding: '0 12px 10px', marginTop: 8 }}>
           <div style={{ display: 'grid', gridTemplateColumns: '80px 1fr', gap: 10 }}>
             {field('%', <input type="number" min={1} max={100} value={x.pct} onChange={(e) => setPay(i, { pct: Math.min(100, num(e.target.value)) })} style={inp} />)}
-            {field(`${i + 1}. ${money(payAmt[i])} ${cur}`, <input value={x.label} onChange={(e) => setPay(i, { label: e.target.value })} style={inp} />)}
+            {field(`${i + 1}. ${fm(payAmt[i])} ${cur}`, <input value={x.label} onChange={(e) => setPay(i, { label: e.target.value })} style={inp} />)}
           </div>
           <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
             {pays.length < 2 && <label style={{ display: 'flex', alignItems: 'center', gap: 8, paddingTop: 8, fontSize: 14, cursor: 'pointer' }}><input type="radio" checked={grand === i} onChange={() => setGrand(i)} /> {t.grandIs}</label>}
@@ -298,13 +314,13 @@ ${split ? '' : `<div class="grand"><span>GRAND TOTAL</span><b>${money(due)}</b><
       {pays.length > 1 && pctSum !== 100 && <div style={{ color: '#ECD37D', fontSize: 13, marginTop: 6 }}>{t.pctWarn(pctSum)}</div>}
 
       <div style={{ marginTop: 10, padding: '12px 14px', borderRadius: 12, background: 'rgb(var(--fg) / 0.06)', fontSize: 15, lineHeight: 1.8 }}>
-        {row('TOTAL', money(total))}
-        {discount > 0 && row('Discount', '-' + money(discount))}
-        {vat && row('VAT 7%', money(vatAmt))}
-        {wht && row('Withholding TAX 3%', money(whtAmt))}
-        {(vat || wht || discount > 0) && row('TOTAL', money(net))}
-        {pays.map((x, i) => <div key={i}>{row(`${x.pct}% ${x.label}`, money(payAmt[i]))}</div>)}
-        {pays.length < 2 && row('GRAND TOTAL', `${money(due)} ${cur}`, true)}
+        {row('TOTAL', fm(total))}
+        {discount > 0 && row('Discount', '-' + fm(discount))}
+        {vat && row('VAT 7%', fm(vatAmt))}
+        {wht && row('Withholding TAX 3%', fm(whtAmt))}
+        {(vat || wht || discount > 0) && row('TOTAL', fm(net))}
+        {pays.map((x, i) => <div key={i}>{row(`${x.pct}% ${x.label}`, fm(payAmt[i]))}</div>)}
+        {pays.length < 2 && row('GRAND TOTAL', `${fm(due)} ${cur}`, true)}
       </div>
 
       <div style={{ fontSize: 13, opacity: 0.65, marginTop: 12 }}>{t.note}</div>
