@@ -148,7 +148,10 @@ export default function QuoteForm({ seed }: { seed: QuoteSeed }) {
       ...(wht ? [['หักภาษี ณ ที่จ่าย (3%)', (x: (typeof inst)[number]) => `(${n2(x.wht)})`, 'mid'] as [string, (x: (typeof inst)[number]) => string, string]] : []),
       ['ยอดสุทธิที่ได้รับ', (x) => n2(x.net), 'big'],
     ]
-    const instTable = split ? `<table class="inst"><thead><tr><th></th>${pays.map((x, i) => `<th>งวดที่ ${i + 1}: ${esc(x.label.trim())} (${x.pct}%)</th>`).join('')}</tr></thead><tbody>${instRows.map(([label, f, cls]) => `<tr><td class="il">${label}</td>${inst.map((x, i) => `<td class="${cls} c${i % 2}">${f(x)}</td>`).join('')}</tr>`).join('')}</tbody></table>` : ''
+    // Two installments sit inside the items table under Item / Price, like the company layout; more than two get their own table.
+    const inTable = pays.length === 2
+    const instRowsInTable = inTable ? `<tbody class="pay"><tr class="ph"><td></td><td></td>${pays.map((x, i) => `<td>งวดที่ ${i + 1}: ${esc(x.label.trim())} (${x.pct}%)</td>`).join('')}</tr>${instRows.map(([label, f, cls]) => `<tr><td></td><td class="pl">${label}</td>${inst.map((x, i) => `<td class="${cls} c${i}">${f(x)}</td>`).join('')}</tr>`).join('')}</tbody>` : ''
+    const instTable = split && !inTable ? `<table class="inst"><thead><tr><th></th>${pays.map((x, i) => `<th>งวดที่ ${i + 1}: ${esc(x.label.trim())} (${x.pct}%)</th>`).join('')}</tr></thead><tbody>${instRows.map(([label, f, cls]) => `<tr><td class="il">${label}</td>${inst.map((x, i) => `<td class="${cls} c${i % 2}">${f(x)}</td>`).join('')}</tr>`).join('')}</tbody></table>` : ''
     const font = (w: string, f: string) => `@font-face{font-family:'LINE Seed Sans TH';src:url(${origin}/fonts/LINESeedSansTH_${f}.woff2) format('woff2');font-weight:${w}}`
     const html = `<!doctype html><html lang="${seed.lang}"><head><meta charset="utf-8"><title>${esc(no)} ${esc(cust.name)}</title>
 <style>
@@ -178,6 +181,11 @@ tr{page-break-inside:avoid}
 .inst th{background:#F4F4F4;font-weight:700;font-size:13.5px;padding:22px 12px 10px;text-align:center;vertical-align:bottom;border-left:1.5px solid #222;border-bottom:1.5px solid #222}.inst th:first-child{border-left:0}
 .inst td{padding:10px 18px;border-bottom:1.5px solid #222;border-left:1.5px solid #222}.inst .il{background:#F4F4F4;font-weight:700;font-size:14px;border-left:0;width:36%}
 .inst .c0{background:#DCDCDC}.inst .c1{background:#CDD1C4}.inst .big{font-size:20px;font-weight:700;color:#3A3A3A}.inst .mid{font-size:18px;color:#3A3A3A}.inst .sm{font-size:12.5px;color:#3A3A3A}
+.split .days,.split .pr{width:170px}
+.pay td{border-top:1.5px solid #222;padding:9px 14px}.pay .ph td{border-top:1px solid #E2E0F2;text-align:center;font-size:12.5px;font-weight:700;padding:28px 8px 8px;vertical-align:bottom}
+.pay .ph td:nth-child(n+3),.pay td:nth-child(n+3){border-left:1.5px solid #222}.pay .ph td:nth-child(2),.pay .ph td:first-child{border-top:1px solid #E2E0F2}
+.pay .pl{text-align:right;font-weight:700;font-size:13.5px;padding-right:56px}.pay .c0{background:#DCDCDC}.pay .c1{background:#CDD1C4}
+.pay .big{font-size:18px;font-weight:700;color:#3A3A3A}.pay .mid{font-size:16px;color:#3A3A3A}.pay .sm{font-size:12px;color:#3A3A3A}
 .grand{width:56%;margin:10px 0 0 auto;background:#11102A;color:#fff;border-radius:12px;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;font-size:20px;page-break-inside:avoid}
 .grand b{font-size:22px}
 .foot{border-top:1px solid #DCDAF0;margin-top:22px;padding-top:10px;text-align:center;color:#5A5870;font-size:11.5px}
@@ -185,9 +193,9 @@ tr{page-break-inside:avoid}
 <div class="top"><div><img class="logo" src="${origin}/haliviq-logo.svg" alt="HALIVIQ"><div class="coname">${esc(co.name)}</div><div class="muted">${co.address.map(esc).join('<br>')}<br>Tel: ${esc(co.phone)} · ${EMAIL} · ${WEB}</div></div>
 <div class="qt"><h1>QUOTATION</h1><div class="bar"></div><div class="muted">No. ${esc(no)}<br>Date. ${showDate(date, market)}</div></div></div>
 <div class="to"><b>To:</b> ${esc(cust.name)}${cust.addr.trim() ? '<br>' + esc(cust.addr).replace(/\n/g, '<br>') : ''}</div>
-<table class="items"><thead><tr><th>NO.</th><th>Description</th><th>Item</th><th>Price (${cur})</th></tr></thead>${body}</table>
-<table class="sum">${rows.map(([a, b]) => `<tr><td>${esc(a)}</td><td>${b}</td></tr>`).join('')}</table>${instTable}
-<div class="grand"><span>GRAND TOTAL</span><b>${money(due)}</b></div>
+<table class="items${inTable ? ' split' : ''}"><thead><tr><th>NO.</th><th>Description</th><th>Item</th><th>Price (${cur})</th></tr></thead>${body}${instRowsInTable}</table>
+${split ? (discount ? `<table class="sum">${rows.map(([a, b]) => `<tr><td>${esc(a)}</td><td>${b}</td></tr>`).join('')}</table>` : '') : `<table class="sum">${rows.map(([a, b]) => `<tr><td>${esc(a)}</td><td>${b}</td></tr>`).join('')}</table>`}${instTable}
+${split ? '' : `<div class="grand"><span>GRAND TOTAL</span><b>${money(due)}</b></div>`}
 <div class="foot">Haliviq Co., Ltd. · ${co.address.map(esc).join(' ')} · ${EMAIL} · ${WEB}</div>
 <script>Promise.all([document.fonts.ready,new Promise(function(r){var i=document.querySelector('.logo');if(i.complete)r();else{i.onload=r;i.onerror=r}})]).then(function(){setTimeout(function(){window.print()},300)})</script>
 </body></html>`
@@ -276,14 +284,14 @@ tr{page-break-inside:avoid}
             {field(`${i + 1}. ${money(payAmt[i])} ${cur}`, <input value={x.label} onChange={(e) => setPay(i, { label: e.target.value })} style={inp} />)}
           </div>
           <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
-            <label style={{ display: 'flex', alignItems: 'center', gap: 8, paddingTop: 8, fontSize: 14, cursor: 'pointer' }}><input type="radio" checked={grand === i} onChange={() => setGrand(i)} /> {t.grandIs}</label>
+            {pays.length < 2 && <label style={{ display: 'flex', alignItems: 'center', gap: 8, paddingTop: 8, fontSize: 14, cursor: 'pointer' }}><input type="radio" checked={grand === i} onChange={() => setGrand(i)} /> {t.grandIs}</label>}
             <button type="button" onClick={() => { setPays((xs) => xs.filter((_, k) => k !== i)); setGrand((g) => (g === i ? -1 : g > i ? g - 1 : g)) }} style={{ ...small, marginTop: 8, opacity: 0.7 }}>{t.remove}</button>
           </div>
         </div>
       ))}
       <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap', marginTop: 8 }}>
         <button type="button" onClick={() => setPays((xs) => [...xs, { pct: Math.max(0, 100 - pctSum) || 50, label: '' }])} style={small}>{t.addPay}</button>
-        <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 14, cursor: 'pointer' }}><input type="radio" checked={grand < 0 || grand >= pays.length} onChange={() => setGrand(-1)} /> {t.grandFull}</label>
+        {pays.length < 2 && <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 14, cursor: 'pointer' }}><input type="radio" checked={grand < 0 || grand >= pays.length} onChange={() => setGrand(-1)} /> {t.grandFull}</label>}
       </div>
       {pays.length > 1 && pctSum !== 100 && <div style={{ color: '#ECD37D', fontSize: 13, marginTop: 6 }}>{t.pctWarn(pctSum)}</div>}
 
@@ -294,7 +302,7 @@ tr{page-break-inside:avoid}
         {wht && row('Withholding TAX 3%', money(whtAmt))}
         {(vat || wht || discount > 0) && row('TOTAL', money(net))}
         {pays.map((x, i) => <div key={i}>{row(`${x.pct}% ${x.label}`, money(payAmt[i]))}</div>)}
-        {row('GRAND TOTAL', `${money(due)} ${cur}`, true)}
+        {pays.length < 2 && row('GRAND TOTAL', `${money(due)} ${cur}`, true)}
       </div>
 
       <div style={{ fontSize: 13, opacity: 0.65, marginTop: 12 }}>{t.note}</div>
