@@ -27,8 +27,7 @@ const Q = {
     sections: 'รายการ', section: 'หัวข้อ', secTitle: 'ชื่อหัวข้อ เช่น ออกแบบ UX UI DESIGNER', price: 'ราคา', included: 'รวมในราคาแล้ว (Included)',
     step: 'Step', stepTitle: 'ชื่อ Step เช่น Home, Quiz, Calendar (เว้นว่างได้)', bullets: 'รายละเอียด (บรรทัดละ 1 ข้อ)', days: 'จำนวนวัน',
     addStep: '+ เพิ่ม Step', addSection: '+ เพิ่มหัวข้อ', remove: 'ลบ', removeSection: 'ลบหัวข้อนี้',
-    discount: 'ส่วนลด', vat: 'VAT 7%', wht: 'หัก ณ ที่จ่าย 3%', pct: 'งวดนี้เรียกเก็บ (%)', payLabel: 'ข้อความงวดชำระ',
-    defaultPay: 'Last payment on the contract date', print: 'พิมพ์ / บันทึกเป็น PDF', need: 'ใส่ชื่อลูกค้าและอย่างน้อย 1 หัวข้อก่อนครับ',
+    discount: 'ส่วนลด', vat: 'VAT 7%', wht: 'หัก ณ ที่จ่าย 3%', pays: 'งวดชำระ', presetLast: 'งวดสุดท้าย 50%', presetDeposit: 'แยกมัดจำ 50/50', presetFull: 'จ่ายเต็ม', addPay: '+ เพิ่มงวด', grandIs: 'ยอด GRAND TOTAL = งวดนี้', grandFull: 'GRAND TOTAL = ยอดเต็ม', pctWarn: (n: number) => `งวดรวมกันได้ ${n}% (ยังไม่ครบ 100%)`, print: 'พิมพ์ / บันทึกเป็น PDF', need: 'ใส่ชื่อลูกค้าและอย่างน้อย 1 หัวข้อก่อนครับ',
     popup: 'เบราว์เซอร์บล็อกหน้าต่างใหม่ กรุณาอนุญาต pop-up แล้วลองอีกครั้ง',
     note: 'ราคาตั้งต้นดึงจากคู่มือ แก้ได้ทุกช่อง เช็กกับหัวหน้าทีมก่อนส่งลูกค้า',
   },
@@ -38,8 +37,7 @@ const Q = {
     sections: 'Sections', section: 'Section', secTitle: 'Section title, e.g. UX UI DESIGN', price: 'Price', included: 'Included (no charge)',
     step: 'Step', stepTitle: 'Step name, e.g. Home, Quiz, Calendar (optional)', bullets: 'Details (one per line)', days: 'Days',
     addStep: '+ Add step', addSection: '+ Add section', remove: 'Remove', removeSection: 'Remove section',
-    discount: 'Discount', vat: 'VAT 7%', wht: 'Withholding tax 3%', pct: 'This payment (%)', payLabel: 'Payment line text',
-    defaultPay: 'Last payment on the contract date', print: 'Print / save as PDF', need: 'Add a customer name and at least one section first.',
+    discount: 'Discount', vat: 'VAT 7%', wht: 'Withholding tax 3%', pays: 'Payment schedule', presetLast: 'Last payment 50%', presetDeposit: 'Deposit 50/50', presetFull: 'Full payment', addPay: '+ Add installment', grandIs: 'GRAND TOTAL = this installment', grandFull: 'GRAND TOTAL = full amount', pctWarn: (n: number) => `Installments add up to ${n}% (not 100%)`, print: 'Print / save as PDF', need: 'Add a customer name and at least one section first.',
     popup: 'The browser blocked the new window. Allow pop-ups and try again.',
     note: 'Starting prices come from the handbook. Every field can be edited. Check with the team lead before sending.',
   },
@@ -62,6 +60,14 @@ export function parsePrice(s: string) {
   return m ? Number(m[0]) : 0
 }
 
+type Pay = { pct: number; label: string }
+// Payment presets. The template's own layout is a single "50% Last payment on the contract date" line.
+const PRESETS: Record<'last' | 'deposit' | 'full', { pays: Pay[]; grand: number }> = {
+  last: { pays: [{ pct: 50, label: 'Last payment on the contract date' }], grand: 0 },
+  deposit: { pays: [{ pct: 50, label: 'Deposit on the contract date' }, { pct: 50, label: 'Last payment on delivery' }], grand: 0 },
+  full: { pays: [], grand: -1 },
+}
+
 const emptyStep = (): Step => ({ title: '', bullets: '', days: '' })
 const emptySection = (): Section => ({ title: '', price: 0, included: false, steps: [emptyStep()] })
 
@@ -80,8 +86,9 @@ export default function QuoteForm({ seed }: { seed: QuoteSeed }) {
   const [discount, setDiscount] = useState(0)
   const [vat, setVat] = useState(false)
   const [wht, setWht] = useState(seed.market === 'th')
-  const [pct, setPct] = useState(50)
-  const [payLabel, setPayLabel] = useState(t.defaultPay)
+  const [pays, setPays] = useState<Pay[]>(PRESETS.last.pays)
+  // index of the installment shown as GRAND TOTAL, or -1 for the full amount
+  const [grand, setGrand] = useState(PRESETS.last.grand)
   const [err, setErr] = useState('')
 
   // running number per year, kept in this browser: HLQ-2569-001, -002, ...
@@ -94,7 +101,12 @@ export default function QuoteForm({ seed }: { seed: QuoteSeed }) {
   const vatAmt = vat ? round2(after * 0.07) : 0
   const whtAmt = wht ? round2(after * 0.03) : 0
   const net = round2(after + vatAmt - whtAmt)
-  const due = pct > 0 && pct < 100 ? round2((net * pct) / 100) : net
+  const pctSum = pays.reduce((s, x) => s + x.pct, 0)
+  // when the installments add up to 100%, the last one takes the rounding remainder so they sum to the total exactly
+  const payAmt = pays.map((x, i) => (pctSum === 100 && i === pays.length - 1 ? round2(net - pays.slice(0, -1).reduce((s, y) => s + round2((net * y.pct) / 100), 0)) : round2((net * x.pct) / 100)))
+  const due = grand >= 0 && grand < pays.length ? payAmt[grand] : net
+  const setPay = (i: number, patch: Partial<Pay>) => setPays((xs) => xs.map((x, k) => (k === i ? { ...x, ...patch } : x)))
+  const preset = (k: keyof typeof PRESETS) => { setPays(PRESETS[k].pays); setGrand(PRESETS[k].grand) }
 
   const setSec = (i: number, patch: Partial<Section>) => setSections((xs) => xs.map((x, k) => (k === i ? { ...x, ...patch } : x)))
   const setStep = (i: number, j: number, patch: Partial<Step>) => setSections((xs) => xs.map((x, k) => (k === i ? { ...x, steps: x.steps.map((s, l) => (l === j ? { ...s, ...patch } : s)) } : x)))
@@ -120,7 +132,7 @@ export default function QuoteForm({ seed }: { seed: QuoteSeed }) {
     if (vat) rows.push(['VAT 7%', money(vatAmt)])
     if (wht) rows.push(['Withholding TAX 3%', money(whtAmt)])
     if (vat || wht) rows.push(['TOTAL', money(net)])
-    if (pct > 0 && pct < 100) rows.push([`${pct}% ${payLabel.trim()}`, money(due)])
+    pays.forEach((x, i) => rows.push([`${x.pct}% ${x.label.trim()}`, money(payAmt[i])]))
     const font = (w: string, f: string) => `@font-face{font-family:'LINE Seed Sans TH';src:url(${origin}/fonts/LINESeedSansTH_${f}.woff2) format('woff2');font-weight:${w}}`
     const html = `<!doctype html><html lang="${seed.lang}"><head><meta charset="utf-8"><title>${esc(no)} ${esc(cust.name)}</title>
 <style>
@@ -227,13 +239,33 @@ tr{page-break-inside:avoid}
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '0 10px', alignItems: 'end', marginTop: 6 }}>
         {field(`${t.discount} (${cur})`, <input type="number" min={0} value={discount} onChange={(e) => setDiscount(num(e.target.value))} style={inp} />)}
-        {field(t.pct, <input type="number" min={1} max={100} value={pct} onChange={(e) => setPct(Math.min(100, num(e.target.value)))} style={inp} />)}
       </div>
-      {pct < 100 && field(t.payLabel, <input value={payLabel} onChange={(e) => setPayLabel(e.target.value)} style={inp} />)}
       <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
         {check(t.wht, wht, setWht)}
         {check(t.vat, vat, setVat)}
       </div>
+
+      <div style={head}>{t.pays}</div>
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+        {(['last', 'deposit', 'full'] as const).map((k) => <button key={k} type="button" onClick={() => preset(k)} style={small}>{k === 'last' ? t.presetLast : k === 'deposit' ? t.presetDeposit : t.presetFull}</button>)}
+      </div>
+      {pays.map((x, i) => (
+        <div key={i} style={{ border: line, borderRadius: 12, padding: '0 12px 10px', marginTop: 8 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '80px 1fr', gap: 10 }}>
+            {field('%', <input type="number" min={1} max={100} value={x.pct} onChange={(e) => setPay(i, { pct: Math.min(100, num(e.target.value)) })} style={inp} />)}
+            {field(`${i + 1}. ${money(payAmt[i])} ${cur}`, <input value={x.label} onChange={(e) => setPay(i, { label: e.target.value })} style={inp} />)}
+          </div>
+          <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: 8, paddingTop: 8, fontSize: 14, cursor: 'pointer' }}><input type="radio" checked={grand === i} onChange={() => setGrand(i)} /> {t.grandIs}</label>
+            <button type="button" onClick={() => { setPays((xs) => xs.filter((_, k) => k !== i)); setGrand((g) => (g === i ? -1 : g > i ? g - 1 : g)) }} style={{ ...small, marginTop: 8, opacity: 0.7 }}>{t.remove}</button>
+          </div>
+        </div>
+      ))}
+      <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap', marginTop: 8 }}>
+        <button type="button" onClick={() => setPays((xs) => [...xs, { pct: Math.max(0, 100 - pctSum) || 50, label: '' }])} style={small}>{t.addPay}</button>
+        <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 14, cursor: 'pointer' }}><input type="radio" checked={grand < 0 || grand >= pays.length} onChange={() => setGrand(-1)} /> {t.grandFull}</label>
+      </div>
+      {pays.length > 1 && pctSum !== 100 && <div style={{ color: '#ECD37D', fontSize: 13, marginTop: 6 }}>{t.pctWarn(pctSum)}</div>}
 
       <div style={{ marginTop: 10, padding: '12px 14px', borderRadius: 12, background: 'rgb(var(--fg) / 0.06)', fontSize: 15, lineHeight: 1.8 }}>
         {row('TOTAL', money(total))}
@@ -241,7 +273,7 @@ tr{page-break-inside:avoid}
         {vat && row('VAT 7%', money(vatAmt))}
         {wht && row('Withholding TAX 3%', money(whtAmt))}
         {(vat || wht || discount > 0) && row('TOTAL', money(net))}
-        {pct > 0 && pct < 100 && row(`${pct}% ${payLabel}`, money(due))}
+        {pays.map((x, i) => <div key={i}>{row(`${x.pct}% ${x.label}`, money(payAmt[i]))}</div>)}
         {row('GRAND TOTAL', `${money(due)} ${cur}`, true)}
       </div>
 
