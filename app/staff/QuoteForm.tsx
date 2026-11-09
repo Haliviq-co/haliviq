@@ -243,7 +243,7 @@ ${split ? '' : `<div class="grand"><span>GRAND TOTAL</span><b>${fm(due)}</b></di
         <div style={{ fontSize: 19, fontWeight: 700 }}>{t.title}</div>
         <div style={{ display: 'flex', gap: 6 }}>
           {(['th', 'us'] as const).map((m) => (
-            <button key={m} type="button" onClick={() => switchMarket(m)} style={{ ...small, background: market === m ? 'var(--accent)' : 'transparent', color: market === m ? '#14131A' : 'var(--ink)' }}>{m === 'th' ? 'THB' : 'USD'}</button>
+            <button key={m} type="button" onClick={() => switchMarket(m)} style={{ ...small, background: market === m ? 'var(--accent)' : 'transparent', color: market === m ? 'var(--on-accent)' : 'var(--ink)' }}>{m === 'th' ? 'THB' : 'USD'}</button>
           ))}
         </div>
       </div>
@@ -325,7 +325,7 @@ ${split ? '' : `<div class="grand"><span>GRAND TOTAL</span><b>${fm(due)}</b></di
 
       <div style={{ fontSize: 13, opacity: 0.65, marginTop: 12 }}>{t.note}</div>
       {err && <div style={{ color: '#F28B82', fontSize: 14, marginTop: 8 }}>{err}</div>}
-      <button type="button" onClick={print} style={{ marginTop: 12, width: '100%', padding: '13px 20px', borderRadius: 999, border: 0, background: 'var(--accent)', color: '#14131A', fontWeight: 700, fontSize: 16, cursor: 'pointer', fontFamily: 'inherit' }}>{t.print}</button>
+      <button type="button" onClick={print} style={{ marginTop: 12, width: '100%', padding: '13px 20px', borderRadius: 999, border: 0, background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 700, fontSize: 16, cursor: 'pointer', fontFamily: 'inherit' }}>{t.print}</button>
     </div>
   )
 }

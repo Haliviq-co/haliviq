@@ -35,7 +35,7 @@ const SEV_COLOR = { high: '#FF7A7A', med: '#F5C26B', low: 'rgb(var(--fg) / 0.45)
 const box: React.CSSProperties = { border: '1px solid rgb(var(--fg) / 0.12)', borderRadius: 16, padding: 16, background: 'rgb(var(--fg) / 0.03)' }
 const input: React.CSSProperties = { width: '100%', padding: '10px 12px', borderRadius: 10, border: '1px solid rgb(var(--fg) / 0.22)', background: 'transparent', color: 'var(--ink)', fontSize: 15, fontFamily: 'inherit', minWidth: 0 }
 const btn: React.CSSProperties = { padding: '9px 16px', borderRadius: 999, border: '1px solid rgb(var(--fg) / 0.22)', background: 'transparent', color: 'var(--ink)', cursor: 'pointer', fontFamily: 'inherit', fontSize: 14, whiteSpace: 'nowrap' }
-const primary: React.CSSProperties = { ...btn, border: 0, background: 'var(--accent)', color: '#14131A', fontWeight: 600 }
+const primary: React.CSSProperties = { ...btn, border: 0, background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 600 }
 const label: React.CSSProperties = { fontSize: 12, opacity: 0.65, marginBottom: 4, display: 'block' }
 
 function fmtDate(iso: string | null) {

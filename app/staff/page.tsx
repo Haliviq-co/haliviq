@@ -677,7 +677,7 @@ export default function StaffPage() {
         {msgs.map((m, i) => (
           <div key={i} style={{ margin: '10px 0' }}>
             {m.text && <div style={{ display: 'flex', justifyContent: m.from === 'me' ? 'flex-end' : 'flex-start' }}>
-              <div style={{ maxWidth: '90%', padding: '12px 16px', borderRadius: 18, whiteSpace: 'pre-wrap', lineHeight: 1.65, fontSize: 15, ...(m.from === 'me' ? { background: 'var(--accent)', color: '#14131A', borderBottomRightRadius: 6 } : { background: 'rgb(var(--fg) / 0.07)', borderBottomLeftRadius: 6 }) }}>{m.text}</div>
+              <div style={{ maxWidth: '90%', padding: '12px 16px', borderRadius: 18, whiteSpace: 'pre-wrap', lineHeight: 1.65, fontSize: 15, ...(m.from === 'me' ? { background: 'var(--accent)', color: 'var(--on-accent)', borderBottomRightRadius: 6 } : { background: 'rgb(var(--fg) / 0.07)', borderBottomLeftRadius: 6 }) }}>{m.text}</div>
             </div>}
             {m.faq && <FaqView groups={m.faq} />}
             {m.quote && <QuoteForm seed={m.quote} />}
@@ -700,7 +700,7 @@ export default function StaffPage() {
       <form onSubmit={submit} style={{ position: 'fixed', left: 0, right: 0, bottom: 0, background: 'var(--bg)', borderTop: '1px solid rgb(var(--fg) / 0.12)', padding: '12px 16px calc(12px + env(safe-area-inset-bottom))' }}>
         <div style={{ maxWidth: 760, margin: '0 auto', display: 'flex', gap: 8 }}>
           <input value={input} disabled={!lang} onChange={(e) => setInput(e.target.value)} placeholder={lang ? t.placeholder : 'เลือกภาษาก่อน · Choose a language first'} style={{ flex: 1, padding: '12px 16px', borderRadius: 999, border: '1px solid rgb(var(--fg) / 0.25)', background: 'transparent', color: 'var(--ink)', fontSize: 16, fontFamily: 'inherit', minWidth: 0 }} />
-          <button type="submit" disabled={!input.trim() || !lang} style={{ padding: '0 20px', borderRadius: 999, border: 0, background: 'var(--accent)', color: '#14131A', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', opacity: input.trim() && lang ? 1 : 0.5 }}>{lang ? t.send : 'ส่ง · Send'}</button>
+          <button type="submit" disabled={!input.trim() || !lang} style={{ padding: '0 20px', borderRadius: 999, border: 0, background: 'var(--accent)', color: 'var(--on-accent)', fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', opacity: input.trim() && lang ? 1 : 0.5 }}>{lang ? t.send : 'ส่ง · Send'}</button>
         </div>
       </form>
     </main>

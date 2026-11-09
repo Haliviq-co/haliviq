@@ -65,6 +65,7 @@
   --line:      rgb(255 255 255 / 0.10);
   --line-soft: rgb(255 255 255 / 0.06);
   --accent:    #A99CF8;
+  --on-accent: #14131A;
   --accent-2:  #53C3D7;
   --panel:     #0B0A16;
   --shadow-c:  0 0 0;
@@ -84,6 +85,7 @@ html[data-theme="light"] {
   --line:      #E4E4EC;
   --line-soft: #F0F0F6;
   --accent:    #5A4ED4;
+  --on-accent: #FFFFFF;
   --accent-2:  #1F8CA1;
   --panel:     #FFFFFF;
   --shadow-c:  26 27 46;
