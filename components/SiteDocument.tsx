@@ -1,8 +1,11 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
-import './globals.css'
+import '@/app/globals.css'
 
-export const metadata: Metadata = {
+// Shared <html> document for the site's root layouts (app/[lang]/layout.tsx and
+// app/staff/layout.tsx). Each top-level route has its own root layout so the
+// lang attribute can follow the route language.
+export const siteMetadata: Metadata = {
   title: 'Haliviq | Human Ideas. Intelligent Future.',
   description: 'Haliviq is a design and AI studio in Bangkok. We turn human ideas into intelligent products: UX/UI design, websites, mobile apps, LINE mini apps and AI tools for Thai and Southeast Asian teams.',
   icons: {
@@ -26,9 +29,9 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function SiteDocument({ lang, children }: { lang: 'th' | 'en'; children: React.ReactNode }) {
   return (
-    <html lang="th" suppressHydrationWarning>
+    <html lang={lang} suppressHydrationWarning>
       <head>
         {/* Apply the saved theme before first paint so there is no flash. Dark is the default. React does not manage this attribute, so a client re-render cannot reset it. */}
         <script dangerouslySetInnerHTML={{ __html: "var t='dark';try{var s=localStorage.getItem('haliviq-theme');if(s==='light'||s==='dark')t=s}catch(e){}document.documentElement.setAttribute('data-theme',t)" }} />

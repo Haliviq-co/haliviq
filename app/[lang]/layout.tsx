@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { type Lang } from '@/lib/i18n'
 import CookieBanner from '@/components/CookieBanner'
 import ChatBot from '@/components/ChatBot'
+import SiteDocument, { siteMetadata } from '@/components/SiteDocument'
 
 export async function generateStaticParams() {
   return [{ lang: 'th' }, { lang: 'en' }]
@@ -10,6 +11,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { lang: Lang } }): Promise<Metadata> {
   const isEN = params.lang === 'en'
   return {
+    ...siteMetadata,
     title: isEN ? 'Haliviq | Human Ideas. Intelligent Future.' : 'Haliviq | ความคิดของคน สู่อนาคตที่ฉลาดขึ้น',
     description: isEN
       ? 'Haliviq is a design and AI studio in Bangkok. We turn human ideas into intelligent products: UX/UI design, websites, mobile apps, LINE mini apps and AI tools for Thai and Southeast Asian teams.'
@@ -20,10 +22,10 @@ export async function generateMetadata({ params }: { params: { lang: Lang } }): 
 export default function LangLayout({ children, params }: { children: React.ReactNode; params: { lang: Lang } }) {
   const lang = (params.lang === 'en' ? 'en' : 'th') as Lang
   return (
-    <>
+    <SiteDocument lang={lang}>
       {children}
       <ChatBot lang={lang} />
       <CookieBanner lang={lang} />
-    </>
+    </SiteDocument>
   )
 }
