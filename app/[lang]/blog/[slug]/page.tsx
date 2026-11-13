@@ -56,6 +56,11 @@ const svcFor: Record<string, string[]> = {
   'case-meko-hospital': ['brand-experience', 'ux-ui-design'],
 }
 
+// Slugs not in generateStaticParams get the site 404 (app/not-found.tsx).
+// Calling notFound() from the page instead makes Next 14 serve its empty
+// __next_error__ shell.
+export const dynamicParams = false
+
 export function generateStaticParams() {
   return ['en', 'th'].flatMap((lang) => articles.map((a) => ({ lang, slug: a.slug })))
 }

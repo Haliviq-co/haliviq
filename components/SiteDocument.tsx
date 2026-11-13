@@ -6,6 +6,7 @@ import '@/app/globals.css'
 // app/staff/layout.tsx). Each top-level route has its own root layout so the
 // lang attribute can follow the route language.
 export const siteMetadata: Metadata = {
+  metadataBase: new URL('https://www.haliviq.com'),
   title: 'Haliviq | Human Ideas. Intelligent Future.',
   description: 'Haliviq is a design and AI studio in Bangkok. We turn human ideas into intelligent products: UX/UI design, websites, mobile apps, LINE mini apps and AI tools for Thai and Southeast Asian teams.',
   icons: {

@@ -4,6 +4,9 @@ import CookieBanner from '@/components/CookieBanner'
 import ChatBot from '@/components/ChatBot'
 import SiteDocument, { siteMetadata } from '@/components/SiteDocument'
 
+// Only /th and /en exist. Any other first segment (e.g. /foo.txt) is a 404.
+export const dynamicParams = false
+
 export async function generateStaticParams() {
   return [{ lang: 'th' }, { lang: 'en' }]
 }
