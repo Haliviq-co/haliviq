@@ -8,6 +8,11 @@ import { t, type Lang } from '@/lib/i18n'
 import { tilNotes, getTil } from '@/lib/til-data'
 import { formatDate } from '@/lib/blog-data'
 
+// Slugs not in generateStaticParams get the site 404 (app/not-found.tsx).
+// Calling notFound() from the page instead makes Next 14 serve its empty
+// __next_error__ shell.
+export const dynamicParams = false
+
 export function generateStaticParams() {
   return ['en', 'th'].flatMap((lang) => tilNotes.map((n) => ({ lang, slug: n.slug })))
 }
