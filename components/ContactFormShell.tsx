@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 
-// Fires a lead conversion. Consent Mode (set in app/layout.tsx) keeps this cookieless until the visitor accepts.
+// Fires a lead conversion. Consent Mode (set in components/SiteDocument.tsx) keeps this cookieless until the visitor accepts.
 // Optional: set NEXT_PUBLIC_ADS_CONVERSION_LABEL (the part after "AW-18293218603/" in Google Ads) to report it as an Ads conversion.
 function trackLead() {
   try {
