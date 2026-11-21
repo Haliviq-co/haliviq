@@ -18,8 +18,8 @@ export default function Hero({ lang, tr }: Props) {
 
   return (
     <section className="theme-dark relative overflow-hidden" style={{ background: '#050310' }}>
-      {/* Video: full-bleed on desktop, a top block on mobile */}
-      <div className="relative w-full aspect-video lg:aspect-auto lg:absolute lg:inset-0 lg:h-full">
+      {/* Video: always the full 16:9 frame (never cropped) — a top block on mobile, full width behind the copy on desktop */}
+      <div className="relative w-full aspect-video lg:absolute lg:inset-x-0 lg:top-0">
         <video autoPlay muted loop playsInline preload="auto" poster="/images/hero/hero-restores.jpg" aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover object-center">
           <source src="/images/hero/hero-restores.webm" type="video/webm" />
@@ -31,8 +31,10 @@ export default function Hero({ lang, tr }: Props) {
         <div className="absolute inset-0 hidden lg:block" style={{ background: 'linear-gradient(90deg, rgba(5,3,16,0.55) 0%, rgba(5,3,16,0) 32%), linear-gradient(270deg, rgba(5,3,16,0.45) 0%, rgba(5,3,16,0) 25%), linear-gradient(180deg, rgba(5,3,16,0.45) 0%, rgba(5,3,16,0) 14%, rgba(5,3,16,0) 55%, rgba(5,3,16,0.85) 100%)' }} />
       </div>
 
-      <div className="relative lg:min-h-screen lg:flex lg:flex-col lg:justify-end" style={{ zIndex: 3 }}>
-        <div className="max-w-7xl w-full mx-auto px-5 lg:px-10 pt-2 pb-12 lg:pb-16 lg:pt-32 lg:flex lg:items-end lg:justify-between lg:gap-10">
+      <div className="relative" style={{ zIndex: 3 }}>
+        {/* Desktop: copy box is exactly the video's 16:9 area, so text always sits on the video */}
+        <div className="lg:aspect-video lg:flex lg:items-end">
+        <div className="max-w-7xl w-full mx-auto px-5 lg:px-10 pt-2 pb-12 lg:pb-14 lg:flex lg:items-end lg:justify-between lg:gap-10">
           <div className="lg:max-w-[46rem]">
             <span className="inline-block fade-up rounded-full mb-5 lg:mb-6"
               style={{ animationDelay: '0s', background: 'linear-gradient(135deg,#A99CF8 0%,#53C3D7 100%)', color: '#08070F', fontWeight: 700, fontSize: 'clamp(0.7rem,1vw,0.85rem)', letterSpacing: '0.18em', textTransform: 'uppercase', padding: '10px 20px' }}>
@@ -66,9 +68,10 @@ export default function Hero({ lang, tr }: Props) {
           </div>
 
           {/* Desktop: short copy bottom-right, like haliviq.app */}
-          <p className="hidden lg:block max-w-sm text-right fade-up" style={{ animationDelay: '0.25s', fontSize: '0.95rem', lineHeight: 1.6, color: 'rgba(255,255,255,0.75)' }}>
+          <p className="hidden xl:block max-w-sm text-right fade-up" style={{ animationDelay: '0.25s', fontSize: '0.95rem', lineHeight: 1.6, color: 'rgba(255,255,255,0.75)' }}>
             {h.sub}
           </p>
+        </div>
         </div>
 
         {/* Stats strip under the hero */}
