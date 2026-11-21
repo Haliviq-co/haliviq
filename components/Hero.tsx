@@ -22,7 +22,8 @@ export default function Hero({ lang, tr }: Props) {
       <div className="relative w-full aspect-video lg:absolute lg:inset-x-0 lg:top-0">
         <video autoPlay muted loop playsInline preload="auto" poster="/images/hero/hero-restores.jpg" aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover object-center">
-          <source src="/images/hero/hero-restores.webm" type="video/webm" />
+          {/* AV1 first (sharp 1080p at ~2.3 MB); H.264 fallback for browsers without AV1 */}
+          <source src="/images/hero/hero-restores-av1.mp4" type='video/mp4; codecs="av01.0.08M.08"' />
           <source src="/images/hero/hero-restores.mp4" type="video/mp4" />
         </video>
         {/* Mobile: fade the bottom of the video into the dark copy block */}
