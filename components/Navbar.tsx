@@ -235,8 +235,8 @@ export default function Navbar({ lang, tr, transparent = false }: Props) {
 
   return (
     <>
-      <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 backdrop-blur-xl border-b ${
-        transparent && !scrolled ? 'border-transparent' : 'shadow-sm border-[color:var(--line)]'
+      <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 border-b ${
+        transparent && !scrolled ? 'border-transparent' : 'backdrop-blur-xl shadow-sm border-[color:var(--line)]'
       }`} style={{ background: transparent && !scrolled ? 'transparent' : 'color-mix(in srgb, var(--bg) 92%, transparent)' }}>
         {/* Brand gradient hairline across the very top edge */}
         <div className="h-[3px] w-full" style={{background:'linear-gradient(90deg, var(--purple-dark) 0%, var(--purple) 30%, var(--purple-light) 60%, var(--lime) 100%)', opacity: isTransparent && !scrolled ? 1 : 0, transition:'opacity 0.3s'}}/>

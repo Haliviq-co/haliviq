@@ -19,7 +19,7 @@ export default function Hero({ lang, tr }: Props) {
   return (
     <section className="theme-dark relative overflow-hidden" style={{ background: '#050310' }}>
       {/* Video: full-bleed on desktop, a top block on mobile */}
-      <div className="relative w-full aspect-video mt-14 lg:mt-0 lg:aspect-auto lg:absolute lg:inset-0 lg:h-full">
+      <div className="relative w-full aspect-video lg:aspect-auto lg:absolute lg:inset-0 lg:h-full">
         <video autoPlay muted loop playsInline preload="auto" poster="/images/hero/hero-restores.jpg" aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover object-center">
           <source src="/images/hero/hero-restores.webm" type="video/webm" />
