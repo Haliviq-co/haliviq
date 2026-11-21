@@ -243,8 +243,8 @@ export default function Navbar({ lang, tr, transparent = false }: Props) {
         <div className="max-w-7xl mx-auto px-4 lg:px-6 flex items-center justify-between h-[60px]">
 
           <Link href={`${prefix}`}>
-            <img src="/haliviq-logo-light.svg" alt="Haliviq" className="logo-for-dark h-9 w-auto transition-all duration-300"/>
-            <img src="/haliviq-logo.svg" alt="" aria-hidden="true" className="logo-for-light h-9 w-auto transition-all duration-300"/>
+            <img src="/haliviq-logo-light.svg" alt="Haliviq" className="logo-for-dark h-6 lg:h-9 w-auto transition-all duration-300"/>
+            <img src="/haliviq-logo.svg" alt="" aria-hidden="true" className="logo-for-light h-6 lg:h-9 w-auto transition-all duration-300"/>
           </Link>
 
           {/* Desktop nav */}
@@ -445,8 +445,6 @@ export default function Navbar({ lang, tr, transparent = false }: Props) {
           </div>
 
           <div className="lg:hidden flex items-center gap-2">
-            <LangSwitcher/>
-            <ThemeToggle lang={lang}/>
             <button onClick={() => setMenuOpen(!menuOpen)} className="p-2" style={{color:navTextColor}}>
               <div className={`w-5 h-0.5 bg-current mb-1.5 transition-all ${menuOpen?'rotate-45 translate-y-2':''}`}/>
               <div className={`w-5 h-0.5 bg-current mb-1.5 transition-all ${menuOpen?'opacity-0':''}`}/>
@@ -459,6 +457,11 @@ export default function Navbar({ lang, tr, transparent = false }: Props) {
       {/* Mobile menu */}
       <div className={`fixed inset-0 z-40 transition-all duration-300 lg:hidden ${menuOpen?'opacity-100 visible':'opacity-0 invisible'}`} style={{ background: mobileBg }}>
         <div className="flex flex-col h-full pt-20 pb-10 px-5 overflow-y-auto">
+          {/* Language + theme live in the menu on mobile so the header stays clear over the hero video */}
+          <div className="flex items-center gap-3 mb-2">
+            <LangSwitcher/>
+            <ThemeToggle lang={lang}/>
+          </div>
           <nav className="flex flex-col mt-2">
             <Link href={`${prefix}`} onClick={() => setMenuOpen(false)} className="block py-3 border-b" style={{fontWeight:400,fontSize:"1.15rem", color: 'var(--ink)', borderColor: mobileBorder}}>{n.home}</Link>
 
