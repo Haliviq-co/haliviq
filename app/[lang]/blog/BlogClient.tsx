@@ -54,8 +54,8 @@ export default function BlogClient({ lang, newsletter }: { lang: Lang; newslette
               </div>
               <p className="text-sm max-w-md leading-relaxed" style={{ color: 'rgb(var(--fg) / 0.75)', fontWeight: 400 }}>
                 {isEN
-                  ? 'Twenty articles on what is shaping digital products worldwide: AI, technology, design, regulation and business, plus real case studies from our Bangkok studio. Written to be useful, not to sell.'
-                  : 'บทความ 20 เรื่อง เล่าสิ่งที่กำลังเปลี่ยนวงการผลิตภัณฑ์ดิจิทัลทั่วโลก ทั้ง AI เทคโนโลยี ดีไซน์ กฎระเบียบ และธุรกิจ พร้อมกรณีศึกษาจริงจากสตูดิโอของเราในกรุงเทพฯ เขียนให้อ่านแล้วเอาไปใช้ได้'}
+                  ? `${articles.length} articles on what is shaping digital products worldwide: AI, technology, design, regulation and business, plus real case studies from our Bangkok studio. Written to be useful, not to sell.`
+                  : `บทความ ${articles.length} เรื่อง เล่าสิ่งที่กำลังเปลี่ยนวงการผลิตภัณฑ์ดิจิทัลทั่วโลก ทั้ง AI เทคโนโลยี ดีไซน์ กฎระเบียบ และธุรกิจ พร้อมกรณีศึกษาจริงจากสตูดิโอของเราในกรุงเทพฯ เขียนให้อ่านแล้วเอาไปใช้ได้`}
               </p>
             </div>
 

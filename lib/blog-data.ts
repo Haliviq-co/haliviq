@@ -4,10 +4,15 @@ import { tech2Articles } from './blog/tech2'
 import { aiBizArticles } from './blog/aibiz'
 import { designArticles } from './blog/design'
 import { caseArticles } from './blog/cases'
+import { tech3Articles } from './blog/tech3'
+import { ai2Articles } from './blog/ai2'
+import { design2Articles } from './blog/design2'
+import { biz2Articles } from './blog/biz2'
 
 export type { Article, BlogCat }
 
-export const articles: Article[] = [...techArticles, ...tech2Articles, ...aiBizArticles, ...designArticles, ...caseArticles]
+export const articles: Article[] = [...techArticles, ...tech2Articles, ...aiBizArticles, ...designArticles, ...caseArticles,
+  ...tech3Articles, ...ai2Articles, ...design2Articles, ...biz2Articles]
   .sort((a, b) => (a.date < b.date ? 1 : -1))
 
 export const blogCategories: BlogCat[] = ['Technology', 'AI', 'Design', 'Business', 'Case Study']
