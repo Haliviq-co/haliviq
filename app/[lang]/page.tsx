@@ -6,6 +6,7 @@ import WhatWeDo from '@/components/WhatWeDo'
 import FlowDiagram from '@/components/FlowDiagram'
 import Testimonials from '@/components/Testimonials'
 import Clients from '@/components/Clients'
+import AdVideo from '@/components/AdVideo'
 import Work from '@/components/Work'
 import FeaturedWork from '@/components/FeaturedWork'
 import PortfolioGallery from '@/components/PortfolioGallery'
@@ -73,6 +74,7 @@ export default function HomePage({ params }: { params: { lang: string } }) {
       <Navbar lang={lang} tr={tr} transparent />
       <Hero lang={lang} tr={tr} />
       <Clients lang={lang} tr={tr} />
+      <AdVideo lang={lang} />
       <CoreSkills lang={lang} tr={tr} />
       <FeaturedWork lang={lang} tr={tr} />
       <WhatWeDo lang={lang} tr={tr} />
